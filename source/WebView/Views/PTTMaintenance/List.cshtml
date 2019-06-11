@@ -1,0 +1,310 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.PTTMaintenance>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtPTTId", data.PTTId);
+        SetElement("txtPTTDesc", data.PTTDesc);
+        SetElement("txtRegionId", data.RegionId);
+        SetElement("txtCostCentre", data.CostCentre);
+        SetElement("txtStateName", data.StateName);
+        SetElement("PTTIdVal", data.PTTId);
+        document.getElementById("targetPTTId").value = data.PTTId;
+        document.getElementById("btnClose").disabled = false;
+        document.getElementById("txtPTTId").disabled = true;
+    }
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtPTTDesc").readOnly = true;
+        document.getElementById("txtRegionId").readOnly = true;
+        document.getElementById("txtCostCentre").readOnly = true;
+        document.getElementById("txtStateName").readOnly = true;
+        document.getElementById("btnSave").disabled = false;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails", "PTTMaintenance")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    GetDetailsCallBack(res);
+                    var stateNameList;
+                    
+                    stateNameList = res.StateList.split("|");
+
+                    var dataListName = "<option selected value='" + res.StateCode + "'>" + res.StateName + "</option>";
+
+                    for (i = 1; i < stateNameList.length; i++) {
+                        if (stateNameList[i] != "") {
+
+                            valueStateName = stateNameList[i].split(":");
+                            dataListName += "<option value='" + valueStateName[0] + "'>" + valueStateName[1] + "</option>";
+                            
+                        }
+
+                    }
+                    $("#txtStateName").html(dataListName);
+
+
+                    RegionList = res.dregionList.split("|");
+
+                    var dataRegionList = "<option selected value='" + res.RegionId + "'>" + res.dregionSelect + "</option>";
+                    for (i = 1; i < RegionList.length; i++) {
+                        if (RegionList[i] != "") {
+
+                            valueStateName = RegionList[i].split(":");
+                            dataRegionList += "<option value='" + valueStateName[0] + "'>" + valueStateName[1] + "</option>";
+
+                        }
+
+                    }
+                    $("#txtRegionId").html(dataRegionList);
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            minHeight: 'auto',
+            width: 700,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#searchKey').change(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewPTTMaintenance";
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/PTTMaintenance/DeleteData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetPTTId": document.getElementById("targetPTTId").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>PTT Maintenance List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:200px;"><input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="PTTMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">PTT ID</th>
+                <th scope="col">PTT Description</th>
+                 <th scope="col">Region ID</th>       
+                 <th scope="col">Cost Center</th>
+                 <th scope="col">State Name</th>         
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="gid">@res.PTT_ID</td>
+                <td>@res.PTT_DESC</td>
+                <td>@res.REGION_ID</td>
+                <td>@res.COST_CENTRE </td>
+                <td>@res.STATE_NAME</td>                    
+                @*<td>@Ajax.ActionLink("Details", "GetDetails", new { id = res.PTT_ID }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId = "divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { searchKey = "", page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { searchKey = "", page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { searchKey = "", page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { searchKey = "", page = Model.PageCount })
+        }
+        else
+        {
+
+        }<br /><b>Total @Model.TotalItemCount Record</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">      
+        <input type="hidden" id="targetPTTId" value="" />
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details" style="height:200px">
+           <input type="hidden" id="PTTIdVal" name="PTTIdVal" />
+            <table width="400px">
+            <tr>
+                    <td style="width:150px; background-color:#e8eef4">PTT ID</td>
+                    <td><input type="text" id="txtPTTId" name="txtPTTId" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">PTT Description</td>
+                    <td><input type="text" id="txtPTTDesc" name="txtPTTDesc" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Region ID</td>
+                    <td><select id="txtRegionId" name="txtRegionId">
+                    </select></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                @***********************************************************************@
+                <tr>
+                    <td style="width:150px; background-color:White">Cost Center</td>
+                    <td><input type="text" id="txtCostCentre" name="txtCostCentre" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:White">State Name</td>
+                    <td><select id="txtStateName" name="txtStateName">
+                    </select></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                @***********************************************************************@        
+            </table>
+            <br />            
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>
+</div>
+    
+
+

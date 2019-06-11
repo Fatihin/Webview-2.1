@@ -1,0 +1,352 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.PUFRM>
+@{
+    ViewBag.Title = "PUFRM_List";
+}
+<script type="text/javascript">
+   function GetDetailsCallBack(data) {
+       document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtPU_ID", data.x_PU_ID);
+        SetElement("txtPU_ID1", data.x_PU_ID);
+        SetElement("txtPU_ID2", data.x_PU_ID);
+        SetElement("txtPU_DESC", data.x_PU_DESC);
+        SetElement("txtFEAT_TYPE", data.x_FEAT_TYPE);
+        SetElement("txtQTY_IND", data.x_QTY_IND);
+        SetElement("txtMUL_FAC", data.x_MUL_FAC);
+        SetElement("txtATT1", data.x_ATT1);
+        SetElement("txtATT2", data.x_ATT2);
+        SetElement("txtATT3", data.x_ATT3);
+        SetElement("txtATT4", data.x_ATT4);
+        SetElement("txtATT5", data.x_ATT5);
+        SetElement("txtATT6", data.x_ATT6);
+        SetElement("txtATT7", data.x_ATT7);
+        SetElement("txtATT8", data.x_ATT8);
+        SetElement("txtATT9", data.x_ATT9);
+        SetElement("txtATT10", data.x_ATT10);
+        SetElement("txtATT11", data.x_ATT11);
+        SetElement("txtATT12", data.x_ATT12);
+        SetText("txtPU_ID", data.x_PU_ID);
+
+        document.getElementById("txtPU_ID2").disabled = true;
+
+        document.getElementById("targetPUFRM").value = data.x_PU_ID;
+        document.getElementById("btnClose").disabled = false;
+                
+    }
+
+    function SaveUpdateCallBack(data) {    
+        //document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+
+
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails_PUFRM", "PUFRM")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    GetDetailsCallBack(res);
+                    //$.msgBox("Please la."); 
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 430,
+            width: 700,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+
+            $('#btnSearch').click(function () {
+                window.location = "PUFRM_List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#searchKey').change(function () {
+                window.location = "PUFRM_List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "PUFRM_NewJob";
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/PUFRM/DeleteData_PUFRM",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetPUFRM": document.getElementById("targetPUFRM").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+
+
+        });
+    });
+
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+   
+</script>
+
+<br />
+<h2>Plant Unit Feature Reference Maintenance(Copper) List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:200px;"><input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+    @if (Model.Count() > 0)
+    {
+    <table id="rounded-corner" summary="Plan Unit Feature Reference List" width="850px">
+        <thead>
+            <tr>                
+                <th scope="col" style="width:100px">ID</th>
+                <th scope="col" style="width:100px">DESCRIPTION</th>
+                <th scope="col" style="width:100px">FEATURE TYPE</th>
+                <th scope="col" style="width:100px">QTY INDICATOR</th>
+                <th scope="col" style="width:100px">MULTIPLIER FACTOR</th>
+                @*<th scope="col" style="width:100px">ATT1</th>
+                <th scope="col" style="width:100px">ATT2</th>
+                <th scope="col" style="width:100px">ATT3</th>
+                <th scope="col" style="width:100px">ATT4</th>
+                <th scope="col" style="width:100px">ATT5</th>
+                <th scope="col" style="width:100px">ATT6</th>
+                <th scope="col" style="width:100px">ATT7</th>
+                <th scope="col" style="width:100px">ATT8</th>
+                <th scope="col" style="width:100px">ATT9</th>
+                <th scope="col" style="width:100px">ATT10</th>
+                <th scope="col" style="width:100px">ATT11</th>
+                <th scope="col" style="width:100px">ATT12</th>*@
+
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">               
+                <td id="gid">@res.PU_ID</td>
+                <td>@res.PU_DESC</td>
+                <td>@res.FEAT_TYPE</td>
+                <td>@res.QTY_IND</td>
+                <td>@res.MUL_FAC</td>                               
+                @*<td>@res.x_ATT1</td>
+                <td>@res.x_ATT2</td>
+                <td>@res.x_ATT3</td>
+                <td>@res.x_ATT4</td>
+                <td>@res.x_ATT5</td>
+                <td>@res.x_ATT6</td>
+                <td>@res.x_ATT7</td>
+                <td>@res.x_ATT8</td>
+                <td>@res.x_ATT9</td>
+                <td>@res.x_ATT10</td>
+                <td>@res.x_ATT11</td>
+                <td>@res.x_ATT12</td>*@
+                @*<td>@Ajax.ActionLink("View", "GetDetails_PUFRM", new { id = res.PU_ID }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId = "divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { searchKey = "", page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { searchKey = "", page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { searchKey = "", page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { searchKey = "", page = Model.PageCount })
+        }
+        else
+        {
+
+        }
+    </div>     
+    }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }            
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">
+        <input type="hidden" id="txtPU_ID" value="" />
+         <input type="hidden" id="targetPUFRM" value="" />
+        @using (Ajax.BeginForm("UpdateData_PUFRM", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details">
+            <table width="600px">
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">ID</td>
+                    <td><input type="text" id="txtPU_ID2" name="txtPU_ID" />
+                        <input type="hidden" id="txtPU_ID1" name="txtPU_ID" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">Description</td>
+                    <td><input type="text" id="txtPU_DESC" name="txtPU_DESC" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Feature Type</td>
+                    <td><input type="text" id="txtFEAT_TYPE" name="txtFEAT_TYPE" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">QTY Indicator</td>
+                    <td><input type="text" id="txtQTY_IND" name="txtQTY_IND"  /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Multiplier Factor</td>
+                    <td><input type="text" id="txtMUL_FAC" name="txtMUL_FAC"  /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">ATT1</td>
+                    <td><input type="text" id="txtATT1" name="txtATT1"  /></td>
+                </tr>
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4; ">ATT2</td>
+                    <td><input type="text" id="txtATT2" name="txtATT2" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">ATT3</td>
+                    <td><input type="text" id="txtATT3" name="txtATT3"  /></td>
+                </tr>
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4">ATT4</td>
+                    <td><input type="text" id="txtATT4" name="txtATT4"  /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">ATT5</td>
+                    <td><input type="text" id="txtATT5" name="txtATT5"  /></td>
+                </tr>
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4">ATT6</td>
+                    <td><input type="text" id="txtATT6" name="txtATT6"  /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">ATT7</td>
+                    <td><input type="text" id="txtATT7" name="txtATT7"  /></td>
+                </tr>
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4">ATT8</td>
+                    <td><input type="text" id="txtATT8" name="txtATT8"  /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">ATT9</td>
+                    <td><input type="text" id="txtATT9" name="txtATT9"  /></td>
+                </tr>
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4">ATT10</td>
+                    <td><input type="text" id="txtATT10" name="txtATT10"  /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">ATT11</td>
+                    <td><input type="text" id="txtATT11" name="txtAT11"  /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">ATT12</td>
+                    <td><input type="text" id="txtATT12" name="txtATT12"  /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4"></td>                   
+                </tr>
+
+            </table>
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+    </div>
+</div>
+    

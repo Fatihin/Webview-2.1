@@ -1,0 +1,766 @@
+@{
+    ViewBag.Title = "CheckJobGRN";
+}
+
+<script type="text/javascript">
+    function getDetailsCheckJob(data, typetable, checkboxname) {
+
+        //alert(data);
+
+        var tblC = document.getElementById(typetable);
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+        Row = data.split('[');
+        var tab = document.getElementById(typetable);
+        
+        //Fatihin CR53 16052018
+        for (var p = 0; p < Row.length - 1; p++) {
+            var row = tab.insertRow(p + 1);
+            var valid_asb = false;
+
+            row.style.background = "#e8eef4";
+            row.style.whiteSpace = "nowrap";
+
+            splitData = Row[p + 1].split('|');
+            
+            if (splitData[0] == "Y") {
+                row.insertCell(0);
+                tab.rows[p + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\""+ checkboxname +"\" value=\"" + splitData[1] + "\" checked/>";
+            }
+            else if (splitData[0] == "N") {
+                row.insertCell(0);
+                tab.rows[p + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"" + checkboxname + "\" value=\"" + splitData[1] + "\"/>";
+            }
+
+            //Marfu'ah ASBGated 280519            
+            if (typetable == "tabCEquip1") {
+                checkValidation(splitData[2], splitData[13], splitData[14], function (resp) {
+                    valid_asb = resp.isASBExist;
+                });
+            }
+
+            var splitDatalen = splitData.length;
+            if (typetable == "tabCEquip1") {
+                splitDatalen = splitDatalen - 3;
+            }
+            else {
+                splitDatalen = splitDatalen - 1;
+            }
+
+            for (var i = 1; i < splitDatalen ; i++) {
+               // alert(splitData.length);
+                row.insertCell(i);
+                styleData = splitData[i + 1];
+                if (typetable == "tabCEquip1") {
+                    if (splitData[3] != "ASB" || valid_asb == false) {
+                        tab.rows[p + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"" + checkboxname + "\" value=\"" + splitData[1] + "\" disabled/>";
+                        styleData = "<span style='color: red'>" + splitData[i + 1] + "</span>";
+                    }
+                }
+                tab.rows[p + 1].cells[i].innerHTML = styleData;
+            }
+            //Marfu'ah ASBGated 280519
+        }
+        //Fatihin CR53 16052018
+    }
+
+    //Fatihin CR53 16052018
+    jQuery(document).ready(function ($) {       
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            document.getElementById("typeOfInteg").value = t;
+            $("#divDetails").dialog("open");
+            $.ajax({
+                url: '@Url.Action("CheckJobResult", "Job")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "typeOfInte": t,
+                    "id": document.getElementById("jobID").value,
+                    "hasFnoRelated": document.getElementById("hasFnoRelated").value
+                },
+                beforeSend: function () {
+                    document.getElementById("loadingscheckJob").style.display = "block";
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    document.getElementById("loadingscheckJob").style.display = "none";
+                    if (t == "Load Site" && res.LoadOrCreate != "") {
+                        document.getElementById("tabCSite").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabCSite1";
+                        var LoadSite = res.LoadOrCreate;
+                        var checkboxname = "ls";
+                        getDetailsCheckJob(LoadSite, typetab, checkboxname);
+                    }
+
+                    else if (t == "Load Equipment" && res.LoadOrCreate != "") {
+                        document.getElementById("tabCEquip").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        var dataJob = res.LoadOrCreate;
+                        if (dataJob.length > 1);
+                        typetab = "tabCEquip1";
+                        var loadEquip = res.LoadOrCreate;
+                        var checkboxname = "le";
+                        getDetailsCheckJob(loadEquip, typetab, checkboxname);
+                    }
+
+                    else if (t == "Load Service Boundary Address" && res.LoadOrCreate != "") {
+                        document.getElementById("tabCSBoundary").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabCSBoundary1";
+                        var loadSBoundry = res.LoadOrCreate;
+                        var checkboxname = "lsb";
+                        getDetailsCheckJob(loadSBoundry, typetab, checkboxname);
+                    }
+
+                    else if (t == "Add Card/Splitter" && res.LoadOrCreate != "") {
+                        document.getElementById("tabAddCardSplit").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabAddCardSplit1";
+                        var AddCardSplit = res.LoadOrCreate;
+                        var checkboxname = "ac";
+                        getDetailsCheckJob(AddCardSplit, typetab, checkboxname);
+                    }
+
+                    else if (t == "Delete Equipment" && res.LoadOrCreate != "") {
+                        document.getElementById("tabDelEquip").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabDelEquip1";
+                        var DelEquip = res.LoadOrCreate;
+                        var checkboxname = "de";
+                        getDetailsCheckJob(DelEquip, typetab, checkboxname);
+                    }
+
+                    else if (t == "Delete Path" && res.LoadOrCreate != "") {
+                        document.getElementById("tabDelPath").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabDelPath1";
+                        var DelPath = res.LoadOrCreate;
+                        var checkboxname = "dp";
+                        getDetailsCheckJob(DelPath, typetab, checkboxname);
+                    }
+
+                    else if (t == "Delete Service Boundary" && res.LoadOrCreate != "") {
+                        document.getElementById("tabDelSB").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabDelSB1";
+                        var DelSB = res.LoadOrCreate;
+                        var checkboxname = "dsb";
+                        getDetailsCheckJob(DelSB, typetab, checkboxname);
+                    }
+
+                    else if (t == "Load Path Consumer" && res.pConsumer != "") {
+                        document.getElementById("tabCPathConsumer").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        var dataJob = res.pConsumer;
+                        if (dataJob.length > 0) {
+                            for (ii = 0; ii < dataJob.length; ii++) {
+                                d = dataJob[ii].split('|');
+                                var tbl = document.getElementById('tabCPathConsumer1');
+                                var lastRow = tbl.rows.length;
+                                var iteration = lastRow;
+                                var row = tbl.insertRow(lastRow);
+                                row.style.background = "#e8eef4";
+                                row.style.whiteSpace = "nowrap";
+                                row.insertCell(0);
+                                row.insertCell(1);
+                                row.insertCell(2);
+                                row.insertCell(3);
+                                row.insertCell(4);
+                                row.insertCell(5);
+                                row.insertCell(6);
+                                row.insertCell(7);
+                                row.insertCell(8);
+                                row.insertCell(9);
+                                row.insertCell(10);
+                                row.insertCell(11);
+                                row.insertCell(12);
+                                row.insertCell(13);
+                                row.insertCell(14);
+                                row.insertCell(15);
+
+                                if (d[1] == "Y") {
+                                    tbl.rows[ii + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"lpc\" value=\"" + d[0] + "\" checked/>";
+                                }
+                                else if (d[1] == "N") {
+                                    tbl.rows[ii + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"lpc\" value=\"" + d[0] + "\" />";
+                                }
+
+                                tbl.rows[ii + 1].cells[1].innerHTML = d[2];
+                                tbl.rows[ii + 1].cells[2].innerHTML = d[3];
+                                tbl.rows[ii + 1].cells[3].innerHTML = d[4];
+                                tbl.rows[ii + 1].cells[4].innerHTML = d[5];
+                                tbl.rows[ii + 1].cells[5].innerHTML = d[6];
+                                tbl.rows[ii + 1].cells[6].innerHTML = d[7];
+                                tbl.rows[ii + 1].cells[7].innerHTML = d[8];
+                                tbl.rows[ii + 1].cells[8].innerHTML = d[9];
+                                tbl.rows[ii + 1].cells[9].innerHTML = d[10];
+                                tbl.rows[ii + 1].cells[10].innerHTML = d[11];
+                                tbl.rows[ii + 1].cells[11].innerHTML = d[12];
+                                tbl.rows[ii + 1].cells[12].innerHTML = d[13];
+                                tbl.rows[ii + 1].cells[13].innerHTML = d[14];
+                                tbl.rows[ii + 1].cells[14].innerHTML = d[15];
+
+                                if (d[16] == "UPDATE") {
+                                    tbl.rows[ii + 1].cells[15].innerHTML = "<input type=\"checkbox\" id=\"valueDP\" name=\"dptambahan\" value=\"" + d[0] + "\" checked/>";
+                                }
+                                else if (d[16] == "NEW") {
+                                    tbl.rows[ii + 1].cells[15].innerHTML = "<input type=\"checkbox\" id=\"valueDP\" name=\"dptambahan\" value=\"" + d[0] + "\" />";
+                                }
+                            }
+                        }
+                    }
+
+                    else if (res.LoadOrCreate.trim() == "" && res.pConsumer.length == 0) {
+                        document.getElementById("Nodata").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "none";
+
+                    }
+                }
+            });
+        });
+        //Fatihin CR53 16052018
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 550,
+            width: 1000,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                document.getElementById("tabCSite").style.display = "none";
+                document.getElementById("tabCEquip").style.display = "none";
+                document.getElementById("tabCSBoundary").style.display = "none";
+                document.getElementById("tabCPathConsumer").style.display = "none";
+                document.getElementById("tabAddCardSplit").style.display = "none";
+                document.getElementById("tabDelEquip").style.display = "none";
+                document.getElementById("tabDelPath").style.display = "none";
+                document.getElementById("tabDelSB").style.display = "none";
+                //Fatihin CR53 16052018
+                document.getElementById("selectcheckbox").style.display = "none";
+                //Fatihin CR53 16052018
+                document.getElementById("Nodata").style.display = "none";
+            }
+        });
+        //Fatihin CR53 16052018
+        $(function () {
+            document.getElementById("loading").style.display = "none";
+            $('#submToGrn').click(function () {
+                $.ajax({
+                    url: "/Job/GetStatus",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": document.getElementById("jobID").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("loading").style.display = "block";
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        alert(res);
+                        document.getElementById("loading").style.display = "none";
+                        if (res.checkGRN != 0) {
+                            alert("Integration process is running. Please try again in a while.");
+                        }
+                        else if (res.checkGRNISP != 0) {
+                            alert("Integration process is running. Please try again in a while.");
+                        }
+                        else {
+                            Handover();
+                        }
+                    }
+                });
+            });
+
+            $("#submToGrn").button();
+        });
+
+        $('#btnSave').click(function () {
+            var temp = document.getElementById("typeOfInteg").value;
+            if (temp == "Load Site") {
+                namechkbox = "ls";
+            }
+            else if (temp == "Load Equipment") {
+                namechkbox = "le";
+            }
+            else if (temp == "Load Service Boundary Address") {
+                namechkbox = "lsb";
+            }
+            else if (temp == "Add Card/Splitter") {
+                namechkbox = "ac";
+            }
+            else if (temp == "Delete Equipment") {
+                namechkbox = "de";
+            }
+            else if (temp == "Delete Path") {
+                namechkbox = "dp";
+            }
+            else if (temp == "Delete Service Boundary") {
+                namechkbox = "dsb";
+            }
+            else if (temp == "Load Path Consumer") {
+                namechkbox = "lpc";
+
+            }
+            var flagY = $("input[name=" + namechkbox + "]:checked").map(
+            function () {
+                return this.value;
+            }).get().join(",");
+            //alert("checked" + flagY);
+
+            var flagN = $("input[name=" + namechkbox + "]:not(:checked)").map(
+            function () {
+                return this.value;
+            }).get().join(",");
+            //alert("not checked" + flagN);
+
+            //checkbox for dp//
+            var updateY = $("input[name=dptambahan ]:checked").map(
+            function () {
+                return this.value;
+            }).get().join(",");
+            //alert("DP TAMBAHAN ---- checked" + updateY);
+
+            var newN = $("input[name=dptambahan]:not(:checked)").map(
+            function () {
+                return this.value;
+            }).get().join(",");
+            //alert("DP TAMBAHAN ---- NOT checked" + newN);
+
+            var cmsg = confirm('Are you sure you want to save?');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: "/Job/UpdateFlagInteg",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "flagIntegY": flagY,
+                        "flagIntegN": flagN,
+                        "updateY": updateY,
+                        "newN": newN,
+                        "typeOfInte": document.getElementById("typeOfInteg").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("loading").style.display = "block";
+                    },
+                    success: function (data) {
+                        document.getElementById("loading").style.display = "none";
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == true && res.Success2 == true && res.Success3 == true && res.Success4 == true) {
+                            alert("Successfully Updated.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Fails");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        });
+        $("#btnSave").button();
+
+        function Handover() {
+            var cmsg = confirm('Are you sure you want to Handover?');
+            if (cmsg != 0) {
+
+                $.ajax({
+                    url: "/Job/GraniteApproval2",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetJob": document.getElementById("jobID").value,
+                        "JOBTYPE": document.getElementById("JOBTYPE").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("loading").style.display = "block";
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        document.getElementById("loading").style.display = "none";
+                        if (res.result == "ok") {
+                            alert("Handed Over.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Handover Started");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+
+        }
+
+        $('#btnHandoverStatus').click(function () {
+            var jobtype = document.getElementById("JOBTYPE").value;
+            if (jobtype == 'OSP') {
+                window.location = "ViewHandover?id=" + document.getElementById("jobID").value + "&type='Granite'";
+            }
+            else if (jobtype == 'ISP') {
+                window.location = "ViewHandoverISP?id=" + document.getElementById("jobID").value + "&type='Granite'";
+            }
+        });
+        $("#btnHandoverStatus").button();
+
+        // region Mubin CR45-17052018
+        $('#expToXLSX').click(function () {
+            window.location = "GenerateXLSX?targetJob=" + document.getElementById("jobID").value;
+        });
+        $("#expToXLSX").button();
+        // endregion
+
+        $("#selectall").click(function () {
+            $("input:checkbox:not(:disabled)").each(function () {
+                $(this).prop('checked', true);
+            })
+        });
+        $("#selectall").button();
+        $("#deselectall").click(function () {
+            $("input:checkbox").each(function () {
+                $(this).prop('checked', false);
+            })
+        });
+        $("#deselectall").button();
+        //Fatihin CR53 16052018        
+    });
+
+    //Marfu'ah ASBGated 280519
+    function checkValidation(id, ptt, g3e_fno, resp) {
+        jQuery(document).ready(function ($) {
+            $.ajax({
+                url: "/Job/checkASBGated",
+                type: "POST",
+                async: false,
+                dataType: "html",
+                data: {
+                    "ptt": ptt,
+                    "g3e_fno": g3e_fno,
+                    "id": id
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    resp(res);  //callback method
+                }
+            });
+        });
+    }
+    //Marfu'ah ASBGated 280519
+</script>
+
+<br/>
+<h3>Job Management > Check Job Granite For @ViewBag.schemeName</h3>
+<div style="height:650px">
+    <div id="loading">
+        <img id="loading-image"  src="@Url.Content("~/Content/images/loadingpls.gif")" alt="Loading..."  />
+     </div>
+        <!-- region Mubin CR45-17052018 -->
+    <input type="button" value="Export to Excel" id="expToXLSX" style="height:30px; left:50%"/>
+    <input type="button" value="Submit to Granite" id="submToGrn" style="height:30px; left:50%"/>
+    <input type="button" value="View Handover Status" id="btnHandoverStatus" style="height:30px; left:50%"/>
+            <!-- endregion -->
+                                                                            <table id="rounded-corner" width="850px" style="margin-top:10px;">
+    <thead>
+        <tr>
+            <th scope="col" style="width:150px">INTEGRATION</th>
+            <th scope="col" style="width:600px">TYPE OF INTEGRATION</th>
+            <th scope="col" style="width:100px">STATUS</th>
+        </tr>
+    </thead>
+    <tbody>
+      @foreach (var a in ViewBag.typeOfInteg)
+      {
+        <tr class="odd">
+            <td>Granite</td>
+            <td id="gid">@a.type</td>
+            <td>@a.status</td>
+        </tr>
+      }
+    </tbody>
+</table>
+    <!-- Fatihin CR53 16052018-->
+    <input type="hidden" id="jobID" value="@ViewBag.schemeName"/>
+    <input type="hidden" id="hasFnoRelated" value="@ViewBag.hasRelatedFno"/>
+    <input type="hidden" id="JOBTYPE" value="@ViewBag.JOBTYPE"/>
+    <input type="hidden" id="typeOfInteg" value=""/>    
+    <!-- Fatihin CR53 16052018-->
+    
+    <div id="divDetails" title="Details">
+        <div id="loadingscheckJob" style="display:none">
+            <img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." />
+     </div>
+        <!-- Fatihin CR53 16052018-->
+        <div id="selectcheckbox" style="display:none">
+            <input type="button" value="Select All" id="selectall" />
+            <input type="button" value="Deselect All" id="deselectall" />
+            <input type="button" value="Save" id="btnSave" />
+        </div>
+        <!-- Fatihin CR53 16052018-->
+    
+        <!-- Marfu'ah CR-ASBGated 030519-->
+        <div id="tabCSite" style="display:none;">
+           <h5>Granite Load Site For @ViewBag.schemeName</h5>
+           <br />
+           <table align="center" width="auto" id="tabCSite1" style="font-size:smaller">
+               <thead>              
+                   <tr>
+                       <th style="background-color:#b9c9fe"></th>
+                       <th style="background-color:#b9c9fe">G3E_FID</th>
+                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <th style="background-color:#b9c9fe">SITEPTT</th>
+                       <th style="background-color:#b9c9fe">SITEEXC</th>
+                       <th style="background-color:#b9c9fe">SITENAME</th>
+                       <th style="background-color:#b9c9fe">SITEFLOOR</th>
+                       <th style="background-color:#b9c9fe">SITENO</th>
+                       <th style="background-color:#b9c9fe">SITEBUILDING</th>
+                       <th style="background-color:#b9c9fe">ADDRESSSTREET</th>
+                       <th style="background-color:#b9c9fe">ADDRESSCITY</th>
+                       <th style="background-color:#b9c9fe">ADDRESSSTATE</th>
+                       <th style="background-color:#b9c9fe">POSTCODE</th>
+                       <th style="background-color:#b9c9fe">STREETTYPE</th>
+                       <th style="background-color:#b9c9fe">COUNTY</th>
+                       <th style="background-color:#b9c9fe">EQUIPMENT LOCATION</th>
+                       <th style="background-color:#b9c9fe">CABLINGTYPE</th>
+                       <th style="background-color:#b9c9fe">COPPER OWNBYTM</th>
+                       <th style="background-color:#b9c9fe">FIBERTO PREMISEEXIST</th>
+                       <th style="background-color:#b9c9fe">TOTALSERVICE BOUNDARY</th>
+               </tr>
+               </thead>
+               <tbody>    
+                   <tr>
+                   @for (int i = 0; i < 20; i++)
+                   {
+                       <td style="white-space:nowrap; background-color:#e8eef4"></td>
+                   }
+                   </tr>
+               </tbody>
+           </table>
+        </div>
+        <div id="tabCEquip" style="display:none;">
+           <h5>Granite Load Equipment For @ViewBag.schemeName</h5>
+           <!--<input type="text" id="validASB"/>-->
+           <table align="center"   width="auto" id="tabCEquip1" style="font-size:smaller">
+               <thead>
+                   <tr>
+                       <th style="background-color:#b9c9fe"></th>
+                       <th style="background-color:#b9c9fe">G3E_FID</th>
+                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <th style="background-color:#b9c9fe">EQUIPCAT</th>
+                       <th style="background-color:#b9c9fe">EQUIPVEND</th>
+                       <th style="background-color:#b9c9fe">EQUIMODEL</th>
+                       <th style="background-color:#b9c9fe">EXCDESC</th>
+                       <th style="background-color:#b9c9fe">SITE</th>
+                       <th style="background-color:#b9c9fe">TEMPNAME</th>
+                       <th style="background-color:#b9c9fe">PATCHCORD</th>
+                       <th style="background-color:#b9c9fe">PROJECT NAME</th>
+                       <th style="background-color:#b9c9fe">DESIGN</th>
+                   </tr>
+               </thead>
+               <tbody>    
+                   <tr>
+                   @for (int i = 0; i < 10; i++)
+                   {
+                       <td style="white-space:nowrap; background-color:#e8eef4"></td>
+                   }
+                   </tr>                   
+               </tbody>
+           </table>           
+        </div>
+        <div id="tabCSBoundary" style="display:none;">
+            <h5>Granite Load Service Boundary Address For @ViewBag.schemeName</h5>
+            <table align="center"   width="auto" id="tabCSBoundary1" style="font-size:smaller">
+               <thead>
+                   <tr>
+                       <th style="background-color:#b9c9fe"></th>
+                       <th style="background-color:#b9c9fe">G3E_ID</th>
+                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <th style="background-color:#b9c9fe">SERVICEBOUNDARYID</th>
+                       <th style="background-color:#b9c9fe">SITENO</th>
+                       <th style="background-color:#b9c9fe">SITEFLOOR</th>
+                       <th style="background-color:#b9c9fe">SITEBUILDING</th>
+                       <th style="background-color:#b9c9fe">STREETYPE</th>
+                       <th style="background-color:#b9c9fe">STREETNAME</th>
+                       <th style="background-color:#b9c9fe">SECTION</th>
+                       <th style="background-color:#b9c9fe">POSTCODE</th>
+                       <th style="background-color:#b9c9fe">CITY</th>
+                       <th style="background-color:#b9c9fe">STATE</th>
+                       <th style="background-color:#b9c9fe">PREMISETYPE</th>
+                       <th style="background-color:#b9c9fe">SITESDP</th>
+                       <th style="background-color:#b9c9fe">DDP</th>
+                   </tr>
+               </thead>
+               <tbody>    
+                  <tr>
+                   @for (int i = 0; i < 15; i++)
+                   {
+                       <td style="white-space:nowrap; background-color:#e8eef4"></td>
+                   }
+                   </tr>
+                 
+               </tbody>
+            </table>
+        </div>
+        <div id="tabCPathConsumer" style="display:none;">
+           <h5>Granite Load Path Consumer For @ViewBag.schemeName</h5>
+           <table align="center"  width="auto" id="tabCPathConsumer1" style="font-size:smaller">
+               <thead>
+                   <tr>
+                       <th style="background-color:#b9c9fe"></th>
+                       <th style="background-color:#b9c9fe">FDC CODE<p><font color="red"><br /><br />ANAME</font></p></th>
+                       <th style="background-color:#b9c9fe">FEATURESTATE<p><font color="red"><br /><br /><br /></font></p></th>
+                       <th style="background-color:#b9c9fe"><p><br /><br /><br /><font color="red">ATYPE</font></p></th>
+                       <th style="background-color:#b9c9fe">ODF CARD<p><font color="red"><br />ACARD2</font></p></th>
+                       <th style="background-color:#b9c9fe">ODF PORT<p><font color="red"><br />APORT2</font></p></th>
+                       <th style="background-color:#b9c9fe">FDC SPL NO<p><font color="red"><br />ACARD3</font></p></th>
+                       <th style="background-color:#b9c9fe">DP CODE<p><font color="red"><br /><br />DP SITE</font></p></th>
+                       <th style="background-color:#b9c9fe">OLT CODE<p><font color="red"><br /><br />ZNAME</font></p></th>
+                       <th style="background-color:#b9c9fe"><p><br /><br /><br /><font color="red">ZTYPE</font></p></th>
+                       <th style="background-color:#b9c9fe">OLT CARD<p><font color="red"><br />ZCARD</font></p></th>
+                       <th style="background-color:#b9c9fe">OLT PORT<p><font color="red"><br />ZPORT</font></p></th>
+                       <th style="background-color:#b9c9fe">DP SPL NO<p><font color="red"><br />ACARD4</font></p></th>
+                       <th style="background-color:#b9c9fe">CABLE CORE<p><font color="red"><br />APORT4</font></p></th>
+                       <th style="background-color:#b9c9fe"><p><br /><br /><br /><font color="red">DPPORT</font></p></th>
+                       <th style="background-color:#b9c9fe">ADD DP<p><font color="red"><br /><br /></font></p></th>
+                   </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                       <td style="background-color:#e6ecff"></td>
+                       <td style="background-color:#e6ecff">ANAME</td>
+                       <td style="background-color:#e6ecff">FEATURESTATE</td>
+                       <td style="background-color:#e6ecff">ATYPE</td>
+                       <td style="background-color:#e6ecff">ACARD2</td>
+                       <td style="background-color:#e6ecff">APORT2</td>
+                       <td style="background-color:#e6ecff">ACARD3</td>
+                       <td style="background-color:#e6ecff">DP SITE</td>
+                       <td style="background-color:#e6ecff">ZNAME</td>
+                       <td style="background-color:#e6ecff">ZTYPE</td>
+                       <td style="background-color:#e6ecff">ZCARD</td>
+                       <td style="background-color:#e6ecff">ZPORT</td>
+                       <td style="background-color:#e6ecff">ACARD4</td>
+                       <td style="background-color:#e6ecff">APORT4</td>
+                       <td style="background-color:#e6ecff">DP PORT</td>
+                       <td style="background-color:#e6ecff">ADD DP</td>
+                </tr>
+               <tr>
+                 @for (int i = 0; i < 16; i++)
+                   {
+                       <td style="white-space:nowrap; background-color:#e8eef4"></td>
+                   }
+               </tr>
+            
+               </tbody>
+           </table>
+        </div>
+        <div id="tabAddCardSplit" style="display:none;">
+           <h5>Granite Add Card/Splitter For @ViewBag.schemeName</h5>
+           <table align="center"   width="auto" id="tabAddCardSplit1" style="font-size:smaller">
+               <thead>
+                   <tr>
+                       <th style="background-color:#b9c9fe"></th>
+                       <th style="background-color:#b9c9fe">EQUIPMENTID</th>
+                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <th style="background-color:#b9c9fe">EQUIPVEND</th>
+                       <th style="background-color:#b9c9fe">EQUIPMODEL</th>
+                       <th style="background-color:#b9c9fe">TEMPLATENAME</th>
+                       <th style="background-color:#b9c9fe">SLOT_NO</th>
+                       <th style="background-color:#b9c9fe">CARD_TYPE</th>
+                       <th style="background-color:#b9c9fe">TOTAL_PORT</th>
+                       <th style="background-color:#b9c9fe">PORTIN</th>
+                   </tr>
+               </thead>
+               <tbody>    
+                   <tr>
+                   @for (int i = 0; i < 9; i++)
+                   {
+                       <td style="white-space:nowrap; background-color:#e8eef4"></td>
+                   }
+                   </tr>
+               </tbody>
+           </table>
+        </div>
+        <div id="tabDelEquip" style="display:none;">
+           <h5>Granite Delete Equipment For @ViewBag.schemeName</h5>
+           <table align="center"   width="auto" id="tabDelEquip1" style="font-size:smaller">
+               <thead>
+                   <tr >
+                       <th style="background-color:#b9c9fe"></th>
+                       <th style="background-color:#b9c9fe">G3E_FID</th>
+                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <th style="background-color:#b9c9fe">G3E_FNO</th>
+                       <th style="background-color:#b9c9fe">JOB_ID</th>
+                       <th style="background-color:#b9c9fe">GRANITE_EQUIP_ID</th>
+                       <th style="background-color:#b9c9fe">EQUIPMENTID</th>
+                       <th style="background-color:#b9c9fe">EQUIPCAT</th>
+                       <th style="background-color:#b9c9fe">SLOT</th>
+                       <th style="background-color:#b9c9fe">POsRTIN</th>
+                   </tr>
+               </thead>
+               <tbody>    
+                   <tr>
+                   @for (int i = 0; i < 9; i++)
+                   {
+                       <td style="white-space:nowrap; background-color:#e8eef4"></td>
+                   }
+                   </tr>
+               </tbody>
+           </table>
+        </div>
+        <div id="tabDelPath" style="display:none;">
+            <h5>Granite Delete Path For @ViewBag.schemeName</h5>
+            <table align="center"   width="auto" id="tabDelPath1" style="font-size:smaller">
+               <thead>
+                   <tr >
+                       <th style="background-color:#b9c9fe"></th>
+                       <th style="background-color:#b9c9fe">G3E_FID</th>
+                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <th style="background-color:#b9c9fe">G3E_FNO</th>
+                       <th style="background-color:#b9c9fe">JOB_ID</th>
+                       <th style="background-color:#b9c9fe">PATHNAME</th>
+                       <th style="background-color:#b9c9fe">PATHTYPE</th>
+                   </tr>
+               </thead>
+               <tbody>    
+                   <tr>
+                   @for (int i = 0; i < 7; i++)
+                   {
+                       <td style="white-space:nowrap; background-color:#e8eef4"></td>
+                   }
+                   </tr>
+               </tbody>
+           </table>
+        </div>
+        <div id="tabDelSB" style="display:none;">
+           <h5>Granite Delete Service Boundary For @ViewBag.schemeName</h5>
+           <table align="center"   width="auto" id="tabDelSB1" style="font-size:smaller">
+               <thead>
+                   <tr>
+                       <th style="background-color:#b9c9fe"></th>
+                       <th style="background-color:#b9c9fe">G3E_FID</th>
+                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <th style="background-color:#b9c9fe">G3E_FNO</th>
+                       <th style="background-color:#b9c9fe">JOB_ID</th>
+                       <th style="background-color:#b9c9fe">SERVICEBOUNDARYID</th>
+                       <th style="background-color:#b9c9fe">SITEDP</th>
+                   </tr>
+               </thead>
+               <tbody>    
+                   <tr>
+                   @for (int i = 0; i < 7; i++)
+                   {
+                       <td style="white-space:nowrap; background-color:#e8eef4"></td>
+                   }
+                   </tr>
+               </tbody>
+           </table>
+        </div>
+        <!-- Marfu'ah CR-ASBGated 030519 -->
+        <div id="Nodata" style ="display:none">
+            <h3 align="center" >Not Found.</h3>
+        </div>
+    </div>
+</div>

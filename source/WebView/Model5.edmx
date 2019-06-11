@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model4.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Model4StoreContainer">
+          <EntitySet Name="AG_MSAN_TEMPLATE" EntityType="Model4.Store.AG_MSAN_TEMPLATE" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="AG_MSAN_XLTEMPLATE" EntityType="Model4.Store.AG_MSAN_XLTEMPLATE" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="CONNECTIVITY" EntityType="Model4.Store.CONNECTIVITY" store:Type="Tables" store:Schema="NEPS" store:Name="CONNECTIVITY">
+            <DefiningQuery>SELECT 
+      "CONNECTIVITY"."ID" AS "ID", 
+      "CONNECTIVITY"."EXC_ABB" AS "EXC_ABB", 
+      "CONNECTIVITY"."ELV_NAME" AS "ELV_NAME", 
+      "CONNECTIVITY"."A_ID" AS "A_ID", 
+      "CONNECTIVITY"."A_TYPE" AS "A_TYPE", 
+      "CONNECTIVITY"."A_SUB_TYPE" AS "A_SUB_TYPE", 
+      "CONNECTIVITY"."A_PORT" AS "A_PORT", 
+      "CONNECTIVITY"."Z_ID" AS "Z_ID", 
+      "CONNECTIVITY"."Z_TYPE" AS "Z_TYPE", 
+      "CONNECTIVITY"."Z_SUB_TYPE" AS "Z_SUB_TYPE", 
+      "CONNECTIVITY"."Z_PORT" AS "Z_PORT", 
+      "CONNECTIVITY"."REMARKS" AS "REMARKS", 
+      "CONNECTIVITY"."CREATED_AT" AS "CREATED_AT", 
+      "CONNECTIVITY"."CREATED_BY" AS "CREATED_BY"
+      FROM "NEPS"."CONNECTIVITY" "CONNECTIVITY"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="REF_DDN" EntityType="Model4.Store.REF_DDN" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="REF_EPE" EntityType="Model4.Store.REF_EPE" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="REF_IPMSAN" EntityType="Model4.Store.REF_IPMSAN" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="REF_NDH" EntityType="Model4.Store.REF_NDH" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="REF_RT" EntityType="Model4.Store.REF_RT" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="REF_UPE" EntityType="Model4.Store.REF_UPE" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="REF_VDSL2" EntityType="Model4.Store.REF_VDSL2" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="WEBVIEW_AUDIT_TRAIL" EntityType="Model4.Store.WEBVIEW_AUDIT_TRAIL" store:Type="Tables" store:Schema="NEPS" store:Name="WEBVIEW_AUDIT_TRAIL">
+            <DefiningQuery>SELECT 
+      "WEBVIEW_AUDIT_TRAIL"."USERNAME" AS "USERNAME", 
+      "WEBVIEW_AUDIT_TRAIL"."TIMESTAMP" AS "TIMESTAMP"
+      FROM "NEPS"."WEBVIEW_AUDIT_TRAIL" "WEBVIEW_AUDIT_TRAIL"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WV_REF_MODEL" EntityType="Model4.Store.WV_REF_MODEL" store:Type="Tables" store:Schema="NEPS" store:Name="WV_REF_MODEL">
+            <DefiningQuery>SELECT 
+      "WV_REF_MODEL"."MANUFACTURER" AS "MANUFACTURER", 
+      "WV_REF_MODEL"."MODEL" AS "MODEL"
+      FROM "NEPS"."WV_REF_MODEL" "WV_REF_MODEL"</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="AG_MSAN_TEMPLATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" />
+          <Property Name="MODEL_ID" Type="number" />
+          <Property Name="RACK_NO" Type="varchar2" MaxLength="4" />
+          <Property Name="FRAME_NO" Type="varchar2" MaxLength="4" />
+          <Property Name="SLOT_NO" Type="varchar2" MaxLength="4" />
+          <Property Name="SLOT_NIS" Type="varchar2" MaxLength="12" />
+          <Property Name="CARD_TYPE" Type="varchar2" MaxLength="30" />
+          <Property Name="CARD_MODEL" Type="varchar2" MaxLength="30" />
+          <Property Name="PORT_LO" Type="varchar2" MaxLength="4" />
+          <Property Name="PORT_HI" Type="varchar2" MaxLength="4" />
+          <Property Name="MIN_MATERIAL" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AG_MSAN_XLTEMPLATE">
+          <Key>
+            <PropertyRef Name="MODEL_ID" />
+          </Key>
+          <Property Name="MODEL_ID" Type="number" Nullable="false" />
+          <Property Name="MANUFACTURER" Type="varchar2" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar2" MaxLength="30" />
+          <Property Name="XL_FILE" Type="varchar2" MaxLength="100" />
+          <Property Name="MSAN_FNO" Type="number" Precision="5" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.CONNECTIVITY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="CONNECTIVITY">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="A_ID" />
+            <PropertyRef Name="Z_ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="EXC_ABB" Type="varchar2" MaxLength="5" />
+          <Property Name="ELV_NAME" Type="varchar2" MaxLength="10" />
+          <Property Name="A_ID" Type="varchar2" Nullable="false" MaxLength="15" />
+          <Property Name="A_TYPE" Type="varchar2" MaxLength="10" />
+          <Property Name="A_SUB_TYPE" Type="varchar2" MaxLength="100" />
+          <Property Name="A_PORT" Type="varchar2" MaxLength="100" />
+          <Property Name="Z_ID" Type="varchar2" Nullable="false" MaxLength="15" />
+          <Property Name="Z_TYPE" Type="varchar2" MaxLength="10" />
+          <Property Name="Z_SUB_TYPE" Type="varchar2" MaxLength="100" />
+          <Property Name="Z_PORT" Type="varchar2" MaxLength="100" />
+          <Property Name="REMARKS" Type="varchar2" MaxLength="250" />
+          <Property Name="CREATED_AT" Type="date" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="REF_DDN">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+          <Property Name="FRONT_IMAGE" Type="blob" />
+          <Property Name="BACK_IMAGE" Type="blob" />
+          <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+          <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_EPE">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+          <Property Name="FRONT_IMAGE" Type="blob" />
+          <Property Name="BACK_IMAGE" Type="blob" />
+          <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+          <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_IPMSAN">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+          <Property Name="FRONT_IMAGE" Type="blob" />
+          <Property Name="BACK_IMAGE" Type="blob" />
+          <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+          <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_NDH">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+          <Property Name="FRONT_IMAGE" Type="blob" />
+          <Property Name="BACK_IMAGE" Type="blob" />
+          <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+          <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_RT">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+          <Property Name="FRONT_IMAGE" Type="blob" />
+          <Property Name="BACK_IMAGE" Type="blob" />
+          <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+          <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_UPE">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+          <Property Name="FRONT_IMAGE" Type="blob" />
+          <Property Name="BACK_IMAGE" Type="blob" />
+          <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+          <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_VDSL2">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+          <Property Name="FRONT_IMAGE" Type="blob" />
+          <Property Name="BACK_IMAGE" Type="blob" />
+          <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+          <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+          <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.WEBVIEW_AUDIT_TRAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="WEBVIEW_AUDIT_TRAIL">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+            <PropertyRef Name="TIMESTAMP" />
+          </Key>
+          <Property Name="USERNAME" Type="varchar2" Nullable="false" MaxLength="255" />
+          <Property Name="TIMESTAMP" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.WV_REF_MODEL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="WV_REF_MODEL">
+          <Key>
+            <PropertyRef Name="MANUFACTURER" />
+          </Key>
+          <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="MODEL" Type="varchar2" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model4" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities_NEPS" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AG_MSAN_TEMPLATE" EntityType="Model4.AG_MSAN_TEMPLATE" />
+          <EntitySet Name="AG_MSAN_XLTEMPLATE" EntityType="Model4.AG_MSAN_XLTEMPLATE" />
+          <EntitySet Name="WEBVIEW_AUDIT_TRAIL" EntityType="Model4.WEBVIEW_AUDIT_TRAIL" />
+          <EntitySet Name="WV_REF_MODEL" EntityType="Model4.WV_REF_MODEL" />
+          <EntitySet Name="REF_DDN" EntityType="Model4.REF_DDN" />
+          <EntitySet Name="REF_EPE" EntityType="Model4.REF_EPE" />
+          <EntitySet Name="REF_IPMSAN" EntityType="Model4.REF_IPMSAN" />
+          <EntitySet Name="REF_NDH" EntityType="Model4.REF_NDH" />
+          <EntitySet Name="REF_RT" EntityType="Model4.REF_RT" />
+          <EntitySet Name="REF_UPE" EntityType="Model4.REF_UPE" />
+          <EntitySet Name="REF_VDSL2" EntityType="Model4.REF_VDSL2" />
+          <EntitySet Name="CONNECTIVITY" EntityType="Model4.CONNECTIVITY" />
+        </EntityContainer>
+        <EntityType Name="AG_MSAN_TEMPLATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="MODEL_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="RACK_NO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="FRAME_NO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="SLOT_NO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="SLOT_NIS" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="CARD_TYPE" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="CARD_MODEL" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="PORT_LO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="PORT_HI" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="MIN_MATERIAL" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="AG_MSAN_XLTEMPLATE">
+          <Key>
+            <PropertyRef Name="MODEL_ID" />
+          </Key>
+          <Property Name="MODEL_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="MODEL" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="XL_FILE" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="MSAN_FNO" Type="Int16" />
+        </EntityType>
+        <EntityType Name="WEBVIEW_AUDIT_TRAIL">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+            <PropertyRef Name="TIMESTAMP" />
+          </Key>
+          <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="TIMESTAMP" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WV_REF_MODEL">
+          <Key>
+            <PropertyRef Name="MANUFACTURER" />
+          </Key>
+          <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="REF_DDN">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+          <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int16" Name="TOTAL_POSITIONS" />
+          <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_EPE">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+          <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int16" Name="TOTAL_POSITIONS" />
+          <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_IPMSAN">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+          <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int16" Name="TOTAL_POSITIONS" />
+          <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_NDH">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+          <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int16" Name="TOTAL_POSITIONS" />
+          <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_RT">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+          <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int16" Name="TOTAL_POSITIONS" />
+          <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_UPE">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+          <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int16" Name="TOTAL_POSITIONS" />
+          <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="REF_VDSL2">
+          <Key>
+            <PropertyRef Name="MIN_MATERIAL" />
+          </Key>
+          <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+          <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int16" Name="TOTAL_POSITIONS" />
+          <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="CONNECTIVITY">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="A_ID" />
+            <PropertyRef Name="Z_ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="EXC_ABB" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ELV_NAME" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="A_ID" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="A_TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="A_SUB_TYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="A_PORT" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Z_ID" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Z_TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Z_SUB_TYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Z_PORT" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="REMARKS" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATED_AT" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model4StoreContainer" CdmEntityContainer="Entities_NEPS">
+          <EntitySetMapping Name="AG_MSAN_TEMPLATE"><EntityTypeMapping TypeName="Model4.AG_MSAN_TEMPLATE"><MappingFragment StoreEntitySet="AG_MSAN_TEMPLATE">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+            <ScalarProperty Name="RACK_NO" ColumnName="RACK_NO" />
+            <ScalarProperty Name="FRAME_NO" ColumnName="FRAME_NO" />
+            <ScalarProperty Name="SLOT_NO" ColumnName="SLOT_NO" />
+            <ScalarProperty Name="SLOT_NIS" ColumnName="SLOT_NIS" />
+            <ScalarProperty Name="CARD_TYPE" ColumnName="CARD_TYPE" />
+            <ScalarProperty Name="CARD_MODEL" ColumnName="CARD_MODEL" />
+            <ScalarProperty Name="PORT_LO" ColumnName="PORT_LO" />
+            <ScalarProperty Name="PORT_HI" ColumnName="PORT_HI" />
+            <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="AG_MSAN_XLTEMPLATE"><EntityTypeMapping TypeName="Model4.AG_MSAN_XLTEMPLATE"><MappingFragment StoreEntitySet="AG_MSAN_XLTEMPLATE">
+            <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+            <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+            <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+            <ScalarProperty Name="XL_FILE" ColumnName="XL_FILE" />
+            <ScalarProperty Name="MSAN_FNO" ColumnName="MSAN_FNO" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WEBVIEW_AUDIT_TRAIL">
+            <EntityTypeMapping TypeName="Model4.WEBVIEW_AUDIT_TRAIL">
+              <MappingFragment StoreEntitySet="WEBVIEW_AUDIT_TRAIL">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WV_REF_MODEL">
+            <EntityTypeMapping TypeName="Model4.WV_REF_MODEL">
+              <MappingFragment StoreEntitySet="WV_REF_MODEL">
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_DDN">
+            <EntityTypeMapping TypeName="Model4.REF_DDN">
+              <MappingFragment StoreEntitySet="REF_DDN">
+                <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+                <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+                <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+                <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+                <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+                <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+                <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_EPE">
+            <EntityTypeMapping TypeName="Model4.REF_EPE">
+              <MappingFragment StoreEntitySet="REF_EPE">
+                <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+                <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+                <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+                <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+                <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+                <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+                <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_IPMSAN">
+            <EntityTypeMapping TypeName="Model4.REF_IPMSAN">
+              <MappingFragment StoreEntitySet="REF_IPMSAN">
+                <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+                <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+                <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+                <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+                <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+                <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+                <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_NDH">
+            <EntityTypeMapping TypeName="Model4.REF_NDH">
+              <MappingFragment StoreEntitySet="REF_NDH">
+                <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+                <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+                <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+                <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+                <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+                <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+                <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_RT">
+            <EntityTypeMapping TypeName="Model4.REF_RT">
+              <MappingFragment StoreEntitySet="REF_RT">
+                <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+                <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+                <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+                <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+                <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+                <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+                <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_UPE">
+            <EntityTypeMapping TypeName="Model4.REF_UPE">
+              <MappingFragment StoreEntitySet="REF_UPE">
+                <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+                <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+                <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+                <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+                <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+                <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+                <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_VDSL2">
+            <EntityTypeMapping TypeName="Model4.REF_VDSL2">
+              <MappingFragment StoreEntitySet="REF_VDSL2">
+                <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+                <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+                <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+                <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+                <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+                <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+                <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONNECTIVITY">
+            <EntityTypeMapping TypeName="Model4.CONNECTIVITY">
+              <MappingFragment StoreEntitySet="CONNECTIVITY">
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+                <ScalarProperty Name="Z_PORT" ColumnName="Z_PORT" />
+                <ScalarProperty Name="Z_SUB_TYPE" ColumnName="Z_SUB_TYPE" />
+                <ScalarProperty Name="Z_TYPE" ColumnName="Z_TYPE" />
+                <ScalarProperty Name="Z_ID" ColumnName="Z_ID" />
+                <ScalarProperty Name="A_PORT" ColumnName="A_PORT" />
+                <ScalarProperty Name="A_SUB_TYPE" ColumnName="A_SUB_TYPE" />
+                <ScalarProperty Name="A_TYPE" ColumnName="A_TYPE" />
+                <ScalarProperty Name="A_ID" ColumnName="A_ID" />
+                <ScalarProperty Name="ELV_NAME" ColumnName="ELV_NAME" />
+                <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model5">
+        <EntityTypeShape EntityType="Model4.AG_MSAN_TEMPLATE" Width="1.5" PointX="0.75" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model4.AG_MSAN_XLTEMPLATE" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model4.WEBVIEW_AUDIT_TRAIL" Width="1.5" PointX="0.75" PointY="4.75" Height="1.4033821614583335" />
+        <EntityTypeShape EntityType="Model4.WV_REF_MODEL" Width="1.5" PointX="5.375" PointY="0.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="Model4.REF_DDN" Width="1.5" PointX="3.75" PointY="3.75" Height="3.1340950520833322" />
+        <EntityTypeShape EntityType="Model4.REF_EPE" Width="1.5" PointX="5.75" PointY="3.75" Height="3.1340950520833317" />
+        <EntityTypeShape EntityType="Model4.REF_IPMSAN" Width="1.5" PointX="7.75" PointY="0.75" Height="3.1340950520833317" />
+        <EntityTypeShape EntityType="Model4.REF_NDH" Width="1.5" PointX="2.75" PointY="7.75" Height="3.1340950520833353" />
+        <EntityTypeShape EntityType="Model4.REF_RT" Width="1.5" PointX="7.75" PointY="4.75" Height="3.1340950520833317" />
+        <EntityTypeShape EntityType="Model4.REF_UPE" Width="1.5" PointX="4.75" PointY="7.75" Height="3.1340950520833317" />
+        <EntityTypeShape EntityType="Model4.REF_VDSL2" Width="1.5" PointX="6.75" PointY="8.75" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="Model4.CONNECTIVITY" Width="1.5" PointX="9.375" PointY="8.75" Height="3.7109993489583388" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

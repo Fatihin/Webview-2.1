@@ -1,0 +1,115 @@
+﻿@model WebView.Models.MileageRatesModel
+
+@{
+    ViewBag.Title = "NewMileageRates";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Mileage Rates</h2>
+@using (Html.BeginForm("NewMileageRates", "MileageRates", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>Grade</td>
+            <td>
+                @Html.TextBoxFor(m => m.Grade, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.Grade)
+            </td>
+        </tr>
+        <tr>
+            <td>Grade Description</td>
+            <td>
+                @Html.TextAreaFor(m => m.GradeDescription, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.GradeDescription)
+            </td>
+        </tr>
+
+        <tr>
+            <td style="background-color:#e8eef4" colspan="2"></td>
+        </tr>
+
+        <tr>
+            <td>LOW : KM Level 1</td>
+            <td>
+                @Html.TextBoxFor(m => m.LowLev1, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.LowLev1)
+            </td>
+        </tr>
+         <tr>
+            <td>HIGH : KM Level 1</td>
+            <td>
+                @Html.TextBoxFor(m => m.HighLev1, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.HighLev1)
+            </td>
+        </tr>
+         <tr>
+            <td>RATE : Level 1</td>
+            <td>
+                @Html.TextBoxFor(m => m.Rate1, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.Rate1)
+            </td>
+        </tr>
+        
+        <tr>
+            <td style="background-color:#e8eef4" colspan="2"></td>
+        </tr>
+
+        <tr>
+            <td>LOW : KM Level 2</td>
+            <td>
+                @Html.TextBoxFor(m => m.LowLev2, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.LowLev2)
+            </td>
+        </tr>
+         <tr>
+            <td>HIGH : KM Level 2</td>
+            <td>
+                @Html.TextBoxFor(m => m.HighLev2, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.HighLev2)
+            </td>
+        </tr>
+         <tr>
+            <td>RATE : Level 2</td>
+            <td>
+                @Html.TextBoxFor(m => m.Rate2, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.Rate2)
+            </td>
+        </tr>
+        
+        <tr>
+            <td style="background-color:#e8eef4" colspan="2"></td>
+        </tr>
+
+        <tr>
+            <td>LOW : KM Level 3</td>
+            <td>
+                @Html.TextBoxFor(m => m.LowLev3, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.LowLev3)
+            </td>
+        </tr>
+         <tr>
+            <td>HIGH : KM Level 3</td>
+            <td>
+                @Html.TextBoxFor(m => m.HighLev3, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.HighLev3)
+            </td>
+        </tr>
+         <tr>
+            <td>RATE : Level 3</td>
+            <td>
+                @Html.TextBoxFor(m => m.Rate3, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.Rate3)
+            </td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                                 
+}

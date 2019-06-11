@@ -1,0 +1,93 @@
+﻿@model WebView.Models.PlanUnit_NewJobModel
+           
+@{
+    ViewBag.Title = "PlanUnit_NewJob";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Plant Unit</h2>
+@using (Html.BeginForm("PlanUnit_NewJob", "PlanUnit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="600px" cellpadding="0" cellspacing="0" border="0">      
+        <tr>
+            <td>PU ID</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_ID, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_ID)
+            </td>
+        </tr>
+        <tr>
+            <td>PU Description</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_DESC, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_DESC)
+            </td>
+        </tr>
+        <tr>
+            <td>PU Ins Price</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_INST_PR, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_INST_PR)
+            </td>
+        </tr>
+         <tr>
+            <td>PU Material Price</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_MAT_PR, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_MAT_PR)
+            </td>
+        </tr>
+         <tr>
+            <td>PU UOM</td>
+            <td>
+            @Html.DropDownListFor(m => m.x_PU_UOM, (IEnumerable<SelectListItem>)ViewBag.UOM, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_PU_UOM)
+            </td>
+        </tr>
+         <tr>
+            <td>PU Duration</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_PU_DURATION, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_PU_DURATION)
+            </td>
+        </tr>
+         <tr>
+            <td>PU Network Flag</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_PU_NETWORK_FLAG, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_PU_NETWORK_FLAG)
+            </td>
+        </tr>
+         <tr>
+            <td>PU Activity Code</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_PU_ACT_CODE, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_PU_ACT_CODE)
+            </td>
+        </tr>
+         <tr>
+            <td>PU Sub Duration</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_SUP_DURATION, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_SUP_DURATION)
+            </td>
+        </tr>
+        <tr>
+            <td>PU Bill Rate</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_BILL_RATE, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_BILL_RATE)
+            </td>
+        </tr>      
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>    
+}

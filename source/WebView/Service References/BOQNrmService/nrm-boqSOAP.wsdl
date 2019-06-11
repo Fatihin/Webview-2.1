@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://neps.ag.com/nrm-boq/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://neps.ag.com/nrm-boq/" targetNamespace="http://neps.ag.com/nrm-boq/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://neps.ag.com/nrm-boq/">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="BOQItem">
+        <xsd:sequence>
+          <xsd:element name="schemeName" type="xsd:string" />
+          <xsd:element name="contractNo" type="xsd:string" />
+          <xsd:element name="itemNo" type="xsd:string" />
+          <xsd:element name="materialID" type="xsd:string" />
+          <xsd:element name="featureState" type="xsd:string" />
+          <xsd:element name="quantity" type="xsd:integer" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BOQItemList">
+        <xsd:sequence>
+          <xsd:element name="size" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="boqItem" type="impl:BOQItem" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="generateBOQItemsResponse">
+    <wsdl:part name="boqItems" type="impl:BOQItemList" />
+    <wsdl:part name="errorCode" type="xsd:string" />
+    <wsdl:part name="errorDesc" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="generateBOQItemsRequest">
+    <wsdl:part name="schemeName" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="nrm-boq">
+    <wsdl:operation name="generateBOQItems" parameterOrder="schemeName boqItems errorCode errorDesc">
+      <wsdl:input name="generateBOQItemsRequest" message="impl:generateBOQItemsRequest" />
+      <wsdl:output name="generateBOQItemsResponse" message="impl:generateBOQItemsResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="nrm-boqSOAPSoapBinding" type="impl:nrm-boq">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="generateBOQItems">
+      <wsdlsoap:operation soapAction="http://neps.ag.com/nrm-boq/generateBOQItems" />
+      <wsdl:input name="generateBOQItemsRequest">
+        <wsdlsoap:body use="literal" namespace="http://neps.ag.com/nrm-boq/" />
+      </wsdl:input>
+      <wsdl:output name="generateBOQItemsResponse">
+        <wsdlsoap:body use="literal" namespace="http://neps.ag.com/nrm-boq/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="nrm-boq">
+    <wsdl:port name="nrm-boqSOAP" binding="impl:nrm-boqSOAPSoapBinding">
+      <wsdlsoap:address location="http://10.41.61.177:9090/NRMBOQ/services/nrm-boqSOAP" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

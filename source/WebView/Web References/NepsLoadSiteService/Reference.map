@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://10.14.28.219:7001/prj_HsbbEai_Sync_War/ws/NEPSLoadSiteRequest.wsdl" filename="NEPSLoadSite.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

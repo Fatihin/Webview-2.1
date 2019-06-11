@@ -1,0 +1,108 @@
+﻿@model WebView.Models.ExchangeMaintenanceModel
+
+@{
+    ViewBag.Title = "ExchangeMaintenance";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+
+            $('#STATE_ID').change(function () {
+
+                $.ajax({
+                    url: '@Url.Action("AddCity", "ExchangeMaintenance")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "Stateid": document.getElementById('STATE_ID').value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+
+                        CITY = res.CITY;
+
+                        valueCity = res.CITY.split(":");
+
+                        var itemsCity = "<option selected value='" +  + "'>" +  + "</option>";
+
+                        for (var i = 0; i < valueCity.length; i++) {
+                            if (valueCity[i] != "") {
+
+                                itemsCity += "<option value='" + valueCity[i] + "'>" + valueCity[i] + "</option>";
+                            }
+                        }
+                        
+                        $("#CITY").html(itemsCity);
+                    }
+                });
+            });
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Exchange Maintenance</h2>
+@using (Html.BeginForm("NewExchangeMaintenance", "ExchangeMaintenance", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>Exchange Abbr</td>
+            <td>
+                @Html.TextBoxFor(m => m.EXC_ABB, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.EXC_ABB)
+            </td>
+        </tr>
+        <tr>
+            <td>Exchange Name</td>
+            <td>
+                @Html.TextAreaFor(m => m.EXC_NAME, new { style = "width:200px;" })
+            </td>
+        </tr>
+      
+        <tr>
+            <td>PTT Id</td>          
+            <td>@Html.DropDownListFor(m => m.PTT_ID, (IEnumerable<SelectListItem>)ViewBag.PttId, new { style = "width:200px;" })</td>
+        </tr>
+        <tr>
+            <td>State Id</td>            
+            <td>@Html.DropDownListFor(m => m.STATE_ID, (IEnumerable<SelectListItem>)ViewBag.StateId, new { style = "width:200px;", id = "STATE_ID" })</td>
+        </tr>
+        <tr>
+            <td>Area Classification</td>            
+            <td>@Html.DropDownListFor(m => m.CAT_CODE, (IEnumerable<SelectListItem>)ViewBag.AreaClass, new { style = "width:200px;" })</td>
+        </tr>
+        <tr>
+            <td>Segment</td>            
+            <td> @Html.DropDownListFor(m => m.SEGMENT, (IEnumerable<SelectListItem>)ViewBag.Segment, new { style = "width:200px;" })</td>
+        </tr> 
+        <tr>
+            <td>EXC Type</td>
+            <td>
+                @Html.DropDownListFor(m => m.EXC_TYPE, (IEnumerable<SelectListItem>)ViewBag.EXCType, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.EXC_TYPE)
+            </td>
+        </tr>
+        @*<tr>
+            <td>Segment</td>      
+            <td>@Html.TextBoxFor(m => m.ADDR2, new { style = "width:200px;" })</td>
+        </tr> *@
+        <tr>
+            <td>Address 1</td>            
+            <td>@Html.TextBoxFor(m => m.ADDR1 , new { style = "width:200px;" })</td>
+        </tr> 
+        <tr>
+            <td>Address 2</td>            
+            <td>@Html.TextBoxFor(m => m.ADDR2 , new { style = "width:200px;" })</td>
+        </tr> 
+        <tr>
+            <td>City</td>            
+            <td>@Html.DropDownListFor(m => m.CITY, (IEnumerable<SelectListItem>)ViewBag.City, new { style = "width:200px;", id = "CITY" , type="hidden" })</td>
+        </tr>                    
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                              
+}

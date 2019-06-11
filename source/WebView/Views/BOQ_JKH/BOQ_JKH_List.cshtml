@@ -1,0 +1,294 @@
+﻿@{
+    ViewBag.Title = "BOQ_JKH_List";
+}
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtEXC_ABB", data.x_EXC_ABB);
+        SetElement("txtEXC_ABB1", data.x_EXC_ABB);
+        SetElement("txtPU_DESC", data.x_PU_DESC);
+        SetElement("txtYEAR_INSTALL", data.x_YEAR_INSTALL);
+        SetElement("txtSCH_TYPE", data.x_SCH_TYPE);
+        SetElement("txtSCH_NO", data.x_SCH_NO);
+        SetElement("txtSCHEME_NAME", data.x_SCHEME_NAME);
+        SetElement("txtPU_ID", data.x_PU_ID);
+        SetElement("txtBQ_MAT_PRICE", data.x_BQ_MAT_PRICE);
+        SetElement("txtBQ_INSTALL_PRICE", data.x_BQ_INSTALL_PRICE);
+        SetElement("txtPU_QTY", data.x_PU_QTY);
+        SetElement("txtOLD_MAT_PR", data.x_OLD_MAT_PR);
+        SetElement("txtOLD_INSTALL_PR", data.x_OLD_INSTALL_PR);
+        SetElement("txtCONSTRUCT_BY", data.x_CONSTRUCT_BY);
+        SetElement("txtRECVR_QTY", data.x_RECVR_QTY);
+        SetElement("txtRATE_INDICATOR", data.x_RATE_INDICATOR);
+        SetText("txtEXC_ABB", data.x_EXC_ABB);
+
+        document.getElementById("targetBOQ_JKH").value = data.x_EXC_ABB;
+        document.getElementById("btnClose").disabled = false;
+                
+    }
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtEXC_ABB1").readOnly = true;
+        document.getElementById("txtPU_DESC").readOnly = true;
+        document.getElementById("txtYEAR_INSTALL").readOnly = true;
+        document.getElementById("txtSCH_TYPE").readOnly = true;
+        document.getElementById("txtSCH_NO").readOnly = true;
+        document.getElementById("txtSCHEME_NAME").readOnly = true;
+        document.getElementById("txtPU_ID").readOnly = true;
+        document.getElementById("txtBQ_MAT_PRICE").readOnly = true;
+        document.getElementById("txtBQ_INSTALL_PRICE").readOnly = true;
+        document.getElementById("txtPU_QTY").readOnly = true;
+        document.getElementById("txtOLD_MAT_PR").readOnly = true;
+        document.getElementById("txtOLD_INSTALL_PR").readOnly = true;
+        document.getElementById("txtCONSTRUCT_BY").readOnly = true;
+        document.getElementById("txtRECVR_QTY").readOnly = true;
+        document.getElementById("txtRATE_INDICATOR").readOnly = true;
+        document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+        $(function () 
+        {
+
+
+//            $("#txtYEAR_INSTALL").keydown(function (event) {
+//                // Allow only backspace and delete
+//                if (event.keyCode == 46 || event.keyCode == 8) {                  
+//                }
+//                else {                   
+//                    if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+//                        event.preventDefault();
+//                    }
+//                }
+//            });
+
+//            $("#txtSCH_TYPE").keydown(function (event) {
+//                // Allow only backspace and delete
+//                if (event.keyCode == 46 || event.keyCode == 8) {
+//                }
+//                else {
+//                    if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+//                        event.preventDefault();
+//                    }
+//                }
+//            });
+
+
+//            $("#txtDURATION").keydown(function (event) {
+//                // Allow only backspace and delete
+//                if (event.keyCode == 46 || event.keyCode == 8) {
+//                }
+//                else {
+//                    if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+//                        event.preventDefault();
+//                    }
+//                }
+//            });
+
+//            $("#txtSUP_DURATION").keydown(function (event) {
+//                // Allow only backspace and delete
+//                if (event.keyCode == 46 || event.keyCode == 8) {
+//                }
+//                else {
+//                    if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+//                        event.preventDefault();
+//                    }
+//                }
+//            });
+
+
+            $('#btnClose').click(function () 
+            {               
+                document.getElementById("divDetails").style.display = "none";
+            });
+       
+
+            $('#btnDelete').click(function () {
+                $.ajax({
+                    url: "/BOQ_JKH/DeleteData_BOQ_JKH",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetBOQ_JKH": document.getElementById("targetBOQ_JKH").value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Deleted");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Delete failed.");
+                        }
+                    }
+                });
+            });
+
+
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+   
+</script>
+
+<br />
+<br />
+<h2>List</h2>
+<div style="height:400px">
+    <table id="rounded-corner" summary="Plan Unit List" width="800px">
+        <thead>
+            <tr>                
+                <th scope="col" style="width:100px">EXE ABB</th>
+                <th scope="col" style="width:100px">PU DESC</th>
+                <th scope="col" style="width:100px">YEAR INSTALL</th>
+                <th scope="col" style="width:100px">SCHEME TYPE</th>
+                <th scope="col" style="width:100px">SCHEME NO</th>
+                <th scope="col" style="width:100px">SCHEME NAME</th>
+                <th scope="col" style="width:100px">PU ID</th>
+                <th scope="col" style="width:100px">BQ MAT PRICE</th>
+                <th scope="col" style="width:100px">BQ INSTALL PRICE</th>
+                <th scope="col" style="width:100px">PU QTY</th>
+                <th scope="col" style="width:100px">OLD MAT PRICE</th>
+                <th scope="col" style="width:100px">OLD INSTALL PRICE</th>
+                <th scope="col" style="width:100px">CONSTRUCT BY</th>
+                <th scope="col" style="width:100px">RECVR QTY</th>
+                <th scope="col" style="width:100px">RATE INDICATOR</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in (List<WebView.WebService._base.BOQ_JKH>)ViewData["data2"])
+        {
+            <tr class="odd">               
+                <td>@res.x_EXC_ABB</td>
+                <td>@res.x_PU_DESC</td>
+                <td>@res.x_YEAR_INSTALL</td>
+                <td>@res.x_SCH_TYPE</td>
+                <td>@res.x_SCH_NO</td>
+                <td>@res.x_SCHEME_NAME</td>
+                <td>@res.x_PU_ID</td>
+                <td>@res.x_BQ_MAT_PRICE</td>
+                <td>@res.x_BQ_INSTALL_PRICE</td>
+                <td>@res.x_PU_QTY</td>
+                <td>@res.x_OLD_MAT_PR</td>
+                <td>@res.x_OLD_INSTALL_PR</td>
+                <td>@res.x_CONSTRUCT_BY</td>
+                <td>@res.x_RECVR_QTY</td>
+                <td>@res.x_RATE_INDICATOR</td>
+                <td>@Ajax.ActionLink("View", "GetDetails_BOQ_JKH", new { id = res.x_EXC_ABB }, new AjaxOptions
+               {                  
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId = "divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" class="popup_block">
+        <span style="font-size:12px">EXC_ABB: </span><span id="txtEXC_ABB" style="font-weight:bold"></span>
+        <input type="hidden" id="targetBOQ_JKH" value="" />
+        @using (Ajax.BeginForm("UpdateData_BOQ_JKH", new AjaxOptions() 
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        })) 
+        {
+        <div id="list-details">
+            <table width="600px">
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">EXC ABB</td>
+                    <td><input type="text" id="txtEXC_ABB1" name="txtEXC_ABB" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">Description</td>
+                    <td><input type="text" id="txtPU_DESC" name="txtPU_DESC" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Install Year</td>
+                    <td><input type="text" id="txtYEAR_INSTALL" name="txtYEAR_INSTALL" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">SCH TYPE</td>
+                    <td><input type="text" id="txtSCH_TYPE" name="txtSCH_TYPE" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">SCHEME NO</td>
+                    <td><input type="text" id="txtSCH_NO" name="txtSCH_NO" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">SCHEME NAME</td>
+                    <td><input type="text" id="txtSCHEME_NAME" name="txtSCHEME_NAME" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">PU ID</td>
+                    <td><input type="text" id="txtPU_ID" name="txtPU_ID" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">BQ MAT PRICE</td>
+                    <td><input type="text" id="txtBQ_MAT_PRICE" name="txtBQ_MAT_PRICE" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">BQ INSTALL PRICE</td>
+                    <td><input type="text" id="txtBQ_INSTALL_PRICE" name="txtBQ_INSTALL_PRICE" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">PU QTY</td>
+                    <td><input type="text" id="txtPU_QTY" name="txtPU_QTY" /></td>
+                    <td></td>
+                </tr>    
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">OLD MAT PRICE</td>
+                    <td><input type="text" id="txtOLD_MAT_PR" name="txtOLD_MAT_PR" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">OLD INSTALL PRICE</td>
+                    <td><input type="text" id="txtOLD_INSTALL_PR" name="txtOLD_INSTALL_PR" /></td>
+                    <td></td>
+                </tr>     
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4">CONSTRUCT BY</td>
+                    <td><input type="text" id="txtCONSTRUCT_BY" name="txtCONSTRUCT_BY" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">RECVR QTY</td>
+                    <td><input type="text" id="txtRECVR_QTY" name="txtRECVR_QTY" /></td>
+                    <td></td>
+                </tr>   
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4">RATE INDICATOR</td>
+                    <td><input type="text" id="txtRATE_INDICATOR" name="txtRATE_INDICATOR" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4"></td>                   
+                    <td></td>
+                </tr>     
+                </table>
+            <div style="height:30px; margin-top:10px; margin-left:450px;">
+                <input type="button" value="Close" id="btnClose" style="height:30px;width:80px;" />
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+            </div>
+        </div>
+        }
+    </div>
+</div>
+    

@@ -1,0 +1,261 @@
+﻿@model WebView.Models.AgTemplate
+
+@{
+    ViewBag.Title = "ExchangeMaintenance";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+            $("#btnSaveEquipment").button();
+
+            $('#txtEquipment').change(function () {
+                var req = document.getElementById("txtEquipment").value;
+                //alert(req);
+                if (req == "MUX") {
+                    document.getElementById("muxreq").style.display = "inline";
+                    document.getElementById("others1").style.display = "none";
+                    document.getElementById("others2").style.display = "none";
+                    document.getElementById("others3").style.display = "none";
+                } else {
+                    document.getElementById("muxreq").style.display = "none";
+                    document.getElementById("others1").style.display = "inline";
+                    document.getElementById("others2").style.display = "inline";
+                    document.getElementById("others3").style.display = "inline";
+                }
+            });
+
+            $('#txtEquipmentN').change(function () {
+                $.ajax(
+                {
+                    url: "/NetworkElement/updataListManufacturer",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "MANUFACTURER": document.getElementById("txtEquipmentN").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.ModList.split("|");
+
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#MANUFACTURER").html(itemsPu);
+                    }
+                });
+            });
+
+            $('#MANUFACTURER').change(function () {
+                alert(document.getElementById("MANUFACTURER").value);
+                alert(document.getElementById("txtEquipmentN").value);
+                $.ajax(
+                {
+                    url: "/NetworkElement/updataListModel",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "MANUFACTURER": document.getElementById("MANUFACTURER").value,
+                        "TYPE": document.getElementById("txtEquipmentN").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        alert(res.ModList);
+                        if (document.getElementById("MANUFACTURER").value != "Select") {
+                            dataPu = res.ModList.split("|");
+
+                            var itemsPu = "<option selected value='Select'></option>";
+
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+
+                            $("#MODEL").html(itemsPu);
+                        } else {
+                            document.getElementById('MODEL').options.length = 0;
+                        }
+                    }
+                });
+            });
+
+            //            $('#MODEL').change(function () {
+            //                $.ajax(
+            //                {
+            //                    url: "/NetworkElement/updataListMinMat",
+            //                    type: "POST",
+            //                    dataType: "html",
+            //                    data:
+            //                    {
+            //                        "MANUFACTURER": document.getElementById("MANUFACTURER").value,
+            //                    },
+            //                    beforeSend: function () { },
+            //                    success: function (data) {
+            //                        var res = jQuery.parseJSON(data);
+            //                        if (document.getElementById("MODEL").value != "Select") {
+            //                            dataPu = res.ModList.split("|");
+
+            //                            var itemsPu = "<option selected value='Select'></option>";
+
+            //                            for (i = 0; i < dataPu.length; i++) {
+            //                                if (dataPu[i] != "") {
+            //                                    valuePu = dataPu[i].split(":");
+            //                                    itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+            //                                }
+            //                            }
+
+            //                            $("#MIN_MATERIAL").html(itemsPu);
+            //                        } else {
+            //                            document.getElementById('MIN_MATERIAL').options.length = 0;
+            //                        }
+            //                    }
+            //                });
+            //            });
+
+            $('#btnSaveEquipment').click(function () {
+                //alert(document.getElementById("txtEquipment").value);
+                $.ajax(
+                {
+                    url: "/NetworkElement/NewEquipment",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "equipment": document.getElementById("txtEquipment").value,
+                        "minmat": document.getElementById("txtXMinMat").value,
+                        "desc": document.getElementById("txtXDesc").value,
+                        "model": document.getElementById("txtXModel").value,
+                        "manufacturer": document.getElementById("txtXManufac").value,
+                        "capasity": document.getElementById("txtXCap").value,
+                        "e1": document.getElementById("txtXE1").value,
+                        "protection": document.getElementById("txtXProtection").value,
+                        "numcore": document.getElementById("txtXNumCore").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == true) {
+                            alert("Equipment successfully inserted");
+                        } else {
+                            alert("Equipment already exist");
+                        }
+                    }
+                });
+            });
+        });
+    });
+</script>
+<br />
+<h2>New Equipment</h2>
+<table width="450px" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td>Select Equipment</td>            
+        <td><Select id="txtEquipment">
+                <option value="Select"></option>
+                <option value="IPMSAN">IPMSAN</option>
+                <option value="MUX">MUX</option>
+                <option value="RT">RT</option>
+                <option value="VSDL2">VDSL2</option>
+                <option value="EPE">EPE</option>
+                <option value="UPE">UPE</option>
+                <option value="DDN">DDN</option>
+                <option value="NDH">NDH</option>
+            </Select> &nbsp;
+            <span style="color:Red;">*</span>
+        </td>
+    </tr>
+    <tr>
+        <td>Min Material</td>            
+        <td><input type="text" id="txtXMinMat" name="txtXMinMat" />&nbsp;<span style="color:Red;">*</span></td>
+    </tr>
+    <tr>
+        <td>Description </td>            
+        <td><input type="text" id="txtXDesc" name="txtXDesc" />&nbsp;<span style="color:Red;">*</span>    </td>
+    </tr>
+    <tr>
+        <td>Model </td>            
+        <td><input type="text" id="txtXModel" name="txtXModel" />&nbsp;<span style="color:Red;">*</span></td>
+    </tr>
+    <tr>
+        <td>Manufacturer</td>            
+        <td><input type="text" id="txtXManufac" name="txtXManufac" />&nbsp;<span style="color:Red;">*</span></td>
+    </tr>
+    <tr>
+        <td>System Capasity</td>            
+        <td><input type="text" id="txtXCap" name="txtXCap" />&nbsp;<span id="muxreq" style="color:Red;display:none">*</span></td>
+    </tr>
+    <tr>
+        <td>No E1 </td>            
+        <td><input type="text" id="txtXE1" name="txtXE1" />&nbsp;<span id="others1" style="color:Red;display:none">*</span></td>
+    </tr>
+    <tr >
+        <td>Protection</td>            
+        <td><input type="text" id="txtXProtection" name="txtXProtection" />&nbsp;<span id="others2" style="color:Red;display:none">*</span></td>
+    </tr>
+    <tr>
+        <td>Num Core</td>            
+        <td><input type="text" id="txtXNumCore" name="txtXNumCore" />&nbsp;<span id="others3" style="color:Red;display:none">*</span></td>
+    </tr>
+    <tr>
+        <td><input type="button" value="Save" id="btnSaveEquipment" /></td>
+    </tr>
+ </table>        
+<hr />
+<h2>New Template</h2>
+@using (Html.BeginForm("NewTemplate", "NetworkElement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+        <td>Select Equipment <span style="color:Red;">*</span></td>            
+        <td><Select id="txtEquipmentN">
+                <option value="Select"></option>
+                <option value="IPMSAN">IPMSAN</option>
+                <option value="MUX">MUX</option>
+                <option value="RT">RT</option>
+                <option value="VSDL2">VDSL2</option>
+                <option value="EPE">EPE</option>
+                <option value="UPE">UPE</option>
+                <option value="DDN">DDN</option>
+                <option value="NDH">NDH</option>
+            </Select> 
+        </td>
+    </tr>
+        <tr>
+            <td>MANUFACTURER</td>
+            <td>
+                @Html.DropDownListFor(m => m.MANUFACTURER, (IEnumerable<SelectListItem>)ViewBag.MANUFACTURER, new { id = "MANUFACTURER", style = "width:200px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>MODEL</td>
+            <td>
+                @Html.DropDownListFor(m => m.TEMPLATE_MODEL, (IEnumerable<SelectListItem>)ViewBag.MODEL, new { id = "MODEL", style = "width:200px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>XL_FILE</td>            
+            <td>@Html.TextBoxFor(m => m.XL_FILE, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.XL_FILE)</td>
+        </tr>        
+        <tr>
+            <td>FNO</td>            
+            <td>@Html.DropDownListFor(m => m.MSAN_FNO, (IEnumerable<SelectListItem>)ViewBag.FNO, new { style = "width:200px;" })</td>
+        </tr>          
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                              
+}

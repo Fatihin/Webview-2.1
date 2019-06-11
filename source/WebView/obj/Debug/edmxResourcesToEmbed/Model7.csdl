@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model7" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities7" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="WV_LOAD_PATH_CONSUMER2" EntityType="Model7.WV_LOAD_PATH_CONSUMER2" />
+    <EntitySet Name="WV_LOAD_PATH_CONSUMER_ODP" EntityType="Model7.WV_LOAD_PATH_CONSUMER_ODP" />
+    <EntitySet Name="VW_MANHOLEDUCT_JOB" EntityType="Model7.VW_MANHOLEDUCT_JOB" />
+  </EntityContainer>
+  <EntityType Name="WV_LOAD_PATH_CONSUMER2">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ANAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ATYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ASITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ACARD2" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="APORT2" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ACARD3" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="APORT3" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ZNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ZTYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ZSITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ZCARD" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ZPORT" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="DPNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DPSITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DPPORT" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="JOBID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PROCESSID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PROCESSTIME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="OUTPORTFDC" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="INPORTFDP" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="APORT4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ACARD4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="WV_LOAD_PATH_CONSUMER_ODP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ANAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ATYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ASITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ACARD2" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="APORT2" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ACARD3" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="APORT3" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ZNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ZTYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ZSITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ZCARD" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ZPORT" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="DPNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DPSITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DPPORT" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="JOBID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PROCESSID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PROCESSTIME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ACARD4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="APORT4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VW_MANHOLEDUCT_JOB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASSIGN_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

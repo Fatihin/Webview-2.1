@@ -1,0 +1,1641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model3StoreContainer" CdmEntityContainer="EntitiesNetworkElement">
+    <EntitySetMapping Name="MIG_EXC_PTT">
+      <EntityTypeMapping TypeName="Model3.MIG_EXC_PTT">
+        <MappingFragment StoreEntitySet="MIG_EXC_PTT">
+          <ScalarProperty Name="PTT" ColumnName="PTT" />
+          <ScalarProperty Name="EXC" ColumnName="EXC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIG_NIS_BAYLINE">
+      <EntityTypeMapping TypeName="Model3.MIG_NIS_BAYLINE">
+        <MappingFragment StoreEntitySet="MIG_NIS_BAYLINE">
+          <ScalarProperty Name="FRAC_ID" ColumnName="FRAC_ID" />
+          <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+          <ScalarProperty Name="TIME_LOADED" ColumnName="TIME_LOADED" />
+          <ScalarProperty Name="TIME_PREPROCESS" ColumnName="TIME_PREPROCESS" />
+          <ScalarProperty Name="TIME_MODIFIED" ColumnName="TIME_MODIFIED" />
+          <ScalarProperty Name="NRM_ID" ColumnName="NRM_ID" />
+          <ScalarProperty Name="MIG_EXCHANGE_ID" ColumnName="MIG_EXCHANGE_ID" />
+          <ScalarProperty Name="FRAC_INDEX" ColumnName="FRAC_INDEX" />
+          <ScalarProperty Name="FRAC_FRAN_NAME" ColumnName="FRAC_FRAN_NAME" />
+          <ScalarProperty Name="MIG_NIS_BAYLINE_ID" ColumnName="MIG_NIS_BAYLINE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIG_NIS_CHASSIS">
+      <EntityTypeMapping TypeName="Model3.MIG_NIS_CHASSIS">
+        <MappingFragment StoreEntitySet="MIG_NIS_CHASSIS">
+          <ScalarProperty Name="DOMAIN" ColumnName="DOMAIN" />
+          <ScalarProperty Name="EQUIP_ID" ColumnName="EQUIP_ID" />
+          <ScalarProperty Name="TIME_PREPROCESS" ColumnName="TIME_PREPROCESS" />
+          <ScalarProperty Name="TIME_MODIFIED" ColumnName="TIME_MODIFIED" />
+          <ScalarProperty Name="MODEL_VENDOR" ColumnName="MODEL_VENDOR" />
+          <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+          <ScalarProperty Name="TIME_LOADED" ColumnName="TIME_LOADED" />
+          <ScalarProperty Name="NRM_ID" ColumnName="NRM_ID" />
+          <ScalarProperty Name="MIG_EXCHANGE_ID" ColumnName="MIG_EXCHANGE_ID" />
+          <ScalarProperty Name="EQUP_INSERVICE" ColumnName="EQUP_INSERVICE" />
+          <ScalarProperty Name="EQUP_EQUM_MODEL" ColumnName="EQUP_EQUM_MODEL" />
+          <ScalarProperty Name="EQUP_MANR_ABBREVIATION" ColumnName="EQUP_MANR_ABBREVIATION" />
+          <ScalarProperty Name="EQUP_STATUS" ColumnName="EQUP_STATUS" />
+          <ScalarProperty Name="EQUP_INDEX" ColumnName="EQUP_INDEX" />
+          <ScalarProperty Name="EQUP_EQUT_ABBREVIATION" ColumnName="EQUP_EQUT_ABBREVIATION" />
+          <ScalarProperty Name="EQUP_LOCN_TTNAME" ColumnName="EQUP_LOCN_TTNAME" />
+          <ScalarProperty Name="MIG_NIS_CHASSIS_ID" ColumnName="MIG_NIS_CHASSIS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIG_NIS_PPANEL">
+      <EntityTypeMapping TypeName="Model3.MIG_NIS_PPANEL">
+        <MappingFragment StoreEntitySet="MIG_NIS_PPANEL">
+          <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+          <ScalarProperty Name="TIME_LOADED" ColumnName="TIME_LOADED" />
+          <ScalarProperty Name="TIME_PREPROCESS" ColumnName="TIME_PREPROCESS" />
+          <ScalarProperty Name="TIME_MODIFIED" ColumnName="TIME_MODIFIED" />
+          <ScalarProperty Name="NRM_ID" ColumnName="NRM_ID" />
+          <ScalarProperty Name="MIG_NIS_VRACK_ID" ColumnName="MIG_NIS_VRACK_ID" />
+          <ScalarProperty Name="MIG_NIS_RACK_ID" ColumnName="MIG_NIS_RACK_ID" />
+          <ScalarProperty Name="FRAC_STATUS" ColumnName="FRAC_STATUS" />
+          <ScalarProperty Name="PAIR_COUNT" ColumnName="PAIR_COUNT" />
+          <ScalarProperty Name="FUPT_TERMINATIONTYPE" ColumnName="FUPT_TERMINATIONTYPE" />
+          <ScalarProperty Name="FUPT_MANR_ABBREVIATION" ColumnName="FUPT_MANR_ABBREVIATION" />
+          <ScalarProperty Name="FUPT_PRODUCTNAME" ColumnName="FUPT_PRODUCTNAME" />
+          <ScalarProperty Name="FRAU_DISTANCE" ColumnName="FRAU_DISTANCE" />
+          <ScalarProperty Name="FRAU_POSITION" ColumnName="FRAU_POSITION" />
+          <ScalarProperty Name="FRAU_ID" ColumnName="FRAU_ID" />
+          <ScalarProperty Name="MIG_NIS_PPANEL_ID" ColumnName="MIG_NIS_PPANEL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIG_NIS_RACK">
+      <EntityTypeMapping TypeName="Model3.MIG_NIS_RACK">
+        <MappingFragment StoreEntitySet="MIG_NIS_RACK">
+          <ScalarProperty Name="ACTUAL_FRAU_NAME" ColumnName="ACTUAL_FRAU_NAME" />
+          <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+          <ScalarProperty Name="TIME_LOADED" ColumnName="TIME_LOADED" />
+          <ScalarProperty Name="TIME_PREPROCESS" ColumnName="TIME_PREPROCESS" />
+          <ScalarProperty Name="TIME_MODIFIED" ColumnName="TIME_MODIFIED" />
+          <ScalarProperty Name="NRM_ID" ColumnName="NRM_ID" />
+          <ScalarProperty Name="MIG_NIS_BAYLINE_ID" ColumnName="MIG_NIS_BAYLINE_ID" />
+          <ScalarProperty Name="FRAU_NAME" ColumnName="FRAU_NAME" />
+          <ScalarProperty Name="MIG_NIS_RACK_ID" ColumnName="MIG_NIS_RACK_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIG_NIS_VPPANEL">
+      <EntityTypeMapping TypeName="Model3.MIG_NIS_VPPANEL">
+        <MappingFragment StoreEntitySet="MIG_NIS_VPPANEL">
+          <ScalarProperty Name="MIG_NIS_VRACK_ID" ColumnName="MIG_NIS_VRACK_ID" />
+          <ScalarProperty Name="PAIR_COUNT" ColumnName="PAIR_COUNT" />
+          <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+          <ScalarProperty Name="TIME_LOADED" ColumnName="TIME_LOADED" />
+          <ScalarProperty Name="TIME_PREPROCESS" ColumnName="TIME_PREPROCESS" />
+          <ScalarProperty Name="TIME_MODIFIED" ColumnName="TIME_MODIFIED" />
+          <ScalarProperty Name="NRM_ID" ColumnName="NRM_ID" />
+          <ScalarProperty Name="MIG_NIS_PPANEL_ID" ColumnName="MIG_NIS_PPANEL_ID" />
+          <ScalarProperty Name="MIG_NIS_VPPANEL_ID" ColumnName="MIG_NIS_VPPANEL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIG_NIS_VRACK">
+      <EntityTypeMapping TypeName="Model3.MIG_NIS_VRACK">
+        <MappingFragment StoreEntitySet="MIG_NIS_VRACK">
+          <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+          <ScalarProperty Name="TIME_LOADED" ColumnName="TIME_LOADED" />
+          <ScalarProperty Name="TIME_PREPROCESS" ColumnName="TIME_PREPROCESS" />
+          <ScalarProperty Name="TIME_MODIFIED" ColumnName="TIME_MODIFIED" />
+          <ScalarProperty Name="NRM_ID" ColumnName="NRM_ID" />
+          <ScalarProperty Name="MIG_NIS_RACK_ID" ColumnName="MIG_NIS_RACK_ID" />
+          <ScalarProperty Name="MIG_NIS_VRACK_ID" ColumnName="MIG_NIS_VRACK_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_PROCESS_ISP">
+      <EntityTypeMapping TypeName="Model3.BI_PROCESS_ISP">
+        <MappingFragment StoreEntitySet="BI_PROCESS_ISP">
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="NEPS_JOB_ID" ColumnName="NEPS_JOB_ID" />
+          <ScalarProperty Name="STACK_TRACE" ColumnName="STACK_TRACE" />
+          <ScalarProperty Name="HAS_ERROR" ColumnName="HAS_ERROR" />
+          <ScalarProperty Name="TIME_FINISHED" ColumnName="TIME_FINISHED" />
+          <ScalarProperty Name="TIME_STARTED" ColumnName="TIME_STARTED" />
+          <ScalarProperty Name="TIME_CREATED" ColumnName="TIME_CREATED" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATECARD_REPLY">
+      <EntityTypeMapping TypeName="Model3.BI_CREATECARD_REPLY">
+        <MappingFragment StoreEntitySet="BI_CREATECARD_REPLY">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="GE3FID" ColumnName="GE3FID" />
+          <ScalarProperty Name="CARDID" ColumnName="CARDID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATECARD_REQUEST">
+      <EntityTypeMapping TypeName="Model3.BI_CREATECARD_REQUEST">
+        <MappingFragment StoreEntitySet="BI_CREATECARD_REQUEST">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="PORTSTARTNUM" ColumnName="PORTSTARTNUM" />
+          <ScalarProperty Name="CARDCOUNTPORT" ColumnName="CARDCOUNTPORT" />
+          <ScalarProperty Name="CARDSERIAL" ColumnName="CARDSERIAL" />
+          <ScalarProperty Name="CARDSTATUS" ColumnName="CARDSTATUS" />
+          <ScalarProperty Name="CARDMODEL" ColumnName="CARDMODEL" />
+          <ScalarProperty Name="CARDNAME" ColumnName="CARDNAME" />
+          <ScalarProperty Name="CARDSLOT" ColumnName="CARDSLOT" />
+          <ScalarProperty Name="EQUPID" ColumnName="EQUPID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATEFC_REPLY">
+      <EntityTypeMapping TypeName="Model3.BI_CREATEFC_REPLY">
+        <MappingFragment StoreEntitySet="BI_CREATEFC_REPLY">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="G3EFID" ColumnName="G3EFID" />
+          <ScalarProperty Name="FRACID" ColumnName="FRACID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATEFC_REQUEST">
+      <EntityTypeMapping TypeName="Model3.BI_CREATEFC_REQUEST">
+        <MappingFragment StoreEntitySet="BI_CREATEFC_REQUEST">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="AREAARETCODE" ColumnName="AREAARETCODE" />
+          <ScalarProperty Name="AREAAREACODE" ColumnName="AREAAREACODE" />
+          <ScalarProperty Name="AREADESCRIPTION" ColumnName="AREADESCRIPTION" />
+          <ScalarProperty Name="AREACODE" ColumnName="AREACODE" />
+          <ScalarProperty Name="LOCATIONDETAIL" ColumnName="LOCATIONDETAIL" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="INDEXX" ColumnName="INDEXX" />
+          <ScalarProperty Name="FRANNAME" ColumnName="FRANNAME" />
+          <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATEFU_REPLY">
+      <EntityTypeMapping TypeName="Model3.BI_CREATEFU_REPLY">
+        <MappingFragment StoreEntitySet="BI_CREATEFU_REPLY">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="G3EFID" ColumnName="G3EFID" />
+          <ScalarProperty Name="FRAUID" ColumnName="FRAUID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATEFU_REQUEST">
+      <EntityTypeMapping TypeName="Model3.BI_CREATEFU_REQUEST">
+        <MappingFragment StoreEntitySet="BI_CREATEFU_REQUEST">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="COUNTPAIR" ColumnName="COUNTPAIR" />
+          <ScalarProperty Name="PRODUCTTYPE" ColumnName="PRODUCTTYPE" />
+          <ScalarProperty Name="TERMINATIONTYPE" ColumnName="TERMINATIONTYPE" />
+          <ScalarProperty Name="FUPTMANRABBREAVIATION" ColumnName="FUPTMANRABBREAVIATION" />
+          <ScalarProperty Name="FRAUDISTANCE" ColumnName="FRAUDISTANCE" />
+          <ScalarProperty Name="FRAUNAME" ColumnName="FRAUNAME" />
+          <ScalarProperty Name="FRAUPOSITION" ColumnName="FRAUPOSITION" />
+          <ScalarProperty Name="FRACID" ColumnName="FRACID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATENE_REPLY">
+      <EntityTypeMapping TypeName="Model3.BI_CREATENE_REPLY">
+        <MappingFragment StoreEntitySet="BI_CREATENE_REPLY">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="EQUP_ID" ColumnName="EQUP_ID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATENE_REQUEST">
+      <EntityTypeMapping TypeName="Model3.BI_CREATENE_REQUEST">
+        <MappingFragment StoreEntitySet="BI_CREATENE_REQUEST">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="EQUPEQUMMODEL" ColumnName="EQUPEQUMMODEL" />
+          <ScalarProperty Name="EQUPMANRABBREAVIATION" ColumnName="EQUPMANRABBREAVIATION" />
+          <ScalarProperty Name="EQUPSTATUS" ColumnName="EQUPSTATUS" />
+          <ScalarProperty Name="AREAAREACODE" ColumnName="AREAAREACODE" />
+          <ScalarProperty Name="AREAARETCODE" ColumnName="AREAARETCODE" />
+          <ScalarProperty Name="AREADESCRIPTION" ColumnName="AREADESCRIPTION" />
+          <ScalarProperty Name="AREACODE" ColumnName="AREACODE" />
+          <ScalarProperty Name="LOCNDETAIL" ColumnName="LOCNDETAIL" />
+          <ScalarProperty Name="EQUPINDEX" ColumnName="EQUPINDEX" />
+          <ScalarProperty Name="EQUPEQUTABBREAVIATION" ColumnName="EQUPEQUTABBREAVIATION" />
+          <ScalarProperty Name="EQUPLOCNTTNAME" ColumnName="EQUPLOCNTTNAME" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATECARD_REPLY_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATECARD_REPLY_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATECARD_REPLY_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="GE3FID" ColumnName="GE3FID" />
+          <ScalarProperty Name="CARDID" ColumnName="CARDID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATECARD_REQUEST_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATECARD_REQUEST_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATECARD_REQUEST_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="PORTSTARTNUM" ColumnName="PORTSTARTNUM" />
+          <ScalarProperty Name="CARDCOUNTPORT" ColumnName="CARDCOUNTPORT" />
+          <ScalarProperty Name="CARDSERIAL" ColumnName="CARDSERIAL" />
+          <ScalarProperty Name="CARDSTATUS" ColumnName="CARDSTATUS" />
+          <ScalarProperty Name="CARDMODEL" ColumnName="CARDMODEL" />
+          <ScalarProperty Name="CARDNAME" ColumnName="CARDNAME" />
+          <ScalarProperty Name="CARDSLOT" ColumnName="CARDSLOT" />
+          <ScalarProperty Name="EQUPID" ColumnName="EQUPID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATECS_REPLY_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATECS_REPLY_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATECS_REPLY_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="CABS_ID" ColumnName="CABS_ID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATECS_REQUEST_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATECS_REQUEST_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATECS_REQUEST_OSP">
+          <ScalarProperty Name="DISTANCE" ColumnName="DISTANCE" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="LOCATION_B" ColumnName="LOCATION_B" />
+          <ScalarProperty Name="LOCATION_A" ColumnName="LOCATION_A" />
+          <ScalarProperty Name="PAIR_COUNT" ColumnName="PAIR_COUNT" />
+          <ScalarProperty Name="MAX_NUMBER" ColumnName="MAX_NUMBER" />
+          <ScalarProperty Name="MIN_NUMBER" ColumnName="MIN_NUMBER" />
+          <ScalarProperty Name="CSPT_PROD_NAME" ColumnName="CSPT_PROD_NAME" />
+          <ScalarProperty Name="CABS_STATUS" ColumnName="CABS_STATUS" />
+          <ScalarProperty Name="CABS_CAST_TYPE" ColumnName="CABS_CAST_TYPE" />
+          <ScalarProperty Name="CABS_NAME" ColumnName="CABS_NAME" />
+          <ScalarProperty Name="EQUPID" ColumnName="EQUPID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATEFC_REPLY_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATEFC_REPLY_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATEFC_REPLY_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="G3EFID" ColumnName="G3EFID" />
+          <ScalarProperty Name="FRACID" ColumnName="FRACID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATEFC_REQUEST_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATEFC_REQUEST_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATEFC_REQUEST_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="AREAARETCODE" ColumnName="AREAARETCODE" />
+          <ScalarProperty Name="AREAAREACODE" ColumnName="AREAAREACODE" />
+          <ScalarProperty Name="AREADESCRIPTION" ColumnName="AREADESCRIPTION" />
+          <ScalarProperty Name="AREACODE" ColumnName="AREACODE" />
+          <ScalarProperty Name="LOCATIONDETAIL" ColumnName="LOCATIONDETAIL" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="INDEXX" ColumnName="INDEXX" />
+          <ScalarProperty Name="FRANNAME" ColumnName="FRANNAME" />
+          <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATEFU_REPLY_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATEFU_REPLY_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATEFU_REPLY_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="G3EFID" ColumnName="G3EFID" />
+          <ScalarProperty Name="FRAUID" ColumnName="FRAUID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATEFU_REQUEST_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATEFU_REQUEST_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATEFU_REQUEST_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="COUNTPAIR" ColumnName="COUNTPAIR" />
+          <ScalarProperty Name="PRODUCTTYPE" ColumnName="PRODUCTTYPE" />
+          <ScalarProperty Name="TERMINATIONTYPE" ColumnName="TERMINATIONTYPE" />
+          <ScalarProperty Name="FUPTMANRABBREAVIATION" ColumnName="FUPTMANRABBREAVIATION" />
+          <ScalarProperty Name="FRAUDISTANCE" ColumnName="FRAUDISTANCE" />
+          <ScalarProperty Name="FRAUNAME" ColumnName="FRAUNAME" />
+          <ScalarProperty Name="FRAUPOSITION" ColumnName="FRAUPOSITION" />
+          <ScalarProperty Name="FRACID" ColumnName="FRACID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATENE_REPLY_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATENE_REPLY_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATENE_REPLY_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="EQUP_ID" ColumnName="EQUP_ID" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATENE_REQUEST_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATENE_REQUEST_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATENE_REQUEST_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="EQUPEQUMMODEL" ColumnName="EQUPEQUMMODEL" />
+          <ScalarProperty Name="EQUPMANRABBREAVIATION" ColumnName="EQUPMANRABBREAVIATION" />
+          <ScalarProperty Name="EQUPSTATUS" ColumnName="EQUPSTATUS" />
+          <ScalarProperty Name="AREAAREACODE" ColumnName="AREAAREACODE" />
+          <ScalarProperty Name="AREAARETCODE" ColumnName="AREAARETCODE" />
+          <ScalarProperty Name="AREADESCRIPTION" ColumnName="AREADESCRIPTION" />
+          <ScalarProperty Name="AREACODE" ColumnName="AREACODE" />
+          <ScalarProperty Name="LOCNDETAIL" ColumnName="LOCNDETAIL" />
+          <ScalarProperty Name="EQUPINDEX" ColumnName="EQUPINDEX" />
+          <ScalarProperty Name="EQUPEQUTABBREAVIATION" ColumnName="EQUPEQUTABBREAVIATION" />
+          <ScalarProperty Name="EQUPLOCNTTNAME" ColumnName="EQUPLOCNTTNAME" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATESB_REPLY_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATESB_REPLY_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATESB_REPLY_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CREATESB_REQUEST_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CREATESB_REQUEST_OSP">
+        <MappingFragment StoreEntitySet="BI_CREATESB_REQUEST_OSP">
+          <ScalarProperty Name="DISTANCE" ColumnName="DISTANCE" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="POSCODE" ColumnName="POSCODE" />
+          <ScalarProperty Name="STAT_ABBR" ColumnName="STAT_ABBR" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="SUBURB" ColumnName="SUBURB" />
+          <ScalarProperty Name="STREET_NAME" ColumnName="STREET_NAME" />
+          <ScalarProperty Name="STREET_TYPE" ColumnName="STREET_TYPE" />
+          <ScalarProperty Name="STREET_NUMBER" ColumnName="STREET_NUMBER" />
+          <ScalarProperty Name="FIELD2" ColumnName="FIELD2" />
+          <ScalarProperty Name="FIELD1" ColumnName="FIELD1" />
+          <ScalarProperty Name="FRAC_ID" ColumnName="FRAC_ID" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_BATCH">
+      <EntityTypeMapping TypeName="Model3.BI_BATCH">
+        <MappingFragment StoreEntitySet="BI_BATCH">
+          <ScalarProperty Name="OUTBOUND_FILE_DATE" ColumnName="OUTBOUND_FILE_DATE" />
+          <ScalarProperty Name="OUTBOUND_FILE_LINE_COUNT" ColumnName="OUTBOUND_FILE_LINE_COUNT" />
+          <ScalarProperty Name="OUTBOUND_FILE_SIZE" ColumnName="OUTBOUND_FILE_SIZE" />
+          <ScalarProperty Name="OUTBOUND_FILE_NAME" ColumnName="OUTBOUND_FILE_NAME" />
+          <ScalarProperty Name="STACKTRACE" ColumnName="STACKTRACE" />
+          <ScalarProperty Name="EXCEPTION_MSG" ColumnName="EXCEPTION_MSG" />
+          <ScalarProperty Name="EXCEPTION" ColumnName="EXCEPTION" />
+          <ScalarProperty Name="FILE_HAS_ERROR" ColumnName="FILE_HAS_ERROR" />
+          <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
+          <ScalarProperty Name="TIME_END" ColumnName="TIME_END" />
+          <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="INSTANCE_ID" ColumnName="INSTANCE_ID" />
+          <ScalarProperty Name="BATCH_ID" ColumnName="BATCH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_NNW_GEM_PROJNO">
+      <EntityTypeMapping TypeName="Model3.BI_NNW_GEM_PROJNO">
+        <MappingFragment StoreEntitySet="BI_NNW_GEM_PROJNO">
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="WBS_DESC" ColumnName="WBS_DESC" />
+          <ScalarProperty Name="WBS_NUM" ColumnName="WBS_NUM" />
+          <ScalarProperty Name="NETWORK_HDR" ColumnName="NETWORK_HDR" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="PROJ_DESC" ColumnName="PROJ_DESC" />
+          <ScalarProperty Name="PROJECT_NO" ColumnName="PROJECT_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDLOADEQUIP_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDLOADEQUIP_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNDLOADEQUIP_REQ">
+          <ScalarProperty Name="EQUIP_INSERVICE" ColumnName="EQUIP_INSERVICE" />
+          <ScalarProperty Name="EQUIPUDA_NETWORK" ColumnName="EQUIPUDA_NETWORK" />
+          <ScalarProperty Name="EQUIPUDA_EXTFLAG" ColumnName="EQUIPUDA_EXTFLAG" />
+          <ScalarProperty Name="EQUIPUDA_OUTINDOORTAG" ColumnName="EQUIPUDA_OUTINDOORTAG" />
+          <ScalarProperty Name="EQUIPUDA_TAGGING" ColumnName="EQUIPUDA_TAGGING" />
+          <ScalarProperty Name="EQUIP_TEMPNAME" ColumnName="EQUIP_TEMPNAME" />
+          <ScalarProperty Name="EQUIP_SITE" ColumnName="EQUIP_SITE" />
+          <ScalarProperty Name="EQUIP_EXCHDESC" ColumnName="EQUIP_EXCHDESC" />
+          <ScalarProperty Name="EQUIP_STATE" ColumnName="EQUIP_STATE" />
+          <ScalarProperty Name="EQUIP_REGION" ColumnName="EQUIP_REGION" />
+          <ScalarProperty Name="EQUIP_EQUIPMODEL" ColumnName="EQUIP_EQUIPMODEL" />
+          <ScalarProperty Name="EQUIP_EQUIPVEND" ColumnName="EQUIP_EQUIPVEND" />
+          <ScalarProperty Name="EQUIP_EQUIPCAT" ColumnName="EQUIP_EQUIPCAT" />
+          <ScalarProperty Name="EQUIP_MNGTIP" ColumnName="EQUIP_MNGTIP" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_PROC_GRN_ISP">
+      <EntityTypeMapping TypeName="Model3.BI_PROC_GRN_ISP">
+        <MappingFragment StoreEntitySet="BI_PROC_GRN_ISP">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="NEPS_JOB_ID" ColumnName="NEPS_JOB_ID" />
+          <ScalarProperty Name="STACK_TRACE" ColumnName="STACK_TRACE" />
+          <ScalarProperty Name="HAS_ERROR" ColumnName="HAS_ERROR" />
+          <ScalarProperty Name="TIME_FINISHED" ColumnName="TIME_FINISHED" />
+          <ScalarProperty Name="TIME_STARTED" ColumnName="TIME_STARTED" />
+          <ScalarProperty Name="TIME_CREATED" ColumnName="TIME_CREATED" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDLOADEQUIP_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDLOADEQUIP_RES">
+        <MappingFragment StoreEntitySet="BI_GRNDLOADEQUIP_RES">
+          <ScalarProperty Name="EQUIP_INSERVICE" ColumnName="EQUIP_INSERVICE" />
+          <ScalarProperty Name="CALLSTATUS_MSG" ColumnName="CALLSTATUS_MSG" />
+          <ScalarProperty Name="CALLSTATUS_MSGCODE" ColumnName="CALLSTATUS_MSGCODE" />
+          <ScalarProperty Name="CALLSTATUS_STATUS" ColumnName="CALLSTATUS_STATUS" />
+          <ScalarProperty Name="EQUIPUDA_NETWORKNAME" ColumnName="EQUIPUDA_NETWORKNAME" />
+          <ScalarProperty Name="EQUIPUDA_DPEXTFLAG" ColumnName="EQUIPUDA_DPEXTFLAG" />
+          <ScalarProperty Name="EQUIPUDA_OUTINDOORTAG" ColumnName="EQUIPUDA_OUTINDOORTAG" />
+          <ScalarProperty Name="EQUIPUDA_TAG" ColumnName="EQUIPUDA_TAG" />
+          <ScalarProperty Name="EQUIP_TEMPNAME" ColumnName="EQUIP_TEMPNAME" />
+          <ScalarProperty Name="EQUIP_SITEDESC" ColumnName="EQUIP_SITEDESC" />
+          <ScalarProperty Name="EQUIP_SITE" ColumnName="EQUIP_SITE" />
+          <ScalarProperty Name="EQUIP_MNGTIP" ColumnName="EQUIP_MNGTIP" />
+          <ScalarProperty Name="EQUIP_EQUIPMODEL" ColumnName="EQUIP_EQUIPMODEL" />
+          <ScalarProperty Name="EQUIP_EQUIPVEND" ColumnName="EQUIP_EQUIPVEND" />
+          <ScalarProperty Name="EQUIP_EQUIPCAT" ColumnName="EQUIP_EQUIPCAT" />
+          <ScalarProperty Name="EQUIP_EQUIPSTATUS" ColumnName="EQUIP_EQUIPSTATUS" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="EQUIP_EQUIPINSTID" ColumnName="EQUIP_EQUIPINSTID" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDLDPATHNONCONS_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDLDPATHNONCONS_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNDLDPATHNONCONS_REQ">
+          <ScalarProperty Name="TMSE_DOWNLINKPORT" ColumnName="TMSE_DOWNLINKPORT" />
+          <ScalarProperty Name="TMSE_NODENAME" ColumnName="TMSE_NODENAME" />
+          <ScalarProperty Name="TMIPDSLAM_DOWNLINKPORT" ColumnName="TMIPDSLAM_DOWNLINKPORT" />
+          <ScalarProperty Name="TMIPDSLAM_UPLINKPORT" ColumnName="TMIPDSLAM_UPLINKPORT" />
+          <ScalarProperty Name="TMIPDSLAM_NODENAME" ColumnName="TMIPDSLAM_NODENAME" />
+          <ScalarProperty Name="PRIMARYSECONDARY" ColumnName="PRIMARYSECONDARY" />
+          <ScalarProperty Name="NISMEDIAPATHID" ColumnName="NISMEDIAPATHID" />
+          <ScalarProperty Name="NISBEARERID" ColumnName="NISBEARERID" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZSLOT" ColumnName="ZSLOT" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="APORT" ColumnName="APORT" />
+          <ScalarProperty Name="ACARD" ColumnName="ACARD" />
+          <ScalarProperty Name="ASLOT" ColumnName="ASLOT" />
+          <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+          <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+          <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+          <ScalarProperty Name="PATHSTATUS" ColumnName="PATHSTATUS" />
+          <ScalarProperty Name="PATHBW" ColumnName="PATHBW" />
+          <ScalarProperty Name="PATHTYPE" ColumnName="PATHTYPE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDLDPATHNONCONS_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDLDPATHNONCONS_RES">
+        <MappingFragment StoreEntitySet="BI_GRNDLDPATHNONCONS_RES">
+          <ScalarProperty Name="CALLSTATUS_MSG" ColumnName="CALLSTATUS_MSG" />
+          <ScalarProperty Name="CALLSTATUS_MSGCODE" ColumnName="CALLSTATUS_MSGCODE" />
+          <ScalarProperty Name="CALLSTATUS_STATUS" ColumnName="CALLSTATUS_STATUS" />
+          <ScalarProperty Name="MSE_DOWNLINKPORT" ColumnName="MSE_DOWNLINKPORT" />
+          <ScalarProperty Name="MSENAME" ColumnName="MSENAME" />
+          <ScalarProperty Name="DSLAMDOWNLOADPORT" ColumnName="DSLAMDOWNLOADPORT" />
+          <ScalarProperty Name="DSLAMUPLINK" ColumnName="DSLAMUPLINK" />
+          <ScalarProperty Name="IPDSLAMNAME" ColumnName="IPDSLAMNAME" />
+          <ScalarProperty Name="PRIMARYSECONDARY" ColumnName="PRIMARYSECONDARY" />
+          <ScalarProperty Name="NISMEDIAPATHID" ColumnName="NISMEDIAPATHID" />
+          <ScalarProperty Name="NISBEARERID" ColumnName="NISBEARERID" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZSLOT" ColumnName="ZSLOT" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="APORT" ColumnName="APORT" />
+          <ScalarProperty Name="ACARD" ColumnName="ACARD" />
+          <ScalarProperty Name="ASLOT" ColumnName="ASLOT" />
+          <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+          <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+          <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+          <ScalarProperty Name="PATHSTATUS" ColumnName="PATHSTATUS" />
+          <ScalarProperty Name="PATHBW" ColumnName="PATHBW" />
+          <ScalarProperty Name="PATHTYPE" ColumnName="PATHTYPE" />
+          <ScalarProperty Name="PATHNAME" ColumnName="PATHNAME" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_PROC_GRN_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_PROC_GRN_OSP">
+        <MappingFragment StoreEntitySet="BI_PROC_GRN_OSP">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="NEPS_JOB_ID" ColumnName="NEPS_JOB_ID" />
+          <ScalarProperty Name="STACK_TRACE" ColumnName="STACK_TRACE" />
+          <ScalarProperty Name="HAS_ERROR" ColumnName="HAS_ERROR" />
+          <ScalarProperty Name="TIME_FINISHED" ColumnName="TIME_FINISHED" />
+          <ScalarProperty Name="TIME_STARTED" ColumnName="TIME_STARTED" />
+          <ScalarProperty Name="TIME_CREATED" ColumnName="TIME_CREATED" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIG_GRT_CHASSIS">
+      <EntityTypeMapping TypeName="Model3.MIG_GRT_CHASSIS">
+        <MappingFragment StoreEntitySet="MIG_GRT_CHASSIS">
+          <ScalarProperty Name="TEST" ColumnName="TEST" />
+          <ScalarProperty Name="MIG_EXCHANGE_ID" ColumnName="MIG_EXCHANGE_ID" />
+          <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+          <ScalarProperty Name="TIME_LOADED" ColumnName="TIME_LOADED" />
+          <ScalarProperty Name="TIME_PREPROCESS" ColumnName="TIME_PREPROCESS" />
+          <ScalarProperty Name="TIME_MODIFIED" ColumnName="TIME_MODIFIED" />
+          <ScalarProperty Name="NRM_ID" ColumnName="NRM_ID" />
+          <ScalarProperty Name="EQUP_INSERVICE" ColumnName="EQUP_INSERVICE" />
+          <ScalarProperty Name="EQUP_EQUM_MODEL" ColumnName="EQUP_EQUM_MODEL" />
+          <ScalarProperty Name="EQUP_MANR_ABBREVIATION" ColumnName="EQUP_MANR_ABBREVIATION" />
+          <ScalarProperty Name="EQUP_STATUS" ColumnName="EQUP_STATUS" />
+          <ScalarProperty Name="EQUP_LOCN_TTNAME" ColumnName="EQUP_LOCN_TTNAME" />
+          <ScalarProperty Name="EQUP_INDEX" ColumnName="EQUP_INDEX" />
+          <ScalarProperty Name="EQUP_EQUT_ABBREVIATION" ColumnName="EQUP_EQUT_ABBREVIATION" />
+          <ScalarProperty Name="MIG_GRT_CHASSIS_ID" ColumnName="MIG_GRT_CHASSIS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_PROCESS">
+      <EntityTypeMapping TypeName="Model3.BI_PROCESS">
+        <MappingFragment StoreEntitySet="BI_PROCESS">
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="NEPS_JOB_ID" ColumnName="NEPS_JOB_ID" />
+          <ScalarProperty Name="STACK_TRACE" ColumnName="STACK_TRACE" />
+          <ScalarProperty Name="HAS_ERROR" ColumnName="HAS_ERROR" />
+          <ScalarProperty Name="TIME_FINISHED" ColumnName="TIME_FINISHED" />
+          <ScalarProperty Name="TIME_STARTED" ColumnName="TIME_STARTED" />
+          <ScalarProperty Name="TIME_CREATED" ColumnName="TIME_CREATED" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIG_EXCHANGE">
+      <EntityTypeMapping TypeName="Model3.MIG_EXCHANGE">
+        <MappingFragment StoreEntitySet="MIG_EXCHANGE">
+          <ScalarProperty Name="TIME_PREPROCESS" ColumnName="TIME_PREPROCESS" />
+          <ScalarProperty Name="TIME_MODIFIED" ColumnName="TIME_MODIFIED" />
+          <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+          <ScalarProperty Name="TIME_LOADED" ColumnName="TIME_LOADED" />
+          <ScalarProperty Name="NRM_ID" ColumnName="NRM_ID" />
+          <ScalarProperty Name="MIG_EXCHANGE_ID" ColumnName="MIG_EXCHANGE_ID" />
+          <ScalarProperty Name="EXCHANGE" ColumnName="EXCHANGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDATAMATCH_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDATAMATCH_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDATAMATCH_REQ">
+          <ScalarProperty Name="EQUIP_SITE" ColumnName="EQUIP_SITE" />
+          <ScalarProperty Name="EQUIP_EXCHDESC" ColumnName="EQUIP_EXCHDESC" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDATAMATCH_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDATAMATCH_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDATAMATCH_RES">
+          <ScalarProperty Name="CALLSTATUS_MSG" ColumnName="CALLSTATUS_MSG" />
+          <ScalarProperty Name="CALLSTATUS_MSGCODE" ColumnName="CALLSTATUS_MSGCODE" />
+          <ScalarProperty Name="CALLSTATUS_STATUS" ColumnName="CALLSTATUS_STATUS" />
+          <ScalarProperty Name="EQUIPADD_SITE" ColumnName="EQUIPADD_SITE" />
+          <ScalarProperty Name="EQUIPADD_EXCHDESC" ColumnName="EQUIPADD_EXCHDESC" />
+          <ScalarProperty Name="EQUIPADD_STATE" ColumnName="EQUIPADD_STATE" />
+          <ScalarProperty Name="EQUIPADD_REGION" ColumnName="EQUIPADD_REGION" />
+          <ScalarProperty Name="EQUIP_EQUIPMODEL" ColumnName="EQUIP_EQUIPMODEL" />
+          <ScalarProperty Name="EQUIP_EQUIPVEND" ColumnName="EQUIP_EQUIPVEND" />
+          <ScalarProperty Name="EQUIP_EQUIPCAT" ColumnName="EQUIP_EQUIPCAT" />
+          <ScalarProperty Name="EQUIP_EQUIPSTATUS" ColumnName="EQUIP_EQUIPSTATUS" />
+          <ScalarProperty Name="EQUIP_TOTALPORT" ColumnName="EQUIP_TOTALPORT" />
+          <ScalarProperty Name="EQUIP_MNGIP" ColumnName="EQUIP_MNGIP" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDLDPATHNONCONS_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDLDPATHNONCONS_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDLDPATHNONCONS_REQ">
+          <ScalarProperty Name="TMSE_DOWNLINKPORT" ColumnName="TMSE_DOWNLINKPORT" />
+          <ScalarProperty Name="TMSE_NODENAME" ColumnName="TMSE_NODENAME" />
+          <ScalarProperty Name="TMIPDSLAM_DOWNLINKPORT" ColumnName="TMIPDSLAM_DOWNLINKPORT" />
+          <ScalarProperty Name="TMIPDSLAM_UPLINKPORT" ColumnName="TMIPDSLAM_UPLINKPORT" />
+          <ScalarProperty Name="TMIPDSLAM_NODENAME" ColumnName="TMIPDSLAM_NODENAME" />
+          <ScalarProperty Name="PRIMARYSECONDARY" ColumnName="PRIMARYSECONDARY" />
+          <ScalarProperty Name="NISMEDIAPATHID" ColumnName="NISMEDIAPATHID" />
+          <ScalarProperty Name="NISBEARERID" ColumnName="NISBEARERID" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZSLOT" ColumnName="ZSLOT" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="APORT" ColumnName="APORT" />
+          <ScalarProperty Name="ACARD" ColumnName="ACARD" />
+          <ScalarProperty Name="ASLOT" ColumnName="ASLOT" />
+          <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+          <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+          <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+          <ScalarProperty Name="PATHSTATUS" ColumnName="PATHSTATUS" />
+          <ScalarProperty Name="PATHBW" ColumnName="PATHBW" />
+          <ScalarProperty Name="PATHTYPE" ColumnName="PATHTYPE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDLDPATHNONCONS_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDLDPATHNONCONS_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDLDPATHNONCONS_RES">
+          <ScalarProperty Name="CALLSTATUS_MSG" ColumnName="CALLSTATUS_MSG" />
+          <ScalarProperty Name="CALLSTATUS_MSGCODE" ColumnName="CALLSTATUS_MSGCODE" />
+          <ScalarProperty Name="CALLSTATUS_STATUS" ColumnName="CALLSTATUS_STATUS" />
+          <ScalarProperty Name="MSE_DOWNLINKPORT" ColumnName="MSE_DOWNLINKPORT" />
+          <ScalarProperty Name="MSENAME" ColumnName="MSENAME" />
+          <ScalarProperty Name="DSLAMDOWNLOADPORT" ColumnName="DSLAMDOWNLOADPORT" />
+          <ScalarProperty Name="DSLAMUPLINK" ColumnName="DSLAMUPLINK" />
+          <ScalarProperty Name="IPDSLAMNAME" ColumnName="IPDSLAMNAME" />
+          <ScalarProperty Name="PRIMARYSECONDARY" ColumnName="PRIMARYSECONDARY" />
+          <ScalarProperty Name="NISMEDIAPATHID" ColumnName="NISMEDIAPATHID" />
+          <ScalarProperty Name="NISBEARERID" ColumnName="NISBEARERID" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZSLOT" ColumnName="ZSLOT" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="APORT" ColumnName="APORT" />
+          <ScalarProperty Name="ACARD" ColumnName="ACARD" />
+          <ScalarProperty Name="ASLOT" ColumnName="ASLOT" />
+          <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+          <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+          <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+          <ScalarProperty Name="PATHSTATUS" ColumnName="PATHSTATUS" />
+          <ScalarProperty Name="PATHBW" ColumnName="PATHBW" />
+          <ScalarProperty Name="PATHTYPE" ColumnName="PATHTYPE" />
+          <ScalarProperty Name="PATHNAME" ColumnName="PATHNAME" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDLOADPATH_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDLOADPATH_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDLOADPATH_REQ">
+          <ScalarProperty Name="UDATMSE_DLPORT" ColumnName="UDATMSE_DLPORT" />
+          <ScalarProperty Name="UDATMSE_NODENAME" ColumnName="UDATMSE_NODENAME" />
+          <ScalarProperty Name="UDATMIPDSLAM_DLPORT" ColumnName="UDATMIPDSLAM_DLPORT" />
+          <ScalarProperty Name="UDATMIPDSLAM_ULPORT" ColumnName="UDATMIPDSLAM_ULPORT" />
+          <ScalarProperty Name="UDATMIPDSLAM_NNAME" ColumnName="UDATMIPDSLAM_NNAME" />
+          <ScalarProperty Name="UDATMBEARER_PRIMESEC" ColumnName="UDATMBEARER_PRIMESEC" />
+          <ScalarProperty Name="UDATMBEARER_MEDIAPATHID" ColumnName="UDATMBEARER_MEDIAPATHID" />
+          <ScalarProperty Name="UDATMBEARER_ID" ColumnName="UDATMBEARER_ID" />
+          <ScalarProperty Name="EQUIPZ_PORT" ColumnName="EQUIPZ_PORT" />
+          <ScalarProperty Name="EQUIPZ_CARD" ColumnName="EQUIPZ_CARD" />
+          <ScalarProperty Name="EQUIPZ_SLOT" ColumnName="EQUIPZ_SLOT" />
+          <ScalarProperty Name="EQUIPZ_TYPE" ColumnName="EQUIPZ_TYPE" />
+          <ScalarProperty Name="EQUIPZ_SITE" ColumnName="EQUIPZ_SITE" />
+          <ScalarProperty Name="EQUIPZ_NAME" ColumnName="EQUIPZ_NAME" />
+          <ScalarProperty Name="EQUIPA_PORT" ColumnName="EQUIPA_PORT" />
+          <ScalarProperty Name="EQUIPA_CARD" ColumnName="EQUIPA_CARD" />
+          <ScalarProperty Name="EQUIPA_SLOT" ColumnName="EQUIPA_SLOT" />
+          <ScalarProperty Name="EQUIPA_TYPE" ColumnName="EQUIPA_TYPE" />
+          <ScalarProperty Name="EQUIPA_SITE" ColumnName="EQUIPA_SITE" />
+          <ScalarProperty Name="EQUIPA_NAME" ColumnName="EQUIPA_NAME" />
+          <ScalarProperty Name="PATH_STATUS" ColumnName="PATH_STATUS" />
+          <ScalarProperty Name="PATH_BANDWIDTH" ColumnName="PATH_BANDWIDTH" />
+          <ScalarProperty Name="PATH_TYPE" ColumnName="PATH_TYPE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPLOADSRVBND_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPLOADSRVBND_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPLOADSRVBND_REQ">
+          <ScalarProperty Name="DROPCABLEDISTANCE" ColumnName="DROPCABLEDISTANCE" />
+          <ScalarProperty Name="COS" ColumnName="COS" />
+          <ScalarProperty Name="ADDRPROJECTID" ColumnName="ADDRPROJECTID" />
+          <ScalarProperty Name="ADDRSMARTDEV" ColumnName="ADDRSMARTDEV" />
+          <ScalarProperty Name="ADDRDDP" ColumnName="ADDRDDP" />
+          <ScalarProperty Name="ADDRSITEDPEXC" ColumnName="ADDRSITEDPEXC" />
+          <ScalarProperty Name="ADDRSITESDP" ColumnName="ADDRSITESDP" />
+          <ScalarProperty Name="ADDRSERVCAT" ColumnName="ADDRSERVCAT" />
+          <ScalarProperty Name="ADDRPREMISETYPE" ColumnName="ADDRPREMISETYPE" />
+          <ScalarProperty Name="ADDRCOUNTRY" ColumnName="ADDRCOUNTRY" />
+          <ScalarProperty Name="ADDRSTATE" ColumnName="ADDRSTATE" />
+          <ScalarProperty Name="ADDRCITY" ColumnName="ADDRCITY" />
+          <ScalarProperty Name="ADDRPOSTCODE" ColumnName="ADDRPOSTCODE" />
+          <ScalarProperty Name="ADDRSECTION" ColumnName="ADDRSECTION" />
+          <ScalarProperty Name="ADDRSTREETNAME" ColumnName="ADDRSTREETNAME" />
+          <ScalarProperty Name="ADDRSTREETTYPE" ColumnName="ADDRSTREETTYPE" />
+          <ScalarProperty Name="ADDRSITEBUILD" ColumnName="ADDRSITEBUILD" />
+          <ScalarProperty Name="ADDRSITEFLOOR" ColumnName="ADDRSITEFLOOR" />
+          <ScalarProperty Name="ADDRSITENO" ColumnName="ADDRSITENO" />
+          <ScalarProperty Name="SRVBNDID" ColumnName="SRVBNDID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPLOADSRVBND_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPLOADSRVBND_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPLOADSRVBND_RES">
+          <ScalarProperty Name="DROPCABLEDISTANCE" ColumnName="DROPCABLEDISTANCE" />
+          <ScalarProperty Name="COS" ColumnName="COS" />
+          <ScalarProperty Name="CALLMSG" ColumnName="CALLMSG" />
+          <ScalarProperty Name="CALLMSGCODE" ColumnName="CALLMSGCODE" />
+          <ScalarProperty Name="CALLSTATUS" ColumnName="CALLSTATUS" />
+          <ScalarProperty Name="ADDRSITEDPEXC" ColumnName="ADDRSITEDPEXC" />
+          <ScalarProperty Name="ADDRSITESDP" ColumnName="ADDRSITESDP" />
+          <ScalarProperty Name="ADDRPROJECTID" ColumnName="ADDRPROJECTID" />
+          <ScalarProperty Name="ADDRSMARTDEV" ColumnName="ADDRSMARTDEV" />
+          <ScalarProperty Name="ADDRDDP" ColumnName="ADDRDDP" />
+          <ScalarProperty Name="ADDRSERVCAT" ColumnName="ADDRSERVCAT" />
+          <ScalarProperty Name="ADDRPREMISETYPE" ColumnName="ADDRPREMISETYPE" />
+          <ScalarProperty Name="ADDRCOUNTRY" ColumnName="ADDRCOUNTRY" />
+          <ScalarProperty Name="ADDRSTATE" ColumnName="ADDRSTATE" />
+          <ScalarProperty Name="ADDRCITY" ColumnName="ADDRCITY" />
+          <ScalarProperty Name="ADDRPOSTCODE" ColumnName="ADDRPOSTCODE" />
+          <ScalarProperty Name="ADDRSECTION" ColumnName="ADDRSECTION" />
+          <ScalarProperty Name="ADDRSTREETNAME" ColumnName="ADDRSTREETNAME" />
+          <ScalarProperty Name="ADDRSTREETTYPE" ColumnName="ADDRSTREETTYPE" />
+          <ScalarProperty Name="ADDRSITEBUILD" ColumnName="ADDRSITEBUILD" />
+          <ScalarProperty Name="ADDRSITEFLOOR" ColumnName="ADDRSITEFLOOR" />
+          <ScalarProperty Name="ADDRSITENO" ColumnName="ADDRSITENO" />
+          <ScalarProperty Name="ADDRRSCINSTID" ColumnName="ADDRRSCINSTID" />
+          <ScalarProperty Name="SRVBNDID" ColumnName="SRVBNDID" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDATAMATCH_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDATAMATCH_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNDATAMATCH_REQ">
+          <ScalarProperty Name="EQUIP_SITE" ColumnName="EQUIP_SITE" />
+          <ScalarProperty Name="EQUIP_EXCHDESC" ColumnName="EQUIP_EXCHDESC" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDATAMATCH_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDATAMATCH_RES">
+        <MappingFragment StoreEntitySet="BI_GRNDATAMATCH_RES">
+          <ScalarProperty Name="CALLSTATUS_MSG" ColumnName="CALLSTATUS_MSG" />
+          <ScalarProperty Name="CALLSTATUS_MSGCODE" ColumnName="CALLSTATUS_MSGCODE" />
+          <ScalarProperty Name="CALLSTATUS_STATUS" ColumnName="CALLSTATUS_STATUS" />
+          <ScalarProperty Name="EQUIPADD_SITE" ColumnName="EQUIPADD_SITE" />
+          <ScalarProperty Name="EQUIPADD_EXCHDESC" ColumnName="EQUIPADD_EXCHDESC" />
+          <ScalarProperty Name="EQUIPADD_STATE" ColumnName="EQUIPADD_STATE" />
+          <ScalarProperty Name="EQUIPADD_REGION" ColumnName="EQUIPADD_REGION" />
+          <ScalarProperty Name="EQUIP_EQUIPMODEL" ColumnName="EQUIP_EQUIPMODEL" />
+          <ScalarProperty Name="EQUIP_EQUIPVEND" ColumnName="EQUIP_EQUIPVEND" />
+          <ScalarProperty Name="EQUIP_EQUIPCAT" ColumnName="EQUIP_EQUIPCAT" />
+          <ScalarProperty Name="EQUIP_EQUIPSTATUS" ColumnName="EQUIP_EQUIPSTATUS" />
+          <ScalarProperty Name="EQUIP_TOTALPORT" ColumnName="EQUIP_TOTALPORT" />
+          <ScalarProperty Name="EQUIP_MNGIP" ColumnName="EQUIP_MNGIP" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDLDPATHCONS_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDLDPATHCONS_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNDLDPATHCONS_REQ">
+          <ScalarProperty Name="DPPORT" ColumnName="DPPORT" />
+          <ScalarProperty Name="DPSITE" ColumnName="DPSITE" />
+          <ScalarProperty Name="DPNAME" ColumnName="DPNAME" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="APORT3" ColumnName="APORT3" />
+          <ScalarProperty Name="ACARD3" ColumnName="ACARD3" />
+          <ScalarProperty Name="APORT2" ColumnName="APORT2" />
+          <ScalarProperty Name="ACARD2" ColumnName="ACARD2" />
+          <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+          <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+          <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDLDPATHCONS_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDLDPATHCONS_RES">
+        <MappingFragment StoreEntitySet="BI_GRNDLDPATHCONS_RES">
+          <ScalarProperty Name="CALLSTATUS_MSG" ColumnName="CALLSTATUS_MSG" />
+          <ScalarProperty Name="CALLSTATUS_MSGCODE" ColumnName="CALLSTATUS_MSGCODE" />
+          <ScalarProperty Name="CALLSTATUS_STATUS" ColumnName="CALLSTATUS_STATUS" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="APORT3" ColumnName="APORT3" />
+          <ScalarProperty Name="ACARD3" ColumnName="ACARD3" />
+          <ScalarProperty Name="SPLITTER" ColumnName="SPLITTER" />
+          <ScalarProperty Name="APORT2" ColumnName="APORT2" />
+          <ScalarProperty Name="ACARD2" ColumnName="ACARD2" />
+          <ScalarProperty Name="ESIDE" ColumnName="ESIDE" />
+          <ScalarProperty Name="FDCPATHSTATUS" ColumnName="FDCPATHSTATUS" />
+          <ScalarProperty Name="FDCPATHBW" ColumnName="FDCPATHBW" />
+          <ScalarProperty Name="FDCPATHTYPE" ColumnName="FDCPATHTYPE" />
+          <ScalarProperty Name="FDCPATHID" ColumnName="FDCPATHID" />
+          <ScalarProperty Name="FDPPORT" ColumnName="FDPPORT" />
+          <ScalarProperty Name="FDPCARD" ColumnName="FDPCARD" />
+          <ScalarProperty Name="FDPNAME" ColumnName="FDPNAME" />
+          <ScalarProperty Name="DPORT2" ColumnName="DPORT2" />
+          <ScalarProperty Name="DCARD2" ColumnName="DCARD2" />
+          <ScalarProperty Name="DSIDE" ColumnName="DSIDE" />
+          <ScalarProperty Name="PATHSTATUS" ColumnName="PATHSTATUS" />
+          <ScalarProperty Name="PATHBW" ColumnName="PATHBW" />
+          <ScalarProperty Name="PATHTYPE" ColumnName="PATHTYPE" />
+          <ScalarProperty Name="PATHID" ColumnName="PATHID" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNDLOADPATH_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNDLOADPATH_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNDLOADPATH_REQ">
+          <ScalarProperty Name="UDATMSE_DLPORT" ColumnName="UDATMSE_DLPORT" />
+          <ScalarProperty Name="UDATMSE_NODENAME" ColumnName="UDATMSE_NODENAME" />
+          <ScalarProperty Name="UDATMIPDSLAM_DLPORT" ColumnName="UDATMIPDSLAM_DLPORT" />
+          <ScalarProperty Name="UDATMIPDSLAM_ULPORT" ColumnName="UDATMIPDSLAM_ULPORT" />
+          <ScalarProperty Name="UDATMIPDSLAM_NNAME" ColumnName="UDATMIPDSLAM_NNAME" />
+          <ScalarProperty Name="UDATMBEARER_PRIMESEC" ColumnName="UDATMBEARER_PRIMESEC" />
+          <ScalarProperty Name="UDATMBEARER_MEDIAPATHID" ColumnName="UDATMBEARER_MEDIAPATHID" />
+          <ScalarProperty Name="UDATMBEARER_ID" ColumnName="UDATMBEARER_ID" />
+          <ScalarProperty Name="EQUIPZ_PORT" ColumnName="EQUIPZ_PORT" />
+          <ScalarProperty Name="EQUIPZ_CARD" ColumnName="EQUIPZ_CARD" />
+          <ScalarProperty Name="EQUIPZ_SLOT" ColumnName="EQUIPZ_SLOT" />
+          <ScalarProperty Name="EQUIPZ_TYPE" ColumnName="EQUIPZ_TYPE" />
+          <ScalarProperty Name="EQUIPZ_SITE" ColumnName="EQUIPZ_SITE" />
+          <ScalarProperty Name="EQUIPZ_NAME" ColumnName="EQUIPZ_NAME" />
+          <ScalarProperty Name="EQUIPA_PORT" ColumnName="EQUIPA_PORT" />
+          <ScalarProperty Name="EQUIPA_CARD" ColumnName="EQUIPA_CARD" />
+          <ScalarProperty Name="EQUIPA_SLOT" ColumnName="EQUIPA_SLOT" />
+          <ScalarProperty Name="EQUIPA_TYPE" ColumnName="EQUIPA_TYPE" />
+          <ScalarProperty Name="EQUIPA_SITE" ColumnName="EQUIPA_SITE" />
+          <ScalarProperty Name="EQUIPA_NAME" ColumnName="EQUIPA_NAME" />
+          <ScalarProperty Name="PATH_STATUS" ColumnName="PATH_STATUS" />
+          <ScalarProperty Name="PATH_BANDWIDTH" ColumnName="PATH_BANDWIDTH" />
+          <ScalarProperty Name="PATH_TYPE" ColumnName="PATH_TYPE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CHKMSAN_REPLY_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CHKMSAN_REPLY_OSP">
+        <MappingFragment StoreEntitySet="BI_CHKMSAN_REPLY_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CHKMSAN_REQUEST_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_CHKMSAN_REQUEST_OSP">
+        <MappingFragment StoreEntitySet="BI_CHKMSAN_REQUEST_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="EQUPINDEX" ColumnName="EQUPINDEX" />
+          <ScalarProperty Name="EQUPEQUTABBR" ColumnName="EQUPEQUTABBR" />
+          <ScalarProperty Name="EQUPLOCNTNAME" ColumnName="EQUPLOCNTNAME" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_UPDATEDPDIST_REPLY_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_UPDATEDPDIST_REPLY_OSP">
+        <MappingFragment StoreEntitySet="BI_UPDATEDPDIST_REPLY_OSP">
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="ERRORMSG" ColumnName="ERRORMSG" />
+          <ScalarProperty Name="ERRORCODE" ColumnName="ERRORCODE" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_UPDATEDPDIST_REQUEST_OSP">
+      <EntityTypeMapping TypeName="Model3.BI_UPDATEDPDIST_REQUEST_OSP">
+        <MappingFragment StoreEntitySet="BI_UPDATEDPDIST_REQUEST_OSP">
+          <ScalarProperty Name="DISTANCE" ColumnName="DISTANCE" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="EQUPINDEX" ColumnName="EQUPINDEX" />
+          <ScalarProperty Name="EQUPEQUTABBR" ColumnName="EQUPEQUTABBR" />
+          <ScalarProperty Name="EQUPLOCNTNAME" ColumnName="EQUPLOCNTNAME" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_ASSET_NO">
+      <EntityTypeMapping TypeName="Model3.BI_ASSET_NO">
+        <MappingFragment StoreEntitySet="BI_ASSET_NO">
+          <ScalarProperty Name="ID1" ColumnName="ID1" />
+          <ScalarProperty Name="ASSET_TYPE" ColumnName="ASSET_TYPE" />
+          <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+          <ScalarProperty Name="COMPANY_CODE" ColumnName="COMPANY_CODE" />
+          <ScalarProperty Name="ASSET_SUB_NO" ColumnName="ASSET_SUB_NO" />
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="PROJECT_NO" ColumnName="PROJECT_NO" />
+          <ScalarProperty Name="CABLE_EQUIP_ID" ColumnName="CABLE_EQUIP_ID" />
+          <ScalarProperty Name="ASSET_NO" ColumnName="ASSET_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_ASSET_TAGGING">
+      <EntityTypeMapping TypeName="Model3.BI_ASSET_TAGGING">
+        <MappingFragment StoreEntitySet="BI_ASSET_TAGGING">
+          <ScalarProperty Name="TYPE_NAME" ColumnName="TYPE_NAME" />
+          <ScalarProperty Name="LAST_INVENTORY_ON" ColumnName="LAST_INVENTORY_ON" />
+          <ScalarProperty Name="VERIFICATION_BY" ColumnName="VERIFICATION_BY" />
+          <ScalarProperty Name="VERIFICATION_STATUS" ColumnName="VERIFICATION_STATUS" />
+          <ScalarProperty Name="TAGGING_DATE" ColumnName="TAGGING_DATE" />
+          <ScalarProperty Name="CABLE_EQUIP_ID" ColumnName="CABLE_EQUIP_ID" />
+          <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+          <ScalarProperty Name="COMPANY_CODE" ColumnName="COMPANY_CODE" />
+          <ScalarProperty Name="ASSET_SUB_NO" ColumnName="ASSET_SUB_NO" />
+          <ScalarProperty Name="ASSET_NO" ColumnName="ASSET_NO" />
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_ASSET_TAGGING_NIS">
+      <EntityTypeMapping TypeName="Model3.BI_ASSET_TAGGING_NIS">
+        <MappingFragment StoreEntitySet="BI_ASSET_TAGGING_NIS">
+          <ScalarProperty Name="TYPE_NAME" ColumnName="TYPE_NAME" />
+          <ScalarProperty Name="LAST_INVENTORY_ON" ColumnName="LAST_INVENTORY_ON" />
+          <ScalarProperty Name="VERIFICATION_BY" ColumnName="VERIFICATION_BY" />
+          <ScalarProperty Name="VERIFICATION_STATUS" ColumnName="VERIFICATION_STATUS" />
+          <ScalarProperty Name="TAGGING_DATE" ColumnName="TAGGING_DATE" />
+          <ScalarProperty Name="CABLE_EQUIP_ID" ColumnName="CABLE_EQUIP_ID" />
+          <ScalarProperty Name="EXCHANGE_CODE" ColumnName="EXCHANGE_CODE" />
+          <ScalarProperty Name="COMPANY_CODE" ColumnName="COMPANY_CODE" />
+          <ScalarProperty Name="ASSET_SUBNUMBER" ColumnName="ASSET_SUBNUMBER" />
+          <ScalarProperty Name="ASSET_NO" ColumnName="ASSET_NO" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="NIS_ID" ColumnName="NIS_ID" />
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_CONTRACT">
+      <EntityTypeMapping TypeName="Model3.BI_CONTRACT">
+        <MappingFragment StoreEntitySet="BI_CONTRACT">
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="NET_PRICE" ColumnName="NET_PRICE" />
+          <ScalarProperty Name="ORDER_UNIT" ColumnName="ORDER_UNIT" />
+          <ScalarProperty Name="ITEM_CATEGORY" ColumnName="ITEM_CATEGORY" />
+          <ScalarProperty Name="SHORT_TEXT" ColumnName="SHORT_TEXT" />
+          <ScalarProperty Name="VENDOR_NAME" ColumnName="VENDOR_NAME" />
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+          <ScalarProperty Name="ITEM_NO" ColumnName="ITEM_NO" />
+          <ScalarProperty Name="CONTRACT_DESCRIPTION" ColumnName="CONTRACT_DESCRIPTION" />
+          <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_DECOMM_TABLE">
+      <EntityTypeMapping TypeName="Model3.BI_DECOMM_TABLE">
+        <MappingFragment StoreEntitySet="BI_DECOMM_TABLE">
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="CABLE_ID" ColumnName="CABLE_ID" />
+          <ScalarProperty Name="DECOMM_REASON" ColumnName="DECOMM_REASON" />
+          <ScalarProperty Name="ASSET_NO" ColumnName="ASSET_NO" />
+          <ScalarProperty Name="DECOMM_DATE" ColumnName="DECOMM_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GEMS_BOQ_MAT">
+      <EntityTypeMapping TypeName="Model3.BI_GEMS_BOQ_MAT">
+        <MappingFragment StoreEntitySet="BI_GEMS_BOQ_MAT">
+          <ScalarProperty Name="WBS_NUM" ColumnName="WBS_NUM" />
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="CONTRACT_ITEM_NO" ColumnName="CONTRACT_ITEM_NO" />
+          <ScalarProperty Name="CONTRACT_NO" ColumnName="CONTRACT_NO" />
+          <ScalarProperty Name="NETWORK_HEADER" ColumnName="NETWORK_HEADER" />
+          <ScalarProperty Name="PROJ_NO" ColumnName="PROJ_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_NNW_EXT_SCH_GEM">
+      <EntityTypeMapping TypeName="Model3.BI_NNW_EXT_SCH_GEM">
+        <MappingFragment StoreEntitySet="BI_NNW_EXT_SCH_GEM">
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="PU_QTY" ColumnName="PU_QTY" />
+          <ScalarProperty Name="PU_ID" ColumnName="PU_ID" />
+          <ScalarProperty Name="RATE_INDICATOR" ColumnName="RATE_INDICATOR" />
+          <ScalarProperty Name="WBS_NUM" ColumnName="WBS_NUM" />
+          <ScalarProperty Name="NETWORK_HDR" ColumnName="NETWORK_HDR" />
+          <ScalarProperty Name="PROJ_NUM" ColumnName="PROJ_NUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_NNW_MAT_MAST">
+      <EntityTypeMapping TypeName="Model3.BI_NNW_MAT_MAST">
+        <MappingFragment StoreEntitySet="BI_NNW_MAT_MAST">
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="MAT_PRICE" ColumnName="MAT_PRICE" />
+          <ScalarProperty Name="MAT_CAT" ColumnName="MAT_CAT" />
+          <ScalarProperty Name="MAT_UOM" ColumnName="MAT_UOM" />
+          <ScalarProperty Name="MAT_NAME" ColumnName="MAT_NAME" />
+          <ScalarProperty Name="MAT_ID" ColumnName="MAT_ID" />
+          <ScalarProperty Name="TRANS_TYPE" ColumnName="TRANS_TYPE" />
+          <ScalarProperty Name="RECORD_TYPE" ColumnName="RECORD_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_NNW_PU_MAST">
+      <EntityTypeMapping TypeName="Model3.BI_NNW_PU_MAST">
+        <MappingFragment StoreEntitySet="BI_NNW_PU_MAST">
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="DATE_TS" ColumnName="DATE_TS" />
+          <ScalarProperty Name="BILL_RATE" ColumnName="BILL_RATE" />
+          <ScalarProperty Name="SUP_DURATION" ColumnName="SUP_DURATION" />
+          <ScalarProperty Name="ACT_CODE" ColumnName="ACT_CODE" />
+          <ScalarProperty Name="NETWORK_FLAG" ColumnName="NETWORK_FLAG" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="PU_UOM" ColumnName="PU_UOM" />
+          <ScalarProperty Name="PU_MAT_PR" ColumnName="PU_MAT_PR" />
+          <ScalarProperty Name="PU_INST_PR" ColumnName="PU_INST_PR" />
+          <ScalarProperty Name="PU_DESC" ColumnName="PU_DESC" />
+          <ScalarProperty Name="PU_ID" ColumnName="PU_ID" />
+          <ScalarProperty Name="TRANS_TYPE" ColumnName="TRANS_TYPE" />
+          <ScalarProperty Name="RECORD_TYPE" ColumnName="RECORD_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_NNW_PU_MAT_REF">
+      <EntityTypeMapping TypeName="Model3.BI_NNW_PU_MAT_REF">
+        <MappingFragment StoreEntitySet="BI_NNW_PU_MAT_REF">
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+          <ScalarProperty Name="PM_QTY" ColumnName="PM_QTY" />
+          <ScalarProperty Name="MAT_ID" ColumnName="MAT_ID" />
+          <ScalarProperty Name="PU_ID" ColumnName="PU_ID" />
+          <ScalarProperty Name="TRANS_TYPE" ColumnName="TRANS_TYPE" />
+          <ScalarProperty Name="RECORD_TYPE" ColumnName="RECORD_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_TOGEMS_SEQ1">
+      <EntityTypeMapping TypeName="Model3.BI_TOGEMS_SEQ1">
+        <MappingFragment StoreEntitySet="BI_TOGEMS_SEQ1">
+          <ScalarProperty Name="ASSET_ADDRESS3" ColumnName="ASSET_ADDRESS3" />
+          <ScalarProperty Name="ASSET_ADDRESS2" ColumnName="ASSET_ADDRESS2" />
+          <ScalarProperty Name="ASSET_ADDRESS1" ColumnName="ASSET_ADDRESS1" />
+          <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+          <ScalarProperty Name="EQUIPMENT_CODE" ColumnName="EQUIPMENT_CODE" />
+          <ScalarProperty Name="WBS_NO" ColumnName="WBS_NO" />
+          <ScalarProperty Name="PROJECT_NO" ColumnName="PROJECT_NO" />
+          <ScalarProperty Name="BI_INSERT_ORDER" ColumnName="BI_INSERT_ORDER" />
+          <ScalarProperty Name="BI_BATCH_ID" ColumnName="BI_BATCH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPLOADSITE_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPLOADSITE_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPLOADSITE_RES">
+          <ScalarProperty Name="CSMSG" ColumnName="CSMSG" />
+          <ScalarProperty Name="CSMSGCODE" ColumnName="CSMSGCODE" />
+          <ScalarProperty Name="CSSTATUS" ColumnName="CSSTATUS" />
+          <ScalarProperty Name="UDACOMMENTS" ColumnName="UDACOMMENTS" />
+          <ScalarProperty Name="UDACONTACT" ColumnName="UDACONTACT" />
+          <ScalarProperty Name="UDAACCESSRESTRICT" ColumnName="UDAACCESSRESTRICT" />
+          <ScalarProperty Name="UDATOTALSRVBONDARY" ColumnName="UDATOTALSRVBONDARY" />
+          <ScalarProperty Name="UDAFIBRETOPREMISEEXIST" ColumnName="UDAFIBRETOPREMISEEXIST" />
+          <ScalarProperty Name="UDACOPPEROWNBYTM" ColumnName="UDACOPPEROWNBYTM" />
+          <ScalarProperty Name="UDACABLINGTYPE" ColumnName="UDACABLINGTYPE" />
+          <ScalarProperty Name="UDAEQUIPLOC" ColumnName="UDAEQUIPLOC" />
+          <ScalarProperty Name="ADDRCOMMENTS" ColumnName="ADDRCOMMENTS" />
+          <ScalarProperty Name="ADDRCOUNTRY" ColumnName="ADDRCOUNTRY" />
+          <ScalarProperty Name="ADDRCOUNTY" ColumnName="ADDRCOUNTY" />
+          <ScalarProperty Name="ADDRSTREETTYPE" ColumnName="ADDRSTREETTYPE" />
+          <ScalarProperty Name="ADDRPOSTCODE" ColumnName="ADDRPOSTCODE" />
+          <ScalarProperty Name="ADDRSTATE" ColumnName="ADDRSTATE" />
+          <ScalarProperty Name="ADDRCITY" ColumnName="ADDRCITY" />
+          <ScalarProperty Name="ADDRSTREET" ColumnName="ADDRSTREET" />
+          <ScalarProperty Name="ADDRSITEBUILD" ColumnName="ADDRSITEBUILD" />
+          <ScalarProperty Name="ADDRSITENO" ColumnName="ADDRSITENO" />
+          <ScalarProperty Name="ADDRSITEFLOOR" ColumnName="ADDRSITEFLOOR" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="SITETYPE" ColumnName="SITETYPE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="INSTID" ColumnName="INSTID" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDLOADEQUIP_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDLOADEQUIP_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDLOADEQUIP_REQ">
+          <ScalarProperty Name="PATCHCORD" ColumnName="PATCHCORD" />
+          <ScalarProperty Name="EQUIP_INSERVICE" ColumnName="EQUIP_INSERVICE" />
+          <ScalarProperty Name="EQUIPUDA_NETWORK" ColumnName="EQUIPUDA_NETWORK" />
+          <ScalarProperty Name="EQUIPUDA_EXTFLAG" ColumnName="EQUIPUDA_EXTFLAG" />
+          <ScalarProperty Name="EQUIPUDA_OUTINDOORTAG" ColumnName="EQUIPUDA_OUTINDOORTAG" />
+          <ScalarProperty Name="EQUIPUDA_TAGGING" ColumnName="EQUIPUDA_TAGGING" />
+          <ScalarProperty Name="EQUIP_TEMPNAME" ColumnName="EQUIP_TEMPNAME" />
+          <ScalarProperty Name="EQUIP_SITE" ColumnName="EQUIP_SITE" />
+          <ScalarProperty Name="EQUIP_EXCHDESC" ColumnName="EQUIP_EXCHDESC" />
+          <ScalarProperty Name="EQUIP_STATE" ColumnName="EQUIP_STATE" />
+          <ScalarProperty Name="EQUIP_REGION" ColumnName="EQUIP_REGION" />
+          <ScalarProperty Name="EQUIP_EQUIPMODEL" ColumnName="EQUIP_EQUIPMODEL" />
+          <ScalarProperty Name="EQUIP_EQUIPVEND" ColumnName="EQUIP_EQUIPVEND" />
+          <ScalarProperty Name="EQUIP_EQUIPCAT" ColumnName="EQUIP_EQUIPCAT" />
+          <ScalarProperty Name="EQUIP_MNGTIP" ColumnName="EQUIP_MNGTIP" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPLOADSITE_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPLOADSITE_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPLOADSITE_REQ">
+          <ScalarProperty Name="UDACOMMENTS" ColumnName="UDACOMMENTS" />
+          <ScalarProperty Name="UDACONTACT" ColumnName="UDACONTACT" />
+          <ScalarProperty Name="UDAACCESSRESTRICT" ColumnName="UDAACCESSRESTRICT" />
+          <ScalarProperty Name="UDATOTALSRVBOUNDARY" ColumnName="UDATOTALSRVBOUNDARY" />
+          <ScalarProperty Name="UDAFIBERTOPREMISEEXIST" ColumnName="UDAFIBERTOPREMISEEXIST" />
+          <ScalarProperty Name="UDACOPPEROWNBYTM" ColumnName="UDACOPPEROWNBYTM" />
+          <ScalarProperty Name="UDACABLINGTYPE" ColumnName="UDACABLINGTYPE" />
+          <ScalarProperty Name="UDAEQUIPLOC" ColumnName="UDAEQUIPLOC" />
+          <ScalarProperty Name="ADDRCOMMENTS" ColumnName="ADDRCOMMENTS" />
+          <ScalarProperty Name="ADDRCOUNTRY" ColumnName="ADDRCOUNTRY" />
+          <ScalarProperty Name="ADDRCOUNTY" ColumnName="ADDRCOUNTY" />
+          <ScalarProperty Name="ADDRSTREETTYPE" ColumnName="ADDRSTREETTYPE" />
+          <ScalarProperty Name="ADDRPOSTCODE" ColumnName="ADDRPOSTCODE" />
+          <ScalarProperty Name="ADDRSTATE" ColumnName="ADDRSTATE" />
+          <ScalarProperty Name="ADDRCITY" ColumnName="ADDRCITY" />
+          <ScalarProperty Name="ADDRSTREET" ColumnName="ADDRSTREET" />
+          <ScalarProperty Name="ADDRBUILD" ColumnName="ADDRBUILD" />
+          <ScalarProperty Name="ADDRSITENO" ColumnName="ADDRSITENO" />
+          <ScalarProperty Name="ADDRFLOOR" ColumnName="ADDRFLOOR" />
+          <ScalarProperty Name="SITETYPE" ColumnName="SITETYPE" />
+          <ScalarProperty Name="SITEDESC" ColumnName="SITEDESC" />
+          <ScalarProperty Name="SITENAME" ColumnName="SITENAME" />
+          <ScalarProperty Name="SITEEXCHG" ColumnName="SITEEXCHG" />
+          <ScalarProperty Name="SITEPTT" ColumnName="SITEPTT" />
+          <ScalarProperty Name="SITESTATE" ColumnName="SITESTATE" />
+          <ScalarProperty Name="SITEREGION" ColumnName="SITEREGION" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDLOADEQUIP_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDLOADEQUIP_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDLOADEQUIP_RES">
+          <ScalarProperty Name="PATCHCORD" ColumnName="PATCHCORD" />
+          <ScalarProperty Name="EQUIP_INSERVICE" ColumnName="EQUIP_INSERVICE" />
+          <ScalarProperty Name="CALLSTATUS_MSG" ColumnName="CALLSTATUS_MSG" />
+          <ScalarProperty Name="CALLSTATUS_MSGCODE" ColumnName="CALLSTATUS_MSGCODE" />
+          <ScalarProperty Name="CALLSTATUS_STATUS" ColumnName="CALLSTATUS_STATUS" />
+          <ScalarProperty Name="EQUIPUDA_NETWORKNAME" ColumnName="EQUIPUDA_NETWORKNAME" />
+          <ScalarProperty Name="EQUIPUDA_DPEXTFLAG" ColumnName="EQUIPUDA_DPEXTFLAG" />
+          <ScalarProperty Name="EQUIPUDA_OUTINDOORTAG" ColumnName="EQUIPUDA_OUTINDOORTAG" />
+          <ScalarProperty Name="EQUIPUDA_TAG" ColumnName="EQUIPUDA_TAG" />
+          <ScalarProperty Name="EQUIP_TEMPNAME" ColumnName="EQUIP_TEMPNAME" />
+          <ScalarProperty Name="EQUIP_SITEDESC" ColumnName="EQUIP_SITEDESC" />
+          <ScalarProperty Name="EQUIP_SITE" ColumnName="EQUIP_SITE" />
+          <ScalarProperty Name="EQUIP_MNGTIP" ColumnName="EQUIP_MNGTIP" />
+          <ScalarProperty Name="EQUIP_EQUIPMODEL" ColumnName="EQUIP_EQUIPMODEL" />
+          <ScalarProperty Name="EQUIP_EQUIPVEND" ColumnName="EQUIP_EQUIPVEND" />
+          <ScalarProperty Name="EQUIP_EQUIPCAT" ColumnName="EQUIP_EQUIPCAT" />
+          <ScalarProperty Name="EQUIP_EQUIPSTATUS" ColumnName="EQUIP_EQUIPSTATUS" />
+          <ScalarProperty Name="EQUIP_EQUIPID" ColumnName="EQUIP_EQUIPID" />
+          <ScalarProperty Name="EQUIP_EQUIPINSTID" ColumnName="EQUIP_EQUIPINSTID" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDLDPATHCONS_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDLDPATHCONS_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDLDPATHCONS_REQ">
+          <ScalarProperty Name="DP_TAMBAHAN" ColumnName="DP_TAMBAHAN" />
+          <ScalarProperty Name="ACARD4" ColumnName="ACARD4" />
+          <ScalarProperty Name="APORT4" ColumnName="APORT4" />
+          <ScalarProperty Name="DPPORT" ColumnName="DPPORT" />
+          <ScalarProperty Name="DPSITE" ColumnName="DPSITE" />
+          <ScalarProperty Name="DPNAME" ColumnName="DPNAME" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="APORT3" ColumnName="APORT3" />
+          <ScalarProperty Name="ACARD3" ColumnName="ACARD3" />
+          <ScalarProperty Name="APORT2" ColumnName="APORT2" />
+          <ScalarProperty Name="ACARD2" ColumnName="ACARD2" />
+          <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+          <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+          <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EVENTNAME" ColumnName="EVENTNAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDLDPATHCONS_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDLDPATHCONS_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDLDPATHCONS_RES">
+          <ScalarProperty Name="DP_TAMBAHAN" ColumnName="DP_TAMBAHAN" />
+          <ScalarProperty Name="ODPZPORT" ColumnName="ODPZPORT" />
+          <ScalarProperty Name="ODPZCARD" ColumnName="ODPZCARD" />
+          <ScalarProperty Name="ODPZTYPE" ColumnName="ODPZTYPE" />
+          <ScalarProperty Name="ODPZSITE" ColumnName="ODPZSITE" />
+          <ScalarProperty Name="ODPZNAME" ColumnName="ODPZNAME" />
+          <ScalarProperty Name="ODPPORT" ColumnName="ODPPORT" />
+          <ScalarProperty Name="ODPCARD" ColumnName="ODPCARD" />
+          <ScalarProperty Name="ODPNAME" ColumnName="ODPNAME" />
+          <ScalarProperty Name="ODPPATHID" ColumnName="ODPPATHID" />
+          <ScalarProperty Name="CALLSTATUS_MSG" ColumnName="CALLSTATUS_MSG" />
+          <ScalarProperty Name="CALLSTATUS_MSGCODE" ColumnName="CALLSTATUS_MSGCODE" />
+          <ScalarProperty Name="CALLSTATUS_STATUS" ColumnName="CALLSTATUS_STATUS" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="APORT3" ColumnName="APORT3" />
+          <ScalarProperty Name="ACARD3" ColumnName="ACARD3" />
+          <ScalarProperty Name="SPLITTER" ColumnName="SPLITTER" />
+          <ScalarProperty Name="APORT2" ColumnName="APORT2" />
+          <ScalarProperty Name="ACARD2" ColumnName="ACARD2" />
+          <ScalarProperty Name="ESIDE" ColumnName="ESIDE" />
+          <ScalarProperty Name="FDCPATHSTATUS" ColumnName="FDCPATHSTATUS" />
+          <ScalarProperty Name="FDCPATHBW" ColumnName="FDCPATHBW" />
+          <ScalarProperty Name="FDCPATHTYPE" ColumnName="FDCPATHTYPE" />
+          <ScalarProperty Name="FDCPATHID" ColumnName="FDCPATHID" />
+          <ScalarProperty Name="FDPPORT" ColumnName="FDPPORT" />
+          <ScalarProperty Name="FDPCARD" ColumnName="FDPCARD" />
+          <ScalarProperty Name="FDPNAME" ColumnName="FDPNAME" />
+          <ScalarProperty Name="DPORT2" ColumnName="DPORT2" />
+          <ScalarProperty Name="DCARD2" ColumnName="DCARD2" />
+          <ScalarProperty Name="DSIDE" ColumnName="DSIDE" />
+          <ScalarProperty Name="PATHSTATUS" ColumnName="PATHSTATUS" />
+          <ScalarProperty Name="PATHBW" ColumnName="PATHBW" />
+          <ScalarProperty Name="PATHTYPE" ColumnName="PATHTYPE" />
+          <ScalarProperty Name="PATHID" ColumnName="PATHID" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPADDCARD_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPADDCARD_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPADDCARD_REQ">
+          <ScalarProperty Name="OWNER_FID" ColumnName="OWNER_FID" />
+          <ScalarProperty Name="ADDSPLITTER" ColumnName="ADDSPLITTER" />
+          <ScalarProperty Name="ADDCARD" ColumnName="ADDCARD" />
+          <ScalarProperty Name="DESIGN" ColumnName="DESIGN" />
+          <ScalarProperty Name="PATCHCORD" ColumnName="PATCHCORD" />
+          <ScalarProperty Name="PROJECT_NAME" ColumnName="PROJECT_NAME" />
+          <ScalarProperty Name="TOTAL_PORT" ColumnName="TOTAL_PORT" />
+          <ScalarProperty Name="CARD_TYPE" ColumnName="CARD_TYPE" />
+          <ScalarProperty Name="SLOT_NO" ColumnName="SLOT_NO" />
+          <ScalarProperty Name="TEMPLATENAME" ColumnName="TEMPLATENAME" />
+          <ScalarProperty Name="EQUIPMODEL" ColumnName="EQUIPMODEL" />
+          <ScalarProperty Name="EQUIPVEND" ColumnName="EQUIPVEND" />
+          <ScalarProperty Name="EQUIPMENTID" ColumnName="EQUIPMENTID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+          <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="ADDCARD_ID" ColumnName="ADDCARD_ID" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPADDCARD_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPADDCARD_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPADDCARD_RES">
+          <ScalarProperty Name="DESIGN" ColumnName="DESIGN" />
+          <ScalarProperty Name="PROJECTNAME" ColumnName="PROJECTNAME" />
+          <ScalarProperty Name="PATHCORD" ColumnName="PATHCORD" />
+          <ScalarProperty Name="TOTALPORT" ColumnName="TOTALPORT" />
+          <ScalarProperty Name="SLOTNUMBER" ColumnName="SLOTNUMBER" />
+          <ScalarProperty Name="EQUIPINFO" ColumnName="EQUIPINFO" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="MESSAGECODE" ColumnName="MESSAGECODE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REQUESTSYSTEM" ColumnName="REQUESTSYSTEM" />
+          <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+          <ScalarProperty Name="REQUESTEDSERVICE" ColumnName="REQUESTEDSERVICE" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDELETEEQUIP_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDELETEEQUIP_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDELETEEQUIP_REQ">
+          <ScalarProperty Name="SLOTNUMBER" ColumnName="SLOTNUMBER" />
+          <ScalarProperty Name="EQUIPMENTCATEGORY" ColumnName="EQUIPMENTCATEGORY" />
+          <ScalarProperty Name="EQUIPMENTID" ColumnName="EQUIPMENTID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDELETEEQUIP_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDELETEEQUIP_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDELETEEQUIP_RES">
+          <ScalarProperty Name="SLOTNUMBER" ColumnName="SLOTNUMBER" />
+          <ScalarProperty Name="EQUIPMENTSTATUS" ColumnName="EQUIPMENTSTATUS" />
+          <ScalarProperty Name="EQUIPMENTCATEGORY" ColumnName="EQUIPMENTCATEGORY" />
+          <ScalarProperty Name="EQUIPMENTID" ColumnName="EQUIPMENTID" />
+          <ScalarProperty Name="EQUIPMENTINSTID" ColumnName="EQUIPMENTINSTID" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="MESSAGECODE" ColumnName="MESSAGECODE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REQUESTSYSTEM" ColumnName="REQUESTSYSTEM" />
+          <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+          <ScalarProperty Name="REQUESTEDSERVICE" ColumnName="REQUESTEDSERVICE" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDELETEPATH_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDELETEPATH_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDELETEPATH_REQ">
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDELETEPATH_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDELETEPATH_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDELETEPATH_RES">
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="MESSAGECODE" ColumnName="MESSAGECODE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REQUESTSYSTEM" ColumnName="REQUESTSYSTEM" />
+          <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+          <ScalarProperty Name="REQUESTEDSERVICE" ColumnName="REQUESTEDSERVICE" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDELETESB_REQ">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDELETESB_REQ">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDELETESB_REQ">
+          <ScalarProperty Name="SITEDP" ColumnName="SITEDP" />
+          <ScalarProperty Name="SERVICEBOUNDARYID" ColumnName="SERVICEBOUNDARYID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="TIME_SENT" ColumnName="TIME_SENT" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BI_GRNOSPDELETESB_RES">
+      <EntityTypeMapping TypeName="Model3.BI_GRNOSPDELETESB_RES">
+        <MappingFragment StoreEntitySet="BI_GRNOSPDELETESB_RES">
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="MESSAGECODE" ColumnName="MESSAGECODE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REQUESTSYSTEM" ColumnName="REQUESTSYSTEM" />
+          <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+          <ScalarProperty Name="REQUESTEDSERVICE" ColumnName="REQUESTEDSERVICE" />
+          <ScalarProperty Name="TIME_RETURNED" ColumnName="TIME_RETURNED" />
+          <ScalarProperty Name="REQUEST_ID" ColumnName="REQUEST_ID" />
+          <ScalarProperty Name="PROC_ID" ColumnName="PROC_ID" />
+          <ScalarProperty Name="REPLY_ID" ColumnName="REPLY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

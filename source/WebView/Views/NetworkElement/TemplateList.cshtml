@@ -1,0 +1,901 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.AgTemplate>
+@{
+    ViewBag.Title = "List";
+}
+<script type="text/javascript">
+    function GetDetailsCallBack(data) {
+
+        $ = globalJquery;
+        SetText("txtJobNo", data.xlName);
+        SetText("txtTempName", data.xlName);
+        SetElement("txtID", data.id);
+        SetElement("itxtID", data.id);
+        SetElement("ctxtID", data.id);
+        SetElement("txtNewTemp", data.xlName);
+
+        document.getElementById("txtRACK_NO").value     = "";
+        document.getElementById("txtFRAME_NO").value    = "";
+        document.getElementById("txtSLOT_NO").value     = "";
+        document.getElementById("txtSLOT_NIS").value    = "";
+        document.getElementById("txtCARD_TYPE").value   = "";
+        document.getElementById("txtCARD_MODEL").value  = "";
+        document.getElementById("txtPORT_LO").value     = "";
+        document.getElementById("txtPORT_HI").value     = "";
+        document.getElementById("txtMIN_MATERIAL").value = "";
+
+        var tblNE = document.getElementById('crtNERequest');
+        for (var i = tblNE.rows.length - 1; i > 0; i--) {
+            tblNE.deleteRow(i);
+        }
+
+        if (data.crtNE) {
+            document.getElementById("McrtNERequest").style.display = "block";
+            document.getElementById("crtNERequest").style.display = "block";
+            big = data.crtNE.split('!');
+            countBtnEdit = 0;
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtNERequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+                row.style.textAlign = "Center";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+                row.insertCell(8);
+                row.insertCell(9);
+                //alert(d[9]);
+                if (d[0] == "") {d[0] = "-";}
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0]; tbl.rows[ii + 1].cells[0].width = "100px";
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1]; tbl.rows[ii + 1].cells[1].width = "100px";
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2]; tbl.rows[ii + 1].cells[2].width = "100px";
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3]; tbl.rows[ii + 1].cells[3].width = "100px";
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4]; tbl.rows[ii + 1].cells[4].width = "100px";
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5]; tbl.rows[ii + 1].cells[5].width = "150px";
+                tbl.rows[ii + 1].cells[6].innerHTML = d[6]; tbl.rows[ii + 1].cells[6].width = "100px";
+                tbl.rows[ii + 1].cells[7].innerHTML = d[7]; tbl.rows[ii + 1].cells[7].width = "100px";
+                tbl.rows[ii + 1].cells[8].innerHTML = d[8]; tbl.rows[ii + 1].cells[8].width = "150px";
+                tbl.rows[ii + 1].cells[9].innerHTML = "<input type=\"button\" value=\"Edit\" id=\"btnEdit" + countBtnEdit + "\"  onclick=\"UpdateData('" + d[9] + "')\"  style=\"width:50px;\" />" +
+                                                      "<input type=\"button\" value=\"Delete\" id=\"btnDel" + countBtnEdit + "\"  onclick=\"DelData('" + d[9] + "')\"  style=\"width:60px;\" />" +
+                                                      "<input type=\"button\" value=\"Copy\" id=\"btnCopy" + countBtnEdit + "\"  onclick=\"CopyData('" + d[9] + "')\"  style=\"width:60px;\" />";
+                tbl.rows[ii + 1].cells[9].width = "200px";
+                $("#btnEdit" + countBtnEdit).button();
+                $("#btnDel" + countBtnEdit).button();
+                $("#btnCopy" + countBtnEdit).button();
+                countBtnEdit++;                
+            }
+        }
+        else {
+            document.getElementById("McrtNERequest").style.display = "none";
+            document.getElementById("crtNERequest").style.display = "none";
+        }
+
+        countBtnEditMin = 0;
+
+        min = data.crtMin.split('!');
+        $('#txtMIN_MATERIAL').find('option').remove();
+        for (ii = 0; ii < min.length - 1; ii++) {
+            d = min[ii].split('|');
+            var opt = document.createElement("option");
+            document.getElementById("txtMIN_MATERIAL").options.add(opt);
+            opt.text = d[0];
+            opt.value = d[0];
+            countBtnEditMin++;
+        }
+
+    }
+
+    function GetDetailsCallBackUpdate(data) {
+        $ = globalJquery;
+        SetElement("utxtID", data.id);
+        SetElement("utxtRACK_NO", data.RACK_NO);
+        SetElement("utxtFRAME_NO", data.FRAME_NO);
+        SetElement("utxtSLOT_NO", data.SLOT_NO);
+        SetElement("utxtSLOT_NIS", data.SLOT_NIS);
+        SetElement("utxtCARD_TYPE", data.CARD_TYPE);
+        SetElement("utxtCARD_MODEL", data.CARD_MODEL);
+        SetElement("utxtPORT_LO", data.PORT_LO);
+        SetElement("utxtPORT_HI", data.PORT_HI);
+        
+        countBtnEditMin = 0;
+        
+        min = data.crtMin.split('!');
+        $('#utxtMIN_MATERIAL').find('option').remove();
+        var opt1 = document.createElement("option");
+        document.getElementById("utxtMIN_MATERIAL").options.add(opt1);
+        opt1.text = data.MIN_MATERIAL;
+        opt1.value = data.MIN_MATERIAL;
+        for (ii = 0; ii < min.length - 1; ii++) {
+            d = min[ii].split('|');
+            var opt = document.createElement("option");
+            document.getElementById("utxtMIN_MATERIAL").options.add(opt);
+            opt.text = d[0];
+            opt.value = d[0];
+            countBtnEditMin++;
+        }
+    }
+
+    function GetDetailsCallBackCopy(data) {
+        $ = globalJquery;
+        //alert(data.MIN_MATERIAL);
+        SetElement("ctxtRACK_NO", data.RACK_NO);
+        SetElement("ctxtFRAME_NO", data.FRAME_NO);
+        SetElement("ctxtSLOT_NO", data.SLOT_NO);
+        SetElement("ctxtSLOT_NIS", data.SLOT_NIS);
+        SetElement("ctxtCARD_TYPE", data.CARD_TYPE);
+        SetElement("ctxtCARD_MODEL", data.CARD_MODEL);
+        SetElement("ctxtPORT_LO", data.PORT_LO);
+        SetElement("ctxtPORT_HI", data.PORT_HI);
+        SetElement("ctxtMIN_MATERIAL", data.MIN_MATERIAL);
+        countBtnEditMin = 0;
+
+        var itemsJob = "<option selected value='" + data.MIN_MATERIAL + "'>" + data.MIN_MATERIAL + "</option>";
+        $("#ctxtMIN_MATERIAL").html(itemsJob);
+        min = data.crtMin.split('!');
+        for (ii = 0; ii < min.length - 1; ii++) {
+            d = min[ii].split('|');
+            var opt = document.createElement("option");
+            document.getElementById("ctxtMIN_MATERIAL").options.add(opt);
+            opt.text = d[0];
+            opt.value = d[0];
+            countBtnEditMin++;
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            $("#divDetails").dialog("open");
+            $('#divDetails').dialog('removebutton', 'Back');
+            $('#divDetails').dialog('removebutton', 'Save');
+            $('#divDetails').dialog('removebutton', 'Update');
+            $('#divDetails').dialog('addbutton', 'Add Data', addData);
+            $('#divDetails').dialog('addbutton', 'Copy Template', copyData);
+
+            document.getElementById("list-details").style.display = "block";
+            $.ajax({
+                url: '@Url.Action("GetDetails", "NetworkElement")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    GetDetailsCallBack(res);
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 730,
+            width: 1225,
+            modal: true,
+            buttons: {
+            },
+            close: function () { }
+        });
+
+        $("#copy-details").dialog({
+            autoOpen: false,
+            height: 230,
+            width: 450,
+            modal: true,
+            buttons: {
+            },
+            close: function () { }
+        });
+
+        $("#insert-details").dialog({
+            autoOpen: false,
+            height: 330,
+            width: 850,
+            modal: true,
+            buttons: {
+            },
+            close: function () { }
+        });
+
+        $("#update-details").dialog({
+            autoOpen: false,
+            height: 330,
+            width: 850,
+            modal: true,
+            buttons: {
+            },
+            close: function () { }
+        });
+
+        $("#copy-line").dialog({
+            autoOpen: false,
+            height: 330,
+            width: 850,
+            modal: true,
+            buttons: {
+            },
+            close: function () { }
+        });
+
+        var save = function () {
+            var cmsg = confirm('Are you sure you want to add data? ');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: '@Url.Action("AddDetails", "NetworkElement")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": document.getElementById("itxtID").value,
+                        "RACK_NO": document.getElementById("txtRACK_NO").value,
+                        "FRAME_NO": document.getElementById("txtFRAME_NO").value,
+                        "SLOT_NO": document.getElementById("txtSLOT_NO").value,
+                        "SLOT_NIS": document.getElementById("txtSLOT_NIS").value,
+                        "CARD_TYPE": document.getElementById("txtCARD_TYPE").value,
+                        "CARD_MODEL": document.getElementById("txtCARD_MODEL").value,
+                        "PORT_LO": document.getElementById("txtPORT_LO").value,
+                        "PORT_HI": document.getElementById("txtPORT_HI").value,
+                        "MIN_MATERIAL": document.getElementById("txtMIN_MATERIAL").value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == true) {
+                            alert("Item Added Successfully.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Failed.");
+                        }
+                    }
+                });
+            }
+        }
+
+        var copyData = function () {
+            $("#copy-details").dialog("open");
+            $('#copy-details').dialog('addbutton', 'Copy', copyNew);
+        }
+
+        var copyNew = function () {
+            var cmsg = confirm('Are you sure you want to copy data?');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: '@Url.Action("CopyDetails", "NetworkElement")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": document.getElementById("itxtID").value,
+                        "xlfile": document.getElementById("txtNewTemp").value,
+                        "MANUFACTURER": document.getElementById("CMANUFACTURER").value,
+                        "MODEL" : document.getElementById("CMODEL").value,
+                        "FNO": document.getElementById("CFNO").value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == true) {
+                            alert("Item Successfully Copied.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Failed.");
+                        }
+                    }
+                });
+            }
+        }
+
+        var back = function () {
+            document.getElementById("list-details").style.display = "block";
+            $('#divDetails').dialog('removebutton', 'Back');
+            $('#divDetails').dialog('removebutton', 'Save');
+            $('#divDetails').dialog('removebutton', 'Update');
+            $('#divDetails').dialog('addbutton', 'Add Data', addData);
+            $('#divDetails').dialog('addbutton', 'Copy Template', copyData);
+        }
+
+        var addData = function () {
+            $("#insert-details").dialog("open");
+            $('#insert-details').dialog('addbutton', 'Save', save);
+        }
+
+        globalJquery('#divDetails').dialog('addbutton', 'Add Data', addData);
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "TemplateList?MAN=" + document.getElementById("MAN").value + "&MOD=" + document.getElementById("MOD").value + "&FNO=" + document.getElementById("FNO").value; //Where List is the function in the controller.
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewTemplate"; //Where List is the function in the controller.
+            });
+
+            $('#utxtMIN_MATERIAL').change(function () {
+                $.ajax({
+                    url: '@Url.Action("GetMinMat", "NetworkElement")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": document.getElementById("utxtMIN_MATERIAL").value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        SetElement("utxtCARD_TYPE", res.CARD_TYPE);
+                        SetElement("utxtCARD_MODEL", res.CARD_MODEL);
+                        SetElement("utxtPORT_LO", res.PORT_LO);
+                        SetElement("utxtPORT_HI", res.PORT_HI);
+                    }
+                });
+
+            });
+
+            $("#btnSearch").button();
+            $("#btnNewJob").button();
+        });
+
+    });
+
+    function back() {
+        $ = globalJquery;
+        document.getElementById("list-details").style.display = "block";
+        //document.getElementById("insert-details").style.display = "none";
+        //document.getElementById("update-details").style.display = "none";
+        $('#divDetails').dialog('removebutton', 'Back');
+        $('#divDetails').dialog('removebutton', 'Save');
+        $('#divDetails').dialog('removebutton', 'Update');
+        $('#divDetails').dialog('addbutton', 'Add Data', addData);
+        $('#divDetails').dialog('addbutton', 'Copy Template', copyData);
+    }
+
+    function addData() {
+        $("#insert-details").dialog("open");
+        $('#insert-details').dialog('addbutton', 'Save', save);
+    }
+
+    function save() {
+        var cmsg = confirm('Are you sure you want to add data?');
+        if (cmsg != 0) {
+            $.ajax({
+                url: '@Url.Action("AddDetails", "NetworkElement")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": document.getElementById("itxtID").value,
+                    "RACK_NO": document.getElementById("txtRACK_NO").value,
+                    "FRAME_NO": document.getElementById("txtFRAME_NO").value,
+                    "SLOT_NO": document.getElementById("txtSLOT_NO").value,
+                    "SLOT_NIS": document.getElementById("txtSLOT_NIS").value,
+                    "CARD_TYPE": document.getElementById("txtCARD_TYPE").value,
+                    "CARD_MODEL": document.getElementById("txtCARD_MODEL").value,
+                    "PORT_LO": document.getElementById("txtPORT_LO").value,
+                    "PORT_HI": document.getElementById("txtPORT_HI").value,
+                    "MIN_MATERIAL": document.getElementById("txtMIN_MATERIAL").value,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    if (res.Success == true) {
+                        alert("Item Successfully Added.");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Failed.");
+                    }
+                }
+            });
+        }
+    }
+
+    function CopyData(data) {
+        $ = globalJquery;
+        document.getElementById("list-details").style.display = "block";
+        $.ajax({
+            url: '@Url.Action("GetDetailsUpdate", "NetworkElement")',
+            type: "POST",
+            dataType: "html",
+            data: {
+                "id": data,
+                "random": Math.random()
+            },
+            beforeSend: function () { },
+            success: function (data) {
+                var res = jQuery.parseJSON(data);
+                GetDetailsCallBackCopy(res);
+                //$('#divDetails').dialog('addbutton', 'Back', back);
+                $("#copy-line").dialog("open");
+                $('#copy-line').dialog('addbutton', 'Copy', copyLine);
+                //$('#divDetails').dialog('removebutton', 'Save');
+                //$('#divDetails').dialog('removebutton', 'Add Data');
+                //$('#divDetails').dialog('removebutton', 'Copy Template');
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Min Material Not Found");
+                //document.getElementById("update-details").style.display = "none";
+            }
+        });
+    }
+
+    function copyLine() {
+        var cmsg = confirm('Are you sure you want to copy data?');
+        if (cmsg != 0) {
+            $.ajax({
+                url: '@Url.Action("AddDetails", "NetworkElement")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": document.getElementById("itxtID").value,
+                    "RACK_NO": document.getElementById("ctxtRACK_NO").value,
+                    "FRAME_NO": document.getElementById("ctxtFRAME_NO").value,
+                    "SLOT_NO": document.getElementById("ctxtSLOT_NO").value,
+                    "SLOT_NIS": document.getElementById("ctxtSLOT_NIS").value,
+                    "CARD_TYPE": document.getElementById("ctxtCARD_TYPE").value,
+                    "CARD_MODEL": document.getElementById("ctxtCARD_MODEL").value,
+                    "PORT_LO": document.getElementById("ctxtPORT_LO").value,
+                    "PORT_HI": document.getElementById("ctxtPORT_HI").value,
+                    "MIN_MATERIAL": document.getElementById("ctxtMIN_MATERIAL").value,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    if (res.Success == true) {
+                        alert("Item Copied Successfully.");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Failed.");
+                    }
+                }
+            });
+        }
+    }
+
+    function update() {
+        var cmsg = confirm('Are you sure you want to update data?');
+        if (cmsg != 0) {
+            $.ajax({
+                url: '@Url.Action("UpdateDetails", "NetworkElement")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": document.getElementById("utxtID").value,
+                    "RACK_NO": document.getElementById("utxtRACK_NO").value,
+                    "FRAME_NO": document.getElementById("utxtFRAME_NO").value,
+                    "SLOT_NO": document.getElementById("utxtSLOT_NO").value,
+                    "SLOT_NIS": document.getElementById("utxtSLOT_NIS").value,
+                    "CARD_TYPE": document.getElementById("utxtCARD_TYPE").value,
+                    "CARD_MODEL": document.getElementById("utxtCARD_MODEL").value,
+                    "PORT_LO": document.getElementById("utxtPORT_LO").value,
+                    "PORT_HI": document.getElementById("utxtPORT_HI").value,
+                    "MIN_MATERIAL": document.getElementById("utxtMIN_MATERIAL").value,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    if (res.Success == true) {
+                        alert("Item Successfully Updated.");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Failed.");
+                    }
+                }
+            });
+        }
+    }
+    function UpdateData(data) {
+        $ = globalJquery;
+        //document.getElementById("list-details").style.display = "block";
+        //document.getElementById("insert-details").style.display = "none";
+        //document.getElementById("update-details").style.display = "block";
+        $.ajax({
+            url: '@Url.Action("GetDetailsUpdate", "NetworkElement")',
+            type: "POST",
+            dataType: "html",
+            data: {
+                "id": data,
+                "random": Math.random()
+            },
+            beforeSend: function () { },
+            success: function (data) {
+                var res = jQuery.parseJSON(data);
+                GetDetailsCallBackUpdate(res);
+                //$('#divDetails').dialog('addbutton', 'Back', back);
+                $("#update-details").dialog("open");
+                $('#update-details').dialog('addbutton', 'Update', update);
+                //$('#divDetails').dialog('removebutton', 'Save');
+                //$('#divDetails').dialog('removebutton', 'Add Data');
+                //$('#divDetails').dialog('removebutton', 'Copy Template');
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Min Material Not Found");
+                //document.getElementById("update-details").style.display = "none";
+            }
+        });
+    }
+
+    function DelData(data) {
+        var cmsg = confirm('Are you sure you want to delete data?');
+        if (cmsg != 0) {
+            $.ajax({
+                url: '@Url.Action("GetDetailsDelete", "NetworkElement")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": data,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    if (res.Success == true) {
+                        alert("Successfully Deleted.");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Failed.");
+                    }
+                }
+            });
+        }
+    }
+
+    function copyData() {
+        $("#copy-details").dialog("open");
+        $('#copy-details').dialog('addbutton', 'Copy', copyNew);
+    }
+
+    function copyNew() {
+        var cmsg = confirm('Are you sure you want to copy data?');
+        if (cmsg != 0) {
+            $.ajax({
+                url: '@Url.Action("CopyDetails", "NetworkElement")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": document.getElementById("itxtID").value,
+                    "xlfile": document.getElementById("txtNewTemp").value,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    if (res.Success == true) {
+                        alert("Successfully Copied.");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Failed.");
+                    }
+                }
+            });
+        }
+    }
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>Equipment Template List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td>MANUFACTURER :</td>
+                <td>@Html.DropDownList("MAN", (IEnumerable<SelectListItem>)ViewBag.MANUFACTURER, new { style = "width:150px" })</td>
+                <td>MODEL :</td>
+                <td>@Html.DropDownList("MOD", (IEnumerable<SelectListItem>)ViewBag.MODEL, new { style = "width:150px" }) </td>
+                <td>FNO :</td>
+                <td>@Html.DropDownList("FNO", (IEnumerable<SelectListItem>)ViewBag.FNO, new { style = "width:150px" })</td>
+                <td style="text-align:right"><input type="button" value="Filter" id="btnSearch" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="ExchangeMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">MANUFACTURER</th>
+                <th scope="col">MODEL</th>
+                <th scope="col">TEMPLATE NAME</th>            
+                <th scope="col">FNO</th>             
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="gid" style="display:none;">@res.MODEL_ID</td>
+                <td>@res.MANUFACTURER</td>
+                <td>@res.TEMPLATE_MODEL</td>
+                <td>@res.XL_FILE</td>
+                <td>@res.MSAN_FNO</td>
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount 
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "TemplateList", new { MAN = ViewBag.MAN_1, MOD = ViewBag.MOD_1, FNO = ViewBag.FNO_1, page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "TemplateList", new { MAN = ViewBag.MAN_1, MOD = ViewBag.MOD_1, FNO = ViewBag.FNO_1, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "TemplateList", new { MAN = ViewBag.MAN_1, MOD = ViewBag.MOD_1, FNO = ViewBag.FNO_1, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "TemplateList", new { MAN = ViewBag.MAN_1, MOD = ViewBag.MOD_1, FNO = ViewBag.FNO_1, page = Model.PageCount })
+        }
+        else
+        {
+
+        }
+        <br/><b> Total @Model.TotalItemCount records</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+}
+<br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">
+        <div id="list-details">
+            <h3>Data for  <span id="txtJobNo" style="font-weight:bold; color:Blue"></span><input type="hidden" id="txtID" name="txtID" /></h3>
+            <br />
+            <table width="1150px" id="McrtNERequest" style="display:none;">
+                <thead>
+                <tr>
+                    <th scope="col" style="width:100px; background-color:#b9c9fe">RACK_NO</th>
+                    <th scope="col" style="width:100px;background-color:#b9c9fe">FRAME_NO</th>
+                    <th scope="col" style="width:100px;background-color:#b9c9fe">SLOT_NO</th>
+                    <th scope="col" style="width:100px;background-color:#b9c9fe">SLOT_NIS</th>
+                    <th scope="col" style="width:100px; background-color:#b9c9fe">CARD_TYPE</th>
+                    <th scope="col" style="width:150px;background-color:#b9c9fe">CARD_MODEL</th>
+                    <th scope="col" style="width:100px;background-color:#b9c9fe">PORT_LO</th>
+                    <th scope="col" style="width:100px;background-color:#b9c9fe">PORT_HI</th>
+                    <th scope="col" style="width:150px;background-color:#b9c9fe">MIN_MATERIAL</th>
+                    <th scope="col" style="width:150px;background-color:#b9c9fe"></th>
+
+                </tr>
+                </thead>    
+            </table>
+            <table width="1150px" id="crtNERequest" style="display:none;">
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                </tr>
+            </table>
+            <br />
+        </div>
+    </div>
+    <div id="insert-details" title="Insert New Data">
+            <h3>Insert New Data <span id="txtTempName" style="font-weight:bold; color:Blue"></span><input type="hidden" id="itxtID" name="itxtID" /></h3>
+            <br />
+            <table width="800px" id="InsertNew" style="display:block;">
+                <thead>
+                    <tr>
+                        <td style="width:120px;">RACK NO :</td>
+                        <td><input type="text" id="txtRACK_NO" name="txtRACK_NO" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">FRAME NO :</td>
+                        <td> <input type="text" id="txtFRAME_NO" name="txtFRAME_NO" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">SLOT_NO :</td>
+                        <td><input type="text" id="txtSLOT_NO" name="txtSLOT_NO" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">SLOT_NIS :</td>
+                        <td> <input type="text" id="txtSLOT_NIS" name="txtSLOT_NIS" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">CARD_TYPE :</td>
+                        <td><input type="text" id="txtCARD_TYPE" name="txtCARD_TYPE" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">CARD_MODEL :</td>
+                        <td> <input type="text" id="txtCARD_MODEL" name="txtCARD_MODEL" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">PORT_LO :</td>
+                        <td><input type="text" id="txtPORT_LO" name="txtPORT_LO" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">PORT_HI :</td>
+                        <td> <input type="text" id="txtPORT_HI" name="txtPORT_HI" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;"></td>
+                        <td></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">MIN_MATERIAL :</td>
+                        <td>
+                            <select id="txtMIN_MATERIAL" name="txtMIN_MATERIAL"></select>
+                         </td> 
+                    </tr>
+                    
+                </thead>    
+            </table>
+            <br />
+        </div>
+    <div id="update-details" title="Update Data">
+            <h3>Update Data<input type="hidden" id="utxtID" name="utxtID" /></h3>
+            <br />
+            <table width="800px" id="UpdateD">
+                <thead>
+                    <tr>
+                        <td style="width:120px;">RACK NO :</td>
+                        <td><input type="text" id="utxtRACK_NO" name="utxtRACK_NO" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">FRAME NO :</td>
+                        <td> <input type="text" id="utxtFRAME_NO" name="utxtFRAME_NO" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">SLOT_NO :</td>
+                        <td><input type="text" id="utxtSLOT_NO" name="utxtSLOT_NO" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">SLOT_NIS :</td>
+                        <td> <input type="text" id="utxtSLOT_NIS" name="utxtSLOT_NIS" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">CARD_TYPE :</td>
+                        <td><input type="text" id="utxtCARD_TYPE" name="utxtCARD_TYPE" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">CARD_MODEL :</td>
+                        <td> <input type="text" id="utxtCARD_MODEL" name="utxtCARD_MODEL" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">PORT_LO :</td>
+                        <td><input type="text" id="utxtPORT_LO" name="utxtPORT_LO" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">PORT_HI :</td>
+                        <td> <input type="text" id="utxtPORT_HI" name="utxtPORT_HI" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;"></td>
+                        <td></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">MIN_MATERIAL :</td>
+                        <td>
+                            <select id="utxtMIN_MATERIAL" name="utxtMIN_MATERIAL">
+                                <option></option>
+                            </select>
+                         </td>
+                    </tr>
+                    
+                </thead>    
+            </table>
+            <br />
+        </div>
+    <div id="copy-line" title="Copy Equipment">
+            <h3>Copy Data<input type="hidden" id="ctxtID" name="ctxtID" /></h3>
+            <br />
+            <table width="800px" id="CopyL" style="display:block;">
+                <thead>
+                    <tr>
+                        <td style="width:120px;">RACK NO :</td>
+                        <td><input type="text" id="ctxtRACK_NO" name="ctxtRACK_NO" disabled="disabled"/></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">FRAME NO :</td>
+                        <td> <input type="text" id="ctxtFRAME_NO" name="ctxtFRAME_NO" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">SLOT_NO :</td>
+                        <td><input type="text" id="ctxtSLOT_NO" name="ctxtSLOT_NO" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">SLOT_NIS :</td>
+                        <td> <input type="text" id="ctxtSLOT_NIS" name="ctxtSLOT_NIS" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">CARD_TYPE :</td>
+                        <td><input type="text" id="ctxtCARD_TYPE" name="ctxtCARD_TYPE" disabled="disabled"/></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">CARD_MODEL :</td>
+                        <td> <input type="text" id="ctxtCARD_MODEL" name="ctxtCARD_MODEL" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">PORT_LO :</td>
+                        <td><input type="text" id="ctxtPORT_LO" name="ctxtPORT_LO" disabled="disabled"/></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">PORT_HI :</td>
+                        <td> <input type="text" id="ctxtPORT_HI" name="ctxtPORT_HI" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;"></td>
+                        <td></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                        <td style="width:120px;background-color:#e8eef4">MIN_MATERIAL :</td>
+                        <td>
+                            <select id="ctxtMIN_MATERIAL" name="ctxtMIN_MATERIAL" disabled="disabled">
+                                <option></option>
+                            </select>
+                         </td>
+                    </tr>
+                    
+                </thead>    
+            </table>
+            <br />
+        </div>
+    <div id="copy-details" title="Copy Template">
+            <h3>Copy Template <span id="txtTempName" style="font-weight:bold; color:Blue"></span></h3>
+            <br />
+            <table width="400px" id="CopyD" style="display:block;">
+                <thead>
+                    <tr>
+                        <td>New Template :</td>
+                        <td><input style="width:250px;" type="text" id="txtNewTemp" name="txtNewTemp" /></td>
+                    </tr> 
+                    <tr>
+                        <td>MANUFACTURER :</td>
+                        <td>@Html.DropDownList("CMANUFACTURER", (IEnumerable<SelectListItem>)ViewBag.MANUFACTURER, new { style = "width:200px;" })</td>
+                    </tr>
+                    <tr>
+                        <td>MODEL :</td>
+                        <td>@Html.DropDownList("CMODEL", (IEnumerable<SelectListItem>)ViewBag.MODEL, new { style = "width:200px;" })</td>
+                    </tr>
+                    <tr>
+                        <td>FNO :</td>
+                        <td>@Html.DropDownList("CFNO", (IEnumerable<SelectListItem>)ViewBag.FNO, new { style = "width:200px;" })</td>
+                    </tr>                    
+                </thead>    
+            </table>
+            <br />
+    </div>
+</div>
+    
+
+

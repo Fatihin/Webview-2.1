@@ -1,0 +1,316 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.UnrecognizedExc>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" >
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+        //alert(data.fid);
+        SetElement("txtFid", data.fid);
+        SetElement("txtScheme_name", data.sName);  
+        SetElement("txtSegment", data.segment);
+        SetElement("txtExcAbb", data.exc);
+        SetElement("txtFState", data.fState);
+        SetElement("g3e_id", data.id);
+        SetElement("txtFNO", data.fno);
+        SetElement("txtFType", data.fType);
+        document.getElementById("targetCity").innerHTML = data.fid;
+        document.getElementById("btnClose").disabled = false;
+        document.getElementById("txtFid").disabled = true;
+        document.getElementById("txtScheme_name").disabled = true;
+        document.getElementById("txtSegment").disabled = true;
+        document.getElementById("txtExcAbb").disabled = true;
+        document.getElementById("txtFState").disabled = true;
+        document.getElementById("txtFNO").disabled = true;
+        document.getElementById("txtFType").disabled = true;
+
+    }
+
+    function SaveUpdateCallBack(data) {
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("btnSave").disabled = false;
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#serScheme").text();
+            var sCode = $(this).find("#serID").text();
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails", "UnrecognizedExc")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "SName": t,
+                    "ID": sCode,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    var vExc;
+                    //alert("fState" + res.fState + "  fno" + res.fno + "  fType" + res.fType);
+                    GetDetailsCallBack(res);
+                    vExc = res.ValidExc.split(';');
+                    //alert(res.fid);
+                    var dataListVExcAbb = "<option selected value='" + res.exc + "'>" + res.exc + "</option>";
+
+                    for (i = 0; i < vExc.length; i++) {
+                        if (vExc[i] != "") {
+                            dataListVExcAbb += "<option value='" + vExc[i] + "'>" + vExc[i] + "</option>";
+                        }
+                    }
+                    $("#txtValidExcAbb").html(dataListVExcAbb);
+                }
+            });
+        });
+
+        $('#btnSave').click(function () {
+            var fid = document.getElementById("txtFid").value;
+            var Exc = document.getElementById("txtExcAbb").value;
+            var VExcAbb = document.getElementById("txtValidExcAbb").value;
+            var ID = document.getElementById("g3e_id").value;
+
+            alert("Update");
+
+            $.ajax({
+                url: '@Url.Action("UpdateData", "UnrecognizedExc")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "Fid": fid,
+                    "id": ID,
+                    "Exc": Exc,
+                    "ValidExc": VExcAbb,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    if (res.Success == true) {
+                        alert("Update Successfully");
+                    }
+                    else {
+                        alert("Fail to Update");
+                    }
+                    window.location.reload();
+                }
+            });
+        });
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            minHeight: 300,
+            width: 660,
+            modal: true,
+
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&searchExcAbb=" + document.getElementById("searchExcAbb").value + "&searchSegment=" + document.getElementById("searchSegment").value + "&searchFState=" + document.getElementById("searchFState").value + "&searchFtype=" + document.getElementById("searchFtype").value; //Where List is the function in the controller.
+            });
+
+            $('#searchKey').change(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&searchExcAbb=" + document.getElementById("searchExcAbb").value + "&searchSegment=" + document.getElementById("searchSegment").value + "&searchFState=" + document.getElementById("searchFState").value + "&searchFtype=" + document.getElementById("searchFtype").value;
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#txtValidExcAbb').click(function () {
+                document.getElementById("btnSave").style.visibility = "visible";
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>Unrecognized Exchanges</h2>
+<div style="height:600px">
+    <div>
+        <table style="width:850px;"  cellpadding="10" border ="1" cellspacing ="10">
+           <tr>
+                 <td  style="width:200px;"><input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey2"/></td>
+                 
+                 <td  align ="center"  >EXC ABB : @Html.DropDownList("searchExcAbb", (IEnumerable<SelectListItem>)ViewBag.sExcAbb, new { style = "width:150px" })</td>
+                 <td  style="width:240px;">SEGMENT : @Html.DropDownList("searchSegment", (IEnumerable<SelectListItem>)ViewBag.sSegment, new { style = "width:150px" })</td>
+           </tr>
+           
+           <tr> 
+                 <td style="width:200px;"></td>
+                 <td  align ="center"  >FEATURE STATE: @Html.DropDownList("searchFState", (IEnumerable<SelectListItem>)ViewBag.sFState, new { style = "width:150px" })</td>
+                 
+                  <td>FEATURE TYPE: @Html.DropDownList("searchFtype", (IEnumerable<SelectListItem>)ViewBag.sFTpye, new { style = "width:150px" })</td>
+                   
+                 <td><input type="button" value="Search" id="btnSearch" /></td>
+                
+            </tr>
+        </table>
+    </div><br />
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="Unrecognized" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">G3E ID</th>
+                <th scope="col">Scheme Name</th>
+                <th scope="col">Exc Abb</th>
+                <th scope="col">Feature State</th>   
+                <th scope="col">Segment</th>
+                <th scope="col">Feature Type</th>   
+                <th scope="col">G3E FNO</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id ="serID">@res.G3E_ID</td>
+                <td id="serScheme">@res.SCHEME_NAME</td>
+                <td>@res.EXC_ABB</td>
+                <td>@res.FEATURE_STATE</td>
+                <td>@res.SEGMENT</td>  
+                <td>@res.FEATURE_TYPE</td>
+                <td>@res.G3E_FNO</td>
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+   Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { searchKey = ViewBag.searchKey2, searchExcAbb = ViewBag.sExcAbb2, searchSegment = ViewBag.sSegment2, searchFType = ViewBag.sFTpye2, searchFState = ViewBag.sFState2 , page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { searchKey = ViewBag.searchKey2, searchExcAbb = ViewBag.sExcAbb2, searchSegment = ViewBag.sSegment2, searchFType = ViewBag.sFTpye2, searchFState = ViewBag.sFState2, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { searchKey = ViewBag.searchKey2, searchExcAbb = ViewBag.sExcAbb2, searchSegment = ViewBag.sSegment2, searchFType = ViewBag.sFTpye2, searchFState = ViewBag.sFState2, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { searchKey = ViewBag.searchKey2, searchExcAbb = ViewBag.sExcAbb2, searchSegment = ViewBag.sSegment2, searchFType = ViewBag.sFTpye2, searchFState = ViewBag.sFState2, page = Model.PageCount })
+        }
+        else
+        {
+
+        }
+        <br/><b> Total @Model.TotalItemCount  records</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">      
+        <input type="hidden" id="targetCity" value="" />
+
+        <div id="list-details" style="height:120px">
+           <input type="hidden" id="g3e_id" name="g3e_id" />
+            <table width="400px">
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">G3E FID</td>
+                    <td><input type="text" id="txtFid" name="txtFid" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>   
+                    
+                    
+                    <td style="width:150px; background-color:#e8eef4">Scheme Name</td>
+                     <td><input type="text" id="txtScheme_name" name="txtScheme_name" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                                             
+                </tr>
+                
+                 <tr>
+                    <td style="width:150px; background-color:#e8eef4">Feature State</td>
+                    <td><input type="text" id="txtFState" name="txtFState" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                
+                
+                    <td style="width:150px; background-color:#e8eef4">Feature Type</td>
+                    <td><input type="text" id="txtFType" name="txtFType" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>  
+                 
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">FNO</td>
+                    <td><input type="text" id="txtFNO" name="txtFNO" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+               
+                    <td style="width:150px; background-color:#e8eef4">Segment</td>
+                    <td><input type="text" id="txtSegment" name="txtSegment" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>  
+
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Exc Abb</td>
+                    <td><input type="text" id="txtExcAbb" name="txtExcAbb" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                
+                    <td style="width:150px; background-color:#e8eef4">Valid Exc Abb</td>
+                    <td><select id="txtValidExcAbb" name="txtValidExcAbb">
+                    </select></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr> 
+              
+                @***********************************************************************@        
+            </table>
+            <br />            
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                @*<input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />*@
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;visibility:hidden" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        
+        <br />
+        <br />
+    </div>
+
+</div>

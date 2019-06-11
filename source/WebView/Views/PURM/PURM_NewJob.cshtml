@@ -1,0 +1,86 @@
+﻿@model WebView.Models.PURM_NewJobModel
+           
+@{
+    ViewBag.Title = "PURM_NewJob";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Plant Unit Resource</h2>
+@using (Html.BeginForm("PURM_NewJob", "PURM", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="600px" cellpadding="0" cellspacing="0" border="0">      
+        <tr>
+            <td>PU ID</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_ID, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_ID)
+            </td>
+        </tr>
+        <tr>
+            <td>PU Description</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_DESC, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_DESC)
+            </td>
+        </tr>
+        <tr>
+            <td>Install Code</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_INST_CODE, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_INST_CODE)
+            </td>
+        </tr>
+         <tr>
+            <td>Install Name</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_INST_NAME, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_INST_NAME)
+            </td>
+        </tr>
+         <tr>
+            <td>CTRT SUP QTY</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_CTRT_SUP_QTY, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_CTRT_SUP_QTY)
+            </td>
+        </tr>
+         <tr>
+            <td>SUB LAB QTY</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_SUB_LAB_QTY, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_SUB_LAB_QTY)
+            </td>
+        </tr>
+         <tr>
+            <td>IMPL LAB QTY</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_IMPL_LAB_QTY, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_IMPL_LAB_QTY)
+            </td>
+        </tr>
+         <tr>
+            <td>Duration SPVR</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_DUR_SPVR, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_DUR_SPVR)
+            </td>
+        </tr>
+         <tr>
+            <td>Duration IMPL</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_DUR_IMPL, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_DUR_IMPL)
+            </td>
+        </tr>        
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>    
+}

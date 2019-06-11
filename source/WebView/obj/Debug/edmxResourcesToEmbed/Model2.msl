@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities_ISP">
+    <EntitySetMapping Name="ISP_NETELEM">
+      <EntityTypeMapping TypeName="Model1.ISP_NETELEM">
+        <MappingFragment StoreEntitySet="ISP_NETELEM">
+          <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+          <ScalarProperty Name="ISP_ID" ColumnName="ISP_ID" />
+          <ScalarProperty Name="ISP_TYPE" ColumnName="ISP_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

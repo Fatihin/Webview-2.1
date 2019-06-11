@@ -1,0 +1,945 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.Batch>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+
+        $ = globalJquery;
+        //alert(data.outputATagNis);
+        var tblC = document.getElementById('crtATag');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+        var tblC = document.getElementById('crtATagNis');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        var tblC = document.getElementById('crt046');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        var tblC = document.getElementById('crt047');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        var tblC = document.getElementById('crt048');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        var tblC = document.getElementById('crt049');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        var tblC = document.getElementById('crt309');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+        var tblC = document.getElementById('crt310');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+        var tblC = document.getElementById('crt311');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+        var tblC = document.getElementById('crt312');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        var tblC = document.getElementById('crt589');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        var tblC = document.getElementById('crt591');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        if (data.outputATag) {
+            document.getElementById("McrtATag").style.display = "block";
+            document.getElementById("crtATag").style.display = "block";
+            big = data.outputATag.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtATag');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; } if (d[5] == "") { d[5] = "-"; } if (d[6] == "") { d[6] = "-"; }
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+            }
+        } else {
+            document.getElementById("McrtATag").style.display = "none";
+            document.getElementById("crtATag").style.display = "none";
+        }
+
+        if (data.outputATagNis) {
+            document.getElementById("McrtATagNis").style.display = "block";
+            document.getElementById("crtATagNis").style.display = "block";
+            big = data.outputATagNis.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtATagNis');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; } if (d[5] == "") { d[5] = "-"; } if (d[6] == "") { d[6] = "-"; }
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+            }
+        } else {
+            document.getElementById("McrtATagNis").style.display = "none";
+            document.getElementById("crtATagNis").style.display = "none";
+        }
+        if (data.output046) {
+            document.getElementById("Mcrt046").style.display = "block";
+            document.getElementById("crt046").style.display = "block";
+            big = data.output046.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt046');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; } if (d[5] == "") { d[5] = "-"; }
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+            }
+        } else {
+            document.getElementById("Mcrt046").style.display = "none";
+            document.getElementById("crt046").style.display = "none";
+        }
+
+        if (data.output047) {
+            document.getElementById("Mcrt047").style.display = "block";
+            document.getElementById("crt047").style.display = "block";
+            big = data.output047.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt047');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; }
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+            }
+        } else {
+            document.getElementById("Mcrt047").style.display = "none";
+            document.getElementById("crt047").style.display = "none";
+        }
+
+        if (data.output048) {
+            document.getElementById("Mcrt048").style.display = "block";
+            document.getElementById("crt048").style.display = "block";
+            big = data.output048.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt048');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; }
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+            }
+        } else {
+            document.getElementById("Mcrt048").style.display = "none";
+            document.getElementById("crt048").style.display = "none";
+        }
+
+        if (data.output049) {
+            document.getElementById("Mcrt049").style.display = "block";
+            document.getElementById("crt049").style.display = "block";
+            big = data.output049.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt049');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; } if (d[5] == "") { d[5] = "-"; }
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+            }
+        } else {
+            document.getElementById("Mcrt049").style.display = "none";
+            document.getElementById("crt049").style.display = "none";
+        }
+
+        if (data.output309) {
+            document.getElementById("Mcrt309").style.display = "block";
+            document.getElementById("crt309").style.display = "block";
+            big = data.output309.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt309');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; } if (d[5] == "") { d[5] = "-"; }
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+            }
+        } else {
+            document.getElementById("Mcrt309").style.display = "none";
+            document.getElementById("crt309").style.display = "none";
+        }
+
+        if (data.output310) {
+            document.getElementById("Mcrt310").style.display = "block";
+            document.getElementById("crt310").style.display = "block";
+            big = data.output310.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt310');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; } if (d[5] == "") { d[5] = "-"; }
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+            }
+        } else {
+            document.getElementById("Mcrt310").style.display = "none";
+            document.getElementById("crt310").style.display = "none";
+        }
+        if (data.output311) {
+            document.getElementById("Mcrt311").style.display = "block";
+            document.getElementById("crt311").style.display = "block";
+            big = data.output311.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt311');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; } if (d[4] == "") { d[4] = "-"; } 
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+            }
+        } else {
+            document.getElementById("Mcrt311").style.display = "none";
+            document.getElementById("crt311").style.display = "none";
+        }
+
+        if (data.output312) {
+            document.getElementById("Mcrt312").style.display = "block";
+            document.getElementById("crt312").style.display = "block";
+            big = data.output312.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt312');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; } if (d[5] == "") { d[5] = "-"; } 
+
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+            }
+        } else {
+            document.getElementById("Mcrt312").style.display = "none";
+            document.getElementById("crt312").style.display = "none";
+        }
+
+        if (data.output589) {
+            document.getElementById("Mcrt589").style.display = "block";
+            document.getElementById("crt589").style.display = "block";
+            big = data.output589.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt589');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                if (d[4] == "") { d[4] = "-"; } if (d[5] == "") { d[5] = "-"; }
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+            }
+        } else {
+            document.getElementById("Mcrt589").style.display = "none";
+            document.getElementById("crt589").style.display = "none";
+        }
+
+        if (data.output591) {
+            document.getElementById("Mcrt591").style.display = "block";
+            document.getElementById("crt591").style.display = "block";
+            big = data.output591.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crt591');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+
+                if (d[0] == "") { d[0] = "-"; } if (d[1] == "") { d[1] = "-"; } if (d[2] == "") { d[2] = "-"; } if (d[3] == "") { d[3] = "-"; }
+                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+            }
+        } else {
+            document.getElementById("Mcrt591").style.display = "none";
+            document.getElementById("crt591").style.display = "none";
+        }
+
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("BATCH_ID", data.BATCH_ID);
+        SetElement("CLASS_NAME", data.CLASS_NAME);
+        SetElement("EXCEPTION", data.EXCEPTION);
+        SetElement("EXCEPTION_MSG", data.EXCEPTION_MSG);
+        SetElement("FILE_HAS_ERROR", data.FILE_HAS_ERROR);
+        SetElement("FILE_NAME", data.FILENAME);
+        SetElement("INSTANCE_ID", data.INSTANCE_ID);
+        SetElement("SERVICE_NAME", data.SERVICE_NAME);
+        SetElement("STACKTRACE", data.STACKTRACE);
+        SetElement("TIME_END", data.TIME_END);
+        SetElement("TIME_START", data.TIME_START);
+        SetElement("TXTTYPE", data.TYPE);
+        
+
+
+        //document.getElementById("btnClose").disabled = false;
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails_Batch", "DllMaster")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { ShowIt(); document.getElementById("divDetails").style.display = "none"; },
+                success: function (data) {
+                    HideIt();
+                    var res = jQuery.parseJSON(data);
+                    GetDetailsCallBack(res);
+                    
+                    //alert(res.output312);
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 480,
+            width: 850,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "BatchList?FILENAME=" + document.getElementById("FILENAME").value + "&SERVICENAME=" + document.getElementById("SERVICENAME").value + "&HASERROR=" + document.getElementById("viewHASERROR").value + "&TYPE=" + document.getElementById("TYPE").value; //Where List is the function in the controller.
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#HASERROR').click(function () {
+                if (document.getElementById("viewHASERROR").value == "true") {
+                    document.getElementById("viewHASERROR").value = "false";
+                } else { document.getElementById("viewHASERROR").value = "true" }
+            });
+            $("#btnClose").button();
+            $("#btnSearch").button();
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>Batch Management List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td>SERVICE :</td>
+                <td>@Html.DropDownList("SERVICENAME", (IEnumerable<SelectListItem>)ViewBag.SERVICENAME, new { style = "width:150px" })</td>
+                <td>INST ID :</td>
+                <td>@Html.DropDownList("FILENAME", (IEnumerable<SelectListItem>)ViewBag.FILENAME, new { style = "width:150px" })</td>
+                <td>TYPE :</td>
+                <td>@Html.DropDownList("TYPE", (IEnumerable<SelectListItem>)ViewBag.TYPE, new { style = "width:150px" })</td>
+                <input type="hidden" id="viewHASERROR" value="@ViewBag.HASERROR" />
+                @if (@ViewBag.HASERROR == "true")
+                { 
+                    <td><input id="HASERROR" name="HASERROR" type="checkbox" value="true" checked /> ERROR</td>
+                }
+                else
+                {
+                    <td><input id="HASERROR" name="HASERROR" type="checkbox" value="false" /> ERROR</td>
+                }
+                <td><input type="button" value="Filter" id="btnSearch" /></td>
+            </tr>
+        </table>
+    </div><br />
+    @if (Model.Count() > 0)
+    {
+        <table id="rounded-corner" summary="ExchangeMaintenance List" width="850px">
+            <thead>
+                <tr>
+                    <th scope="col">BATCH_ID</th>
+                    <th scope="col">SERVICE_NAME</th>
+                    <th scope="col">FILENAME</th>            
+                    <th scope="col">FILE_HAS_ERROR</th>
+                    <th scope="col">TIME_START</th>          
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var res in Model)
+            {
+                <tr class="odd">
+                    <td id="gid" style="display:none;">@res.BATCH_ID</td>
+                    <td>@res.BATCH_ID</td>
+                    <td>@res.SERVICE_NAME</td>
+                    <td>@res.FILENAME</td>
+                    <td>@res.FILE_HAS_ERROR</td>
+                    <td>@res.TIME_START</td>
+                </tr>    
+            }
+            </tbody>
+        </table>
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount 
+            &nbsp;
+            @if (Model.HasPreviousPage)
+            {
+                @Html.ActionLink("<<", "BatchList", new { FILENAME = ViewBag.FILENAME_1, SERVICENAME = ViewBag.SERVICENAME_1, HASERROR = ViewBag.HASERROR_1, TYPE = ViewBag.TYPE_1, page = 1 })
+                @Html.Raw("&nbsp;");
+                @Html.ActionLink("< Prev", "BatchList", new { FILENAME = ViewBag.FILENAME_1, SERVICENAME = ViewBag.SERVICENAME_1, HASERROR = ViewBag.HASERROR_1, TYPE = ViewBag.TYPE_1, page = Model.PageNumber - 1 })
+            }
+            else
+            {
+
+            }
+            &nbsp;
+            @if (Model.HasNextPage)
+            {
+                @Html.ActionLink("Next >", "BatchList", new { FILENAME = ViewBag.FILENAME_1, SERVICENAME = ViewBag.SERVICENAME_1, HASERROR = ViewBag.HASERROR_1, TYPE = ViewBag.TYPE_1, page = Model.PageNumber + 1 })
+                @Html.Raw("&nbsp;");
+                @Html.ActionLink(">>", "BatchList", new { FILENAME = ViewBag.FILENAME_1, SERVICENAME = ViewBag.SERVICENAME_1,  HASERROR = ViewBag.HASERROR_1, TYPE = ViewBag.TYPE_1,page = Model.PageCount })
+            }
+            else
+            {
+
+            }
+            <br/><b> Total @Model.TotalItemCount records</b>
+        </div>
+    }
+    else
+    {
+            @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">
+        
+        <input type="hidden" id="targetPlanUnit" value="" />
+        @using (Ajax.BeginForm("UpdateData_PlanUnit", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details">
+            <table width="750px">
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">BATCH_ID</td>
+                    <td><input type="text" id="BATCH_ID" name="BATCH_ID" readonly /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">CLASS_NAME</td>
+                    <td><input type="text" id="CLASS_NAME" name="CLASS_NAME" readonly /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">EXCEPTION</td>
+                    <td><textarea style="width:200px;" id="EXCEPTION" name="EXCEPTION" readonly></textarea></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">EXCEPTION_MSG</td>
+                    <td><textarea style="width:200px;" id="EXCEPTION_MSG" name="EXCEPTION_MSG" readonly></textarea></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">FILE_HAS_ERROR</td>
+                    <td><input type="text" id="FILE_HAS_ERROR" name="FILE_HAS_ERROR" readonly /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">FILENAME</td>
+                    <td><input type="text" id="FILE_NAME" name="FILE_NAME" readonly /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">INSTANCE_ID</td>
+                    <td><input type="text" id="INSTANCE_ID" name="INSTANCE_ID" readonly /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">SERVICE_NAME</td>
+                    <td><input type="text" id="SERVICE_NAME" name="SERVICE_NAME" readonly /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px;background-color:#e8eef4">TIME_START</td>       
+                    <td><input type="text" id="TIME_START" name="TIME_START" readonly /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                         
+                    <td style="width:100px; background-color:#e8eef4">STACKTRACE</td>
+                    <td><input type="text" id="STACKTRACE" name="STACKTRACE" readonly /></td>                           
+                </tr>            
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">TIME_END</td>
+                    <td><input type="text" id="TIME_END" name="TIME_END" readonly /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">TYPE</td>  
+                    <td><input type="text" id="TXTTYPE" name="TXTTYPE" readonly /></td>                   
+                </tr>     
+            </table>
+                <table width="600px" id="McrtATag" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="700px" id="crtATag" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">ASSET_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">CABLE_EQUIP_ID</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">TAGGING_DATE</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">LAST_INVENTORY_ON</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">EXC</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">TYPE_NAME</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">VERIFICATION_STATUS</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="McrtATagNis" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="700px" id="crtATagNis" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">NIS_ID</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">ASSET_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">TAGGING_DATE</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">LAST_INVENTORY_ON</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">EXC</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">TYPE_NAME</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">VERIFICATION_STATUS</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt046" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt046" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">PU ID</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">DESC</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">PU_INST_PR</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">PU_UOM</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">NETWORK_FLAG</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">BILL_RATE</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt047" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt047" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:150px; background-color:#b9c9fe">MAT_ID</th>
+                        <th scope="col" style="width:150px;background-color:#b9c9fe">MAT_NAME</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">MAT_UOM</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">MAT_CAT</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">MAT_PRICE</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt048" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt048" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:200px; background-color:#b9c9fe">PU_ID</th>
+                        <th scope="col" style="width:200px;background-color:#b9c9fe">MAT_ID</th>
+                        <th scope="col" style="width:200px;background-color:#b9c9fe">PM_QTY</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:200px; background-color:#e8eef4"></td>
+                        <td style="width:200px; background-color:#e8eef4"></td>
+                        <td style="width:200px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                 <table width="600px" id="Mcrt049" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                 <table width="600px" id="crt049" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">CONTRACT_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">ITEM_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">SHORT_TEXT</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">CATEGORY</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">ORDER_UNIT</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">NET_PRICE</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt309" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt309" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">PROJ NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">NET HEADER</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">RATE</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">PU ID</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">PU QTY</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">WBS NO</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt310" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt310" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">WBS_NUM</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">PROJ_DESC</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">WBS_DESC</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">EXC_ABB</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">AMOUNT</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">NETWORK_HDR</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt311" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt311" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">PROJECT_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">WBS_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">EQUIPMENT_CODE</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">EXC_ABB</th>
+                        <th scope="col" style="width:200px;background-color:#b9c9fe">ADDRESS</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:200px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt312" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt312" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">PROJ NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">NET HEADER</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">CONTRACT NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">CONTRACT ITEM</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">QUANTITY</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">WBS NO</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt589" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt589" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">PROJECT_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">ASSET_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">ASSET_SUB_NO</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">CABLE_EQUIP_ID</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">EXC_ABB</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">ASSET_TYPE</th>
+                    </tr>
+                    </thead>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+                <table width="600px" id="Mcrt591" style="display:none;"><tr><td><h3>Data</h3></td></tr></table>
+                <table width="600px" id="crt591" style="display:none;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">ASSET</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">CABLE ID</th>
+                        <th scope="col" style="width:250px;background-color:#b9c9fe">DECOMM REASON</th>
+                        <th scope="col" style="width:150px;background-color:#b9c9fe">DATE</th>
+                    </tr>
+                    </thead>    
+                @*</table>
+                <table width="600px" id="crt591" style="display:none;">*@
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:250px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                    </tr>
+                </table>
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Close" id="btnClose" style="height:30px;width:80px;float:right" />
+            </div>
+        </div>
+        }
+    </div>
+</div>
+    
+
+

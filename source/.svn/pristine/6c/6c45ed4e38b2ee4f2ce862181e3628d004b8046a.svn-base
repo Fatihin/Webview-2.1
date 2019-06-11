@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D803E41C-ED89-4ABC-8ABF-6922615F271F}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebView</RootNamespace>
+    <AssemblyName>WebView</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ora11GR2\product\11.2.0\client_1\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.10\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ANDController.cs" />
+    <Compile Include="Controllers\BOQ_GENController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\BOQ_JKHController.cs" />
+    <Compile Include="Controllers\BOQ_MAINController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\BOQ_SCH\BOQEngine.cs" />
+    <Compile Include="Controllers\BOQ_SCH\BOQNrmEngine.cs" />
+    <Compile Include="Controllers\BOQ_SCH\ContractBOQ\Engine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\BOQ_SCH\ContractBOQ\Item.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\BOQ_SCH\ContractBOQ\Package.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\BOQ_SCH\PUMaster.cs" />
+    <Compile Include="Controllers\BOQ_SCH\SCHMatches.cs" />
+    <Compile Include="Controllers\BOQ_SCH\UtilityDb.cs" />
+    <Compile Include="Controllers\BOQ_SCH\UtilityDb2.cs" />
+    <Compile Include="Controllers\CityMaintenanceController.cs" />
+    <Compile Include="Controllers\ForgotPasswordController.cs" />
+    <Compile Include="Controllers\UnrecognizedExc.cs" />
+    <Compile Include="Controllers\VIS_NRMController.cs" />
+    <Compile Include="Controllers\DllMasterController.cs" />
+    <Compile Include="Controllers\DllVersionController.cs" />
+    <Compile Include="Controllers\GRANITE_WSDL\NEPSLoadEquipmentService.cs" />
+    <Compile Include="Controllers\NetworkElementController.cs" />
+    <Compile Include="Controllers\CSFRMController.cs" />
+    <Compile Include="Controllers\CSMController.cs" />
+    <Compile Include="Controllers\ExchangeMaintenanceController.cs" />
+    <Compile Include="Controllers\FeatureMastMaintenanceController.cs" />
+    <Compile Include="Controllers\HomeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\InstallMaintenanceController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\MaterialClassMaintenanceController.cs" />
+    <Compile Include="Controllers\MaterialMastMaintenanceController.cs" />
+    <Compile Include="Controllers\MileageRatesController.cs" />
+    <Compile Include="Controllers\PlanUnitController.cs" />
+    <Compile Include="Controllers\PTTMaintenanceController.cs" />
+    <Compile Include="Controllers\PUFRMController.cs" />
+    <Compile Include="Controllers\PUMMController.cs" />
+    <Compile Include="Controllers\PURMController.cs" />
+    <Compile Include="Controllers\RegionMaintenanceController.cs" />
+    <Compile Include="Controllers\StateMaintenanceController.cs" />
+    <Compile Include="Controllers\UserSendController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Tools.cs" />
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model3.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model4.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model5.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Account\GroupModel.cs" />
+    <Compile Include="Models\Account\GroupRoleModel.cs" />
+    <Compile Include="Models\Account\LogInModel.cs" />
+    <Compile Include="Models\Account\ChangePasswordModel.cs" />
+    <Compile Include="Models\Account\RegisterModel.cs" />
+    <Compile Include="Models\Account\RoleModel.cs" />
+    <Compile Include="Models\Account\UserGroupModel.cs" />
+    <Compile Include="Models\Account\UserModel.cs" />
+    <Compile Include="Models\Account\UserPttModel.cs" />
+    <Compile Include="Models\ANDModel.cs" />
+    <Compile Include="Models\BOQ_GEN_ViewModel.cs" />
+    <Compile Include="Models\BOQ_JKH_NewJobModel.cs" />
+    <Compile Include="Models\BOQ_MAIN_NewJobModel.cs" />
+    <Compile Include="Models\Constants\HandoverStatus.cs" />
+    <Compile Include="Models\Constants\RoleName.cs" />
+    <Compile Include="Models\Bi_Batch.cs" />
+    <Compile Include="Models\AG_Template.cs" />
+    <Compile Include="Models\CityMaintenanceModel.cs" />
+    <Compile Include="Models\CSFRM_NewJobModel.cs" />
+    <Compile Include="Models\CSM_NewJobModel.cs" />
+    <Compile Include="Models\DllMaster_NewJobModel.cs" />
+    <Compile Include="Models\DllVersion_NewJobModel.cs" />
+    <Compile Include="Models\ExchangeMaintenanceModel.cs" />
+    <Compile Include="Models\HandoverModel.cs" />
+    <Compile Include="Models\InstallMaintenanceModel.cs" />
+    <Compile Include="Models\JobModel.cs" />
+    <Compile Include="Models\JobViewModel.cs" />
+    <Compile Include="Models\MaterialClassMaintenanceModel.cs" />
+    <Compile Include="Models\MaterialMastMaintenanceModel.cs" />
+    <Compile Include="Models\MileageRatesModel.cs" />
+    <Compile Include="Models\MileageRatesViewModel .cs" />
+    <Compile Include="Models\NetworkElement.cs" />
+    <Compile Include="Models\NewJobModel.cs" />
+    <Compile Include="Models\PlanUnit_NewJobModel.cs" />
+    <Compile Include="Models\PTTMaintenanceModel.cs" />
+    <Compile Include="Models\PUFRM_NewJobModel.cs" />
+    <Compile Include="Models\PUMM_NewJobModel.cs" />
+    <Compile Include="Models\PURM_NewJobModel.cs" />
+    <Compile Include="Models\RegionMaintenanceModel.cs" />
+    <Compile Include="Models\StateMaintenanceModel.cs" />
+    <Compile Include="Models\UserSendModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\BOQNrmService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\GraniteISP\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\GraniteOSP\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ISPHandoverServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\NRMWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\OSPHandoverServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="WebService\base.asmx.cs">
+      <DependentUpon>base.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.all.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.base.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="README.jQuery.vsdoc.txt" />
+    <Content Include="Scripts\EditorHookup.js" />
+    <Content Include="Scripts\general.js" />
+    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.min.js" />
+    <Content Include="Scripts\jquery.dropmenu.js" />
+    <Content Include="Scripts\jquery.msgBox.v1.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="Scripts\unification.min.js" />
+    <EntityDeploy Include="Model4.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model4.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Model5.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model5.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Service References\BOQNrmService\configuration91.svcinfo" />
+    <None Include="Service References\BOQNrmService\configuration.svcinfo" />
+    <None Include="Service References\BOQNrmService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\GraniteISP\neps_procman_grn_ispSOAP.wsdl" />
+    <None Include="Service References\GraniteISP\WebView.GraniteISP.Error.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GraniteOSP\neps_procman_grn_ospSOAP.wsdl" />
+    <None Include="Service References\GraniteOSP\WebView.GraniteOSP.Error.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ISPHandoverServices\neps_procman_ispSOAP.wsdl" />
+    <None Include="Service References\ISPHandoverServices\WebView.ISPHandoverServices.Error.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OSPHandoverServices\configuration91.svcinfo" />
+    <None Include="Service References\OSPHandoverServices\configuration.svcinfo" />
+    <None Include="Service References\OSPHandoverServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ISPHandoverServices\configuration91.svcinfo" />
+    <None Include="Service References\ISPHandoverServices\configuration.svcinfo" />
+    <None Include="Service References\ISPHandoverServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\GraniteISP\configuration91.svcinfo" />
+    <None Include="Service References\GraniteISP\configuration.svcinfo" />
+    <None Include="Service References\GraniteISP\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\GraniteOSP\configuration91.svcinfo" />
+    <None Include="Service References\GraniteOSP\configuration.svcinfo" />
+    <None Include="Service References\GraniteOSP\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\BOQ_GEN\BOQ_GEN.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\BOQ_GEN\ReportBOQ.cshtml" />
+    <Content Include="Views\BOQ_GEN\ReportIncidentialCost.cshtml" />
+    <Content Include="Views\BOQ_GEN\ReportLabourWorkingHours.cshtml" />
+    <EntityDeploy Include="Model3.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model3.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Service References\BOQNrmService\nrm-boqSOAP.wsdl" />
+    <None Include="Service References\BOQNrmService\WebView.BOQNrmService.BOQItemList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NRMWebService\configuration91.svcinfo" />
+    <None Include="Service References\NRMWebService\configuration.svcinfo" />
+    <None Include="Service References\NRMWebService\NrmSoapServices.wsdl">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NRMWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\BOQ_GEN\BOQ_GEN_List.cshtml" />
+    <Content Include="Views\BOQ_MAIN\BOQ_MAIN_Excel.cshtml" />
+    <Content Include="Views\BOQ_MAIN\BOQ_MAIN_List.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WebService\base.asmx" />
+    <None Include="Service References\NRMWebService\WebView.NRMWebService.NrmProject.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Views\Job\FileList.cshtml" />
+    <Content Include="Views\Job\DeleteFile.cshtml" />
+    <Content Include="Views\BOQ_GEN\ReportProjectCostBreakdown.cshtml" />
+    <Content Include="Views\Job\ISPList.cshtml" />
+    <Content Include="Views\BOQ_GEN\ReportBOQ_Contract.cshtml" />
+    <Content Include="Views\Job\ISP_3D.cshtml" />
+    <Content Include="Views\Job\_3DLayout.cshtml" />
+    <Content Include="Views\Job\Notification.cshtml" />
+    <Content Include="Views\Job\NewJobRNO.cshtml" />
+    <Content Include="Views\Job\RNOList.cshtml" />
+    <Content Include="Views\Job\FileListRedmark.cshtml" />
+    <Content Include="Views\Job\APPList.cshtml" />
+    <Content Include="Views\FeatureMastMaintenance\List.cshtml" />
+    <Content Include="Views\FeatureMastMaintenance\ListContract.cshtml" />
+    <Content Include="Views\Job\ISP.cshtml" />
+    <Content Include="Views\Job\_ISPLayout.cshtml" />
+    <Content Include="Views\Account\List.cshtml" />
+    <Content Include="Views\Account\NewSave.cshtml" />
+    <Content Include="Views\BOQ_GEN\ReportMaterialSupply.cshtml" />
+    <None Include="Service References\OSPHandoverServices\neps_procmanSOAP.wsdl" />
+    <None Include="Service References\OSPHandoverServices\WebView.OSPHandoverServices.Error.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="Views\NetworkElement\List.cshtml" />
+    <Content Include="Views\NetworkElement\ListGraniteNetwork.cshtml" />
+    <Content Include="Views\NetworkElement\ListNisFrame.cshtml" />
+    <Content Include="Views\NetworkElement\ListNisFrame2.cshtml" />
+    <Content Include="Views\DllMaster\DllMaster_NewJob.cshtml" />
+    <Content Include="Views\DllMaster\List.cshtml" />
+    <Content Include="Views\DllMaster\NewSave.cshtml" />
+    <Content Include="Views\DllVersion\List.cshtml" />
+    <Content Include="Views\DllVersion\NewJob.cshtml" />
+    <Content Include="Views\DllVersion\NewSave.cshtml" />
+    <Content Include="Views\Job\ViewHandover.cshtml" />
+    <Content Include="Views\Job\ViewHandoverISP.cshtml" />
+    <Content Include="Views\DllMaster\BatchList.cshtml" />
+    <Content Include="Views\Job\LNMSList.cshtml" />
+    <Content Include="Views\NetworkElement\AdminListNE.cshtml" />
+    <Content Include="Views\NetworkElement\AdminListFU.cshtml" />
+    <Content Include="Views\NetworkElement\TemplateList.cshtml" />
+    <Content Include="Views\NetworkElement\NewTemplate.cshtml" />
+    <Content Include="Views\Job\testLoad.cshtml" />
+    <Content Include="Views\VIS_NRM\NewFTTHPath.cshtml" />
+    <Content Include="Views\VIS_NRM\NewRegionMaintenance.cshtml" />
+    <Content Include="Views\VIS_NRM\NewSave.cshtml" />
+    <Content Include="Views\VIS_NRM\NewPath.cshtml" />
+    <Content Include="Views\CityMaintenance\List.cshtml" />
+    <Content Include="Views\CityMaintenance\NewCityMaintenance.cshtml" />
+    <Content Include="Views\CityMaintenance\NewSave.cshtml" />
+    <Content Include="Views\FeatureMastMaintenance\AddFeature.cshtml" />
+    <Content Include="Views\UnrecognizedExc\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\NewJob.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PlanUnit\PlanUnit_List.cshtml" />
+    <Content Include="Views\PlanUnit\PlanUnit_NewJob.cshtml" />
+    <Content Include="Views\PlanUnit\PlanUnit_NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PUFRM\PUFRM_List.cshtml" />
+    <Content Include="Views\PUFRM\PUFRM_NewJob.cshtml" />
+    <Content Include="Views\PUFRM\PUFRM_NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CSFRM\CSFRM_List.cshtml" />
+    <Content Include="Views\CSFRM\CSFRM_NewJob.cshtml" />
+    <Content Include="Views\CSFRM\CSFRM_NewSave.cshtml" />
+    <Content Include="Views\PUMM\PUMM_List.cshtml" />
+    <Content Include="Views\PUMM\PUMM_NewJob.cshtml" />
+    <Content Include="Views\PUMM\PUMM_NewSave.cshtml" />
+    <Content Include="Views\PURM\PURM_List.cshtml" />
+    <Content Include="Views\PURM\PURM_NewJob.cshtml" />
+    <Content Include="Views\PURM\PURM_NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CSM\CSM_List.cshtml" />
+    <Content Include="Views\CSM\CSM_NewJob.cshtml" />
+    <Content Include="Views\CSM\CSM_NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\Test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ExchangeMaintenance\List.cshtml" />
+    <Content Include="Views\ExchangeMaintenance\NewExchangeMaintenance.cshtml" />
+    <Content Include="Views\ExchangeMaintenance\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\InstallMaintenance\List.cshtml" />
+    <Content Include="Views\Job\InstallMaintenance\NewInstallMaintenance.cshtml" />
+    <Content Include="Views\Job\InstallMaintenance\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MaterialClassMaintenance\List.cshtml" />
+    <Content Include="Views\MaterialClassMaintenance\NewMaterialClassMaintenance.cshtml" />
+    <Content Include="Views\MaterialClassMaintenance\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MaterialMastMaintenance\List.cshtml" />
+    <Content Include="Views\MaterialMastMaintenance\NewMaterialMastMaintenance.cshtml" />
+    <Content Include="Views\MaterialMastMaintenance\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MileageRates\List.cshtml" />
+    <Content Include="Views\MileageRates\NewMileageRates.cshtml" />
+    <Content Include="Views\MileageRates\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PTTMaintenance\List.cshtml" />
+    <Content Include="Views\PTTMaintenance\NewPTTMaintenance.cshtml" />
+    <Content Include="Views\PTTMaintenance\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\RegionMaintenance\List.cshtml" />
+    <Content Include="Views\RegionMaintenance\NewRegionMaintenance.cshtml" />
+    <Content Include="Views\RegionMaintenance\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\StateMaintenance\List.cshtml" />
+    <Content Include="Views\StateMaintenance\NewSave.cshtml" />
+    <Content Include="Views\StateMaintenance\NewStateMaintenance.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BOQ_JKH\BOQ_JKH_List.cshtml" />
+    <Content Include="Views\BOQ_JKH\BOQ_JKH_NewJob.cshtml" />
+    <Content Include="Views\BOQ_JKH\BOQ_JKH_NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UserSend\Send.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\Handover.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AND\List.cshtml" />
+    <Content Include="Views\AND\NewAND.cshtml" />
+    <Content Include="Views\AND\NewSave.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\_AccountLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BOQ_GEN\BOQ_GEN_CONTRACT.cshtml" />
+    <Content Include="Views\BOQ_GEN\ReportBussinessPlanEstimate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BOQNrmService\" />
+    <WCFMetadataStorage Include="Service References\GraniteISP\" />
+    <WCFMetadataStorage Include="Service References\GraniteOSP\" />
+    <WCFMetadataStorage Include="Service References\ISPHandoverServices\" />
+    <WCFMetadataStorage Include="Service References\NRMWebService\" />
+    <WCFMetadataStorage Include="Service References\OSPHandoverServices\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1980</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/WebViewCurrent</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/WebViewCurrent</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

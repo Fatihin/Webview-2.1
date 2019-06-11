@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<repositories>
+  <repository path="..\mvctest\packages.config" />
+  <repository path="..\WebView\packages.config" />
+  <repository path="..\testmvc\packages.config" />
+</repositories>

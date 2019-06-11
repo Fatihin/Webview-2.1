@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebView.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WebView_GrnLoadPathConsumer_NEPSLoadPathConsumerService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.14.29.184:9001/NEPSLoadPathConsumer/</Value>
+    </Setting>
+    <Setting Name="WebView_WebReference_NEPSLoadSiteService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.14.28.219:7001/prj_HsbbEai_Sync_War/ws/NEPSLoadSiteRequest.wsdl</Value>
+    </Setting>
+    <Setting Name="WebView_NepsLoadSiteService_NEPSLoadSiteService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.14.28.219:7001/NEPSLoadSite/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

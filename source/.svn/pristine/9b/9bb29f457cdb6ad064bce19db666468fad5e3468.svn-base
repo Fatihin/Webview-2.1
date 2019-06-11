@@ -1,0 +1,213 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.NetworkElement>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            alert(t);
+            url = "10.41.61.177:8080";
+            if (t != "") {
+                //alert("You'll open visionael.");
+                window.open("http://" + url + "/nrm/FacilitiesDesigner/vfd_item." + t);
+            }
+        });
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                //                if (document.getElementById("PTT_ID").value == "Select") {
+                //                    alert("Please Select PTT");
+                //                    document.getElementById("EQUP_LOCN_TTNAME").disabled = true;
+                //                    document.getElementById("EQUP_EQUT_ABBREVIATION").disabled = true;
+                //                } else if (document.getElementById("EQUP_LOCN_TTNAME").value == "Select" && document.getElementById("EQUP_EQUT_ABBREVIATION").value == "Select") {
+                //                    alert("Please Select Exchange Or Equipment");
+                //                    document.getElementById("EQUP_LOCN_TTNAME").disabled = false;
+                //                    document.getElementById("EQUP_EQUT_ABBREVIATION").disabled = false;
+                //                }  
+                //                else {
+                window.location = "ListNisFrame?PTT_ID=" + document.getElementById("PTT_ID").value + "&EQUP_LOCN_TTNAME=" + document.getElementById("EQUP_LOCN_TTNAME").value + "&EQUP_EQUT_ABBREVIATION=" + document.getElementById("EQUP_EQUT_ABBREVIATION").value + "&FRAU_NAME=" + document.getElementById("FRAU_NAME").value; //Where List is the function in the controller.
+                //                }
+            });
+
+            $('#PTT_ID').change(function () {
+                $.ajax(
+                {
+                    url: "/NetworkElement/updataListData",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "PTT_ID": document.getElementById("PTT_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (document.getElementById("PTT_ID").value != "Select") {
+                            document.getElementById("EQUP_LOCN_TTNAME").disabled = false;
+                            document.getElementById("EQUP_EQUT_ABBREVIATION").disabled = false;
+                            dataPu = res.PuList.split("|");
+
+                            var itemsPu = "<option selected value='Select'></option>";
+
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    //alert(valuePu[0]);
+                                    itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+
+                            $("#EQUP_LOCN_TTNAME").html(itemsPu);
+                        } else {
+                            document.getElementById("EQUP_LOCN_TTNAME").disabled = false;
+                            document.getElementById("EQUP_EQUT_ABBREVIATION").disabled = false;
+                        }
+                    }
+                });
+            });
+
+
+            //            $('#EQUP_LOCN_TTNAME').change(function () {
+            //                $.ajax(
+            //                {
+            //                    url: "/NetworkElement/updataListData4",
+            //                    type: "POST",
+            //                    dataType: "html",
+            //                    data:
+            //                    {
+            //                        "PTT_ID": document.getElementById("EQUP_LOCN_TTNAME").value
+            //                    },
+            //                    beforeSend: function () { },
+            //                    success: function (data) {
+            //                        var res = jQuery.parseJSON(data);
+            //                        document.getElementById("EQUP_EQUT_ABBREVIATION").value = "Select";
+            //                        //alert(res.PuList);
+            //                        if (res.Success) {
+            //                            dataPu = res.PuList.split("|");
+            //                            document.getElementById("EQUP_LOCN_TTNAME").disabled = false;
+            //                            document.getElementById("EQUP_EQUT_ABBREVIATION").disabled = false;
+            //                            var itemsPu = "<option selected value='Select'></option>";
+
+            //                            for (i = 0; i < dataPu.length; i++) {
+            //                                if (dataPu[i] != "") {
+            //                                    valuePu = dataPu[i].split(":");
+            //                                    //alert(valuePu[0]);
+            //                                    itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+            //                                }
+            //                            }
+
+            //                            $("#EQUP_EQUT_ABBREVIATION").html(itemsPu);
+
+            //                        } else {
+            //                            document.getElementById("EQUP_LOCN_TTNAME").disabled = false;
+            //                            document.getElementById("EQUP_EQUT_ABBREVIATION").disabled = true;
+            //                        }
+            //                    }
+            //                });
+            //            });
+
+            $("#btnSearch").button();
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>NIS Frame Container List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td>PTT :</td>
+                <td>@Html.DropDownList("PTT_ID", (IEnumerable<SelectListItem>)ViewBag.PTT, new { style = "width:150px"})</td>
+                <td>EXCHANGE :</td>
+                <td>@Html.DropDownList("EQUP_LOCN_TTNAME", (IEnumerable<SelectListItem>)ViewBag.EQUP_LOCN_TTNAME, new { style = "width:150px"})
+                    @*<select id="EQUP_LOCN_TTNAME" style="width:150px;" value="@ViewBag.EQUP_LOCN_TTNAME">@ViewBag.EQUP_LOCN_TTNAME</select>*@
+                </td>
+            </tr>
+            <tr>
+                <td>TYPE :</td>
+                <td>@Html.DropDownList("EQUP_EQUT_ABBREVIATION", (IEnumerable<SelectListItem>)ViewBag.EQUP_EQUT_ABBREVIATION, new { style = "width:150px"})</td>
+                <td>POSITION :</td>
+                <td>@Html.DropDownList("FRAU_NAME", (IEnumerable<SelectListItem>)ViewBag.FRAU_NAME, new { style = "width:150px" })</td>
+                <td><input type="button" value="Filter" id="btnSearch" /></td>
+            </tr>
+        </table>
+    </div><br />
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="ExchangeMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">EXC</th>
+                <th scope="col">TYPE</th>
+                <th scope="col">INDEX</th>            
+                <th scope="col">POSITION</th>
+                <th scope="col">PRODUCT NAME</th>
+                <th scope="col">PAIR COUNT</th>
+                <th scope="col">FRAU_POSITION</th>                 
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="gid" style="display:none;">@res.NRM_ID</td>
+                <td>@res.EQUP_STATUS</td>
+                <td>@res.EQUP_LOCN_TTNAME</td>
+                <td>@res.EQUP_INDEX</td>
+                <td>@res.EQUP_EQUM_MODEL</td>
+                <td>@res.MIG_NIS_CHASSIS_ID</td>
+                <td>@res.EQUP_INSERVICE</td>
+                <td>@res.MODEL_VENDOR</td> @*ppanel.FRAU_POSITION*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount 
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "ListNisFrame", new { PTT_ID = ViewBag.PTT_1, EQUP_LOCN_TTNAME = ViewBag.EQUP_LOCN_TTNAME_1, EQUP_EQUT_ABBREVIATION = ViewBag.EQUP_EQUT_ABBREVIATION_1, FRAU_NAME = ViewBag.FRAU_NAME_1, page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "ListNisFrame", new { PTT_ID = ViewBag.PTT_1, EQUP_LOCN_TTNAME = ViewBag.EQUP_LOCN_TTNAME_1, EQUP_EQUT_ABBREVIATION = ViewBag.EQUP_EQUT_ABBREVIATION_1, FRAU_NAME = ViewBag.FRAU_NAME_1, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "ListNisFrame", new { PTT_ID = ViewBag.PTT_1, EQUP_LOCN_TTNAME = ViewBag.EQUP_LOCN_TTNAME_1, EQUP_EQUT_ABBREVIATION = ViewBag.EQUP_EQUT_ABBREVIATION_1, FRAU_NAME = ViewBag.FRAU_NAME_1, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "ListNisFrame", new { PTT_ID = ViewBag.PTT_1, EQUP_LOCN_TTNAME = ViewBag.EQUP_LOCN_TTNAME_1, EQUP_EQUT_ABBREVIATION = ViewBag.EQUP_EQUT_ABBREVIATION_1, FRAU_NAME = ViewBag.FRAU_NAME_1, page = Model.PageCount })
+        }
+        else
+        {
+
+        }
+        <br/><b> Total @Model.TotalItemCount records</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+}
+</div>
+    
+
+

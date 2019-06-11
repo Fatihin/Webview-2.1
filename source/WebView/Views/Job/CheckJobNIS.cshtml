@@ -1,0 +1,726 @@
+﻿@{
+    ViewBag.Title = "CheckJobNIS";
+}
+<script type="text/javascript">
+    function getDetailsCheckJob(data, typetable, checkboxname) {
+
+
+        var tblC = document.getElementById(typetable);
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        if (checkboxname != 'card') {
+            Row = data.split('[');
+        }
+        else {
+            Row = data.split('{');
+        }
+        //alert(Row);
+        var tab = document.getElementById(typetable);
+
+        for (var p = 0; p < Row.length - 1; p++) {
+            var row = tab.insertRow(p + 1);
+            row.style.background = "#e8eef4";
+            row.style.whiteSpace = "nowrap";
+
+            splitData = Row[p + 1].split('|');
+           
+            if (splitData[0] == "Y") {
+                row.insertCell(0);
+                tab.rows[p + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"" + checkboxname + "\" value=\"" + splitData[1] + "\" checked/>";
+            }
+            else if (splitData[0] == "N") {
+                row.insertCell(0);
+                tab.rows[p + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"" + checkboxname + "\" value=\"" + splitData[1] + "\"/>";
+            }
+            for (var i = 1; i < splitData.length - 1; i++) {
+
+               // alert(splitData[i]);
+                row.insertCell(i);
+                tab.rows[p + 1].cells[i].innerHTML = splitData[i + 1];
+            }
+
+            /* for (var i = 0; i <= splitData.length; i++) {
+            row.insertCell(i);
+            if (i == 0) continue;
+            tab.rows[p + 1].cells[i].innerHTML = splitData[i - 1];
+            }*/
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            //alert(t);
+            document.getElementById("typeOfInteg").value = t;
+
+            $("#divDetails").dialog("open");
+            $.ajax({
+                url: '@Url.Action("CheckJobResult", "Job")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "typeOfInte": t,
+                    "id": document.getElementById("jobID").value,
+                    "hasFnoRelated": document.getElementById("hasFnoRelated").value
+                },
+                beforeSend: function () {
+                    document.getElementById("loadingscheckJob").style.display = "block";
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    document.getElementById("loadingscheckJob").style.display = "none";
+                    if (t.trim() == "Create Network Element" && res.LoadOrCreate != "") {
+                        document.getElementById("tabCreateNe").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabCreateNe1";
+                        var CreateNE = res.LoadOrCreate;
+                        var checkboxname = "ne";
+                        getDetailsCheckJob(CreateNE, typetab, checkboxname);
+                    }
+
+                    else if (t.trim() == "Create Card" && res.LoadOrCreate != "") {
+                        document.getElementById("tabCreateCard").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabCreateCard1";
+                        var CreateCard = res.LoadOrCreate;
+                        var checkboxname = "card";
+                        getDetailsCheckJob(CreateCard, typetab, checkboxname);
+                    }
+
+                    else if (t.trim() == "Create Frame Container" && res.LoadOrCreate != "") {
+                        document.getElementById("tabCreateFC").style.display = "block";
+                        //alert('fc');
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabCreateFC1";
+                        var CreateFC = res.LoadOrCreate;
+                        var checkboxname = "fc";
+                        getDetailsCheckJob(CreateFC, typetab, checkboxname);
+                    }
+
+                    else if (t.trim() == "Create Frame Unit" && res.LoadOrCreate != "") {
+                        //alert('fu');
+                        document.getElementById("tabCreateFU").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabCreateFU1";
+                        var CreateFU = res.LoadOrCreate;
+                        var checkboxname = "fu";
+                        getDetailsCheckJob(CreateFU, typetab, checkboxname);
+                    }
+                    else if (t.trim() == "Create Service Boundary" && res.LoadOrCreate != "") {
+                        document.getElementById("tabCreateSB").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabCreateSB1";
+                        var CreateSB = res.LoadOrCreate;
+                        var checkboxname = "sb";
+                        getDetailsCheckJob(CreateSB, typetab, checkboxname);
+                    }
+
+                    else if (t.trim() == "Create Cable Sheath" && res.LoadOrCreate != "") {
+                        document.getElementById("tabCreateCS").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "block";
+                        typetab = "tabCreateCS1";
+                        var CreateCS = res.LoadOrCreate;
+                        var checkboxname = "cs";
+                        getDetailsCheckJob(CreateCS, typetab, checkboxname);
+                    }
+                    else if (res.LoadOrCreate.trim() == "") {
+                        document.getElementById("Nodata").style.display = "block";
+                        document.getElementById("selectcheckbox").style.display = "none";
+                    }
+
+                }
+            });
+        });
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 550,
+            width: 1000,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                document.getElementById("tabCreateNe").style.display = "none";
+                document.getElementById("tabCreateCard").style.display = "none";
+                document.getElementById("tabCreateFC").style.display = "none";
+                document.getElementById("tabCreateFU").style.display = "none";
+                document.getElementById("tabCreateCS").style.display = "none";
+                document.getElementById("tabCreateSB").style.display = "none";
+                document.getElementById("Nodata").style.display = "none";
+                //Fatihin 03042018
+                document.getElementById("selectcheckbox").style.display = "none";
+            }
+        });
+        //Fatihin 16052018
+        $(function () {
+
+            document.getElementById("loading").style.display = "none";
+
+            $('#submToNis').click(function () {
+                $.ajax({
+                    url: "/Job/GetStatus",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": document.getElementById("jobID").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("loading").style.display = "block";
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        document.getElementById("loading").style.display = "none";
+
+                        if (res.checkNIS != 0) {
+                            alert("Integration process is running. Please try again in a while.");
+                        }
+                        else if (res.checkNISISP != 0) {
+                            alert("Integration process is running. Please try again in a while.");
+                        }
+                        else {
+                            var type = document.getElementById("type").value;
+                            /*if (type == "OSP") {
+                            AutoApproval();
+                            }
+                            else {
+                            ISPApproval();
+                            }*/
+                            //EF
+                            NISApproval();
+
+                        }
+                    }
+                });
+            });
+            $("#submToNis").button();
+        });
+
+        $('#btnSave').click(function () {
+            //alert('a');
+            var temp = document.getElementById("typeOfInteg").value;
+            var namechkbox = "";
+            //alert(temp);
+            if (temp.trim() == "Create Frame Container") {
+                namechkbox = "fc";
+            }
+            else if (temp.trim() == "Create Frame Unit") {
+                namechkbox = "fu";
+            }
+            else if (temp.trim() == "Create Service Boundary") {
+                namechkbox = "sb";
+            }
+            else if (temp.trim() == "Create Network Element") {
+                namechkbox = "ne";
+            }
+            else if (temp.trim() == "Create Card") {
+                namechkbox = "card";
+            }
+            else if (temp.trim() == "Create Cable Sheath") {
+                namechkbox = "cs";
+            }
+
+            var flagY = $("input[name=" + namechkbox + "]:checked").map(
+            function () {
+                return this.value;
+            }).get().join(",");
+            //alert("checked" + flagY);
+
+            var flagN = $("input[name=" + namechkbox + "]:not(:checked)").map(
+            function () {
+                return this.value;
+            }).get().join(",");
+            //alert("not checked" + flagN);
+
+
+
+            var cmsg = confirm('Are you sure you want to save?');
+            
+            if (cmsg != 0) {
+                $.ajax({
+                    url: "/Job/UpdateFlagIntegNIS",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "flagIntegY": flagY,
+                        "flagIntegN": flagN,
+                        "typeOfInte": document.getElementById("typeOfInteg").value,
+                        "OSPISP" : document.getElementById("type").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("loading").style.display = "block";
+                    },
+                    success: function (data) {
+                        document.getElementById("loading").style.display = "none";
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == true && res.Success2 == true) {
+                            alert("Successfully Updated.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Fails");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        });
+        $("#btnSave").button();
+        function NISApproval() {
+            
+            var cmsg = confirm('Are you sure you want to Handover?');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: "/Job/NISApproval",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetJob": document.getElementById("jobID").value,
+                        "type": document.getElementById("type").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("loading").style.display = "block";
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        document.getElementById("loading").style.display = "none";
+
+                        if (res.result == "ok") {
+                            alert("Handed Over.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Handover Started. Please comfirm the feature state already 'ASB' in G-TECH to change job state.");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        }
+        function AutoApproval() {
+            //alert('OSP');
+            var cmsg = confirm('Are you sure you want to Handover?');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: "/Job/AutoApproval",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetJob": document.getElementById("jobID").value,
+                        "type": document.getElementById("type").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("loading").style.display = "block";
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        document.getElementById("loading").style.display = "none";
+
+                        if (res.result == "ok") {
+                            alert("Handed Over.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Handover Started. Please comfirm the feature state already 'ASB' in G-TECH to change job state.");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        }
+        function ISPApproval() {
+            var cmsg = confirm('Are you sure you want to Handover?');
+            if (cmsg != 0) {
+                //alert('ISP');
+                $.ajax({
+                    url: "/Job/ISPAutoApproval",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetJob": document.getElementById("jobID").value,
+                        "type": document.getElementById("type").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("loading").style.display = "block";
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        document.getElementById("loading").style.display = "none";
+
+                        if (res.result == "ok") {
+                            alert("Handed Over.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Handover Started. Please comfirm the feature state already 'ASB' in G-TECH to change job state.");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        }
+
+        //Fatihin 16052018
+        $('#btnHandoverStatus').click(function () {
+            var jobtype = document.getElementById("type").value;
+
+            if (jobtype == 'ISP') {
+
+                window.location = "ViewHandoverISP?id=" + document.getElementById("jobID").value + "&type='NIS'";
+            }
+            else {
+                window.location = "ViewHandover?id=" + document.getElementById("jobID").value + "&type='NIS'";
+            }
+        });
+        $("#btnHandoverStatus").button();
+
+        $("#selectall").click(function () {
+            $("input:checkbox").each(function () {
+                $(this).prop('checked', true);
+            })
+        });
+        $("#selectall").button();
+        $("#deselectall").click(function () {
+            $("input:checkbox").each(function () {
+                $(this).prop('checked', false);
+            })
+        });
+        $("#deselectall").button();
+    });
+</script>
+<br />
+<h3>
+    Job Management > Check Job NIS For @ViewBag.schemeName</h3>
+<div style="height: 650px">
+    <div id="loading">
+        <img id="loading-image"  src="@Url.Content("~/Content/images/loadingpls.gif")" alt="Loading..."  />
+    </div>
+    <input type="button" value="Submit to NIS" id="submToNis" style="height: 30px; left: 67%" />
+    <input type="button" value="View Handover Status" id="btnHandoverStatus" style="height: 30px;
+        left: 67%" />
+    <table id="rounded-corner" width="850px" style="margin-top: 10px;">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 150px">
+                    INTEGRATION
+                </th>
+                <th scope="col" style="width: 600px">
+                    TYPE OF INTEGRATION
+                </th>
+                <th scope="col" style="width: 100px">
+                    STATUS
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var a in ViewBag.typeOfInteg)
+            {
+                <tr class="odd">
+                    <td>
+                        NIS
+                    </td>
+                    <td id="gid">@a.type
+                    </td>
+                    <td>@a.status
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="hidden" id="jobID" value="@ViewBag.schemeName"/>
+    <input type="hidden" id="type" value="@ViewBag.type"/>
+    <input type="hidden" id="JobType" value="@ViewBag.JobType"/>
+    <input type="hidden" id="hasFnoRelated" value="@ViewBag.hasRelatedFno"/>
+    <input type="hidden" id="typeOfInteg" value="" />
+    <div id="divDetails" title="Details">
+        <div id="loadingscheckJob" style="display: none">
+            <img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." />
+        </div>
+        <div id="selectcheckbox" style="display: none">
+            <input type="button" value="Select All" id="selectall" />
+            <input type="button" value="Deselect All" id="deselectall" />
+            <input type="button" value="Save" id="btnSave" />
+        </div>
+        <div id="tabCreateNe" style="display: none;">
+            <h5>
+                NIS Create Network Element For @ViewBag.schemeName</h5>
+            <table align="center" width="auto" id="tabCreateNe1" style="font-size: smaller">
+                <thead>
+                    <tr>
+                        <th style="background-color: #b9c9fe">
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            LOCATIONDETAIL
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            AREACODE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            AREADESCRIPTION
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            AREAAREACODE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            AREAARETCODE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            EQUPLOCNTTNAME
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            EQUPEQUTABBREVIATION
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            EQUPINDEX
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            EQUPSTATUS
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            EQUPMANRABBREVIATION
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            EQUPEQUMMODEL
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @for (int i = 0; i < 11; i++)
+                        {
+                            <td style="white-space: nowrap; background-color: #e8eef4">
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="Nodata" style="display: none">
+            <h3 align="center">
+                Not Found.</h3>
+        </div>
+        <div id="tabCreateCard" style="display: none;">
+            <h5>
+                NIS Create Card For @ViewBag.schemeName</h5>
+            <table align="center" width="auto" id="tabCreateCard1" style="font-size: smaller">
+                <thead>
+                    <tr>
+                        <th style="background-color: #b9c9fe">
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CARDSLOT
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CARDNAME
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CARDMODEL
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CARDSTATUS
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CARDSERIAL
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CARDCOUNTPORT
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            PORTSTARTNUM
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @for (int i = 0; i < 13; i++)
+                        {
+                            <td style="white-space: nowrap; background-color: #e8eef4">
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tabCreateFC" style="display: none;">
+            <h5>
+                NIS Create Frame Container For @ViewBag.schemeName</h5>
+            <table align="center" width="auto" id="tabCreateFC1" style="font-size: smaller">
+                <thead>
+                    <tr>
+                        <th style="background-color: #b9c9fe">
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            LOCNTTNAME
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            FRANNAME
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            INDEX
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            STATUS
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            LOCATIONDETAIL
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            AREACODE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            AREADESCRIPTION
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            AREAAREACODE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            AREAARETCODE
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @for (int i = 0; i < 11; i++)
+                        {
+                            <td style="white-space: nowrap; background-color: #e8eef4">
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tabCreateFU" style="display: none;">
+            <h5>
+                NIS Create Frame Unit For @ViewBag.schemeName</h5>
+            <table align="center" width="auto" id="tabCreateFU1" style="font-size: smaller">
+                <thead>
+                    <tr>
+                        <th style="background-color: #b9c9fe">
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            FRACID
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            FRAUPOSITION
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            FRAUNAME
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            FRAUDISTANCE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            FUPTMANRABBREAVIATION
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            TERMINATIONTYPE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            PRODUCTTYPE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            COUNTPAIR
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <td style="white-space: nowrap; background-color: #e8eef4">
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tabCreateSB" style="display: none;">
+            <h5>
+                NIS Create Service Boundary For @ViewBag.schemeName</h5>
+            <table align="center" width="auto" id="tabCreateSB1" style="font-size: smaller">
+                <thead>
+                    <tr>
+                        <th style="background-color: #b9c9fe">
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            STREETNUMBER
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            STREETTYPE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            STREETNAME
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            SUBURB
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CITY
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            COUNTRY
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <td style="white-space: nowrap; background-color: #e8eef4">
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tabCreateCS" style="display: none;">
+            <h5>
+                NIS Create Cable Sheath For @ViewBag.schemeName</h5>
+            <table align="center" width="auto" id="tabCreateCS1" style="font-size: smaller">
+                <thead>
+                    <tr>
+                        <th style="background-color: #b9c9fe">
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CABSNAME
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CABSCASTTYPE
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CABSSTATUS
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            CSPTPRODUCTNAME
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            MINNUMBER
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            MAXNUMBER
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            PAIRCOUNT
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            LOCATIONA
+                        </th>
+                        <th style="background-color: #b9c9fe">
+                            DISTANCE
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <td style="white-space: nowrap; background-color: #e8eef4">
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

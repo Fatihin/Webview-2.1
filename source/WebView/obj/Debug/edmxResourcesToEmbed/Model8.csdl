@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model5" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="WV_DB_LOAD_EQUIP2" EntityType="Model5.WV_DB_LOAD_EQUIP2" />
+    <EntitySet Name="WV_DB_LOAD_SITE2" EntityType="Model5.WV_DB_LOAD_SITE2" />
+    <EntitySet Name="WV_FDC_LOAD_EQUIP2" EntityType="Model5.WV_FDC_LOAD_EQUIP2" />
+    <EntitySet Name="WV_FDP_LOAD_EQUIP2" EntityType="Model5.WV_FDP_LOAD_EQUIP2" />
+    <EntitySet Name="WV_FTB_LOAD_EQUIP2" EntityType="Model5.WV_FTB_LOAD_EQUIP2" />
+    <EntitySet Name="WV_SDF_LOAD_EQUIP2" EntityType="Model5.WV_SDF_LOAD_EQUIP2" />
+    <EntitySet Name="WV_SDF_LOAD_SITE2" EntityType="Model5.WV_SDF_LOAD_SITE2" />
+    <EntitySet Name="WV_TIEFDP_LOAD_EQUIP2" EntityType="Model5.WV_TIEFDP_LOAD_EQUIP2" />
+    <EntitySet Name="WV_VDSL2_LOAD_EQUIP2" EntityType="Model5.WV_VDSL2_LOAD_EQUIP2" />
+    <EntitySet Name="WV_LOAD_PATH2" EntityType="Model5.WV_LOAD_PATH2" />
+    <EntitySet Name="GC_SPLICE_CONNECT2" EntityType="Model5.GC_SPLICE_CONNECT2" />
+    <EntitySet Name="GC_NETELEM2" EntityType="Model5.GC_NETELEM2" />
+    <EntitySet Name="GC_DB2" EntityType="Model5.GC_DB2" />
+    <EntitySet Name="GC_FDP2" EntityType="Model5.GC_FDP2" />
+    <EntitySet Name="GC_FSPLICE" EntityType="Model5.GC_FSPLICE" />
+    <EntitySet Name="GC_ODF" EntityType="Model5.GC_ODF" />
+    <EntitySet Name="WV_FDC_LOAD_SITE2" EntityType="Model5.WV_FDC_LOAD_SITE2" />
+    <EntitySet Name="WV_FDP_LOAD_SITE2" EntityType="Model5.WV_FDP_LOAD_SITE2" />
+    <EntitySet Name="WV_FTB_LOAD_SITE2" EntityType="Model5.WV_FTB_LOAD_SITE2" />
+    <EntitySet Name="WV_TIEFDP_LOAD_SITE2" EntityType="Model5.WV_TIEFDP_LOAD_SITE2" />
+    <EntitySet Name="WV_VDSL2_LOAD_SITE2" EntityType="Model5.WV_VDSL2_LOAD_SITE2" />
+    <EntitySet Name="GC_FDC2" EntityType="Model5.GC_FDC2" />
+    <EntitySet Name="GC_VDSL2_2" EntityType="Model5.GC_VDSL2_2" />
+    <EntitySet Name="REF_RPT_INFRA" EntityType="Model5.REF_RPT_INFRA" />
+    <EntitySet Name="REF_RPT_WV_PTT" EntityType="Model5.REF_RPT_WV_PTT" />
+    <EntitySet Name="WV_BOQ_COP_PR" EntityType="Model5.WV_BOQ_COP_PR" />
+    <EntitySet Name="WV_MAT_DATA2" EntityType="Model5.WV_MAT_DATA2" />
+    <EntitySet Name="REF_FTTH_DS_ES" EntityType="Model5.REF_FTTH_DS_ES" />
+    <EntitySet Name="WV_BOQ_DATA2" EntityType="Model5.WV_BOQ_DATA2" />
+    <EntitySet Name="REF_COP_PR" EntityType="Model5.REF_COP_PR" />
+  </EntityContainer>
+  <EntityType Name="WV_DB_LOAD_EQUIP2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="STATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPID" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCDESC" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITE" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNGTIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSERVICE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPEXTENSIONFLAG" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_DB_LOAD_SITE2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="SITESTATE" />
+      <PropertyRef Name="SITEPTT" />
+      <PropertyRef Name="ADDRESSSTATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="35" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTREET" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSCITY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTLOCATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLINGTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COPPEROWNBYTM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBERTOPREMISEEXIST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTALSERVICEBOUNDARY" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACCESSRESTRICTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTACT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENTS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GRN_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_FDC_LOAD_EQUIP2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="STATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPID" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCDESC" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITE" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNGTIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSERVICE" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_FDP_LOAD_EQUIP2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="STATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPID" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCDESC" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITE" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNGTIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSERVICE" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_FTB_LOAD_EQUIP2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="STATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPID" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCDESC" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITE" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNGTIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSERVICE" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_SDF_LOAD_EQUIP2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="STATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPID" MaxLength="112" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCDESC" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITE" MaxLength="112" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNGTIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSERVICE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GRN_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_SDF_LOAD_SITE2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="SITESTATE" />
+      <PropertyRef Name="SITEPTT" />
+      <PropertyRef Name="ADDRESSSTATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="35" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="112" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTREET" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSCITY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTLOCATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLINGTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COPPEROWNBYTM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBERTOPREMISEEXIST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTALSERVICEBOUNDARY" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACCESSRESTRICTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTACT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENTS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GRN_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_TIEFDP_LOAD_EQUIP2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="STATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPID" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCDESC" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITE" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNGTIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSERVICE" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_VDSL2_LOAD_EQUIP2">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="STATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPID" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCDESC" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITE" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNGTIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSERVICE" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_LOAD_PATH2">
+    <Key>
+      <PropertyRef Name="PATHNAME" />
+    </Key>
+    <Property Type="String" Name="ID" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHNAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHBANDWIDTH" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHSTATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISBEARERID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISMEDIAPATHID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRIMARYSECONDARY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="IPDSLAMNODENAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UPLINKPORT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="IPDSLAMDOWNLINKPORT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MSENODENAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MSEDOWNLINKPORT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARDNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARDNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOBID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROCESSID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROCESSTIME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REMARKS" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GC_SPLICE_CONNECT2">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+    <Property Type="String" Name="BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLE_CODE" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CHANNELS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONNECTION_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CORE_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATURE_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBER_ANNOTATION" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="FID1" />
+    <Property Type="Int32" Name="FID2" />
+    <Property Type="Int16" Name="FNO1" />
+    <Property Type="Int16" Name="FNO2" />
+    <Property Type="Int32" Name="HIGH1" />
+    <Property Type="Int32" Name="HIGH2" />
+    <Property Type="Decimal" Name="LOSS_MEASURED" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="LOSS_TYPICAL" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="LOW1" />
+    <Property Type="Int32" Name="LOW2" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="NODE_FID1" />
+    <Property Type="Int16" Name="NODE_FNO1" />
+    <Property Type="String" Name="PATCHPANEL_NO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="POSITION" />
+    <Property Type="Int32" Name="SEQ" />
+    <Property Type="Decimal" Name="SRC_FID" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="SRC_FNO" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="SRC_HIGH" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="SRC_LOW" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="TERM_FID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TERM_FNO" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TERM_HIGH" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TERM_HIGH1" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TERM_LOW" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="TERM_LOW1" Precision="38" Scale="0" />
+    <Property Type="String" Name="WORKORDER" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GC_NETELEM2">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+    <Property Type="String" Name="BILLING_RATE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATURE_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="IMAP_FEATURE_ID" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOB_STATE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MIC" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MIN_MATERIAL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OWNERSHIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PLAN_ID" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SAP_WRK_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SEGMENT" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SERVICE_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SWITCH_CENTRE_CLLI" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="YEAR_PLACED" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GC_DB2">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+    <Property Type="Decimal" Name="BND_FID" Precision="22" Scale="0" />
+    <Property Type="String" Name="CONTRACTOR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DB_CAPACITY" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DB_CLASS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DB_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DB_LOSS" Precision="22" Scale="0" />
+    <Property Type="String" Name="DB_OWNER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DB_SPARE" Precision="22" Scale="0" />
+    <Property Type="String" Name="DB_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DB_WORK" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="DIST_FROM_EXC" Precision="22" Scale="0" />
+    <Property Type="String" Name="EQP_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDC_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="FDC_FID" Precision="22" Scale="10" />
+    <Property Type="Decimal" Name="FDC_IPID" Precision="38" Scale="0" />
+    <Property Type="String" Name="INSTALL_LOC" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAINFDP_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="MAINFDP_FID" Precision="22" Scale="10" />
+    <Property Type="String" Name="MANUFACTURER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OLT_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PLINTH" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="RAD_DIST" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="TOTAL_CAPACITY" Precision="22" Scale="0" />
+    <Property Type="String" Name="BY_PROJECT_NAME" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BY_TECHNOLOGY_DESIGN" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GC_FDP2">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+    <Property Type="Decimal" Name="BND_FID" Precision="22" Scale="0" />
+    <Property Type="String" Name="CONTRACTOR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CUST_NETWORK" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DB_LOSS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIST_FROM_EXC" Precision="38" Scale="0" />
+    <Property Type="String" Name="EQP_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDC_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="FDC_FID" />
+    <Property Type="Decimal" Name="FDC_IPID" Precision="22" Scale="0" />
+    <Property Type="String" Name="FDC_SPLTR_CODE" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_CAPACITY" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_CLASS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_OWNER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="FDP_SPARE" Precision="38" Scale="0" />
+    <Property Type="String" Name="FDP_SPLTR_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="FDP_WORK" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="FIB_CORE" />
+    <Property Type="String" Name="FIB_DCABLE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSTALL_LOC" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOC_TYPE" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAINFDP_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="MAINFDP_FID" />
+    <Property Type="Decimal" Name="MAINFDP_IPID" Precision="30" Scale="0" />
+    <Property Type="String" Name="MANUFACTURER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OLT_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PLINTH" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="RAD_DIST" Precision="38" Scale="0" />
+    <Property Type="String" Name="STATUS" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTAL_CAPACITY" Precision="38" Scale="0" />
+    <Property Type="String" Name="BY_PROJECT_NAME" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BY_TECHNOLOGY_DESIGN" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATCHCORD_L" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GC_FSPLICE">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Name="G3E_ID" Nullable="false" Type="Int32" />
+    <Property Name="G3E_FNO" Nullable="false" Type="Int16" />
+    <Property Name="G3E_FID" Nullable="false" Type="Int32" />
+    <Property Name="G3E_CNO" Nullable="false" Type="Int16" />
+    <Property Name="G3E_CID" Nullable="false" Type="Int32" />
+    <Property Name="BRANCH_TYPE" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CABLE_CLASS" MaxLength="10" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CLOSURE_SIZE" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CONTRACTOR" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CREATED_DATE" Type="DateTime" />
+    <Property Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CUST_NETWORK" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="DESCRIPTION" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="FSPLICE_CLASS" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="LOCATION" Precision="22" Scale="0" Type="Decimal" />
+    <Property Name="LOCATION_FID" Precision="22" Scale="0" Type="Decimal" />
+    <Property Name="LOC_TYPE" MaxLength="250" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MANUFACTURER" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODEL" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" />
+    <Property Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="NETWORK_TYPE" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="NUMBERING" MaxLength="10" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="SPLICE_CODE" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+  </EntityType>
+  <EntityType Name="GC_ODF">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Name="G3E_ID" Nullable="false" Type="Int32" />
+    <Property Name="G3E_FNO" Nullable="false" Type="Int16" />
+    <Property Name="G3E_FID" Nullable="false" Type="Int32" />
+    <Property Name="G3E_CNO" Nullable="false" Type="Int16" />
+    <Property Name="G3E_CID" Nullable="false" Type="Int32" />
+    <Property Name="CAPACITY" Type="Int16" />
+    <Property Name="CONTRACTOR" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CREATED_DATE" Type="DateTime" />
+    <Property Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="EXC_LENGTH" Precision="38" Scale="0" Type="Decimal" />
+    <Property Name="HORZ_CAPACITY" Type="Int16" />
+    <Property Name="HORZ_NUM" Type="Int16" />
+    <Property Name="H_PORT_NUM" Type="Int16" />
+    <Property Name="LOCATION" MaxLength="250" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="L_PORT_NUM" Type="Int16" />
+    <Property Name="MANUFACTURER" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODIFIED_DATE" Type="DateTime" />
+    <Property Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="ODF_NUM" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="ORIGINAL_USER" MaxLength="20" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="OWNER_TYPE" MaxLength="5" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="VFID" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+  </EntityType>
+  <EntityType Name="WV_FDC_LOAD_SITE2">
+    <Key>
+      <PropertyRef Name="SITESTATE" />
+      <PropertyRef Name="SITEPTT" />
+      <PropertyRef Name="ADDRESSSTATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="35" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTREET" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSCITY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITECOMMENT" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTLOCATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLINGTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COPPEROWNBYTM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBERTOPREMISEEXIST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTALSERVICEBOUNDARY" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACCESSRESTRICTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTACT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENTS" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_FDP_LOAD_SITE2">
+    <Key>
+      <PropertyRef Name="SITESTATE" />
+      <PropertyRef Name="SITEPTT" />
+      <PropertyRef Name="ADDRESSSTATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="35" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTREET" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSCITY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTLOCATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLINGTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COPPEROWNBYTM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBERTOPREMISEEXIST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTALSERVICEBOUNDARY" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACCESSRESTRICTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTACT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENTS" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_FTB_LOAD_SITE2">
+    <Key>
+      <PropertyRef Name="SITESTATE" />
+      <PropertyRef Name="SITEPTT" />
+      <PropertyRef Name="ADDRESSSTATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="35" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTREET" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSCITY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTLOCATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLINGTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COPPEROWNBYTM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBERTOPREMISEEXIST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTALSERVICEBOUNDARY" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACCESSRESTRICTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTACT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENTS" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_TIEFDP_LOAD_SITE2">
+    <Key>
+      <PropertyRef Name="SITESTATE" />
+      <PropertyRef Name="SITEPTT" />
+      <PropertyRef Name="ADDRESSSTATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="35" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTREET" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSCITY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTLOCATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLINGTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COPPEROWNBYTM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBERTOPREMISEEXIST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTALSERVICEBOUNDARY" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACCESSRESTRICTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTACT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENTS" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_VDSL2_LOAD_SITE2">
+    <Key>
+      <PropertyRef Name="SITESTATE" />
+      <PropertyRef Name="SITEPTT" />
+      <PropertyRef Name="ADDRESSSTATE" />
+    </Key>
+    <Property Type="String" Name="CLASS_NAME" MaxLength="35" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTREET" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSCITY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTATE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTLOCATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLINGTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COPPEROWNBYTM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBERTOPREMISEEXIST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTALSERVICEBOUNDARY" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACCESSRESTRICTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTACT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENTS" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GC_FDC2">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+    <Property Type="Decimal" Name="BND_FID" Precision="22" Scale="0" />
+    <Property Type="String" Name="BY_PROJECT_NAME" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BY_TECHNOLOGY_DESIGN" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTRACTOR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CUST_NETWORK" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DB_LOSS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DIST_FROM_EXC" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIST_FROM_EXC_P" Precision="38" Scale="0" />
+    <Property Type="String" Name="EQP_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDC_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="FDC_SIZE" Precision="38" Scale="0" />
+    <Property Type="String" Name="FDC_TYPE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANUFACTURER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="NUMSPLICE_M" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NUMSPLICE_P" Precision="38" Scale="0" />
+    <Property Type="String" Name="OLT_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROTECTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="RAD_DIST" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SPLITTR_SPARE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="SPLITTR_WORK" Precision="38" Scale="0" />
+    <Property Type="String" Name="STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TECHNOLOGY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTAL_CAPACITY" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="GC_VDSL2_2">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+    <Property Type="String" Name="ATM_NODE" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="BND_FID" Precision="22" Scale="0" />
+    <Property Type="String" Name="BY_PROJECT_NAME" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BY_TECHNOLOGY_DESIGN" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARD_TYPE" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="CASS_DATE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CHL_NUM" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CHL_PER_CARD" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CHL_QUANTUM" Precision="22" Scale="0" />
+    <Property Type="String" Name="CONFIGURATION_TYPE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTRACTOR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CUST_NETWORK" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DB_LOSS" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="DCR_D" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIST_D" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIST_FROM_EXC" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIST_FROM_EXC_P" Precision="38" Scale="0" />
+    <Property Type="String" Name="DLC_INSTTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DLC_TYPE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DSLAM_CODE_CASS" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="D_WAITER" Precision="38" Scale="0" />
+    <Property Type="String" Name="EQP_STATUS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="E_WAITER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="FAULT_PAIR" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="FDP_SIZE" Precision="38" Scale="0" />
+    <Property Type="String" Name="HOST_EXC" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="LOSS_D" Precision="38" Scale="0" />
+    <Property Type="String" Name="MANUFACTURER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="MDF_QUANTUM" Precision="22" Scale="0" />
+    <Property Type="String" Name="METROE_TYPE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MSAN_COT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="MSAN_COT_IPID" Precision="38" Scale="0" />
+    <Property Type="String" Name="NDH_CODE" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_TYPE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="NONUM_WAITER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NO_E1" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="NO_GE" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="NO_POT" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="NO_VDSL" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="NUMSPLICE_M" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NUMSPLICE_P" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NUM_2MBS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NUM_CORE" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="OSB_WAITER" Precision="38" Scale="0" />
+    <Property Type="String" Name="PROTECTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="RAD_DIST" Precision="22" Scale="0" />
+    <Property Type="Decimal" Name="RES_PAIR" Precision="38" Scale="0" />
+    <Property Type="String" Name="RT_CATEGORY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RT_TYPE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="SPARE_PAIR" Precision="38" Scale="0" />
+    <Property Type="String" Name="STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STM_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SYS_CAPACITY" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TECHNOLOGY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTAL_DSL_PORT" Precision="22" Scale="0" />
+    <Property Type="String" Name="V5_ADDRESS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V5_ID" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VDSL2_COT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="WORK_PAIR" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="REF_RPT_INFRA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Nullable="false" Type="Int16" />
+    <Property Name="TABLE_NAME" MaxLength="25" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="DESCRIPTION" MaxLength="150" FixedLength="false" Unicode="false" Type="String" />
+  </EntityType>
+  <EntityType Name="REF_RPT_WV_PTT">
+    <Key>
+      <PropertyRef Name="REF_ID" />
+      <PropertyRef Name="PTT" />
+    </Key>
+    <Property Type="Int16" Name="REF_ID" Nullable="false" />
+    <Property Type="String" Name="PTT" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_BOQ_COP_PR">
+    <Key>
+      <PropertyRef Name="MAT_ID" />
+    </Key>
+    <Property Type="String" Name="MAT_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_NAME" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="MAT_PRICE" Precision="13" Scale="2" />
+    <Property Type="Decimal" Name="TYPE" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="WV_MAT_DATA2">
+    <Key>
+      <PropertyRef Name="SCHEME_NAME" />
+      <PropertyRef Name="MAT_ID" />
+    </Key>
+    <Property Type="String" Name="SCHEME_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_NAME" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_UOM" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_CAT" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="MAT_PRICE" Precision="13" Scale="2" />
+    <Property Type="Decimal" Name="MAT_QTY" Precision="13" Scale="2" />
+    <Property Type="String" Name="CREATE_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATE_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+  </EntityType>
+  <EntityType Name="REF_FTTH_DS_ES">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TYPECOST" />
+    </Key>
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TYPECOST" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ES_DS" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_BOQ_DATA2">
+    <Key>
+      <PropertyRef Name="SCHEME_NAME" />
+    </Key>
+    <Property Type="String" Name="EXC_ABB" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="YEAR_INSTALL" />
+    <Property Type="Int16" Name="SCH_TYPE" />
+    <Property Type="String" Name="SCH_NO" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PU_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTRACT_NO" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PU_DESC" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTRACT_DESC" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RATE_INDICATOR" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="ITEM_NO" />
+    <Property Type="Decimal" Name="NET_PRICE" Precision="12" Scale="2" />
+    <Property Type="Decimal" Name="BQ_MAT_PRICE" Precision="13" Scale="2" />
+    <Property Type="Decimal" Name="BQ_INSTALL_PRICE" Precision="13" Scale="2" />
+    <Property Type="Decimal" Name="PU_QTY" Precision="13" Scale="3" />
+    <Property Type="Decimal" Name="OLD_MAT_PR" Precision="13" Scale="2" />
+    <Property Type="Decimal" Name="OLD_INSTALL_PR" Precision="13" Scale="2" />
+    <Property Type="String" Name="CONSTRUCT_BY" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="RECVR_QTY" Precision="13" Scale="2" />
+    <Property Type="String" Name="PU_UOM" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ISP_OSP" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATE_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATE_DATE" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+  </EntityType>
+  <EntityType Name="REF_COP_PR">
+    <Key>
+      <PropertyRef Name="PU_ID" />
+    </Key>
+    <Property Type="String" Name="PU_ID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PU_NAME" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PAIR" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

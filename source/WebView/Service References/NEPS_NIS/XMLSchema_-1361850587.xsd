@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://nis.tm.com/" targetNamespace="http://nis.tm.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="createCableSheath" type="tns:createCableSheath" />
+  <xs:element name="createCableSheathResponse" type="tns:createCableSheathResponse" />
+  <xs:element name="createCard" type="tns:createCard" />
+  <xs:element name="createCardResponse" type="tns:createCardResponse" />
+  <xs:element name="createFrameContainers" type="tns:createFrameContainers" />
+  <xs:element name="createFrameContainersResponse" type="tns:createFrameContainersResponse" />
+  <xs:element name="createFrameUnits" type="tns:createFrameUnits" />
+  <xs:element name="createFrameUnitsResponse" type="tns:createFrameUnitsResponse" />
+  <xs:element name="createNetworkElement" type="tns:createNetworkElement" />
+  <xs:element name="createNetworkElementResponse" type="tns:createNetworkElementResponse" />
+  <xs:element name="createServiceBoundary" type="tns:createServiceBoundary" />
+  <xs:element name="createServiceBoundaryResponse" type="tns:createServiceBoundaryResponse" />
+  <xs:element name="dataMatchingQuery" type="tns:dataMatchingQuery" />
+  <xs:element name="dataMatchingQueryResponse" type="tns:dataMatchingQueryResponse" />
+  <xs:element name="dataMatchingUpdate" type="tns:dataMatchingUpdate" />
+  <xs:element name="dataMatchingUpdateResponse" type="tns:dataMatchingUpdateResponse" />
+  <xs:element name="updateDPAdresses" type="tns:updateDPAdresses" />
+  <xs:element name="updateDPAdressesResponse" type="tns:updateDPAdressesResponse" />
+  <xs:complexType name="dataMatchingUpdate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="entityType" type="xs:string" />
+      <xs:element minOccurs="0" name="nisSystemId" type="xs:string" />
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+      <xs:element minOccurs="0" name="locationTtname" type="xs:string" />
+      <xs:element minOccurs="0" name="equipmentFrame" type="xs:string" />
+      <xs:element minOccurs="0" name="index" type="xs:string" />
+      <xs:element minOccurs="0" name="equpFrameStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="frauPosition" type="xs:string" />
+      <xs:element minOccurs="0" name="frauName" type="xs:string" />
+      <xs:element minOccurs="0" name="frauDistance" type="xs:string" />
+      <xs:element minOccurs="0" name="equpManrAbbreviation" type="xs:string" />
+      <xs:element minOccurs="0" name="equpEqumModel" type="xs:string" />
+      <xs:element minOccurs="0" name="cardName" type="xs:string" />
+      <xs:element minOccurs="0" name="cardModel" type="xs:string" />
+      <xs:element minOccurs="0" name="cardStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="cardSerial" type="xs:string" />
+      <xs:element minOccurs="0" name="cabsName" type="xs:string" />
+      <xs:element minOccurs="0" name="cabsCastType" type="xs:string" />
+      <xs:element minOccurs="0" name="cabsStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="cabsProductName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataMatchingUpdateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:commonResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="commonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorCode" type="xs:string" />
+      <xs:element minOccurs="0" name="errorMsg" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equpId" type="xs:string" />
+      <xs:element minOccurs="0" name="cardSlot" type="xs:string" />
+      <xs:element minOccurs="0" name="cardName" type="xs:string" />
+      <xs:element minOccurs="0" name="cardModel" type="xs:string" />
+      <xs:element minOccurs="0" name="cardStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="cardSerial" type="xs:string" />
+      <xs:element minOccurs="0" name="cardCountPort" type="xs:decimal" />
+      <xs:element minOccurs="0" name="portStartNum" type="xs:string" />
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createCardResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:createCardReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createCardReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:commonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cardId" type="xs:string" />
+          <xs:element minOccurs="0" name="g3eFid" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="createFrameUnits">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fracId" type="xs:decimal" />
+      <xs:element minOccurs="0" name="frauPosition" type="xs:string" />
+      <xs:element minOccurs="0" name="frauName" type="xs:string" />
+      <xs:element minOccurs="0" name="frauDistance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="fuptManrAbbreaviation" type="xs:string" />
+      <xs:element minOccurs="0" name="terminationType" type="xs:string" />
+      <xs:element minOccurs="0" name="productType" type="xs:string" />
+      <xs:element minOccurs="0" name="countPair" type="xs:decimal" />
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createFrameUnitsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:createFUReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createFUReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:commonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="frauId" type="xs:decimal" />
+          <xs:element minOccurs="0" name="g3eFid" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="createNetworkElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equpLocnTtname" type="xs:string" />
+      <xs:element minOccurs="0" name="equpEqutAbbreviation" type="xs:string" />
+      <xs:element minOccurs="0" name="equpIndex" type="xs:string" />
+      <xs:element minOccurs="0" name="locnDetail" type="xs:string" />
+      <xs:element minOccurs="0" name="areaCode" type="xs:string" />
+      <xs:element minOccurs="0" name="areaDescription" type="xs:string" />
+      <xs:element minOccurs="0" name="areaAretCode" type="xs:string" />
+      <xs:element minOccurs="0" name="areaAreaCode" type="xs:string" />
+      <xs:element minOccurs="0" name="equpStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="equpManrAbbreviation" type="xs:string" />
+      <xs:element minOccurs="0" name="equpEqumModel" type="xs:string" />
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createNetworkElementResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:createNEReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createNEReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:commonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="equp_Id" type="xs:decimal" />
+          <xs:element minOccurs="0" name="g3e_Fid" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="updateDPAdresses">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fracId" type="xs:string" />
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+      <xs:element minOccurs="0" name="dpLocationDetail" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDPAdressesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:commonResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createCableSheath">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cabsName" type="xs:string" />
+      <xs:element minOccurs="0" name="cabsCastType" type="xs:string" />
+      <xs:element minOccurs="0" name="cabsStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="csptProductName" type="xs:string" />
+      <xs:element minOccurs="0" name="minNumber" type="xs:decimal" />
+      <xs:element minOccurs="0" name="maxNumber" type="xs:decimal" />
+      <xs:element minOccurs="0" name="pairCount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="locationA" type="xs:string" />
+      <xs:element minOccurs="0" name="locationB" type="xs:string" />
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createCableSheathResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:createCSReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createCSReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:commonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cabsId" type="xs:decimal" />
+          <xs:element minOccurs="0" name="g3eFid" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="dataMatchingQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="entityType" type="xs:string" />
+      <xs:element minOccurs="0" name="entLocationName" type="xs:string" />
+      <xs:element minOccurs="0" name="entFracEqupType" type="xs:string" />
+      <xs:element minOccurs="0" name="entIndex" type="xs:string" />
+      <xs:element minOccurs="0" name="entNisId" type="xs:string" />
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+      <xs:element minOccurs="0" name="entCabsId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataMatchingQueryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:dataMatchingQueryReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataMatchingQueryReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:commonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="attributes" nillable="true" type="tns:attribute" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="attribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="value" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createServiceBoundary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+      <xs:element minOccurs="0" name="frac_id" type="xs:string" />
+      <xs:element minOccurs="0" name="field1" type="xs:string" />
+      <xs:element minOccurs="0" name="field2" type="xs:string" />
+      <xs:element minOccurs="0" name="streetNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="streetType" type="xs:string" />
+      <xs:element minOccurs="0" name="streetName" type="xs:string" />
+      <xs:element minOccurs="0" name="suburb" type="xs:string" />
+      <xs:element minOccurs="0" name="city" type="xs:string" />
+      <xs:element minOccurs="0" name="statAbbreviation" type="xs:string" />
+      <xs:element minOccurs="0" name="poscCode" type="xs:string" />
+      <xs:element minOccurs="0" name="country" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createServiceBoundaryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:commonResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createFrameContainers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="locnTtname" type="xs:string" />
+      <xs:element minOccurs="0" name="franName" type="xs:string" />
+      <xs:element minOccurs="0" name="index" type="xs:string" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+      <xs:element minOccurs="0" name="locationDetail" type="xs:string" />
+      <xs:element minOccurs="0" name="areaCode" type="xs:string" />
+      <xs:element minOccurs="0" name="areaDescription" type="xs:string" />
+      <xs:element minOccurs="0" name="areaAreaCode" type="xs:string" />
+      <xs:element minOccurs="0" name="areaAretCode" type="xs:string" />
+      <xs:element minOccurs="0" name="g3e_fid" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createFrameContainersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:createFCReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createFCReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:commonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="fracId" type="xs:string" />
+          <xs:element minOccurs="0" name="g3eFid" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

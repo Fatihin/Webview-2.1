@@ -1,0 +1,162 @@
+﻿@model WebView.Models.NewJobModel
+
+@{
+    ViewBag.Title = "New Job";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#btnSave').click(function () {
+            if (document.getElementById("exchange_abb").value == "" || document.getElementById("scheme_type").value == "") {
+                window.location.reload();
+                alert("Please insert Exchange and Scheme Type before continue");
+            }
+        })
+      ;
+        $(function () {
+
+            $('#PTT_ID').change(function () {
+                $.ajax(
+                  {
+                      url: "/Job/updataListData",
+                      type: "POST",
+                      dataType: "html",
+                      data: {
+                          "PTT_ID": document.getElementById("PTT_ID").value
+                      },
+                      beforeSend: function () {
+                      },
+                      success: function (data) {
+                          //alert("a");
+                          var res = jQuery.parseJSON(data);
+                          if (document.getElementById("PTT_ID").value != "SELECT") {
+                              dataPu = res.PuList.split("|");
+
+                              var itemsPu = "<option selected value='SELECT'>Select Exchange</option>";
+
+                              for (i = 0; i < dataPu.length; i++) {
+                                  if (dataPu[i] != "") {
+                                      valuePu = dataPu[i].split(":");
+                                      //alert(valuePu[0]);
+                                      itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                                  }
+                              }
+
+                              $("#exchange_abb").html(itemsPu);
+                          }
+                      }
+                  });
+            });
+
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>
+  Job Management > New Job
+</h2>
+@using (Html.BeginForm("NewJob", "Job", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.")
+    <input type="hidden" id="viewJOBTYPE" value="@ViewBag.JOBTYPE" />                                                                                    
+    <table width="600px" cellpadding="0" cellspacing="0" border="0">
+      @*<tr>
+      <td>Job Name <b>*</b></td>
+      <td>
+      @Html.TextBoxFor(m => m.Name, new { style = "width:200px;" })
+      @Html.ValidationMessageFor(m => m.Name)
+      </td>
+      </tr>*@
+      @if (ViewBag.checkEXC != "")
+      {
+                <tr>
+                  <td style="font-size:12px;">
+                    PTT <b>
+                      <span style="color:Red;">*</span>
+                    </b>
+                  </td>
+                  <td>@Html.DropDownList("PTT_ID", (IEnumerable<SelectListItem>)ViewBag.pttID, "Select PTT", new { style = "width:150px;", id = "PTT_ID" }) </td>
+                </tr>
+      }
+      <tr>
+        <td style="font-size:12px;">
+          Exchange ABB <b>
+            <span style="color:Red;">*</span>
+          </b>
+        </td>
+        <td>@Html.DropDownListFor(m => m.EXC_ABB, (IEnumerable<SelectListItem>)ViewBag.excabb, "Select Exchange", new { style = "width:200px;", id = "exchange_abb" }) </td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;">
+          Job Type <b>
+            <span style="color:Red;">*</span>
+          </b>
+        </td>
+        <td>@Html.DropDownListFor(m => m.SchemeType, (IEnumerable<SelectListItem>)ViewBag.schemetype, "Select Scheme Type", new { style = "width:200px;", id = "scheme_type" }) </td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;">
+          Job State
+        </td>
+        <td>PROPOSE</td>
+      </tr>
+      <tr>
+        <td style="vertical-align:text-top;font-size:12px;">
+          Job Description 1
+        </td>
+        <td>@Html.TextAreaFor(m => m.Description, new { style = "width:200px;" })</td>
+      </tr>
+      <tr>
+        <td style="vertical-align:text-top;font-size:12px;">
+          Job Description 2
+        </td>
+        <td>@Html.TextAreaFor(m => m.Description_2, new { style = "width:200px;" })</td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;">
+          Start Date
+        </td>
+        <td>
+          @Html.EditorFor(m => m.PlanStartDate)
+        </td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;">
+          End Date
+        </td>
+        <td>
+          @Html.EditorFor(m => m.PlanEndDate)
+          @Html.ValidationMessageFor(m => m.PlanEndDate)
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"></td> 
+      </tr>
+      <tr>
+        <td colspan="2" style="font-size:12px;">
+          <span style="font-weight:bold">
+            Supporting Document
+          </span>
+        </td> 
+      </tr>
+      <tr>
+        <td style="font-size:12px;">
+          File 1
+        </td>
+        <td>
+          <input type="file" name="files" id="file1" />
+        </td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;">
+          File 2
+        </td>
+        <td>
+          <input type="file" name="files" id="file2" />
+        </td>
+      </tr>
+    </table>
+    <p>
+      <input type="submit" value="Save"  id="btnSave"/>
+    </p>
+}

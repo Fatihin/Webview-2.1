@@ -1,0 +1,314 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.MaterialMasterMaintenance>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetText("txtMatId", data.MatId);
+        SetElement("txtMatName", data.MatName);
+        SetElement("txtMatUOM", data.MatUOM);
+        SetElement("txtMatPrice", data.MatPrice);
+        SetElement("txtMatCat", data.MatCat);
+        SetElement("txtRecType", data.RecType);
+        SetElement("txtTransType", data.TransType);       
+        SetElement("MatIdVal", data.MatId);
+        document.getElementById("targetMatId").value = data.MatId;
+
+        document.getElementById("btnClose").disabled = false;
+    }
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtMatName").readOnly = true;
+        document.getElementById("txtMatUOM").readOnly = true;
+        document.getElementById("txtMatPrice").readOnly = true;
+        document.getElementById("txtMatCat").readOnly = true;
+        document.getElementById("txtRecType").readOnly = true;
+        document.getElementById("txtTransType").readOnly = true;       
+        document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            document.getElementById("btnSave").disabled = false;
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            //var cmsg = confirm(t);
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails", "MaterialMastMaintenance")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    GetDetailsCallBack(res);
+
+
+                    UOMList = res.UOM.split(":");
+//                    alert(res.UOM);
+                    var dataListName = "<option selected value='" + res.MatUOM + "'>" + res.MatUOM + "</option>";
+
+                    for (i = 1; i < UOMList.length; i++) {
+                        if (UOMList[i] != "") {
+
+                            dataListName += "<option value='" + UOMList[i] + "'>" + UOMList[i] + "</option>";
+                        }
+                    }
+                    $("#txtMatUOM").html(dataListName);
+
+                    CatList = res.Cat.split(":");
+                    //                    alert(res.UOM);
+                    var dataListName = "<option selected value='" + res.MatCat + "'>" + res.MatCat + "</option>";
+
+//                    for (i = 1; i < CatList.length; i++) {
+//                        if (CatList[i] != "") {
+
+//                            
+//                        }
+//                    }
+                    dataListName += "<option value='C1'> C1 </option>";
+                    $("#txtMatCat").html(dataListName);
+                    //                    var itemsMatUOM = "<option value='" + res.MatUOM + "'>" + res.MatUOM + "</option>";
+                    //                    $("#txtMatUOM").html(itemsMatUOM);
+
+                    //                    var itemsMatCat = "<option value='" + res.MatCat + "'>" + res.MatCat + "</option>";
+                    //                    $("#txtMatCat").html(itemsMatCat);
+
+                }
+            });
+        });
+
+        $('#btnSearch').click(function () {
+            window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&searchUOM=" + document.getElementById("searchUOM").value; //Where List is the function in the controller.
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 290,
+            width: 900,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewMaterialMastMaintenance";
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/MaterialMastMaintenance/DeleteData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetMatId": document.getElementById("targetMatId").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>Material Master Maintenance List</h2>
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:350px;">Mat Name : <input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                 <td style="width:40px;">  UOM : </td ><td >   @Html.DropDownList("searchUOM", (IEnumerable<SelectListItem>)ViewBag.MatUOM, new { style = "width:150px" })</td> 
+                 <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="width:200px;"></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+<div style="height:650px">
+    @if (Model.Count() > 0)
+    {
+        <table id="rounded-corner" summary="MaterialMastMaintenance List" width="850px">
+            <thead>
+                <tr>
+                    <th scope="col">Material ID</th>
+                    <th scope="col">Material Name</th>
+                    <th scope="col">Material UOM</th>
+                    <th scope="col" >Material Price</th>
+                    <th scope="col" >Material Category</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var res in Model)
+            {
+                <tr class="odd">
+                    <td id="gid">@res.MAT_ID</td>
+                    <td>@res.MAT_NAME</td>
+                    <td>@res.MAT_UOM</td>
+                    <td>@res.MAT_PRICE</td>
+                    <td>@res.MAT_CAT</td>
+                </tr>    
+            }
+            </tbody>
+        </table>
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+
+            
+            &nbsp;
+            @if (Model.HasPreviousPage)
+            {
+                @Html.ActionLink("<<", "List", new { searchKey = ViewBag.searchKey, searchUOM = ViewBag.searchUOM2, page = 1 })
+                @Html.Raw("&nbsp;");
+                @Html.ActionLink("< Prev", "List", new { searchKey = ViewBag.searchKey, searchUOM = ViewBag.searchUOM2, page = Model.PageNumber - 1 })
+            }
+            else
+            {
+
+            }
+            &nbsp;
+            @if (Model.HasNextPage)
+            {
+                @Html.ActionLink("Next >", "List", new { searchKey = ViewBag.searchKey, searchUOM = ViewBag.searchUOM2, page = Model.PageNumber + 1 })
+                @Html.Raw("&nbsp;");
+                @Html.ActionLink(">>", "List", new { searchKey = ViewBag.searchKey, searchUOM = ViewBag.searchUOM2, page = Model.PageCount })
+            }
+            else
+            {
+
+            }<br/><b> Total @Model.TotalItemCount records</b>
+        </div>
+    }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">  
+    <span style="font-size:12px">Material ID #</span><span id="txtMatId" style="font-weight:bold; color:Blue"></span>
+        <input type="hidden" id="targetMatId" value="" />
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details">
+           <input type="hidden" id="MatIdVal" name="MatIdVal" />
+            <table width="800px">
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Material Name</td>
+                    <td><input type="text" id="txtMatName" name="txtMatName" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                     
+                    <td style="width:150px; background-color:#e8eef4">Record Type</td>
+                    <td><input type="text" id="txtRecType" name="txtRecType" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                   
+                </tr>
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Material UOM</td>
+                    
+                    <td><select id="txtMatUOM" name="txtMatUOM">
+                    </select></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    
+                     <td style="width:150px; background-color:#e8eef4">Trans Type</td>
+                    <td><input type="text" id="txtTransType" name="txtTransType" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                     
+                </tr>
+                <tr> 
+                    <td style="width:150px; background-color:#e8eef4">Material Price</td>
+                    <td><input type="text" id="txtMatPrice" name="txtMatPrice" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>       
+                 </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Material Category</td>
+                    <td><select id="txtMatCat" name="txtMatCat">
+                    </select></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                
+                </tr>
+            </table>
+            <br />
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>
+</div>
+    
+
+

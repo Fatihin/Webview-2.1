@@ -1,0 +1,67 @@
+﻿@model WebView.Models.PTTMaintenanceModel
+           
+
+@{
+    //ViewBag.Title = "List";
+    ViewBag.Title = "PTTMaintenance";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New PTT Maintenance</h2>
+@using (Html.BeginForm("NewPTTMaintenance", "PTTMaintenance", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>PTT ID</td>
+            <td>
+                @Html.TextBoxFor(m => m.PTTId, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.PTTId)
+            </td>
+        </tr>
+        <tr>
+            <td>PTT Description</td>
+            <td>
+                @Html.TextBoxFor(m => m.PTTDesc, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.PTTDesc)
+            </td>
+        </tr>
+        <tr>
+            <td>Region Id</td>
+            <td>
+                 @Html.DropDownListFor(m => m.RegionId, (IEnumerable<SelectListItem>)ViewBag.RegionName, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.RegionId)
+            </td>
+        </tr>
+         <tr>
+            <td>Cost Center</td>
+            <td>
+                @Html.TextBoxFor(m => m.CostCentre  , new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.CostCentre )
+            </td>
+        </tr>
+             <tr>
+            <td>State Name</td>
+            <td>
+               @Html.DropDownListFor(m => m.StateCode, (IEnumerable<SelectListItem>)ViewBag.StateName, new { style = "width:200px;" })
+            </td>
+        </tr>
+
+        @*<tr>
+            <td>Cost Centre</td>
+            <td>
+                @Html.TextBoxFor(m => m.CostCentre, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.CostCentre)
+            </td>
+        </tr>*@              
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                                 
+}

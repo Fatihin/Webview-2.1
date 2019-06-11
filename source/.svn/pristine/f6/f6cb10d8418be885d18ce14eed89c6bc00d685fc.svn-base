@@ -1,0 +1,254 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.DLLVersion>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtMaster", data.master);
+        SetElement("txtVersion", data.version);
+        SetElement("txtName", data.name);
+        SetElement("txtDesc", data.desc);
+        SetElement("txtCreatedAt", data.createdAt);
+
+        document.getElementById("targetId").value = data.master;
+        document.getElementById("targetId2").value = data.name;
+        document.getElementById("btnClose").disabled = false;
+
+    }
+
+    function SaveUpdateCallBack(data) {
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            var s = $(this).find("#gid2").text();
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails_Version", "DllVersion")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "id2": s,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    GetDetailsCallBack(res);
+                }
+            });
+        });
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 230,
+            width: 700,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewJob";
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/DLLVersion/DeleteData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetId": document.getElementById("targetId").value,
+                            "targetId2": document.getElementById("targetId2").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>DLL Version List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:300px;">Search : <input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                 <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="width:170px;"></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="ExchangeMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">Master</th>
+                <th scope="col">Title</th>
+                <th scope="col">Version</th>
+                @*<th scope="col">Created At</th>*@            
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="gid" style="display:none;">@res.DLL_MASTER</td>
+                <td id="gid2" style="display:none;">@res.DLL_NAME</td>
+                <td>@res.DLL_MASTER</td>
+                <td>@res.DLL_NAME</td>
+                <td>@res.DLL_VERSION</td>
+                @*<td>@res.CREATE_DATE</td>*@
+
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount 
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { searchKey = ViewBag.searchKey, page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { searchKey = ViewBag.searchKey, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { searchKey = ViewBag.searchKey, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { searchKey = ViewBag.searchKey, page = Model.PageCount })
+        }
+        else
+        {
+
+        }
+        <br/><b> Total @Model.TotalItemCount records</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+}
+<br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+<br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">
+         <input type="hidden" id="targetId" value="" />
+        <input type="hidden" id="targetId2" value="" />
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details">
+            <table width="600px">
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Master</td>
+                    <td><input type="text" id="txtMaster" name="txtMaster" readonly /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">Version</td>
+                    <td><input type="text" id="txtVersion" name="txtVersion" /></td>
+                </tr>
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4">Name</td>
+                    <td><input type="text" id="txtName" name="txtName" readonly /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">Description</td>
+                    <td colspan=2><input type="text" id="txtDesc" name="txtDesc" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Created At</td>
+                    <td><input type="text" id="txtCreatedAt" name="txtCreatedAt" readonly/></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4"></td>
+                </tr>                  
+                </table>
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+    </div>
+</div>
+    
+
+

@@ -1,0 +1,137 @@
+﻿@model WebView.Models.NewJobModel
+
+@{
+    ViewBag.Title = "New Job";
+}
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+      $(function () {
+          $("#btnSave").button();
+          //document.getElementById("ddlTMManagers").disabled = true;
+      });
+
+  });
+
+  function choosetype1() {
+      if (document.getElementById("chkCabinet").checked == true) {
+          document.getElementById("CabinetType").style.visibility = "visible";
+          document.getElementById("CableType").style.visibility = "hidden";
+          document.getElementById("chkCable").checked = false;
+      }
+  }
+  function choosetype2() {
+      if (document.getElementById("chkCable").checked == true) {
+          document.getElementById("CableType").style.visibility = "visible";
+          document.getElementById("CabinetType").style.visibility = "hidden";
+          document.getElementById("chkCabinet").checked = false;
+      }
+  }
+  function ChangeMe1(SchemeType) {
+      document.getElementById("CabinetType").style.visibility = "hidden";
+      document.getElementById("CableType").style.visibility = "hidden";
+      test = SchemeType.replace(/\s+$/, "");
+      SetElement("ddlTMManagers", test);   
+  }
+  function ChangeMe2(SchemeType) {
+      document.getElementById("CabinetType").style.visibility = "hidden";
+      document.getElementById("CableType").style.visibility = "hidden";
+      test = SchemeType.replace(/\s+$/, "");
+      SetElement("ddlTMManagers", test);   
+  }
+    
+
+</script>
+<br />
+<h2>
+  Job Management > New REDMARK Job
+</h2>
+@using (Html.BeginForm("NewJobRNO", "Job", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.")
+    <input type="hidden" id="viewJOBTYPE" value="@ViewBag.JOBTYPE" />                                                                                    
+    <table width="600px" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td style="vertical-align:text-top;">
+          Job Description
+        </td>
+        <td>@Html.TextAreaFor(m => m.Description, new { style = "width:200px;" })</td>
+      </tr>
+      @*        <tr>
+      <td>Job No.</td>
+      <td>-</td>
+      </tr>
+      <tr>
+      <td>Project No.</td>
+      <td>-</td>
+      </tr>
+      *@        <tr>
+        <td>
+          Exchange ABB
+        </td>
+        <td>
+          @Html.DropDownListFor(m => m.EXC_ABB, (IEnumerable<SelectListItem>)ViewBag.excabb, "Select EXC_ABB", new { style = "width:200px;" }) <b>
+            <span style="color:Red;">*</span>
+          </b>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;">
+          Job Type <b>
+            <span style="color:Red;">*</span>
+          </b>
+        </td>
+        <td>@Html.DropDownListFor(m => m.JobState, (IEnumerable<SelectListItem>)ViewBag.jobtype, "Select Type", new { style = "width:200px;", id = "job_type" }) </td>
+      </tr>
+      <tr>
+        <td>
+          Type <b>
+            <span style="color:Red;">*</span>
+          </b>
+        </td>
+        <td>
+          <input id='chkCabinet' type="checkbox" onclick="choosetype1()" /> CABINET 
+          <div id="CabinetType" style="visibility: hidden; display:inline;">
+            @Html.DropDownList("CABINET", (IEnumerable<SelectListItem>)ViewBag.schemetype, "Select CABINET ID", new { style = "width:150px;", onchange = "ChangeMe1(this.value)" }) <b>
+              <span style="color:Red;">*</span>
+            </b>
+          </div>
+        </td>
+        <td>
+          <input id='chkCable' type="checkbox" onclick="choosetype2()" /> CABLE
+          <div id="CableType" style="visibility: hidden; display:inline;">
+            @Html.DropDownList("CABLE", (IEnumerable<SelectListItem>)ViewBag.cabletype, "Select CABLE CODE", new { style = "width:150px;", onchange = "ChangeMe2(this.value)" }) <b>
+              <span style="color:Red;">*</span>
+            </b>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Type Result
+        </td>
+        <td>
+          @Html.TextBoxFor(m => m.SchemeType, new { @id = "ddlTMManagers", style = "width:200px; ", @readonly = "readonly" }) <b>
+            <span style="color:Red;">*</span>
+          </b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <span style="font-weight:bold">
+            Supporting Document
+          </span>
+        </td> 
+      </tr>
+      <tr>
+        <td>
+          File 1
+        </td>
+        <td>
+          <input type="file" name="files" id="file1" />
+        </td>
+      </tr>
+    </table>
+    <p>
+      <input type="submit" value="Save"  id="btnSave" />
+    </p>
+}

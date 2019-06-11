@@ -1,0 +1,378 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.CabAddInfoReport>
+@{
+    Layout = null;
+}
+
+
+<html>
+
+<head>
+
+<link rel=File-List href="Sheet1_files/filelist.xml">
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";
+	}
+.style0
+	{mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	white-space:nowrap;
+	mso-rotate:0;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	border:none;
+	mso-protection:locked visible;
+	mso-style-name:Normal;
+	mso-style-id:0;}
+td
+	{mso-style-parent:style0;
+	padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}
+.xl65
+	{mso-style-parent:style0;
+	color:black;}
+.xl66
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	white-space:normal;}
+.xl67
+	{mso-style-parent:style0;
+	color:windowtext;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:"Short Date";
+	text-align:left;
+	white-space:normal;}
+.xl68
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:center;
+	white-space:normal;}
+.xl69
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:right;
+	white-space:normal;}
+.xl70
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;}
+.xl71
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-weight:700;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	white-space:normal;}
+.xl72
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl73
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl74
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:left;
+	white-space:normal;}
+.xl75
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:Fixed;
+	text-align:right;
+	white-space:normal;}
+.xl76
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	white-space:normal;}
+.xl77
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	text-align:center;
+	white-space:normal;}
+.xl78
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	text-align:center;}
+.xl79
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;}
+.xl80
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;}
+.xl81
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:Standard;
+	text-align:right;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl82
+	{mso-style-parent:style0;
+	font-size:8.0pt;}
+.xl83
+	{mso-style-parent:style0;
+	font-size:8.0pt;
+	text-align:center;}
+.xl84
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:center;
+	border-top:1.0pt solid windowtext;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl85
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-weight:700;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:center;
+	white-space:normal;}
+-->
+</style>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        alert(document.getElementById("CAB_INS_DATE").value);;
+
+    });
+</script>
+
+</head>
+@for (int i = 1; i <= @ViewBag.Page; i++)
+{
+<body link=blue vlink=purple>
+
+<table border=0 cellpadding=0 cellspacing=0 width=auto style='border-collapse:collapse;table-layout:fixed;width:4000pt;margin:5pt;padding:10pt;'>
+ @*---------------------------UNTUK LINE--------------------*@
+ @*<tr height=15 style='mso-height-source:userset;height:15.0pt;'> 
+  <td height=15 class=xl79 style='height:15.0pt'>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td> <td class=xl80>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td> <td class=xl79>&nbsp;</td>
+  <td colspan=2 style='mso-ignore:colspan'></td>
+ </tr>*@
+ <tr height=15 style='mso-height-source:userset;height:15.0pt;border:thin solid black;'>@* border-left:thin solid black; border-right:thin solid black;'>*@
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>REGION</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>STATE</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PTT</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>ZONE</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>EXCHANGE</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>CABINET CODE</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>FACILITIES STATUS</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>CABINET INSTALL</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>CABINET COMMISION</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>MANUFACTURER</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>LATITUDE & LONGITUDE</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>METER TNB</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>POWER CABINET</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>POWER CAB CONDITION</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>EQUIP CAB CONDITION</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO RCCB AUTO BRAND</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO RCCB BRAND</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO RCCB LOAD(A)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO RCCB RATING(mA)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO RCCB INSTALL</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO MCB BRAND</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO MCB RATING</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO MCB INSTALL</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO SURGE ARRESTOR BRAND</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO SURGE ARRESTOR RATING(A)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO SURGE ARRESTOR CONDITION</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO POWER CAB EARTHING RESISTANCE OHM</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PRO POWER CAB EARTHING RESISTANCE CONNECTION</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT BRAND</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT MODEL</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT MODULE CAPASITY (A)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT MAX MODULE</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT MODULE INSTALL</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT INSTALL</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT VOLTAGE (VDC)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT PRESENT LOAD (A)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT WARRANTY</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>RECT SURGE ARRESTOR CONDITION</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>BATT BRAND</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>BATT EXIST</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>BATT NO OF BLOCKS</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>BATT CAPASITY (AH)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>BATT INSTALL</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>BATT WARRANTY</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>BATT CONDITION</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>BATT EXTRA LOCKING</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>AIRCOND IN/OUT</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>AIRCOND CAPASITY (HP)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>AIRCOND TOTAL UNIT</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>AIRCOND TEMPERATURE (oC)</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>AIRCOND DOOR</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>PWR ALARM EXTENDED</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>ALARM EXTENDED TO</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>CHECK BY</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>REMARK</td>
+  <td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>CREATED AT</td>
+  @*<td height=15 class=xl66 style='height:15.0pt;text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'></td>*@
+ </tr>
+ 
+  @foreach (var res in Model)
+  {
+ <tr style='mso-height-source:userset;border:thin solid black;'>@* border-left:thin solid black; border-right:thin solid black;'>*@
+  <td class=xl74 style='text-align:center;vertical-align:middle;border-left:thin solid black; border-right:thin solid black;'>@res.REGION</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.STATE</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PTT</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.ZONE</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.EXCHANGE</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.CODE</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.STATUS</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.CAB_INS_DATE != null) { @res.CAB_INS_DATE.Value.ToLongDateString() }@*Raw(String.Format("{0:d/M/yyyy}", res.CAB_INS_DATE))*@</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.COMMISSION_DATE != null) { @res.COMMISSION_DATE.Value.ToLongDateString() } </td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.MANUFACTURER</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.LATLONG</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.TNB_METER</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PWR_CAB_ID</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PWR_CAB_CONDITION</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.EQUIP_CAB_CONDITION</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_ELCB_AUTO_BRAND</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_ELCB_BRAND</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_ELCB_LOAC</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_ELCB_CAPASITY</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.PRO_ELCB_DATE != null) { @res.PRO_ELCB_DATE.Value.ToLongDateString() }</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_MCB_BRAND</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_MCB_CAPASITY</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.PRO_MCB_DATE != null) { @res.PRO_MCB_DATE.Value.ToLongDateString() }</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_SA_BRAND</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_SA_CAPASITY</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_SA_CONDITION</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_AC_OHM</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.PRO_AC_CONNECTION</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.RC_BRAND</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.RC_MODEL</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.RC_MODULE</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.RC_MAX_MODULE</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.RC_MODULE_INSTALL</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.RC_DATE != null) { @res.RC_DATE.Value.ToLongDateString() }</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.RC_VDC</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.RC_PRESENT</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.RC_WARRANTY_END != null) { @res.RC_WARRANTY_END.Value.ToLongDateString() }</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.RC_SA_CONDITION</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.BATT_BRAND</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.BATT_EXIST</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.BATT_NO_CELL</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.BATT_CAPASITY</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.BATT_DATE != null) { @res.BATT_DATE.Value.ToLongDateString() }</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.BATT_WARRANTY_END != null) { @res.BATT_WARRANTY_END.Value.ToLongDateString() }</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.BATT_CONDITION</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.BATT_EXTRA_LOCKING</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.AIRCOND_IN_OUT</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.AIRCOND_HPOWER</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.AIRCOND_WORK</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.AIRCOND_READING</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.AIRCOND_DOOR</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.ALM_EXT</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.ALM_EXT_TO</td>
+  @*<td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.ALM_STATUS</td>*@
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.CHECK_BY</td>
+  <td class=xl68 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@res.REMARKS</td>
+  <td class=xl66 style='text-align:center;vertical-align:middle;font-size:10px;border-left:thin solid black; border-right:thin solid black;'>@if (res.CREATED_AT != null) { @res.CREATED_AT.Value.ToLongDateString() }</td>
+ </tr>
+  }
+</table>
+
+
+</body>
+}
+</html>
+
+

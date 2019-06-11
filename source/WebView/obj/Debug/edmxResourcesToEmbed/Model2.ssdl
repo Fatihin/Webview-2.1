@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="ISP_NETELEM" EntityType="Model1.Store.ISP_NETELEM" store:Type="Tables" store:Schema="ISP_CUSTOM" store:Name="ISP_NETELEM">
+      <DefiningQuery>SELECT 
+      "ISP_NETELEM"."ISP_TYPE" AS "ISP_TYPE", 
+      "ISP_NETELEM"."ISP_ID" AS "ISP_ID", 
+      "ISP_NETELEM"."MIN_MATERIAL" AS "MIN_MATERIAL", 
+      "ISP_NETELEM"."SCHEME_NAME" AS "SCHEME_NAME"
+      FROM "ISP_CUSTOM"."ISP_NETELEM" "ISP_NETELEM"</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ISP_CUSTOM.ISP_NETELEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ISP_NETELEM">
+    <Key>
+      <PropertyRef Name="ISP_TYPE" />
+      <PropertyRef Name="ISP_ID" />
+      <PropertyRef Name="MIN_MATERIAL" />
+      <PropertyRef Name="SCHEME_NAME" />
+    </Key>
+    <Property Name="ISP_TYPE" Type="varchar2" Nullable="false" MaxLength="18" />
+    <Property Name="ISP_ID" Type="varchar2" Nullable="false" MaxLength="18" />
+    <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="SCHEME_NAME" Type="varchar2" Nullable="false" MaxLength="20" />
+  </EntityType>
+</Schema>

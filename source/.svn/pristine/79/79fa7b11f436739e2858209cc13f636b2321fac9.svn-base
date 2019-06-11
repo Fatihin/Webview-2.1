@@ -1,0 +1,2354 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.OleDb;
+using System.Linq;
+using System.Web.Mvc;
+using PagedList;
+using Oracle.DataAccess.Client;
+using NEPS.BOQ.Utilities;
+using NEPS.BOQ.Classes.ContractBOQ;
+
+namespace WebView.Controllers
+{
+
+    public class BOQ_GENController : Controller
+    {
+        // GET: /BOQ_GEN/
+
+        public ActionResult BOQ_GEN(int? page, string searchName, string searchIDName, string searchOwner, string searchIDOwner, string searchNo, string searchIDNo, string searchType, string searchIDType, string searchExc, string searchIDExc, string searchYear, string searchIDYear)
+        {
+
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+            string user = User.Identity.Name;
+            //WebService._base.OSPBOQ_MAIN_EXCEL BOQ_MAIN = new WebService._base.OSPBOQ_MAIN_EXCEL();
+            //BOQ_MAIN = myWebService.GetOSPBOQ_MAIN_Excel(0, 100, "");
+
+            WebService._base.OSPBOQ_GEN BOQ_GEN = new WebService._base.OSPBOQ_GEN();
+
+            if (searchNo != null && searchType != null && searchExc != null && searchYear != null && searchName != null && searchOwner != null)
+            {
+                if (searchNo.Equals("") && searchType.Equals("") && searchExc.Equals("") && searchYear.Equals("")  && searchName.Equals("") && searchOwner.Equals(""))
+                    BOQ_GEN = myWebService.GetOSPBOQ_GEN(user,"JKH", 0, 100, null, null, null, null, null, null, null, null, null, null, null, null);
+                else
+                {
+                    BOQ_GEN = myWebService.GetOSPBOQ_GEN(user,"JKH", 0, 100, searchName, searchIDName, searchOwner, searchIDOwner, searchNo, searchIDNo, searchType, searchIDType, searchExc, searchIDExc, searchYear, searchIDYear);
+                    
+                    ViewBag.searchName = searchName;
+                    ViewBag.searchNo = searchNo;
+                    ViewBag.searchType = searchType;
+                    ViewBag.searchExc = searchExc;
+                    ViewBag.searchYear = searchYear;
+                    ViewBag.searchOwner = searchOwner;
+                }
+            }
+            else
+            {
+                BOQ_GEN = myWebService.GetOSPBOQ_GEN(user,"JKH", 0, 100,  null, null, null, null, null, null, null, null, null, null, null, null);
+                
+                ViewBag.searchName = "";
+                ViewBag.searchNo = "";
+                ViewBag.searchType = "";
+                ViewBag.searchExc = "";
+                ViewBag.searchYear = "";
+                ViewBag.searchOwner = "";
+            }
+
+
+            //using (Entities ctxData = new Entities())
+            //{
+            //    List<SelectListItem> list = new List<SelectListItem>();
+            //    var query = from p in ctxData.WV_PU_MAST
+            //                where p.NETWORK_FLAG == "U"
+            //                select new { Text = p.PU_ID, Value = p.PU_ID };
+
+            //    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+            //    foreach (var a in query.Distinct().OrderBy(it => it.Text))
+            //    {
+            //        if (a.Value != null)
+            //            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+            //    }
+            //    ViewBag.x_PU_ID = list;
+            //}
+
+            ViewData["data2"] = BOQ_GEN.BOQ_GENList;
+            //System.Diagnostics.Debug.WriteLine("SEARCHID : " + searchID);
+
+           
+
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where p.G3E_OWNER == user
+                            orderby p.G3E_OWNER ascending
+                            select new { Text = p.G3E_OWNER, Value = p.G3E_OWNER };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchOwner == "Select" || searchOwner == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchOwner.ToString(), Value = searchOwner.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchOwner.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_G3E_OWNER = list;
+            }
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where p.SCHEME_NAME != null && (p.JOB_TYPE == "Civil" || p.JOB_TYPE == "E/Side" || p.JOB_TYPE == "D/Side" || p.JOB_TYPE == "Fiber E/Side" || p.JOB_TYPE == "HSBB E/Side" || p.JOB_TYPE == "HSBB D/Side" || p.JOB_TYPE == "Fiber Trunk" || p.JOB_TYPE == "Fiber Junction" || p.JOB_TYPE == "Others") && p.G3E_OWNER == user
+                            orderby p.SCHEME_NAME ascending
+                            select new { Text = p.SCHEME_NAME, Value = p.SCHEME_NAME };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchName == "Select" || searchName == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchName.ToString(), Value = searchName.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchName.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_SCHEME_NAME = list;
+            }
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Civil" || p.JOB_TYPE == "E/Side" || p.JOB_TYPE == "D/Side" || p.JOB_TYPE == "Fiber E/Side" || p.JOB_TYPE == "HSBB E/Side" || p.JOB_TYPE == "HSBB D/Side" || p.JOB_TYPE == "Fiber Trunk" || p.JOB_TYPE == "Fiber Junction" || p.JOB_TYPE == "Others") && p.G3E_OWNER == user
+                            orderby p.SCH_NO ascending
+                            select new { Text = p.SCH_NO, Value = p.SCH_NO };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchNo == "Select" || searchNo == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchNo.ToString(), Value = searchNo.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchNo.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_SCH_NO = list;
+            }
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Civil" || p.JOB_TYPE == "E/Side" || p.JOB_TYPE == "D/Side" || p.JOB_TYPE == "Fiber E/Side" || p.JOB_TYPE == "HSBB E/Side" || p.JOB_TYPE == "HSBB D/Side" || p.JOB_TYPE == "Fiber Trunk" || p.JOB_TYPE == "Fiber Junction" || p.JOB_TYPE == "Others") && p.G3E_OWNER == user
+                            orderby p.JOB_TYPE ascending
+                            select new { Text = p.JOB_TYPE, Value = p.JOB_TYPE };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchType == "Select" || searchType == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchType.ToString(), Value = searchType.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchType.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_SCH_TYPE = list;
+            }
+
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Civil" || p.JOB_TYPE == "E/Side" || p.JOB_TYPE == "D/Side" || p.JOB_TYPE == "Fiber E/Side" || p.JOB_TYPE == "HSBB E/Side" || p.JOB_TYPE == "HSBB D/Side" || p.JOB_TYPE == "Fiber Trunk" || p.JOB_TYPE == "Fiber Junction" || p.JOB_TYPE == "Others") && p.G3E_OWNER == user
+                            orderby p.EXC_ABB ascending
+                            select new { Text = p.EXC_ABB, Value = p.EXC_ABB };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchExc == "Select" || searchExc == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchExc.ToString(), Value = searchExc.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchExc.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_EXC_ABB = list;
+            }
+
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Civil" || p.JOB_TYPE == "E/Side" || p.JOB_TYPE == "D/Side" || p.JOB_TYPE == "Fiber E/Side" || p.JOB_TYPE == "HSBB E/Side" || p.JOB_TYPE == "HSBB D/Side" || p.JOB_TYPE == "Fiber Trunk" || p.JOB_TYPE == "Fiber Junction" || p.JOB_TYPE == "Others") && p.G3E_OWNER == user
+                            orderby p.YEAR_INSTALL ascending
+                            select new { Text = p.YEAR_INSTALL, Value = p.YEAR_INSTALL };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchYear == "Select" || searchYear == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchYear.ToString(), Value = searchYear.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value.ToString() != searchYear.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_YEAR_INSTALL = list;
+            }
+
+            //return View();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            //BOQ_MAIN.BOQ_MAIN_Excel.ToPagedList(pageNumber, pageSize);
+            return View(BOQ_GEN.BOQ_GENList.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult BOQ_GEN_CONTRACT(int? page,  string searchName, string searchIDName, string searchOwner, string searchIDOwner, string searchNo, string searchIDNo, string searchType, string searchIDType, string searchExc, string searchIDExc, string searchYear, string searchIDYear)
+        {
+
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+            string user = User.Identity.Name;
+            //WebService._base.OSPBOQ_MAIN_EXCEL BOQ_MAIN = new WebService._base.OSPBOQ_MAIN_EXCEL();
+            //BOQ_MAIN = myWebService.GetOSPBOQ_MAIN_Excel(0, 100, "");
+
+            WebService._base.OSPBOQ_GEN BOQ_GEN = new WebService._base.OSPBOQ_GEN();
+            string searchIDID = "";
+            string searchID = "";
+            if (searchNo != null && searchType != null && searchExc != null && searchYear != null &&  searchName != null && searchOwner != null)
+            {
+                if (searchNo.Equals("") && searchType.Equals("") && searchExc.Equals("") && searchYear.Equals("") && searchID.Equals("") && searchName.Equals("") && searchOwner.Equals(""))
+                    BOQ_GEN = myWebService.GetOSPBOQ_GEN(user,"CONTRACT", 0, 100,  null, null, null, null, null, null, null, null, null, null, null, null);
+                else
+                {
+                    BOQ_GEN = myWebService.GetOSPBOQ_GEN(user,"CONTRACT", 0, 100, searchName, searchIDName, searchOwner, searchIDOwner, searchNo, searchIDNo, searchType, searchIDType, searchExc, searchIDExc, searchYear, searchIDYear);
+                   
+                    ViewBag.searchName = searchName;
+                    ViewBag.searchNo = searchNo;
+                    ViewBag.searchType = searchType;
+                    ViewBag.searchExc = searchExc;
+                    ViewBag.searchYear = searchYear;
+                    ViewBag.searchOwner = searchOwner;
+                }
+            }
+            else
+            {
+                BOQ_GEN = myWebService.GetOSPBOQ_GEN(user,"CONTRACT", 0, 100, null, null, null, null, null, null, null, null, null, null, null, null);
+                
+                ViewBag.searchName = "";
+                ViewBag.searchNo = "";
+                ViewBag.searchType = "";
+                ViewBag.searchExc = "";
+                ViewBag.searchYear = "";
+                ViewBag.searchOwner = "";
+            }
+
+
+            using (Entities ctxData = new Entities())
+            {
+                List<SelectListItem> list = new List<SelectListItem>();
+                var query = from p in ctxData.WV_PU_MAST
+                            where p.NETWORK_FLAG == "U"
+                            select new { Text = p.PU_ID, Value = p.PU_ID + "/" + p.BILL_RATE };
+
+                list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                //foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                //{
+                //    if (a.Value != null)
+                //        list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+                //}
+                ViewBag.x_PU_ID = list;
+            }
+
+            ViewData["data2"] = BOQ_GEN.BOQ_GENList;
+           
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where p.G3E_OWNER == user
+                            orderby p.G3E_OWNER ascending
+                            select new { Text = p.G3E_OWNER, Value = p.G3E_OWNER };
+
+                var query2 = from p in ctxData.WV_ISP_JOB
+                            where  p.G3E_OWNER == user
+                            orderby p.G3E_OWNER ascending
+                            select new { Text = p.G3E_OWNER, Value = p.G3E_OWNER };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                int check = 0;
+                if (searchOwner == "Select" || searchOwner == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+                        check = 1;
+
+                    }
+                    if (check == 0)
+                    {
+                        foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                        {
+                            if (a.Value != null)
+                                list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                        }
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchOwner.ToString(), Value = searchOwner.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchOwner.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+                        check = 1;
+                    }
+                    if (check == 0)
+                    {
+                        foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                        {
+                            if (a.Value != null && a.Value != searchOwner.ToString())
+                                list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                        }
+                    }
+                }
+
+                ViewBag.x_G3E_OWNER = list;
+            }
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Copper (Equip)" || p.JOB_TYPE == "Fiber (Equip)" || p.JOB_TYPE == "HSBB (Equip)" || p.JOB_TYPE == "ISP") && p.G3E_OWNER == user
+                            orderby p.SCHEME_NAME ascending
+                            select new { Text = p.SCHEME_NAME, Value = p.SCHEME_NAME };
+
+                var query2 = from p in ctxData.WV_ISP_JOB
+                             where (p.JOB_TYPE == "ISP" || p.JOB_TYPE == "METROE" || p.JOB_TYPE == "IPCORE") && p.G3E_OWNER == user
+                            orderby p.SCHEME_NAME ascending
+                            select new { Text = p.SCHEME_NAME, Value = p.SCHEME_NAME };
+
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchName == "Select" || searchName == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchName.ToString(), Value = searchName.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchName.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchName.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_SCHEME_NAME = list;
+            }
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Copper (Equip)" || p.JOB_TYPE == "Fiber (Equip)" || p.JOB_TYPE == "HSBB (Equip)" || p.JOB_TYPE == "ISP") && p.G3E_OWNER == user
+                            orderby p.SCH_NO ascending
+                            select new { Text = p.SCH_NO, Value = p.SCH_NO };
+
+                var query2 = from p in ctxData.WV_ISP_JOB
+                             where (p.JOB_TYPE == "ISP" || p.JOB_TYPE == "METROE" || p.JOB_TYPE == "IPCORE") && p.G3E_OWNER == user
+                            orderby p.SCH_NO ascending
+                            select new { Text = p.SCH_NO, Value = p.SCH_NO };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchNo == "Select" || searchNo == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchNo.ToString(), Value = searchNo.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchNo.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchNo.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_SCH_NO = list;
+            }
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Copper (Equip)" || p.JOB_TYPE == "Fiber (Equip)" || p.JOB_TYPE == "HSBB (Equip)" || p.JOB_TYPE == "ISP") && p.G3E_OWNER == user
+                            orderby p.JOB_TYPE ascending
+                            select new { Text = p.JOB_TYPE, Value = p.JOB_TYPE };
+                var query2 = from p in ctxData.WV_ISP_JOB
+                             where (p.JOB_TYPE == "ISP" || p.JOB_TYPE == "METROE" || p.JOB_TYPE == "IPCORE") && p.G3E_OWNER == user
+                            orderby p.JOB_TYPE ascending
+                            select new { Text = p.JOB_TYPE, Value = p.JOB_TYPE };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchType == "Select" || searchType == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchType.ToString(), Value = searchType.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchType.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchType.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_SCH_TYPE = list;
+            }
+
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Copper (Equip)" || p.JOB_TYPE == "Fiber (Equip)" || p.JOB_TYPE == "HSBB (Equip)" || p.JOB_TYPE == "ISP") && p.G3E_OWNER == user
+                            orderby p.EXC_ABB ascending
+                            select new { Text = p.EXC_ABB, Value = p.EXC_ABB };
+                var query2 = from p in ctxData.WV_ISP_JOB
+                             where (p.JOB_TYPE == "ISP" || p.JOB_TYPE == "METROE" || p.JOB_TYPE == "IPCORE") && p.G3E_OWNER == user
+                            orderby p.EXC_ABB ascending
+                            select new { Text = p.EXC_ABB, Value = p.EXC_ABB };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchExc == "Select" || searchExc == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchExc.ToString(), Value = searchExc.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchExc.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value != searchExc.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_EXC_ABB = list;
+            }
+
+
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.G3E_JOB
+                            where (p.JOB_TYPE == "Copper (Equip)" || p.JOB_TYPE == "Fiber (Equip)" || p.JOB_TYPE == "HSBB (Equip)" || p.JOB_TYPE == "ISP") && p.G3E_OWNER == user
+                            orderby p.YEAR_INSTALL ascending
+                            select new { Text = p.YEAR_INSTALL, Value = p.YEAR_INSTALL };
+
+                var query2 = from p in ctxData.WV_ISP_JOB
+                             where (p.JOB_TYPE == "ISP" || p.JOB_TYPE == "METROE" || p.JOB_TYPE == "IPCORE") && p.G3E_OWNER == user
+                            orderby p.YEAR_INSTALL ascending
+                            select new { Text = p.YEAR_INSTALL, Value = p.YEAR_INSTALL };
+
+                List<SelectListItem> list = new List<SelectListItem>();
+                if (searchYear == "Select" || searchYear == null)
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null)
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+                else
+                {
+                    list.Add(new SelectListItem() { Text = "", Value = "Select" });
+                    list.Add(new SelectListItem() { Text = searchYear.ToString(), Value = searchYear.ToString(), Selected = true });
+                    foreach (var a in query.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value.ToString() != searchYear.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                    foreach (var a in query2.Distinct().OrderBy(it => it.Value))
+                    {
+                        if (a.Value != null && a.Value.ToString() != searchYear.ToString())
+                            list.Add(new SelectListItem() { Text = a.Text.ToString(), Value = a.Value.ToString() });
+
+                    }
+                }
+
+                ViewBag.x_YEAR_INSTALL = list;
+            }
+
+            //return View();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            //BOQ_MAIN.BOQ_MAIN_Excel.ToPagedList(pageNumber, pageSize);
+            return View(BOQ_GEN.BOQ_GENList.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult UpdateData(string txtJOBID, string txtSCHEMENO, string txtSCHEMENAME, string txtSCHEMETYPE, string txtEXCABB, string txtYEARINSTALL, string txtOWNER)
+        {
+            bool success = true;
+            bool selected = false;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.BOQ_GEN newBOQ_GEN = new WebService._base.BOQ_GEN();
+            newBOQ_GEN.x_G3E_ID = txtJOBID;
+            newBOQ_GEN.x_Sch_No = txtSCHEMENO;
+            newBOQ_GEN.x_Scheme_Name = txtSCHEMENAME;
+            newBOQ_GEN.x_Sch_Type = txtSCHEMETYPE;
+            newBOQ_GEN.x_Exc_Abb = txtEXCABB;
+            newBOQ_GEN.x_Year_Install = txtYEARINSTALL;
+            newBOQ_GEN.x_G3E_OWNER = txtOWNER;
+
+            success = myWebService.AddBOQ_GEN(newBOQ_GEN);
+            //System.Diagnostics.Debug.WriteLine("update:" + success);
+
+            selected = true;
+
+            //if (ModelState.IsValid && selected)
+            //{
+            //    if (success == true)
+            //        return RedirectToAction("BOQ_MAIN/BOQ_MAIN_List");
+            //    else
+            //        return RedirectToAction("NewSaveFail"); // store to db failed.
+            //}
+
+            return Json(new
+            {
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+         [HttpPost]
+        public ActionResult BOQPuList(string schemeName)
+        {
+            string PuList = "";
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.WV_PU_MAST
+                            where p.NETWORK_FLAG == "U" || p.NETWORK_FLAG == "G"
+                            select new { p.PU_ID, p.PU_DESC, p.NETWORK_FLAG };
+
+                var queryPu = from p in ctxData.WV_BOQ_DATA
+                              where p.SCHEME_NAME == schemeName
+                              select new { p.PU_ID };
+
+                foreach (var a in query.Distinct().OrderBy(it => it.PU_ID))
+                {
+                    int checkPu = 0;
+                    foreach (var b in queryPu)
+                    {
+                        if (b.PU_ID.Count() == 4)
+                            checkPu = 1;
+                    }
+                    if (checkPu == 0)
+                        PuList = PuList + a.PU_ID + ": (" + a.NETWORK_FLAG + ") " + a.PU_DESC + "|";
+                }
+            }
+            return Json(new
+            {
+                txtSchName = schemeName,
+                PuList = PuList
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+         public ActionResult BOQList(string schemeName)
+        {
+            System.Diagnostics.Debug.WriteLine("BOQ LIST : 1");
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            
+
+            string check = "";
+            string Proj_no_isp = "";
+            string Proj_no_osp = "";
+            using (Entities ctxData = new Entities())
+            {
+                var query = from q in ctxData.G3E_JOB
+                            where q.SCHEME_NAME == schemeName
+                            select new { q.JOB_TYPE, q.PROJECT_NO };
+
+                System.Diagnostics.Debug.WriteLine("BOQ LIST : 2");
+                foreach (var a in query)
+                {
+                    if (a.JOB_TYPE == "Civil" || a.JOB_TYPE == "E/Side" || a.JOB_TYPE == "D/Side" || a.JOB_TYPE == "Fiber E/Side" || a.JOB_TYPE == "HSBB E/Side" || a.JOB_TYPE == "HSBB D/Side" || a.JOB_TYPE == "Fiber Trunk" || a.JOB_TYPE == "Fiber Junction" || a.JOB_TYPE == "Others")
+                    {
+                        check = "JKH";
+                        Proj_no_isp = a.PROJECT_NO;
+                    }
+                    else
+                    {
+                        check = "CONTRACT";
+                    }
+                    //Proj_no = a.PROJECT_NO;
+                }
+                System.Diagnostics.Debug.WriteLine("BOQ LIST : 3");
+                var queryISP = from q in ctxData.WV_ISP_JOB
+                               where q.SCHEME_NAME == schemeName
+                               select new { q.JOB_TYPE, q.PROJECT_NO };
+
+                foreach (var a in queryISP)
+                {
+                    if (a.JOB_TYPE == "Civil" || a.JOB_TYPE == "E/Side" || a.JOB_TYPE == "D/Side" || a.JOB_TYPE == "Fiber E/Side" || a.JOB_TYPE == "HSBB E/Side" || a.JOB_TYPE == "HSBB D/Side" || a.JOB_TYPE == "Fiber Trunk" || a.JOB_TYPE == "Fiber Junction" || a.JOB_TYPE == "Others")
+                    {
+                        check = "JKH";
+                    }
+                    else
+                    {
+                        check = "CONTRACT";
+                        Proj_no_osp = a.PROJECT_NO;
+                    }
+                }
+            }
+            System.Diagnostics.Debug.WriteLine("BOQ LIST : 4");
+            //string res = "bodo";
+            string res =  myWebService.GetBOQ(schemeName, check);
+            string mat = "no";
+            if (check == "JKH")
+            {
+                mat = myWebService.GetMaterial(schemeName);
+            }
+            System.Diagnostics.Debug.WriteLine("BOQ LIST : 5");
+            string dataError = myWebService.GetBOQError(schemeName, check);
+            System.Diagnostics.Debug.WriteLine("BOQ LIST : 6");
+            string gems = myWebService.CheckGEMS(schemeName);
+            //string MainList = myWebService.GetEstimate_MainList(schemeName);
+            System.Diagnostics.Debug.WriteLine("BOQ LIST : 7");
+            WebService._base.SUMM_ProjCost summ_projCost = new WebService._base.SUMM_ProjCost();
+            summ_projCost = myWebService.Get_ProjCost(schemeName);
+            string SumLbrOT = "";
+            string SumLbrSalary = "";
+            string SumMaterial = "";
+            string SumJKH = "";
+            string SumTNT_Mileage = "";
+            string SumMilling = "";
+            string SumMisc = "";
+            string SumContract = "";
+            for (int i = 0; i < summ_projCost.ProjCost.Count; i++)
+            {
+                SumLbrOT = summ_projCost.ProjCost[i].SUM_LBR_OT;
+                SumLbrSalary = summ_projCost.ProjCost[i].SUM_LBR_SALARY;
+                SumMaterial = summ_projCost.ProjCost[i].SUM_MATERIAL;
+                SumJKH = summ_projCost.ProjCost[i].SUM_JKH;
+                SumTNT_Mileage = summ_projCost.ProjCost[i].SUM_TNT_MILEAGE;
+                SumMilling = summ_projCost.ProjCost[i].SUM_MILLING;
+                SumMisc = summ_projCost.ProjCost[i].SUM_MISC;
+                SumContract = summ_projCost.ProjCost[i].SUM_CONTRACT;
+            }
+            System.Diagnostics.Debug.WriteLine("BOQ LIST : 8");
+
+            string PuList = "";
+            if (check == "JKH")
+            {
+                using (Entities ctxData = new Entities())
+                {
+                    var query = from p in ctxData.WV_PU_MAST
+                                where p.NETWORK_FLAG == "U" || p.NETWORK_FLAG == "G"
+                                select new { p.PU_ID, p.NETWORK_FLAG ,p.PU_DESC };
+
+                    var queryPu = from p in ctxData.WV_BOQ_DATA
+                                  where p.SCHEME_NAME == schemeName
+                                  select new { p.PU_ID, p.PU_DESC };
+
+                    foreach (var a in query.Distinct().OrderBy(it => it.PU_ID))
+                    {
+                        int checkPu = 0;
+                        foreach (var b in queryPu)
+                        {
+                            if (b.PU_ID.Count() == 4)
+                                checkPu = 1;
+                        }
+                        if (checkPu == 0)
+                            PuList = PuList + a.PU_ID + ": (" + a.NETWORK_FLAG + ") " + a.PU_DESC + "|";
+                    }
+                }
+            }
+
+            string ContractList = "";
+            string SystemPrice = "false";
+            if (check == "CONTRACT")
+            {
+                using (Entities ctxData = new Entities())
+                {
+                    int count = (from a in ctxData.WV_BOQ_DATA
+                                 where a.SCHEME_NAME == schemeName
+                                 select a).Count();
+                    if (count == 0)
+                        SystemPrice = "false";
+                    else
+                    {
+                        int countPackage = (from b in ctxData.WV_PACKAGE_MAST
+                                            join c in ctxData.WV_BOQ_DATA on b.CONTRACT_NO equals c.CONTRACT_NO
+                                            where c.SCHEME_NAME == schemeName
+                                            select b).Count();
+                        if (countPackage == 0)
+                            SystemPrice = "false";
+                        else
+                            SystemPrice = "true";
+                    }
+                }
+
+                using (Entities ctxData = new Entities())
+                {
+                    var query = from p in ctxData.WV_BOQ_DATA
+                                where p.SCHEME_NAME == schemeName
+                                select new { p.CONTRACT_NO };
+
+                    foreach (var a in query.Distinct().OrderBy(it => it.CONTRACT_NO))
+                    {
+                        ContractList = ContractList + a.CONTRACT_NO + "|";
+                    }
+                }
+            }//-----------------------------------------------------------------------------------------
+            //System.Diagnostics.Debug.WriteLine("BOQ LIST : 2");
+            //WebService._base.Estimate_Lab estimateLab = new WebService._base.Estimate_Lab();
+            //estimateLab = myWebService.GetEstimate_Lab(schemeName);
+            //string EstLabBuruh = "";
+            //string EstLabBiasa = "";
+            //string EstLabKanan = "";
+            //string EstLabPembantu = "";
+            //string EstLabTotal = "";
+            //for (int i = 0; i < estimateLab.LabList.Count; i++)
+            //{
+            //    EstLabBuruh = estimateLab.LabList[i].LAB_BURUH;
+            //    EstLabBiasa = estimateLab.LabList[i].LAB_BIASA;
+            //    EstLabKanan = estimateLab.LabList[i].LAB_KANAN;
+            //    EstLabPembantu = estimateLab.LabList[i].LAB_PEMBANTU;
+            //    EstLabTotal = estimateLab.LabList[i].LAB_EST_TOTAL;
+            //}
+
+            //WebService._base.Estimate_Inc estimateInc = new WebService._base.Estimate_Inc();
+            //estimateInc = myWebService.GetEstimate_Inc(schemeName);
+            //string EstIncSupHours = "";
+            //string EstIncOtSupHours = "";
+            //string EstIncValue = "";
+            //string EstIncOtValue = "";
+            //string EstIncExecMileage = "";
+            //string EstIncNonExecMileage = "";
+            //string EstIncTotalHours = "";
+            //string EstIncTotalValue = "";
+            //string EstIncTotalMileage = "";
+            //for (int i = 0; i < estimateInc.IncList.Count; i++)
+            //{
+            //    EstIncSupHours = estimateInc.IncList[i].INC_CTRT_SUP_HOURS;
+            //    EstIncOtSupHours = estimateInc.IncList[i].INC_CTRT_OT_SUP_HOURS;
+            //    EstIncValue = estimateInc.IncList[i].INC_CTRT_VALUE;
+            //    EstIncOtValue = estimateInc.IncList[i].INC_CTRT_OT_VALUE;
+            //    EstIncExecMileage = estimateInc.IncList[i].INC_EXEC_MILEAGE;
+            //    EstIncNonExecMileage = estimateInc.IncList[i].INC_NON_EXEC_MILEAGE;
+            //    EstIncTotalHours = estimateInc.IncList[i].INC_TOTAL_HOURS;
+            //    EstIncTotalValue = estimateInc.IncList[i].INC_TOTAL_VALUE;
+            //    EstIncTotalMileage = estimateInc.IncList[i].INC_TOTAL_MILEAGE;
+            //}
+
+            //WebService._base.Estimate_BPlanEstimate estimateBP = new WebService._base.Estimate_BPlanEstimate();
+            //estimateBP = myWebService.GetBussinessPlan_Estimate(schemeName);
+            //string EstBPJamBuruh = "";
+            //string EstBPJamNilai = "";
+            //string EstBPOTBuruh = "";
+            //string EstBPOTNilai = "";
+            //string EstBPJKHBahan = "";
+            //string EstBPJKHPelbagai = "";
+            //string EstBPTMBahan = "";
+            //string EstBPTMPelbagai = "";
+            //for (int i = 0; i < estimateBP.BPlanEstimate.Count; i++)
+            //{
+            //    EstBPJamBuruh = estimateBP.BPlanEstimate[i].BP_JAM_BURUH;
+            //    EstBPJamNilai = estimateBP.BPlanEstimate[i].BP_JAM_NILAI;
+            //    EstBPOTBuruh = estimateBP.BPlanEstimate[i].BP_OT_BURUH;
+            //    EstBPOTNilai = estimateBP.BPlanEstimate[i].BP_OT_NILAI;
+            //    EstBPJKHBahan = estimateBP.BPlanEstimate[i].BP_JKH_BAHAN;
+            //    EstBPJKHPelbagai = estimateBP.BPlanEstimate[i].BP_JKH_PEL;
+            //    EstBPTMBahan = estimateBP.BPlanEstimate[i].BP_TM_BAHAN;
+            //    EstBPTMPelbagai = estimateBP.BPlanEstimate[i].BP_TM_PEL;
+            //}
+           // System.Diagnostics.Debug.WriteLine("RECORD : " + res);
+            //ContractList = "test";
+            string Proj_no = "";
+            if (check == "JKH")
+            {
+                Proj_no = Proj_no_isp;
+            }
+            else
+            {
+                Proj_no = Proj_no_osp;
+            }
+            return Json(new
+            {
+                //txtEstBPJamBuruh = EstBPJamBuruh,
+                //txtEstBPJamNilai = EstBPJamNilai,
+                //txtEstBPOTBuruh = EstBPOTBuruh,
+                //txtEstBPOTNilai = EstBPOTNilai,
+                //txtEstBPJKHBahan = EstBPJKHBahan,
+                //txtEstBPJKHPelbagai = EstBPJKHPelbagai,
+                //txtEstBPTMBahan = EstBPTMBahan,
+                //txtEstBPTMPelbagai = EstBPTMPelbagai,
+                txtSchName = schemeName,
+                //txtEstLabBuruh = EstLabBuruh,
+                //txtEstLabBiasa = EstLabBiasa,
+                //txtEstLabKanan = EstLabKanan,
+                //txtEstLabPembantu = EstLabPembantu,
+                //txtEstLabTotal = EstLabTotal,
+                //txtEstIncSupHours = EstIncSupHours,
+                //txtEstIncOtSupHours = EstIncOtSupHours,
+                //txtEstIncValue = EstIncValue,
+                //txtEstIncOtValue = EstIncOtValue,
+                //txtEstIncExecMileage = EstIncExecMileage,
+                //txtEstIncNonExecMileage = EstIncNonExecMileage,
+                //txtEstIncTotalHours = EstIncTotalHours,
+                //txtEstIncTotalValue = EstIncTotalValue,
+                //txtEstIncTotalMileage = EstIncTotalMileage,
+                //mainList = MainList,
+                mat = mat,
+                SystemPrice = SystemPrice,
+                ContractList = ContractList,
+                PuList = PuList,
+                checkGEMS = gems,
+                txtSumLbrOT = SumLbrOT,
+                txtSumLbrSalary = SumLbrSalary,
+                txtSumMaterial = SumMaterial,
+                txtSumJKH = SumJKH,
+                txtSumTNT_Mileage = SumTNT_Mileage,
+                txtSumMilling = SumMilling,
+                txtSumMisc = SumMisc,
+                txtSumContract = SumContract,
+                errorRecord = dataError,
+                record = res,
+                proj_no = Proj_no
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult BOQ_Generate(string schemeName, string conndb)
+        {
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            string isposp = "";
+            string output = "A";
+            using (Entities ctxdata = new Entities())
+            {
+                isposp = (from d in ctxdata.REF_JOB_TYPES
+                          join a in ctxdata.G3E_JOB on d.JOB_TYPE equals a.JOB_TYPE
+                          where a.SCHEME_NAME == schemeName
+                          select d.ISPOSP).Single();
+            }
+            bool populateDataISP = true;
+            bool checkISP = false;
+            if (isposp == "ISP" || isposp == "ISPOSP")
+            {
+                populateDataISP = myWebService.BOQ_POPULATE_ISP(schemeName, conndb);
+                checkISP = true;
+            }
+            //// output = myWebService.BOQ_POPULATE_ISP(schemeName);
+            bool success = true;
+            if (populateDataISP)
+            {
+                if (checkISP)
+                {
+                    success = myWebService.BOQ_GENERATE_CONTRACT_ISP(schemeName);
+                }
+                //success = myWebService.BOQ_GENERATE(schemeName, checkISP.ToString());
+
+            }
+            success = myWebService.BOQ_GENERATE(schemeName, checkISP.ToString());
+            //WebView.Controllers.BOQEngine engine = new BOQEngine();
+            //using (OleDbConnection conn = UtilityDb.GetConnection("nepstrn", "neps", "nepstrn"))
+            //{
+            //    engine.StartProcess(schemeName, conn);
+            //}
+
+            //WebService._base.OSP_NETELEM BOQ_GEN = new WebService._base.OSP_NETELEM();
+            //BOQ_GEN = myWebService.GetOSP_BOQ(schemeName);
+
+            //WebService._base.ISP_NETELEM ISP_BOQ_GEN = new WebService._base.ISP_NETELEM();
+            //ISP_BOQ_GEN = myWebService.GetISP_NETELEM(schemeName);
+
+            //bool success = true;
+            //string output = "";
+            //success = myWebService.DeleteBOQ(schemeName);
+            //System.Diagnostics.Debug.WriteLine("boq count : " + BOQ_GEN.NETELEMList.Count);
+            //for (int i = 0; i < BOQ_GEN.NETELEMList.Count; i++)
+            //{
+
+            //    System.Diagnostics.Debug.WriteLine("checkStat " + i+" :" + (BOQ_GEN.NETELEMList[i].CHECK_PU_CONTRACT == "PU"));
+            //    if (BOQ_GEN.NETELEMList[i].CHECK_PU_CONTRACT == "PU")
+            //    {
+            //        System.Diagnostics.Debug.WriteLine("CONTROLLER PUID : " + BOQ_GEN.NETELEMList[i].NET_PU_ID);
+            //        string checkPuId = "NO PU ID";
+            //        if (BOQ_GEN.NETELEMList[i].NET_PU_ID != checkPuId)
+            //        {
+            //            success = myWebService.AddBOQ_PU(BOQ_GEN.NETELEMList[i]);
+            //        }
+            //        else if (BOQ_GEN.NETELEMList[i].NET_PU_ID == checkPuId)
+            //        {
+            //            output += BOQ_GEN.NETELEMList[i].NET_MIN_MATERIAL;
+
+            //            output += "!";
+            //            System.Diagnostics.Debug.WriteLine("OUTPUT " + output);
+            //        }
+            //    }
+            //    else if (success && BOQ_GEN.NETELEMList[i].CHECK_PU_CONTRACT == "CONTRACT")
+            //    {
+            //        success = myWebService.AddBOQ_Contract(BOQ_GEN.NETELEMList[i]);
+            //    }
+            //}
+
+            //for (int i = 0; i < ISP_BOQ_GEN.NETELEMList.Count; i++)
+            //{
+            //    string minMaterial = ISP_BOQ_GEN.NETELEMList[i].NET_MIN_MATERIAL;
+            //    string ispOsp = ISP_BOQ_GEN.NETELEMList[i].ISP_OSP;
+            //    string puid = ISP_BOQ_GEN.NETELEMList[i].NET_PU_ID;
+            //    success = myWebService.DeleteBOQ(schemeName);
+            //    if (success && ISP_BOQ_GEN.NETELEMList[i].NET_MIN_MATERIAL.Count() == 8)
+            //    {
+            //        success = myWebService.AddBOQ_PU(ISP_BOQ_GEN.NETELEMList[i]);
+            //    }
+            //    else if (success && ISP_BOQ_GEN.NETELEMList[i].NET_MIN_MATERIAL.Count() > 8)
+            //    {
+            //        success = myWebService.AddBOQ_Contract(ISP_BOQ_GEN.NETELEMList[i]);
+            //    }
+            //}
+
+            return Json(new
+            {
+                schemename = schemeName,
+                record = checkISP.ToString(),
+                result = success
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+         public ActionResult Delete_PU_BOQ(string schemeName, string puid, string billrate)
+        {
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            bool success = true;
+            success = myWebService.Delete_BOQ_PUID(schemeName, puid, billrate);
+            return Json(new
+            {
+                schemename = schemeName,
+                result = success
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+         public ActionResult Delete_CONTRACT_BOQ(string schemeName, string contractNo, string itemNo)
+         {
+             WebView.WebService._base myWebService;
+             myWebService = new WebService._base();
+
+             bool success = true;
+             success = myWebService.Delete_BOQ_Contract(schemeName, contractNo, itemNo);
+             return Json(new
+             {
+                 schemename = schemeName,
+                 result = success
+             }, JsonRequestBehavior.AllowGet);
+         }
+
+         public ActionResult BOQ_Generate_Contract(string schemeName, string SystemPrice, string ConnDB)
+        {
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+            string isposp = "";
+            string output = "A";
+            using (Entities ctxdata = new Entities())
+            {
+                int count = (from d in ctxdata.REF_JOB_TYPES
+                             join a in ctxdata.G3E_JOB on d.JOB_TYPE equals a.JOB_TYPE
+                             where a.SCHEME_NAME == schemeName
+                             select d.ISPOSP).Count();
+                if (count != 0)
+                {
+                    output += "B";
+                    isposp = (from d in ctxdata.REF_JOB_TYPES
+                              join a in ctxdata.G3E_JOB on d.JOB_TYPE equals a.JOB_TYPE
+                              where a.SCHEME_NAME == schemeName
+                              select d.ISPOSP).Single();
+                }
+                else
+                {
+                    output += "C";
+                    isposp = (from d in ctxdata.REF_JOB_TYPES
+                              join a in ctxdata.WV_ISP_JOB on d.JOB_TYPE equals a.JOB_TYPE
+                              where a.SCHEME_NAME == schemeName
+                              select d.ISPOSP).Single();
+                }
+            }
+            bool populateDataISP = true;
+            bool checkISP = false;
+            if (isposp == "ISP" || isposp == "ISPOSP")
+            {
+                output += "D";
+                populateDataISP = myWebService.BOQ_POPULATE_ISP(schemeName, ConnDB);
+                output += populateDataISP.ToString();
+                checkISP = true;
+            }
+           
+            bool success = true;
+            populateDataISP = true;
+            if (populateDataISP)
+            {
+                output += "E";
+                if (checkISP)
+                {
+                    output += "F";
+                    success = myWebService.BOQ_GENERATE_CONTRACT_ISP(schemeName);
+                }
+                success = myWebService.BOQ_GENERATE_CONTRACT(schemeName, checkISP.ToString());
+            }
+
+            if (SystemPrice == "true")
+            {
+                NEPS.BOQ.Classes.ContractBOQ.Engine engine = new NEPS.BOQ.Classes.ContractBOQ.Engine();
+                string[] arr = ConnDB.Split('|');
+                string IP = arr[0];
+                string SID = arr[1];
+                string Password = arr[2];
+                using (OracleConnection conn = UtilityDb2.GetConnection(arr[0], arr[1], arr[2]))
+                {
+                    List<Item> source = new List<Item>();
+                    List<Package> packages = null;
+                    List<Item> individualItems = null;
+                    //string schemeName = "BJL31-ISP-449-2012";
+                    string packagesToCreate = "1,1,1,2,2,2,3,3,3"; // this is hardcoded for now, but Atiqah to discuss with Kamal on what's the best configuration
+                    Engine.Run
+                        (false, // true = write the output file to help debugging. Should specify False in real implementation
+                        conn, schemeName, packagesToCreate,
+                        out packages,
+                        out individualItems);
+
+                }
+
+
+                //Engine engine = new Engine();
+
+                //List<Item> source = new List<Item>();
+                //List<Package> packages = null;
+                //List<Item> individualItems = null;
+                ////string schemeName = "TEST";
+                //output = engine.Execute(true, // true = write the output file to help debugging. Should specify False in real implementation
+                //         schemeName,
+                //         out packages,
+                //         out individualItems);
+
+                   //NEPS.BOQ.Classes.ContractBOQ.Engine engine = new NEPS.BOQ.Classes.ContractBOQ.Engine();
+                   //using (OracleConnection conn = UtilityDb2.GetConnection("10.14.61.177/NEPSTRN", "NEPS", "nepstrn"))
+                   //{
+                   //    List<NEPS.BOQ.Classes.ContractBOQ.Item> source = new List<NEPS.BOQ.Classes.ContractBOQ.Item>();
+                   //    List<NEPS.BOQ.Classes.ContractBOQ.Package> packages = null;
+                   //    List<NEPS.BOQ.Classes.ContractBOQ.Item> individualItems = null;
+                       
+                   //    string packagesToCreate = "1,1,1,2,2,2,3,3,3";
+                   //    NEPS.BOQ.Classes.ContractBOQ.Engine.Run
+                   //        (false, // true = write the output file to help debugging. Should specify False in real implementation
+                   //        conn, schemeName, packagesToCreate,
+                   //        out packages,
+                   //        out individualItems);
+
+                   //}
+                   
+                    //Engine.Run
+                    //    (true, // true = write the output file to help debugging. Should specify False in real implementation
+                    //    schemeName,
+                    //    out packages,
+                    //    out individualItems);
+                   
+               
+            }
+
+           // string output = "A";
+
+            //WebService._base.OSP_NETELEM BOQ_GEN = new WebService._base.OSP_NETELEM();
+            //BOQ_GEN = myWebService.GetOSP_BOQ(schemeName);
+
+            //WebService._base.ISP_NETELEM ISP_BOQ_GEN = new WebService._base.ISP_NETELEM();
+            //ISP_BOQ_GEN = myWebService.GetISP_NETELEM(schemeName);
+
+            //bool success = true;
+            //string output = "";
+            //success = myWebService.DeleteBOQ(schemeName);
+            //System.Diagnostics.Debug.WriteLine("boq count : " + BOQ_GEN.NETELEMList.Count);
+            //for (int i = 0; i < BOQ_GEN.NETELEMList.Count; i++)
+            //{
+
+            //    System.Diagnostics.Debug.WriteLine("checkStat " + i+" :" + (BOQ_GEN.NETELEMList[i].CHECK_PU_CONTRACT == "PU"));
+            //    if (BOQ_GEN.NETELEMList[i].CHECK_PU_CONTRACT == "PU")
+            //    {
+            //        System.Diagnostics.Debug.WriteLine("CONTROLLER PUID : " + BOQ_GEN.NETELEMList[i].NET_PU_ID);
+            //        string checkPuId = "NO PU ID";
+            //        if (BOQ_GEN.NETELEMList[i].NET_PU_ID != checkPuId)
+            //        {
+            //            success = myWebService.AddBOQ_PU(BOQ_GEN.NETELEMList[i]);
+            //        }
+            //        else if (BOQ_GEN.NETELEMList[i].NET_PU_ID == checkPuId)
+            //        {
+            //            output += BOQ_GEN.NETELEMList[i].NET_MIN_MATERIAL;
+
+            //            output += "!";
+            //            System.Diagnostics.Debug.WriteLine("OUTPUT " + output);
+            //        }
+            //    }
+            //    else if (success && BOQ_GEN.NETELEMList[i].CHECK_PU_CONTRACT == "CONTRACT")
+            //    {
+            //        success = myWebService.AddBOQ_Contract(BOQ_GEN.NETELEMList[i]);
+            //    }
+            //}
+
+            //for (int i = 0; i < ISP_BOQ_GEN.NETELEMList.Count; i++)
+            //{
+            //    string minMaterial = ISP_BOQ_GEN.NETELEMList[i].NET_MIN_MATERIAL;
+            //    string ispOsp = ISP_BOQ_GEN.NETELEMList[i].ISP_OSP;
+            //    string puid = ISP_BOQ_GEN.NETELEMList[i].NET_PU_ID;
+            //    success = myWebService.DeleteBOQ(schemeName);
+            //    if (success && ISP_BOQ_GEN.NETELEMList[i].NET_MIN_MATERIAL.Count() == 8)
+            //    {
+            //        success = myWebService.AddBOQ_PU(ISP_BOQ_GEN.NETELEMList[i]);
+            //    }
+            //    else if (success && ISP_BOQ_GEN.NETELEMList[i].NET_MIN_MATERIAL.Count() > 8)
+            //    {
+            //        success = myWebService.AddBOQ_Contract(ISP_BOQ_GEN.NETELEMList[i]);
+            //    }
+            //}
+            return Json(new
+            {
+                schemename = schemeName,
+                record = output,
+                result = success
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult BOQ_GEMS(string schemeName)
+        {
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+            string check = "";
+            bool success = true;
+            using (Entities ctxData = new Entities())
+            {
+                int queryCount = (from q in ctxData.G3E_JOB
+                            where q.SCHEME_NAME == schemeName
+                            select q).Count();
+                string checkProjNoISP = "";
+                string checkProjNoOSP = "";
+                if (queryCount != 0)
+                {
+                    checkProjNoOSP = (from q in ctxData.G3E_JOB
+                                             where q.SCHEME_NAME == schemeName
+                                             select q.PROJECT_NO).Single();
+                }
+                else
+                {
+                    checkProjNoISP = (from q in ctxData.WV_ISP_JOB
+                                             where q.SCHEME_NAME == schemeName
+                                             select q.PROJECT_NO).Single();
+                }
+                System.Diagnostics.Debug.WriteLine(checkProjNoOSP);
+                System.Diagnostics.Debug.WriteLine(checkProjNoISP);
+
+                var findusername = (from q in ctxData.WV_USER
+                                    where q.USERNAME.ToUpper() == User.Identity.Name.ToUpper() || q.USERNAME.ToLower() == User.Identity.Name.ToLower()
+                                    select q.USERNAME).Single();
+
+                if ((checkProjNoOSP != "") || (checkProjNoISP != ""))
+                {
+                    if (queryCount == 0)
+                    {
+                        check = "CONTRACT";
+                        System.Diagnostics.Debug.WriteLine(check);
+                        success = myWebService.BOQ_GEMS(schemeName, check, findusername);
+                    }
+                    else
+                    {
+                        var query = from q in ctxData.G3E_JOB
+                                    where q.SCHEME_NAME == schemeName
+                                    select new { q.JOB_TYPE, q.G3E_OWNER };
+                        foreach (var a in query)
+                        {
+                            if (a.JOB_TYPE == "Civil" || a.JOB_TYPE == "E/Side" || a.JOB_TYPE == "D/Side" || a.JOB_TYPE == "Fiber E/Side" || a.JOB_TYPE == "HSBB E/Side" || a.JOB_TYPE == "HSBB D/Side" || a.JOB_TYPE == "Fiber Trunk" || a.JOB_TYPE == "Fiber Junction" || a.JOB_TYPE == "Others")
+                            {
+                                check = "JKH";
+                                success = myWebService.BOQ_GEMS(schemeName, check, a.G3E_OWNER);
+                            }
+                            else
+                            {
+                                check = "CONTRACT";
+                                success = myWebService.BOQ_GEMS(schemeName, check, a.G3E_OWNER);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    success = false;
+                }
+               
+            }
+            System.Diagnostics.Debug.WriteLine(success);
+           
+            return Json(new
+            {
+                schemename = schemeName,
+                result = success
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetBillRate(string PU_ID, string schemeName)
+        {
+            string billrate = "";
+            string pu_desc = "";
+            using (Entities ctxdata = new Entities())
+            {
+                var queryPu = from p in ctxdata.WV_BOQ_DATA
+                              where p.SCHEME_NAME == schemeName && p.PU_ID == PU_ID
+                              select new { p.RATE_INDICATOR };
+                
+                var query = from a in ctxdata.WV_PU_MAST
+                            where a.PU_ID == PU_ID 
+                            orderby a.BILL_RATE
+                            select new { a.BILL_RATE };
+
+                var queryDESC = (from d in ctxdata.WV_PU_MAST
+                                 where d.PU_ID == PU_ID
+                                 select new { d.PU_DESC });
+
+                
+                foreach (var a in queryDESC)
+                {
+                    pu_desc = a.PU_DESC;
+                }
+
+                foreach (var a in query)
+                {
+                    int checkPu = 0;
+                    foreach (var b in queryPu)
+                    {
+                        if (b.RATE_INDICATOR == a.BILL_RATE )
+                            checkPu = 1;
+                    }
+                    if (checkPu == 0)
+                    {
+                        if (a.BILL_RATE == "D")
+                            billrate = billrate + "!" + "DAY";
+                        else if (a.BILL_RATE == "N")
+                            billrate = billrate + "!" + "NIGHT";
+                        else if (a.BILL_RATE == "W")
+                            billrate = billrate + "!" + "WEEKEND";
+                        else if (a.BILL_RATE == "P")
+                            billrate = billrate + "!" + "HOLIDAY";
+
+                    }
+                }
+                System.Diagnostics.Debug.WriteLine(billrate);
+            }
+
+         
+            return Json(new
+            {
+                pu_desc = pu_desc,
+                billrate = billrate
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetItemNo(string contractNo, string schemeName)
+        {
+            string itemNo = "";
+            using (Entities ctxdata = new Entities())
+            {
+                var queryCon = from p in ctxdata.WV_BOQ_DATA
+                              where p.SCHEME_NAME == schemeName && p.CONTRACT_NO == contractNo
+                              select new { p.ITEM_NO, p.CONTRACT_DESC };
+
+                var query = from a in ctxdata.WV_CONTRACT_MAST
+                            where a.CONTRACT_NO == contractNo  && a.NETWORK_FLAG == "U"
+                            orderby a.ITEM_NO
+                            select new { a.ITEM_NO, a.CONTRACT_DESC };
+               
+                foreach (var a in query)
+                {
+                    int checkPu = 0;
+                    foreach (var b in queryCon)
+                    {
+                        if (Convert.ToInt32(b.ITEM_NO) == Convert.ToInt32(a.ITEM_NO))
+                            checkPu = 1;
+                    }
+                    if (checkPu == 0)
+                    {
+                        itemNo = itemNo + "!" + a.ITEM_NO + "- " + a.CONTRACT_DESC;
+                    }
+                }
+                System.Diagnostics.Debug.WriteLine(itemNo);
+            }
+
+
+            return Json(new
+            {
+                itemNo = itemNo
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        
+        [HttpPost]
+        public ActionResult MaintenanceDetailsContractBOQ(string ContractNo_ItemNo, string schemeName)
+        {
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate_Main estimateMain = new WebService._base.Estimate_Main();
+            estimateMain = myWebService.GetEstimate_Main_Contract(ContractNo_ItemNo, schemeName);
+
+
+            
+            string EstMainConDesc = "";
+            string EstMainNetPrice = "";
+            string contractNo = "";
+            string itemNo = "";
+            string qty = "";
+            for (int i = 0; i < estimateMain.MainList.Count; i++)
+            {
+                //System.Diagnostics.Debug.WriteLine(estimateMain.MainList[i].MAIN_PU_ID + " : " + estimateMain.MainList[i].MAIN_PU_DESC + " : " + estimateMain.MainList[i].MAIN_PU_MAT_PR);
+                EstMainConDesc = estimateMain.MainList[i].MAIN_CONTRACT_DESC;
+                EstMainNetPrice = estimateMain.MainList[i].MAIN_NET_PRICE;
+                contractNo = estimateMain.MainList[i].MAIN_CONTRACT_NO;
+                itemNo = estimateMain.MainList[i].MAIN_ITEM_NO;
+                qty = estimateMain.MainList[i].MAIN_PU_QTY;
+            }
+
+            return Json(new
+            {
+                txtEstMainConDesc = EstMainConDesc,
+                contractNo = contractNo,
+                itemNo = itemNo,
+                qty = qty,
+                txtEstMainNetPrice = EstMainNetPrice
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult MaintenanceDetailsContract(string ContractNo_ItemNo)
+        {
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+            
+            WebService._base.Estimate_Main estimateMain = new WebService._base.Estimate_Main();
+            estimateMain = myWebService.GetEstimate_Main_Contract(ContractNo_ItemNo, "");
+
+
+
+            string EstMainConDesc = "";
+            string EstMainNetPrice = "";
+            string contractNo = "";
+            string itemNo = "";
+            for (int i = 0; i < estimateMain.MainList.Count; i++)
+            {
+                //System.Diagnostics.Debug.WriteLine(estimateMain.MainList[i].MAIN_PU_ID + " : " + estimateMain.MainList[i].MAIN_PU_DESC + " : " + estimateMain.MainList[i].MAIN_PU_MAT_PR);
+                EstMainConDesc = estimateMain.MainList[i].MAIN_CONTRACT_DESC;
+                EstMainNetPrice = estimateMain.MainList[i].MAIN_NET_PRICE;
+                contractNo = estimateMain.MainList[i].MAIN_CONTRACT_NO;
+                itemNo = estimateMain.MainList[i].MAIN_ITEM_NO;
+            }
+
+            return Json(new
+            {
+                txtEstMainConDesc = EstMainConDesc,
+                contractNo = contractNo,
+                itemNo = itemNo,
+                txtEstMainNetPrice = EstMainNetPrice
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult MaintenanceDetails(string PU_BILLRATE)
+        {
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate_Main estimateMain = new WebService._base.Estimate_Main();
+            estimateMain = myWebService.GetEstimate_Main(PU_BILLRATE);
+            string EstMainPUId = "";
+            string EstMainPUDesc = "";
+            string EstMainMatPrice = "";
+            string EstMainInstPrice = "";
+            string EstMainBillRate = "";
+            for (int i = 0; i < estimateMain.MainList.Count; i++)
+            {
+                System.Diagnostics.Debug.WriteLine(estimateMain.MainList[i].MAIN_PU_ID + " : " + estimateMain.MainList[i].MAIN_PU_DESC + " : " + estimateMain.MainList[i].MAIN_PU_MAT_PR);
+                EstMainPUId = estimateMain.MainList[i].MAIN_PU_ID;
+                EstMainPUDesc = estimateMain.MainList[i].MAIN_PU_DESC;
+                EstMainMatPrice = estimateMain.MainList[i].MAIN_PU_MAT_PR;
+                EstMainInstPrice = estimateMain.MainList[i].MAIN_PU_INST_PR;
+                EstMainBillRate = estimateMain.MainList[i].MAIN_BILL_RATE;
+            }
+
+            return Json(new
+            {
+                txtEstMainPUId = EstMainPUId,
+                txtEstMainPUDesc = EstMainPUDesc,
+                txtEstMainMatPrice = EstMainMatPrice,
+                txtEstMainInstPrice = EstMainInstPrice,
+                txtEstMainBillRate = EstMainBillRate
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult MaintenanceDetailsBOQ(string PU_BILLRATE, string schemeName)
+        {
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate_Main estimateMain = new WebService._base.Estimate_Main();
+            estimateMain = myWebService.GetEstimate_Main_BOQ(PU_BILLRATE, schemeName);
+            string EstMainPUId = "";
+            string EstMainPUDesc = "";
+            string EstMainMatPrice = "";
+            string EstMainInstPrice = "";
+            string EstMainBillRate = "";
+            string EstMainPUQty = "";
+            string EstMainOldMatPr = ""; 
+           
+            for (int i = 0; i < estimateMain.MainList.Count; i++)
+            {
+                System.Diagnostics.Debug.WriteLine(estimateMain.MainList[i].MAIN_PU_ID + " : " + estimateMain.MainList[i].MAIN_PU_DESC + " : " + estimateMain.MainList[i].MAIN_PU_MAT_PR);
+                EstMainPUId = estimateMain.MainList[i].MAIN_PU_ID;
+                EstMainPUDesc = estimateMain.MainList[i].MAIN_PU_DESC;
+                EstMainMatPrice = estimateMain.MainList[i].MAIN_PU_MAT_PR;
+                EstMainInstPrice = estimateMain.MainList[i].MAIN_PU_INST_PR;
+                EstMainBillRate = estimateMain.MainList[i].MAIN_BILL_RATE;
+                EstMainPUQty = estimateMain.MainList[i].MAIN_PU_QTY;
+                EstMainOldMatPr = estimateMain.MainList[i].MAIN_OLD_MAT_PR;
+            
+            }
+
+            return Json(new
+            {
+                txtEstMainPUId = EstMainPUId,
+                txtEstMainPUDesc = EstMainPUDesc,
+                txtEstMainMatPrice = EstMainMatPrice,
+                txtEstMainInstPrice = EstMainInstPrice,
+                txtEstMainBillRate = EstMainBillRate,
+                txtEstMainPUQty = EstMainPUQty,
+                txtEstMainOldMatPr = EstMainOldMatPr
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ReportLabourWorkingHours(string id)
+        {
+            string[] arr = id.Split('/');
+            string schemeName = arr[0];
+            string excel_html = arr[1];
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            ViewBag.date = DateTime.Now.ToString("d/M/yyyy");
+            ViewBag.schemeName = schemeName;
+            ViewBag.projNo = "";//myWebService.BOQ_ProjNo(id);
+
+            WebService._base.Estimate_Lab estimateLab = new WebService._base.Estimate_Lab();
+            estimateLab = myWebService.GetEstimate_Lab(schemeName);
+
+            for (int i = 0; i < estimateLab.LabList.Count; i++)
+            {
+                ViewBag.EstLabBuruh = estimateLab.LabList[i].LAB_BURUH;
+                ViewBag.EstLabBiasa = estimateLab.LabList[i].LAB_BIASA;
+                ViewBag.EstLabKanan = estimateLab.LabList[i].LAB_KANAN;
+                ViewBag.EstLabPembantu = estimateLab.LabList[i].LAB_PEMBANTU;
+                ViewBag.EstLabTotal = estimateLab.LabList[i].LAB_EST_TOTAL;
+            }
+            if (excel_html == "EXCEL")
+            {
+                this.Response.AddHeader("Content-Disposition", "attachment; filename=report.xls");
+                this.Response.ContentType = "application/vnd.ms-excel";
+            }
+            return View();
+        }
+
+        public ActionResult ReportIncidentialCost(string id)
+        {
+            string[] arr = id.Split('/');
+            string schemeName = arr[0];
+            string excel_html = arr[1];
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            ViewBag.date = DateTime.Now.ToString("d/M/yyyy");
+            ViewBag.schemeName = schemeName;
+            ViewBag.projNo = "";//myWebService.BOQ_ProjNo(id);
+
+            WebService._base.Estimate_Inc estimateInc = new WebService._base.Estimate_Inc();
+            estimateInc = myWebService.GetEstimate_Inc(schemeName);
+
+            for (int i = 0; i < estimateInc.IncList.Count; i++)
+            {
+                ViewBag.EstIncSupHours = estimateInc.IncList[i].INC_CTRT_SUP_HOURS;
+                ViewBag.EstIncOtSupHours = estimateInc.IncList[i].INC_CTRT_OT_SUP_HOURS;
+                ViewBag.EstIncValue = estimateInc.IncList[i].INC_CTRT_VALUE;
+                ViewBag.EstIncOtValue = estimateInc.IncList[i].INC_CTRT_OT_VALUE;
+                ViewBag.EstIncExecMileage = estimateInc.IncList[i].INC_EXEC_MILEAGE;
+                ViewBag.EstIncNonExecMileage = estimateInc.IncList[i].INC_NON_EXEC_MILEAGE;
+                ViewBag.EstIncTotalHours = estimateInc.IncList[i].INC_TOTAL_HOURS;
+                ViewBag.EstIncTotalValue = estimateInc.IncList[i].INC_TOTAL_VALUE;
+                ViewBag.EstIncTotalMileage = estimateInc.IncList[i].INC_TOTAL_MILEAGE;
+
+            }
+            if (excel_html == "EXCEL")
+            {
+                this.Response.AddHeader("Content-Disposition", "attachment; filename=report.xls");
+                this.Response.ContentType = "application/vnd.ms-excel";
+            }
+            return View();
+        }
+
+        public ActionResult ReportBOQ(string id)
+        {
+            string[] arr = id.Split('|');
+            string schemeName = arr[0];
+            string excel_html = arr[1];
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+            
+            ViewBag.date = DateTime.Now.ToString("d/M/yyyy");
+            ViewBag.schemeName = schemeName;
+            //ViewBag.projNo = myWebService.BOQ_ProjNo(schemeName);
+            using (Entities ctxdata = new Entities())
+            {
+                ViewBag.Exc = (from a in ctxdata.WV_EXC_MAST
+                              join b in ctxdata.G3E_JOB on a.EXC_ABB.Trim() equals b.EXC_ABB.Trim()
+                              where b.SCHEME_NAME == schemeName
+                              select a.EXC_NAME).Single();
+
+
+                ViewBag.projNo = (from  b in ctxdata.G3E_JOB 
+                                   where b.SCHEME_NAME == schemeName
+                                   select b.PROJECT_NO).Single();
+            }
+
+            WebService._base.OSPBOQ_MAIN_EXCEL BOQ_REPORT = new WebService._base.OSPBOQ_MAIN_EXCEL();
+            string checkJKH_Contract = "JKH";
+            BOQ_REPORT = myWebService.GetOSPBOQ_MAIN_Excel(0, 100, schemeName);
+            int count = BOQ_REPORT.BOQ_MAIN_Excel.Count;
+            ViewBag.Page = count/16;
+
+            WebService._base.OSPBOQ_MAIN_EXCEL[] BOQ_REPORT2 = new WebService._base.OSPBOQ_MAIN_EXCEL[count / 16];
+            for (int i = 0; i < (count/16); i++)
+            {
+                BOQ_REPORT2[i] = new WebService._base.OSPBOQ_MAIN_EXCEL();
+                for (int j = (16*i); j < 16*(i+1); j++)
+                {
+                    WebView.WebService._base.BOQ_MAIN_EXCEL BOQ_MAIN_EXCEL = new WebView.WebService._base.BOQ_MAIN_EXCEL();
+                    BOQ_MAIN_EXCEL.x_TOTAL_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_TOTAL_PRICE;
+                    BOQ_MAIN_EXCEL.x_INSTALL_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_INSTALL_VALUE;
+                    BOQ_MAIN_EXCEL.x_BQ_INSTALL_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_BQ_INSTALL_PRICE;
+                    BOQ_MAIN_EXCEL.x_MATERIAL_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_MATERIAL_VALUE;
+                    BOQ_MAIN_EXCEL.x_BQ_MAT_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_BQ_MAT_PRICE;
+                    BOQ_MAIN_EXCEL.x_PU_UOM = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_UOM;
+                    BOQ_MAIN_EXCEL.x_BQ_CONT_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_BQ_CONT_PRICE;
+                    BOQ_MAIN_EXCEL.x_CONT_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_CONT_VALUE;
+                    BOQ_MAIN_EXCEL.x_TOTAL_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_TOTAL_VALUE;
+                    BOQ_MAIN_EXCEL.x_PU_DESC = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_DESC; // PLANT UNIT
+                    BOQ_MAIN_EXCEL.x_CONTRACT_NO = BOQ_REPORT.BOQ_MAIN_Excel[j].x_CONTRACT_NO;
+                    BOQ_MAIN_EXCEL.x_CONTRACT_DESC = BOQ_REPORT.BOQ_MAIN_Excel[j].x_CONTRACT_DESC;
+                    BOQ_MAIN_EXCEL.x_PU_ID = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_ID;
+                    BOQ_MAIN_EXCEL.x_ISP_OSP = BOQ_REPORT.BOQ_MAIN_Excel[j].x_ISP_OSP;
+                    BOQ_MAIN_EXCEL.x_PU_QTY = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_QTY;
+                    BOQ_MAIN_EXCEL.x_RATE_INDICATOR = BOQ_REPORT.BOQ_MAIN_Excel[j].x_RATE_INDICATOR;
+                    BOQ_MAIN_EXCEL.x_ITEM_NO = BOQ_REPORT.BOQ_MAIN_Excel[j].x_ITEM_NO;
+                    BOQ_MAIN_EXCEL.x_NET_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_NET_PRICE;
+
+                    BOQ_REPORT2[i].BOQ_MAIN_Excel.Add(BOQ_MAIN_EXCEL);
+                }
+            }
+
+            ViewBag.TotalInstallValue =  BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_INSTALL_VALUE_TOTAL;
+            ViewBag.TotalMaterialValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_MATERIAL_VALUE_TOTAL;
+            ViewBag.TotalContractValue =   BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_CONT_VALUE_TOTAL;
+            ViewBag.TotalValue =   BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_TOTAL_VALUE_TOTAL;
+
+            if (myWebService.CheckBOQErrorPUID(schemeName) && myWebService.CheckBOQErrorMinMaterial(schemeName))
+            {
+                ViewBag.ErrorMsgInList = "Unmatched Plan Unit and Min Material";
+                ViewBag.ErrorMsgInTotal = "WARNING! COST FIGURES ARE INACCURATE";
+            }
+            else if (myWebService.CheckBOQErrorPUID(schemeName) && myWebService.CheckBOQErrorContractNo(schemeName))
+            {
+                ViewBag.ErrorMsgInList = "Unmatched Contract No and Min Material";
+                ViewBag.ErrorMsgInTotal = "WARNING! COST FIGURES ARE INACCURATE";
+            }
+            else if (myWebService.CheckBOQErrorPUID(schemeName))
+            {
+                ViewBag.ErrorMsgInList = "Unmatched Plan Unit";
+                ViewBag.ErrorMsgInTotal = "WARNING! COST FIGURES ARE INACCURATE";
+            }
+            else if (myWebService.CheckBOQErrorContractNo(schemeName))
+            {
+                ViewBag.ErrorMsgInList = "Unmatched Contract No";
+                ViewBag.ErrorMsgInTotal = "WARNING! COST FIGURES ARE INACCURATE";
+            }
+            else if (myWebService.CheckBOQErrorMinMaterial(schemeName))
+            {
+                ViewBag.ErrorMsgInList = "Unmatched Min Material";
+                ViewBag.ErrorMsgInTotal = "WARNING! COST FIGURES ARE INACCURATE";
+            }
+            else
+            {
+                ViewBag.ErrorMsgInList = "";
+                ViewBag.ErrorMsgInTotal = "";
+            }
+            for (int pageNum = 1; pageNum <= (count/16); pageNum++)
+            {
+                ViewData["BOQReportData" + pageNum] = BOQ_REPORT2[pageNum-1].BOQ_MAIN_Excel;
+            }
+            // this.Response.AddHeader("Content-Disposition", "Report.xls");
+            if (excel_html == "EXCEL")
+            {
+                this.Response.AddHeader("Content-Disposition", "attachment; filename=" +schemeName+".xls");
+                this.Response.ContentType = "application/vnd.ms-excel";
+            }
+            return View();
+        }
+
+        public ActionResult ReportBOQ_Contract(string id)
+        {
+            string[] arr = id.Split('|');
+            string schemeName = arr[0];
+            string excel_html = arr[1];
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            ViewBag.date = DateTime.Now.ToString("d/M/yyyy");
+            ViewBag.schemeName = schemeName;
+           // ViewBag.projNo = "";//myWebService.BOQ_ProjNo(id);
+            using (Entities ctxdata = new Entities())
+            {
+                int countExc = (from a in ctxdata.WV_EXC_MAST
+                             join b in ctxdata.G3E_JOB on a.EXC_ABB.Trim() equals b.EXC_ABB.Trim()
+                             where b.SCHEME_NAME == schemeName
+                             select a.EXC_NAME).Count();
+
+                if (countExc != 0)
+                {
+                    ViewBag.Exc = (from a in ctxdata.WV_EXC_MAST
+                                   join b in ctxdata.G3E_JOB on a.EXC_ABB.Trim() equals b.EXC_ABB.Trim()
+                                   where b.SCHEME_NAME == schemeName
+                                   select a.EXC_NAME).Single();
+                }
+                else
+                {
+                    ViewBag.Exc = (from a in ctxdata.WV_EXC_MAST
+                                   join b in ctxdata.WV_ISP_JOB on a.EXC_ABB.Trim() equals b.EXC_ABB.Trim()
+                                   where b.SCHEME_NAME == schemeName
+                                   select a.EXC_NAME).Single();
+                }
+
+                ViewBag.projNo = (from b in ctxdata.G3E_JOB
+                                  where b.SCHEME_NAME == schemeName
+                                  select b.PROJECT_NO).Single();
+            }
+            
+
+            WebService._base.OSPBOQ_MAIN_EXCEL BOQ_REPORT = new WebService._base.OSPBOQ_MAIN_EXCEL();
+            string checkJKH_Contract = "CONTRACT";
+            BOQ_REPORT = myWebService.GetOSPBOQ_MAIN_Excel(0, 100, schemeName);
+            int count = BOQ_REPORT.BOQ_MAIN_Excel.Count;
+            ViewBag.Page = count/16;
+
+            WebService._base.OSPBOQ_MAIN_EXCEL[] BOQ_REPORT2 = new WebService._base.OSPBOQ_MAIN_EXCEL[count / 16];
+
+            for (int i = 0; i < (count / 16); i++)
+            {
+                BOQ_REPORT2[i] = new WebService._base.OSPBOQ_MAIN_EXCEL();
+                for (int j = (16 * i); j < 16 * (i + 1); j++)
+                {
+                    WebView.WebService._base.BOQ_MAIN_EXCEL BOQ_MAIN_EXCEL = new WebView.WebService._base.BOQ_MAIN_EXCEL();
+                    BOQ_MAIN_EXCEL.x_TOTAL_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_TOTAL_PRICE;
+                    BOQ_MAIN_EXCEL.x_INSTALL_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_INSTALL_VALUE;
+                    BOQ_MAIN_EXCEL.x_BQ_INSTALL_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_BQ_INSTALL_PRICE;
+                    BOQ_MAIN_EXCEL.x_MATERIAL_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_MATERIAL_VALUE;
+                    BOQ_MAIN_EXCEL.x_BQ_MAT_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_BQ_MAT_PRICE;
+                    BOQ_MAIN_EXCEL.x_PU_UOM = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_UOM;
+                    BOQ_MAIN_EXCEL.x_BQ_CONT_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_BQ_CONT_PRICE;
+                    BOQ_MAIN_EXCEL.x_CONT_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_CONT_VALUE;
+                    BOQ_MAIN_EXCEL.x_TOTAL_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_TOTAL_VALUE;
+                    BOQ_MAIN_EXCEL.x_PU_DESC = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_DESC; // PLANT UNIT
+                    BOQ_MAIN_EXCEL.x_CONTRACT_NO = BOQ_REPORT.BOQ_MAIN_Excel[j].x_CONTRACT_NO;
+                    BOQ_MAIN_EXCEL.x_CONTRACT_DESC = BOQ_REPORT.BOQ_MAIN_Excel[j].x_CONTRACT_DESC;
+                    BOQ_MAIN_EXCEL.x_PU_ID = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_ID;
+                    BOQ_MAIN_EXCEL.x_ISP_OSP = BOQ_REPORT.BOQ_MAIN_Excel[j].x_ISP_OSP;
+                    BOQ_MAIN_EXCEL.x_PU_QTY = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_QTY;
+                    BOQ_MAIN_EXCEL.x_RATE_INDICATOR = BOQ_REPORT.BOQ_MAIN_Excel[j].x_RATE_INDICATOR;
+                    BOQ_MAIN_EXCEL.x_ITEM_NO = BOQ_REPORT.BOQ_MAIN_Excel[j].x_ITEM_NO;
+                    BOQ_MAIN_EXCEL.x_NET_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_NET_PRICE;
+
+                    BOQ_REPORT2[i].BOQ_MAIN_Excel.Add(BOQ_MAIN_EXCEL);
+                }
+            }
+            ViewBag.TotalInstallValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_INSTALL_VALUE_TOTAL;
+            ViewBag.TotalMaterialValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_MATERIAL_VALUE_TOTAL;
+            ViewBag.TotalContractValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_CONT_VALUE_TOTAL;
+            ViewBag.TotalValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_TOTAL_VALUE_TOTAL;
+
+            if (myWebService.CheckBOQErrorPUID(schemeName) && myWebService.CheckBOQErrorMinMaterial(schemeName))
+            {
+                ViewBag.ErrorMsgInList = "Unmatched Plan Unit and Min Material";
+                ViewBag.ErrorMsgInTotal = "WARNING! COST FIGURES ARE INACCURATE";
+            }
+            else if (myWebService.CheckBOQErrorPUID(schemeName))
+            {
+                ViewBag.ErrorMsgInList = "Unmatched Plan Unit";
+                ViewBag.ErrorMsgInTotal = "WARNING! COST FIGURES ARE INACCURATE";
+            }
+            else if (myWebService.CheckBOQErrorMinMaterial(schemeName))
+            {
+                ViewBag.ErrorMsgInList = "Unmatched Min Material";
+                ViewBag.ErrorMsgInTotal = "WARNING! COST FIGURES ARE INACCURATE";
+            }
+            else
+            {
+                ViewBag.ErrorMsgInList = "";
+                ViewBag.ErrorMsgInTotal = "";
+            }
+
+            for (int pageNum = 1; pageNum <= (count / 16); pageNum++)
+            {
+                ViewData["BOQReportData" + pageNum] = BOQ_REPORT2[pageNum - 1].BOQ_MAIN_Excel;
+            }
+            //string vB = "BOQReportData1";
+            //ViewData["BOQReportData"] = BOQ_REPORT.BOQ_MAIN_Excel;
+            // this.Response.AddHeader("Content-Disposition", "Report.xls");
+            if (excel_html == "EXCEL")
+            {
+                this.Response.AddHeader("Content-Disposition", "attachment; filename=" + schemeName + ".xls");
+                this.Response.ContentType = "application/vnd.ms-excel";
+            }
+            return View();
+        }
+
+        public ActionResult ReportProjectCostBreakdown(string id)
+        {
+            string[] arr = id.Split('|');
+            string schemeName = arr[0];
+            string excel_html = arr[1];
+            string jkhContract = arr[2];
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+          
+            ViewBag.JKH_CONTRACT = jkhContract;
+            ViewBag.date = DateTime.Now.ToString("dd/MM/yyyy");
+            ViewBag.schemeName = schemeName;
+            ViewBag.projNo = "";//myWebService.BOQ_ProjNo(id);
+
+            WebService._base.SUMM_ProjCost estimateBP = new WebService._base.SUMM_ProjCost();
+            estimateBP = myWebService.Get_ProjCost(schemeName);
+
+            for (int i = 0; i < estimateBP.ProjCost.Count; i++)
+            {
+                ViewBag.SumLbrOT = estimateBP.ProjCost[i].SUM_LBR_OT;
+                ViewBag.SumLbrSalary = estimateBP.ProjCost[i].SUM_LBR_SALARY;
+                ViewBag.SumMaterial = estimateBP.ProjCost[i].SUM_MATERIAL;
+                if (estimateBP.ProjCost[i].SUM_JKH == "0.00")
+                {
+                    //ViewBag.SumJKH = "0.00";
+                    ViewBag.SumJKH = estimateBP.ProjCost[i].SUM_CONTRACT;
+                }
+                else
+                {
+                    //ViewBag.SumContract = estimateBP.ProjCost[i].SUM_CONTRACT;
+                    ViewBag.SumJKH = estimateBP.ProjCost[i].SUM_JKH;
+                }
+                ViewBag.SumTNT_Mileage = estimateBP.ProjCost[i].SUM_TNT_MILEAGE;
+                ViewBag.SumMilling = estimateBP.ProjCost[i].SUM_MILLING;
+                ViewBag.SumMisc = estimateBP.ProjCost[i].SUM_MISC;
+                ViewBag.SumTotal = estimateBP.ProjCost[i].SUM_TOTAL;
+                //if (estimateBP.ProjCost[i].SUM_CONTRACT == "0.00")
+                //{
+                //    ViewBag.SUM_CONTRACT = "";
+                //}
+                //else
+                //{
+                //    ViewBag.SumJKH = estimateBP.ProjCost[i].SUM_JKH;
+                    //ViewBag.SumContract = estimateBP.ProjCost[i].SUM_CONTRACT;
+                //}
+               
+            }
+
+            using (Entities ctxdata = new Entities())
+            {
+                var query = from a in ctxdata.G3E_JOB
+                            where a.SCHEME_NAME == schemeName
+                            select new { a.PLAN_START_DATE, a.PLAN_END_DATE };
+                foreach(var a in query)
+                {
+                    ViewBag.StartDate = String.Format("{0:MM/dd/yyyy}",a.PLAN_START_DATE);
+                    ViewBag.EndDate = String.Format("{0:MM/dd/yyyy}", a.PLAN_END_DATE);
+                }
+            }
+
+            if (excel_html == "EXCEL")
+            {
+                this.Response.AddHeader("Content-Disposition", "attachment; filename="+schemeName+".xls");
+                this.Response.ContentType = "application/vnd.ms-excel";
+            }
+            return View();
+        }
+
+        public ActionResult ReportBussinessPlanEstimate(string id)
+        {
+            string[] arr = id.Split('/');
+            string schemeName = arr[0];
+            string excel_html = arr[1];
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            ViewBag.date = DateTime.Now.ToString("dd/MM/yyyy");
+            ViewBag.schemeName = schemeName;
+            ViewBag.projNo = "";//myWebService.BOQ_ProjNo(id);
+
+            WebService._base.Estimate_BPlanEstimate estimateBP = new WebService._base.Estimate_BPlanEstimate();
+            estimateBP = myWebService.GetBussinessPlan_Estimate(schemeName);
+
+            for (int i = 0; i < estimateBP.BPlanEstimate.Count; i++)
+            {
+                ViewBag.EstBPJamBuruh = estimateBP.BPlanEstimate[i].BP_JAM_BURUH;
+                ViewBag.EstBPJamNilai = estimateBP.BPlanEstimate[i].BP_JAM_NILAI;
+                ViewBag.EstBPOTBuruh = estimateBP.BPlanEstimate[i].BP_OT_BURUH;
+                ViewBag.EstBPOTNilai = estimateBP.BPlanEstimate[i].BP_OT_NILAI;
+                ViewBag.EstBPJKHBahan = estimateBP.BPlanEstimate[i].BP_JKH_BAHAN;
+                ViewBag.EstBPJKHPelbagai = estimateBP.BPlanEstimate[i].BP_JKH_PEL;
+                ViewBag.EstBPTMBahan = estimateBP.BPlanEstimate[i].BP_TM_BAHAN;
+                ViewBag.EstBPTMPelbagai = estimateBP.BPlanEstimate[i].BP_TM_PEL;
+                ViewBag.EstBPTotalBuruh = estimateBP.BPlanEstimate[i].BP_TOTAL_BURUH;
+                ViewBag.EstBPTotalNilai = estimateBP.BPlanEstimate[i].BP_TOTAL_NILAI;
+                ViewBag.EstBPTotalBahan = estimateBP.BPlanEstimate[i].BP_TOTAL_BAHAN;
+                ViewBag.EstBPTotalPelbagai = estimateBP.BPlanEstimate[i].BP_TOTAL_PELBAGAI;
+                ViewBag.EstBPTotalJKH = estimateBP.BPlanEstimate[i].BP_TOTAL_JKH;
+                ViewBag.EstBPTotalTM = estimateBP.BPlanEstimate[i].BP_TOTAL_TM;
+                ViewBag.EstBPTotalKos = estimateBP.BPlanEstimate[i].BP_TOTAL_KOS;
+                ViewBag.EstBPTotalTotal = estimateBP.BPlanEstimate[i].BP_TOTAL_TOTAL;
+                ViewBag.EstBPStartDate = estimateBP.BPlanEstimate[i].BP_START_DATE;
+                ViewBag.EstBPEndDate = estimateBP.BPlanEstimate[i].BP_END_DATE;
+            }
+            if (excel_html == "EXCEL")
+            {
+                this.Response.AddHeader("Content-Disposition", "attachment; filename=report.xls");
+                this.Response.ContentType = "application/vnd.ms-excel";
+            }
+            return View();
+        }
+
+        public ActionResult ReportMaterialSupply(string id)
+        {
+            string[] arr = id.Split('|');
+            string schemeName = arr[0];
+            string excel_html = arr[1];
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            ViewBag.date = DateTime.Now.ToString("d/M/yyyy");
+            ViewBag.schemeName = schemeName;
+            ViewBag.projNo = "";//myWebService.BOQ_ProjNo(id);
+            System.Diagnostics.Debug.WriteLine("SCHEME: " + schemeName);
+            using (Entities ctxdata = new Entities())
+            {
+                ViewBag.Exc = (from a in ctxdata.WV_EXC_MAST
+                               join b in ctxdata.G3E_JOB on a.EXC_ABB.Trim() equals b.EXC_ABB.Trim()
+                               where b.SCHEME_NAME == schemeName
+                               select a.EXC_NAME).Single();
+            }
+
+            WebService._base.OSPBOQ_MAIN_EXCEL BOQ_REPORT = new WebService._base.OSPBOQ_MAIN_EXCEL();
+            string checkJKH_Contract = "JKH";
+            BOQ_REPORT = myWebService.GetOSPBOQ_MAT_Excel(0, 100, schemeName);
+            System.Diagnostics.Debug.WriteLine("REPORT: " + BOQ_REPORT);
+            int count = BOQ_REPORT.BOQ_MAIN_Excel.Count;
+            ViewBag.Page = count / 16;
+
+            WebService._base.OSPBOQ_MAIN_EXCEL[] BOQ_REPORT2 = new WebService._base.OSPBOQ_MAIN_EXCEL[count / 16];
+            for (int i = 0; i < (count / 16); i++)
+            {
+                BOQ_REPORT2[i] = new WebService._base.OSPBOQ_MAIN_EXCEL();
+                for (int j = (16 * i); j < 16 * (i + 1); j++)
+                {
+                    WebView.WebService._base.BOQ_MAIN_EXCEL BOQ_MAIN_EXCEL = new WebView.WebService._base.BOQ_MAIN_EXCEL();
+                    BOQ_MAIN_EXCEL.x_TOTAL_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_TOTAL_PRICE;
+                    BOQ_MAIN_EXCEL.x_MATERIAL_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_MATERIAL_VALUE;
+                    BOQ_MAIN_EXCEL.x_BQ_MAT_PRICE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_BQ_MAT_PRICE;
+                    BOQ_MAIN_EXCEL.x_PU_UOM = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_UOM;
+                    BOQ_MAIN_EXCEL.x_TOTAL_VALUE = BOQ_REPORT.BOQ_MAIN_Excel[j].x_TOTAL_VALUE;
+                    BOQ_MAIN_EXCEL.x_PU_DESC = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_DESC; 
+                    BOQ_MAIN_EXCEL.x_PU_ID = BOQ_REPORT.BOQ_MAIN_Excel[j].x_PU_ID;
+                    BOQ_MAIN_EXCEL.x_ISP_OSP = BOQ_REPORT.BOQ_MAIN_Excel[j].x_ISP_OSP;
+
+                    BOQ_REPORT2[i].BOQ_MAIN_Excel.Add(BOQ_MAIN_EXCEL);
+                }
+            }
+
+            //ViewBag.TotalInstallValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_INSTALL_VALUE_TOTAL;
+            //ViewBag.TotalMaterialValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_MATERIAL_VALUE_TOTAL;
+            //ViewBag.TotalContractValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_CONT_VALUE_TOTAL;
+            ViewBag.TotalValue = BOQ_REPORT.BOQ_MAIN_Excel[count - 1].x_TOTAL_VALUE_TOTAL;
+            for (int pageNum = 1; pageNum <= (count / 16); pageNum++)
+            {
+                ViewData["BOQReportData" + pageNum] = BOQ_REPORT2[pageNum - 1].BOQ_MAIN_Excel;
+            }
+            // this.Response.AddHeader("Content-Disposition", "Report.xls");
+            if (excel_html == "EXCEL")
+            {
+                this.Response.AddHeader("Content-Disposition", "attachment; filename=" + schemeName + ".xls");
+                this.Response.ContentType = "application/vnd.ms-excel";
+            }
+            return View();
+        }
+
+        public ActionResult UpdateDataLWH(string schemeName, string txtJBuruh, string txtJBiasa, string txtJKanan, string txtPTBiasa)
+        {
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate newLWH = new WebService._base.Estimate();
+            newLWH.LAB_BURUH = txtJBuruh;
+            newLWH.LAB_BIASA = txtJBiasa;
+            newLWH.LAB_KANAN = txtJKanan;
+            newLWH.LAB_PEMBANTU = txtPTBiasa;
+            success = myWebService.UpdateDataLWH(newLWH, schemeName);
+
+            WebService._base.Estimate_Lab estimateLab = new WebService._base.Estimate_Lab();
+            estimateLab = myWebService.GetEstimate_Lab(schemeName);
+
+            string EstLabTotal = "";
+            for (int i = 0; i < estimateLab.LabList.Count; i++)
+            {
+
+                EstLabTotal = estimateLab.LabList[i].LAB_EST_TOTAL;
+            }
+
+            return Json(new
+            {
+                txttotal = EstLabTotal,
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult UpdateDataSUM(string schemeName, string txtSumLbrOT, string txtSumLbrSalary, string txtSumTNT_Mileage, string txtSumMilling, string txtSumMisc)
+        {
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate newSumm = new WebService._base.Estimate();
+            newSumm.SUM_LBR_OT = txtSumLbrOT;
+            newSumm.SUM_LBR_SALARY = txtSumLbrSalary;
+            newSumm.SUM_MILLING = txtSumMilling;
+            newSumm.SUM_MISC = txtSumMisc;
+            newSumm.SUM_TNT_MILEAGE = txtSumTNT_Mileage;
+
+            success = myWebService.UpdateDataSUM(newSumm, schemeName);
+
+            return Json(new
+            {
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+            
+        }
+
+        public ActionResult UpdateDataMaintenance(string schemeName, string PU_ID, string PU_BILLRATE, string txtEstMainPUDesc, string txtEstMainPUQty, string txtEstMainOldMatPr)
+        {
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate updateMain = new WebService._base.Estimate();
+            updateMain.MAIN_PU_DESC = txtEstMainPUDesc;
+            updateMain.MAIN_PU_QTY = txtEstMainPUQty;
+            updateMain.MAIN_OLD_MAT_PR = txtEstMainOldMatPr;
+            success = myWebService.UpdateDataMaintenance(updateMain, schemeName, PU_ID, PU_BILLRATE);
+
+            return Json(new
+            {
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult UpdateDataMaintenanceContract(string schemeName, string contractNo, string itemNo, string qty)
+        {
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            success = myWebService.UpdateDataMaintenanceContract(schemeName, contractNo, itemNo, qty);
+
+            return Json(new
+            {
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        public ActionResult AddDataMaintenance(string schemeName, string PU_ID, string PU_BILLRATE, string txtEstMainPUDesc, string txtEstMainPUQty, string txtEstMainOldMatPr, string txtEstMainMatPrice, string txtEstMainInstPrice)
+        {
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate updateMain = new WebService._base.Estimate();
+            updateMain.MAIN_PU_DESC = txtEstMainPUDesc;
+            updateMain.MAIN_PU_QTY = txtEstMainPUQty;
+            updateMain.MAIN_OLD_MAT_PR = txtEstMainOldMatPr;
+            updateMain.MAIN_PU_INST_PR = txtEstMainInstPrice;
+            updateMain.MAIN_PU_MAT_PR = txtEstMainMatPrice;
+
+            success = myWebService.AddDataMaintenance(updateMain, schemeName, PU_ID, PU_BILLRATE);
+
+            return Json(new
+            {
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult AddDataMaintenanceContract(string schemeName, string ContractNo, string ItemNo, string txtQuantity, string txtEstMulItemNo)
+        {
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+            
+            System.Diagnostics.Debug.WriteLine(schemeName + " : " + ContractNo + " : " + ItemNo + " : "+ txtQuantity);
+            success = myWebService.AddDataMaintenanceContract(schemeName, ContractNo, ItemNo, txtQuantity);
+
+            string[] check = txtEstMulItemNo.Split(','); // check item no
+            string[] arr = txtEstMulItemNo.Split(',');
+
+            if (ItemNo == "Multiple")
+            {
+                for (int i = 0; i < check.Length; i++)
+                {
+                    success = myWebService.CheckItemContractBOQ(schemeName, arr[i]);
+                }
+               
+                if (success == true)
+                { // if item no doesn't exist
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        success = myWebService.AddDataMaintenanceContract(schemeName, ContractNo, arr[i], txtQuantity);
+                    }
+                }
+            }
+            
+
+            return Json(new
+            {
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult UpdateDataIncCost(string schemeName, string txtEstIncOtSupHours, string txtEstIncValue, string txtEstIncOtValue, string txtEstIncExecMileage, string txtEstIncNonExecMileage)
+        {
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate newIncCost = new WebService._base.Estimate();
+            newIncCost.INC_CTRT_VALUE = txtEstIncValue;
+            newIncCost.INC_CTRT_OT_SUP_HOURS = txtEstIncOtSupHours;
+            newIncCost.INC_CTRT_OT_VALUE = txtEstIncOtValue;
+            newIncCost.INC_EXEC_MILEAGE = txtEstIncExecMileage;
+            newIncCost.INC_NON_EXEC_MILEAGE = txtEstIncNonExecMileage;
+            success = myWebService.UpdateDataINC(newIncCost, schemeName);
+
+            WebService._base.Estimate_Inc estimateInc = new WebService._base.Estimate_Inc();
+            estimateInc = myWebService.GetEstimate_Inc(schemeName);
+
+            string EstIncTotalHours = "";
+            string EstIncTotalValue = "";
+            string EstIncTotalMileage = "";
+            for (int i = 0; i < estimateInc.IncList.Count; i++)
+            {
+
+                EstIncTotalHours = estimateInc.IncList[i].INC_TOTAL_HOURS;
+                EstIncTotalValue = estimateInc.IncList[i].INC_TOTAL_VALUE;
+                EstIncTotalMileage = estimateInc.IncList[i].INC_TOTAL_MILEAGE;
+            }
+
+
+            return Json(new
+            {
+                txtEstIncTotalHours = EstIncTotalHours,
+                txtEstIncTotalValue = EstIncTotalValue,
+                txtEstIncTotalMileage = EstIncTotalMileage,
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult UpdateDataBussinessPlanEstimate(string schemeName, string txtEstBPJamBuruh, string txtEstBPJamNilai, string txtEstBPOTBuruh, string txtEstBPOTNilai, string txtEstBPTMPelbagai)
+        {
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+
+            WebService._base.Estimate newBP = new WebService._base.Estimate();
+            newBP.BP_JAM_BURUH = txtEstBPJamBuruh;
+            newBP.BP_JAM_NILAI = txtEstBPJamNilai;
+            newBP.BP_OT_BURUH = txtEstBPOTBuruh;
+            newBP.BP_OT_NILAI = txtEstBPOTNilai;
+            newBP.BP_TM_PEL = txtEstBPTMPelbagai;
+            success = myWebService.UpdateDataBPlanEstimate(newBP, schemeName);
+
+            return Json(new
+            {
+                Success = success
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AddEst_Maintenance(string PU_BILLRATE, string schemeName, string txtEstMainPUDesc, string txtEstMainMatPrice, string txtEstMainInstPrice, string txtEstMainPUQty, string txtEstMainOldMatPr, string txtEstMainOldInstPr, string txtEstMainConstructBy, string txtEstMainRecvrQty)
+        {
+            string[] arr = PU_BILLRATE.Split('/');
+            string txtEstMainPUId = arr[0];
+            string txtEstMainBillRate = arr[1];
+
+            bool success = true;
+
+            WebView.WebService._base myWebService;
+            myWebService = new WebService._base();
+            int check = 0;
+            using (Entities ctxData = new Entities())
+            {
+                var query = from p in ctxData.WV_MAIN_DATA
+                            where p.SCHEME_NAME == schemeName
+                            select new { Text = p.PU_ID + "/" + p.BILL_RATE };
+
+                foreach (var a in query)
+                {
+                    if (check == 0)
+                    {
+                        if (a.Text == PU_BILLRATE)
+                            check = 1;
+                    }
+                }
+            }
+            if (check == 0)
+            {
+                WebService._base.Estimate newEstMain = new WebService._base.Estimate();
+                newEstMain.SCHEME_NAME = schemeName;
+                newEstMain.MAIN_PU_ID = txtEstMainPUId;
+                newEstMain.MAIN_PU_DESC = txtEstMainPUDesc;
+                newEstMain.MAIN_PU_MAT_PR = txtEstMainMatPrice;
+                newEstMain.MAIN_PU_INST_PR = txtEstMainInstPrice;
+                newEstMain.MAIN_PU_QTY = txtEstMainPUQty;
+                newEstMain.MAIN_OLD_MAT_PR = txtEstMainOldMatPr;
+                newEstMain.MAIN_OLD_INSTALL_PR = txtEstMainOldInstPr;
+                newEstMain.MAIN_CONSTRUCT_BY = txtEstMainConstructBy;
+                newEstMain.MAIN_RECVR_QTY = txtEstMainRecvrQty;
+                newEstMain.MAIN_BILL_RATE = txtEstMainBillRate;
+
+                success = myWebService.AddEstimate_Main(newEstMain);
+            }
+            return Json(new
+            {
+                Success = success,
+                check = check
+            }, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

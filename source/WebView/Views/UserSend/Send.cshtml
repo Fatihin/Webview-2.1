@@ -1,0 +1,83 @@
+﻿@model WebView.Models.UserSendModel.ViewModel
+@{
+    ViewBag.Title = "Send";
+}
+
+
+  <script language="javascript" type="text/javascript">
+      function GetObjectType(object) {
+          var con = object.constructor;
+          con = con.toString();
+          var lastBracket = con.indexOf('()');
+          var objectName = con.substring(9, lastBracket)
+          return objectName;
+      }
+
+      jQuery(document).ready(function ($) {
+          $(function () {
+              $("#btn-add,#btn-remove").click(function (event) {
+                  var id = $(event.target).attr("id");
+                  
+                  alert(GetObjectType(event));
+                  var selectFrom = id == "btn-add" ? "#AvailableSelected" : "#RequestedSelected";
+                  var moveTo = id == "btn-add" ? "#RequestedSelected" : "#AvailableSelected";
+
+                  var selectedItems = $(selectFrom + " :selected").toArray();
+                  $(moveTo).append(selectedItems);
+                  selectedItems.remove;
+              });
+          });
+      });
+            
+        </script>
+
+
+<br />
+<br />
+<h2> Send </h2>
+
+
+@using (Html.BeginForm("Send", "UserSend", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>All List :</th><th>
+                    </th><th>Send List :</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td valign="top">
+                         @Html.ListBox("AvailableSelected",
+                            new MultiSelectList(Model.AvailableProducts, "Id",
+           "Name"), new { size = "6", style = "width:150px;" })
+
+                    </td>
+                    <td valign="top">
+                    <input type="button" value="Add" id="btn-add" style="height:30px;width:80px;" /><br />
+                    <input type="button" value="Remove" id="btn-remove" style="height:30px;width:80px; vertical-align:top;" />
+                            
+                    </td>
+                    <td valign="top">
+                        @Html.ListBoxFor(model => model.RequestedSelected,
+                          new MultiSelectList(Model.RequestedProducts, "Id",
+           "Name"), new { size = "6", style = "width:150px;" })
+                    </td>
+                </tr>
+                <tr> 
+                <td></td><td></td>               
+                <td><input type="submit" value="Send" id="btn-send" style="height:30px;width:80px;" /><br /></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <h2>Successfully Send!</h2>
+          @Html.ListBox("ListSend", new MultiSelectList(Model.ListSend), new { size = "6", style = "width:150px;" })
+
+        <br />
+        @Html.HiddenFor(model => model.SavedRequested)
+    </div>
+}
+

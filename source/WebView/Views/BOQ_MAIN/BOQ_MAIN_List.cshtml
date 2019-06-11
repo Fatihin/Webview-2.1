@@ -1,0 +1,233 @@
+﻿@{
+    ViewBag.Title = "BOQ_MAIN_List";    
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtSCHEME_NAME", data.x_SCHEME_NAME);
+        SetElement("txtSCHEME_NAME1", data.x_SCHEME_NAME);
+        SetElement("txtYEAR_INSTALL", data.x_YEAR_INSTALL);
+        SetElement("txtSCH_TYPE", data.x_SCH_TYPE);
+        SetElement("txtSCH_NO", data.x_SCH_NO);
+        SetElement("txtEXC_ABB", data.x_EXC_ABB);
+        SetElement("txtPU_ID", data.x_PU_ID);
+        SetElement("txtBQ_MAT_PRICE", data.x_BQ_MAT_PRICE);
+        SetElement("txtBQ_INSTALL_PRICE", data.x_BQ_INSTALL_PRICE);
+        SetElement("txtPU_QTY", data.x_PU_QTY);      
+        SetElement("txtRATE_INDICATOR", data.x_RATE_INDICATOR);
+        SetText("txtSCHEME_NAME", data.x_SCHEME_NAME);
+
+        document.getElementById("targetBOQ_MAIN").value = data.x_SCHEME_NAME;
+        document.getElementById("btnClose").disabled = false;
+                
+    }
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtSCHEME_NAME1").readOnly = true;
+        document.getElementById("txtYEAR_INSTALL").readOnly = true;
+        document.getElementById("txtSCH_TYPE").readOnly = true;
+        document.getElementById("txtSCH_NO").readOnly = true;
+        document.getElementById("txtEXC_ABB").readOnly = true;
+        document.getElementById("txtPU_ID").readOnly = true;
+        document.getElementById("txtBQ_MAT_PRICE").readOnly = true;
+        document.getElementById("txtBQ_INSTALL_PRICE").readOnly = true;
+        document.getElementById("txtPU_QTY").readOnly = true;      
+        document.getElementById("txtRATE_INDICATOR").readOnly = true;
+        document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "BOQ_MAIN_List?searchKey=" + document.getElementById("searchKey").value; //Where "BOQ_MAIN_List" is the function in the controller.
+            });
+        });
+
+        $(function () {
+            $('#btnExcel').click(function () {
+                window.location = "BOQ_MAIN_Excel?searchKey=" + document.getElementById("searchKey").value; //Where "BOQ_MAIN_Excel" is the function in the controller.
+            });
+        });
+
+        $(function () 
+        {
+
+            $('#btnClose').click(function () 
+            {               
+                document.getElementById("divDetails").style.display = "none";
+            });
+       
+
+            $('#btnDelete').click(function () {
+                $.ajax({
+                    url: "/BOQ_MAIN/DeleteData_BOQ_MAIN",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetBOQ_MAIN": document.getElementById("targetBOQ_MAIN").value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Deleted");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Delete failed.");
+                        }
+                    }
+                });
+            });
+
+
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+   
+</script>
+
+<br />
+<br />
+<h2>BOQ Maintenance</h2>
+<div style="height:400px">
+    <table >
+        <tr>
+        <td>Filter by SCHEME NAME</td>
+            <td>@Html.DropDownList("searchKey", (IEnumerable<SelectListItem>)ViewBag.x_SCHEME_NAME, new { style = "width:200px" })</td>            
+        <td><input type="button" value="Search" id="btnSearch" /></td>        
+        <td><input type="button" value="Excel Report" id="btnExcel" /></td>                                       
+        </tr>
+    </table> 
+    <table id="rounded-corner" summary="BOQ List" width="800px">
+        <thead>
+            <tr>                
+                <th scope="col" style="width:100px">SCHEME NAME</th>            
+                <th scope="col" style="width:100px">YEAR INSTALL</th>
+                <th scope="col" style="width:100px">SCHEME TYPE</th>
+                <th scope="col" style="width:100px">SCHEME NO</th>
+                <th scope="col" style="width:100px">EXC ABB</th>
+                <th scope="col" style="width:100px">PU ID</th>
+                <th scope="col" style="width:100px">BQ MAT PRICE</th>
+                <th scope="col" style="width:100px">BQ INSTALL PRICE</th>
+                <th scope="col" style="width:100px">PU QTY</th>                
+                <th scope="col" style="width:100px">RATE INDICATOR</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in (List<WebView.WebService._base.BOQ_MAIN>)ViewData["data2"])
+        {
+            <tr class="odd">                         
+                <td>@res.x_SCHEME_NAME</td>           
+                <td>@res.x_YEAR_INSTALL</td>
+                <td>@res.x_SCH_TYPE</td>
+                <td>@res.x_SCH_NO</td>
+                <td>@res.x_EXC_ABB</td>
+                <td>@res.x_PU_ID</td>
+                <td>@res.x_BQ_MAT_PRICE</td>
+                <td>@res.x_BQ_INSTALL_PRICE</td>
+                <td>@res.x_PU_QTY</td>               
+                <td>@res.x_RATE_INDICATOR</td>
+                <td>@Ajax.ActionLink("View", "GetDetails_BOQ_MAIN", new { id = res.x_SCHEME_NAME }, new AjaxOptions
+               {                  
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId = "divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" class="popup_block">
+        <span style="font-size:12px">SCHEME_NAME: </span><span id="txtSCHEME_NAME" style="font-weight:bold"></span>
+        <input type="hidden" id="targetBOQ_MAIN" value="" />
+        @using (Ajax.BeginForm("UpdateData_BOQ_MAIN", new AjaxOptions() 
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        })) 
+        {
+        <div id="list-details">
+            <table width="600px">
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">SCHEME NAME</td>
+                    <td><input type="text" id="txtSCHEME_NAME1" name="txtSCHEME_NAME" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">Description</td>                   
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Install Year</td>
+                    <td><input type="text" id="txtYEAR_INSTALL" name="txtYEAR_INSTALL" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">SCH TYPE</td>
+                    <td><input type="text" id="txtSCH_TYPE" name="txtSCH_TYPE" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">SCHEME NO</td>
+                    <td><input type="text" id="txtSCH_NO" name="txtSCH_NO" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">EXC ABB</td>
+                    <td><input type="text" id="txtEXC_ABB" name="txtEXC_ABB" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">PU ID</td>
+                    <td><input type="text" id="txtPU_ID" name="txtPU_ID" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">BQ MAT PRICE</td>
+                    <td><input type="text" id="txtBQ_MAT_PRICE" name="txtBQ_MAT_PRICE" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">BQ INSTALL PRICE</td>
+                    <td><input type="text" id="txtBQ_INSTALL_PRICE" name="txtBQ_INSTALL_PRICE" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">PU QTY</td>
+                    <td><input type="text" id="txtPU_QTY" name="txtPU_QTY" /></td>
+                    <td></td>
+                </tr>                                    
+                 <tr>
+                    <td style="width:100px; background-color:#e8eef4">RATE INDICATOR</td>
+                    <td><input type="text" id="txtRATE_INDICATOR" name="txtRATE_INDICATOR" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4"></td>                   
+                    <td></td>
+                </tr>     
+                </table>
+            <div style="height:30px; margin-top:10px; margin-left:450px;">
+                <input type="button" value="Close" id="btnClose" style="height:30px;width:80px;" />
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="submit" value="Update" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+            </div>
+        </div>
+        }
+    </div>
+</div>
+    

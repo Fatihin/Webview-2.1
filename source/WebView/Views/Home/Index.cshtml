@@ -1,0 +1,46 @@
+﻿<script type="text/javascript">
+
+    jQuery(document).ready(function ($) {
+        $("#msgDemo").click(function () {
+            $.msgBox("Hello World");
+            return false;
+        });
+    });
+
+    function test() {
+        globalJquery.msgBox("Hello World");
+    }
+</script>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<br />
+<br />
+<head><LINK REL="SHORTCUT ICON" HREF="http://localhost:1980/Home/Index/Content/images/favicon1.ico" /></head>
+<div style="height:600px">
+<p>
+    <p>NEPS Web View Module provides viewing, querying, reporting, redlining and MIS reporting, enabling TM personnel to graphically access physical network infrastructure geospatial information available in NEPS database.</p>
+	<p> The main components of NEPS Web View Module are as follows: </p>
+	<ul>
+	  <li> Job Management</li>
+	  <li>Non-Network Maintenance</li>
+	  <li>Batch Reports</li>
+	  <li>MIS Reports</li>
+	  <li>BOQ Generation</li>
+	  <li>Outside Plant (OSP) Viewing, Querying, Tracing and Redlining.</li>
+	  <li>OSP Net Plotting</li>
+	  <li>Inside Plant (ISP) Planning and Commissioning</li>
+	  <li>ISP 3D Navigation</li>
+	  <li>Online Help System</li>
+	</ul>
+</p>
+<table>
+    <tr>
+        <td><img src="@Url.Content("~/Content/images/pic1.jpg")" alt="Picture 1" width="400px" height="290px" /></td>
+        <td style="width:50px"></td>
+        <td><img src="@Url.Content("~/Content/images/pic2.jpg")" alt="Picture 2" width="400px" height="290px" /></td>
+    </tr>
+</table>
+</div>

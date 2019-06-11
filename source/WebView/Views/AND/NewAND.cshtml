@@ -1,0 +1,51 @@
+﻿@model WebView.Models.ANDModel
+
+@{
+    ViewBag.Title = "AND";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New AND Maintenance</h2>
+@using (Html.BeginForm("NewAND", "AND", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>AND Code</td>
+            <td>
+                @Html.TextBoxFor(m => m.CanCode, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.CanCode)
+            </td>
+        </tr>
+        <tr>
+            <td>AND Name</td>
+            <td>
+                @Html.TextBoxFor(m => m.CanName, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.CanName)
+            </td>
+        </tr>
+        <tr>
+            <td>Region Id</td>
+            <td>
+                @Html.TextBoxFor(m => m.RegionId, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.RegionId)
+            </td>
+        </tr>
+        <tr>
+            <td>Target ECP</td>
+            <td>
+                @Html.TextBoxFor(m => m.TargetEcp, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.TargetEcp)
+            </td>
+        </tr>              
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                                
+}

@@ -1,0 +1,89 @@
+﻿@model WebView.Models.InstallMaintenanceModel
+
+@{
+    ViewBag.Title = "NewInstallMaintenance";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Install Maintenance</h2>
+@using (Html.BeginForm("NewInstallMaintenance", "InstallMaintenance", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>Install Code</td>
+            <td>
+                @Html.TextBoxFor(m => m.InstallCode, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.InstallCode)
+            </td>
+        </tr>
+        <tr>
+            <td>Install Name</td>
+            <td>
+                @Html.TextAreaFor(m => m.InstallName, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.InstallName)
+            </td>
+        </tr>
+
+        <tr>
+            <td style="background-color:#e8eef4" colspan="2"></td>
+        </tr>
+
+        <tr>
+            <td>SUP Normal Rate</td>
+            <td>
+                @Html.TextBoxFor(m => m.SUPNormRate, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.SUPNormRate)
+            </td>
+        </tr>
+         <tr>
+            <td>SUP RWO Rate</td>
+            <td>
+                @Html.TextBoxFor(m => m.SUPRWORate, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.SUPRWORate)
+            </td>
+        </tr>
+         <tr>
+            <td style="background-color:#e8eef4" colspan="2"></td>
+        </tr>
+         <tr>
+            <td>IMPL Normal Rate</td>
+            <td>
+                @Html.TextBoxFor(m => m.IMPLNormalRate, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.IMPLNormalRate)
+            </td>
+        </tr>
+        <tr>
+            <td>IMPL RWO Rate</td>
+            <td>
+                @Html.TextBoxFor(m => m.IMPLRWORate, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.IMPLRWORate)
+            </td>
+        </tr>
+         <tr>
+            <td style="background-color:#e8eef4" colspan="2"></td>
+        </tr>
+         <tr>
+            <td>Install Type</td>
+            <td>
+                @Html.TextBoxFor(m => m.InstallType, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.InstallType)
+            </td>
+        </tr>
+         <tr>
+            <td>Rank</td>
+            <td>@Html.DropDownListFor(m => m.Rank, (IEnumerable<SelectListItem>)ViewBag.Rank, new { style = "width:200px;" })</td>
+
+        </tr>
+        
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                                 
+}

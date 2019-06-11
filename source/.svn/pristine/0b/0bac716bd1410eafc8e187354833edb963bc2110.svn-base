@@ -1,0 +1,1064 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.Job>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+    function GetDetailsCallBack(data) {
+
+        $ = globalJquery;
+        //alert(data.crtNE);
+        var tblC = document.getElementById('crtCardRequest');
+        for (var i = tblC.rows.length - 1; i > 0; i--) {
+            tblC.deleteRow(i);
+        }
+
+        var tblFC = document.getElementById('crtFCRequest');
+        for (var i = tblFC.rows.length - 1; i > 0; i--) {
+            tblFC.deleteRow(i);
+        }
+        var tblFU = document.getElementById('crtFURequest');
+        for (var i = tblFU.rows.length - 1; i > 0; i--) {
+            tblFU.deleteRow(i);
+        }
+
+        var tblNE = document.getElementById('crtNERequest');
+        for (var i = tblNE.rows.length - 1; i > 0; i--) {
+            tblNE.deleteRow(i);
+        }
+        var tblCS = document.getElementById('crtCableSheath');
+        for (var i = tblCS.rows.length - 1; i > 0; i--) {
+            tblCS.deleteRow(i);
+        }
+
+        var tblSB = document.getElementById('crtServiceBoundaryAddress');
+        for (var i = tblSB.rows.length - 1; i > 0; i--) {
+            tblSB.deleteRow(i);
+        }
+
+        var tblLE = document.getElementById('crtLERequest');
+        for (var i = tblLE.rows.length - 1; i > 0; i--) {
+            tblLE.deleteRow(i);
+        }
+
+        var tblLPNC = document.getElementById('crtLPNCRequest');
+        for (var i = tblLPNC.rows.length - 1; i > 0; i--) {
+            tblLPNC.deleteRow(i);
+        }
+
+        var tblLPC = document.getElementById('crtLPCRequest');
+        for (var i = tblLPC.rows.length - 1; i > 0; i--) {
+            tblLPC.deleteRow(i);
+        }
+
+        var tblLOSITE = document.getElementById('crtLOSITERequest');
+        for (var i = tblLOSITE.rows.length - 1; i > 0; i--) {
+            tblLOSITE.deleteRow(i);
+        }
+
+        var tblGSB = document.getElementById('crtGServiceBoundaryAddress');
+        for (var i = tblGSB.rows.length - 1; i > 0; i--) {
+            tblGSB.deleteRow(i);
+        }
+
+        var tblGDM = document.getElementById('crtLGDMRequest');
+        for (var i = tblGDM.rows.length - 1; i > 0; i--) {
+            tblGDM.deleteRow(i);
+        }
+
+        if (data.crtCardR) {
+            document.getElementById("McrtCardRequest").style.display = "block";
+            document.getElementById("crtCardRequest").style.display = "block";
+            big = data.crtCardR.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtCardRequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+                row.insertCell(8);
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                    tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+                }
+            }
+        } else {
+            document.getElementById("McrtCardRequest").style.display = "none";
+            document.getElementById("crtCardRequest").style.display = "none";
+        }
+
+        if (data.crtFCR) {
+            document.getElementById("McrtFCRequest").style.display = "block";
+            document.getElementById("crtFCRequest").style.display = "block";
+            big = data.crtFCR.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtFCRequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                }
+            }
+        } else {
+            document.getElementById("McrtFCRequest").style.display = "none";
+            document.getElementById("crtFCRequest").style.display = "none";
+        }
+
+        if (data.crtFUR) {
+            document.getElementById("McrtFURequest").style.display = "block";
+            document.getElementById("crtFURequest").style.display = "block";
+            big = data.crtFUR.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtFURequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                }
+            }
+        } else {
+            document.getElementById("McrtFURequest").style.display = "none";
+            document.getElementById("crtFURequest").style.display = "none";
+        }
+
+        if (data.crtNE) {
+            document.getElementById("McrtNERequest").style.display = "block";
+            document.getElementById("crtNERequest").style.display = "block";
+            big = data.crtNE.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtNERequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                }
+            }
+        }
+        else {
+            document.getElementById("McrtNERequest").style.display = "none";
+            document.getElementById("crtNERequest").style.display = "none";
+        }
+
+        if (data.crtCS) {
+            document.getElementById("McrtCableSheath").style.display = "block";
+            document.getElementById("crtCableSheath").style.display = "block";
+            big = data.crtCS.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtCableSheath');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+                //row.insertCell(8);
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                    //tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+                }
+            }
+        }
+        else {
+            document.getElementById("McrtCableSheath").style.display = "none";
+            document.getElementById("crtCableSheath").style.display = "none";
+        }
+
+        if (data.crtSB) {
+            document.getElementById("McrtServiceBoundaryAddress").style.display = "block";
+            document.getElementById("crtServiceBoundaryAddress").style.display = "block";
+            big = data.crtSB.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtServiceBoundaryAddress');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+                row.insertCell(8);
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                    tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+                }
+            }
+        } else {
+            document.getElementById("McrtServiceBoundaryAddress").style.display = "none";
+            document.getElementById("crtServiceBoundaryAddress").style.display = "none";
+        }
+
+        if (data.crtLE) {
+            document.getElementById("McrtLERequest").style.display = "block";
+            document.getElementById("crtLERequest").style.display = "block";
+            big = data.crtLE.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtLERequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                }
+            }
+        }
+        else {
+            document.getElementById("McrtLERequest").style.display = "none";
+            document.getElementById("crtLERequest").style.display = "none";
+        }
+
+        if (data.crtLPNC) {
+            document.getElementById("McrtLPNCRequest").style.display = "block";
+            document.getElementById("crtLPNCRequest").style.display = "block";
+            big = data.crtLPNC.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtLPNCRequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+                row.insertCell(8);
+                row.insertCell(9);
+                row.insertCell(10);
+                row.insertCell(11);
+                row.insertCell(12);
+                row.insertCell(13);
+                row.insertCell(14);
+                row.insertCell(15);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                    tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+                    tbl.rows[ii + 1].cells[9].innerHTML = d[9];
+                    tbl.rows[ii + 1].cells[10].innerHTML = d[10];
+                    tbl.rows[ii + 1].cells[11].innerHTML = d[11];
+                    tbl.rows[ii + 1].cells[12].innerHTML = d[12];
+                    tbl.rows[ii + 1].cells[13].innerHTML = d[13];
+                    tbl.rows[ii + 1].cells[14].innerHTML = d[14];
+                    tbl.rows[ii + 1].cells[15].innerHTML = d[15];
+                }
+            }
+        }
+        else {
+            document.getElementById("McrtLPNCRequest").style.display = "none";
+            document.getElementById("crtLPNCRequest").style.display = "none";
+        }
+
+        if (data.crtLPC) {
+            document.getElementById("McrtLPCRequest").style.display = "block";
+            document.getElementById("crtLPCRequest").style.display = "block";
+            big = data.crtLPC.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtLPCRequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+                row.insertCell(8);
+                row.insertCell(9);
+                row.insertCell(10);
+                row.insertCell(11);
+                row.insertCell(12);
+                row.insertCell(13);
+                row.insertCell(14);
+                row.insertCell(15);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                    tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+                    tbl.rows[ii + 1].cells[9].innerHTML = d[9];
+                    tbl.rows[ii + 1].cells[10].innerHTML = d[10];
+                    tbl.rows[ii + 1].cells[11].innerHTML = d[11];
+                    tbl.rows[ii + 1].cells[12].innerHTML = d[12];
+                    tbl.rows[ii + 1].cells[13].innerHTML = d[13];
+                    tbl.rows[ii + 1].cells[14].innerHTML = d[14];
+                    tbl.rows[ii + 1].cells[15].innerHTML = d[15];
+                }
+            }
+        }
+        else {
+            document.getElementById("McrtLPCRequest").style.display = "none";
+            document.getElementById("crtLPCRequest").style.display = "none";
+        }
+
+        if (data.crtLOSITE) {
+            document.getElementById("McrtLOSITERequest").style.display = "block";
+            document.getElementById("crtLOSITERequest").style.display = "block";
+            big = data.crtLOSITE.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtLOSITERequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+                row.insertCell(6);
+                row.insertCell(7);
+                row.insertCell(8);
+                row.insertCell(9);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                    tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+                    tbl.rows[ii + 1].cells[9].innerHTML = d[9];
+                }
+            }
+        }
+        else {
+            document.getElementById("McrtLOSITERequest").style.display = "none";
+            document.getElementById("crtLOSITERequest").style.display = "none";
+        }
+
+        if (data.crtGSB) {
+            document.getElementById("McrtGServiceBoundaryAddress").style.display = "block";
+            document.getElementById("crtGServiceBoundaryAddress").style.display = "block";
+            big = data.crtGSB.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtGServiceBoundaryAddress');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                }
+            }
+        } else {
+            document.getElementById("McrtGServiceBoundaryAddress").style.display = "none";
+            document.getElementById("crtGServiceBoundaryAddress").style.display = "none";
+        }
+
+        if (data.crtDM) {
+            document.getElementById("McrtLGDMRequest").style.display = "block";
+            document.getElementById("crtLGDMRequest").style.display = "block";
+            big = data.crtDM.split('!');
+            for (ii = 0; ii < big.length - 1; ii++) {
+                d = big[ii].split('|');
+                var tbl = document.getElementById('crtLGDMRequest');
+                var lastRow = tbl.rows.length;
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+                row.style.background = "#e8eef4";
+
+                row.insertCell(0);
+                row.insertCell(1);
+                row.insertCell(2);
+                row.insertCell(3);
+                row.insertCell(4);
+                row.insertCell(5);
+
+                if (d[0] != "") {
+                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                }
+            }
+        }
+        else {
+            document.getElementById("McrtLGDMRequest").style.display = "none";
+            document.getElementById("crtLGDMRequest").style.display = "none";
+        }
+
+        if (document.getElementById("crtCardRequest").style.display == "none" && document.getElementById("crtFCRequest").style.display == "none"
+            && document.getElementById("crtFURequest").style.display == "none" && document.getElementById("crtNERequest").style.display == "none"
+            && document.getElementById("crtCableSheath").style.display == "none" && document.getElementById("crtServiceBoundaryAddress").style.display == "none"
+            && document.getElementById("crtLERequest").style.display == "none" && document.getElementById("crtLPNCRequest").style.display == "none"
+            && document.getElementById("crtLOSITERequest").style.display == "none" && document.getElementById("crtGServiceBoundaryAddress").style.display == "none"
+            && document.getElementById("crtLPCRequest").style.display == "none" && document.getElementById("crtLGDMRequest").style.display == "none") {
+            alert("No Data Found");
+            $("#divDetails").dialog("close");
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetListDataOSP", "Job")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "jobID": document.getElementById("jobID").value, 
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    GetDetailsCallBack(res);
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 730,
+            width: 1200,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+    });
+
+</script>
+<br />
+<h3>
+  Job Management > Handover For @ViewBag.SchemeName
+</h3>
+<div style="height:650px">
+  <br />
+  @if (Model.Count() > 0)
+  {
+  <table id="rounded-corner" summary="Job List" width="850px">
+    <thead>
+      <tr>
+        <th scope="col" style="width:70px">ID</th>
+        <th scope="col" style="width:150px">CREATED DATE</th>
+        <th scope="col" style="width:100px">STATUS</th>
+        <th scope="col"> DESCRIPTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var res in Model.OrderByDescending(x => x.G3E_ID))
+      {
+                <tr class="odd">
+                  <td id="gid">@res.G3E_ID@*</td>
+                  <td >@res.Scheme_Name*@</td>
+                  <td>@res.G3E_IDENTIFIER <input type="hidden" id="jobID" value="@ViewBag.SchemeName"></td>
+                  <td>@res.G3E_DESCRIPTION</td>
+                  <td>@res.G3E_STATE</td>
+                </tr>    
+      }
+    </tbody>
+  </table>
+  <div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount
+    &nbsp;
+    @if (Model.HasPreviousPage)
+    {
+        int firstpages = 1;
+        int prevpages = Model.PageNumber - 1;
+        <a href = "ViewHandover?id=@ViewBag.searchKey&page=@firstpages">
+          <
+          <
+        </a>
+        @Html.Raw("&nbsp;")
+        <a href = "ViewHandover?id=@ViewBag.searchKey&page=@prevpages">
+          < Prev
+        </a>
+    }
+    else
+    {
+    }
+    &nbsp;
+    @if (Model.HasNextPage)
+    {
+        int pages = Model.PageNumber + 1;
+        int lastpages = Model.PageCount;
+        <a href = "ViewHandover?id=@ViewBag.searchKey&page=@pages">
+          Next >
+        </a>
+        @Html.Raw("&nbsp;")
+        <a href = "ViewHandover?id=@ViewBag.searchKey&page=@lastpages"> >> </a>
+    }
+    else
+    {
+    }
+  </div>
+  }
+  else
+  {
+      @:<br />
+      <span style="font-size:12px;">
+        No record found.
+      </span> 
+  }
+  <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">
+        <div id="list-details">
+            <table width="1030px" id="McrtNERequest" style="display:none;">
+                <tr><td colspan=5><h3>CREATED NETWORK ELEMENT</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtNERequest" style="display:none;">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">LOCNTTNAME</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">EQUPABB</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">INDEX</th>
+                        <th scope="col" style="width:100px;background-color:#b9c9fe">EQUPMODEL</th>
+                        <th scope="col" style="width:100px; background-color:#b9c9fe">MANRABB</th>
+                        <th scope="col" style="width:150px;background-color:#b9c9fe">STATUS</th>
+                        <th scope="col" style="width:180px;background-color:#b9c9fe">TIMESTAMP</th>
+                        <th scope="col" style="width:200px;background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>
+                </thead>
+                <tbody>    
+                    <tr>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:180px; background-color:#e8eef4"></td>
+                        <td style="width:200px; background-color:#e8eef4"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="McrtCardRequest" width="1030px" style="display:none;">
+                <tr><td colspan=8><h3>CREATED CARD</h3></td></tr>
+            </table>
+            <table id="crtCardRequest" width="1030px" style="display:none;">
+                <thead>
+                    <tr>
+                        <th style="width:80px; background-color:#b9c9fe">EQUPID</th>
+                        <th style="width:50px; background-color:#b9c9fe">SLOT</th>
+                        <th style="width:100px;background-color:#b9c9fe">CARDNAME</th>
+                        <th style="width:150px;background-color:#b9c9fe">CARDMODEL</th>
+                        <th style="width:100px;background-color:#b9c9fe">TOTAL COUNT</th>
+                        <th style="width:100px;background-color:#b9c9fe">PORT START NO</th>
+                        <th style="width:150px;background-color:#b9c9fe">STATUS</th>
+                        <th style="width:150px;background-color:#b9c9fe">TIMESTAMP</th>
+                        <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        <td style="width:80px; background-color:#e8eef4"></td>
+                        <td style="width:50px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:160px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                        <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table width="1030px" id="McrtFCRequest" style="display:none;">
+                <tr><td colspan=6><h3>CREATED FRAME CONTAINER</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtFCRequest" style="display:none;">
+                <thead>
+                    <tr>
+                        <th style="width:150px; background-color:#b9c9fe">FRANNAME</th>
+                        <th style="width:150px; background-color:#b9c9fe">LOCNTTNAME</th>
+                        <th style="width:100px; background-color:#b9c9fe">INDEX</th>
+                        <th style="width:180px; background-color:#b9c9fe">LOCATION</th>
+                        <th style="width:100px; background-color:#b9c9fe">STATUS</th>
+                        <th style="width:150px; background-color:#b9c9fe">TIMESTAMP</th>
+                        <th style="width:300px; background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>
+                </thead>  
+                <tbody>  
+                    <tr>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:180px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:300px; background-color:#e8eef4"></td>
+                    </tr>    
+                </tbody>
+            </table>
+            <table width="1030px" id="McrtFURequest" style="display:none;">
+                <tr><td colspan=6><h3>CREATED FRAME UNIT</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtFURequest" style="display:none;">
+                <thead>
+                    <tr>
+                        <th style="width:150px; background-color:#b9c9fe">FRAUNAME</th>
+                        <th style="width:100px; background-color:#b9c9fe">FRAUPOSITION</th>
+                        <th style="width:150px; background-color:#b9c9fe">FUPTMANRABB</th>
+                        <th style="width:100px; background-color:#b9c9fe">PRODUCTTYPE</th>
+                        <th style="width:100px; background-color:#b9c9fe">TERMINATIONTYPE</th>
+                        <th style="width:100px; background-color:#b9c9fe">COUNTPAIR</th>
+                        <th style="width:150px; background-color:#b9c9fe">TIMESTAMP</th>
+                        <th style="width:180px; background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>    
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:180px; background-color:#e8eef4"></td>
+                    </tr>  
+                </tbody>  
+            </table>
+            <br />
+            <table id="McrtCableSheath" width="1030px" style="display:none;">
+                <tr><td colspan=8><h3>CREATED CABLE SHEATH</h3></td></tr>
+            </table>
+            <table id="crtCableSheath" width="1030px" style="display:none;">
+                <thead>
+                    <tr>
+                        @*<th style="width:80px; background-color:#b9c9fe">EQUPID</th>*@
+                        <th style="width:130px; background-color:#b9c9fe">CABS_NAME</th>
+                        <th style="width:100px;background-color:#b9c9fe">CABS_CAST_TYPE</th>
+                        <th style="width:150px;background-color:#b9c9fe">CSPT_PROD_NAME</th>
+                        <th style="width:100px;background-color:#b9c9fe">MIN_NUMBER</th>
+                        <th style="width:100px;background-color:#b9c9fe">MAX_NUMBER</th>
+                        <th style="width:150px;background-color:#b9c9fe">LOCATION_A</th>
+                        <th style="width:150px;background-color:#b9c9fe">LOCATION_B</th>
+                        <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        @*<td style="width:80px; background-color:#e8eef4"></td>*@
+                        <td style="width:130px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:160px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                        <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table width="1030px" id="McrtLOSITERequest" style="display:none;">
+                <tr><td><h3>CREATED SITE</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtLOSITERequest" style="display:none;">
+                <thead>
+                    <tr>
+                        <th style="width:150px;background-color:#b9c9fe">NAME</th>
+                        <th style="width:150px;background-color:#b9c9fe">DESCRIPTION</th>
+                        <th style="width:150px;background-color:#b9c9fe">ADDRESS</th>
+                        <th style="width:150px;background-color:#b9c9fe">EQUIP LOC</th>
+                        <th style="width:150px;background-color:#b9c9fe">CABLE TYPE</th>
+                        <th style="width:150px;background-color:#b9c9fe">FIBER TO PREMIST</th>
+                        <th style="width:150px;background-color:#b9c9fe">ACCESS RESTRICT</th>
+                        <th style="width:150px;background-color:#b9c9fe">CONTACT</th>
+                        <th style="width:150px;background-color:#b9c9fe">TIMESTAMP</th>
+                        <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                    </tr>  
+                </tbody>  
+            </table>
+            <table id="McrtServiceBoundaryAddress" width="1030px" style="display:none;">
+                <thead>
+                <tr><td colspan=8><h3>CREATED SERVICE BOUNDARY ADDRESS</h3></td></tr>
+                <tr>
+                    <th style="width:80px; background-color:#b9c9fe">FRAC_ID</th>
+                    <th style="width:50px; background-color:#b9c9fe">FIELD1</th>
+                    <th style="width:100px;background-color:#b9c9fe">FIELD2</th>
+                    <th style="width:150px;background-color:#b9c9fe">STREET_NUMBER</th>
+                    <th style="width:100px;background-color:#b9c9fe">STREET_TYPE</th>
+                    <th style="width:100px;background-color:#b9c9fe">STREET_NAME</th>
+                    <th style="width:150px;background-color:#b9c9fe">SUBURB</th>
+                    <th style="width:150px;background-color:#b9c9fe">STAT_ABBR</th>
+                    <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                </tr>
+                </thead>    
+            </table>
+            <table id="crtServiceBoundaryAddress" width="1030px" style="display:none;">
+                <tr>
+                    <td style="width:80px; background-color:#e8eef4"></td>
+                    <td style="width:50px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:160px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                    <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td style="width:150px;background-color:#e8eef4"></td>
+                </tr>
+            </table>
+            <table width="1030px" id="McrtLERequest" style="display:none;">
+                <tr><td colspan=6><h3>CREATED EQUIPMENT</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtLERequest" style="display:none;">
+                <thead>
+                    <tr>
+                        <th style="width:150px; background-color:#b9c9fe">EQUIPID</th>
+                        <th style="width:100px; background-color:#b9c9fe">EQUIPCAT</th>
+                        <th style="width:150px; background-color:#b9c9fe">EQUIPVEND</th>
+                        <th style="width:100px; background-color:#b9c9fe">EQUIPMODEL</th>
+                        <th style="width:100px; background-color:#b9c9fe">UDA_TAGGING</th>
+                        <th style="width:100px; background-color:#b9c9fe">UDA_OUTINDOORTAG</th>
+                        <th style="width:150px; background-color:#b9c9fe">TIMESTAMP</th>
+                        <th style="width:180px; background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:180px; background-color:#e8eef4"></td>
+                    </tr>  
+                </tbody>  
+            </table>
+            <table width="1030px" id="McrtLPNCRequest" style="display:none;">
+                <tr><td><h3>CREATED PATH</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtLPNCRequest" style="display:none;">
+                <thead>
+                    <tr>
+                        <th style="width:150px;background-color:#b9c9fe">ANAME</th>
+                        <th style="width:150px;background-color:#b9c9fe">ASITE</th>
+                        <th style="width:150px;background-color:#b9c9fe">ATYPE</th>
+                        <th style="width:150px;background-color:#b9c9fe">ASLOT</th>
+                        <th style="width:150px;background-color:#b9c9fe">ACARD</th>
+                        <th style="width:150px;background-color:#b9c9fe">APORT</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZNAME</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZSITE</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZTYPE</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZSLOT</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZCARD</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZPORT</th>
+                        <th style="width:150px;background-color:#b9c9fe">PRIMARY/<br />SECONDARY</th>
+                        <th style="width:150px;background-color:#b9c9fe">PATHBW</th>
+                        <th style="width:150px;background-color:#b9c9fe">TIMESTAMP</th>
+                        <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                    </tr>  
+                </tbody>  
+            </table>
+            <table width="1030px" id="McrtLPCRequest" style="display:none;">
+                <tr><td><h3>CREATED PATH CONSUMER</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtLPCRequest" style="display:none;">
+                <thead>
+                    <tr>
+                        <th style="width:150px;background-color:#b9c9fe">ANAME</th>
+                        <th style="width:150px;background-color:#b9c9fe">ASITE</th>
+                        <th style="width:150px;background-color:#b9c9fe">ATYPE</th>
+                        <th style="width:150px;background-color:#b9c9fe">ACARD2</th>
+                        <th style="width:150px;background-color:#b9c9fe">APORT2</th>
+                        <th style="width:150px;background-color:#b9c9fe">ACARD3</th>
+                        <th style="width:150px;background-color:#b9c9fe">APORT3</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZNAME</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZSITE</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZTYPE</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZCARD</th>
+                        <th style="width:150px;background-color:#b9c9fe">ZPORT</th>
+                        <th style="width:150px;background-color:#b9c9fe">DPNAME</th>
+                        <th style="width:150px;background-color:#b9c9fe">DPSITE</th>
+                        <th style="width:150px;background-color:#b9c9fe">TIMESTAMP</th>
+                        <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                    </tr>  
+                </tbody>  
+            </table>
+            <table width="1030px" id="McrtGServiceBoundaryAddress" style="display:none;">
+                <tr><td><h3>CREATED SERVICE BOUNDARY ADDRESS</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtGServiceBoundaryAddress" style="display:none;">
+                <thead>
+                <tr>
+                    <th style="width:80px; background-color:#b9c9fe">ID</th>
+                    <th style="width:50px; background-color:#b9c9fe">ADDRESS</th>
+                    <th style="width:100px;background-color:#b9c9fe">PREMIS TYPE</th>
+                    <th style="width:150px;background-color:#b9c9fe">SITE SDP</th>
+                    <th style="width:100px;background-color:#b9c9fe">SITE EXC</th>
+                    <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                </tr>
+                </thead>
+                <tbody>    
+                    <tr>
+                        <td style="width:80px; background-color:#e8eef4"></td>
+                        <td style="width:50px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                        <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table width="1030px" id="McrtLGDMRequest" style="display:none;">
+                <tr><td><h3>CREATED DATA MATCHING</h3></td></tr>
+            </table>
+            <table width="1030px" id="crtLGDMRequest" style="display:none;">
+                <thead>
+                <tr>
+                    <th style="width:80px; background-color:#b9c9fe">EVENTNAME</th>
+                    <th style="width:50px; background-color:#b9c9fe">ID</th>
+                    <th style="width:100px;background-color:#b9c9fe">DESC</th>
+                    <th style="width:150px;background-color:#b9c9fe">SITE</th>
+                    <th style="width:100px;background-color:#b9c9fe">TIME SENT</th>
+                    <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                </tr>
+                </thead>
+                <tbody>    
+                    <tr>
+                        <td style="width:80px; background-color:#e8eef4"></td>
+                        <td style="width:50px; background-color:#e8eef4"></td>
+                        <td style="width:100px; background-color:#e8eef4;></td>
+                        <td style="width:100px; background-color:#e8eef4;></td>
+                        <td style="width:150px; background-color:#e8eef4"></td>
+                        <td style="width:150px;background-color:#e8eef4"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
+  

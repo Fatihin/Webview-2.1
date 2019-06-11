@@ -1,0 +1,250 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.CabAddInfo>
+
+@{
+    ViewBag.Title = "List Cabinet Additional Info";
+}
+
+@section Styles {
+    html { height: 100% }
+    body { height: 100%; margin: 0px; padding: 0px }
+    #map_canvas { height: 80% }
+
+    SELECT, INPUT[type="text"] {
+    width: 160px;
+    box-sizing: border-box;
+    }
+    SECTION {
+        padding: 8px;
+        background-color: #f0f0f0;
+        overflow: auto;
+    }
+    SECTION > DIV {
+        float: left;
+        padding: 4px;
+    }
+    SECTION > DIV + DIV {
+        width: 40px;
+        text-align: center;
+    }
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+
+        $(function () {
+
+            $("#btnSSummary").button();
+            $("#btnSESummary").button();
+            $("#btnPDetail").button();
+            $("#btnPEDetail").button();
+            $("#btnPGDetail").button();
+            $("#btnPEGDetail").button();
+
+            // ADD HERE FOR OPFI REPORT ENZ
+            document.getElementById("zoneID2").disabled = true;
+
+            $('#scGroup2').change(function () {
+                var val_group = document.getElementById("scGroup2").value;
+                //alert(val_group);
+                if (val_group == "ENZ") {
+
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/GetZoneList",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+
+                            var res = jQuery.parseJSON(data);
+                            //alert("res.listZone : " + res.listZone);
+                            dataPu2 = res.listZone.split("|");
+                            var itemsPu2 = "<option selected value='Select'></option>";
+                            for (i = 0; i < dataPu2.length; i++) {
+                                if (dataPu2[i] != "") {
+                                    itemsPu2 += "<option value='" + dataPu2[i] + "'>" + dataPu2[i] + "</option>";
+                                }
+                            }
+
+                            document.getElementById("zoneID2").disabled = false;
+                            $("#zoneID2").html(itemsPu2);
+                        }
+                    });
+                }
+                else {
+                    var itemsPu2 = "<option selected value='Select'></option>";
+                    $("#zoneID2").html(itemsPu2);
+                    document.getElementById("zoneID2").disabled = true;
+                }
+            });
+        });
+    });
+//END ADD HERE FOR OPFI REPORT ENZ
+
+
+
+    function OpenWindowHtmlPG() {
+
+        window.open().location.href = "ReportFacilitiesDetailsGroup?searchKey=" + document.getElementById("searchKey").value + "&pwrCab=" + document.getElementById("pwrCab").value + "&StateId=" + document.getElementById("stateID").value + "&zoneID=" + document.getElementById("zoneID").value + "&pttID=" + document.getElementById("pttID").value + "&excID=" + document.getElementById("excID").value + "&rcID=" + document.getElementById("rcID").value + "&status=" + document.getElementById("status").value + "&Model=" + document.getElementById("Model").value + "&Manufacturer=" + document.getElementById("Manufacturer").value + "&scGroup=" + document.getElementById("scGroup").value + "&&type=html";
+    }
+    
+    function OpenWindowHtmlP() {
+        window.open().location.href = "ReportFacilitiesDetails?searchKey=" + document.getElementById("searchKey").value + "&pwrCab=" + document.getElementById("pwrCab").value + "&StateId=" + document.getElementById("stateID").value + "&zoneID=" + document.getElementById("zoneID").value + "&pttID=" + document.getElementById("pttID").value + "&excID=" + document.getElementById("excID").value + "&rcID=" + document.getElementById("rcID").value + "&status=" + document.getElementById("status").value + "&Model=" + document.getElementById("Model").value + "&Manufacturer=" + document.getElementById("Manufacturer").value + "&&type=html";
+    }
+
+    function OpenWindowHtmlPE() {
+        window.open().location.href = "ReportFacilitiesDetails?searchKey=" + document.getElementById("searchKey").value + "&pwrCab=" + document.getElementById("pwrCab").value + "&StateId=" + document.getElementById("stateID").value + "&zoneID=" + document.getElementById("zoneID").value + "&pttID=" + document.getElementById("pttID").value + "&excID=" + document.getElementById("excID").value + "&rcID=" + document.getElementById("rcID").value + "&status=" + document.getElementById("status").value + "&Model=" + document.getElementById("Model").value + "&Manufacturer=" + document.getElementById("Manufacturer").value + "&&type=EXCEL";
+    }
+
+    function OpenWindowHtmlPEG() {
+        window.open().location.href = "ReportFacilitiesDetailsGroup?searchKey=" + document.getElementById("searchKey").value + "&pwrCab=" + document.getElementById("pwrCab").value + "&StateId=" + document.getElementById("stateID").value + "&zoneID=" + document.getElementById("zoneID").value + "&pttID=" + document.getElementById("pttID").value + "&excID=" + document.getElementById("excID").value + "&rcID=" + document.getElementById("rcID").value + "&status=" + document.getElementById("status").value + "&Model=" + document.getElementById("Model").value + "&Manufacturer=" + document.getElementById("Manufacturer").value + "&scGroup=" + document.getElementById("scGroup").value + "&&type=EXCEL";
+    }
+
+// ADD HERE FOR OPFI REPORT ENZ
+    function OpenWindowHtmlS() {
+
+        var groupENZ = document.getElementById("zoneID2").value;
+       // alert(groupENZ);
+        var v_groupENZ = String(groupENZ).replace(/&/, '%26')
+        //alert(test);
+        //window.open().location.href = "ReportFacilitiesSummary?id=html";
+
+        //ADD THIS PART FOR GROUP=PRM & ZONE IS NULL
+        if (document.getElementById("scGroup2").value != "ENZ") {
+            window.open().location.href = "ReportFacilitiesSummary?scGroup=" + document.getElementById("scGroup2").value + "&GroupZone=" + v_groupENZ + "&&id=html";
+        }
+        else {
+            if (document.getElementById("zoneID2").value == "Select") {
+                window.open().location.href = "ReportFacilitiesSummaryZONE?scGroup=" + document.getElementById("scGroup2").value + "&GroupZone=" + v_groupENZ + "&&id=html";
+            }
+            else {
+                window.open().location.href = "ReportFacilitiesSummaryEXC?scGroup=" + document.getElementById("scGroup2").value + "&GroupZone=" + v_groupENZ + "&&id=html";
+            }
+        }
+    }
+// END ADD HERE FOR OPFI REPORT ENZ
+
+// ADD HERE FOR OPFI REPORT ENZ
+    function OpenWindowHtmlSE() {
+        var groupENZ = document.getElementById("zoneID2").value;
+        // alert(groupENZ);
+        var v_groupENZ = String(groupENZ).replace(/&/, '%26')
+            if (document.getElementById("scGroup2").value != "ENZ") {
+                window.open().location.href = "ReportFacilitiesSummary?scGroup=" + document.getElementById("scGroup2").value + "&GroupZone=" + v_groupENZ + "&&id=EXCEL";
+            }
+
+            else {
+                if (document.getElementById("zoneID2").value == "Select") {
+                    window.open().location.href = "ReportFacilitiesSummaryZONE?scGroup=" + document.getElementById("scGroup2").value + "&GroupZone=" + v_groupENZ + "&&id=EXCEL";
+                }
+                else {
+                    window.open().location.href = "ReportFacilitiesSummaryEXC?scGroup=" + document.getElementById("scGroup2").value + "&GroupZone=" + v_groupENZ + "&&id=EXCEL";
+                }
+            }
+        }
+// END ADD HERE FOR OPFI REPORT ENZ
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+     
+
+</script>
+
+<br />
+<h2>Report Network Facility OSP</h2>
+<div style="height:150px"> 
+    <div><h3>DETAILS REPORT</h3>
+        <section class="container">
+        <table style="width:auto;">
+            <tr>
+                <td style="width:100px; text-align:right;">STATE :</td> 
+                <td> @Html.DropDownList("stateID", (IEnumerable<SelectListItem>)ViewBag.StateId, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">PTT :</td> 
+                <td> @Html.DropDownList("pttID", (IEnumerable<SelectListItem>)ViewBag.PttId, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">ZONE : </td>
+                <td>@Html.DropDownList("zoneID", (IEnumerable<SelectListItem>)ViewBag.Zone, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">EXCHANGE :</td> 
+                <td> @Html.DropDownList("excID", (IEnumerable<SelectListItem>)ViewBag.Exc, new { style = "width:120px" })</td>
+             </tr>
+             <tr>
+                <td style="width:100px; text-align:right;">CABINET CODE :</td>
+                <td><input style="width:115px;" type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td style="width:100px; text-align:right;">POWER CABINET ID</td>
+                <td><input style="width:115px;" type="text" id="pwrCab" name="pwrCab"  value="@ViewBag.pwrCab"/></td>
+                <td style="width:100px; text-align:right;">RECTIFIER BRAND :</td> 
+                <td> @Html.DropDownList("rcID", (IEnumerable<SelectListItem>)ViewBag.RC, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">STATUS FACILITIES :</td> 
+                <td> <select id="status" style="width:120px;">
+                        <option value="ALL"></option>
+                        <option value="-"> - </option>
+                        <option value="ALL">ALL</option>
+                        <option value="PENDING">PENDING</option>
+                        <option value="COMPLETED">COMPLETED</option>
+                     </select> </td>
+                @*@Html.DropDownList("battID", (IEnumerable<SelectListItem>)ViewBag.Batt, new { style = "width:120px" })*@
+             </tr>
+             <tr>
+                <td style="width:100px; text-align:right;display:none;">CABINET MODEL :</td> 
+                <td style="display:none;"> @Html.DropDownList("Model", (IEnumerable<SelectListItem>)ViewBag.Model, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">CABINET MANUFACTURER :</td> 
+                <td> @Html.DropDownList("Manufacturer", (IEnumerable<SelectListItem>)ViewBag.Manufacturer, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">USER GROUP :</td> 
+                <td> @Html.DropDownList("scGroup", (IEnumerable<SelectListItem>)ViewBag.GroupUser, new { style = "width:120px" })
+                            @*<select id="scGroup" style="width:120px;">
+                            <option value="ADMIN">ALL</option>
+                            <option value="AND">AND</option>
+                            <option value="ENZ">ENZ</option>  
+                            </select>*@   
+                     
+                </td>
+                <td style="text-align:center" colspan=4>
+                    @*<input type="button" value="VIEW" id="btnPDetail"  onclick="OpenWindowHtmlPG()"/>
+                    <input type="button" value="EXCEL" id="btnPEGDetail" onclick="OpenWindowHtmlPEG()" /> || *@
+                    @*@if (user.Group != "ADMIN")
+                    {*@
+                        <input type="button" value="VIEW ALL" id="btnPGDetail"  onclick="OpenWindowHtmlPG()"/>
+                        <input type="button" value="EXCEL ALL" id="btnPEDetail" onclick="OpenWindowHtmlPEG()" />
+                    @*}*@
+                </td>
+            </tr>
+        </table>
+        </section>
+    </div>
+</div>
+<br /><br />
+<div style="height:250px"> 
+    <h3>SUMMARY REPORT</h3>
+    <div>
+        <section class="container">
+        <table style="width:auto;">
+            <tr>
+                <td style="width:100px; text-align:right;">USER GROUP :</td> 
+                    <td>@Html.DropDownList("scGroup2", (IEnumerable<SelectListItem>)ViewBag.GroupUser, new { style = "width:120px" })
+                             @*<select id="scGroup2" style="width:120px;">
+                                <option value="ADMIN">ALL</option>
+                                <option value="AND">AND</option>
+                                <option value="ENZ">ENZ</option>
+                             </select>*@                     
+                    </td>
+                <td><input type="button" value="VIEW" id="btnSSummary"  onclick="OpenWindowHtmlS()"/> <input type="button" value="EXCEL" id="btnSESummary" onclick="OpenWindowHtmlSE()" /></td>
+            </tr>
+           
+            <tr> 
+                <td style="width:100px; text-align:right;">ZONE : </td>
+                <td>@Html.DropDownList("zoneID2", (IEnumerable<SelectListItem>)ViewBag.listZone, new { style = "width:120px" })</td>
+                 
+            </tr> 
+
+
+        </table>
+        </section>
+    </div><br />
+</div>

@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model4.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Model4StoreContainer">
+    <EntitySet Name="AG_MSAN_TEMPLATE" EntityType="Model4.Store.AG_MSAN_TEMPLATE" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="AG_MSAN_XLTEMPLATE" EntityType="Model4.Store.AG_MSAN_XLTEMPLATE" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="CONNECTIVITY" EntityType="Model4.Store.CONNECTIVITY" store:Type="Tables" store:Schema="NEPS" store:Name="CONNECTIVITY">
+      <DefiningQuery>SELECT 
+      "CONNECTIVITY"."ID" AS "ID", 
+      "CONNECTIVITY"."EXC_ABB" AS "EXC_ABB", 
+      "CONNECTIVITY"."ELV_NAME" AS "ELV_NAME", 
+      "CONNECTIVITY"."A_ID" AS "A_ID", 
+      "CONNECTIVITY"."A_TYPE" AS "A_TYPE", 
+      "CONNECTIVITY"."A_SUB_TYPE" AS "A_SUB_TYPE", 
+      "CONNECTIVITY"."A_PORT" AS "A_PORT", 
+      "CONNECTIVITY"."Z_ID" AS "Z_ID", 
+      "CONNECTIVITY"."Z_TYPE" AS "Z_TYPE", 
+      "CONNECTIVITY"."Z_SUB_TYPE" AS "Z_SUB_TYPE", 
+      "CONNECTIVITY"."Z_PORT" AS "Z_PORT", 
+      "CONNECTIVITY"."REMARKS" AS "REMARKS", 
+      "CONNECTIVITY"."CREATED_AT" AS "CREATED_AT", 
+      "CONNECTIVITY"."CREATED_BY" AS "CREATED_BY"
+      FROM "NEPS"."CONNECTIVITY" "CONNECTIVITY"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="REF_DDN" EntityType="Model4.Store.REF_DDN" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="REF_EPE" EntityType="Model4.Store.REF_EPE" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="REF_IPMSAN" EntityType="Model4.Store.REF_IPMSAN" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="REF_NDH" EntityType="Model4.Store.REF_NDH" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="REF_RT" EntityType="Model4.Store.REF_RT" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="REF_UPE" EntityType="Model4.Store.REF_UPE" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="REF_VDSL2" EntityType="Model4.Store.REF_VDSL2" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="WEBVIEW_AUDIT_TRAIL" EntityType="Model4.Store.WEBVIEW_AUDIT_TRAIL" store:Type="Tables" store:Schema="NEPS" store:Name="WEBVIEW_AUDIT_TRAIL">
+      <DefiningQuery>SELECT 
+      "WEBVIEW_AUDIT_TRAIL"."USERNAME" AS "USERNAME", 
+      "WEBVIEW_AUDIT_TRAIL"."TIMESTAMP" AS "TIMESTAMP"
+      FROM "NEPS"."WEBVIEW_AUDIT_TRAIL" "WEBVIEW_AUDIT_TRAIL"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="WV_REF_MODEL" EntityType="Model4.Store.WV_REF_MODEL" store:Type="Tables" store:Schema="NEPS" store:Name="WV_REF_MODEL">
+      <DefiningQuery>SELECT 
+      "WV_REF_MODEL"."MANUFACTURER" AS "MANUFACTURER", 
+      "WV_REF_MODEL"."MODEL" AS "MODEL"
+      FROM "NEPS"."WV_REF_MODEL" "WV_REF_MODEL"</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <EntityType Name="AG_MSAN_TEMPLATE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" />
+    <Property Name="MODEL_ID" Type="number" />
+    <Property Name="RACK_NO" Type="varchar2" MaxLength="4" />
+    <Property Name="FRAME_NO" Type="varchar2" MaxLength="4" />
+    <Property Name="SLOT_NO" Type="varchar2" MaxLength="4" />
+    <Property Name="SLOT_NIS" Type="varchar2" MaxLength="12" />
+    <Property Name="CARD_TYPE" Type="varchar2" MaxLength="30" />
+    <Property Name="CARD_MODEL" Type="varchar2" MaxLength="30" />
+    <Property Name="PORT_LO" Type="varchar2" MaxLength="4" />
+    <Property Name="PORT_HI" Type="varchar2" MaxLength="4" />
+    <Property Name="MIN_MATERIAL" Type="varchar2" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AG_MSAN_XLTEMPLATE">
+    <Key>
+      <PropertyRef Name="MODEL_ID" />
+    </Key>
+    <Property Name="MODEL_ID" Type="number" Nullable="false" />
+    <Property Name="MANUFACTURER" Type="varchar2" MaxLength="30" />
+    <Property Name="MODEL" Type="varchar2" MaxLength="30" />
+    <Property Name="XL_FILE" Type="varchar2" MaxLength="100" />
+    <Property Name="MSAN_FNO" Type="number" Precision="5" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.CONNECTIVITY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="CONNECTIVITY">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="A_ID" />
+      <PropertyRef Name="Z_ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+    <Property Name="EXC_ABB" Type="varchar2" MaxLength="5" />
+    <Property Name="ELV_NAME" Type="varchar2" MaxLength="10" />
+    <Property Name="A_ID" Type="varchar2" Nullable="false" MaxLength="15" />
+    <Property Name="A_TYPE" Type="varchar2" MaxLength="10" />
+    <Property Name="A_SUB_TYPE" Type="varchar2" MaxLength="100" />
+    <Property Name="A_PORT" Type="varchar2" MaxLength="100" />
+    <Property Name="Z_ID" Type="varchar2" Nullable="false" MaxLength="15" />
+    <Property Name="Z_TYPE" Type="varchar2" MaxLength="10" />
+    <Property Name="Z_SUB_TYPE" Type="varchar2" MaxLength="100" />
+    <Property Name="Z_PORT" Type="varchar2" MaxLength="100" />
+    <Property Name="REMARKS" Type="varchar2" MaxLength="250" />
+    <Property Name="CREATED_AT" Type="date" />
+    <Property Name="CREATED_BY" Type="varchar2" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="REF_DDN">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+    <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+    <Property Name="FRONT_IMAGE" Type="blob" />
+    <Property Name="BACK_IMAGE" Type="blob" />
+    <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+    <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_EPE">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+    <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+    <Property Name="FRONT_IMAGE" Type="blob" />
+    <Property Name="BACK_IMAGE" Type="blob" />
+    <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+    <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_IPMSAN">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+    <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+    <Property Name="FRONT_IMAGE" Type="blob" />
+    <Property Name="BACK_IMAGE" Type="blob" />
+    <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+    <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_NDH">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+    <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+    <Property Name="FRONT_IMAGE" Type="blob" />
+    <Property Name="BACK_IMAGE" Type="blob" />
+    <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+    <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_RT">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+    <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+    <Property Name="FRONT_IMAGE" Type="blob" />
+    <Property Name="BACK_IMAGE" Type="blob" />
+    <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+    <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_UPE">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+    <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+    <Property Name="FRONT_IMAGE" Type="blob" />
+    <Property Name="BACK_IMAGE" Type="blob" />
+    <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+    <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_VDSL2">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="30" />
+    <Property Name="MODEL" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="SYSTEM_CAPACITY" Type="number" Precision="5" />
+    <Property Name="FRONT_IMAGE" Type="blob" />
+    <Property Name="BACK_IMAGE" Type="blob" />
+    <Property Name="TOTAL_POSITIONS" Type="number" Precision="5" />
+    <Property Name="DIMENSION_DEPTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_WIDTH" Type="number" Precision="5" Scale="2" />
+    <Property Name="DIMENSION_HEIGHT" Type="number" Precision="5" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.WEBVIEW_AUDIT_TRAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="WEBVIEW_AUDIT_TRAIL">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+      <PropertyRef Name="TIMESTAMP" />
+    </Key>
+    <Property Name="USERNAME" Type="varchar2" Nullable="false" MaxLength="255" />
+    <Property Name="TIMESTAMP" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.WV_REF_MODEL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="WV_REF_MODEL">
+    <Key>
+      <PropertyRef Name="MANUFACTURER" />
+    </Key>
+    <Property Name="MANUFACTURER" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="MODEL" Type="varchar2" MaxLength="50" />
+  </EntityType>
+</Schema>

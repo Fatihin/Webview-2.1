@@ -1,0 +1,307 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtGrade", data.grade);
+        SetElement("txtDescription", data.description);
+        SetElement("txtLLev1", data.kmLLev1);
+        SetElement("txtLLev2", data.kmLLev2);
+        SetElement("txtLLev3", data.kmLLev3);
+        SetElement("txtHLev1", data.kmHLev1);
+        SetElement("txtHLev2", data.kmHLev2);
+        SetElement("txtHLev3", data.kmHLev3);
+        SetElement("txtRate1", data.kmRate1);
+        SetElement("txtRate2", data.kmRate2);
+        SetElement("txtRate3", data.kmRate3);
+        SetElement("GradeVal", data.grade);
+        document.getElementById("targetGrade").value = data.grade;
+
+        document.getElementById("btnClose").disabled = false;
+        document.getElementById("txtGrade").disabled = true;
+
+        //$('input[type=text].txtName').val(data.Message);
+    }
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtDescription").readOnly = true;
+        document.getElementById("txtLLev1").readOnly = true;
+        document.getElementById("txtLLev2").readOnly = true;
+        document.getElementById("txtLLev3").readOnly = true;
+        document.getElementById("txtHLev1").readOnly = true;
+        document.getElementById("txtHLev2").readOnly = true;
+        document.getElementById("txtHLev3").readOnly = true;
+        document.getElementById("txtRate1").readOnly = true;
+        document.getElementById("txtRate2").readOnly = true;
+        document.getElementById("txtRate3").readOnly = true;
+        document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails", "MileageRates")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    GetDetailsCallBack(res);
+                    //$.msgBox("Please la."); 
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 340,
+            width: 900,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewMileageRates";
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/MileageRates/DeleteData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetGrade": document.getElementById("targetGrade").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+    /*
+    jQuery(document).ready(function ($) {
+    $(function () {
+    $('#mylink2').click(function () {
+    $.ajax({
+    url: "GetDetails",
+    type: "GET",
+    dataType: "html",
+    data: {
+    "userguid": this.id
+    },
+    beforeSend: function () { },
+    success: function (data) {
+    eval("var t =" + data);
+    document.getElementById("txtName").value = t.other;
+    }
+    });
+    });
+    });
+    });
+    */
+    //jQuery(document).ready(function ($) {
+    //$(function () {
+    //$("#dialog").dialog();
+    //});
+    //});
+</script>
+
+<br />
+<h2>Mileage Rates List</h2>
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+<div style="height:650px">
+    <table id="rounded-corner" summary="MileageRates List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">Grade</th>
+                <th scope="col">Grade Description</th>
+                <th scope="col">LOW : KM Level 1</th>
+                <th scope="col" >High : KM Level 1</th>
+                <th scope="col" >RATES : Rate 1</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in (List<WebView.WebService._base.MileageRates>)ViewData["data3"])
+        {
+            <tr class="odd">
+                <td id="gid">@res.GRADE</td>
+                <td>@res.GRADE_DESC</td>
+                <td>@res.KM_LLEV1</td>
+                <td>@res.KM_HLEV1</td>
+                <td>@res.KM_RATE1</td>
+                @*<td>@Ajax.ActionLink("Details", "GetDetails", new { id = res.GRADE }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId="divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">  
+        <input type="hidden" id="targetGrade" value="" />
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions() 
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        })) 
+        {
+        <div id="list-details">
+           <input type="hidden" id="GradeVal" name="GradeVal" />
+            <table width="800px">
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Grade</td>
+                    <td><input type="text" id="txtGrade" name="txtGrade" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                     
+                    <td style="width:150px; background-color:#e8eef4"><b>LOW</b> : KM Level 2</td>
+                    <td><input type="text" id="txtLLev2" name="txtLLev2" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                   
+                </tr>
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Grade Description</td>
+                    <td><input type="text" id="txtDescription" name="txtDescription" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    
+                     <td style="width:150px; background-color:#e8eef4"><b>HIGH</b> : KM Level 2</td>
+                    <td><input type="text" id="txtHLev2" name="txtHLev2" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                     
+                </tr>
+                <tr> 
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:150px; background-color:#e8eef4"><b>RATE</b> : Level 2</td>
+                    <td><input type="text" id="txtRate2" name="txtRate2" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td> 
+                 </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4"><b>LOW</b> : KM Level 1</td>
+                    <td><input type="text" id="txtLLev1" name="txtLLev1" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td> 
+                                        
+                     <td style="width:150px; background-color:#e8eef4"><b>LOW</b> : KM Level 3</td>
+                    <td><input type="text" id="txtLLev3" name="txtLLev3" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                      
+                </tr>
+                 <tr>
+                    <td style="width:150px; background-color:#e8eef4"><b>HIGH</b> : KM Level 1</td>
+                    <td><input type="text" id="txtHLev1" name="txtHLev1" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                      
+                    <td style="width:150px; background-color:#e8eef4"><b>HIGH</b> : KM Level 3</td>
+                    <td><input type="text" id="txtHLev3" name="txtHLev3" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                </tr>
+                 <tr>
+                    <td style="width:150px; background-color:#e8eef4"><b>RATE</b> : Level 1</td>
+                    <td><input type="text" id="txtRate1" name="txtRate1" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                                           
+                   
+                   <td style="width:150px; background-color:#e8eef4"><b>RATE</b> : Level 3</td>
+                    <td><input type="text" id="txtRate3" name="txtRate3" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>    
+                </tr>                
+             
+            </table>
+            <br />
+            
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>
+</div>
+    
+
+

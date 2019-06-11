@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://nrm.ws.integ.neps.ag.com/types/NrmSoapServices" xmlns:impl="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" targetNamespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://nrm.ws.integ.neps.ag.com/types/NrmSoapServices">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="NrmProject">
+        <xsd:sequence>
+          <xsd:element name="description" type="xsd:string" />
+          <xsd:element name="id" type="xsd:long" />
+          <xsd:element name="jobId" type="xsd:string" />
+          <xsd:element name="jobState" type="xsd:string" />
+          <xsd:element name="schemeName" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NetworkElementType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="id" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="type" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfNetworkElementType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns1:NetworkElementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfNrmProject">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns1:NrmProject" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="DeleteProjectResponse">
+    <wsdl:part name="result" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectResponse">
+    <wsdl:part name="result" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="ListProjectsRequest" />
+  <wsdl:message name="UpdateProjectRequest">
+    <wsdl:part name="schemeName" type="xsd:string" />
+    <wsdl:part name="description" type="xsd:string" />
+    <wsdl:part name="jobId" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="ListProjectsResponse">
+    <wsdl:part name="result" type="tns1:ArrayOfNrmProject" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProjectRequest">
+    <wsdl:part name="jobId" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="GetIspEquipmentFromJobIdResponse">
+    <wsdl:part name="result" type="tns1:ArrayOfNetworkElementType" />
+  </wsdl:message>
+  <wsdl:message name="TestConnectRequest" />
+  <wsdl:message name="GetIspEquipmentFromJobIdRequest">
+    <wsdl:part name="jobId" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="FindProjectResponse">
+    <wsdl:part name="result" type="tns1:NrmProject" />
+  </wsdl:message>
+  <wsdl:message name="TestConnectResponse">
+    <wsdl:part name="result" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateProjectRequest">
+    <wsdl:part name="schemeName" type="xsd:string" />
+    <wsdl:part name="description" type="xsd:string" />
+    <wsdl:part name="jobId" type="xsd:string" />
+    <wsdl:part name="jobState" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="BOQResponse">
+    <wsdl:part name="result" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="BOQRequest">
+    <wsdl:part name="jobId" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="FindProjectRequest">
+    <wsdl:part name="jobId" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateProjectResponse">
+    <wsdl:part name="result" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="NrmServiceInterface">
+    <wsdl:operation name="BOQ" parameterOrder="jobId">
+      <wsdl:input name="BOQRequest" message="impl:BOQRequest" />
+      <wsdl:output name="BOQResponse" message="impl:BOQResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject" parameterOrder="schemeName description jobId jobState">
+      <wsdl:input name="CreateProjectRequest" message="impl:CreateProjectRequest" />
+      <wsdl:output name="CreateProjectResponse" message="impl:CreateProjectResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject" parameterOrder="jobId">
+      <wsdl:input name="DeleteProjectRequest" message="impl:DeleteProjectRequest" />
+      <wsdl:output name="DeleteProjectResponse" message="impl:DeleteProjectResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="FindProject" parameterOrder="jobId">
+      <wsdl:input name="FindProjectRequest" message="impl:FindProjectRequest" />
+      <wsdl:output name="FindProjectResponse" message="impl:FindProjectResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIspEquipmentFromJobId" parameterOrder="jobId">
+      <wsdl:input name="GetIspEquipmentFromJobIdRequest" message="impl:GetIspEquipmentFromJobIdRequest" />
+      <wsdl:output name="GetIspEquipmentFromJobIdResponse" message="impl:GetIspEquipmentFromJobIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ListProjects">
+      <wsdl:input name="ListProjectsRequest" message="impl:ListProjectsRequest" />
+      <wsdl:output name="ListProjectsResponse" message="impl:ListProjectsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="TestConnect">
+      <wsdl:input name="TestConnectRequest" message="impl:TestConnectRequest" />
+      <wsdl:output name="TestConnectResponse" message="impl:TestConnectResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject" parameterOrder="schemeName description jobId">
+      <wsdl:input name="UpdateProjectRequest" message="impl:UpdateProjectRequest" />
+      <wsdl:output name="UpdateProjectResponse" message="impl:UpdateProjectResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NRMServicePortSoapBinding" type="impl:NrmServiceInterface">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="BOQ">
+      <wsdlsoap:operation soapAction="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices/BOQ" />
+      <wsdl:input name="BOQRequest">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:input>
+      <wsdl:output name="BOQResponse">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject">
+      <wsdlsoap:operation soapAction="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices/CreateProject" />
+      <wsdl:input name="CreateProjectRequest">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:input>
+      <wsdl:output name="CreateProjectResponse">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdlsoap:operation soapAction="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices/DeleteProject" />
+      <wsdl:input name="DeleteProjectRequest">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:input>
+      <wsdl:output name="DeleteProjectResponse">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindProject">
+      <wsdlsoap:operation soapAction="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices/FindProject" />
+      <wsdl:input name="FindProjectRequest">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:input>
+      <wsdl:output name="FindProjectResponse">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIspEquipmentFromJobId">
+      <wsdlsoap:operation soapAction="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices/GetIspEquipmentFromJobId" />
+      <wsdl:input name="GetIspEquipmentFromJobIdRequest">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:input>
+      <wsdl:output name="GetIspEquipmentFromJobIdResponse">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListProjects">
+      <wsdlsoap:operation soapAction="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices/ListProjects" />
+      <wsdl:input name="ListProjectsRequest">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:input>
+      <wsdl:output name="ListProjectsResponse">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestConnect">
+      <wsdlsoap:operation soapAction="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices/TestConnect" />
+      <wsdl:input name="TestConnectRequest">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:input>
+      <wsdl:output name="TestConnectResponse">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <wsdlsoap:operation soapAction="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices/UpdateProject" />
+      <wsdl:input name="UpdateProjectRequest">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:input>
+      <wsdl:output name="UpdateProjectResponse">
+        <wsdlsoap:body use="literal" namespace="http://nrm.ws.integ.neps.ag.com/wsdl/NrmSoapServices" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NRMService">
+    <wsdl:port name="NRMServicePort" binding="impl:NRMServicePortSoapBinding">
+      <wsdlsoap:address location="http://10.41.61.177:9090/NRMSoap2/services/NRMServicePort" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

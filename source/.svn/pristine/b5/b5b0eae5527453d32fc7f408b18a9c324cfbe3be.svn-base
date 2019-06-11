@@ -1,0 +1,50 @@
+﻿@model WebView.Models.NewJobModel
+
+@{
+    ViewBag.Title = "TEST WSDL";
+}
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $('#btnWSDL').click(function () {
+            alert("TEST");
+                $.ajax({
+                    url: '@Url.Action("testWSDL", "JOB")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        //"id": document.getElementById("jobID").value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        SetElement("utxtCARD_TYPE", res.CARD_TYPE);
+                        SetElement("utxtCARD_MODEL", res.CARD_MODEL);
+                        SetElement("utxtPORT_LO", res.PORT_LO);
+                        SetElement("utxtPORT_HI", res.PORT_HI);
+                    }
+                });
+
+            });
+
+            $("#btnWSDL").button();
+        })
+    });
+</script>
+<br />
+<h3>
+  TEST WSDL
+</h3>
+<div>
+<table style="width:850px;">
+    <tr>
+        <td style="text-align:right;">
+            <input type="text" id="jobID" />
+            <input type="button" value="SUBMIT" id="btnWSDL" />
+        </td>
+    </tr>
+</table>
+</div>

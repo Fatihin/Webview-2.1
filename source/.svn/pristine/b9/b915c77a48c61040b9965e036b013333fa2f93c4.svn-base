@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "NewSave";
+}
+<br />
+<br />
+<h2>Status</h2>
+<div style="height:400px">
+New State Maintenance has been created.
+</div>

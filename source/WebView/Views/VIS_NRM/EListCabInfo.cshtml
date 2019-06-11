@@ -1,0 +1,139 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.CabAddInfo>
+
+@{
+    ViewBag.Title = "List Cabinet Additional Info";
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&pttID=" + document.getElementById("pttID").value; //Where List is the function in the controller.
+            });
+
+            $('#searchKey').change(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewCabInfo";
+            });
+
+            $('#Del').click(function () {
+                
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+    function delProject(data){
+        alert(data);
+        $ = globalJquery;
+        var cmsg = confirm("Are you sure you want delete to  data?");
+        if (cmsg != 0) {
+            $.ajax({
+                url: "/VIS_NRM/DeleteCabInfo",
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": data
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    alert("Data Deleted");
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+
+</script>
+
+<br />
+<h2>List Network Facility For Cabinet @ViewBag.CODE </h2>
+<div style="height:650px"> 
+    @*<h1> PAGE UNDER CONSTRUCTION</h1>
+    <table style="width:850px;">
+        <tr>
+            <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+        </tr>
+    </table>*@
+    
+
+    @if (Model.Count() > 0)
+    {
+        <table id="rounded-corner" summary="CabAddInfo List" width="850px">
+            <thead>
+                <tr>
+                    <th scope="col">DATA_NO</th>
+                    <th scope="col">PWR_CAB_ID</th>
+                    <th scope="col">PWR_CAB_CONDITION</th>
+                    <th scope="col">PRO_ELCB_BRAND</th>
+                    <th scope="col">RC_BRAND</th>
+                    <th scope="col" colspan=2 style="text-align:center">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var res in Model)
+            {
+                <tr class="odd">
+                    <td id="gid">@res.DATA_NO</td>
+                    <td>@res.PWR_CAB_ID</td>
+                    <td>@res.PWR_CAB_CONDITION</td>
+                    <td>@res.PRO_ELCB_BRAND</td>
+                    <td>@res.RC_BRAND</td>
+                    <td> @if (@res.FACILITIES != "0" ){ @Html.ActionLink("Edit", "EditCabInfo", new { id = @res.DATA_NO })}</td>   
+                    <td> @if (@res.FACILITIES != "0" ){ <a href="#" id="Del" onclick="delProject(@res.DATA_NO)">Delete</a>@*@Html.ActionLink("Delete", "DeleteCabInfo", new { id = @res.DATA_NO})*@}</td>              
+                </tr>    
+            }
+            </tbody>
+        </table>
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+            &nbsp;
+            @if (Model.HasPreviousPage)
+            {
+                @Html.ActionLink("<<", "ListCabInfo", new { searchKey = "", pttID = ViewBag.pttID2, page = 1 })
+                @Html.Raw("&nbsp;");
+                @Html.ActionLink("< Prev", "ListCabInfo", new { searchKey = "", pttID = ViewBag.pttID2, page = Model.PageNumber - 1 })
+            }
+            else
+            {
+
+            }
+            &nbsp;
+            @if (Model.HasNextPage)
+            {
+                @Html.ActionLink("Next >", "ListCabInfo", new { searchKey = "", pttID = ViewBag.pttID2, page = Model.PageNumber + 1 })
+                @Html.Raw("&nbsp;");
+                @Html.ActionLink(">>", "ListCabInfo", new { searchKey = "", pttID = ViewBag.pttID2, page = Model.PageCount })
+            }
+            else
+            {
+
+            }<br/><b> Total @Model.TotalItemCount  records</b>
+        </div>
+    }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+</div>

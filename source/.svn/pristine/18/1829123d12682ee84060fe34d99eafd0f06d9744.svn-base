@@ -1,0 +1,45 @@
+﻿@model WebView.Models.CityMaintenanceModel
+@{
+    //ViewBag.Title = "List";
+    ViewBag.Title = "CityMaintenance";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New City Maintenance</h2>
+@using (Html.BeginForm("NewCityMaintenance", "CityMaintenance", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>City Name</td>
+            <td>
+                @Html.TextBoxFor(m => m.City_Name, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.City_Name)
+            </td>
+        </tr>
+        <tr>
+            <td>State Name</td>
+            <td>
+                @Html.DropDownListFor(m => m.State_CODE, (IEnumerable<SelectListItem>)ViewBag.StateID, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.State_CODE)
+            </td>
+        </tr> 
+
+        @*<tr>
+            <td>Cost Centre</td>
+            <td>
+                @Html.TextBoxFor(m => m.CostCentre, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.CostCentre)
+            </td>
+        </tr>*@              
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                                 
+}

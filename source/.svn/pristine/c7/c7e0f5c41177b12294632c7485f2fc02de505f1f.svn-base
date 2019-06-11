@@ -1,0 +1,1590 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.Job>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+    var status = 0;
+
+    function AddItem(target, text, val) {
+        cs = document.getElementById(target);
+        opt = document.createElement("option");
+
+        cs.options.add(opt);
+        opt.text = text;
+        opt.value = val;
+    }
+
+    function GetDetailsCallBack(data) {
+
+        $ = globalJquery;
+        state = data.jobstate;
+        status = data.jobstatus;
+        projNo = data.project_no;
+        projNRMid = data.projNRMid;
+        //if
+        //alert("NRM CAN'T BE LAUNCH AT THIS TIME (" + projNRMid + ")");
+
+        document.getElementById("targetJob").value = data.jobid;
+
+        //document.getElementById("targetNRM").value = projNRMid;
+        //alert(projNRMid);
+        var approval = function () {
+            var cmsg = confirm('Are you sure you want to send for approval?');
+            if (cmsg != 0) {
+                if (data.handover == "MANUAL") {
+                    window.location = "Handover?id=" + document.getElementById("targetJob").value;
+                }
+            }
+        }
+
+        outputHandover = data.outputHandover;
+
+        var HandoverStatus = function () {
+            window.location = "ViewHandoverISP?id=" + document.getElementById("targetJob").value;
+        }
+
+        var ResendApproval = function () {
+            var cmsg = confirm('Are you sure you want to re-send for approval?');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: "/Job/ResentApproval",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetJob": document.getElementById("targetJob").value,
+                        "targetDesc": document.getElementById("txtDescription2").value
+                    },
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.result == "ok") {
+                            alert("Successfully Sent For Approval.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert(res.result);
+                        }
+                    }
+                });
+            }
+        }
+        var handover = function () {
+            var cmsg = confirm('Are you sure you want to Handover?');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: "/Job/ISPAutoApproval",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetJob": document.getElementById("targetJob").value
+                    },
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.result == "ok") {
+                            alert("Handed Over.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Handover Started.");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+
+        }
+
+        var handovergranite = function () {
+            var cmsg = confirm('Are you sure you want to Handover?');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: "/Job/GraniteApproval",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetJob": document.getElementById("targetJob").value
+                    },
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.result == "ok") {
+                            alert("Handed Over.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Handover Started");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+
+        }
+
+        var assetGems = function () {
+            var cmsg = confirm('Are you sure you want to submit asset to GEMS?');
+            if (cmsg != 0) {
+                $.ajax({
+                    url: "/Job/AssetGems",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "targetJob": document.getElementById("targetJob").value
+                    },
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == true) {
+                            alert("Successful. GEMS will create Asset No for all assets in this job.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Failes");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+
+        }
+
+        var approve = function () {
+            $(this).dialog("close");
+        }
+
+        var changeOwner = function () {
+            document.getElementById("changeOwner-details").style.display = "block";
+            document.getElementById("list-details").style.display = "none";
+
+            button = $("#divDetails").parent().find("button:contains('Send Approval')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            button = $("#divDetails").parent().find("button:contains('Change Ownership')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            button = $("#divDetails").parent().find("button:contains('Delete')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            button = $("#divDetails").parent().find("button:contains('Save')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            button = $("#divDetails").parent().find("button:contains('Match Project No.')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            button = $("#divDetails").parent().find("button:contains('Handover')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            document.getElementById("DropDownList-UserRoles").options.length = 0;
+            if (data.userRole == "FUNDAMENTAL" || data.userRole == "SUPERVISOR") {
+                var opt = document.createElement("option");
+                document.getElementById("DropDownList-UserRoles").options.add(opt);
+                opt.text = "";
+                opt.value = "";
+                var opt = document.createElement("option");
+                document.getElementById("DropDownList-UserRoles").options.add(opt);
+                opt.text = "Fundamental";
+                opt.value = "FUNDAMENTAL";
+                var opt = document.createElement("option");
+                document.getElementById("DropDownList-UserRoles").options.add(opt);
+                opt.text = "Detail";
+                opt.value = "DETAIL";
+            }
+            else if (data.userRole == "DETAIL") {
+                var opt = document.createElement("option");
+                document.getElementById("DropDownList-UserRoles").options.add(opt);
+                opt.text = "";
+                opt.value = "";
+                var opt = document.createElement("option");
+                document.getElementById("DropDownList-UserRoles").options.add(opt);
+                opt.text = "Detail";
+                opt.value = "DETAIL";
+            }
+            else if (data.userRole == "STANDARD" || data.userRole == "ADVANCED") {
+                var opt = document.createElement("option");
+                document.getElementById("DropDownList-UserRoles").options.add(opt);
+                opt.text = "";
+                opt.value = "";
+
+                var opt = document.createElement("option");
+                document.getElementById("DropDownList-UserRoles").options.add(opt);
+                opt.text = "Advanced";
+                opt.value = "ADVANCED";
+
+                var opt = document.createElement("option");
+                document.getElementById("DropDownList-UserRoles").options.add(opt);
+                opt.text = "Standard";
+                opt.value = "STANDARD";
+            }
+        }
+
+        var matchproject = function () {
+            document.getElementById("list-details").style.display = "none";
+            document.getElementById("changeOwner-details").style.display = "none";
+            document.getElementById("project-details").style.display = "block";
+
+            button = $("#divDetails").parent().find("button:contains('Change Ownership')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            button = $("#divDetails").parent().find("button:contains('Delete')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            button = $("#divDetails").parent().find("button:contains('Save')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            button = $("#divDetails").parent().find("button:contains('Match Project No.')");
+            button.unbind();
+            button.addClass('ui-state-disabled');
+
+            FindProjectNo();
+        }
+
+        if (data.jobstate == 'PROPOSED' || data.jobstate == 'UN_CONSTRUCT') {
+            $('#divDetails').dialog('removebutton', 'Send Approval');
+            $('#divDetails').dialog('removebutton', 'Change Ownership');
+            $('#divDetails').dialog('addbutton', 'Match Project No.', matchproject);
+            $('#divDetails').dialog('removebutton', 'Resend Approval');
+            $('#divDetails').dialog('removebutton', 'Submit to NIS');
+            $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            $('#divDetails').dialog('removebutton', 'Commission');
+            $('#divDetails').dialog('removebutton', 'Asset to GEMS');
+            if (data.scheme_type == 'HSBB (Equip)' || data.scheme_type == 'HSBB E/Side' || data.scheme_type == 'HSBB D/Side') {
+                $('#divDetails').dialog('addbutton', 'Submit to Granite', handovergranite);
+                $('#divDetails').dialog('addbutton', 'Submit to NIS', handover);
+                $('#divDetails').dialog('removebutton', 'Commission');
+            } else if (data.scheme_type == 'Civil') {
+                $('#divDetails').dialog('addbutton', 'Commission', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to NIS');
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            } else {
+                $('#divDetails').dialog('addbutton', 'Submit to NIS', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+                $('#divDetails').dialog('removebutton', 'Commission');
+            }
+        }
+        else if (data.project_no != null && data.jobstate == "COMPLETED" && data.handover == "MANUAL") {
+            $('#divDetails').dialog('removebutton', 'Change Ownership');
+            $('#divDetails').dialog('addbutton', 'Send Approval', approval);
+            $('#divDetails').dialog('removebutton', 'Resend Approval');
+            $('#divDetails').dialog('addbutton', 'Match Project No.', matchproject);
+            $('#divDetails').dialog('removebutton', 'Submit to NIS');
+            $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            $('#divDetails').dialog('removebutton', 'Commission');
+            $('#divDetails').dialog('removebutton', 'Asset to GEMS');
+        }
+        else if (data.jobstate == "COMPLETED" && data.handover == "AUTO") {
+            $('#divDetails').dialog('removebutton', 'Change Ownership');
+            $('#divDetails').dialog('addbutton', 'Match Project No.', matchproject);
+            if (data.scheme_type == 'HSBB (Equip)' || data.scheme_type == 'HSBB E/Side' || data.scheme_type == 'HSBB D/Side') {
+                $('#divDetails').dialog('addbutton', 'Submit to Granite', handovergranite);
+                $('#divDetails').dialog('addbutton', 'Submit to NIS', handover);
+                $('#divDetails').dialog('removebutton', 'Commission');
+            } else if (data.scheme_type == 'Civil') {
+                $('#divDetails').dialog('addbutton', 'Commission', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to NIS');
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            } else {
+                $('#divDetails').dialog('addbutton', 'Submit to NIS', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+                $('#divDetails').dialog('removebutton', 'Commission');
+            }
+
+            if (data.project_no != null) {
+                $('#divDetails').dialog('addbutton', 'Asset to GEMS', assetGems);
+            } else {
+                $('#divDetails').dialog('removebutton', 'Asset to GEMS');
+            }
+        }
+        else if (data.jobstate == "REJECTED" && data.handover == "MANUAL") {
+            $('#divDetails').dialog('removebutton', 'Change Ownership');
+            $('#divDetails').dialog('addbutton', 'Resend Approval', ResendApproval);
+            $('#divDetails').dialog('removebutton', 'Send Approval');
+            $('#divDetails').dialog('addbutton', 'Match Project No.', matchproject);
+            $('#divDetails').dialog('removebutton', 'Handover');
+            $('#divDetails').dialog('removebutton', 'Submit to NIS');
+            $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            $('#divDetails').dialog('removebutton', 'Commission');
+            $('#divDetails').dialog('removebutton', 'Asset to GEMS');
+        }
+        else if (data.jobstate == "APPROVED") {
+            $('#divDetails').dialog('removebutton', 'Change Ownership');
+            $('#divDetails').dialog('removebutton', 'Send Approval');
+            $('#divDetails').dialog('removebutton', 'Resend Approval');
+            $('#divDetails').dialog('addbutton', 'Match Project No.', matchproject);
+            if (data.scheme_type == 'HSBB (Equip)' || data.scheme_type == 'HSBB E/Side' || data.scheme_type == 'HSBB D/Side') {
+                $('#divDetails').dialog('addbutton', 'Submit to Granite', handovergranite);
+                $('#divDetails').dialog('removebutton', 'Submit to NIS');
+            } else if (data.scheme_type == 'Civil') {
+                $('#divDetails').dialog('addbutton', 'Commission', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to NIS');
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            }
+            else {
+                $('#divDetails').dialog('addbutton', 'Submit to NIS', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            }
+            $('#divDetails').dialog('removebutton', 'Asset to GEMS');
+        }
+        else if (data.jobstate == "COMMISSIONED") {
+            $('#divDetails').dialog('removebutton', 'Send Approval');
+            $('#divDetails').dialog('removebutton', 'Change Ownership');
+            $('#divDetails').dialog('removebutton', 'Resend Approval');
+            $('#divDetails').dialog('addbutton', 'Match Project No.', matchproject);
+            $('#divDetails').dialog('removebutton', 'Handover');
+            $('#divDetails').dialog('removebutton', 'Submit to NIS');
+            $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            $('#divDetails').dialog('removebutton', 'Commission');
+            $('#divDetails').dialog('removebutton', 'Asset to GEMS');
+
+            if (data.scheme_type == 'HSBB (Equip)' || data.scheme_type == 'HSBB E/Side' || data.scheme_type == 'HSBB D/Side') {
+                $('#divDetails').dialog('addbutton', 'Submit to Granite', handovergranite);
+                $('#divDetails').dialog('removebutton', 'Submit to NIS');
+                $('#divDetails').dialog('removebutton', 'Commission');
+            } else if (data.scheme_type == 'Civil') {
+                $('#divDetails').dialog('addbutton', 'Commission', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to NIS');
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            } else {
+                $('#divDetails').dialog('addbutton', 'Submit to NIS', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+                $('#divDetails').dialog('removebutton', 'Commission');
+            }
+        }
+        else if (data.project_no != null && (data.jobstate != "COMPLETED" || data.jobstate != "COMMISSIONED")) {
+            $('#divDetails').dialog('removebutton', 'Send Approval');
+            $('#divDetails').dialog('removebutton', 'Change Ownership');
+            $('#divDetails').dialog('removebutton', 'Resend Approval');
+            $('#divDetails').dialog('addbutton', 'Match Project No.', matchproject);
+            $('#divDetails').dialog('removebutton', 'Handover');
+            $('#divDetails').dialog('removebutton', 'Commission');
+            $('#divDetails').dialog('removebutton', 'Asset to GEMS');
+            if (data.scheme_type == 'HSBB (Equip)' || data.scheme_type == 'HSBB E/Side' || data.scheme_type == 'HSBB D/Side') {
+                $('#divDetails').dialog('addbutton', 'Submit to Granite', handovergranite);
+                $('#divDetails').dialog('addbutton', 'Submit to NIS', handover);
+                $('#divDetails').dialog('removebutton', 'Commission');
+            } else if (data.scheme_type == 'Civil') {
+                $('#divDetails').dialog('addbutton', 'Commission', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to NIS');
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+            } else {
+                $('#divDetails').dialog('addbutton', 'Submit to NIS', handover);
+                $('#divDetails').dialog('removebutton', 'Submit to Granite');
+                $('#divDetails').dialog('removebutton', 'Commission');
+            }
+        }
+
+        //alert(outputHandover);
+        if (outputHandover != 0) {
+            $('#divDetails').dialog('addbutton', 'View Handover Status.', HandoverStatus);
+        } else {
+            $('#divDetails').dialog('removebutton', 'View Handover Status.');
+        }
+
+        var files = data.files_list.files.split('|');
+        //var files = data.split('|');
+
+        if (files.length > 1) {
+            document.getElementById("FilesBlock").style.display = "block";
+            var tbl = document.getElementById('tblFiles');
+            var lastRow = tbl.rows.length;
+
+            if (lastRow > 1) {
+                for (i = 1; i < lastRow; i++) {
+                    tbl.deleteRow(1);
+                }
+            }
+
+            lastRow = tbl.rows.length;
+            for (i = 0; i < files.length - 1; i++) {
+                // adding files to list
+
+                var iteration = lastRow;
+                var row = tbl.insertRow(lastRow);
+
+                var cellLeft = row.insertCell(0);
+                var textNode = document.createElement("span");
+                textNode.innerHTML = files[i];
+                cellLeft.appendChild(textNode);
+
+                var celRight = row.insertCell(1);
+                textNode = document.createElement("span");
+                textNode.innerHTML = "";
+                celRight.appendChild(textNode);
+            }
+        }
+        else {
+            document.getElementById("FilesBlock").style.display = "none";
+
+            var tbl = document.getElementById('tblFiles');
+            var lastRow = tbl.rows.length;
+
+            if (lastRow > 1) {
+                for (i = 1; i < lastRow; i++) {
+                    tbl.deleteRow(1);
+                }
+            }
+        }
+
+        SetElement("txtName", data.name);
+        SetElement("txtDescription", data.description);
+        SetElement("txtDescription2", data.description2);
+        if (data.jobstate == "PROPOSED" && data.grpId != 12) {
+            document.getElementById("txtJobState").disabled = false;
+            document.getElementById("txtJobState").options[0].value = "PROPOSED";
+            document.getElementById("txtJobState").options[0].text = "PROPOSED";
+            document.getElementById("txtJobState").options[1].value = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[1].text = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[2].value = "";
+            document.getElementById("txtJobState").options[2].text = "";
+        }
+        else if (data.jobstate == "AMENDMENT" && data.grpId != 12) {
+            document.getElementById("txtJobState").disabled = false;
+            document.getElementById("txtJobState").options[0].value = "AMENDMENT";
+            document.getElementById("txtJobState").options[0].text = "AMENDMENT";
+            document.getElementById("txtJobState").options[1].value = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[1].text = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[2].value = "";
+            document.getElementById("txtJobState").options[2].text = "";
+        }
+        else if (data.jobstate == "UN_CONSTRUCT" && data.project_no != null && data.grpId != 12) {
+            document.getElementById("txtJobState").options[0].value = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[0].text = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[1].value = "AMENDMENT";
+            document.getElementById("txtJobState").options[1].text = "AMENDMENT";
+            document.getElementById("txtJobState").options[2].value = "COMPLETED";
+            document.getElementById("txtJobState").options[2].text = "COMPLETED";
+        }
+        else if (data.jobstate == "UN_CONSTRUCT" && data.project_no == null && data.grpId != 12) { // haidar edit sementara
+            document.getElementById("txtJobState").disabled = false;
+            document.getElementById("txtJobState").options[0].value = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[0].text = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[1].value = "COMPLETED";
+            document.getElementById("txtJobState").options[1].text = "COMPLETED";
+        }
+        else if (data.jobstate == "COMPLETED" && data.grpId != 12) {
+            document.getElementById("txtJobState").disabled = true;
+            document.getElementById("txtJobState").options[0].value = "COMPLETED";
+            document.getElementById("txtJobState").options[0].text = "COMPLETED";
+        }
+        else if (data.jobstate == "APPROVED" && data.grpId != 12) {
+            document.getElementById("txtJobState").disabled = true;
+            document.getElementById("txtJobState").options[0].value = "APPROVED";
+            document.getElementById("txtJobState").options[0].text = "APPROVED";
+        }
+        else if (data.jobstate == "REJECTED" && data.grpId != 12) {
+            document.getElementById("txtJobState").disabled = true;
+            document.getElementById("txtJobState").options[0].value = "REJECTED";
+            document.getElementById("txtJobState").options[0].text = "REJECTED";
+        }
+        else if (data.jobstate == "COMMISSIONED" && data.grpId != 12) {
+            document.getElementById("txtJobState").disabled = true;
+            if (data.scheme_type == 'Civil') {
+                document.getElementById("txtJobState").options[0].value = "COMMISSIONED";
+                document.getElementById("txtJobState").options[0].text = "COMMISSIONED";
+            } else {
+                document.getElementById("txtJobState").options[0].value = "COMMISSIONED";
+                document.getElementById("txtJobState").options[0].text = "SUBMITTED";
+            }
+        }
+        else if (data.jobstate == "PENDING APP" && data.grpId != 12) {
+            document.getElementById("txtJobState").disabled = true;
+            document.getElementById("txtJobState").options[0].value = "PENDING APP";
+            document.getElementById("txtJobState").options[0].text = "PENDING APP";
+        } else if (data.grpId == 12) {
+            document.getElementById("txtJobState").disabled = false;
+            document.getElementById("txtJobState").options[0].value = data.jobstate;
+            document.getElementById("txtJobState").options[0].text = data.jobstate;
+            document.getElementById("txtJobState").options[1].value = "PROPOSED";
+            document.getElementById("txtJobState").options[1].text = "PROPOSED";
+            document.getElementById("txtJobState").options[2].value = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[2].text = "UN_CONSTRUCT";
+            document.getElementById("txtJobState").options[3].value = "COMPLETED";
+            document.getElementById("txtJobState").options[3].text = "COMPLETED";
+        }
+
+        SetElement("jobIdVal", data.jobid);
+        SetText("txtJobNo", data.jobid);
+        SetElement("txtSchemeName", data.scheme_name);
+        SetElement("txtOwner", data.user);
+        SetElement("txtStatus", data.jobstatus);
+        SetElement("txtEXC", data.excabb);
+        SetElement("txtSchemeType", data.scheme_type);
+        SetElement("txtStartDate", data.startDate);
+        SetElement("txtEndDate", data.endDate);
+
+        if (data.project_no == null)
+            SetElement("txtProjectNo", "-");
+        else
+            SetElement("txtProjectNo", data.project_no);
+
+        document.getElementById("targetJob").value = data.jobid;
+
+        document.getElementById("btnClose").disabled = false;
+        document.getElementById("txtName").disabled = true;
+        document.getElementById("txtOwner").disabled = true;
+        document.getElementById("txtProjectNo").disabled = true;
+        document.getElementById("txtJobNo").disabled = true;
+        document.getElementById("txtSchemeName").disabled = true;
+        document.getElementById("txtStatus").disabled = true;
+        document.getElementById("txtEXC").disabled = true;
+        document.getElementById("txtSchemeType").disabled = true;
+        SetElement("txtStartDate", data.startDate);
+        SetElement("txtEndDate", data.endDate);
+        //$('input[type=text].txtName').val(data.Message);
+    }
+
+    function SaveUpdateCallBack(data) {
+        alert("msg");
+        document.getElementById("txtName").readOnly = true;
+        document.getElementById("txtDescription").readOnly = true;
+        //document.getElementById("txtJobState").readOnly = true;
+        document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    function searchList() {
+        var jobExc = document.getElementById("jobExc").value;
+        var jobScheme = document.getElementById("jobScheme").value;
+        var jobYear2 = document.getElementById("jobYear").value;
+        var jobState2 = document.getElementById("jobState").value;
+        if (jobYear2 == "Select") {
+            var jobYear = 0;
+        }
+        else {
+            var jobYear = jobYear2;
+        }
+
+        window.location = "ISPList?searchKey=" + document.getElementById("searchKey").value + "&jobExc=" + jobExc + "&jobScheme=" + jobScheme + "&jobYear=" + jobYear + "&jobState=" + jobState2;
+    }
+
+    function FindProjectNo() {
+        pNo = document.getElementById("projectNo").value.length;
+
+        //if (pNo > 0) {
+            $.ajax({
+                url: "/Job/FindProjectNo",
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "projectNo": document.getElementById("projectNo").value,
+                    "exchange": document.getElementById("txtEXC").value
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var tblC = document.getElementById('projectTable');
+                    for (var i = tblC.rows.length - 1; i > 0; i--) {
+                        tblC.deleteRow(i);
+                    }
+                    var res = jQuery.parseJSON(data);
+                    document.getElementById('notFoundDiv').style.display = "none";
+
+                    if (res.jenisCarian == "Cari2") {
+                        for (ii = 0; ii < document.getElementById("NoOfRow").value; ii++) {
+                            var tbl = document.getElementById('projectTable');
+                            var lastRow = tbl.rows.length;
+                            var iteration = lastRow;
+                            var row = tbl.insertRow(lastRow);
+
+                            row.insertCell(0);
+                            row.insertCell(1);
+                            row.insertCell(2);
+                            row.insertCell(3);
+                            row.insertCell(4);
+                            row.insertCell(5);
+                            row.insertCell(6);
+
+                            var empty = "";
+                            tbl.rows[ii + 1].cells[0].innerHTML = empty;
+                            tbl.rows[ii + 1].cells[1].innerHTML = empty;
+                            tbl.rows[ii + 1].cells[2].innerHTML = empty;
+                            tbl.rows[ii + 1].cells[3].innerHTML = empty;
+                            tbl.rows[ii + 1].cells[4].innerHTML = empty;
+                            tbl.rows[ii + 1].cells[5].innerHTML = empty;
+                            tbl.rows[ii + 1].cells[6].innerHTML = empty;
+
+                        }
+
+                        document.getElementById('projectTable').style.display = "none";
+                        document.getElementById('projectTable').style.display = "block";
+                        big = res.record.split('!');
+                        countBtnEdit = 0;
+                        for (ii = 0; ii < big.length - 1; ii++) {
+                            d = big[ii].split('|');
+                            countBtnEdit++;
+
+                            var tbl = document.getElementById('projectTable');
+                            var lastRow = tbl.rows.length;
+                            var iteration = lastRow;
+                            var row = tbl.insertRow(lastRow);
+
+                            if (d[0] != "") {
+                                row.insertCell(0);
+                                row.insertCell(1);
+                                row.insertCell(2);
+                                row.insertCell(3);
+                                row.insertCell(4);
+                                row.insertCell(5);
+                                row.insertCell(6);
+
+                                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                                tbl.rows[ii + 1].cells[6].innerHTML = "<input type=\"button\" value=\"choose\" onclick=\"choose('" + d[0] + "', '" + d[1] + "')\"  style=\"width:80px\" />";
+                            }
+                        }
+                        SetElement("NoOfRow", countBtnEdit);
+                    }
+//                    else {
+//                        document.getElementById('projectTable').style.display = "block";
+//                        big = res.record.split('!');
+//                        countBtnEdit = 0;
+//                        for (ii = 0; ii < big.length - 1; ii++) {
+//                            d = big[ii].split('|');
+//                            countBtnEdit++;
+//                            var tbl = document.getElementById('projectTable');
+//                            var lastRow = tbl.rows.length;
+//                            var iteration = lastRow;
+//                            var row = tbl.insertRow(lastRow);
+
+//                            row.insertCell(0);
+//                            row.insertCell(1);
+//                            row.insertCell(2);
+//                            row.insertCell(3);
+//                            row.insertCell(4);
+//                            row.insertCell(5);
+//                            row.insertCell(6);
+//                            if (d[0] != "") {
+//                                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+//                                tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+//                                tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+//                                tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+//                                tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+//                                tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+//                                tbl.rows[ii + 1].cells[6].innerHTML = "<input type=\"button\" value=\"choose\" onclick=\"choose('" + d[0] + "','" + d[1] + "')\"  style=\"width:80px\" />";
+//                            }
+//                        }
+
+//                        SetElement("NoOfRow", countBtnEdit);
+//                    }
+                }
+            });
+        //}
+//        else {
+//            $.msgBox("Please enter at least 1 character.<br/> Enter * to list all project no.");
+//        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        var saveOwner = function () {
+            var strSelected = "";
+            $("#DropDownList-UserList option:selected").each(function () {
+                strSelected += $(this)[0].value;
+            });
+            var bValid = true;
+            if (bValid) {
+                $(this).dialog("close");
+            }
+            $.ajax({
+
+                url: "/Job/ChangeOwner",
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "jobIdVal": document.getElementById("jobIdVal").value,
+                    "username": strSelected
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    if (res.Success == true) {
+                        alert("Owner Changed!");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Process Failed.");
+                    }
+                }
+            });
+        }
+
+        var save = function () {
+            //alert("save");
+            var bValid = true;
+            if (document.getElementById("txtJobState").value == "") {
+                alert("Please Check Job State status");
+            }
+            else {
+                //                if (bValid) {
+                //                    $(this).dialog("close");
+                //                }
+                $.ajax({
+
+                    url: "/Job/UpdateDataISP",
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+
+                        "jobIdVal": document.getElementById("jobIdVal").value,
+                        "txtDescription": document.getElementById("txtDescription").value,
+                        "txtDescription2": document.getElementById("txtDescription2").value,
+                        "txtJobState": document.getElementById("txtJobState").value,
+                        "txtStartDate": document.getElementById("txtStartDate").value,
+                        "txtEndDate": document.getElementById("txtEndDate").value
+                    },
+                    beforeSend: function () {
+                        document.getElementById("divLoading").style.visibility = "visible";
+                        alert("Please wait until update response.");
+                    },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+
+                        if (res.Success == true) {
+                            alert("Successfully Updated.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Failed. Please make sure feature state must in \n 'PAD' or 'MOD' or 'PDR' or 'PPF' \n to change job state to un_construct");
+                        }
+                    }
+                });
+            }
+        }
+
+        var del = function () {
+            var bValid = true;
+
+            if (bValid) {
+                $(this).dialog("close");
+            }
+
+            $("#dialog-confirm").css({ visibility: "visible", display: "block" });
+
+            $("#dialog-confirm").dialog({
+                resizable: false,
+                height: 200,
+                modal: true,
+                buttons: {
+                    "Delete": function () {
+                        $(this).dialog("close");
+
+                        $.ajax({
+                            url: "/Job/DeleteDataISP",
+                            type: "POST",
+                            dataType: "html",
+                            data: {
+                                "targetJob": document.getElementById("targetJob").value,
+                                "random": Math.random()
+                            },
+                            beforeSend: function () {
+                            },
+                            success: function (data) {
+                                var res = jQuery.parseJSON(data);
+
+                                if (res.Success == true) {
+                                    alert("Deleted");
+                                    window.location.reload();
+                                }
+                                else {
+                                    alert("Delete failed.");
+                                }
+                            }
+                        });
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+        $("#DropDownList-UserRoles").change(function () {
+            var strSelected = "";
+            $("#DropDownList-UserRoles option:selected").each(function () {
+                strSelected += $(this)[0].value;
+            });
+
+            var bValid = true;
+            if (bValid) {
+                $(this).dialog("close");
+            }
+            $.ajax({
+
+                url: "/Job/UserList",
+                type: "POST",
+                dataType: "html",
+                data: {
+
+                    "userRole": strSelected
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+
+                    var res = jQuery.parseJSON(data);
+
+                    $('#divDetails').dialog('addbutton', 'Save Owner', saveOwner);
+
+                    $('#divDetails').dialog('removebutton', 'Save');
+                    $('#divDetails').dialog('removebutton', 'Send Approval');
+                    $('#divDetails').dialog('removebutton', 'Delete');
+                    $('#divDetails').dialog('removebutton', 'Match Project No.');
+                    $('#divDetails').dialog('removebutton', 'Change Ownership');
+
+                    document.getElementById('DDL-UL').style.display = "block";
+                    document.getElementById('DropDownList-UserList').style.display = "block";
+                    document.getElementById("DropDownList-UserList").options.length = 0;
+                    big = res.record.split('!');
+                    for (i = 0; i < big.length - 1; i++) {
+                        if (big[i] != res.user) {
+                            // Create an Option object        
+                            var opt = document.createElement("option");
+                            // Add an Option object to Drop Down/List Box
+                            document.getElementById("DropDownList-UserList").options.add(opt);
+                            // Assign text and value to Option object
+                            opt.text = big[i];
+                            opt.value = big[i];
+                        }
+                    }
+                }
+            });
+
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+            document.getElementById("list-details").style.display = "block";
+            document.getElementById("project-details").style.display = "none";
+            document.getElementById("changeOwner-details").style.display = "none";
+
+            $('#divDetails').dialog('removebutton', 'Save Owner', saveOwner);
+
+            $('#divDetails').dialog('addbutton', 'Save', save);
+            $('#divDetails').dialog('addbutton', 'Delete', del);
+            window.location.reload();
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 550,
+            width: 800,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+
+        $("#divCheckJob").dialog({
+            autoOpen: false,
+            height: 550,
+            width: 800,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        //$('#divDetails').dialog('removebutton', 'Old Button');
+
+        globalJquery('#divDetails').dialog('removebutton', 'Save Owner');
+        globalJquery('#divDetails').dialog('addbutton', 'Save', save);
+        globalJquery('#divDetails').dialog('addbutton', 'Delete', del);
+        globalJquery('#divDetails').dialog('addbutton', 'Close', close);
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+
+            $("#divDetails").dialog("open");
+            document.getElementById("divLoading").style.visibility = "visible";
+            $.ajax({
+                url: '@Url.Action("ISPGetDetails", "Job")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    GetDetailsCallBack(res);
+                    document.getElementById("divLoading").style.visibility = "hidden";
+
+                    //document.getElementById("projectNo").value = "*";
+                    //FindProjectNo();
+                }
+            });
+        });
+
+        $(function () {
+
+            $('#btnClose').click(function () {
+                document.getElementById("fade").style.display = "none";
+
+                document.getElementById("divDetails").style.display = "none";
+            });
+
+            $('#btnSearch').click(function () {
+                searchList();
+            });
+
+            //-------------------------------press enter in search
+            $('#searchKey').bind('keypress', function (e) {
+                if (e.keyCode == 13) {
+                    searchList();
+                }
+            });
+
+            $('#jobExc').bind('keypress', function (e) {
+                if (e.keyCode == 13) {
+                    searchList();
+                }
+            });
+
+            $('#jobScheme').bind('keypress', function (e) {
+                if (e.keyCode == 13) {
+                    searchList();
+                }
+            });
+
+            $('#jobYear').bind('keypress', function (e) {
+                if (e.keyCode == 13) {
+                    searchList();
+                }
+            });
+            //------------------------------------------------------
+
+            $('#btnDelete').click(function () {
+                alert('test');
+
+            });
+
+            $('#btnFind').click(function () {
+                FindProjectNo();
+            });
+
+            $('#projectNo').change(function () {
+                FindProjectNo();
+            });
+
+            $('#btnMatch').click(function () {
+                document.getElementById("list-details").style.display = "none";
+                document.getElementById("project-details").style.display = "block";
+                //FindProjectNo();
+            });
+
+            $('#btnManageFile').click(function () {
+                var job = document.getElementById("targetJob").value;
+                window.open("FileList/" + job);
+            });
+
+            $('#btnLaunch').click(function () {
+                //                Database: NEPSDEVL
+                //                Username: vis_nrm
+                //                Password: nrm
+                //select ID from vfditem where userdisplayname='SBS' and DTYPE='Plan';
+                var t = document.getElementById("targetJob").value;
+                document.getElementById("divLoadingNRM").style.visibility = "visible";
+                $.ajax({
+                    url: '@Url.Action("ISPLaunchNRM", "Job")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": t,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+                        //url = "10.14.61.189:8080";
+                        document.getElementById("divLoadingNRM").style.visibility = "hidden";
+                        var res = jQuery.parseJSON(data);
+                        url = res.visionael;
+                        if (res.ProjectNRMID == "Fail") {
+                            window.open("http://" + url + "/nrm/vfd/MainPage.iface" + res.url);
+                        }
+                        else {
+                            document.getElementById("targetNRM").value = res.ProjectNRMID;
+                            window.open("http://" + url + "/nrm/FacilitiesDesigner/vfd_item." + document.getElementById("targetNRM").value + "/Graphic/ActionsTab" + res.url);
+                        }
+                    }
+                });
+
+            });
+
+            $("#btnCheckJob").button();
+            $("#btnLink").button();
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnFind").button();
+            $("#btnManageFile").button();
+            $("#btnLaunch").button();
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewJob?job=isp";
+                var t = document.getElementById("targetJob").value;
+
+            });
+        });
+
+        $('#btnCheckJob').click(function () {
+            $("#divCheckJob").dialog("open");
+        });
+
+        $('#btnLink').click(function () {
+
+            var t = document.getElementById("targetJob").value;
+            //var y = document.getElementById("targetGTECH").value;
+            // alert("t: " + t );
+            $.ajax({
+                url: '@Url.Action("IOSPLink", "Job")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "tjOb": t,
+                    // "tGTECH": y,
+                    "random": Math.random()
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    var URL = res.visionael;
+                    //                      document.getElementById("targetGTECH").value = res.jobID;
+                    window.open("http://" + URL + "/nrm/FacilitiesDesigner/project." + res.ID);
+                }
+            });
+        });
+    });
+
+   
+
+    function choose(val, val2) {
+        var cmsg = confirm("Are you sure you want to choose " + val2 + "?");
+        if (cmsg != 0) {
+            $.ajax({
+                url: "/Job/ISPChooseProject",
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "targetJob": document.getElementById("targetJob").value,
+                    "targetProject": val,
+                    "targetWBS": val2
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    if (res.result == "ok") {
+                        alert("Matched.");
+                        document.getElementById("project-details").style.display = "none";
+                        document.getElementById("txtJobState").disabled = false;
+                        window.location.reload();
+                    }
+                    else {
+                        alert(res.result);
+                    }
+
+                    document.getElementById("project-details").style.display = "none";
+                }
+            });
+        }
+    }
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+    /*
+    jQuery(document).ready(function ($) {
+    $(function () {
+    $('#mylink2').click(function () {
+    $.ajax({
+    url: "GetDetails",
+    type: "GET",
+    dataType: "html",
+    data: {
+    "userguid": this.id
+    },
+    beforeSend: function () { },
+    success: function (data) {
+    eval("var t =" + data);
+    document.getElementById("txtName").value = t.other;
+    }
+    });
+    });
+    });
+    });
+    */
+</script>
+
+<br />
+<h3>
+  Job Management > ISP List
+</h3>
+<div id="dialog-confirm" title="Delete this job?" style="visibility:hidden; display:none;">
+  <p>
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?
+  </p>
+</div>
+<div style="height:650px">
+  <div>
+    <table style="width:850px;"  cellspacing="10" cellpadding="10" >
+      <tr>
+        <td style="width:100px; text-align:right;">
+          Scheme Name :
+        </td>
+        <td>
+          <input style="width:150px;" type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/>
+        </td>
+        <td style="width:100px; text-align:right;">
+          Exchange :
+        </td>
+        <td>@Html.DropDownList("jobExc", (IEnumerable<SelectListItem>)ViewBag.excabb, new { style = "width:150px" })</td>
+
+          <td style="width:100px; text-align:right;">
+          Job State :
+        </td>
+       <td>@Html.DropDownList("jobState", (IEnumerable<SelectListItem>)ViewBag.jobState, new { style = "width:150px" })</td>
+       <td style="width:100px; text-align:right;visibility:hidden">
+          Exchange :
+        </td>
+        
+
+      </tr>
+      <tr>
+        <td style="width:100px; text-align:right;">
+          Project Year :
+        </td>
+        <td>@Html.DropDownList("jobYear", (IEnumerable<SelectListItem>)ViewBag.jobyear, new { style = "width:150px" })</td>
+        <td style="width:100px; text-align:right;">
+          Scheme Type :
+        </td>
+        <td>@Html.DropDownList("jobScheme", (IEnumerable<SelectListItem>)ViewBag.schemeType, new { style = "width:150px" })</td>
+        @*<td style="width:100px; text-align:right;">Job Type :</td>
+        <td>@Html.DropDownList("jobType", (IEnumerable<SelectListItem>)ViewBag.jobType, new { style = "width:150px" })</td>*@
+        @*</tr> 
+        <tr>
+        <td>Scheme Type :</td>
+        <td>@Html.DropDownList("CmbNo", (IEnumerable<SelectListItem>)ViewBag.schemeType, new { style = "width:100px" })</td>*@
+        <td></td>
+        <td colspan="2" style="text-align:right;">
+          <input type="button" value="Search" id="btnSearch" />
+        </td>
+        @*<td style="text-align:right"><input type="button" value="Add New Job" id="btnNewJob" /></td>*@
+      </tr>
+  
+      @*<tr>
+      <input type="hidden" id="viewBOQ" value="@ViewBag.boq" />
+      @if (@ViewBag.boq == "true")
+      { 
+      <td colspan="2" style="width:100px;"><input id="boq" name="boq" type="checkbox" value="true" checked /> SELECT JOB THAT HAVE BOQ</td>
+      }
+      else
+      {
+      <td colspan="2" style="width:100px;"><input id="boq" name="boq" type="checkbox" value="true" /> SELECT JOB THAT HAVE BOQ</td>
+      }
+      </tr>*@
+    </table>
+  </div>
+  <br />
+  @if (Model.Count() > 0)
+  {
+  <table id="rounded-corner" summary="Job List" width="850px">
+    <thead>
+      <tr>
+        @*<th scope="col" style="width:80px">JOB NO</th>*@
+        <th scope="col" style="width:150px">
+          SCHEME NAME
+        </th>
+        <th scope="col" style="width:80px">OWNER</th>
+        <th scope="col" style="width:100px">
+          WBS NO
+        </th>
+        <th scope="col">
+          DESCRIPTION
+        </th>
+        @*<th scope="col" style="width:80px">
+          JOB STATUS
+        </th>*@
+        <th scope="col" style="width:80px">
+          JOB STATE
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var res in Model)
+      {
+                <tr class="odd">
+                  <td id="gid" style="display:none;">@res.G3E_IDENTIFIER</td>
+                  <td>@res.Scheme_Name</td>
+                  <td>@res.G3E_OWNER</td>
+                  <td>@res.WBS_NUM</td>
+                  <td>@res.G3E_DESCRIPTION</td>
+                  @*<td>@res.G3E_STATUS</td>*@
+                  <td>
+                      @if (res.G3E_STATE == "COMMISSIONED") {
+                          if (res.Scheme_Type == "Civil"){
+                            @Html.Raw("COMMISSIONED")
+                          }else 
+                          {
+                            @Html.Raw("SUBMITTED")
+                          }
+                      }
+                      else
+                      {
+                        @res.G3E_STATE
+                      }
+                  </td>
+                </tr>    
+      }
+    </tbody>
+  </table>
+  <div>
+   Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount
+    &nbsp;
+        @if (Model.HasPreviousPage)
+    {
+        int firstpages = 1;
+        int prevpages = Model.PageNumber - 1;
+        <a href = "ISPList?searchKey=@ViewBag.searchKey&jobExc=@ViewBag.excabb2&jobScheme=@ViewBag.schemeType2&jobYear=@ViewBag.jobyear2&jobState=@ViewBag.jobState2&page=@firstpages">
+          <
+          <
+        </a>
+        @Html.Raw("&nbsp;")
+        <a href = "ISPList?searchKey=@ViewBag.searchKey&jobExc=@ViewBag.excabb2&jobScheme=@ViewBag.schemeType2&jobYear=@ViewBag.jobyear2&jobState=@ViewBag.jobState2&page=@prevpages">
+          < Prev
+        </a>
+    }
+        else
+        {
+        }
+    &nbsp;
+    @if (Model.HasNextPage)
+    {
+        int pages = Model.PageNumber + 1;
+        int lastpages = Model.PageCount;
+        <a href = "ISPList?searchKey=@ViewBag.searchKey&jobExc=@ViewBag.excabb2&jobScheme=@ViewBag.schemeType2&jobYear=@ViewBag.jobyear2&jobState=@ViewBag.jobState2&page=@pages">
+          Next >
+        </a>
+        @Html.Raw("&nbsp;")
+        <a href = "ISPList?searchKey=@ViewBag.searchKey&jobExc=@ViewBag.excabb2&jobScheme=@ViewBag.schemeType2&jobYear=@ViewBag.jobyear2&jobState=@ViewBag.jobState2&page=@lastpages"> >> </a>
+    }
+    else
+    {
+    }<br/><b> Total @Model.TotalItemCount  records</b>
+  </div>
+  }
+  else
+  {
+      @:<br />
+      <span style="font-size:12px;">
+        No record found.
+      </span> 
+  }
+  <br />
+    
+  <div id="divResultText"></div>
+  <br />
+  <div id="divDetails" title="Job details" style="padding-left:40px; padding-top:30px;">
+    <span style="font-size:12px">
+      Job no #
+    </span>
+    <span id="txtJobNo" style="font-weight:bold; color:Blue"></span>
+    <input type="hidden" id="targetJob" value="" />
+    <input type="hidden" id="targetNRM" value="" />
+    @using (Ajax.BeginForm("UpdateData", new AjaxOptions()
+    {
+        OnBegin = "ShowIt",
+        OnComplete = "HideIt",
+        OnSuccess = "SaveUpdateCallBack"
+    }))
+    {
+            <div id="list-details" >
+              <input type="hidden" id="jobIdVal" name="jobIdVal" />
+              <table  style="min-width:750px" >
+                  <tr >
+                    <td style="width:100px;"></td>
+                    <td>
+                      <input type="hidden" id="txtName" name="txtName" />
+                    </td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:120px;background-color:#e8eef4">Owner</td>
+                    <td>
+                      <input type="text" id="txtOwner" name="txtOwner" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="display:none; width:120px;background-color:#e8eef4">
+                      Scheme name
+                    </td>
+                    <td style="display:none;">
+                      <input type="text" id="txtSchemeName" name="txtSchemeName" />
+                    </td>
+                    <td rowspan="3" style="width:100px; background-color:#e8eef4">Description</td>
+                    <td rowspan="3">
+                      <textarea name="txtDescription" id="txtDescription" cols="20" rows="" style="width:200px"></textarea>
+                    </td>
+                    <td></td>
+                    <td style="width:100px;background-color:#e8eef4">
+                      Job State
+                    </td>
+                    <td style="width:180px">
+                      <select id="txtJobState" name="txtJobState">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+				  		 <option></option>
+                      </select>
+                    </td>    
+                    
+                  </tr>
+                <tr>
+                  @*<td rowspan="2" style="width:100px; background-color:#e8eef4">Description</td>
+                  <td rowspan="2">
+                    <textarea name="txtDescription" id="txtDescription" cols="20" rows="" style="width:200px"></textarea>
+                  </td>*@
+                  <td style=" border-top-color:White; border-bottom-color:White"></td>
+                  <td style="width:100px;background-color:#e8eef4">
+                    Project no.
+                  </td>
+                  <td>
+                    <input type="text" readonly="readonly" id="txtProjectNo" name="txtProjectNo" />
+                  </td>
+                  
+                </tr>
+                <tr>
+                  <td style=" border-top-color:White; border-bottom-color:White"></td>
+                  <td style="width:100px;background-color:#e8eef4">Status</td>
+                  <td>
+                    <input type="text" readonly="readonly" id="txtStatus" name="txtStatus" />
+                  </td>
+                  
+                </tr>
+                <tr>
+                  <td rowspan="7" style="width:100px; background-color:#e8eef4">Description2</td>
+                  <td rowspan="7">
+                    <textarea name="txtDescription2" id="txtDescription2" cols="20" rows="" style="width:200px"></textarea>
+                  </td>         
+                </tr>
+                
+                <tr>
+                  <td style=" border-top-color:White; border-bottom-color:White"></td>
+                  <td style="width:100px;background-color:#e8eef4">
+                    EXC ABB
+                  </td>
+                  <td>
+                    <input type="text" readonly="readonly" id="txtEXC" name="txtEXC" />
+                  </td>
+                </tr>
+                <tr>
+                  <td style=" border-top-color:White; border-bottom-color:White"></td>  
+                  <td style="width:100px;background-color:#e8eef4">
+                    Scheme Type
+                  </td>
+                  <td>
+                    <input type="text" readonly="readonly" id="txtSchemeType" name="txtSchemeType" />
+                  </td>
+
+                </tr>
+                
+                <tr>
+                  <td style=" border-top-color:White; border-bottom-color:White"></td>  
+                  <td style="width:100px;background-color:#e8eef4">
+                    Start Date
+                  </td>
+                  <td>
+                    <input type="text" readonly="readonly" id="txtStartDate"  />
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td style=" border-top-color:White; border-bottom-color:White"></td>  
+                  <td style="width:100px;background-color:#e8eef4">
+                    End Date
+                  </td>
+                  <td>
+                    <input type="text"  id="txtEndDate"/>
+                  </td>
+                </tr>
+
+              </table>
+              <br />
+              <span style="text-align:center;">
+                <input type="button" value="Manage files" id="btnManageFile" style="height:30px;"/>
+                <input type="button" value="Check Job" id="btnCheckJob" style="height:30px;"/>
+              </span>
+              <span style="float:right;">
+                <input type="button" value="View Task" id="btnLink" style="height:30px;"/>
+                <input type="button" value="Launch ISP" id="btnLaunch" style="height:30px;"/>
+              </span>
+              <div id="divLoadingNRM" style="visibility:collapse; float:right; vertical-align:middle;">
+                <img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." />
+              </div>
+              @*<a href="javascript:void(0);" id="Managefile">open</a>*@
+              <br />
+                
+              <br />
+              <div id="FilesBlock">
+                @*List of Files*@
+                <table id="tblFiles">
+                  <tr style="background-color:#b9c9fe">
+                    <td style="width:250px">
+                      File name
+                    </td>
+                    <td style="width:50px"></td>
+                  </tr>
+                </table>
+              </div>
+              <div id="divLoading" style="visibility:collapse">
+                <img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." />
+              </div>
+              <br />
+              <div style="height:30px; margin-top:10px; margin-left:0%; display:none;">
+                <input type="button" value="Match Project no." id="btnMatch" style="height:30px;" />
+                <input type="button" value="Change Ownership" id="btnChangeOwner" style="height:30px;" />
+                <input type="button" value="Save Owner" id="btnSaveOwner" style="height:30px; display:none;" />
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Handover" id="btnHandover" style="height:30px;width:80px;" />
+                <input type="button" value="" id="btnApproval" style="height:30px;width:80px; display:none;" />
+                <input type="button" value="" id="btnSentApproval" style="height:30px;width:80px; display:none;" />
+                <input type="button" value="Handover Status" id="btnHandoverStatus" style="height:30px;width:80px;" />
+                <input type="button" value="Close" id="btnClose" style="height:30px;width:80px;" />
+              </div>
+            </div>
+    }
+    <div id="project-details" style="display:none; min-height:250px; min-width:500px;">
+      <input type="text" id="projectNo" style="width:80px;" />
+      <input type="button" value="find project no." id="btnFind" style="height:30px;width:180px;" />
+      <br />
+      <br />
+      <span id="NoOfRow" style="font-weight:bold; color:Blue; display:none"></span>
+      <table id="projectTable" style=" display:none;">
+        <tr style="background-color:#b9c9fe">
+          <td>
+            Project no.
+          </td>
+          <td>
+            WBS no.
+          </td>
+          <td style="width:200px">Description</td>
+          <td>
+            Date Start
+          </td>
+          <td>
+            Date End
+          </td>
+          <td>Amount</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td style="background-color:#b9c9fe"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <div id="notFoundDiv" style="display:none">
+        Not Found.
+      </div>
+    </div>
+      
+    <div id="changeOwner-details" style="display:none; min-height:250px; min-width:500px;">
+      <br />
+      <br />
+      <table  style="background-color:#b9c9fe; width:400px">
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+        <tr>
+          <td style="width:180px">
+            User Role
+          </td>
+          <td style="width:20px">:</td>
+          <td>
+            <select id="DropDownList-UserRoles" style="width:180px"></select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+        <tr id="DDL-UL" style="display:none;">
+          <td  >
+            User List
+          </td>
+          <td style="width:20px">:</td>
+          <td>
+            <select id="DropDownList-UserList" style="display:none; width:180px" ></select>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <br />
+    <br />
+
+
+     <div id="divCheckJob" style="display:none; min-height:250px; min-width:500px;">
+      <br />
+      <br />
+      
+        <ul>
+        <li><a href="#tabs-1">1</a></li>
+        <li><a href="#tabs-2">2</a></li>
+        <li><a href="#tabs-3">3</a></li>
+        </ul>
+        <div id="tabs-1">
+        <p>ap kon0 jang</p>
+        </div>
+        <div id="tabs-2">
+        <p>apa2 jeal</p>
+        </div>
+        <div id="tabs-3">
+        <p>oapsopdoapsodpoasd</p>
+        </div>
+    </div>
+
+  </div>
+</div>

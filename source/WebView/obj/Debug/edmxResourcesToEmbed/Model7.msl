@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model7StoreContainer" CdmEntityContainer="Entities7">
+    <EntitySetMapping Name="WV_LOAD_PATH_CONSUMER2">
+      <EntityTypeMapping TypeName="Model7.WV_LOAD_PATH_CONSUMER2">
+        <MappingFragment StoreEntitySet="WV_LOAD_PATH_CONSUMER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+          <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+          <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+          <ScalarProperty Name="ACARD2" ColumnName="ACARD2" />
+          <ScalarProperty Name="APORT2" ColumnName="APORT2" />
+          <ScalarProperty Name="ACARD3" ColumnName="ACARD3" />
+          <ScalarProperty Name="APORT3" ColumnName="APORT3" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="DPNAME" ColumnName="DPNAME" />
+          <ScalarProperty Name="DPSITE" ColumnName="DPSITE" />
+          <ScalarProperty Name="DPPORT" ColumnName="DPPORT" />
+          <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+          <ScalarProperty Name="PROCESSID" ColumnName="PROCESSID" />
+          <ScalarProperty Name="PROCESSTIME" ColumnName="PROCESSTIME" />
+          <ScalarProperty Name="OUTPORTFDC" ColumnName="OUTPORTFDC" />
+          <ScalarProperty Name="INPORTFDP" ColumnName="INPORTFDP" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="APORT4" ColumnName="APORT4" />
+          <ScalarProperty Name="ACARD4" ColumnName="ACARD4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WV_LOAD_PATH_CONSUMER_ODP">
+      <EntityTypeMapping TypeName="Model7.WV_LOAD_PATH_CONSUMER_ODP">
+        <MappingFragment StoreEntitySet="WV_LOAD_PATH_CONSUMER_ODP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+          <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+          <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+          <ScalarProperty Name="ACARD2" ColumnName="ACARD2" />
+          <ScalarProperty Name="APORT2" ColumnName="APORT2" />
+          <ScalarProperty Name="ACARD3" ColumnName="ACARD3" />
+          <ScalarProperty Name="APORT3" ColumnName="APORT3" />
+          <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+          <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+          <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+          <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+          <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+          <ScalarProperty Name="DPNAME" ColumnName="DPNAME" />
+          <ScalarProperty Name="DPSITE" ColumnName="DPSITE" />
+          <ScalarProperty Name="DPPORT" ColumnName="DPPORT" />
+          <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+          <ScalarProperty Name="PROCESSID" ColumnName="PROCESSID" />
+          <ScalarProperty Name="PROCESSTIME" ColumnName="PROCESSTIME" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="ACARD4" ColumnName="ACARD4" />
+          <ScalarProperty Name="APORT4" ColumnName="APORT4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_MANHOLEDUCT_JOB">
+      <EntityTypeMapping TypeName="Model7.VW_MANHOLEDUCT_JOB">
+        <MappingFragment StoreEntitySet="VW_MANHOLEDUCT_JOB">
+          <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+          <ScalarProperty Name="ASSIGN_ID" ColumnName="ASSIGN_ID" />
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

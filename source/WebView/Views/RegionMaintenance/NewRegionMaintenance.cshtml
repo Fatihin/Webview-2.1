@@ -1,0 +1,44 @@
+﻿@model WebView.Models.RegionMaintenanceModel
+
+@{
+    ViewBag.Title = "RegionMaintenance";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Region Maintenance</h2>
+@using (Html.BeginForm("NewRegionMaintenance", "RegionMaintenance", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>Region Id</td>
+            <td>
+                @Html.TextBoxFor(m => m.RegionId, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.RegionId)
+            </td>
+        </tr>
+        <tr>
+            <td>Region Name</td>
+            <td>
+                @Html.TextBoxFor(m => m.RegionName, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.RegionName)
+            </td>
+        </tr>
+        <tr>
+            <td>Region No</td>
+            <td>
+                @Html.TextBoxFor(m => m.RegionNo, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.RegionNo)
+            </td>
+        </tr>                   
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                             
+}

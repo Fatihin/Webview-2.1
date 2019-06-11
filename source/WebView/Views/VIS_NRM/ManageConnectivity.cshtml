@@ -1,0 +1,602 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+
+            $('#PTT_ID').change(function () {
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updataEXC",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "PTT_ID": document.getElementById("PTT_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (document.getElementById("PTT_ID").value != "Select") {
+                            document.getElementById("EXC").disabled = false;
+                            dataPu = res.PuList.split("|");
+
+                            var itemsPu = "<option selected value='Select'></option>";
+
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+
+                            $("#EXC").html(itemsPu);
+                        } else {
+                            document.getElementById("EXC").disabled = false;
+                        }
+                    }
+                });
+            });
+
+            $('#EXC').change(function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                $("#Atype").prop('selectedIndex', 0);
+                $("#Ztype").prop('selectedIndex', 0);
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findELV",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "EXC": document.getElementById("EXC").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#ELV_ID").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            });
+
+            $('#Atype').change(function () {
+                var val = document.getElementById("Atype").value;
+                if (val == "1") { findChasiss(); }
+                else { findPP(); }
+            });
+
+            $('#Ztype').change(function () {
+                var val = document.getElementById("Ztype").value;
+                if (val == "1") { findZChasiss(); }
+                else { findZPP(); }
+            });
+
+            $('#equipA').change(function () {
+                var val = document.getElementById("Atype").value;
+                if (val == "1") { findCard(); }
+                else { findPPort(); }
+            });
+
+            $('#equipZ').change(function () {
+                var val = document.getElementById("Ztype").value;
+                if (val == "1") { findZCard(); }
+                else { findZPPort(); }
+            });
+
+            $('#cardA').change(function () {
+                var val = document.getElementById("Atype").value;
+
+                if (val == "2") {
+                    checkACard();
+                }
+
+                if (val == "1") {
+                    document.getElementById("divLoading").style.visibility = "visible";
+                    //alert(document.getElementById("cardA").value);
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/findChasissPort",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "id": document.getElementById("cardA").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            dataPu = res.listData.split("|");
+                            alert(dataPu);
+                            var itemsPu = "<option selected value='Select'></option>";
+
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+
+                            $("#chassisA").html(itemsPu);
+                            document.getElementById("divLoading").style.visibility = "hidden";
+                        }
+                    });
+                }
+            });
+
+            $('#cardZ').change(function () {
+                var val = document.getElementById("Ztype").value;
+
+                if (val == "2") {
+                    checkZCard();
+                }
+
+                if (val == "1") {
+                    document.getElementById("divLoading").style.visibility = "visible";
+                    //alert(document.getElementById("cardA").value);
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/findChasissPort",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "id": document.getElementById("cardZ").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            dataPu = res.listData.split("|");
+                            alert(dataPu);
+                            var itemsPu = "<option selected value='Select'></option>";
+
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+
+                            $("#chassisZ").html(itemsPu);
+                            document.getElementById("divLoading").style.visibility = "hidden";
+                        }
+                    });
+                }
+            });
+
+            var findChasiss = function () {
+                $("#equipA").prop('selectedIndex', 0);
+                $("#cardA").prop('selectedIndex', 0);
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findChasiss",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "EXC": document.getElementById("EXC").value,
+                        "lvl": document.getElementById("ELV_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#equipA").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+
+            var findCard = function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findCard",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "id": document.getElementById("equipA").value,
+                        "A_SUB_TYPE": $('#equipA option:selected').html()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        //alert(dataPu);
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#cardA").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+
+                        //alert(res.listExist);
+                        $('<div>').text(res.listExist).appendTo($('#divtree'));
+                    }
+                });
+            }
+
+            var findPP = function () {
+                $("#equipA").prop('selectedIndex', 0);
+                $("#cardA").prop('selectedIndex', 0);
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findPP",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "EXC": document.getElementById("EXC").value,
+                        "lvl": document.getElementById("ELV_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#equipA").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+
+            var findPPort = function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findPPort",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "id": document.getElementById("equipA").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        alert(dataPu);
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#cardA").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+
+            var checkACard = function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/checkACard",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "id": document.getElementById("cardA").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == false) {
+                            alert("Port already taken");
+                            $("#cardA").prop('selectedIndex', 0);
+                        }
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+            ///////////////////////---------------------------------------------------------------------------------------------
+            var findZChasiss = function () {
+                $("#equipZ").prop('selectedIndex', 0);
+                $("#cardZ").prop('selectedIndex', 0);
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findChasiss",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "EXC": document.getElementById("EXC").value,
+                        "lvl": document.getElementById("ELV_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#equipZ").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+
+            var findZCard = function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findCard",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "id": document.getElementById("equipZ").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        alert(dataPu);
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#cardZ").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+
+            var findZPP = function () {
+                $("#equipZ").prop('selectedIndex', 0);
+                $("#cardZ").prop('selectedIndex', 0);
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findPP",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "EXC": document.getElementById("EXC").value,
+                        "lvl": document.getElementById("ELV_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#equipZ").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+
+            var findZPPort = function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/findPPort",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "id": document.getElementById("equipZ").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        //alert(dataPu);
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+
+                        $("#cardZ").html(itemsPu);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+
+            var checkZCard = function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/checkZCard",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "id": document.getElementById("cardZ").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == false) {
+                            alert("Port already taken");
+                            $("#cardZ").prop('selectedIndex', 0);
+                        }
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                    }
+                });
+            }
+
+            $("#btnSave").button();
+
+            $('#btnSave').click(function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                $.ajax(
+                {
+                    url: "/VIS_NRM/InsertManageConn",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "EXC_ABB": document.getElementById("EXC").value,
+                        "ELV_NAME": $('#ELV_ID option:selected').html(),
+                        "A_ID": document.getElementById("cardA").value,
+                        "A_TYPE": $('#equipA option:selected').html(),
+                        "A_SUB_TYPE": $('#cardA option:selected').html(),
+                        "A_PORT": $('#chassisA option:selected').html(),
+                        "Z_ID": document.getElementById("cardZ").value,
+                        "Z_TYPE": $('#equipZ option:selected').html(),
+                        "Z_SUB_TYPE": $('#cardZ option:selected').html(),
+                        "Z_PORT": $('#chassisZ option:selected').html(),
+                        "REMARKS": document.getElementById("txtDescription").value,
+                        "ATYPE": document.getElementById("Atype").value,
+                        "ZTYPE": document.getElementById("Ztype").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == true) {
+                            alert(res.Success);
+                        } else ("Failed");
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                        //                        $("#PTT_ID").prop('selectedIndex', 0); $("#EXC").prop('selectedIndex', 0); $("#ELV_ID").prop('selectedIndex', 0);
+                        //                        $("#Atype").prop('selectedIndex', 0); $("#equipA").prop('selectedIndex', 0); $("#cardA").prop('selectedIndex', 0);
+                        //                        $("#Ztype").prop('selectedIndex', 0); $("#equipZ").prop('selectedIndex', 0); $("#cardZ").prop('selectedIndex', 0);
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+<br />
+<h2>Manage Connectivity</h2>
+<div style="height:850px">
+    <div>
+        <table style="width:830px;">
+            <tr>
+                <td style="width:110px;">Select PTT :</td>
+                <td style="width:240px;">@Html.DropDownList("PTT_ID", (IEnumerable<SelectListItem>)ViewBag.PTT, new { style = "width:100px" })</td>
+                <td style="width:110px;">Select Exchange :</td>
+                <td style="width:240px;">@Html.DropDownList("EXC", (IEnumerable<SelectListItem>)ViewBag.exc, new { style = "width:100px" })</td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Elevation Name :</td>
+                <td style="width:240px;">@Html.DropDownList("ELV_ID", (IEnumerable<SelectListItem>)ViewBag.elv, new { style = "width:100px" })</td>
+                <td style="width:110px;"></td>
+                <td style="width:240px;">
+                    <div id="divLoading" style="visibility:collapse">
+                        <img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Select A Type :</td>
+                <td style="width:240px;">
+                    <select id="Atype">
+                        <option></option>
+                        <option value="1">Chasiss</option>
+                        <option value="2">Patch Panel</option>
+                    </select> </td>
+                <td style="width:110px;">Select Z Type :</td>
+                <td style="width:240px;">
+                    <select id="Ztype">
+                        <option></option>
+                        <option value="1">Chasiss</option>
+                        <option value="2">Patch Panel</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Select A Equipment :</td>
+                <td style="width:240px;">@Html.DropDownList("equipA", (IEnumerable<SelectListItem>)ViewBag.equipA, new { style = "width:250px" })</td>  
+                <td style="width:110px;">Select Z Equipment :</td>
+                <td style="width:240px;">@Html.DropDownList("equipZ", (IEnumerable<SelectListItem>)ViewBag.equipZ, new { style = "width:250px" })</td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Select A Card(Chassis)/ Port(Patch Panel) :</td>
+                <td style="width:240px;">@Html.DropDownList("cardA", (IEnumerable<SelectListItem>)ViewBag.cardA, new { style = "width:250px" })</td>
+                <td style="width:110px;">Select Z Card(Chassis)/ Port(Patch Panel) :</td>
+                <td style="width:240px;">@Html.DropDownList("cardZ", (IEnumerable<SelectListItem>)ViewBag.cardZ, new { style = "width:250px" })</td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Only for A Chassis :</td>
+                <td style="width:240px;">@Html.DropDownList("chassisA", (IEnumerable<SelectListItem>)ViewBag.cardA, new { style = "width:250px;" })</td>
+                <td style="width:110px;">Only for Z Chassis :</td>
+                <td style="width:240px;">@Html.DropDownList("chassisZ", (IEnumerable<SelectListItem>)ViewBag.cardZ, new { style = "width:250px" })</td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Remarks :</td>
+                <td style="width:240px;"><textarea name="txtDescription" id="txtDescription" cols="20" rows="5" style="width:240px"></textarea></td>
+                <td style="width:110px;"></td>
+                <td style="width:240px;"><input type="button" value="Save" id="btnSave" style="height:30px;"/></td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div id="divtree">
+            
+    </div>
+</div>
+    
+
+

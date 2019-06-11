@@ -1,0 +1,244 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.MaterialClassMaintenance>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+        
+        SetElement("txtMatClass", data.MatClass);
+        SetElement("txtClassName", data.ClassName);
+        SetElement("MatClassVal", data.MatClass);
+        document.getElementById("targetMatClass").value = data.MatClass;
+        document.getElementById("btnClose").disabled = false;
+        document.getElementById("txtMatClass").disabled = true;
+    }
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtMatClass").readOnly = true;
+        document.getElementById("txtClassName").readOnly = true;        
+        document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            //var cmsg = confirm(t);
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails", "MaterialClassMaintenance")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    GetDetailsCallBack(res);
+                    //$.msgBox("Please la."); 
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 210,
+            width: 700,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $('#btnSearch').click(function () {
+            window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+        });
+
+        $(function () {
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewMaterialClassMaintenance";
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/MaterialClassMaintenance/DeleteData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetMatClass": document.getElementById("targetMatClass").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>Material Class Maintenance List</h2>
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:350px;">Class Name : <input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                 <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="width:200px;"></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+<div style="height:650px">
+    @if (Model.Count() > 0)
+    {
+        <table id="rounded-corner" summary="MaterialClassMaintenance List" width="850px">
+            <thead>
+                <tr>
+                    <th scope="col">Material Class</th>
+                    <th scope="col">Class Name</th>                
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var res in Model)
+            {
+                <tr class="odd">
+                    <td id="gid">@res.MAT_CLASS</td>
+                    <td>@res.CLASS_NAME</td>                
+                </tr>    
+            }
+            </tbody>
+        </table>
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+
+            <br/><b> Total @Model.TotalItemCount records</b>
+            &nbsp;
+            @if (Model.HasPreviousPage)
+            {
+                @Html.ActionLink("<<", "List", new { searchKey = ViewBag.searchKey, page = 1 })
+                @Html.Raw("&nbsp;");
+                @Html.ActionLink("< Prev", "List", new { searchKey = ViewBag.searchKey, page = Model.PageNumber - 1 })
+            }
+            else
+            {
+
+            }
+            &nbsp;
+            @if (Model.HasNextPage)
+            {
+                @Html.ActionLink("Next >", "List", new { searchKey = ViewBag.searchKey, page = Model.PageNumber + 1 })
+                @Html.Raw("&nbsp;");
+                @Html.ActionLink(">>", "List", new { searchKey = ViewBag.searchKey, page = Model.PageCount })
+            }
+            else
+            {
+
+            }
+        </div>
+    }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">   
+        <input type="hidden" id="targetMatClass" value="" />
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions() 
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        })) 
+        {
+        <div id="list-details">
+           <input type="hidden" id="MatClassVal" name="MatClassVal" />
+            <table width="500px">
+            
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Material Class</td>
+                    <td><input type="text" id="txtMatClass" name="txtMatClass" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Class Name</td>
+                    <td><input type="text" id="txtClassName" name="txtClassName" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                           
+            </table>
+            <br />            
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>
+</div>
+    
+
+

@@ -1,0 +1,260 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.RegionMaintenance>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtRegionId", data.RegionId);
+        SetElement("txtRegionName", data.RegionName);
+        SetElement("txtRegionNo", data.RegionNo);
+
+        SetElement("RegionIdVal", data.RegionId);
+        document.getElementById("targetRegionId").value = data.RegionId;
+        document.getElementById("btnClose").disabled = false;
+        document.getElementById("txtRegionId").disabled = true;
+    }
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtRegionId").readOnly = true;
+        document.getElementById("txtRegionNo").readOnly = true;
+        document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails", "RegionMaintenance")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    GetDetailsCallBack(res);
+                    //$.msgBox("Please la."); 
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            minHeight: 'auto',
+            width: 700,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewRegionMaintenance";
+            });
+
+            $('#searchKey').change(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/RegionMaintenance/DeleteData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetRegionId": document.getElementById("targetRegionId").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>Region Maintenance List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:200px;"><input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="RegionMaintenance List" width="800px">
+        <thead>
+            <tr>
+                <th scope="col">Region ID</th>
+                <th scope="col">Region Name</th>
+                <th scope="col">Region No</th>                
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="gid">@res.REGION_ID</td>
+                <td>@res.REGION_NAME</td>
+                <td>@res.REGION_NO</td>                   
+                @*<td>@Ajax.ActionLink("Details", "GetDetails", new { id = res.REGION_ID }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId = "divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { searchKey = "", page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { searchKey = "", page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { searchKey = "", page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { searchKey = "", page = Model.PageCount })
+        }
+        else
+        {
+
+        }<br /><b>Total @Model.TotalItemCount Record</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">          
+        <input type="hidden" id="targetRegionId" value="" />
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details" style="height:140px">
+           <input type="hidden" id="RegionIdVal" name="RegionIdVal" />
+            <table width="500px">
+            
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Region Id</td>
+                    <td><input type="text" id="txtRegionId" name="txtRegionId" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Region Name</td>
+                    <td><input type="text" id="txtRegionName" name="txtRegionName" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Region No</td>
+                    <td><input type="text" id="txtRegionNo" name="txtRegionNo" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>                  
+            </table>
+            <br />            
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>
+</div>
+    
+
+

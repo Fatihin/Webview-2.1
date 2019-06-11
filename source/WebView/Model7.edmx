@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model7.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Model7StoreContainer">
+          <EntitySet Name="WV_LOAD_PATH_CONSUMER" EntityType="Model7.Store.WV_LOAD_PATH_CONSUMER" store:Type="Tables" store:Schema="NEPS" store:Name="WV_LOAD_PATH_CONSUMER">
+            <DefiningQuery>SELECT 
+      "WV_LOAD_PATH_CONSUMER"."ID" AS "ID", 
+      "WV_LOAD_PATH_CONSUMER"."ANAME" AS "ANAME", 
+      "WV_LOAD_PATH_CONSUMER"."ATYPE" AS "ATYPE", 
+      "WV_LOAD_PATH_CONSUMER"."ASITE" AS "ASITE", 
+      "WV_LOAD_PATH_CONSUMER"."ACARD2" AS "ACARD2", 
+      "WV_LOAD_PATH_CONSUMER"."APORT2" AS "APORT2", 
+      "WV_LOAD_PATH_CONSUMER"."ACARD3" AS "ACARD3", 
+      "WV_LOAD_PATH_CONSUMER"."APORT3" AS "APORT3", 
+      "WV_LOAD_PATH_CONSUMER"."ZNAME" AS "ZNAME", 
+      "WV_LOAD_PATH_CONSUMER"."ZTYPE" AS "ZTYPE", 
+      "WV_LOAD_PATH_CONSUMER"."ZSITE" AS "ZSITE", 
+      "WV_LOAD_PATH_CONSUMER"."ZCARD" AS "ZCARD", 
+      "WV_LOAD_PATH_CONSUMER"."ZPORT" AS "ZPORT", 
+      "WV_LOAD_PATH_CONSUMER"."DPNAME" AS "DPNAME", 
+      "WV_LOAD_PATH_CONSUMER"."DPSITE" AS "DPSITE", 
+      "WV_LOAD_PATH_CONSUMER"."DPPORT" AS "DPPORT", 
+      "WV_LOAD_PATH_CONSUMER"."JOBID" AS "JOBID", 
+      "WV_LOAD_PATH_CONSUMER"."PROCESSID" AS "PROCESSID", 
+      "WV_LOAD_PATH_CONSUMER"."PROCESSTIME" AS "PROCESSTIME", 
+      "WV_LOAD_PATH_CONSUMER"."OUTPORTFDC" AS "OUTPORTFDC", 
+      "WV_LOAD_PATH_CONSUMER"."INPORTFDP" AS "INPORTFDP", 
+      "WV_LOAD_PATH_CONSUMER"."REMARKS" AS "REMARKS", 
+      "WV_LOAD_PATH_CONSUMER"."APORT4" AS "APORT4", 
+      "WV_LOAD_PATH_CONSUMER"."ACARD4" AS "ACARD4"
+      FROM "NEPS"."WV_LOAD_PATH_CONSUMER" "WV_LOAD_PATH_CONSUMER"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WV_LOAD_PATH_CONSUMER_ODP" EntityType="Model7.Store.WV_LOAD_PATH_CONSUMER_ODP" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="VW_MANHOLEDUCT_JOB" EntityType="Model7.Store.VW_MANHOLEDUCT_JOB" store:Type="Views" store:Schema="NEPS" store:Name="VW_MANHOLEDUCT_JOB">
+            <DefiningQuery>SELECT 
+      "VW_MANHOLEDUCT_JOB"."ID" AS "ID", 
+      "VW_MANHOLEDUCT_JOB"."JOB_ID" AS "JOB_ID", 
+      "VW_MANHOLEDUCT_JOB"."ASSIGN_ID" AS "ASSIGN_ID", 
+      "VW_MANHOLEDUCT_JOB"."EXC_ABB" AS "EXC_ABB"
+      FROM "NEPS"."VW_MANHOLEDUCT_JOB" "VW_MANHOLEDUCT_JOB"</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.WV_LOAD_PATH_CONSUMER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="WV_LOAD_PATH_CONSUMER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="10" />
+          <Property Name="ANAME" Type="varchar2" MaxLength="50" />
+          <Property Name="ATYPE" Type="varchar2" MaxLength="50" />
+          <Property Name="ASITE" Type="varchar2" MaxLength="50" />
+          <Property Name="ACARD2" Type="varchar2" MaxLength="10" />
+          <Property Name="APORT2" Type="varchar2" MaxLength="10" />
+          <Property Name="ACARD3" Type="varchar2" MaxLength="10" />
+          <Property Name="APORT3" Type="varchar2" MaxLength="10" />
+          <Property Name="ZNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="ZTYPE" Type="varchar2" MaxLength="50" />
+          <Property Name="ZSITE" Type="varchar2" MaxLength="50" />
+          <Property Name="ZCARD" Type="varchar2" MaxLength="10" />
+          <Property Name="ZPORT" Type="varchar2" MaxLength="10" />
+          <Property Name="DPNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="DPSITE" Type="varchar2" MaxLength="50" />
+          <Property Name="DPPORT" Type="varchar2" MaxLength="50" />
+          <Property Name="JOBID" Type="varchar2" MaxLength="50" />
+          <Property Name="PROCESSID" Type="varchar2" MaxLength="50" />
+          <Property Name="PROCESSTIME" Type="varchar2" MaxLength="50" />
+          <Property Name="OUTPORTFDC" Type="varchar2" MaxLength="10" />
+          <Property Name="INPORTFDP" Type="varchar2" MaxLength="10" />
+          <Property Name="REMARKS" Type="varchar2" MaxLength="50" />
+          <Property Name="APORT4" Type="varchar2" MaxLength="255" />
+          <Property Name="ACARD4" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="WV_LOAD_PATH_CONSUMER_ODP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="10" />
+          <Property Name="ANAME" Type="varchar2" MaxLength="50" />
+          <Property Name="ATYPE" Type="varchar2" MaxLength="50" />
+          <Property Name="ASITE" Type="varchar2" MaxLength="50" />
+          <Property Name="ACARD2" Type="varchar2" MaxLength="10" />
+          <Property Name="APORT2" Type="varchar2" MaxLength="10" />
+          <Property Name="ACARD3" Type="varchar2" MaxLength="10" />
+          <Property Name="APORT3" Type="varchar2" MaxLength="10" />
+          <Property Name="ZNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="ZTYPE" Type="varchar2" MaxLength="50" />
+          <Property Name="ZSITE" Type="varchar2" MaxLength="50" />
+          <Property Name="ZCARD" Type="varchar2" MaxLength="10" />
+          <Property Name="ZPORT" Type="varchar2" MaxLength="10" />
+          <Property Name="DPNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="DPSITE" Type="varchar2" MaxLength="50" />
+          <Property Name="DPPORT" Type="varchar2" MaxLength="50" />
+          <Property Name="JOBID" Type="varchar2" MaxLength="50" />
+          <Property Name="PROCESSID" Type="varchar2" MaxLength="50" />
+          <Property Name="PROCESSTIME" Type="varchar2" MaxLength="50" />
+          <Property Name="REMARKS" Type="varchar2" MaxLength="50" />
+          <Property Name="ACARD4" Type="varchar2" MaxLength="255" />
+          <Property Name="APORT4" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_MANHOLEDUCT_JOB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_MANHOLEDUCT_JOB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="ASSIGN_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="EXC_ABB" Type="varchar2" MaxLength="10" />
+        </EntityType>
+        <Function Name="AG_UPD_CIVIL_PATH_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NEPS">
+          <Parameter Name="ASSIGNMENT_ID" Type="varchar2" Mode="In" />
+          <Parameter Name="STATUS" Type="varchar2" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model7" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities7" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="WV_LOAD_PATH_CONSUMER2" EntityType="Model7.WV_LOAD_PATH_CONSUMER2" />
+          <EntitySet Name="WV_LOAD_PATH_CONSUMER_ODP" EntityType="Model7.WV_LOAD_PATH_CONSUMER_ODP" />
+          <EntitySet Name="VW_MANHOLEDUCT_JOB" EntityType="Model7.VW_MANHOLEDUCT_JOB" />
+        </EntityContainer>
+        <EntityType Name="WV_LOAD_PATH_CONSUMER2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ANAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ATYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ASITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ACARD2" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="APORT2" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ACARD3" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="APORT3" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ZNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ZTYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ZSITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ZCARD" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ZPORT" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DPNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DPSITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DPPORT" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="JOBID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PROCESSID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PROCESSTIME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="OUTPORTFDC" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="INPORTFDP" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="REMARKS" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="APORT4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ACARD4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WV_LOAD_PATH_CONSUMER_ODP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ANAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ATYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ASITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ACARD2" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="APORT2" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ACARD3" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="APORT3" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ZNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ZTYPE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ZSITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ZCARD" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ZPORT" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DPNAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DPSITE" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DPPORT" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="JOBID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PROCESSID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PROCESSTIME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="REMARKS" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ACARD4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="APORT4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VW_MANHOLEDUCT_JOB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ASSIGN_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model7StoreContainer" CdmEntityContainer="Entities7">
+          <EntitySetMapping Name="WV_LOAD_PATH_CONSUMER2">
+            <EntityTypeMapping TypeName="Model7.WV_LOAD_PATH_CONSUMER2">
+              <MappingFragment StoreEntitySet="WV_LOAD_PATH_CONSUMER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+                <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+                <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+                <ScalarProperty Name="ACARD2" ColumnName="ACARD2" />
+                <ScalarProperty Name="APORT2" ColumnName="APORT2" />
+                <ScalarProperty Name="ACARD3" ColumnName="ACARD3" />
+                <ScalarProperty Name="APORT3" ColumnName="APORT3" />
+                <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+                <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+                <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+                <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+                <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+                <ScalarProperty Name="DPNAME" ColumnName="DPNAME" />
+                <ScalarProperty Name="DPSITE" ColumnName="DPSITE" />
+                <ScalarProperty Name="DPPORT" ColumnName="DPPORT" />
+                <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+                <ScalarProperty Name="PROCESSID" ColumnName="PROCESSID" />
+                <ScalarProperty Name="PROCESSTIME" ColumnName="PROCESSTIME" />
+                <ScalarProperty Name="OUTPORTFDC" ColumnName="OUTPORTFDC" />
+                <ScalarProperty Name="INPORTFDP" ColumnName="INPORTFDP" />
+                <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+                <ScalarProperty Name="APORT4" ColumnName="APORT4" />
+                <ScalarProperty Name="ACARD4" ColumnName="ACARD4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WV_LOAD_PATH_CONSUMER_ODP">
+            <EntityTypeMapping TypeName="Model7.WV_LOAD_PATH_CONSUMER_ODP">
+              <MappingFragment StoreEntitySet="WV_LOAD_PATH_CONSUMER_ODP">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ANAME" ColumnName="ANAME" />
+                <ScalarProperty Name="ATYPE" ColumnName="ATYPE" />
+                <ScalarProperty Name="ASITE" ColumnName="ASITE" />
+                <ScalarProperty Name="ACARD2" ColumnName="ACARD2" />
+                <ScalarProperty Name="APORT2" ColumnName="APORT2" />
+                <ScalarProperty Name="ACARD3" ColumnName="ACARD3" />
+                <ScalarProperty Name="APORT3" ColumnName="APORT3" />
+                <ScalarProperty Name="ZNAME" ColumnName="ZNAME" />
+                <ScalarProperty Name="ZTYPE" ColumnName="ZTYPE" />
+                <ScalarProperty Name="ZSITE" ColumnName="ZSITE" />
+                <ScalarProperty Name="ZCARD" ColumnName="ZCARD" />
+                <ScalarProperty Name="ZPORT" ColumnName="ZPORT" />
+                <ScalarProperty Name="DPNAME" ColumnName="DPNAME" />
+                <ScalarProperty Name="DPSITE" ColumnName="DPSITE" />
+                <ScalarProperty Name="DPPORT" ColumnName="DPPORT" />
+                <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+                <ScalarProperty Name="PROCESSID" ColumnName="PROCESSID" />
+                <ScalarProperty Name="PROCESSTIME" ColumnName="PROCESSTIME" />
+                <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+                <ScalarProperty Name="ACARD4" ColumnName="ACARD4" />
+                <ScalarProperty Name="APORT4" ColumnName="APORT4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_MANHOLEDUCT_JOB">
+            <EntityTypeMapping TypeName="Model7.VW_MANHOLEDUCT_JOB">
+              <MappingFragment StoreEntitySet="VW_MANHOLEDUCT_JOB">
+                <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+                <ScalarProperty Name="ASSIGN_ID" ColumnName="ASSIGN_ID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model7" ZoomLevel="97">
+        <EntityTypeShape EntityType="Model7.WV_LOAD_PATH_CONSUMER2" Width="2" PointX="0.75" PointY="0.75" Height="5.634013671875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model7.WV_LOAD_PATH_CONSUMER_ODP" Width="2.5" PointX="3.625" PointY="1" Height="5.2494108072916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model7.VW_MANHOLEDUCT_JOB" Width="1.5" PointX="6.375" PointY="0.75" Height="1.7879850260416674" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,201 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.CabAddInfo>
+
+@{
+    ViewBag.Title = "List Cabinet Additional Info";
+}
+
+@section Styles {
+    html { height: 100% }
+    body { height: 100%; margin: 0px; padding: 0px }
+    #map_canvas { height: 80% }
+
+    SELECT, INPUT[type="text"] {
+    width: 160px;
+    box-sizing: border-box;
+    }
+    SECTION {
+        padding: 8px;
+        background-color: #f0f0f0;
+        overflow: auto;
+    }
+    SECTION > DIV {
+        float: left;
+        padding: 4px;
+    }
+    SECTION > DIV + DIV {
+        width: 40px;
+        text-align: center;
+    }
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "ListCabInfo?searchKey=" + document.getElementById("searchKey").value + "&pwrCab=" + document.getElementById("pwrCab").value + "&StateId=" + document.getElementById("stateID").value + "&zoneID=" + document.getElementById("zoneID").value + "&pttID=" + document.getElementById("pttID").value + "&excID=" + document.getElementById("excID").value + "&rcID=" + document.getElementById("rcID").value + "&status=" + document.getElementById("status").value + "&Model=" + document.getElementById("Model").value + "&Manufacturer=" + document.getElementById("Manufacturer").value; //Where List is the function in the controller.
+            });
+            
+            $('#searchKey').change(function () {
+                window.location = "ListCabInfo?searchKey=" + document.getElementById("searchKey").value + "&pwrCab=" + document.getElementById("pwrCab").value + "&StateId=" + document.getElementById("stateID").value + "&zoneID=" + document.getElementById("zoneID").value + "&pttID=" + document.getElementById("pttID").value + "&excID=" + document.getElementById("excID").value + "&rcID=" + document.getElementById("rcID").value + "&status=" + document.getElementById("status").value + "&Model=" + document.getElementById("Model").value + "&Manufacturer=" + document.getElementById("Manufacturer").value; //Where List is the function in the controller.
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewCabInfo";
+            });
+
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+    function delProject(data) {
+        //alert(data);
+        $ = globalJquery;
+        var cmsg = confirm("Are you sure you want delete to  data?");
+        if (cmsg != 0) {
+            $.ajax({
+                url: "/VIS_NRM/DeleteCabInfo",
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": data
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    alert("Data Deleted");
+                    window.location.reload();
+                }
+            });
+        }
+    }
+</script>
+
+<br />
+<h2>Network Facility OSP</h2>
+<div style="height:850px"> 
+    <div><section class="container">
+        <table style="width:850px;">
+            <tr>
+                <td style="width:100px; text-align:right;">STATE :</td> 
+                <td> @Html.DropDownList("stateID", (IEnumerable<SelectListItem>)ViewBag.StateId, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">PTT :</td> 
+                <td> @Html.DropDownList("pttID", (IEnumerable<SelectListItem>)ViewBag.PttId, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">ZONE : </td>
+                <td>@Html.DropDownList("zoneID", (IEnumerable<SelectListItem>)ViewBag.Zone, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">EXCHANGE :</td> 
+                <td> @Html.DropDownList("excID", (IEnumerable<SelectListItem>)ViewBag.Exc, new { style = "width:120px" })</td>
+             </tr>
+             <tr>
+                <td style="width:100px; text-align:right;">CABINET CODE :</td>
+                <td><input style="width:115px;" type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td style="width:100px; text-align:right;">POWER CABINET ID</td>
+                <td><input style="width:115px;" type="text" id="pwrCab" name="pwrCab"  value="@ViewBag.pwrCab"/></td>
+                <td style="width:100px; text-align:right;">RECTIFIER BRAND :</td> 
+                <td> @Html.DropDownList("rcID", (IEnumerable<SelectListItem>)ViewBag.RC, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">STATUS FACILITIES :</td> 
+                <td> <select id="status" style="width:120px;">
+                        <option value="ALL"></option>
+                        <option value="-"> - </option>
+                        <option value="ALL">ALL</option>
+                        <option value="PENDING">PENDING</option>
+                        <option value="COMPLETED">COMPLETED</option>
+                     </select> </td>
+                @*@Html.DropDownList("battID", (IEnumerable<SelectListItem>)ViewBag.Batt, new { style = "width:120px" })*@
+             </tr>
+             <tr>
+                <td style="width:100px; text-align:right;display:none;">CABINET MODEL :</td> 
+                <td style="display:none;"> @Html.DropDownList("Model", (IEnumerable<SelectListItem>)ViewBag.Model, new { style = "width:120px" })</td>
+                <td style="width:100px; text-align:right;">CABINET MANUFACTURER :</td> 
+                <td> @Html.DropDownList("Manufacturer", (IEnumerable<SelectListItem>)ViewBag.Manufacturer, new { style = "width:120px" })</td>   
+                <td colspan=4 style="text-align:center;"><input type="button" value="Search" id="btnSearch" />
+                    <input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+        </section>
+    </div><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table id="rounded-corner" summary="CabAddInfo List" width="850px">
+            <thead>
+                <tr>
+                    <th id="gid" style="display:none">G3E_FID</th>
+                    <th scope="col">PTT</th>
+                    <th scope="col">EXCHANGE - CABINET CODE</th>
+                    <th scope="col">POWER CABINET ID</th>
+                    <th scope="col">MANUFACTURER</th>
+                    <th scope="col">STATUS</th>
+                    <th scope="col" style="text-align:center">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var res in Model)
+            {
+                <tr class="odd">
+                    <td id="gid" style="display:none">@res.G3E_FID</td>
+                    <td>@res.PTT</td>
+                    <td>@res.EXCHANGE</td>
+                    <td>@res.PWR_CAB_ID</td>
+                    <td>@res.MANUFACTURER</td>
+                    <td>@res.STATUS</td>
+                    <td style="text-align:center"> @if (@res.FACILITIES != "0" ){ @Html.ActionLink("Edit", "EditCabInfo", new { id = @res.DATA_NO })} &nbsp;&nbsp;&nbsp;   
+                        @if (@res.FACILITIES != "0" ){ <a href="#" id="Del" onclick="delProject(@res.DATA_NO)">Delete</a> } </td>
+                    @*<td> @if (@res.FACILITIES != "0" ){ @Html.ActionLink("VIEW", "EListCabInfo", new { g3e_fid = @res.G3E_FID, code = @res.CODE })}</td>*@              
+                </tr>    
+            }
+            </tbody>
+        </table>
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+            &nbsp;
+            @if (Model.HasPreviousPage)
+            {
+                int mss = @Model.PageNumber - 1;
+                <a href="ListCabInfo?searchKey=@ViewBag.searchKey&pwrCab=@ViewBag.pwrCab1&StateId=@ViewBag.state&zoneID=@ViewBag.zone1&pttID=@ViewBag.ptt&excID=@ViewBag.exc1&rcID=@ViewBag.rcID1&status=@ViewBag.status1&Model=@ViewBag.Model1&Manufacturer=@ViewBag.Manufacturer1&page=1"> << </a>
+                //@Html.ActionLink("", "ListCabInfo", new { searchKey = ViewBag.searchKey, pttID = ViewBag.ptt, page = 1 })
+                @Html.Raw("&nbsp;");
+                <a href="ListCabInfo?searchKey=@ViewBag.searchKey&pwrCab=@ViewBag.pwrCab1&StateId=@ViewBag.state&zoneID=@ViewBag.zone1&pttID=@ViewBag.ptt&excID=@ViewBag.exc1&rcID=@ViewBag.rcID1&status=@ViewBag.status1&Model=@ViewBag.Model1&Manufacturer=@ViewBag.Manufacturer1&page=@mss"> < </a>
+                //@Html.ActionLink("< Prev", "ListCabInfo", new { searchKey = ViewBag.searchKey, pttID = ViewBag.ptt, page = Model.PageNumber - 1 })
+            }
+            else
+            {
+
+            }
+            &nbsp;
+            @if (Model.HasNextPage)
+            {
+                int ms = @Model.PageNumber + 1;
+                              
+                <a href="ListCabInfo?searchKey=@ViewBag.searchKey&pwrCab=@ViewBag.pwrCab1&StateId=@ViewBag.state&zoneID=@ViewBag.zone1&pttID=@ViewBag.ptt&excID=@ViewBag.exc1&rcID=@ViewBag.rcID1&status=@ViewBag.status1&Model=@ViewBag.Model1&Manufacturer=@ViewBag.Manufacturer1&page=@ms"> Next > </a>
+                //@Html.ActionLink("Next >", "ListCabInfo", new { searchKey = ViewBag.searchKey, pttID = ViewBag.ptt, page = Model.PageNumber + 1 })
+                @Html.Raw("&nbsp;");
+                <a href="ListCabInfo?searchKey=@ViewBag.searchKey&pwrCab=@ViewBag.pwrCab1&StateId=@ViewBag.state&zoneID=@ViewBag.zone1&pttID=@ViewBag.ptt&excID=@ViewBag.exc1&rcID=@ViewBag.rcID1&status=@ViewBag.status1&Model=@ViewBag.Model1&Manufacturer=@ViewBag.Manufacturer1&page=@Model.PageCount"> >> </a>
+                //@Html.ActionLink(">>", "ListCabInfo", new { searchKey = ViewBag.searchKey, pttID = ViewBag.ptt, page = Model.PageCount })
+            }
+            else
+            {
+
+            }<br/><b> Total @Model.TotalItemCount  records</b>
+        </div>
+    }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+</div>

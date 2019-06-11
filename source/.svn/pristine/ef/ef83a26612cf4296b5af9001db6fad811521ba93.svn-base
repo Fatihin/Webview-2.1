@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Model1StoreContainer">
+          <EntitySet Name="ISP_NETELEM" EntityType="Model1.Store.ISP_NETELEM" store:Type="Tables" store:Schema="ISP_CUSTOM" store:Name="ISP_NETELEM">
+            <DefiningQuery>SELECT 
+      "ISP_NETELEM"."ISP_TYPE" AS "ISP_TYPE", 
+      "ISP_NETELEM"."ISP_ID" AS "ISP_ID", 
+      "ISP_NETELEM"."MIN_MATERIAL" AS "MIN_MATERIAL", 
+      "ISP_NETELEM"."SCHEME_NAME" AS "SCHEME_NAME"
+      FROM "ISP_CUSTOM"."ISP_NETELEM" "ISP_NETELEM"</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'ISP_CUSTOM.ISP_NETELEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ISP_NETELEM">
+          <Key>
+            <PropertyRef Name="ISP_TYPE" />
+            <PropertyRef Name="ISP_ID" />
+            <PropertyRef Name="MIN_MATERIAL" />
+            <PropertyRef Name="SCHEME_NAME" />
+          </Key>
+          <Property Name="ISP_TYPE" Type="varchar2" Nullable="false" MaxLength="18" />
+          <Property Name="ISP_ID" Type="varchar2" Nullable="false" MaxLength="18" />
+          <Property Name="MIN_MATERIAL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SCHEME_NAME" Type="varchar2" Nullable="false" MaxLength="20" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities_ISP" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="ISP_NETELEM" EntityType="Model1.ISP_NETELEM" />
+        </EntityContainer>
+        <EntityType Name="ISP_NETELEM">
+          <Key>
+            <PropertyRef Name="ISP_TYPE" />
+            <PropertyRef Name="ISP_ID" />
+            <PropertyRef Name="MIN_MATERIAL" />
+            <PropertyRef Name="SCHEME_NAME" />
+          </Key>
+          <Property Type="String" Name="ISP_TYPE" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ISP_ID" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SCHEME_NAME" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities_ISP" >
+          <EntitySetMapping Name="ISP_NETELEM">
+            <EntityTypeMapping TypeName="Model1.ISP_NETELEM">
+              <MappingFragment StoreEntitySet="ISP_NETELEM">
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+                <ScalarProperty Name="ISP_ID" ColumnName="ISP_ID" />
+                <ScalarProperty Name="ISP_TYPE" ColumnName="ISP_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model2" >
+        <EntityTypeShape EntityType="Model1.ISP_NETELEM" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5923063151041665" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

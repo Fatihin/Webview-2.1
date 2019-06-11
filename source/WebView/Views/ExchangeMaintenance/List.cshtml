@@ -1,0 +1,502 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.ExchangeMaintenance>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+        
+        SetElement("txtExcAbb", data.ExcAbb);
+        SetElement("txtExcName", data.ExcName);
+        SetElement("txtPttId", data.PttId);
+        SetElement("txtLocNo", data.LocNo);
+        SetElement("txtStateId", data.StateId);
+        SetElement("txtMainNo", data.MainNo);
+        SetElement("txtAreaClass", data.AreaClass);
+        SetElement("txtExcType", data.Exctypes);
+        SetElement("txtExcId", data.ExcId);
+        SetElement("txtSegment", data.Segment);
+        SetElement("txtAdd1", data.Add);
+        SetElement("txtAdd2", data.Add2);
+        SetElement("txtCity", data.City);
+        
+        SetElement("ExcAbbVal", data.ExcAbb);
+        document.getElementById("targetExcAbb").value = data.ExcAbb;
+        document.getElementById("btnClose").disabled = false;
+        document.getElementById("txtExcAbb").disabled = true;
+    }
+    
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtExcName").readOnly = true;
+        document.getElementById("txtPttId").readOnly = true;
+        document.getElementById("txtLocNo").readOnly = true;
+        document.getElementById("txtStateId").readOnly = true;
+        document.getElementById("txtMainNo").readOnly = true;
+        document.getElementById("txtAreaClass").readOnly = true;
+        document.getElementById("txtExcType").readOnly = true;
+        document.getElementById("txtExcId").readOnly = true;
+        document.getElementById("txtSegment").readOnly = true;
+        document.getElementById("txtAdd1").readOnly = true;
+        document.getElementById("txtAdd2").readOnly = true;
+        document.getElementById("txtCity").readOnly = true;
+        document.getElementById("btnSave").disabled = true;
+
+        
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            document.getElementById("btnSave").disabled = false;
+            window.location.reload();
+           
+        }
+    }
+    function City(defCity) {
+
+          //  $('#txtStateId').change(function () {
+                // alert(document.getElementById("txtStateId").value);
+                $ = globalJquery;
+                $.ajax({
+                    url: '@Url.Action("AddCity", "ExchangeMaintenance")',
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "Stateid": document.getElementById("txtStateId").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        CITY = res.CITY;
+                        valueCity = res.CITY.split(":");
+                       
+                        if (document.getElementById("txtStateId").value != defCity) {
+                            var itemsCity = "<option selected value='" + defCity + "'>" + defCity + "</option>";
+                        } else {
+                            var itemsCity;
+                        }
+                        for (var i = 0; i < valueCity.length; i++) {
+                            if (valueCity[i] != "") {
+
+                                itemsCity += "<option value='" + valueCity[i] + "'>" + valueCity[i] + "</option>";
+                            }
+                        }
+                        $("#txtCity").html(itemsCity);
+
+                    }
+                });
+            //});
+        };
+        function Pttid() {
+
+            //  $('#txtStateId').change(function () {
+            // alert(document.getElementById("txtStateId").value);
+            $ = globalJquery;
+            $.ajax({
+                url: '@Url.Action("Pttid", "ExchangeMaintenance")',
+                type: "POST",
+                dataType: "html",
+
+                beforeSend: function () { },
+                success: function (data) {
+
+                    var res = jQuery.parseJSON(data);
+
+                    getPTTID = res.pttId.split("|");
+
+                    alert("A : " + res.pttId);
+                    var itemspttid = "<option selected value='" + getPTTID[0] + "'>" + getPTTID[0] + "</option>";
+
+                    for (var i = 0; i < getPTTID.length; i++) {
+                        if (getPTTID[i] != "") {
+
+                            itemspttid += "<option value='" + getPTTID[i] + "'>" + getPTTID[i] + "</option>";
+                        }
+                    }
+                    $("#pttID").html(itemspttid);
+                    window.onload = Pttid;
+                }
+            });
+            //});
+        };
+
+        jQuery(document).ready(function ($) {
+
+            $("#rounded-corner tbody tr").bind("click", function () {
+                var t = $(this).find("#gid").text();
+
+                $("#divDetails").dialog("open");
+
+                $.ajax({
+                    url: '@Url.Action("GetDetails", "ExchangeMaintenance")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": t,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+
+                        GetDetailsCallBack(res);
+                        dataPtt = res.PTTList.split("|");
+                        dataState = res.StateList.split(":");
+                        excabb = res.Exctypes.split("|");
+                        dataSegment_2 = res.Segment_2.split("|");
+                        valuePttID = res.datapttid.split("|");
+                        ValueState = res.CityLists.split(":");
+
+                        //                        var excType = "<option selected value='" + res.PttId + "'>" + res.PttId + "</option>";
+
+                        //                      
+                        //                        for (i = 0; i < excabb.length; i++) {
+                        //                            //                            if (excabb[i] != "") {
+                        //                            excType += "<option value='" + excabb[i] + "'>" + excabb[i] + "</option>";
+                        //                            //                            }
+                        //                        }
+
+                        //                        $("#txtExcType").html(excType);
+
+                        var dataitempttid = "<option selected value='" + res.datapttid + "'>" + res.datapttid + "</option>";
+
+                        var itemspttid = "<option selected value='" + res.City + "'>" + res.City + "</option>";
+
+                        for (var i = 0; i < ValueState.length; i++) {
+                            if (ValueState[i] != "") {
+                                itemspttid += "<option value='" + ValueState[i] + "'>" + ValueState[i] + "</option>";
+                            }
+                        }
+                        $("#txtCity").html(itemspttid);
+
+                        for (i = 1; i < valuePttID.length; i++) {
+                            if (valuePttID[i] != "") {
+
+                                //alert(valuePu[0]);
+                                dataitempttid += "<option value='" + valuePttID[0] + "'>" + valuePttID[0] + "</option>";
+                            }
+                        }
+                        $("#searchpttid").html(dataitempttid);
+
+                        var itemsPtt = "<option selected value='" + res.PttId + "'>" + res.PttId + "</option>";
+
+                        for (i = 0; i < dataPtt.length; i++) {
+                            if (dataPtt[i] != "") {
+                                valuePtt = dataPtt[i].split(":");
+                                itemsPtt += "<option value='" + valuePtt[0] + "'>" + valuePtt[0] + "</option>";
+                            }
+                        }
+
+                        $("#txtPttId").html(itemsPtt);
+
+                        var itemsState = "<option selected value='" + res.StateId + "'>" + res.StateId + "</option>";
+                        //alert("bbbb : " + res.StateId);
+                        for (i = 1; i < dataState.length; i++) {
+                            if (dataState[i] != "") {
+                                //alert(valuePu[0]);
+                                //alert("AAAA : " + dataState[i]);
+                                itemsState += "<option value='" + dataState[i] + "'>" + dataState[i] + "</option>";
+                            }
+                        }
+
+                        $("#txtStateId").html(itemsState);
+
+
+                        var itemSegment = "<option selected value='" + res.Segment + "'>" + res.Segment + "</option>";
+
+                        for (i = 1; i < dataState.length; i++) {
+                            if (dataSegment_2[i] != "") {
+                                valueSegment = dataSegment_2[i].split(":");
+                                //alert(valuePu[0]);
+                                itemSegment += "<option value='" + valueSegment[0] + "'>" + valueSegment[0] + "</option>";
+                            }
+                        }
+
+                        $("#txtSegment").html(itemSegment);
+
+                        //                        var DATASEGMENT = "<option selected value='" + res.Segment + "'>" + res.Segment + "</option>";
+                        //                        for (i = 0; i < dataSegment_2.length; i++) {
+                        //                            DATASEGMENT += "<option value ='" + dataSegment_2[i] + "'>" + dataSegment_2[i] + "</option>";
+                        //                        }
+                        //                        $("#txtSegment").html(DATASEGMENT);
+
+                        //                        var defCity = res.City;
+
+                        // City(res.StateId);
+                    }
+                });
+            });
+
+            var close = function () {
+                $(this).dialog("close");
+            }
+
+            $("#divDetails").dialog({
+                autoOpen: false,
+                height: 500,
+                width: 800,
+                modal: true,
+                buttons: {
+                },
+                close: function () {
+                    //allFields.val("").removeClass("ui-state-error");
+                }
+            });
+
+            $(function () {
+                $('#btnClose').click(function () {
+                    $("#divDetails").dialog("close");
+                });
+
+                $('#btnSearch').click(function () {
+                    window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&pttID=" + document.getElementById("pttID").value; //Where List is the function in the controller.
+                });
+
+                $('#searchKey').change(function () {
+                    window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+                });
+
+                $('#btnNewJob').click(function () {
+                    window.location = "NewExchangeMaintenance";
+                });
+
+
+                $("#btnNewJob").button();
+                $("#btnSearch").button();
+                $("#btnClose").button();
+                $("#btnDelete").button();
+                $("#btnSave").button();
+               
+
+                $('#btnDelete').click(function () {
+                    var cmsg = confirm('Are you sure you want to Delete?');
+                    if (cmsg != 0) {
+                        $.ajax({
+                            url: "/ExchangeMaintenance/DeleteData",
+                            type: "POST",
+                            dataType: "html",
+                            data: {
+                                "targetExcAbb": document.getElementById("targetExcAbb").value,
+                                "random": Math.random()
+                            },
+                            beforeSend: function () { },
+                            success: function (data) {
+                                var res = jQuery.parseJSON(data);
+
+                                if (res.Success == true) {
+                                    alert("Deleted");
+                                    window.location.reload();
+                                }
+                                else {
+                                    alert("Delete failed.");
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>Exchange Maintenance List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:200px;"><input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+
+                <td style="width:100px; text-align:right;">PTT ID :</td> 
+                   <td> @Html.DropDownList("pttID", (IEnumerable<SelectListItem>)ViewBag.PttId, new { style = "width:150px" })</td>
+                
+                <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="ExchangeMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">Exchange Abbr</th>
+                <th scope="col">Exchange Name</th>
+                <th scope="col">PTT ID</th>
+                <th scope="col">State ID</th>
+                <th scope="col">Area Classification</th>
+                <th scope="col">Segment</th>                          
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="gid">@res.EXC_ABB</td>
+                <td>@res.EXC_NAME</td>
+                <td>@res.PTT_ID</td>
+                <td>@res.STATE_ID</td>
+                <td>@res.CAT_CODE</td>
+                <td>@res.SEGMENT</td>                     
+                @*<td>@Ajax.ActionLink("Details", "GetDetails", new { id = res.EXC_ABB }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId = "divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { searchKey = "", pttID = ViewBag.pttID2, page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { searchKey = "", pttID = ViewBag.pttID2, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { searchKey = "",pttID = ViewBag.pttID2, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { searchKey = "", pttID = ViewBag.pttID2, page = Model.PageCount })
+        }
+        else
+        {
+
+        }<br/><b> Total @Model.TotalItemCount  records</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">      
+        <input type="hidden" id="targetExcAbb" value="" />
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details">
+           <input type="hidden" id="ExcAbbVal" name="ExcAbbVal" />
+            <table width="500px">
+            
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Exchange Abbr</td>
+                   <td><input type="text" id="txtExcAbb" name="txtExcAbb" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White">
+                        <input type="hidden" id="txtMainNo" name="txtMainNo" />
+                    </td>
+
+                     @*<td style="width:150px; background-color:#e8eef4">Main No</td>
+                   <td><input type="text" id="txtMainNo" name="txtMainNo" /></td>*@
+                                     
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Exchange Name</td>                    
+                     <td><textarea name="txtExcName" id="txtExcName" cols="20" rows="5"></textarea></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:100px;background-color:#e8eef4"> Area Classification </td>
+                    <td><select id="txtAreaClass" name="txtAreaClass">
+                        <option value="U">U - Urban</option>
+                        <option value="R">R - Rural</option>
+                        <option value="M">M - Metropolitan</option>
+                        <option value="S">S - Semi-Urban</option>
+                        <option value="L">L - Special</option>                        
+                        </select>
+                    </td>                                     
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">PTT Id</td>
+                    <td><select id="txtPttId" name="txtPttId"></select>
+                    </td>
+                         <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                         <td style="width:150px; background-color:#e8eef4">EXC Type</td>
+                         <td><select id="txtExcType" name="txtExctype">
+                         <option value="M">M</option>
+                         <option value="S">S</option>
+                         </select>
+                         </td>  
+                </tr>
+                        <input type="hidden" id="txtLocNo" name="txtLocNo" />
+                        <input type="hidden" id="txtExcId" name="txtExcId" />
+                 <tr>
+                   <td style="width:150px; background-color:#e8eef4">State Id</td>
+                    <td><select id="txtStateId" name="txtStateId" onchange="City(this.value)"></select>
+                    </td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                     
+                    <td style="width:150px; background-color:#e8eef4">Segment</td>
+                    <td><select id="txtSegment" name="txtSegment">
+                                             
+                        </select>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td style="width:150px; background-color:#e8eef4">Address 1
+                        </td><td><textarea name="txtAdd1" id="txtAdd1" cols="20" rows="5"></textarea> </td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+             
+                        <td style="width:150px; background-color:#e8eef4">Address 2
+                        </td><td><textarea name="txtAdd2" id="txtAdd2" cols="20" rows="5"></textarea></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:150px; background-color:#e8eef4">City
+                        </td><td><select id="txtCity" name="txtCity"></select></td>
+                    </tr>
+                                         
+            </table>
+            <br />            
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>
+</div>
+    
+
+

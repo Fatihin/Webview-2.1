@@ -1,0 +1,1007 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model8" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities9" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BI_PROC_SWIFT" EntityType="Model8.BI_PROC_SWIFT" />
+    <EntitySet Name="BI_SWIFTELEM_REQ" EntityType="Model8.BI_SWIFTELEM_REQ" />
+    <EntitySet Name="BI_SWIFTELEM_RES" EntityType="Model8.BI_SWIFTELEM_RES" />
+    <EntitySet Name="BI_MH_DMODIFY_REPLY" EntityType="Model8.BI_MH_DMODIFY_REPLY" />
+    <EntitySet Name="BI_MH_DMODIFY_REQUEST" EntityType="Model8.BI_MH_DMODIFY_REQUEST" />
+    <EntitySet Name="BI_MH_DNEW_REPLY" EntityType="Model8.BI_MH_DNEW_REPLY" />
+    <EntitySet Name="BI_MH_DNEW_REQUEST" EntityType="Model8.BI_MH_DNEW_REQUEST" />
+    <EntitySet Name="BI_MH_DPMODIFY_REPLY" EntityType="Model8.BI_MH_DPMODIFY_REPLY" />
+    <EntitySet Name="BI_MH_DPMODIFY_REQUEST" EntityType="Model8.BI_MH_DPMODIFY_REQUEST" />
+    <EntitySet Name="BI_MH_DPNEW_REPLY" EntityType="Model8.BI_MH_DPNEW_REPLY" />
+    <EntitySet Name="BI_MH_DPNEW_REQUEST" EntityType="Model8.BI_MH_DPNEW_REQUEST" />
+    <EntitySet Name="BI_MH_MMODIFY_REPLY" EntityType="Model8.BI_MH_MMODIFY_REPLY" />
+    <EntitySet Name="BI_MH_MMODIFY_REQUEST" EntityType="Model8.BI_MH_MMODIFY_REQUEST" />
+    <EntitySet Name="BI_MH_MNEW_REPLY" EntityType="Model8.BI_MH_MNEW_REPLY" />
+    <EntitySet Name="BI_MH_MNEW_REQUEST" EntityType="Model8.BI_MH_MNEW_REQUEST" />
+    <EntitySet Name="BI_MH_SDMODIFY_REPLY" EntityType="Model8.BI_MH_SDMODIFY_REPLY" />
+    <EntitySet Name="BI_MH_SDMODIFY_REQUEST" EntityType="Model8.BI_MH_SDMODIFY_REQUEST" />
+    <EntitySet Name="BI_MH_SDNEW_REPLY" EntityType="Model8.BI_MH_SDNEW_REPLY" />
+    <EntitySet Name="BI_MH_SDNEW_REQUEST" EntityType="Model8.BI_MH_SDNEW_REQUEST" />
+    <EntitySet Name="BI_PROCESS_MHDUCT" EntityType="Model8.BI_PROCESS_MHDUCT" />
+    <EntitySet Name="GRN_LOADSERVBOUND" EntityType="Model8.GRN_LOADSERVBOUND" />
+    <EntitySet Name="NIS_CREATECARD" EntityType="Model8.NIS_CREATECARD" />
+    <EntitySet Name="NIS_CREATEFC" EntityType="Model8.NIS_CREATEFC" />
+    <EntitySet Name="NIS_CREATENE" EntityType="Model8.NIS_CREATENE" />
+    <EntitySet Name="GRN_LOADEQUIP" EntityType="Model8.GRN_LOADEQUIP" />
+    <EntitySet Name="WV_LOAD_PATHCONSUMER" EntityType="Model8.WV_LOAD_PATHCONSUMER" />
+    <EntitySet Name="GRN_ADDCARD" EntityType="Model8.GRN_ADDCARD" />
+    <EntitySet Name="GRN_DELETEEQUIP" EntityType="Model8.GRN_DELETEEQUIP" />
+    <EntitySet Name="GRN_DELETEPATH" EntityType="Model8.GRN_DELETEPATH" />
+    <EntitySet Name="GRN_DELETESB" EntityType="Model8.GRN_DELETESB" />
+    <EntitySet Name="GRN_LOADSITE" EntityType="Model8.GRN_LOADSITE" />
+    <EntitySet Name="BI_GRNQND_FDC" EntityType="Model8.BI_GRNQND_FDC" />
+    <EntitySet Name="BI_GRNQND_MSAN" EntityType="Model8.BI_GRNQND_MSAN" />
+    <EntitySet Name="BI_GRNQND_ODP" EntityType="Model8.BI_GRNQND_ODP" />
+    <EntitySet Name="BI_GRNQND_OLT" EntityType="Model8.BI_GRNQND_OLT" />
+    <EntitySet Name="REF_GRNQND" EntityType="Model8.REF_GRNQND" />
+    <EntitySet Name="BI_PROC_GRN_ISP21" EntityType="Model8.BI_PROC_GRN_ISP2" />
+    <EntitySet Name="NIS_ISP_CREATEFC" EntityType="Model8.NIS_ISP_CREATEFC" />
+    <EntitySet Name="BI_PROCESS21" EntityType="Model8.BI_PROCESS2" />
+    <EntitySet Name="BI_PROCESS_ISP21" EntityType="Model8.BI_PROCESS_ISP2" />
+    <EntitySet Name="NIS_ISP_CREATENE" EntityType="Model8.NIS_ISP_CREATENE" />
+    <EntitySet Name="NIS_ISP_CREATEFU" EntityType="Model8.NIS_ISP_CREATEFU" />
+    <EntitySet Name="NIS_ISP_CREATECARD" EntityType="Model8.NIS_ISP_CREATECARD" />
+    <EntitySet Name="NIS_CREATEFC_OSP" EntityType="Model8.NIS_CREATEFC_OSP" />
+    <EntitySet Name="NIS_CREATECS_OSP" EntityType="Model8.NIS_CREATECS_OSP" />
+    <EntitySet Name="NIS_CREATESB_OSP" EntityType="Model8.NIS_CREATESB_OSP" />
+    <EntitySet Name="GRN_LOADPATHCON" EntityType="Model8.GRN_LOADPATHCON" />
+    <EntitySet Name="NIS_CREATENE_OSP" EntityType="Model8.NIS_CREATENE_OSP" />
+    <EntitySet Name="NIS_CREATECARD_OSP" EntityType="Model8.NIS_CREATECARD_OSP" />
+    <EntitySet Name="NIS_CREATEFU_OSP" EntityType="Model8.NIS_CREATEFU_OSP" />
+    <EntitySet Name="REF_GATED_ASB_FEAT" EntityType="Model8.REF_GATED_ASB_FEAT" />
+    <EntitySet Name="REF_GATED_ASB_PTT" EntityType="Model8.REF_GATED_ASB_PTT" />
+  </EntityContainer>
+  <EntityType Name="BI_PROC_SWIFT">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Name="PROC_ID" Type="Int64" Nullable="false" />
+    <Property Name="STATUS" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TIME_CREATED" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="TIME_STARTED" Type="DateTime" Precision="6" />
+    <Property Name="TIME_FINISHED" Type="DateTime" Precision="6" />
+    <Property Name="HAS_ERROR" Type="Int16" />
+    <Property Name="STACK_TRACE" Type="String" MaxLength="4000" Unicode="false" FixedLength="false" />
+    <Property Name="NEPS_JOB_ID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CLASS_NAME" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="BI_SWIFTELEM_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_G3E_FID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_ELEMENTCODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_ELEMENTDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_ELEMENTTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_ZONE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_PTT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_STATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_LAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_LONG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_PROJECTID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_NEPSREFNUMBER" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_INVENTORYSYSTEM" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_SWIFTELEM_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="MESSAGE_ID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="ERROR_CODE" />
+    <Property Type="String" Name="ERROR_MESSAGE" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_MH_DMODIFY_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="Int32" Name="REPLY_ID" Nullable="false" />
+    <Property Type="String" Name="ERR_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+  </EntityType>
+  <EntityType Name="BI_MH_DMODIFY_REQUEST">
+    <Key>
+      <PropertyRef Name="REQ_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="String" Name="ASSIGNMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATUREIDENTIFIER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DUCTOWNERSHIP" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_MH_DNEW_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="Int32" Name="REPLY_ID" Nullable="false" />
+    <Property Type="String" Name="ERR_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+  </EntityType>
+  <EntityType Name="BI_MH_DNEW_REQUEST">
+    <Key>
+      <PropertyRef Name="REQ_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="String" Name="ASSIGNMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATUREIDENTIFIER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DUCTOWNERSHIP" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_MH_DPMODIFY_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="Int32" Name="REPLY_ID" Nullable="false" />
+    <Property Type="String" Name="ERR_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+  </EntityType>
+  <EntityType Name="BI_MH_DPMODIFY_REQUEST">
+    <Key>
+      <PropertyRef Name="REQ_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="String" Name="ASSIGNMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATUREIDENTIFIER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DUCTSOURCEID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DUCTTERMINATIONID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALLENGTH" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_MH_DPNEW_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="Int32" Name="REPLY_ID" Nullable="false" />
+    <Property Type="String" Name="ERR_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+  </EntityType>
+  <EntityType Name="BI_MH_DPNEW_REQUEST">
+    <Key>
+      <PropertyRef Name="REQ_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="String" Name="ASSIGNMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATUREIDENTIFIER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DUCTSOURCEID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DUCTTERMINATIONID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALLENGTH" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_MH_MMODIFY_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="Int32" Name="REPLY_ID" Nullable="false" />
+    <Property Type="String" Name="ERR_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+  </EntityType>
+  <EntityType Name="BI_MH_MMODIFY_REQUEST">
+    <Key>
+      <PropertyRef Name="REQ_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="String" Name="ASSIGNMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATUREIDENTIFIER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LATITUDE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LONGTITUDE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OWNER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCHANGEABBREVIATION" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_MH_MNEW_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="Int32" Name="REPLY_ID" Nullable="false" />
+    <Property Type="String" Name="ERR_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+  </EntityType>
+  <EntityType Name="BI_MH_MNEW_REQUEST">
+    <Key>
+      <PropertyRef Name="REQ_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="String" Name="ASSIGNMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATUREIDENTIFIER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LATITUDE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LONGTITUDE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OWNER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCHANGEABBREVIATION" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_MH_SDMODIFY_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="Int32" Name="REPLY_ID" Nullable="false" />
+    <Property Type="String" Name="ERR_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+  </EntityType>
+  <EntityType Name="BI_MH_SDMODIFY_REQUEST">
+    <Key>
+      <PropertyRef Name="REQ_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="String" Name="ASSIGNMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SUBDUCTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NOOFWAYS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SUBDUCTOCCUPIED" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SUBDUCTOWNERSHIP" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_MH_SDNEW_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="Int32" Name="REPLY_ID" Nullable="false" />
+    <Property Type="String" Name="ERR_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERR_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+  </EntityType>
+  <EntityType Name="BI_MH_SDNEW_REQUEST">
+    <Key>
+      <PropertyRef Name="REQ_ID" />
+    </Key>
+    <Property Type="Int32" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int32" Name="REQ_ID" Nullable="false" />
+    <Property Type="String" Name="ASSIGNMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SUBDUCTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NOOFWAYS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SUBDUCTOCCUPIED" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SUBDUCTOWNERSHIP" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_PROCESS_MHDUCT">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_CREATED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_STARTED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_FINISHED" Precision="6" />
+    <Property Type="Int16" Name="HAS_ERROR" />
+    <Property Type="String" Name="STACK_TRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NEPS_JOB_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRN_LOADSERVBOUND">
+    <Key>
+      <PropertyRef Name="LOADSERVBOUND_ID" />
+    </Key>
+    <Property Type="Decimal" Name="LOADSERVBOUND_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Int32" Name="G3E_FID" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_ID" />
+    <Property Type="String" Name="SERVICEBOUNDARYID" MaxLength="102" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SECTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CITY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="PREMISETYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SERVCATEGORY" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITESDP" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDPEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DDP" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SMARTDEVELOPER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SMARTPROJECTID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GRN_STATUS" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="COS" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="Decimal" Name="DROPCABLEDISTANCE" Precision="38" Scale="0" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEAT_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG_FS" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATECARD">
+    <Key>
+      <PropertyRef Name="CREATECARD_ID" />
+    </Key>
+    <Property Type="Decimal" Name="CREATECARD_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Int32" Name="G3E_FID" />
+    <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+    <Property Type="String" Name="RT_CODE" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MUX_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATEFC">
+    <Key>
+      <PropertyRef Name="CREATEFC_ID" />
+    </Key>
+    <Property Type="Decimal" Name="CREATEFC_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" />
+    <Property Type="Int16" Name="G3E_FNO" />
+    <Property Type="String" Name="FRANNAME" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATION" MaxLength="439" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DISTANCE" Precision="38" Scale="0" />
+    <Property Type="String" Name="CABINET" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATENE">
+    <Key>
+      <PropertyRef Name="CREATENE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="CREATENE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" />
+    <Property Type="Decimal" Name="G3E_FNO" Precision="38" Scale="0" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRN_LOADEQUIP">
+    <Key>
+      <PropertyRef Name="LOADEQUIP_ID" />
+    </Key>
+    <Property Type="Decimal" Name="LOADEQUIP_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CLASS_NAME" MaxLength="37" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPID" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIMODEL" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="REGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCDESC" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITE" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MNGTIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPNAME" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSERVICE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TAGGING" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="OUTDOORINDOORTAGGING" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="DPEXTENSIONFLAG" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="NETWORKNAME" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="GRN_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATCHCORD" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROJECTNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESIGN" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEAT_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG_FS" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PTT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FNO" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WV_LOAD_PATHCONSUMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD2" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT2" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD3" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT3" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPSITE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPPORT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOBID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROCESSID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROCESSTIME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OUTPORTFDC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INPORTFDP" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REMARKS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DP_TAMBAHAN" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRN_ADDCARD">
+    <Key>
+      <PropertyRef Name="ADDCARD_ID" />
+    </Key>
+    <Property Type="Decimal" Name="ADDCARD_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CLASS_NAME" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTID" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMODEL" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPLATENAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="SLOT_NO" />
+    <Property Type="String" Name="CARD_TYPE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTAL_PORT" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROJECT_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATCHCORD" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESIGN" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDCARD" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDSPLITTER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OWNER_FID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTIN" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG_FS" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEAT_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRN_DELETEEQUIP">
+    <Key>
+      <PropertyRef Name="DELETEEQUIP_ID" />
+    </Key>
+    <Property Type="Decimal" Name="DELETEEQUIP_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CLASS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FNO" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GRANITE_EQUIP_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPCAT" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTIN" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEAT_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG_FS" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRN_DELETEPATH">
+    <Key>
+      <PropertyRef Name="DELETEPATH_ID" />
+    </Key>
+    <Property Type="Decimal" Name="DELETEPATH_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CLASS" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHNAME" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHTYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="G3E_FNO" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEAT_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG_FS" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRN_DELETESB">
+    <Key>
+      <PropertyRef Name="DELETESB_ID" />
+    </Key>
+    <Property Type="Decimal" Name="DELETESB_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CLASS" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SERVICEBOUNDARYID" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDP" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="G3E_FNO" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEAT_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG_FS" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRN_LOADSITE">
+    <Key>
+      <PropertyRef Name="LOADSITE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="LOADSITE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="CLASS_NAME" MaxLength="36" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEEXC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITEFLOOR" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENO" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEBUILDING" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTREET" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSCITY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRESSSTATE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSTCODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTY" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="SITECOMMENT" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTLOCATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLINGTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COPPEROWNBYTM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIBERTOPREMISEEXIST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTALSERVICEBOUNDARY" Precision="38" Scale="0" />
+    <Property Type="String" Name="ACCESSRESTRICTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTACT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMMENTS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GRN_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEAT_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG_FS" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PTT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FNO" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNQND_FDC">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BATCH_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NODE_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="NODE_NAME" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PTT_ID" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDC_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_VENDOR" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_MODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="SHELF_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="SHELF_NAME" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SHELF_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT_NUMBER" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="CARD_INSTID" Precision="38" Scale="0" />
+    <Property Type="String" Name="CARD_TYPE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARD_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PORT_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="PORT_NUMBER" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORT_BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORT_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PATH_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="PATH_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DATE_CREATED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_GRNQND_MSAN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BATCH_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NODE_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="NODE_NAME" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PTT_ID" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MSAN_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_VENDOR" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_MODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="SHELF_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="SHELF_NAME" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SHELF_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT_NUMBER" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="CARD_INSTID" Precision="38" Scale="0" />
+    <Property Type="String" Name="CARD_TYPE" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARD_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PORT_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="PORT_NUMBER" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORT_BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORT_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PATH_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="PATH_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DATE_CREATED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_GRNQND_ODP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BATCH_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NODE_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="NODE_NAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODP_CODE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PTT_ID" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDC_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DP_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_VENDOR" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_MODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT_NUMBER" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="CARD_INSTID" Precision="38" Scale="0" />
+    <Property Type="String" Name="CARD_TYPE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARD_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PORT_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="PORT_NUMBER" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORT_BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORT_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PATH_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="PATH_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DATE_CREATED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_GRNQND_OLT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="BATCH_ID" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="NODE_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="NODE_NAME" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PTT_ID" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OLT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_VENDOR" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_MODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NODE_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="SHELF_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="SHELF_NAME" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SHELF_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT_NUMBER" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="CARD_INSTID" Precision="38" Scale="0" />
+    <Property Type="String" Name="CARD_TYPE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARD_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PORT_INST" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PORT_NUMBER" Precision="38" Scale="0" />
+    <Property Type="String" Name="PORT_BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORT_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PATH_INST" Precision="38" Scale="0" />
+    <Property Type="String" Name="PATH_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_BANDWIDTH" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_STATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DATE_CREATED" Precision="6" />
+  </EntityType>
+  <EntityType Name="REF_GRNQND">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int16" Name="ID" Nullable="false" />
+    <Property Type="String" Name="TABLE_NAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_PROC_GRN_ISP2">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_CREATED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_STARTED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_FINISHED" Precision="6" />
+    <Property Type="Int16" Name="HAS_ERROR" />
+    <Property Type="String" Name="STACK_TRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NEPS_JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USER_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_ISP_CREATEFC">
+    <Key>
+      <PropertyRef Name="CREATEFC_ID" />
+    </Key>
+    <Property Type="Decimal" Name="CREATEFC_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TASK_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VFDITEM_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VFDMODEL_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INDEXX" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATIONDETAILS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREACODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREADESCRIPTION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAAREACODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAARETCODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="5" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_PROCESS2">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_CREATED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_STARTED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_FINISHED" Precision="6" />
+    <Property Type="Int16" Name="HAS_ERROR" />
+    <Property Type="String" Name="STACK_TRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NEPS_JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_PROCESS_ISP2">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_CREATED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_STARTED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_FINISHED" Precision="6" />
+    <Property Type="Int16" Name="HAS_ERROR" />
+    <Property Type="String" Name="STACK_TRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NEPS_JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_ISP_CREATENE">
+    <Key>
+      <PropertyRef Name="CREATENE_ID" />
+    </Key>
+    <Property Type="Decimal" Name="CREATENE_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TASK_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RACK_VFDITEM_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RACK_VFDMODEL_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CHASSIS_VFDITEM_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CHASSIS_VFDMODEL_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPLOCNTTNAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUTABBREAVIATION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPINDEX" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCNDETAIL" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREACODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREADESCRIPTION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAARETCODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAAREACODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPSTATUS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMANRABBREAVIATION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUMMODEL" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="5" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_ISP_CREATEFU">
+    <Key>
+      <PropertyRef Name="CREATEFU_ID" />
+    </Key>
+    <Property Type="Decimal" Name="CREATEFU_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TASK_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VFDITEM_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VFDMODEL_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRACID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAUPOSITION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAUNAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAUDISTANCE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FUPTMANRABBREAVIATION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TERMINATIONTYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRODUCTTYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTPAIR" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID_FC" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_ISP_CREATECARD">
+    <Key>
+      <PropertyRef Name="CREATECARD_ID" />
+    </Key>
+    <Property Type="Decimal" Name="CREATECARD_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTAINER_ID" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ITEM_ID" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIRSTSLOT_ID" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSTATUS" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNUM" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDCOUNTPORT" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTAIN_ID_CHCK" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATEFC_OSP">
+    <Key>
+      <PropertyRef Name="FC_ID" />
+    </Key>
+    <Property Type="Int32" Name="FC_ID" Nullable="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASSNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3EFID" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INDEXX" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATIONDETAIL" MaxLength="439" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREACODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREADESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAAREACODE" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAARETCODE" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATECS_OSP">
+    <Key>
+      <PropertyRef Name="CS_ID" />
+    </Key>
+    <Property Type="Int32" Name="CS_ID" Nullable="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASSNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3EFID" />
+    <Property Type="String" Name="CABSNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABSCASTTYPE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABSSTATUS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CSPTPRODUCTNAME" MaxLength="87" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="MINNUMBER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="MAXNUMBER" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PAIRCOUNT" Precision="38" Scale="0" />
+    <Property Type="String" Name="LOCATIONA" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATIONB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DISTANCE" Precision="22" Scale="2" />
+    <Property Type="String" Name="FLAG" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATESB_OSP">
+    <Key>
+      <PropertyRef Name="SB_ID" />
+    </Key>
+    <Property Type="Int32" Name="SB_ID" Nullable="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASSNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3EFID" />
+    <Property Type="String" Name="FRACID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIELD1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIELD2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETNUMBER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREETNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SUBURB" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CITY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATABBREVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSCCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3EFID_FC" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRN_LOADPATHCON">
+    <Key>
+      <PropertyRef Name="LOADPATH_ID" />
+    </Key>
+    <Property Type="String" Name="LOADPATH_ID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD2" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT2" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD3" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT3" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPSITE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPPORT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOBID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROCESSID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROCESSTIME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OUTPORTFDC" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INPORTFDP" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REMARKS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DP_TAMBAHAN" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEAT_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG_FS" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATENE_OSP">
+    <Key>
+      <PropertyRef Name="NE_ID" />
+    </Key>
+    <Property Type="Int32" Name="NE_ID" Nullable="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASSNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3EFID" />
+    <Property Type="String" Name="LOCATIONDETAIL" MaxLength="439" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREACODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREADESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAAREACODE" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAARETCODE" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPLOCNTTNAME" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUTABBREVIATION" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPINDEX" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPSTATUS" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMANRABBREVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUMMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATECARD_OSP">
+    <Key>
+      <PropertyRef Name="CARD_ID" />
+    </Key>
+    <Property Type="Int32" Name="CARD_ID" Nullable="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASSNAME" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3EFID" />
+    <Property Type="String" Name="EQUPID" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSTATUS" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSERIAL" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDCOUNTPORT" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNUM" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3EFID_NE" />
+    <Property Type="String" Name="FLAG" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NIS_CREATEFU_OSP">
+    <Key>
+      <PropertyRef Name="FU_ID" />
+    </Key>
+    <Property Type="Int32" Name="FU_ID" Nullable="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASSNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3EFID" />
+    <Property Type="String" Name="FRAUPOSITION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAUNAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAUDISTANCE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FUPTMANRABBREAVIATION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TERMINATIONTYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRODUCTTYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTPAIR" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3EFID_FC" />
+    <Property Type="String" Name="FRACID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FLAG" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="REF_GATED_ASB_FEAT">
+    <Key>
+      <PropertyRef Name="PTT" />
+    </Key>
+    <Property Type="String" Name="PTT" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="REF_GATED_ASB_PTT">
+    <Key>
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="G3E_FNO" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

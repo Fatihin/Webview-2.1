@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "NewSave";
+}
+<br />
+<h2>Status</h2>
+<div style="height:400px">
+  New Job has been created. Job no. is @ViewBag.jobId
+</div>

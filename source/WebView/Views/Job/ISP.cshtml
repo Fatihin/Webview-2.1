@@ -1,0 +1,28 @@
+﻿@model WebView.Models.ExchangeMaintenanceModel
+@{
+    Layout = "_ISPLayout.cshtml";
+}
+
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+      $(function () {
+          $("#btnGenerate3D").button();
+      });
+  });
+</script>
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>ISP_3D</title>
+  </head>
+  <body>
+    <div style="text-align:center;">
+      SELECT EXEC ABB :  @Html.DropDownListFor(m => m.EXC_ABB, (IEnumerable<SelectListItem>)ViewBag.excabb, "Select EXC_ABB", new { style = "width:100px;" })
+    </div>
+    <div style="float:right; padding-top:5px;">
+      <input type="button" value="Generate 3D" id="btnGenerate3D" style="height:30px;width:100px;" />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.Job>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function ($) {
+    
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            $("#divDetails").dialog("open");
+            document.getElementById("divLoading").style.visibility = "visible";
+            $.ajax({
+                url: '@Url.Action("GetDetails_G3E_JOB", "Job")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    dataPtt = res.schemeName.split("|");
+                    //alert(dataPtt);
+                    var itemsJob = "<option selected value=''>Please Select Job</option>";
+
+                    for (i = 0; i < dataPtt.length; i++) {
+                        if (dataPtt[i] != "") {
+                            valuePtt = dataPtt[i].split(":");
+                            itemsJob += "<option value='" + valuePtt[0] + "'>" + valuePtt[0] + "</option>";
+                        }
+                    }
+
+                    $("#txtNewScheme").html(itemsJob);
+                    SetText("txtLNMSJob", res.jobid);
+                    SetElement("targetJob", res.jobid);
+                    document.getElementById("divLoading").style.visibility = "hidden";
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 160,
+            width: 660,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                var jobExc = document.getElementById("jobExc").value;
+                var jobScheme = document.getElementById("jobScheme").value;
+                var jobYear2 = document.getElementById("jobYear").value;
+                if (jobYear2 == "Select") {
+                    var jobYear = 0;
+                }
+                else {
+                    var jobYear = jobYear2;
+                }
+                window.location = "LNMSList?searchKey=" + document.getElementById("searchKey").value + "&jobExc=" + jobExc + "&jobScheme=" + jobScheme + "&jobYear=" + jobYear;
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnSave').click(function () {
+                if (document.getElementById("txtNewScheme").value == "") {
+                    alert("Please Select NEPS Scheme to Migrated");
+                }
+                else {
+                    var cmsg = confirm('Are you sure you want to Migrated?');
+                    if (cmsg != 0) {
+                        $.ajax({
+                            url: "/Job/MigratedLNMS",
+                            type: "POST",
+                            dataType: "html",
+                            data: {
+                                "lmnsjob": document.getElementById("targetJob").value,
+                                "nepsjob": document.getElementById("txtNewScheme").value,
+                                "random": Math.random()
+                            },
+                            beforeSend: function () { },
+                            success: function (data) {
+                                var res = jQuery.parseJSON(data);
+
+                                if (res.Success == true) {
+                                    alert("Deleted");
+                                    window.location.reload();
+                                }
+                                else {
+                                    alert("Delete failed.");
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            $("#btnClose").button();
+            $("#btnSave").button();
+            $("#btnSearch").button();
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>LNMS Job List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:100px; text-align:right;">Scheme Name :</td>
+                <td><input style="width:150px;" type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td style="width:100px; text-align:right;">Exchange :</td>
+                <td>@Html.DropDownList("jobExc", (IEnumerable<SelectListItem>)ViewBag.excabb, new { style = "width:150px" })</td>
+                <td style="width:100px; text-align:right;"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">Project Year :</td>
+                <td>@Html.DropDownList("jobYear", (IEnumerable<SelectListItem>)ViewBag.jobyear, new { style = "width:150px" })</td>
+                <td style="width:100px; text-align:right;">Scheme Type :</td>
+                <td>@Html.DropDownList("jobScheme", (IEnumerable<SelectListItem>)ViewBag.schemeType, new { style = "width:150px" })</td>
+                <td colspan="2" style="text-align:right;"><input type="button" value="Search" id="btnSearch" /></td>
+            </tr>
+        </table>
+    </div><br />
+    @if (Model.Count() > 0)
+    {
+        <table id="rounded-corner" summary="ExchangeMaintenance List" width="850px">
+            <thead>
+                <tr>
+                    <th scope="col">SCHEME NAME</th>
+                    <th scope="col">JOB STATE</th>
+                    <th scope="col">DATE CREATION</th>            
+                    <th scope="col">START DATE</th>
+                    <th scope="col">END DATE</th>          
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var res in Model)
+            {
+                <tr class="odd">
+                    <td id="gid" style="display:none;">@res.G3E_IDENTIFIER</td>
+                    <td>@res.G3E_IDENTIFIER</td>
+                    <td>@res.G3E_STATE</td>
+                    <td>@res.WebViewName</td>
+                    <td>@res.G3E_WORK_ORDER_ID</td>
+                    <td>@res.PROJECT_NO</td>
+                </tr>    
+            }
+            </tbody>
+        </table>
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+            &nbsp;
+            @if (Model.HasPreviousPage)
+            {
+                int firstpages = 1;
+                int prevpages = Model.PageNumber - 1;
+        
+                <a href = "LNMSList?searchKey=@ViewBag.searchKey&jobExc=@ViewBag.excabb2&jobScheme=@ViewBag.schemeType2&jobYear=@ViewBag.jobyear2&page=@firstpages">
+                  <
+                  <
+                </a>
+                @Html.Raw("&nbsp;")
+                <a href = "LNMSList?searchKey=@ViewBag.searchKey&jobExc=@ViewBag.excabb2&jobScheme=@ViewBag.schemeType2&jobYear=@ViewBag.jobyear2&page=@prevpages">
+                  < Prev
+                </a>
+       
+            }
+            else
+            {
+            }
+            &nbsp;
+            @if (Model.HasNextPage)
+            {
+                int pages = Model.PageNumber + 1;
+                int lastpages = Model.PageCount;
+        
+                <a href = "LNMSList?searchKey=@ViewBag.searchKey&jobExc=@ViewBag.excabb2&jobScheme=@ViewBag.schemeType2&jobYear=@ViewBag.jobyear2&page=@pages">
+                  Next >
+                </a>
+                @Html.Raw("&nbsp;")
+                <a href = "LNMSList?searchKey=@ViewBag.searchKey&jobExc=@ViewBag.excabb2&jobScheme=@ViewBag.schemeType2&jobYear=@ViewBag.jobyear2&page=@lastpages"> >> </a>
+            }
+            else
+            {
+            }
+            <br/><b> Total @Model.TotalItemCount records</b>
+        </div>
+    }
+    else
+    {
+            @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+
+    <br />
+    <div id="divDetails" title="Migration Data LNMS" style="padding-left:40px; padding-top:30px;">
+        
+        <input type="hidden" id="targetJob" value="" />
+        @using (Ajax.BeginForm("UpdateData_PlanUnit", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details">
+            <table width="620px">
+                <tr> 
+                    <td style="width:100px; background-color:#e8eef4">LNMS Job:</td>
+                    <td><span id="txtLNMSJob" style="font-weight:bold; color:Blue"></span></td>
+                    <td style="width:100px; background-color:#e8eef4">NEPS Job:</td>
+                    <td><select id="txtNewScheme" name="txtNewScheme"></select>
+                </tr>     
+                </table>
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Migrate" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Close" id="btnClose" style="height:30px;width:80px;float:right" />
+            </div>
+        </div>
+        }
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    </div>
+</div>
+    
+
+

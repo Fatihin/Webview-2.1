@@ -1,0 +1,373 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.FeatureMaintenance>
+@{
+    ViewBag.Title = "ListContract";
+}
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 600,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "ListContract?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#btnClose').click(function () {
+                var items = "<option selected></option>";
+                $("#FeatureTypeListContract").html(items);
+                $("#MinMaterialList").html(items);
+                $('#txtContractNo').val("");
+                $('#txtItemNo').val("");
+                $("#divDetails").dialog("close");
+            });
+
+
+
+            $('#searchKey').change(function () {
+                window.location = "ListContract?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+
+
+            $('#btnNewFeatMast').click(function () {
+                $("#divDetails").dialog({ title: "New Feature Master Maintenance" });
+                $("#divDetails").dialog("open");
+                document.getElementById("btnAdd").style.display = "block";
+                document.getElementById("btnUpdate").style.display = "none";
+                document.getElementById("btnDelete").style.display = "none";
+                $.ajax(
+                {
+                    url: "/FeatureMastMaintenance/FeatureTypeListContract",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+                       // alert(res.FeatureTypeList);
+                        data = res.FeatureTypeList.split("|");
+                        var items = "<option selected></option>";
+                        for (i = 0; i < data.length; i++) {
+                            if (data[i] != "") {
+                                items += "<option value='" + data[i] + "'>" + data[i] + "</option>";
+                            }
+                        }
+                        $("#FeatureTypeListContract").html(items);
+                        $('#txtContractNo').val("");
+                        $('#txtItemNo').val("");
+                        var itemsM = "<option selected></option>";
+                        $("#MinMaterialList").html(itemsM);
+                    }
+                });
+            });
+
+
+
+            $('#FeatureTypeListContract').change(function () {
+                var FeatureType = $('#FeatureTypeListContract').val();
+                // alert(FeatureType);
+                if (FeatureType != "") {
+                    $.ajax(
+                    {
+                        url: "/FeatureMastMaintenance/MinMaterialListContract",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "featureType": FeatureType
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+
+                            var res = jQuery.parseJSON(data);
+                            //alert(res.MinMaterialList);
+                            data = res.MinMaterialList.split("|");
+                            var items = "<option selected></option>";
+                            for (i = 0; i < data.length; i++) {
+                                if (data[i] != "") {
+                                    items += "<option value='" + data[i] + "'>" + data[i] + "</option>";
+                                }
+                            }
+                            $("#MinMaterialList").html(items);
+                        }
+                    });
+                }
+                else {
+                    var items = "<option selected></option>";
+                    $("#MinMaterialList").html(items);
+                }
+
+                $('#txtContractNo').val("");
+                $('#txtItemNo').val("");
+            });
+
+
+
+            $('#btnAdd').click(function () {
+                
+                var FeatureType = $('#FeatureTypeListContract').val();
+                var MinMaterial = $('#MinMaterialList').val();
+                $.ajax(
+                {
+                    url: "/FeatureMastMaintenance/NewFeatureMasterContract",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "txtFeatureType": FeatureType,
+                        "txtMinMaterial": MinMaterial,
+                        "txtContractNo": document.getElementById("txtContractNo").value,
+                        "txtItemNo": document.getElementById("txtItemNo").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("New Feature Master has been created.");
+                            window.location.reload();
+
+                        }
+                        else {
+                            alert(res.errorMessage);
+                        }
+                    }
+                });
+            });
+
+            $('#btnUpdate').click(function () {
+                //alert($(this).find("#day").text());
+                var MinMaterial = $('#MinMaterialList').val();
+                $.ajax(
+                {
+                    url: "/FeatureMastMaintenance/UpdateFeatureMasterContract",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "txtMinMaterial": MinMaterial,
+                        "txtFeatMastNo": document.getElementById("txtFeatMastNo").value,
+                        "txtContractNo": document.getElementById("txtContractNo").value,
+                        "txtItemNo": document.getElementById("txtItemNo").value
+
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Updated");
+                            window.location.reload();
+
+                        }
+                        else {
+                            alert(res.errorMessage);
+                        }
+                    }
+                });
+            });
+
+
+            $('#btnDelete').click(function () {
+                $.ajax(
+                {
+                    url: "/FeatureMastMaintenance/DeleteFeatureMasterContract",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "txtFeatMastNo": document.getElementById("txtFeatMastNo").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Deleted.");
+                            window.location.reload();
+
+                        }
+                        else {
+                            alert("Failed.");
+                        }
+                    }
+                });
+            });
+
+
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnAdd").button();
+            $("#btnUpdate").button();
+            $("#btnDelete").button();
+            $("#btnNewFeatMast").button();
+        });
+
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var txtFeatMastNo = $(this).find("#featMastNo").text();
+            var txtMinMat = $(this).find("#minMat").text();
+            var txtContractNo = $(this).find("#contractNo").text();
+            var txtItemNo = $(this).find("#itemNo").text();
+            var txtFeatureType = $(this).find("#featureType").text();
+            $("#divDetails").dialog({ title: "Details" });
+            $("#divDetails").dialog("open");
+            document.getElementById("btnAdd").style.display = "none";
+            document.getElementById("btnUpdate").style.display = "block";
+            document.getElementById("btnDelete").style.display = "block";
+            $('#txtContractNo').val(txtContractNo);
+            $('#txtItemNo').val(txtItemNo);
+            $('#txtFeatMastNo').val(txtFeatMastNo);
+
+
+            var itemsMinMat = "<option selected value='" + txtMinMat + "'>" + txtMinMat + "</option>";
+            $("#MinMaterialList").html(itemsMinMat);
+
+            var itemsFeatureType = "<option selected value='" + txtFeatureType + "'>" + txtFeatureType + "</option>";
+            $("#FeatureTypeListContract").html(itemsFeatureType);
+        });
+    });
+
+  
+
+</script>
+
+<br />
+<h2>Feature Master Maintenance List - Contract</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:200px;"><input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td><input type="button" value="Search" id="btnSearch" /></td>
+                 <td style="text-align:right"><input type="button" value="Add New" id="btnNewFeatMast" /></td>
+            </tr>
+        </table>
+    </div><br />
+ @if (Model.Count() > 0)
+    {
+    <table id="rounded-corner" summary="FeatureMastsMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">MIN MATERIAL</th>
+                <th scope="col">CONTRACT NO</th>
+                <th scope="col">ITEM NO</th>
+                <th scope="col">FEATURE TYPE</th>                  
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="minMat">@res.MIN_MATERIAL</td>
+                <td id="contractNo">@res.CONTRACT_NO</td>
+                <td id="itemNo">@res.ITEM_NO</td>
+                <td id="featureType">@res.FEATURE_TYPE</td> 
+                <td style="display:none;" id="featMastNo">@res.FEAT_MAST_CONTRACT_NO</td>                
+                @*<td>@Ajax.ActionLink("Details", "GetDetails", new { id = res.AND_ID }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId="divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+     <div> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { searchKey = @ViewBag.searchKey, page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { searchKey = @ViewBag.searchKey, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+            
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { searchKey = @ViewBag.searchKey, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { searchKey = @ViewBag.searchKey, page = Model.PageCount })
+        }
+        else
+        {
+            
+        }
+        </div>
+     }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+
+     <div id="divDetails" title="New Feature Master" style="padding-left:40px; padding-top:30px;">       
+        
+        <div id="list-details">
+         <input type="text" id="txtFeatMastNo" name="txtFeatMastNo" style="width:150px; display:none" />
+            <table width="500px">
+            <tr>
+                    <td style="width:150px; background-color:#e8eef4">Feature Type</td>
+                     <td style="width:10px; background-color:#e8eef4">:</td>
+                   <td><select id="FeatureTypeListContract" style="width:150px;"></select></td> 
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Min Material</td>
+                    <td style="width:10px; background-color:#e8eef4">:</td>
+                    <td><select id="MinMaterialList" style="width:150px;"></select></td> 
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Contract No</td>
+                    <td style="width:10px; background-color:#e8eef4">:</td>
+                    <td><input type="text" id="txtContractNo" name="txtContractNo" style="width:150px;" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr> 
+                 <tr>
+                    <td style="width:150px; background-color:#e8eef4">Item No</td>
+                    <td style="width:10px; background-color:#e8eef4">:</td>
+                    <td><input type="text" id="txtItemNo" name="txtItemNo" style="width:150px;" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr> 
+            </table>
+            <br />            
+            <div style="height:30px; margin-top:10px; margin-left:10px; text-align:right;">
+            <table style="width:500px"><tr><td style="text-align:left; width:80px"><input type="button" value="Delete" id="btnDelete" style="height:30px; width:80px; vertical-align:top; display:none" /></td><td style="width:160px"></td><td style="text-align:right; width:80px"></td><td style="text-align:right; width:80px"><input type="button" value="Update" id="btnUpdate" style="height:30px; width:80px; vertical-align:top; display:none" /><input type="button" value="Add" id="btnAdd" style="height:30px; width:80px; vertical-align:top; display:none" /></td><td style="text-align:right; width:80px"><input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" /></td></tr></table>
+              
+               
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+   
+</div>
+    

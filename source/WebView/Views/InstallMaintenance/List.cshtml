@@ -1,0 +1,296 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetText("txtCodeID", data.codeid);
+        SetElement("txtCode", data.code);
+        SetElement("txtName", data.name);
+        SetElement("txtsupNorm", data.supNorm);
+        SetElement("txtsupRwo", data.supRwo);
+        SetElement("txtimplNorm", data.implNorm);
+        SetElement("txtimplRwo", data.implRwo);
+        SetElement("txtType", data.type);
+        SetElement("txtRank", data.rank);        
+        SetElement("codeVal", data.codeid);
+        document.getElementById("targetCode").value = data.codeid;
+
+        document.getElementById("btnClose").disabled = false;
+
+        //$('input[type=text].txtName').val(data.Message);
+    }
+
+    function SaveUpdateCallBack(data) {
+        document.getElementById("txtName").readOnly = true;
+        document.getElementById("txtsupNorm").readOnly = true;
+        document.getElementById("txtsupRwo").readOnly = true;
+        document.getElementById("txtimplNorm").readOnly = true;
+        document.getElementById("txtimplRwo").readOnly = true;
+        document.getElementById("txtType").readOnly = true;
+        document.getElementById("txtRank").readOnly = true;        
+        document.getElementById("btnSave").disabled = true;
+
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            //var cmsg = confirm(t);
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetDetails", "InstallMaintenance")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    GetDetailsCallBack(res);
+                    //$.msgBox("Please la."); 
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 290,
+            width: 900,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $(function () {
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "NewInstallMaintenance";
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/InstallMaintenance/DeleteData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetCode": document.getElementById("targetCode").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+    /*
+    jQuery(document).ready(function ($) {
+    $(function () {
+    $('#mylink2').click(function () {
+    $.ajax({
+    url: "GetDetails",
+    type: "GET",
+    dataType: "html",
+    data: {
+    "userguid": this.id
+    },
+    beforeSend: function () { },
+    success: function (data) {
+    eval("var t =" + data);
+    document.getElementById("txtName").value = t.other;
+    }
+    });
+    });
+    });
+    });
+    */
+    //jQuery(document).ready(function ($) {
+    //$(function () {
+    //$("#dialog").dialog();
+    //});
+    //});
+</script>
+
+<br />
+<h2>Install Maintenance List</h2>
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+<div style="height:650px">
+    <table id="rounded-corner" summary="InstallMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">Install Code</th>
+                <th scope="col">Install Name </th>
+                <th scope="col">SUP Normal Rate</th>
+                <th scope="col" >SUP RWO Rate</th>
+                <th scope="col" >IMPL Normal Rate</th>
+                <th scope="col" >IMPL RWO Rate</th>
+                <th scope="col" >Install Type</th>
+                 <th scope="col" >Rank</th>
+                 <th scope="col" >Code ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in (List<WebView.WebService._base.InstallMaintenance>)ViewData["data4"])
+        {
+            <tr class="odd">
+                <td>@res.INST_CODE</td>
+                <td>@res.INST_NAME</td>
+                <td>@res.SUP_NORM_RATE</td>
+                <td>@res.SUP_RWO_RATE</td>
+                <td>@res.IMPL_NORM_RATE</td>
+                <td>@res.IMPL_RWO_RATE</td>
+                <td>@res.INST_TYPE</td>
+                <td>@res.RANK</td>
+                <td id="gid">@res.CODE_ID</td>
+                @*<td>@Ajax.ActionLink("Details", "GetDetails", new { id = res.CODE_ID }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId="divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">  
+    <span style="font-size:12px">Code Id #</span><span id="txtCodeID" style="font-weight:bold; color:Blue"></span>
+        <input type="hidden" id="targetCode" value="" />
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions() 
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        })) 
+        {
+        <div id="list-details">
+           <input type="hidden" id="codeVal" name="codeVal" />
+            <table width="800px">
+            
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Install Code</td>
+                    <td><input type="text" id="txtCode" name="txtCode" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                     
+                    <td style="width:150px; background-color:#e8eef4"> SUP Normal Rate</td>
+                    <td><input type="text" id="txtsupNorm" name="txtsupNorm" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                   
+                </tr>
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Install Name</td>
+                    <td><input type="text" id="txtName" name="txtName" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    
+                     <td style="width:150px; background-color:#e8eef4">SUP RWO Rate</td>
+                    <td><input type="text" id="txtsupRwo" name="txtsupRwo" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                     
+                </tr>
+                <tr> 
+                   <td style="width:150px; background-color:#e8eef4">Install Type</td>
+                    <td><input type="text" id="txtType" name="txtType" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:150px; background-color:#e8eef4">IMPL Normal Rate</td>
+                    <td><input type="text" id="txtimplNorm" name="txtimplNorm" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td> 
+                 </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Rank</td>                    
+                    <td><select id="txtRank" name="txtRank">
+                        <option value="EXE">EXE</option>
+                        <option value="NEX">NEX</option>
+                        </select>
+                    </td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td> 
+                                        
+                     <td style="width:150px; background-color:#e8eef4">IMPL RWO Rate</td>
+                    <td><input type="text" id="txtimplRwo" name="txtimplRwo" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                      
+                </tr>            
+            </table>
+            <br />
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>
+</div>
+    
+
+

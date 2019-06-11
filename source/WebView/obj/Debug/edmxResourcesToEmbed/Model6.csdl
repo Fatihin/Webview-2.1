@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model6" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities6" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="VW_CREATENE_GE_OSP" EntityType="Model6.VW_CREATENE_GE_OSP" />
+    <EntitySet Name="REF_WEBSERVICES" EntityType="Model6.REF_WEBSERVICES" />
+    <EntitySet Name="GC_DFDP" EntityType="Model6.GC_DFDP" />
+    <EntitySet Name="GC_NETELEM_M6" EntityType="Model6.GC_NETELEM_M6" />
+    <EntitySet Name="VW_CREATECARD_GE_OSP" EntityType="Model6.VW_CREATECARD_GE_OSP" />
+    <EntitySet Name="VW_CREATENE_OSP_9100" EntityType="Model6.VW_CREATENE_OSP_9100" />
+    <EntitySet Name="VW_CREATENE_OSP_9000" EntityType="Model6.VW_CREATENE_OSP_9000" />
+    <EntitySet Name="VW_CREATENE_OSP_9500" EntityType="Model6.VW_CREATENE_OSP_9500" />
+    <EntitySet Name="VW_CREATENE_OSP_9600" EntityType="Model6.VW_CREATENE_OSP_9600" />
+    <EntitySet Name="VW_CREATECARD_OSP_9100" EntityType="Model6.VW_CREATECARD_OSP_9100" />
+    <EntitySet Name="VW_CREATECARD_OSP_9100_NGN" EntityType="Model6.VW_CREATECARD_OSP_9100_NGN" />
+    <EntitySet Name="VW_CREATECARD_OSP_9500" EntityType="Model6.VW_CREATECARD_OSP_9500" />
+    <EntitySet Name="VW_CREATECARD_OSP_9600" EntityType="Model6.VW_CREATECARD_OSP_9600" />
+    <EntitySet Name="VW_CREATECARD_OSP_9000" EntityType="Model6.VW_CREATECARD_OSP_9000" />
+    <EntitySet Name="VW_CREATEFC_OSP_9500_SDF" EntityType="Model6.VW_CREATEFC_OSP_9500_SDF" />
+    <EntitySet Name="VW_CREATEFC_OSP_9500_DDFAC" EntityType="Model6.VW_CREATEFC_OSP_9500_DDFAC" />
+    <EntitySet Name="VW_CREATEFC_OSP_9500_FDPAC" EntityType="Model6.VW_CREATEFC_OSP_9500_FDPAC" />
+    <EntitySet Name="VW_CREATEFC_OSP_130001" EntityType="Model6.VW_CREATEFC_OSP_130001" />
+    <EntitySet Name="VW_CREATEFC_13000_TRANS" EntityType="Model6.VW_CREATEFC_13000_TRANS" />
+    <EntitySet Name="VW_CREATENE_OSP_TRANSFER90" EntityType="Model6.VW_CREATENE_OSP_TRANSFER90" />
+    <EntitySet Name="VW_CREATENE_OSP_TRANSFER91" EntityType="Model6.VW_CREATENE_OSP_TRANSFER91" />
+    <EntitySet Name="VW_CREATENE_OSP_TRANSFER95" EntityType="Model6.VW_CREATENE_OSP_TRANSFER95" />
+    <EntitySet Name="VW_CREATENE_OSP_TRANSFER96" EntityType="Model6.VW_CREATENE_OSP_TRANSFER96" />
+  </EntityContainer>
+  <EntityType Name="VW_CREATENE_GE_OSP">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Name="SCHEME_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="G3E_FID" Type="Int32" Nullable="false" />
+    <Property Name="EQUIPLOCNAME" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="EQUIPMENTABB" Type="String" MaxLength="13" Unicode="false" FixedLength="true" />
+    <Property Name="GE_INDEX" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="LOCDETAIL" Type="String" MaxLength="388" Unicode="false" FixedLength="false" />
+    <Property Name="AREACODE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="AREA_DESC" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="AREA" Type="String" MaxLength="8" Unicode="false" FixedLength="true" />
+    <Property Name="AREAREACODE" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="STATUS" Type="String" MaxLength="7" Unicode="false" FixedLength="true" />
+    <Property Name="MANUFACTURER" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MODEL" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="REF_WEBSERVICES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SERVICE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SERVICE_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SERVICE_URL" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GC_DFDP">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+    <Property Type="Int32" Name="BND_FID" />
+    <Property Type="String" Name="CONTRACTOR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CUST_NETWORK" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DB_LOSS" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="DIST_FROM_EXC" Precision="38" Scale="0" />
+    <Property Type="String" Name="EQP_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDC_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="FDC_FID" />
+    <Property Type="String" Name="FDC_SPLTR_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_CAPACITY" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_CLASS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_OWNER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="FDP_SPARE" Precision="38" Scale="0" />
+    <Property Type="String" Name="FDP_SPLTR_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDP_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="FDP_WORK" Precision="38" Scale="0" />
+    <Property Type="Int16" Name="FIB_CORE" />
+    <Property Type="String" Name="FIB_DCABLE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INSTALL_LOC" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOC_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAINFDP_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="MAINFDP_FID" />
+    <Property Type="Int32" Name="MAINFDP_IPID" />
+    <Property Type="String" Name="MANUFACTURER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OLT_ID" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PLINTH" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="RAD_DIST" Precision="38" Scale="0" />
+    <Property Type="String" Name="STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="TOTAL_CAPACITY" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="GC_NETELEM_M6">
+    <Key>
+      <PropertyRef Name="G3E_ID" />
+      <PropertyRef Name="G3E_FNO" />
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_CNO" />
+      <PropertyRef Name="G3E_CID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+    <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+    <Property Type="String" Name="BILLING_RATE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_DATE" />
+    <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FEATURE_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="IMAP_FEATURE_ID" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="JOB_STATE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MIC" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MIN_MATERIAL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="MODIFIED_DATE" />
+    <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OWNERSHIP" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PLAN_ID" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SAP_WRK_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SEGMENT" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SERVICE_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SWITCH_CENTRE_CLLI" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="YEAR_PLACED" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATECARD_GE_OSP">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Type="String" Name="JOBID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+    <Property Type="String" Name="CARDSLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDCOUNTPORT" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNUM" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATENE_OSP_9100">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATENE_OSP_9000">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Decimal" Name="G3E_FNO" Precision="38" Scale="0" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATENE_OSP_9500">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATENE_OSP_9600">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATECARD_OSP_9100">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+    <Property Type="String" Name="RT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATECARD_OSP_9100_NGN">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+    <Property Type="String" Name="RT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATECARD_OSP_9500">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+    <Property Type="String" Name="MUX_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATECARD_OSP_9600">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+    <Property Type="String" Name="RT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATECARD_OSP_9000">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+    <Property Type="String" Name="RT_CODE" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATEFC_OSP_9500_SDF">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATION" MaxLength="439" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATEFC_OSP_9500_DDFAC">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATION" MaxLength="439" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATEFC_OSP_9500_FDPAC">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATION" MaxLength="439" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATEFC_OSP_130001">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATION" MaxLength="388" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATEFC_13000_TRANS">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATION" MaxLength="388" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DISTANCE" Precision="38" Scale="0" />
+    <Property Type="String" Name="CABINET" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATENE_OSP_TRANSFER90">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Decimal" Name="G3E_FNO" Precision="38" Scale="0" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATENE_OSP_TRANSFER91">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATENE_OSP_TRANSFER95">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VW_CREATENE_OSP_TRANSFER96">
+    <Key>
+      <PropertyRef Name="G3E_FID" />
+      <PropertyRef Name="G3E_FNO" />
+    </Key>
+    <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+    <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

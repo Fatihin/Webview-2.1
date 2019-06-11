@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WL5G3N0:definitions xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:WL5G3N1="http://nis.tm.com/" name="TM_NEPSManagementAPIService" targetNamespace="http://nis.tm.com/" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://nis.tm.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import schemaLocation="http://tmsoaosb.intra.tm:80/NEPS_NIS/Proxy_Services/ps_tm_nepsmanagment?SCHEMA%2FNEPS_NIS%2FResources%2FXMLSchema_-1361850587" namespace="http://nis.tm.com/" />
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="createFrameContainers">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createFrameContainers" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createFrameContainersResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createFrameContainersResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createFrameUnits">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createFrameUnits" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createFrameUnitsResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createFrameUnitsResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createServiceBoundary">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createServiceBoundary" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createServiceBoundaryResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createServiceBoundaryResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createNetworkElement">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createNetworkElement" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createNetworkElementResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createNetworkElementResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createCard">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createCard" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createCardResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createCardResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createCableSheath">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createCableSheath" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="createCableSheathResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:createCableSheathResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="dataMatchingUpdate">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:dataMatchingUpdate" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="dataMatchingUpdateResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:dataMatchingUpdateResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="dataMatchingQuery">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:dataMatchingQuery" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="dataMatchingQueryResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:dataMatchingQueryResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="updateDPAdresses">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:updateDPAdresses" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="updateDPAdressesResponse">
+    <WL5G3N0:part name="parameters" element="WL5G3N1:updateDPAdressesResponse" />
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="TM_NEPSManagementAPI">
+    <WL5G3N0:operation name="createFrameContainers">
+      <WL5G3N0:input message="WL5G3N1:createFrameContainers" />
+      <WL5G3N0:output message="WL5G3N1:createFrameContainersResponse" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createFrameUnits">
+      <WL5G3N0:input message="WL5G3N1:createFrameUnits" />
+      <WL5G3N0:output message="WL5G3N1:createFrameUnitsResponse" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createServiceBoundary">
+      <WL5G3N0:input message="WL5G3N1:createServiceBoundary" />
+      <WL5G3N0:output message="WL5G3N1:createServiceBoundaryResponse" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createNetworkElement">
+      <WL5G3N0:input message="WL5G3N1:createNetworkElement" />
+      <WL5G3N0:output message="WL5G3N1:createNetworkElementResponse" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createCard">
+      <WL5G3N0:input message="WL5G3N1:createCard" />
+      <WL5G3N0:output message="WL5G3N1:createCardResponse" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createCableSheath">
+      <WL5G3N0:input message="WL5G3N1:createCableSheath" />
+      <WL5G3N0:output message="WL5G3N1:createCableSheathResponse" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="dataMatchingUpdate">
+      <WL5G3N0:input message="WL5G3N1:dataMatchingUpdate" />
+      <WL5G3N0:output message="WL5G3N1:dataMatchingUpdateResponse" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="dataMatchingQuery">
+      <WL5G3N0:input message="WL5G3N1:dataMatchingQuery" />
+      <WL5G3N0:output message="WL5G3N1:dataMatchingQueryResponse" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="updateDPAdresses">
+      <WL5G3N0:input message="WL5G3N1:updateDPAdresses" />
+      <WL5G3N0:output message="WL5G3N1:updateDPAdressesResponse" />
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="TM_NEPSManagementAPIPortBinding" type="WL5G3N1:TM_NEPSManagementAPI">
+    <WL5G3N2:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <WL5G3N0:operation name="createFrameContainers">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createFrameUnits">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createServiceBoundary">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createNetworkElement">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createCard">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="createCableSheath">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="dataMatchingUpdate">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="dataMatchingQuery">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="updateDPAdresses">
+      <WL5G3N2:operation soapAction="" />
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="TM_NEPSManagementAPIService">
+    <WL5G3N0:port name="TM_NEPSManagementAPIPort" binding="WL5G3N1:TM_NEPSManagementAPIPortBinding">
+      <WL5G3N2:address location="http://10.45.194.44:8001/NEPS_NIS/Proxy_Services/ps_tm_nepsmanagment" />
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

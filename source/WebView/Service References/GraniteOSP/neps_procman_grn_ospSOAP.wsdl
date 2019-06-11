@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://ws.integ.neps.ag.com/neps_procman_grn_osp/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://ws.integ.neps.ag.com/neps_procman_grn_osp/" targetNamespace="http://ws.integ.neps.ag.com/neps_procman_grn_osp/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ws.integ.neps.ag.com/neps_procman_grn_osp/">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="Error">
+        <xsd:sequence>
+          <xsd:element name="errorCode" type="xsd:string" />
+          <xsd:element name="errorDescription" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateProcessResponse">
+    <wsdl:part name="processId" type="xsd:int" />
+    <wsdl:part name="error" type="impl:Error" />
+  </wsdl:message>
+  <wsdl:message name="QueryProcessStatusResponse">
+    <wsdl:part name="processStatus" type="xsd:string" />
+    <wsdl:part name="error" type="impl:Error" />
+  </wsdl:message>
+  <wsdl:message name="CreateProcessRequest">
+    <wsdl:part name="nepsJobId" type="xsd:string" />
+    <wsdl:part name="userId" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryProcessStatusRequest">
+    <wsdl:part name="processId" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:portType name="neps_procman_grn_osp">
+    <wsdl:operation name="CreateProcess" parameterOrder="nepsJobId userId processId error">
+      <wsdl:input name="CreateProcessRequest" message="impl:CreateProcessRequest" />
+      <wsdl:output name="CreateProcessResponse" message="impl:CreateProcessResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryProcessStatus" parameterOrder="processId processStatus error">
+      <wsdl:input name="QueryProcessStatusRequest" message="impl:QueryProcessStatusRequest" />
+      <wsdl:output name="QueryProcessStatusResponse" message="impl:QueryProcessStatusResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="neps_procman_grn_ospSOAPSoapBinding" type="impl:neps_procman_grn_osp">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="CreateProcess">
+      <wsdlsoap:operation soapAction="http://ws.integ.neps.ag.com/neps_procman_grn_osp/CreateProcess" />
+      <wsdl:input name="CreateProcessRequest">
+        <wsdlsoap:body use="literal" namespace="http://ws.integ.neps.ag.com/neps_procman_grn_osp/" />
+      </wsdl:input>
+      <wsdl:output name="CreateProcessResponse">
+        <wsdlsoap:body use="literal" namespace="http://ws.integ.neps.ag.com/neps_procman_grn_osp/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryProcessStatus">
+      <wsdlsoap:operation soapAction="http://ws.integ.neps.ag.com/neps_procman_grn_osp/QueryProcessStatus" />
+      <wsdl:input name="QueryProcessStatusRequest">
+        <wsdlsoap:body use="literal" namespace="http://ws.integ.neps.ag.com/neps_procman_grn_osp/" />
+      </wsdl:input>
+      <wsdl:output name="QueryProcessStatusResponse">
+        <wsdlsoap:body use="literal" namespace="http://ws.integ.neps.ag.com/neps_procman_grn_osp/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="neps_procman_grn_osp">
+    <wsdl:port name="neps_procman_grn_ospSOAP" binding="impl:neps_procman_grn_ospSOAPSoapBinding">
+      <wsdlsoap:address location="http://10.14.61.189:9090/GRANITE_PROCMAN_OSP_WS/services/neps_procman_grn_ospSOAP" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

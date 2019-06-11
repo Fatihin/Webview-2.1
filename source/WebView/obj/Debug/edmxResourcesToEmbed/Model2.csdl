@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities_ISP" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ISP_NETELEM" EntityType="Model1.ISP_NETELEM" />
+  </EntityContainer>
+  <EntityType Name="ISP_NETELEM">
+    <Key>
+      <PropertyRef Name="ISP_TYPE" />
+      <PropertyRef Name="ISP_ID" />
+      <PropertyRef Name="MIN_MATERIAL" />
+      <PropertyRef Name="SCHEME_NAME" />
+    </Key>
+    <Property Type="String" Name="ISP_TYPE" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ISP_ID" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SCHEME_NAME" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

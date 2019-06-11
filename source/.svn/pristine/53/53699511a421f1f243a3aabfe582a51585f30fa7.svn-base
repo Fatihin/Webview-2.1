@@ -1,0 +1,266 @@
+﻿
+@model PagedList.IPagedList<WebView.WebService._base.BOQ_GEN>
+           
+@{
+    ViewBag.Title = "BOQ_GEN_List";
+}
+
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) 
+    {
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtJOBID", data.x_G3E_ID);
+        SetElement("txtSCHEMENO", data.x_SCH_NO);
+        SetElement("txtSCHEMENAME", data.x_SCHEME_NAME);
+        SetElement("txtSCHEMETYPE", data.x_SCH_TYPE);
+        SetElement("txtEXCABB", data.x_EXC_ABB);
+        SetElement("txtYEARINSTALL", data.x_YEAR_INSTALL);
+        SetElement("txtOWNER", data.x_G3E_OWNER);
+        
+        document.getElementById("btnClose").disabled = false;
+
+    }
+
+//    function SaveUpdateCallBack(data) 
+//    {
+//        document.getElementById("txtJOBID").readOnly = true;
+//        document.getElementById("txtSCHEMENO").readOnly = true;
+//        document.getElementById("txtSCHEMENAME").readOnly = true;
+//        document.getElementById("txtSCHEMETYPE").readOnly = true;
+//        document.getElementById("txtEXCABB").readOnly = true;
+//        document.getElementById("txtYEARINSTALL").readOnly = true;
+//        document.getElementById("txtOWNER").readOnly = true;    
+//        document.getElementById("btnSave").disabled = true;
+
+//        if (data.Success == true) 
+//        {
+//            alert("BOQ Generated Successfully!");
+//            document.getElementById("divDetails").style.display = "none";
+//            window.location.reload();
+//        }
+//    }
+
+
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "BOQ_GEN_List?Page=1 &searchNo=" + document.getElementById("CmbNo").value + "&searchIDNo=" + document.getElementById("CmbNo").name
+                + "&searchType=" + document.getElementById("CmbType").value + "&searchIDType=" + document.getElementById("CmbType").name
+                + "&searchExc=" + document.getElementById("CmbExc").value + "&searchIDExc=" + document.getElementById("CmbExc").name
+                + "&searchYear=" + document.getElementById("CmbYear").value + "&searchIDYear=" + document.getElementById("CmbYear").name
+                + "&searchName=" + document.getElementById("CmbName").value + "&searchIDName=" + document.getElementById("CmbName").name
+                + "&searchID=" + document.getElementById("CmbID").value + "&searchIDID=" + document.getElementById("CmbID").name
+                + "&searchOwner=" + document.getElementById("CmbOwner").value + "&searchIDOwner=" + document.getElementById("CmbOwner").name;
+            });
+
+            $('#btnClose').click(function () {
+                document.getElementById("divDetails").style.display = "none";
+            });
+
+
+            $('#btnSave').click(function () {
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/UpdateData",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "txtJOBID": document.getElementById("txtJOBID").value,
+                        "txtSCHEMENO": document.getElementById("txtSCHEMENO").value,
+                        "txtSCHEMENAME": document.getElementById("txtSCHEMENAME").value,
+                        "txtSCHEMENTYPE": document.getElementById("txtSCHEMETYPE").value,
+                        "txtEXCABB": document.getElementById("txtEXCABB").value,
+                        "txtYEARINSTALL": document.getElementById("txtYEARINSTALL").value,
+                        "txtOWNER": document.getElementById("txtOWNER").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                      
+                        var res = jQuery.parseJSON(data);
+                       
+                        if (res.Success == true) {
+                            alert("BOQ Generated Successfully!");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("BOQ Generation failed.");
+                        }
+                    }
+                });
+            });
+
+
+        });
+
+    });
+   
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+        document.getElementById("divDetails").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+
+ @using (Html.BeginForm())
+ {
+      @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");  
+<br />
+<br />
+<h2>BOQ List</h2>
+<div>
+<div style ="border :5px outset skyblue; ">
+    <table>
+    <tr>
+        <td >Job ID</td>
+            <td></td>
+            <td colspan ="2">@Html.DropDownList("CmbID", (IEnumerable<SelectListItem>)ViewBag.x_G3E_ID, new { style = "width:150px" })</td>  
+            <td></td>
+        <td >Scheme Name</td>          
+            <td colspan ="2">@Html.DropDownList("CmbName", (IEnumerable<SelectListItem>)ViewBag.x_SCHEME_NAME, new { style = "width:150px" })</td>                        
+        <td >Owner</td>
+            <td></td>
+            <td colspan ="2">@Html.DropDownList("CmbOwner", (IEnumerable<SelectListItem>)ViewBag.x_G3E_OWNER, new { style = "width:150px" })</td>             
+            <td></td>
+           @* <td><input type="button" value="Clear" id="btnClear" /></td>  *@
+    </tr>   
+    <tr>
+        <td >Scheme No</td>
+            <td></td>
+            <td>@Html.DropDownList("CmbNo", (IEnumerable<SelectListItem>)ViewBag.x_SCH_NO, new { style = "width:100px" })</td>  
+        <td >Scheme Type</td>
+            <td></td>
+            <td>@Html.DropDownList("CmbType", (IEnumerable<SelectListItem>)ViewBag.x_SCH_TYPE, new { style = "width:100px" })</td>                     
+        <td>Exchange</td>
+            <td>@Html.DropDownList("CmbExc", (IEnumerable<SelectListItem>)ViewBag.x_EXC_ABB, new { style = "width:100px" })</td>                
+        <td >Year Install</td>
+            <td></td>
+            <td>@Html.DropDownList("CmbYear", (IEnumerable<SelectListItem>)ViewBag.x_YEAR_INSTALL, new { style = "width:100px" })</td>  
+            
+        <td><input type="button" value="Search" id="btnSearch" /></td>   
+    </tr>                              
+    </table>  
+    <br />  
+    @if (Model.Count() > 0)
+    {                                                               
+    <table id="rounded-corner" summary="BOQ Generation List" width="100%">
+        <thead>
+            <tr >    
+                <th scope="col" style="width:15%">JOB ID</th>                  
+                <th scope="col" style="width:15%">SCHEME NO</th>
+                <th scope="col" style="width:15%">SCHEME NAME</th>
+                <th scope="col" style="width:15%">SCHEME TYPE</th> 
+                <th scope="col" style="width:15%">EXCHANGE</th>
+                <th scope="col" style="width:15%">YEAR INSTALL</th>               
+                <th scope="col" style="width:10%">OWNER</th>
+                <th ></th>                             
+            </tr>
+        </thead>
+        <tbody>     
+
+       @foreach (var res in Model)
+        {
+            <tr class="odd" >  
+                <td>@res.x_G3E_ID</td>                        
+                <td>@res.x_Sch_No</td>
+                <td>@res.x_Scheme_Name</td>
+                <td>@res.x_Sch_Type</td> 
+                <td>@res.x_Exc_Abb</td>
+                <td>@res.x_Year_Install</td>
+                <td>@res.x_G3E_OWNER</td>                                                            
+                <td>@Ajax.ActionLink("Select", "GetDetails_BOQ_GEN", new { id = res.x_Scheme_Name }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId="divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>           
+            </tr>    
+        }    
+                       
+        </tbody>
+    </table>  
+      <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "BOQ_GEN_List", new { searchKey = "", page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "BOQ_GEN_List", new { searchKey = "", page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "BOQ_GEN_List", new { searchKey = "", page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "BOQ_GEN_List", new { searchKey = "", page = Model.PageCount })
+        }
+        else
+        {
+
+        }
+    </div>   
+    }
+     <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+  </div>
+             
+      <div id="divDetails"  style ="visibility :hidden ; border :5px outset skyblue; border-top :0px">        
+       @* <input type="hidden" id="targetPTTId" value="" />*@
+
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions() 
+        {
+            HttpMethod = "POST",
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            UpdateTargetId="divResultText"
+            //OnSuccess = "SaveUpdateCallBack"
+        })) 
+        {
+        <div id="list-details">
+          @* <input type="hidden" id="BOQ" name="BOQ" />*@
+            <table width="500px">
+                <tr >  
+                <td style="width:150px; background-color:#e8eef4">Job ID</td>                  
+                    <td><input type="text" id="txtJOBID" name="txtJOBID"  readonly="readonly"/></td>                                                                                                 
+                    <td><input type="hidden" id="txtSCHEMENO" name="txtSCHEMENO" /></td>                                                                                  
+                    <td style="width:150px; background-color:#e8eef4">Scheme Name</td>
+                    <td><input type="text" id="txtSCHEMENAME" name="txtSCHEMENAME"   readonly="readonly"/></td>                                                                         
+                    <td><input type="hidden" id="txtSCHEMETYPE" name="txtSCHEMETYPE" /></td>                     
+                    <td><input type="hidden" id="txtEXCABB" name="txtEXCABB" /></td>                     
+                    <td><input type="hidden" id="txtYEARINSTALL" name="txtYEARINSTALL" /></td>                     
+                    <td><input type="hidden" id="txtOWNER" name="txtOWNER" /></td>                                                                  
+                </tr>                                       
+            </table>
+            <br />            
+          <div style="height:30px; margin-top:10px;">
+                <input type="button" value="Hide" id="btnClose" style="height:30px;width:80px;" />               
+                <input type="button" value="Generate BOQ" id="btnSave" style="height:30px;width:150px; vertical-align:top;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>   
+                       
+</div>
+
+}

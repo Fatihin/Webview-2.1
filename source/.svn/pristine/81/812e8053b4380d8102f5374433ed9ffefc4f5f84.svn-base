@@ -1,0 +1,1733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model2.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Model2StoreContainer">
+          <EntitySet Name="ELEVATION" EntityType="Model2.Store.ELEVATION" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="JUNCTION" EntityType="Model2.Store.JUNCTION" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="MATING" EntityType="Model2.Store.MATING" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="PORTCLASSIFICATION" EntityType="Model2.Store.PORTCLASSIFICATION" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="PORTCONNECTORASG" EntityType="Model2.Store.PORTCONNECTORASG" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="PORTDESCRIPTION" EntityType="Model2.Store.PORTDESCRIPTION" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="PORTLIFECYCLESTATE" EntityType="Model2.Store.PORTLIFECYCLESTATE" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="PORTOPERATIONALSTATUS" EntityType="Model2.Store.PORTOPERATIONALSTATUS" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="PORTTYPE" EntityType="Model2.Store.PORTTYPE" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="PROJECT" EntityType="Model2.Store.PROJECT" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="SLOTDESCRIPTION" EntityType="Model2.Store.SLOTDESCRIPTION" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="SLOTTYPE" EntityType="Model2.Store.SLOTTYPE" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="VFDITEM" EntityType="Model2.Store.VFDITEM" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="VFDITEMPLACEMENT" EntityType="Model2.Store.VFDITEMPLACEMENT" store:Type="Tables" Schema="VIS_NRM" />
+          <EntitySet Name="VFDMODEL" EntityType="Model2.Store.VFDMODEL" store:Type="Tables" Schema="VIS_NRM" />
+          <AssociationSet Name="ELEVATION_VFDITEM_PLANID_FK" Association="Model2.Store.ELEVATION_VFDITEM_PLANID_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="ELEVATION" EntitySet="ELEVATION" />
+          </AssociationSet>
+          <AssociationSet Name="JNCTN_VFDMDL_JNCTNARRMD_K8U_FK" Association="Model2.Store.JNCTN_VFDMDL_JNCTNARRMD_K8U_FK">
+            <End Role="VFDMODEL" EntitySet="VFDMODEL" />
+            <End Role="JUNCTION" EntitySet="JUNCTION" />
+          </AssociationSet>
+          <AssociationSet Name="MATING_VFDITEM_AEQUIPMENTID_FK" Association="Model2.Store.MATING_VFDITEM_AEQUIPMENTID_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="MATING" EntitySet="MATING" />
+          </AssociationSet>
+          <AssociationSet Name="MATING_VFDITEM_ZEQUIPMENTID_FK" Association="Model2.Store.MATING_VFDITEM_ZEQUIPMENTID_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="MATING" EntitySet="MATING" />
+          </AssociationSet>
+          <AssociationSet Name="MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK" Association="Model2.Store.MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTION" />
+            <End Role="MATING" EntitySet="MATING" />
+          </AssociationSet>
+          <AssociationSet Name="PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK" Association="Model2.Store.PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTION" />
+            <End Role="PORTCLASSIFICATION" EntitySet="PORTCLASSIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="PRTCLSSFCT_VFDITM_DVCID_QJX_FK" Association="Model2.Store.PRTCLSSFCT_VFDITM_DVCID_QJX_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="PORTCLASSIFICATION" EntitySet="PORTCLASSIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK" Association="Model2.Store.PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTION" />
+            <End Role="PORTCONNECTORASG" EntitySet="PORTCONNECTORASG" />
+          </AssociationSet>
+          <AssociationSet Name="PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK" Association="Model2.Store.PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK">
+            <End Role="VFDMODEL" EntitySet="VFDMODEL" />
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK" Association="Model2.Store.PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTION" />
+            <End Role="PORTLIFECYCLESTATE" EntitySet="PORTLIFECYCLESTATE" />
+          </AssociationSet>
+          <AssociationSet Name="PRTLFCCLST_VFDITM_DVCID_IXE_FK" Association="Model2.Store.PRTLFCCLST_VFDITM_DVCID_IXE_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="PORTLIFECYCLESTATE" EntitySet="PORTLIFECYCLESTATE" />
+          </AssociationSet>
+          <AssociationSet Name="PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK" Association="Model2.Store.PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTION" />
+            <End Role="PORTOPERATIONALSTATUS" EntitySet="PORTOPERATIONALSTATUS" />
+          </AssociationSet>
+          <AssociationSet Name="PRTOPRTNLS_VFDITM_DVCID_I42_FK" Association="Model2.Store.PRTOPRTNLS_VFDITM_DVCID_I42_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="PORTOPERATIONALSTATUS" EntitySet="PORTOPERATIONALSTATUS" />
+          </AssociationSet>
+          <AssociationSet Name="SLTDSCR_VFDMDL_DVCMDLID_LFR_FK" Association="Model2.Store.SLTDSCR_VFDMDL_DVCMDLID_LFR_FK">
+            <End Role="VFDMODEL" EntitySet="VFDMODEL" />
+            <End Role="SLOTDESCRIPTION" EntitySet="SLOTDESCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="SLTDSCRPT_SLTTP_SLTTPID_027_FK" Association="Model2.Store.SLTDSCRPT_SLTTP_SLTTPID_027_FK">
+            <End Role="SLOTTYPE" EntitySet="SLOTTYPE" />
+            <End Role="SLOTDESCRIPTION" EntitySet="SLOTDESCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITEM_VFDITEM_STACKID_FK" Association="Model2.Store.VFDITEM_VFDITEM_STACKID_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="VFDITEM1" EntitySet="VFDITEM" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITEM_VFDMODEL_MODELID_FK" Association="Model2.Store.VFDITEM_VFDMODEL_MODELID_FK">
+            <End Role="VFDMODEL" EntitySet="VFDMODEL" />
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITMP_SLTDSCR_FRSTSLT_U84_FK" Association="Model2.Store.VFDITMP_SLTDSCR_FRSTSLT_U84_FK">
+            <End Role="SLOTDESCRIPTION" EntitySet="SLOTDESCRIPTION" />
+            <End Role="VFDITEMPLACEMENT" EntitySet="VFDITEMPLACEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK" Association="Model2.Store.VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK">
+            <End Role="SLOTDESCRIPTION" EntitySet="SLOTDESCRIPTION" />
+            <End Role="VFDITEMPLACEMENT" EntitySet="VFDITEMPLACEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITMPL_VFDITM_CNTNRID_96I_FK" Association="Model2.Store.VFDITMPL_VFDITM_CNTNRID_96I_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="VFDITEMPLACEMENT" EntitySet="VFDITEMPLACEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITMPLCM_VFDITM_ITMID_BEW_FK" Association="Model2.Store.VFDITMPLCM_VFDITM_ITMID_BEW_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEM" />
+            <End Role="VFDITEMPLACEMENT" EntitySet="VFDITEMPLACEMENT" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ELEVATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="PLAN_ID" Type="number" Precision="19" />
+          <Property Name="Z" Type="float" Precision="126" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="JUNCTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="ROW_" Type="number" Precision="10" />
+          <Property Name="COLUMN_" Type="number" Precision="10" />
+          <Property Name="JUNCTIONARRAYMODEL_ID" Type="number" Precision="19" />
+        </EntityType>
+        <EntityType Name="MATING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="AEQUIPMENT_ID" Type="number" Precision="19" />
+          <Property Name="ZEQUIPMENT_ID" Type="number" Precision="19" />
+          <Property Name="ACONNECTOR_ID" Type="number" Precision="19" />
+          <Property Name="ZCONNECTOR_ID" Type="number" Precision="19" />
+          <Property Name="PORTDESCRIPTION_ID" Type="number" Precision="19" />
+          <Property Name="DTYPE" Type="varchar2" Nullable="false" MaxLength="31" />
+          <Property Name="CABLEEND" Type="number" Precision="10" />
+          <Property Name="ACABLEEND" Type="number" Precision="10" />
+          <Property Name="ZCABLEEND" Type="number" Precision="10" />
+          <Property Name="CABLESTRAND" Type="number" Precision="10" />
+          <Property Name="ACABLESTRAND" Type="number" Precision="10" />
+          <Property Name="ZCABLESTRAND" Type="number" Precision="10" />
+        </EntityType>
+        <EntityType Name="PORTCLASSIFICATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="DEVICE_ID" Type="number" Precision="19" />
+          <Property Name="PORTDESCRIPTION_ID" Type="number" Precision="19" />
+          <Property Name="CLASSIFICATION_ID" Type="number" Precision="19" />
+        </EntityType>
+        <EntityType Name="PORTCONNECTORASG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="INDEX_" Type="number" Precision="10" />
+          <Property Name="PORTDESCRIPTION_ID" Type="number" Precision="19" />
+          <Property Name="PORTCONNECTOR_ID" Type="number" Precision="19" />
+        </EntityType>
+        <EntityType Name="PORTDESCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="NUMBER_" Type="number" Precision="10" />
+          <Property Name="DEVICEMODEL_ID" Type="number" Precision="19" />
+          <Property Name="LABEL" Type="varchar2" MaxLength="255" />
+          <Property Name="INPUTSENSITIVITY" Type="float" Precision="126" />
+          <Property Name="OUTPUTPOWER" Type="float" Precision="126" />
+          <Property Name="DTYPE" Type="varchar2" Nullable="false" MaxLength="31" />
+        </EntityType>
+        <EntityType Name="PORTLIFECYCLESTATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="DEVICE_ID" Type="number" Precision="19" />
+          <Property Name="PORTDESCRIPTION_ID" Type="number" Precision="19" />
+          <Property Name="LIFECYCLESTATE_ID" Type="number" Precision="19" />
+        </EntityType>
+        <EntityType Name="PORTOPERATIONALSTATUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="DEVICE_ID" Type="number" Precision="19" />
+          <Property Name="PORTDESCRIPTION_ID" Type="number" Precision="19" />
+          <Property Name="OUTOFSERVICE" Type="number" Precision="1" />
+        </EntityType>
+        <EntityType Name="PORTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PROJECT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" />
+          <Property Name="PROJECTID" Type="varchar2" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+          <Property Name="OWNEDBY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SLOTDESCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="NUMBER_" Type="number" Precision="10" />
+          <Property Name="BUSTYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="LABEL" Type="varchar2" MaxLength="255" />
+          <Property Name="WIDTH" Type="float" Precision="126" />
+          <Property Name="HEIGHT" Type="float" Precision="126" />
+          <Property Name="FACE" Type="number" Precision="10" />
+          <Property Name="DEVICEMODEL_ID" Type="number" Precision="19" />
+          <Property Name="SLOTTYPE_ID" Type="number" Precision="19" />
+        </EntityType>
+        <EntityType Name="SLOTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="VFDITEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="DTYPE" Type="varchar2" Nullable="false" MaxLength="31" />
+          <Property Name="AUTOPARTIALNAME" Type="varchar2" MaxLength="255" />
+          <Property Name="CLIPX" Type="float" Precision="126" />
+          <Property Name="CLIPY" Type="float" Precision="126" />
+          <Property Name="CLIPW" Type="float" Precision="126" />
+          <Property Name="CLIPH" Type="float" Precision="126" />
+          <Property Name="LEFTHAND" Type="number" Precision="1" />
+          <Property Name="SPACING" Type="float" Precision="126" />
+          <Property Name="LENGTH" Type="float" Precision="126" />
+          <Property Name="IMAGE_ID" Type="number" Precision="19" />
+          <Property Name="MODEL_ID" Type="number" Precision="19" />
+          <Property Name="POLYGON" Type="raw" />
+          <Property Name="FRONTALIGNED" Type="number" Precision="1" />
+          <Property Name="METERSPERPAGE" Type="float" Precision="126" />
+          <Property Name="LEFTCLEARANCE" Type="float" Precision="126" />
+          <Property Name="RIGHTCLEARANCE" Type="float" Precision="126" />
+          <Property Name="TOPCLEARANCE" Type="float" Precision="126" />
+          <Property Name="BOTTOMCLEARANCE" Type="float" Precision="126" />
+          <Property Name="X" Type="float" Precision="126" />
+          <Property Name="Y" Type="float" Precision="126" />
+          <Property Name="Z" Type="float" Precision="126" />
+          <Property Name="AUTODISPLAYNAME" Type="varchar2" MaxLength="255" />
+          <Property Name="USERDISPLAYNAME" Type="varchar2" MaxLength="255" />
+          <Property Name="NCMDEVICEKEY" Type="varchar2" MaxLength="255" />
+          <Property Name="NCMELEMENTKEY" Type="varchar2" MaxLength="255" />
+          <Property Name="LIFECYCLESTATE_ID" Type="number" Precision="19" />
+          <Property Name="OUTOFSERVICE" Type="number" Precision="1" />
+          <Property Name="HEIGHT" Type="float" Precision="126" />
+          <Property Name="WIDTH" Type="float" Precision="126" />
+          <Property Name="DEPTH" Type="float" Precision="126" />
+          <Property Name="LATITUDE" Type="float" Precision="126" />
+          <Property Name="LONGITUDE" Type="float" Precision="126" />
+          <Property Name="ALTITUDE" Type="float" Precision="126" />
+          <Property Name="BEARING" Type="float" Precision="126" />
+          <Property Name="DIRECTION" Type="float" Precision="126" />
+          <Property Name="TILT" Type="float" Precision="126" />
+          <Property Name="TWIST" Type="float" Precision="126" />
+          <Property Name="USERPARTIALNAME" Type="varchar2" MaxLength="255" />
+          <Property Name="NAMEDWITHSEQUENCE_ID" Type="number" Precision="19" />
+          <Property Name="NAMEDWITHSEQUENCEVALUE" Type="varchar2" MaxLength="255" />
+          <Property Name="STACKTYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="STACK_ID" Type="number" Precision="19" />
+        </EntityType>
+        <EntityType Name="VFDITEMPLACEMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="DTYPE" Type="varchar2" Nullable="false" MaxLength="31" />
+          <Property Name="X" Type="float" Precision="126" />
+          <Property Name="Y" Type="float" Precision="126" />
+          <Property Name="Z" Type="float" Precision="126" />
+          <Property Name="M00" Type="float" Precision="126" />
+          <Property Name="M01" Type="float" Precision="126" />
+          <Property Name="M02" Type="float" Precision="126" />
+          <Property Name="CONTAINER_ID" Type="number" Precision="19" />
+          <Property Name="ITEM_ID" Type="number" Precision="19" />
+          <Property Name="M10" Type="float" Precision="126" />
+          <Property Name="M11" Type="float" Precision="126" />
+          <Property Name="M12" Type="float" Precision="126" />
+          <Property Name="M20" Type="float" Precision="126" />
+          <Property Name="M21" Type="float" Precision="126" />
+          <Property Name="M22" Type="float" Precision="126" />
+          <Property Name="FIRSTSLOT_ID" Type="number" Precision="19" />
+          <Property Name="SECONDSLOT_ID" Type="number" Precision="19" />
+          <Property Name="CALLOUTX" Type="float" Precision="126" />
+          <Property Name="CALLOUTY" Type="float" Precision="126" />
+          <Property Name="CALLOUTCONTENT" Type="varchar2" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="VFDMODEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="19" />
+          <Property Name="DTYPE" Type="varchar2" Nullable="false" MaxLength="31" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+          <Property Name="HEIGHT" Type="float" Precision="126" />
+          <Property Name="WIDTH" Type="float" Precision="126" />
+          <Property Name="DEPTH_" Type="float" Precision="126" />
+          <Property Name="LIBRARYREFERENCE" Type="varchar2" MaxLength="255" />
+          <Property Name="VERSION" Type="varchar2" MaxLength="255" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="BUSTYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="TWOSLOTSREQUIRED" Type="number" Precision="1" />
+          <Property Name="DIAMETER" Type="float" Precision="126" />
+          <Property Name="DENSITY" Type="float" Precision="126" />
+          <Property Name="NUMROWS" Type="number" Precision="10" />
+          <Property Name="NUMCOLUMNS" Type="number" Precision="10" />
+          <Property Name="RADIUS" Type="float" Precision="126" />
+          <Property Name="WEIGHTCAPACITY" Type="float" Precision="126" />
+          <Property Name="DBLOSS" Type="float" Precision="126" />
+          <Property Name="MODE_" Type="varchar2" MaxLength="255" />
+          <Property Name="CLASSIFICATION" Type="varchar2" MaxLength="255" />
+          <Property Name="QUALITYSTANDARD" Type="varchar2" MaxLength="255" />
+          <Property Name="NUMBERSTRANDS" Type="number" Precision="10" />
+          <Property Name="LENGTH" Type="float" Precision="126" />
+          <Property Name="WEIGHT" Type="float" Precision="126" />
+          <Property Name="MINFREQUENCY" Type="number" Precision="19" />
+          <Property Name="MAXFREQUENCY" Type="number" Precision="19" />
+          <Property Name="GAIN" Type="float" Precision="126" />
+          <Property Name="BEAMWIDTH" Type="float" Precision="126" />
+          <Property Name="BEAMHEIGHT" Type="float" Precision="126" />
+          <Property Name="ELECTRICALDOWNTILT" Type="float" Precision="126" />
+          <Property Name="HEATLOAD" Type="float" Precision="126" />
+          <Property Name="POWERCONSUMPTION" Type="float" Precision="126" />
+          <Property Name="STACKTYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="PARTNUMBER" Type="varchar2" MaxLength="255" />
+          <Property Name="CONTRACTID" Type="varchar2" MaxLength="255" />
+          <Property Name="MATERIALID" Type="varchar2" MaxLength="255" />
+          <Property Name="COLUMNS_" Type="number" Precision="10" />
+          <Property Name="MOUNTPOSITIONSPERCOLUMN" Type="number" Precision="10" />
+          <Property Name="VERTICALSPACING" Type="float" Precision="126" />
+          <Property Name="VERTICALDISPLACEMENT" Type="float" Precision="126" />
+          <Property Name="MOUNTWIDTH" Type="float" Precision="126" />
+          <Property Name="ISMEASUREDUPWARD" Type="number" Precision="1" />
+        </EntityType>
+        <Association Name="ELEVATION_VFDITEM_PLANID_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="ELEVATION" Type="Model2.Store.ELEVATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ELEVATION">
+              <PropertyRef Name="PLAN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JNCTN_VFDMDL_JNCTNARRMD_K8U_FK">
+          <End Role="VFDMODEL" Type="Model2.Store.VFDMODEL" Multiplicity="0..1" />
+          <End Role="JUNCTION" Type="Model2.Store.JUNCTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDMODEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="JUNCTION">
+              <PropertyRef Name="JUNCTIONARRAYMODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MATING_VFDITEM_AEQUIPMENTID_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="MATING" Type="Model2.Store.MATING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATING">
+              <PropertyRef Name="AEQUIPMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MATING_VFDITEM_ZEQUIPMENTID_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="MATING" Type="Model2.Store.MATING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATING">
+              <PropertyRef Name="ZEQUIPMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK">
+          <End Role="PORTDESCRIPTION" Type="Model2.Store.PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Role="MATING" Type="Model2.Store.MATING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATING">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK">
+          <End Role="PORTDESCRIPTION" Type="Model2.Store.PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Role="PORTCLASSIFICATION" Type="Model2.Store.PORTCLASSIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTCLASSIFICATION">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTCLSSFCT_VFDITM_DVCID_QJX_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="PORTCLASSIFICATION" Type="Model2.Store.PORTCLASSIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTCLASSIFICATION">
+              <PropertyRef Name="DEVICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK">
+          <End Role="PORTDESCRIPTION" Type="Model2.Store.PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Role="PORTCONNECTORASG" Type="Model2.Store.PORTCONNECTORASG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTCONNECTORASG">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK">
+          <End Role="VFDMODEL" Type="Model2.Store.VFDMODEL" Multiplicity="0..1" />
+          <End Role="PORTDESCRIPTION" Type="Model2.Store.PORTDESCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDMODEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTDESCRIPTION">
+              <PropertyRef Name="DEVICEMODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK">
+          <End Role="PORTDESCRIPTION" Type="Model2.Store.PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Role="PORTLIFECYCLESTATE" Type="Model2.Store.PORTLIFECYCLESTATE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTLIFECYCLESTATE">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTLFCCLST_VFDITM_DVCID_IXE_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="PORTLIFECYCLESTATE" Type="Model2.Store.PORTLIFECYCLESTATE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTLIFECYCLESTATE">
+              <PropertyRef Name="DEVICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK">
+          <End Role="PORTDESCRIPTION" Type="Model2.Store.PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Role="PORTOPERATIONALSTATUS" Type="Model2.Store.PORTOPERATIONALSTATUS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTOPERATIONALSTATUS">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTOPRTNLS_VFDITM_DVCID_I42_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="PORTOPERATIONALSTATUS" Type="Model2.Store.PORTOPERATIONALSTATUS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTOPERATIONALSTATUS">
+              <PropertyRef Name="DEVICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SLTDSCR_VFDMDL_DVCMDLID_LFR_FK">
+          <End Role="VFDMODEL" Type="Model2.Store.VFDMODEL" Multiplicity="0..1" />
+          <End Role="SLOTDESCRIPTION" Type="Model2.Store.SLOTDESCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDMODEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SLOTDESCRIPTION">
+              <PropertyRef Name="DEVICEMODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SLTDSCRPT_SLTTP_SLTTPID_027_FK">
+          <End Role="SLOTTYPE" Type="Model2.Store.SLOTTYPE" Multiplicity="0..1" />
+          <End Role="SLOTDESCRIPTION" Type="Model2.Store.SLOTDESCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLOTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SLOTDESCRIPTION">
+              <PropertyRef Name="SLOTTYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITEM_VFDITEM_STACKID_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="VFDITEM1" Type="Model2.Store.VFDITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEM1">
+              <PropertyRef Name="STACK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITEM_VFDMODEL_MODELID_FK">
+          <End Role="VFDMODEL" Type="Model2.Store.VFDMODEL" Multiplicity="0..1" />
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDMODEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEM">
+              <PropertyRef Name="MODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITMP_SLTDSCR_FRSTSLT_U84_FK">
+          <End Role="SLOTDESCRIPTION" Type="Model2.Store.SLOTDESCRIPTION" Multiplicity="0..1" />
+          <End Role="VFDITEMPLACEMENT" Type="Model2.Store.VFDITEMPLACEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLOTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEMPLACEMENT">
+              <PropertyRef Name="FIRSTSLOT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK">
+          <End Role="SLOTDESCRIPTION" Type="Model2.Store.SLOTDESCRIPTION" Multiplicity="0..1" />
+          <End Role="VFDITEMPLACEMENT" Type="Model2.Store.VFDITEMPLACEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLOTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEMPLACEMENT">
+              <PropertyRef Name="SECONDSLOT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITMPL_VFDITM_CNTNRID_96I_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="VFDITEMPLACEMENT" Type="Model2.Store.VFDITEMPLACEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEMPLACEMENT">
+              <PropertyRef Name="CONTAINER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITMPLCM_VFDITM_ITMID_BEW_FK">
+          <End Role="VFDITEM" Type="Model2.Store.VFDITEM" Multiplicity="0..1" />
+          <End Role="VFDITEMPLACEMENT" Type="Model2.Store.VFDITEMPLACEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEMPLACEMENT">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model2" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities_NRM" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PORTCLASSIFICATIONs" EntityType="Model2.PORTCLASSIFICATION" />
+          <EntitySet Name="PORTCONNECTORASGs" EntityType="Model2.PORTCONNECTORASG" />
+          <EntitySet Name="PORTLIFECYCLESTATEs" EntityType="Model2.PORTLIFECYCLESTATE" />
+          <EntitySet Name="PORTOPERATIONALSTATUS" EntityType="Model2.PORTOPERATIONALSTATU" />
+          <EntitySet Name="PORTTYPEs" EntityType="Model2.PORTTYPE" />
+          <EntitySet Name="SLOTDESCRIPTIONs" EntityType="Model2.SLOTDESCRIPTION" />
+          <EntitySet Name="SLOTTYPEs" EntityType="Model2.SLOTTYPE" />
+          <EntitySet Name="PROJECTs" EntityType="Model2.PROJECT" />
+          <EntitySet Name="ELEVATIONs" EntityType="Model2.ELEVATION" />
+          <EntitySet Name="JUNCTIONs" EntityType="Model2.JUNCTION" />
+          <EntitySet Name="MATINGs" EntityType="Model2.MATING" />
+          <EntitySet Name="PORTDESCRIPTIONs" EntityType="Model2.PORTDESCRIPTION" />
+          <EntitySet Name="VFDITEMPLACEMENTs" EntityType="Model2.VFDITEMPLACEMENT" />
+          <EntitySet Name="VFDMODELs" EntityType="Model2.VFDMODEL" />
+          <EntitySet Name="VFDITEMs" EntityType="Model2.VFDITEM" />
+          <AssociationSet Name="ELEVATION_VFDITEM_PLANID_FK" Association="Model2.ELEVATION_VFDITEM_PLANID_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="ELEVATION" EntitySet="ELEVATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="JNCTN_VFDMDL_JNCTNARRMD_K8U_FK" Association="Model2.JNCTN_VFDMDL_JNCTNARRMD_K8U_FK">
+            <End Role="VFDMODEL" EntitySet="VFDMODELs" />
+            <End Role="JUNCTION" EntitySet="JUNCTIONs" />
+          </AssociationSet>
+          <AssociationSet Name="MATING_VFDITEM_AEQUIPMENTID_FK" Association="Model2.MATING_VFDITEM_AEQUIPMENTID_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="MATING" EntitySet="MATINGs" />
+          </AssociationSet>
+          <AssociationSet Name="MATING_VFDITEM_ZEQUIPMENTID_FK" Association="Model2.MATING_VFDITEM_ZEQUIPMENTID_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="MATING" EntitySet="MATINGs" />
+          </AssociationSet>
+          <AssociationSet Name="MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK" Association="Model2.MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTIONs" />
+            <End Role="MATING" EntitySet="MATINGs" />
+          </AssociationSet>
+          <AssociationSet Name="PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK" Association="Model2.PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTIONs" />
+            <End Role="PORTCLASSIFICATION" EntitySet="PORTCLASSIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="PRTCLSSFCT_VFDITM_DVCID_QJX_FK" Association="Model2.PRTCLSSFCT_VFDITM_DVCID_QJX_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="PORTCLASSIFICATION" EntitySet="PORTCLASSIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK" Association="Model2.PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTIONs" />
+            <End Role="PORTCONNECTORASG" EntitySet="PORTCONNECTORASGs" />
+          </AssociationSet>
+          <AssociationSet Name="PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK" Association="Model2.PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK">
+            <End Role="VFDMODEL" EntitySet="VFDMODELs" />
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTIONs" />
+          </AssociationSet>
+          <AssociationSet Name="PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK" Association="Model2.PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTIONs" />
+            <End Role="PORTLIFECYCLESTATE" EntitySet="PORTLIFECYCLESTATEs" />
+          </AssociationSet>
+          <AssociationSet Name="PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK" Association="Model2.PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK">
+            <End Role="PORTDESCRIPTION" EntitySet="PORTDESCRIPTIONs" />
+            <End Role="PORTOPERATIONALSTATU" EntitySet="PORTOPERATIONALSTATUS" />
+          </AssociationSet>
+          <AssociationSet Name="PRTLFCCLST_VFDITM_DVCID_IXE_FK" Association="Model2.PRTLFCCLST_VFDITM_DVCID_IXE_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="PORTLIFECYCLESTATE" EntitySet="PORTLIFECYCLESTATEs" />
+          </AssociationSet>
+          <AssociationSet Name="PRTOPRTNLS_VFDITM_DVCID_I42_FK" Association="Model2.PRTOPRTNLS_VFDITM_DVCID_I42_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="PORTOPERATIONALSTATU" EntitySet="PORTOPERATIONALSTATUS" />
+          </AssociationSet>
+          <AssociationSet Name="SLTDSCR_VFDMDL_DVCMDLID_LFR_FK" Association="Model2.SLTDSCR_VFDMDL_DVCMDLID_LFR_FK">
+            <End Role="VFDMODEL" EntitySet="VFDMODELs" />
+            <End Role="SLOTDESCRIPTION" EntitySet="SLOTDESCRIPTIONs" />
+          </AssociationSet>
+          <AssociationSet Name="SLTDSCRPT_SLTTP_SLTTPID_027_FK" Association="Model2.SLTDSCRPT_SLTTP_SLTTPID_027_FK">
+            <End Role="SLOTTYPE" EntitySet="SLOTTYPEs" />
+            <End Role="SLOTDESCRIPTION" EntitySet="SLOTDESCRIPTIONs" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITMP_SLTDSCR_FRSTSLT_U84_FK" Association="Model2.VFDITMP_SLTDSCR_FRSTSLT_U84_FK">
+            <End Role="SLOTDESCRIPTION" EntitySet="SLOTDESCRIPTIONs" />
+            <End Role="VFDITEMPLACEMENT" EntitySet="VFDITEMPLACEMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK" Association="Model2.VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK">
+            <End Role="SLOTDESCRIPTION" EntitySet="SLOTDESCRIPTIONs" />
+            <End Role="VFDITEMPLACEMENT" EntitySet="VFDITEMPLACEMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITEM_VFDITEM_STACKID_FK" Association="Model2.VFDITEM_VFDITEM_STACKID_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="VFDITEM1" EntitySet="VFDITEMs" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITEM_VFDMODEL_MODELID_FK" Association="Model2.VFDITEM_VFDMODEL_MODELID_FK">
+            <End Role="VFDMODEL" EntitySet="VFDMODELs" />
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITMPL_VFDITM_CNTNRID_96I_FK" Association="Model2.VFDITMPL_VFDITM_CNTNRID_96I_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="VFDITEMPLACEMENT" EntitySet="VFDITEMPLACEMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="VFDITMPLCM_VFDITM_ITMID_BEW_FK" Association="Model2.VFDITMPLCM_VFDITM_ITMID_BEW_FK">
+            <End Role="VFDITEM" EntitySet="VFDITEMs" />
+            <End Role="VFDITEMPLACEMENT" EntitySet="VFDITEMPLACEMENTs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PORTCLASSIFICATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int64" Name="DEVICE_ID" />
+          <Property Type="Int64" Name="PORTDESCRIPTION_ID" />
+          <Property Type="Int64" Name="CLASSIFICATION_ID" />
+          <NavigationProperty Name="PORTDESCRIPTION" Relationship="Model2.PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK" FromRole="PORTCLASSIFICATION" ToRole="PORTDESCRIPTION" />
+          <NavigationProperty Name="VFDITEM" Relationship="Model2.PRTCLSSFCT_VFDITM_DVCID_QJX_FK" FromRole="PORTCLASSIFICATION" ToRole="VFDITEM" />
+        </EntityType>
+        <EntityType Name="PORTCONNECTORASG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="INDEX_" />
+          <Property Type="Int64" Name="PORTDESCRIPTION_ID" />
+          <Property Type="Int64" Name="PORTCONNECTOR_ID" />
+          <NavigationProperty Name="PORTDESCRIPTION" Relationship="Model2.PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK" FromRole="PORTCONNECTORASG" ToRole="PORTDESCRIPTION" />
+        </EntityType>
+        <EntityType Name="PORTLIFECYCLESTATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int64" Name="DEVICE_ID" />
+          <Property Type="Int64" Name="PORTDESCRIPTION_ID" />
+          <Property Type="Int64" Name="LIFECYCLESTATE_ID" />
+          <NavigationProperty Name="PORTDESCRIPTION" Relationship="Model2.PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK" FromRole="PORTLIFECYCLESTATE" ToRole="PORTDESCRIPTION" />
+          <NavigationProperty Name="VFDITEM" Relationship="Model2.PRTLFCCLST_VFDITM_DVCID_IXE_FK" FromRole="PORTLIFECYCLESTATE" ToRole="VFDITEM" />
+        </EntityType>
+        <EntityType Name="PORTOPERATIONALSTATU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int64" Name="DEVICE_ID" />
+          <Property Type="Int64" Name="PORTDESCRIPTION_ID" />
+          <Property Type="Int16" Name="OUTOFSERVICE" />
+          <NavigationProperty Name="PORTDESCRIPTION" Relationship="Model2.PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK" FromRole="PORTOPERATIONALSTATU" ToRole="PORTDESCRIPTION" />
+          <NavigationProperty Name="VFDITEM" Relationship="Model2.PRTOPRTNLS_VFDITM_DVCID_I42_FK" FromRole="PORTOPERATIONALSTATU" ToRole="VFDITEM" />
+        </EntityType>
+        <EntityType Name="PORTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SLOTDESCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="NUMBER_" />
+          <Property Type="String" Name="BUSTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LABEL" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="WIDTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="HEIGHT" Precision="38" Scale="0" />
+          <Property Type="Int32" Name="FACE" />
+          <Property Type="Int64" Name="DEVICEMODEL_ID" />
+          <Property Type="Int64" Name="SLOTTYPE_ID" />
+          <NavigationProperty Name="VFDMODEL" Relationship="Model2.SLTDSCR_VFDMDL_DVCMDLID_LFR_FK" FromRole="SLOTDESCRIPTION" ToRole="VFDMODEL" />
+          <NavigationProperty Name="SLOTTYPE" Relationship="Model2.SLTDSCRPT_SLTTP_SLTTPID_027_FK" FromRole="SLOTDESCRIPTION" ToRole="SLOTTYPE" />
+          <NavigationProperty Name="VFDITEMPLACEMENTs" Relationship="Model2.VFDITMP_SLTDSCR_FRSTSLT_U84_FK" FromRole="SLOTDESCRIPTION" ToRole="VFDITEMPLACEMENT" />
+          <NavigationProperty Name="VFDITEMPLACEMENTs1" Relationship="Model2.VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK" FromRole="SLOTDESCRIPTION" ToRole="VFDITEMPLACEMENT" />
+        </EntityType>
+        <EntityType Name="SLOTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SLOTDESCRIPTIONs" Relationship="Model2.SLTDSCRPT_SLTTP_SLTTPID_027_FK" FromRole="SLOTTYPE" ToRole="SLOTDESCRIPTION" />
+        </EntityType>
+        <EntityType Name="PROJECT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PROJECTID" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OWNEDBY" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ELEVATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int64" Name="PLAN_ID" />
+          <Property Type="Decimal" Name="Z" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VFDITEM" Relationship="Model2.ELEVATION_VFDITEM_PLANID_FK" FromRole="ELEVATION" ToRole="VFDITEM" />
+        </EntityType>
+        <EntityType Name="JUNCTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="ROW_" />
+          <Property Type="Int32" Name="COLUMN_" />
+          <Property Type="Int64" Name="JUNCTIONARRAYMODEL_ID" />
+          <NavigationProperty Name="VFDMODEL" Relationship="Model2.JNCTN_VFDMDL_JNCTNARRMD_K8U_FK" FromRole="JUNCTION" ToRole="VFDMODEL" />
+        </EntityType>
+        <EntityType Name="MATING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int64" Name="AEQUIPMENT_ID" />
+          <Property Type="Int64" Name="ZEQUIPMENT_ID" />
+          <Property Type="Int64" Name="ACONNECTOR_ID" />
+          <Property Type="Int64" Name="ZCONNECTOR_ID" />
+          <Property Type="Int64" Name="PORTDESCRIPTION_ID" />
+          <Property Type="String" Name="DTYPE" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CABLEEND" />
+          <Property Type="Int32" Name="ACABLEEND" />
+          <Property Type="Int32" Name="ZCABLEEND" />
+          <Property Type="Int32" Name="CABLESTRAND" />
+          <Property Type="Int32" Name="ACABLESTRAND" />
+          <Property Type="Int32" Name="ZCABLESTRAND" />
+          <NavigationProperty Name="VFDITEM" Relationship="Model2.MATING_VFDITEM_AEQUIPMENTID_FK" FromRole="MATING" ToRole="VFDITEM" />
+          <NavigationProperty Name="VFDITEM1" Relationship="Model2.MATING_VFDITEM_ZEQUIPMENTID_FK" FromRole="MATING" ToRole="VFDITEM" />
+          <NavigationProperty Name="PORTDESCRIPTION" Relationship="Model2.MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK" FromRole="MATING" ToRole="PORTDESCRIPTION" />
+        </EntityType>
+        <EntityType Name="PORTDESCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="NUMBER_" />
+          <Property Type="Int64" Name="DEVICEMODEL_ID" />
+          <Property Type="String" Name="LABEL" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="INPUTSENSITIVITY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="OUTPUTPOWER" Precision="38" Scale="0" />
+          <Property Type="String" Name="DTYPE" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MATINGs" Relationship="Model2.MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK" FromRole="PORTDESCRIPTION" ToRole="MATING" />
+          <NavigationProperty Name="PORTCLASSIFICATIONs" Relationship="Model2.PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK" FromRole="PORTDESCRIPTION" ToRole="PORTCLASSIFICATION" />
+          <NavigationProperty Name="PORTCONNECTORASGs" Relationship="Model2.PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK" FromRole="PORTDESCRIPTION" ToRole="PORTCONNECTORASG" />
+          <NavigationProperty Name="VFDMODEL" Relationship="Model2.PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK" FromRole="PORTDESCRIPTION" ToRole="VFDMODEL" />
+          <NavigationProperty Name="PORTLIFECYCLESTATEs" Relationship="Model2.PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK" FromRole="PORTDESCRIPTION" ToRole="PORTLIFECYCLESTATE" />
+          <NavigationProperty Name="PORTOPERATIONALSTATUS" Relationship="Model2.PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK" FromRole="PORTDESCRIPTION" ToRole="PORTOPERATIONALSTATU" />
+        </EntityType>
+        <EntityType Name="VFDITEMPLACEMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="DTYPE" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="X" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="Y" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="Z" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="M00" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="M01" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="M02" Precision="38" Scale="0" />
+          <Property Type="Int64" Name="CONTAINER_ID" />
+          <Property Type="Int64" Name="ITEM_ID" />
+          <Property Type="Decimal" Name="M10" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="M11" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="M12" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="M20" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="M21" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="M22" Precision="38" Scale="0" />
+          <Property Type="Int64" Name="FIRSTSLOT_ID" />
+          <Property Type="Int64" Name="SECONDSLOT_ID" />
+          <Property Type="Decimal" Name="CALLOUTX" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CALLOUTY" Precision="38" Scale="0" />
+          <Property Type="String" Name="CALLOUTCONTENT" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SLOTDESCRIPTION" Relationship="Model2.VFDITMP_SLTDSCR_FRSTSLT_U84_FK" FromRole="VFDITEMPLACEMENT" ToRole="SLOTDESCRIPTION" />
+          <NavigationProperty Name="SLOTDESCRIPTION1" Relationship="Model2.VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK" FromRole="VFDITEMPLACEMENT" ToRole="SLOTDESCRIPTION" />
+          <NavigationProperty Name="VFDITEM" Relationship="Model2.VFDITMPL_VFDITM_CNTNRID_96I_FK" FromRole="VFDITEMPLACEMENT" ToRole="VFDITEM" />
+          <NavigationProperty Name="VFDITEM1" Relationship="Model2.VFDITMPLCM_VFDITM_ITMID_BEW_FK" FromRole="VFDITEMPLACEMENT" ToRole="VFDITEM" />
+        </EntityType>
+        <EntityType Name="VFDMODEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="DTYPE" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="HEIGHT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WIDTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DEPTH_" Precision="38" Scale="0" />
+          <Property Type="String" Name="LIBRARYREFERENCE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VERSION" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BUSTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="TWOSLOTSREQUIRED" />
+          <Property Type="Decimal" Name="DIAMETER" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DENSITY" Precision="38" Scale="0" />
+          <Property Type="Int32" Name="NUMROWS" />
+          <Property Type="Int32" Name="NUMCOLUMNS" />
+          <Property Type="Decimal" Name="RADIUS" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WEIGHTCAPACITY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DBLOSS" Precision="38" Scale="0" />
+          <Property Type="String" Name="MODE_" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CLASSIFICATION" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="QUALITYSTANDARD" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="NUMBERSTRANDS" />
+          <Property Type="Decimal" Name="LENGTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WEIGHT" Precision="38" Scale="0" />
+          <Property Type="Int64" Name="MINFREQUENCY" />
+          <Property Type="Int64" Name="MAXFREQUENCY" />
+          <Property Type="Decimal" Name="GAIN" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BEAMWIDTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BEAMHEIGHT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ELECTRICALDOWNTILT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="HEATLOAD" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="POWERCONSUMPTION" Precision="38" Scale="0" />
+          <Property Type="String" Name="STACKTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PARTNUMBER" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CONTRACTID" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MATERIALID" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="COLUMNS_" />
+          <Property Type="Int32" Name="MOUNTPOSITIONSPERCOLUMN" />
+          <Property Type="Decimal" Name="VERTICALSPACING" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="VERTICALDISPLACEMENT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="MOUNTWIDTH" Precision="38" Scale="0" />
+          <Property Type="Int16" Name="ISMEASUREDUPWARD" />
+          <NavigationProperty Name="JUNCTIONs" Relationship="Model2.JNCTN_VFDMDL_JNCTNARRMD_K8U_FK" FromRole="VFDMODEL" ToRole="JUNCTION" />
+          <NavigationProperty Name="PORTDESCRIPTIONs" Relationship="Model2.PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK" FromRole="VFDMODEL" ToRole="PORTDESCRIPTION" />
+          <NavigationProperty Name="SLOTDESCRIPTIONs" Relationship="Model2.SLTDSCR_VFDMDL_DVCMDLID_LFR_FK" FromRole="VFDMODEL" ToRole="SLOTDESCRIPTION" />
+          <NavigationProperty Name="VFDITEMs" Relationship="Model2.VFDITEM_VFDMODEL_MODELID_FK" FromRole="VFDMODEL" ToRole="VFDITEM" />
+        </EntityType>
+        <EntityType Name="VFDITEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="String" Name="DTYPE" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AUTOPARTIALNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CLIPX" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CLIPY" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CLIPW" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="CLIPH" Precision="38" Scale="0" />
+          <Property Type="Int16" Name="LEFTHAND" />
+          <Property Type="Decimal" Name="SPACING" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LENGTH" Precision="38" Scale="0" />
+          <Property Type="Int64" Name="IMAGE_ID" />
+          <Property Type="Int64" Name="MODEL_ID" />
+          <Property Type="Binary" Name="POLYGON" MaxLength="2000" FixedLength="false" />
+          <Property Type="Int16" Name="FRONTALIGNED" />
+          <Property Type="Decimal" Name="METERSPERPAGE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LEFTCLEARANCE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="RIGHTCLEARANCE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TOPCLEARANCE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BOTTOMCLEARANCE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="X" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="Y" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="Z" Precision="38" Scale="0" />
+          <Property Type="String" Name="AUTODISPLAYNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="USERDISPLAYNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NCMDEVICEKEY" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NCMELEMENTKEY" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="LIFECYCLESTATE_ID" />
+          <Property Type="Int16" Name="OUTOFSERVICE" />
+          <Property Type="Decimal" Name="HEIGHT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="WIDTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DEPTH" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LATITUDE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="LONGITUDE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="ALTITUDE" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="BEARING" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DIRECTION" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TILT" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TWIST" Precision="38" Scale="0" />
+          <Property Type="String" Name="USERPARTIALNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="NAMEDWITHSEQUENCE_ID" />
+          <Property Type="String" Name="NAMEDWITHSEQUENCEVALUE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="STACKTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="STACK_ID" />
+          <NavigationProperty Name="ELEVATIONs" Relationship="Model2.ELEVATION_VFDITEM_PLANID_FK" FromRole="VFDITEM" ToRole="ELEVATION" />
+          <NavigationProperty Name="MATINGs" Relationship="Model2.MATING_VFDITEM_AEQUIPMENTID_FK" FromRole="VFDITEM" ToRole="MATING" />
+          <NavigationProperty Name="MATINGs1" Relationship="Model2.MATING_VFDITEM_ZEQUIPMENTID_FK" FromRole="VFDITEM" ToRole="MATING" />
+          <NavigationProperty Name="PORTCLASSIFICATIONs" Relationship="Model2.PRTCLSSFCT_VFDITM_DVCID_QJX_FK" FromRole="VFDITEM" ToRole="PORTCLASSIFICATION" />
+          <NavigationProperty Name="PORTLIFECYCLESTATEs" Relationship="Model2.PRTLFCCLST_VFDITM_DVCID_IXE_FK" FromRole="VFDITEM" ToRole="PORTLIFECYCLESTATE" />
+          <NavigationProperty Name="PORTOPERATIONALSTATUS" Relationship="Model2.PRTOPRTNLS_VFDITM_DVCID_I42_FK" FromRole="VFDITEM" ToRole="PORTOPERATIONALSTATU" />
+          <NavigationProperty Name="VFDITEM1" Relationship="Model2.VFDITEM_VFDITEM_STACKID_FK" FromRole="VFDITEM" ToRole="VFDITEM1" />
+          <NavigationProperty Name="VFDITEM2" Relationship="Model2.VFDITEM_VFDITEM_STACKID_FK" FromRole="VFDITEM1" ToRole="VFDITEM" />
+          <NavigationProperty Name="VFDMODEL" Relationship="Model2.VFDITEM_VFDMODEL_MODELID_FK" FromRole="VFDITEM" ToRole="VFDMODEL" />
+          <NavigationProperty Name="VFDITEMPLACEMENTs" Relationship="Model2.VFDITMPL_VFDITM_CNTNRID_96I_FK" FromRole="VFDITEM" ToRole="VFDITEMPLACEMENT" />
+          <NavigationProperty Name="VFDITEMPLACEMENTs1" Relationship="Model2.VFDITMPLCM_VFDITM_ITMID_BEW_FK" FromRole="VFDITEM" ToRole="VFDITEMPLACEMENT" />
+        </EntityType>
+        <Association Name="ELEVATION_VFDITEM_PLANID_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.ELEVATION" Role="ELEVATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ELEVATION">
+              <PropertyRef Name="PLAN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JNCTN_VFDMDL_JNCTNARRMD_K8U_FK">
+          <End Type="Model2.VFDMODEL" Role="VFDMODEL" Multiplicity="0..1" />
+          <End Type="Model2.JUNCTION" Role="JUNCTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDMODEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="JUNCTION">
+              <PropertyRef Name="JUNCTIONARRAYMODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MATING_VFDITEM_AEQUIPMENTID_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.MATING" Role="MATING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATING">
+              <PropertyRef Name="AEQUIPMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MATING_VFDITEM_ZEQUIPMENTID_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.MATING" Role="MATING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATING">
+              <PropertyRef Name="ZEQUIPMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK">
+          <End Type="Model2.PORTDESCRIPTION" Role="PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Type="Model2.MATING" Role="MATING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATING">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK">
+          <End Type="Model2.PORTDESCRIPTION" Role="PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Type="Model2.PORTCLASSIFICATION" Role="PORTCLASSIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTCLASSIFICATION">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTCLSSFCT_VFDITM_DVCID_QJX_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.PORTCLASSIFICATION" Role="PORTCLASSIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTCLASSIFICATION">
+              <PropertyRef Name="DEVICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK">
+          <End Type="Model2.PORTDESCRIPTION" Role="PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Type="Model2.PORTCONNECTORASG" Role="PORTCONNECTORASG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTCONNECTORASG">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK">
+          <End Type="Model2.VFDMODEL" Role="VFDMODEL" Multiplicity="0..1" />
+          <End Type="Model2.PORTDESCRIPTION" Role="PORTDESCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDMODEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTDESCRIPTION">
+              <PropertyRef Name="DEVICEMODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK">
+          <End Type="Model2.PORTDESCRIPTION" Role="PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Type="Model2.PORTLIFECYCLESTATE" Role="PORTLIFECYCLESTATE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTLIFECYCLESTATE">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK">
+          <End Type="Model2.PORTDESCRIPTION" Role="PORTDESCRIPTION" Multiplicity="0..1" />
+          <End Type="Model2.PORTOPERATIONALSTATU" Role="PORTOPERATIONALSTATU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PORTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTOPERATIONALSTATU">
+              <PropertyRef Name="PORTDESCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTLFCCLST_VFDITM_DVCID_IXE_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.PORTLIFECYCLESTATE" Role="PORTLIFECYCLESTATE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTLIFECYCLESTATE">
+              <PropertyRef Name="DEVICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRTOPRTNLS_VFDITM_DVCID_I42_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.PORTOPERATIONALSTATU" Role="PORTOPERATIONALSTATU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PORTOPERATIONALSTATU">
+              <PropertyRef Name="DEVICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SLTDSCR_VFDMDL_DVCMDLID_LFR_FK">
+          <End Type="Model2.VFDMODEL" Role="VFDMODEL" Multiplicity="0..1" />
+          <End Type="Model2.SLOTDESCRIPTION" Role="SLOTDESCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDMODEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SLOTDESCRIPTION">
+              <PropertyRef Name="DEVICEMODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SLTDSCRPT_SLTTP_SLTTPID_027_FK">
+          <End Type="Model2.SLOTTYPE" Role="SLOTTYPE" Multiplicity="0..1" />
+          <End Type="Model2.SLOTDESCRIPTION" Role="SLOTDESCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLOTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SLOTDESCRIPTION">
+              <PropertyRef Name="SLOTTYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITMP_SLTDSCR_FRSTSLT_U84_FK">
+          <End Type="Model2.SLOTDESCRIPTION" Role="SLOTDESCRIPTION" Multiplicity="0..1" />
+          <End Type="Model2.VFDITEMPLACEMENT" Role="VFDITEMPLACEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLOTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEMPLACEMENT">
+              <PropertyRef Name="FIRSTSLOT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK">
+          <End Type="Model2.SLOTDESCRIPTION" Role="SLOTDESCRIPTION" Multiplicity="0..1" />
+          <End Type="Model2.VFDITEMPLACEMENT" Role="VFDITEMPLACEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLOTDESCRIPTION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEMPLACEMENT">
+              <PropertyRef Name="SECONDSLOT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITEM_VFDITEM_STACKID_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.VFDITEM" Role="VFDITEM1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEM1">
+              <PropertyRef Name="STACK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITEM_VFDMODEL_MODELID_FK">
+          <End Type="Model2.VFDMODEL" Role="VFDMODEL" Multiplicity="0..1" />
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDMODEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEM">
+              <PropertyRef Name="MODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITMPL_VFDITM_CNTNRID_96I_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.VFDITEMPLACEMENT" Role="VFDITEMPLACEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEMPLACEMENT">
+              <PropertyRef Name="CONTAINER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VFDITMPLCM_VFDITM_ITMID_BEW_FK">
+          <End Type="Model2.VFDITEM" Role="VFDITEM" Multiplicity="0..1" />
+          <End Type="Model2.VFDITEMPLACEMENT" Role="VFDITEMPLACEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VFDITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VFDITEMPLACEMENT">
+              <PropertyRef Name="ITEM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model2StoreContainer" CdmEntityContainer="Entities_NRM">
+          <EntitySetMapping Name="PORTCLASSIFICATIONs">
+            <EntityTypeMapping TypeName="Model2.PORTCLASSIFICATION">
+              <MappingFragment StoreEntitySet="PORTCLASSIFICATION">
+                <ScalarProperty Name="CLASSIFICATION_ID" ColumnName="CLASSIFICATION_ID" />
+                <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PORTCONNECTORASGs">
+            <EntityTypeMapping TypeName="Model2.PORTCONNECTORASG">
+              <MappingFragment StoreEntitySet="PORTCONNECTORASG">
+                <ScalarProperty Name="PORTCONNECTOR_ID" ColumnName="PORTCONNECTOR_ID" />
+                <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+                <ScalarProperty Name="INDEX_" ColumnName="INDEX_" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PORTLIFECYCLESTATEs">
+            <EntityTypeMapping TypeName="Model2.PORTLIFECYCLESTATE">
+              <MappingFragment StoreEntitySet="PORTLIFECYCLESTATE">
+                <ScalarProperty Name="LIFECYCLESTATE_ID" ColumnName="LIFECYCLESTATE_ID" />
+                <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PORTOPERATIONALSTATUS">
+            <EntityTypeMapping TypeName="Model2.PORTOPERATIONALSTATU">
+              <MappingFragment StoreEntitySet="PORTOPERATIONALSTATUS">
+                <ScalarProperty Name="OUTOFSERVICE" ColumnName="OUTOFSERVICE" />
+                <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PORTTYPEs">
+            <EntityTypeMapping TypeName="Model2.PORTTYPE">
+              <MappingFragment StoreEntitySet="PORTTYPE">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SLOTDESCRIPTIONs">
+            <EntityTypeMapping TypeName="Model2.SLOTDESCRIPTION">
+              <MappingFragment StoreEntitySet="SLOTDESCRIPTION">
+                <ScalarProperty Name="SLOTTYPE_ID" ColumnName="SLOTTYPE_ID" />
+                <ScalarProperty Name="DEVICEMODEL_ID" ColumnName="DEVICEMODEL_ID" />
+                <ScalarProperty Name="FACE" ColumnName="FACE" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+                <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+                <ScalarProperty Name="BUSTYPE" ColumnName="BUSTYPE" />
+                <ScalarProperty Name="NUMBER_" ColumnName="NUMBER_" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SLOTTYPEs">
+            <EntityTypeMapping TypeName="Model2.SLOTTYPE">
+              <MappingFragment StoreEntitySet="SLOTTYPE">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROJECTs">
+            <EntityTypeMapping TypeName="Model2.PROJECT">
+              <MappingFragment StoreEntitySet="PROJECT">
+                <ScalarProperty Name="OWNEDBY" ColumnName="OWNEDBY" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ELEVATIONs">
+            <EntityTypeMapping TypeName="Model2.ELEVATION">
+              <MappingFragment StoreEntitySet="ELEVATION">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="Z" ColumnName="Z" />
+                <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JUNCTIONs">
+            <EntityTypeMapping TypeName="Model2.JUNCTION">
+              <MappingFragment StoreEntitySet="JUNCTION">
+                <ScalarProperty Name="JUNCTIONARRAYMODEL_ID" ColumnName="JUNCTIONARRAYMODEL_ID" />
+                <ScalarProperty Name="COLUMN_" ColumnName="COLUMN_" />
+                <ScalarProperty Name="ROW_" ColumnName="ROW_" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MATINGs">
+            <EntityTypeMapping TypeName="Model2.MATING">
+              <MappingFragment StoreEntitySet="MATING">
+                <ScalarProperty Name="ZCABLESTRAND" ColumnName="ZCABLESTRAND" />
+                <ScalarProperty Name="ACABLESTRAND" ColumnName="ACABLESTRAND" />
+                <ScalarProperty Name="CABLESTRAND" ColumnName="CABLESTRAND" />
+                <ScalarProperty Name="ZCABLEEND" ColumnName="ZCABLEEND" />
+                <ScalarProperty Name="ACABLEEND" ColumnName="ACABLEEND" />
+                <ScalarProperty Name="CABLEEND" ColumnName="CABLEEND" />
+                <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+                <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+                <ScalarProperty Name="ZCONNECTOR_ID" ColumnName="ZCONNECTOR_ID" />
+                <ScalarProperty Name="ACONNECTOR_ID" ColumnName="ACONNECTOR_ID" />
+                <ScalarProperty Name="ZEQUIPMENT_ID" ColumnName="ZEQUIPMENT_ID" />
+                <ScalarProperty Name="AEQUIPMENT_ID" ColumnName="AEQUIPMENT_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PORTDESCRIPTIONs">
+            <EntityTypeMapping TypeName="Model2.PORTDESCRIPTION">
+              <MappingFragment StoreEntitySet="PORTDESCRIPTION">
+                <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+                <ScalarProperty Name="OUTPUTPOWER" ColumnName="OUTPUTPOWER" />
+                <ScalarProperty Name="INPUTSENSITIVITY" ColumnName="INPUTSENSITIVITY" />
+                <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+                <ScalarProperty Name="DEVICEMODEL_ID" ColumnName="DEVICEMODEL_ID" />
+                <ScalarProperty Name="NUMBER_" ColumnName="NUMBER_" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VFDITEMPLACEMENTs">
+            <EntityTypeMapping TypeName="Model2.VFDITEMPLACEMENT">
+              <MappingFragment StoreEntitySet="VFDITEMPLACEMENT">
+                <ScalarProperty Name="CALLOUTCONTENT" ColumnName="CALLOUTCONTENT" />
+                <ScalarProperty Name="CALLOUTY" ColumnName="CALLOUTY" />
+                <ScalarProperty Name="CALLOUTX" ColumnName="CALLOUTX" />
+                <ScalarProperty Name="SECONDSLOT_ID" ColumnName="SECONDSLOT_ID" />
+                <ScalarProperty Name="FIRSTSLOT_ID" ColumnName="FIRSTSLOT_ID" />
+                <ScalarProperty Name="M22" ColumnName="M22" />
+                <ScalarProperty Name="M21" ColumnName="M21" />
+                <ScalarProperty Name="M20" ColumnName="M20" />
+                <ScalarProperty Name="M12" ColumnName="M12" />
+                <ScalarProperty Name="M11" ColumnName="M11" />
+                <ScalarProperty Name="M10" ColumnName="M10" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
+                <ScalarProperty Name="M02" ColumnName="M02" />
+                <ScalarProperty Name="M01" ColumnName="M01" />
+                <ScalarProperty Name="M00" ColumnName="M00" />
+                <ScalarProperty Name="Z" ColumnName="Z" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VFDMODELs">
+            <EntityTypeMapping TypeName="Model2.VFDMODEL">
+              <MappingFragment StoreEntitySet="VFDMODEL">
+                <ScalarProperty Name="ISMEASUREDUPWARD" ColumnName="ISMEASUREDUPWARD" />
+                <ScalarProperty Name="MOUNTWIDTH" ColumnName="MOUNTWIDTH" />
+                <ScalarProperty Name="VERTICALDISPLACEMENT" ColumnName="VERTICALDISPLACEMENT" />
+                <ScalarProperty Name="VERTICALSPACING" ColumnName="VERTICALSPACING" />
+                <ScalarProperty Name="MOUNTPOSITIONSPERCOLUMN" ColumnName="MOUNTPOSITIONSPERCOLUMN" />
+                <ScalarProperty Name="COLUMNS_" ColumnName="COLUMNS_" />
+                <ScalarProperty Name="MATERIALID" ColumnName="MATERIALID" />
+                <ScalarProperty Name="CONTRACTID" ColumnName="CONTRACTID" />
+                <ScalarProperty Name="PARTNUMBER" ColumnName="PARTNUMBER" />
+                <ScalarProperty Name="STACKTYPE" ColumnName="STACKTYPE" />
+                <ScalarProperty Name="POWERCONSUMPTION" ColumnName="POWERCONSUMPTION" />
+                <ScalarProperty Name="HEATLOAD" ColumnName="HEATLOAD" />
+                <ScalarProperty Name="ELECTRICALDOWNTILT" ColumnName="ELECTRICALDOWNTILT" />
+                <ScalarProperty Name="BEAMHEIGHT" ColumnName="BEAMHEIGHT" />
+                <ScalarProperty Name="BEAMWIDTH" ColumnName="BEAMWIDTH" />
+                <ScalarProperty Name="GAIN" ColumnName="GAIN" />
+                <ScalarProperty Name="MAXFREQUENCY" ColumnName="MAXFREQUENCY" />
+                <ScalarProperty Name="MINFREQUENCY" ColumnName="MINFREQUENCY" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="LENGTH" ColumnName="LENGTH" />
+                <ScalarProperty Name="NUMBERSTRANDS" ColumnName="NUMBERSTRANDS" />
+                <ScalarProperty Name="QUALITYSTANDARD" ColumnName="QUALITYSTANDARD" />
+                <ScalarProperty Name="CLASSIFICATION" ColumnName="CLASSIFICATION" />
+                <ScalarProperty Name="MODE_" ColumnName="MODE_" />
+                <ScalarProperty Name="DBLOSS" ColumnName="DBLOSS" />
+                <ScalarProperty Name="WEIGHTCAPACITY" ColumnName="WEIGHTCAPACITY" />
+                <ScalarProperty Name="RADIUS" ColumnName="RADIUS" />
+                <ScalarProperty Name="NUMCOLUMNS" ColumnName="NUMCOLUMNS" />
+                <ScalarProperty Name="NUMROWS" ColumnName="NUMROWS" />
+                <ScalarProperty Name="DENSITY" ColumnName="DENSITY" />
+                <ScalarProperty Name="DIAMETER" ColumnName="DIAMETER" />
+                <ScalarProperty Name="TWOSLOTSREQUIRED" ColumnName="TWOSLOTSREQUIRED" />
+                <ScalarProperty Name="BUSTYPE" ColumnName="BUSTYPE" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="LIBRARYREFERENCE" ColumnName="LIBRARYREFERENCE" />
+                <ScalarProperty Name="DEPTH_" ColumnName="DEPTH_" />
+                <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VFDITEMs">
+            <EntityTypeMapping TypeName="Model2.VFDITEM">
+              <MappingFragment StoreEntitySet="VFDITEM">
+                <ScalarProperty Name="STACK_ID" ColumnName="STACK_ID" />
+                <ScalarProperty Name="STACKTYPE" ColumnName="STACKTYPE" />
+                <ScalarProperty Name="NAMEDWITHSEQUENCEVALUE" ColumnName="NAMEDWITHSEQUENCEVALUE" />
+                <ScalarProperty Name="NAMEDWITHSEQUENCE_ID" ColumnName="NAMEDWITHSEQUENCE_ID" />
+                <ScalarProperty Name="USERPARTIALNAME" ColumnName="USERPARTIALNAME" />
+                <ScalarProperty Name="TWIST" ColumnName="TWIST" />
+                <ScalarProperty Name="TILT" ColumnName="TILT" />
+                <ScalarProperty Name="DIRECTION" ColumnName="DIRECTION" />
+                <ScalarProperty Name="BEARING" ColumnName="BEARING" />
+                <ScalarProperty Name="ALTITUDE" ColumnName="ALTITUDE" />
+                <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+                <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+                <ScalarProperty Name="DEPTH" ColumnName="DEPTH" />
+                <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="OUTOFSERVICE" ColumnName="OUTOFSERVICE" />
+                <ScalarProperty Name="LIFECYCLESTATE_ID" ColumnName="LIFECYCLESTATE_ID" />
+                <ScalarProperty Name="NCMELEMENTKEY" ColumnName="NCMELEMENTKEY" />
+                <ScalarProperty Name="NCMDEVICEKEY" ColumnName="NCMDEVICEKEY" />
+                <ScalarProperty Name="USERDISPLAYNAME" ColumnName="USERDISPLAYNAME" />
+                <ScalarProperty Name="AUTODISPLAYNAME" ColumnName="AUTODISPLAYNAME" />
+                <ScalarProperty Name="Z" ColumnName="Z" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="BOTTOMCLEARANCE" ColumnName="BOTTOMCLEARANCE" />
+                <ScalarProperty Name="TOPCLEARANCE" ColumnName="TOPCLEARANCE" />
+                <ScalarProperty Name="RIGHTCLEARANCE" ColumnName="RIGHTCLEARANCE" />
+                <ScalarProperty Name="LEFTCLEARANCE" ColumnName="LEFTCLEARANCE" />
+                <ScalarProperty Name="METERSPERPAGE" ColumnName="METERSPERPAGE" />
+                <ScalarProperty Name="FRONTALIGNED" ColumnName="FRONTALIGNED" />
+                <ScalarProperty Name="POLYGON" ColumnName="POLYGON" />
+                <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+                <ScalarProperty Name="LENGTH" ColumnName="LENGTH" />
+                <ScalarProperty Name="SPACING" ColumnName="SPACING" />
+                <ScalarProperty Name="LEFTHAND" ColumnName="LEFTHAND" />
+                <ScalarProperty Name="CLIPH" ColumnName="CLIPH" />
+                <ScalarProperty Name="CLIPW" ColumnName="CLIPW" />
+                <ScalarProperty Name="CLIPY" ColumnName="CLIPY" />
+                <ScalarProperty Name="CLIPX" ColumnName="CLIPX" />
+                <ScalarProperty Name="AUTOPARTIALNAME" ColumnName="AUTOPARTIALNAME" />
+                <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model3" ZoomLevel="51">
+        <EntityTypeShape EntityType="Model2.PORTCLASSIFICATION" Width="1.5" PointX="5.375" PointY="0.75" Height="1.7879850260416657" />
+        <EntityTypeShape EntityType="Model2.PORTCONNECTORASG" Width="1.5" PointX="5.375" PointY="3.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="Model2.PORTLIFECYCLESTATE" Width="1.5" PointX="7.375" PointY="3.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="Model2.PORTOPERATIONALSTATU" Width="1.5" PointX="7.375" PointY="6.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="Model2.PORTTYPE" Width="1.5" PointX="9.375" PointY="0.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="Model2.SLOTDESCRIPTION" Width="1.5" PointX="9.375" PointY="3.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Model2.SLOTTYPE" Width="1.5" PointX="9.375" PointY="7.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="Model2.PROJECT" Width="1.5" PointX="7.375" PointY="10.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="Model2.ELEVATION" Width="1.5" PointX="3" PointY="0.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="Model2.JUNCTION" Width="1.5" PointX="7.625" PointY="14.75" Height="1.9802864583333371" />
+        <EntityTypeShape EntityType="Model2.MATING" Width="1.5" PointX="5.25" PointY="7.125" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="Model2.PORTDESCRIPTION" Width="1.5" PointX="3" PointY="13.875" Height="3.7109993489583406" />
+        <EntityTypeShape EntityType="Model2.VFDITEMPLACEMENT" Width="1.5" PointX="13.875" PointY="3.5" Height="5.8263151041666674" />
+        <EntityTypeShape EntityType="Model2.VFDMODEL" Width="1.5" PointX="3" PointY="3.625" Height="9.4800423177083317" />
+        <EntityTypeShape EntityType="Model2.VFDITEM" Width="1.5" PointX="0.5" PointY="1.125" Height="11.40305664062501" />
+        <AssociationConnector Association="Model2.ELEVATION_VFDITEM_PLANID_FK" >
+          <ConnectorPoint PointX="2" PointY="1.927643229166667" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="1.9276432291666661" />
+          <ConnectorPoint PointX="2.9233333333333333" PointY="1.927643229166667" />
+          <ConnectorPoint PointX="3" PointY="1.927643229166667" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.JNCTN_VFDMDL_JNCTNARRMD_K8U_FK" >
+          <ConnectorPoint PointX="4.5" PointY="13.237366536458335" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="13.237366536458335" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="13.237366536458335" />
+          <ConnectorPoint PointX="4.885416666666667" PointY="13.237366536458335" />
+          <ConnectorPoint PointX="5.052083333333333" PointY="13.237366536458335" />
+          <ConnectorPoint PointX="6.760416666666667" PointY="13.237366536458335" />
+          <ConnectorPoint PointX="6.927083333333333" PointY="13.237366536458335" />
+          <ConnectorPoint PointX="9.03125" PointY="13.237366536458335" />
+          <ConnectorPoint PointX="9.03125" PointY="14.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.MATING_VFDITEM_AEQUIPMENTID_FK" >
+          <ConnectorPoint PointX="0.5" PointY="5.1337908754085255" />
+          <ConnectorPoint PointX="0.25999999999999995" PointY="5.1337908754085255" />
+          <ConnectorPoint PointX="0.25999999999999995" PointY="0.88499999999999979" />
+          <ConnectorPoint PointX="1.1666666666666667" PointY="0.88499999999999923" />
+          <ConnectorPoint PointX="1.3333333333333333" PointY="0.88499999999999979" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="0.88499999999999923" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="0.88499999999999979" />
+          <ConnectorPoint PointX="2.84" PointY="0.88499999999999979" />
+          <ConnectorPoint PointX="2.84" PointY="3.082587890625" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="3.0825878906249997" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="3.082587890625" />
+          <ConnectorPoint PointX="5.215" PointY="3.082587890625" />
+          <ConnectorPoint PointX="5.215" PointY="6.885" />
+          <ConnectorPoint PointX="6" PointY="6.885" />
+          <ConnectorPoint PointX="6" PointY="7.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.MATING_VFDITEM_ZEQUIPMENTID_FK" >
+          <ConnectorPoint PointX="2" PointY="3.3225439453125" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="3.3225439453124994" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="3.3225439453125" />
+          <ConnectorPoint PointX="5.28125" PointY="3.3225439453125" />
+          <ConnectorPoint PointX="5.28125" PointY="7.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.MTNG_PRTDSCRP_PRTDSCRPT_R1D_FK" >
+          <ConnectorPoint PointX="4.5" PointY="13.876152846153847" />
+          <ConnectorPoint PointX="4.6910744349011209" PointY="13.685078411252725" />
+          <ConnectorPoint PointX="4.8089255650988791" PointY="13.567227281054969" />
+          <ConnectorPoint PointX="5.125" PointY="13.251152846153847" />
+          <ConnectorPoint PointX="5.125" PointY="9.1728011067708337" />
+          <ConnectorPoint PointX="5.25" PointY="9.1728011067708337" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.PRTCLSS_PRTDSCR_PRTDSCR_FA9_FK" >
+          <ConnectorPoint PointX="4.4630769230769225" PointY="13.875" />
+          <ConnectorPoint PointX="4.6910744349011209" PointY="13.6470024881758" />
+          <ConnectorPoint PointX="4.8089255650988791" PointY="13.529151357978044" />
+          <ConnectorPoint PointX="4.9098244349011209" PointY="13.4282524881758" />
+          <ConnectorPoint PointX="5.0276755650988791" PointY="13.310401357978044" />
+          <ConnectorPoint PointX="5.03125" PointY="13.306826923076923" />
+          <ConnectorPoint PointX="5.03125" PointY="2.3313650598958331" />
+          <ConnectorPoint PointX="5.375" PointY="2.3313650598958331" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.PRTCLSSFCT_VFDITM_DVCID_QJX_FK" >
+          <ConnectorPoint PointX="2" PointY="2.857687174479167" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="2.8576871744791661" />
+          <ConnectorPoint PointX="2.9233333333333333" PointY="2.857687174479167" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="2.8576871744791665" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="2.857687174479167" />
+          <ConnectorPoint PointX="5.375" PointY="2.857687174479167" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.PRTCNNC_PRTDSCR_PRTDSCR_1C6_FK" >
+          <ConnectorPoint PointX="4.5" PointY="14.822222806089744" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="14.822222806089744" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="14.822222806089744" />
+          <ConnectorPoint PointX="6.84375" PointY="14.822222806089744" />
+          <ConnectorPoint PointX="6.84375" PointY="5.7302864583333335" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.PRTDSCR_VFDMDL_DVCMDLID_L5Y_FK" >
+          <ConnectorPoint PointX="3.75" PointY="13.681946614583332" />
+          <ConnectorPoint PointX="3.75" PointY="13.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.PRTLFCC_PRTDSCR_PRTDSCR_Z6S_FK" >
+          <ConnectorPoint PointX="4.5" PointY="13.94422976923077" />
+          <ConnectorPoint PointX="4.6910744349011209" PointY="13.753155334329648" />
+          <ConnectorPoint PointX="4.8089255650988791" PointY="13.635304204131892" />
+          <ConnectorPoint PointX="4.96875" PointY="13.47547976923077" />
+          <ConnectorPoint PointX="4.96875" PointY="6.297587890625" />
+          <ConnectorPoint PointX="5.1316666666666668" PointY="6.2975878906249987" />
+          <ConnectorPoint PointX="5.364583333333333" PointY="6.297587890625" />
+          <ConnectorPoint PointX="6.760416666666667" PointY="6.2975878906249987" />
+          <ConnectorPoint PointX="6.927083333333333" PointY="6.297587890625" />
+          <ConnectorPoint PointX="7" PointY="6.297587890625" />
+          <ConnectorPoint PointX="7.375" PointY="5.922587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.PRTOPRT_PRTDSCR_PRTDSCR_TVY_FK" >
+          <ConnectorPoint PointX="4.5" PointY="15.700215842948719" />
+          <ConnectorPoint PointX="4.75" PointY="15.700215842948719" />
+          <ConnectorPoint PointX="4.75" PointY="12.980286458333339" />
+          <ConnectorPoint PointX="4.885416666666667" PointY="12.980286458333337" />
+          <ConnectorPoint PointX="5.208333333333333" PointY="12.980286458333339" />
+          <ConnectorPoint PointX="6.760416666666667" PointY="12.980286458333339" />
+          <ConnectorPoint PointX="6.927083333333333" PointY="12.980286458333339" />
+          <ConnectorPoint PointX="7.25" PointY="12.980286458333339" />
+          <ConnectorPoint PointX="7.25" PointY="9.297587890625" />
+          <ConnectorPoint PointX="8.125" PointY="9.297587890625" />
+          <ConnectorPoint PointX="8.125" PointY="8.922587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.PRTLFCCLST_VFDITM_DVCID_IXE_FK" >
+          <ConnectorPoint PointX="2" PointY="3.4737744726562436" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="3.4737744726562432" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="3.4737744726562436" />
+          <ConnectorPoint PointX="5.1316666666666668" PointY="3.4737744726562427" />
+          <ConnectorPoint PointX="5.364583333333333" PointY="3.4737744726562436" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="3.4737744726562432" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="3.4737744726562436" />
+          <ConnectorPoint PointX="8.125" PointY="3.4737744726562436" />
+          <ConnectorPoint PointX="8.125" PointY="3.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.PRTOPRTNLS_VFDITM_DVCID_I42_FK" >
+          <ConnectorPoint PointX="1.25" PointY="1.125" />
+          <ConnectorPoint PointX="1.25" PointY="0.625" />
+          <ConnectorPoint PointX="2.75" PointY="0.625" />
+          <ConnectorPoint PointX="2.75" PointY="3.25" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="3.2499999999999996" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="3.25" />
+          <ConnectorPoint PointX="5.1316666666666668" PointY="3.2499999999999996" />
+          <ConnectorPoint PointX="5.2983333333333329" PointY="3.25" />
+          <ConnectorPoint PointX="7" PointY="3.25" />
+          <ConnectorPoint PointX="7" PointY="7.8362939453125" />
+          <ConnectorPoint PointX="7.375" PointY="7.8362939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.SLTDSCR_VFDMDL_DVCMDLID_LFR_FK" >
+          <ConnectorPoint PointX="4.5" PointY="6.5550439453125" />
+          <ConnectorPoint PointX="4.885416666666667" PointY="6.5550439453124989" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="6.5550439453125" />
+          <ConnectorPoint PointX="5.1316666666666668" PointY="6.5550439453124989" />
+          <ConnectorPoint PointX="5.364583333333333" PointY="6.5550439453125" />
+          <ConnectorPoint PointX="6.760416666666667" PointY="6.5550439453124989" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="6.5550439453125" />
+          <ConnectorPoint PointX="9.375" PointY="6.5550439453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.SLTDSCRPT_SLTTP_SLTTPID_027_FK" >
+          <ConnectorPoint PointX="10.125" PointY="7.75" />
+          <ConnectorPoint PointX="10.125" PointY="7.2686979166666656" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.VFDITMP_SLTDSCR_FRSTSLT_U84_FK" >
+          <ConnectorPoint PointX="10.875" PointY="5.5093489583333328" />
+          <ConnectorPoint PointX="13.875" PointY="5.5093489583333328" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.VFDITMP_SLTDSCR_SCNDSLT_VJ6_FK" >
+          <ConnectorPoint PointX="10.875" PointY="4.5671744791666669" />
+          <ConnectorPoint PointX="13.875" PointY="4.5671744791666669" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.VFDITEM_VFDITEM_STACKID_FK" >
+          <ConnectorPoint PointX="1.0319230769230769" PointY="12.52805664062501" />
+          <ConnectorPoint PointX="1.0319230769230769" PointY="12.77805664062501" />
+          <ConnectorPoint PointX="1.4784615384615383" PointY="12.77805664062501" />
+          <ConnectorPoint PointX="1.4784615384615383" PointY="12.52805664062501" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.VFDITEM_VFDMODEL_MODELID_FK" >
+          <ConnectorPoint PointX="3" PointY="8.0765283203125051" />
+          <ConnectorPoint PointX="2" PointY="8.0765283203125051" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.VFDITMPL_VFDITM_CNTNRID_96I_FK" >
+          <ConnectorPoint PointX="2" PointY="3.53125" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="3.5312499999999996" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="3.53125" />
+          <ConnectorPoint PointX="5.1316666666666668" PointY="3.5312499999999991" />
+          <ConnectorPoint PointX="5.364583333333333" PointY="3.53125" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="3.5312499999999996" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="3.53125" />
+          <ConnectorPoint PointX="13.875" PointY="3.53125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model2.VFDITMPLCM_VFDITM_ITMID_BEW_FK" >
+          <ConnectorPoint PointX="2" PointY="3.1662939453125" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="3.1662939453124994" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="3.1662939453125" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="3.1662939453124994" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="3.1662939453125" />
+          <ConnectorPoint PointX="5.1316666666666668" PointY="3.1662939453124994" />
+          <ConnectorPoint PointX="5.2983333333333329" PointY="3.1662939453125" />
+          <ConnectorPoint PointX="14.625" PointY="3.1662939453125" />
+          <ConnectorPoint PointX="14.625" PointY="3.5" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

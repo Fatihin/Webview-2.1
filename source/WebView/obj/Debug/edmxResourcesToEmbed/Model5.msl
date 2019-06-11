@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model4StoreContainer" CdmEntityContainer="Entities_NEPS">
+    <EntitySetMapping Name="AG_MSAN_TEMPLATE">
+      <EntityTypeMapping TypeName="Model4.AG_MSAN_TEMPLATE">
+        <MappingFragment StoreEntitySet="AG_MSAN_TEMPLATE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+          <ScalarProperty Name="RACK_NO" ColumnName="RACK_NO" />
+          <ScalarProperty Name="FRAME_NO" ColumnName="FRAME_NO" />
+          <ScalarProperty Name="SLOT_NO" ColumnName="SLOT_NO" />
+          <ScalarProperty Name="SLOT_NIS" ColumnName="SLOT_NIS" />
+          <ScalarProperty Name="CARD_TYPE" ColumnName="CARD_TYPE" />
+          <ScalarProperty Name="CARD_MODEL" ColumnName="CARD_MODEL" />
+          <ScalarProperty Name="PORT_LO" ColumnName="PORT_LO" />
+          <ScalarProperty Name="PORT_HI" ColumnName="PORT_HI" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AG_MSAN_XLTEMPLATE">
+      <EntityTypeMapping TypeName="Model4.AG_MSAN_XLTEMPLATE">
+        <MappingFragment StoreEntitySet="AG_MSAN_XLTEMPLATE">
+          <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="XL_FILE" ColumnName="XL_FILE" />
+          <ScalarProperty Name="MSAN_FNO" ColumnName="MSAN_FNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WEBVIEW_AUDIT_TRAIL">
+      <EntityTypeMapping TypeName="Model4.WEBVIEW_AUDIT_TRAIL">
+        <MappingFragment StoreEntitySet="WEBVIEW_AUDIT_TRAIL">
+          <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WV_REF_MODEL">
+      <EntityTypeMapping TypeName="Model4.WV_REF_MODEL">
+        <MappingFragment StoreEntitySet="WV_REF_MODEL">
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REF_DDN">
+      <EntityTypeMapping TypeName="Model4.REF_DDN">
+        <MappingFragment StoreEntitySet="REF_DDN">
+          <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+          <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+          <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+          <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+          <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+          <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+          <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REF_EPE">
+      <EntityTypeMapping TypeName="Model4.REF_EPE">
+        <MappingFragment StoreEntitySet="REF_EPE">
+          <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+          <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+          <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+          <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+          <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+          <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+          <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REF_IPMSAN">
+      <EntityTypeMapping TypeName="Model4.REF_IPMSAN">
+        <MappingFragment StoreEntitySet="REF_IPMSAN">
+          <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+          <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+          <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+          <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+          <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+          <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+          <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REF_NDH">
+      <EntityTypeMapping TypeName="Model4.REF_NDH">
+        <MappingFragment StoreEntitySet="REF_NDH">
+          <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+          <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+          <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+          <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+          <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+          <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+          <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REF_RT">
+      <EntityTypeMapping TypeName="Model4.REF_RT">
+        <MappingFragment StoreEntitySet="REF_RT">
+          <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+          <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+          <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+          <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+          <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+          <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+          <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REF_UPE">
+      <EntityTypeMapping TypeName="Model4.REF_UPE">
+        <MappingFragment StoreEntitySet="REF_UPE">
+          <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+          <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+          <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+          <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+          <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+          <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+          <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REF_VDSL2">
+      <EntityTypeMapping TypeName="Model4.REF_VDSL2">
+        <MappingFragment StoreEntitySet="REF_VDSL2">
+          <ScalarProperty Name="DIMENSION_HEIGHT" ColumnName="DIMENSION_HEIGHT" />
+          <ScalarProperty Name="DIMENSION_WIDTH" ColumnName="DIMENSION_WIDTH" />
+          <ScalarProperty Name="DIMENSION_DEPTH" ColumnName="DIMENSION_DEPTH" />
+          <ScalarProperty Name="TOTAL_POSITIONS" ColumnName="TOTAL_POSITIONS" />
+          <ScalarProperty Name="BACK_IMAGE" ColumnName="BACK_IMAGE" />
+          <ScalarProperty Name="FRONT_IMAGE" ColumnName="FRONT_IMAGE" />
+          <ScalarProperty Name="SYSTEM_CAPACITY" ColumnName="SYSTEM_CAPACITY" />
+          <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+          <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONNECTIVITY">
+      <EntityTypeMapping TypeName="Model4.CONNECTIVITY">
+        <MappingFragment StoreEntitySet="CONNECTIVITY">
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="Z_PORT" ColumnName="Z_PORT" />
+          <ScalarProperty Name="Z_SUB_TYPE" ColumnName="Z_SUB_TYPE" />
+          <ScalarProperty Name="Z_TYPE" ColumnName="Z_TYPE" />
+          <ScalarProperty Name="Z_ID" ColumnName="Z_ID" />
+          <ScalarProperty Name="A_PORT" ColumnName="A_PORT" />
+          <ScalarProperty Name="A_SUB_TYPE" ColumnName="A_SUB_TYPE" />
+          <ScalarProperty Name="A_TYPE" ColumnName="A_TYPE" />
+          <ScalarProperty Name="A_ID" ColumnName="A_ID" />
+          <ScalarProperty Name="ELV_NAME" ColumnName="ELV_NAME" />
+          <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

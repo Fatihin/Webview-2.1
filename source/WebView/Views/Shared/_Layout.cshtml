@@ -1,0 +1,612 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+
+    @RenderSection("Scripts", false)
+
+    <style type="text/css">
+        @RenderSection("Styles", false)
+    </style>
+
+
+    <meta charset="utf-8" />
+    <title>NEPS : @ViewBag.Title</title>
+    <link rel="shortcut icon"  href="@Url.Content("~/Content/images/favicon1.ico")" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery.ui.datepicker.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.tabs.js")" type="text/javascript"></script>
+    <link type="text/css" href="@Url.Content("~/Content/css/start/jquery-ui-1.8.16.custom.css")" rel="Stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.6.4.min.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.16.custom.min.js")"></script>
+    <!--<script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>-->
+    <script src="@Url.Content("~/Scripts/jquery.dropmenu.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+
+    @*Date Picker*@
+    <script src="@Url.Content("~/Scripts/EditorHookup.js")" type="text/javascript"></script>
+    
+    
+         
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.msgBox.v1.js")"></script>
+    <script type="text/javascript">
+        var globalJquery = null;
+
+        jQuery(document).ready(function ($) {
+            globalJquery = $;
+
+            $("#nav-one").dropmenu({});
+
+            $(document).ready(function () {
+                $("#txtEndDate").datepicker({ dateFormat: "dd-MM-yy" });
+            });
+
+            $(document).ready(function () {
+                $("#txtStartDate").datepicker({ dateFormat: "dd-MM-yy" });
+                //                $.datepicker.parseDate("DD, MM d, yy");
+            });
+
+            $(document).ready(function () {
+                $("#divCheckJob").tabs({});
+            });
+        });
+
+        
+
+    </script>
+    <script src="@Url.Content("~/Scripts/general.js")" type="text/javascript"></script>
+    <style type="text/css"> 
+       #loading-image {position: absolute;top: 40%;left: 45%;z-index: 100} 
+
+        #loading {
+          width: 100%;
+          height: 100%;
+          top: 0px;
+          left: 0px;
+          position: fixed;
+          display: block;
+          opacity: 0.7;
+          background-color: #fff;
+          z-index: 99;
+          text-align: center;
+        }
+
+        body {
+	        margin: 0; padding: 0;
+	        font: 11px normal Arial, Helvetica, sans-serif;
+            background:url("@Url.Content("~/Content/images/all_bg.jpg")") left top repeat-x #b2b2b2; position:relative; min-width:1000px; min-height:100%;
+        }
+        #fade { /*--Transparent background layer--*/
+	        display: none; /*--hidden by default--*/
+	        background: #000;
+	        position: fixed; left: 0; top: 0;
+	        width: 100%; height: 100%;
+	        opacity: .80;
+	        z-index: 9999;
+        }
+        .popup_block{
+	        display: none; /*  --hidden by default--*/
+	        background: #fff;
+            max-height:400px;
+	        padding: 20px;
+	        border: 20px solid #ddd;
+	        float: left;
+	        font-size: 1.2em;
+	        position: fixed;
+	        top: 10%; left: 20%;
+	        z-index: 99999;
+	        /*--CSS3 Box Shadows--*/
+	        -webkit-box-shadow: 0px 0px 20px #000;
+	        -moz-box-shadow: 0px 0px 20px #000;
+	        box-shadow: 0px 0px 20px #000;
+	        /*--CSS3 Rounded Corners--*/
+	        -webkit-border-radius: 10px;
+	        -moz-border-radius: 10px;
+	        border-radius: 10px;
+            /*margin-left:-420px;*/
+            max-width:800px;
+            overflow: scroll;
+            overflow-x: hidden;
+            -ms-overflow-x: hidden;
+        }
+        .maincontent {
+            background:url("@Url.Content("~/Content/images/all_m.jpg")") center top no-repeat;
+        }
+        .container {
+	        width: 100%;
+	        margin: 0 auto;
+	        position: relative;
+        }
+
+        ul.dropmenu {
+	        float: left;
+	        margin: 0px; 
+	        padding: 0px;
+	        background:url("@Url.Content("~/Content/images/navigation.png")") repeat-x scroll 0 0 transparent;
+	        display:block;
+	        height:35px;
+        }
+
+        .dropmenu li a, .dropmenu li{
+	        float: left;
+        }
+        .dropmenu li a:hover, .dropmenu li.open > a{
+	        color: #0657AD;
+	        background: #FFFFFF url("@Url.Content("~/Content/images/gradient.png")") repeat-x scroll 0 0;	
+        }
+
+        .dropmenu li{
+	        list-style: none;
+	        position: relative;	
+	        top: 1px;
+        }
+
+        .dropmenu li span{
+	        display: block;
+	        height: 10px;
+	        width: 10px;
+	        position: absolute;
+	        top: 12px;
+	        right: 10px;
+	        background:url("@Url.Content("~/Content/images/arrow_up.png")") repeat-x scroll 0 0 transparent;
+        }
+        .dropmenu li a:hover span, .dropmenu li.open > a span{
+	        background-image: url("@Url.Content("~/Content/images/arrow_hover.png")");	
+        }
+
+        .dropmenu li a, .dropmenu li div{
+	        padding: 9px 30px 8px 15px;
+	        text-decoration: none;
+	        color: #FFF;
+	        border-right:1px solid #4A779D;
+	        text-transform:uppercase;
+        }
+
+        /* Submenu */
+        .dropmenu li > ul, .dropmenu li > div {
+	        display: none;
+	        position: absolute;
+	        left: 0;
+	        top: 100%;
+	        padding: 0px;
+	        margin: 0px;
+	        background:url("@Url.Content("~/Content/images/gradient.png")") repeat-x scroll 0 0 #FFFFFF;
+	        border-bottom:1px solid #CCCCCC;
+        }
+
+        .dropmenu.css-only li:hover > ul, .dropmenu.css-only li:hover > div{
+	        display: block;
+        }
+
+        .dropmenu li ul li, .dropmenu li ul li a{
+	        float: none;	
+	        color: #0657AD;
+	        text-transform: none;
+	        text-decoration: none;
+        }
+
+        .dropmenu li ul li{
+	        _display: inline;	
+        }
+
+        .dropmenu li > div{
+	        width: 200px;
+        }
+
+        .dropmenu li ul li a span{
+	        background:url("@Url.Content("~/Content//images/arrow_sub.gif")") repeat-x scroll 0 0 transparent;	
+        }
+
+        /* Sub submenu */
+
+        .dropmenu li ul li a{
+	        width: 150px;
+	        display: block;	
+	        border:1px solid #CCCCCC;
+	        border-top: none;
+        }
+
+        .dropmenu li ul li a:hover{
+	        color:#F67A00;
+	        background: #F0F0F0;
+        }
+
+        .dropmenu li ul li ul, .dropmenu li ul li > div{
+	        top: 0px;
+	        left: 101%;
+        }
+
+
+        /*******************************************************
+        Login form
+        *******************************************************/
+        .dropmenu li > div.login{
+	        border:1px solid #CCCCCC;
+	        width: 210px;	
+        }
+        .dropmenu li > div.login div{
+	        border: none;
+        }
+        .login label{
+	        display:block;
+	        padding:0 0 4px;
+	        color:#595959;	
+        }
+        .login input {
+	        border:1px solid #4A779D;
+	        margin-bottom:8px;
+	        padding:3px 8px;
+	        width:164px;
+        }
+        .login button {
+	        background:url("@Url.Content("~/Content/Content/images/navigation.png")") repeat-x scroll 0 0 #4A779D;
+	        border:1px solid #4A779D;
+	        color:#FFFFFF;
+	        padding:4px 10px;
+	        width:175px;
+        }
+
+        /*******************************************************
+        Products div
+        *******************************************************/
+        .dropmenu li > div.products{
+	        width: 285px;
+
+        }
+        .dropmenu li:hover > div.products ul{
+	        display: block;
+        }
+        .dropmenu li > div.products *{
+	        padding: 0px;
+	        margin: 0px;
+	        position: relative;	
+	        border: none;
+        }
+        .dropmenu li > div.products li{
+	        overflow: hidden;
+	        padding: 10px 0px;
+	        border-bottom:1px solid #CCCCCC;
+        }
+        .dropmenu li > div.products li img{
+	        float: left;
+	        margin:  0 15px;
+        }
+        .dropmenu li > div.products{
+	        border:1px solid #CCCCCC;
+	        color:#595959;
+        }
+        .dropmenu li > div.products ul li h2{
+	        font-size: 16px;
+	        margin: 0px;
+	        padding: 2px 0 3px;
+        }
+        .dropmenu li > div.products ul li p{
+	        color:#666666;
+	        font-size:10px;
+	        margin:0;
+	        padding:0;
+        }
+        .dropmenu li > div.products ul li p a {
+	        border:medium none;
+	        color:#666666;
+	        display:inline;
+	        margin:0;
+	        padding:0;
+	        text-transform:none;
+	        background: none;
+        }
+        .dropmenu li > div.products ul{
+	        padding: 0px;
+	        margin: 0px;	
+        }
+        .dropmenu li > div.products ul li p a:hover {
+	        color:#222;
+	        text-decoration: none !important;
+        }
+        .dropmenu li > div.products .small{
+	        padding: 15px;
+	        color:#595959;
+	        font-size: 9px;
+	        text-transform: none;
+        }
+
+        /*******************************************************
+        Tutorials div
+        *******************************************************/
+        .dropmenu li > div.tutorials *{
+	        display: none;	
+        }
+
+        #header {
+	        background:url("@Url.Content("~/Content/images/top_bg.jpg")");
+	        width:902px;
+	        padding-top: 0px;
+        }
+        #header img {
+	        margin: 0px 0 50px;
+        }
+        a {
+           outline: none;
+        }
+        a img {
+           border:none;
+        }
+    </style>
+        
+</head>
+<body>
+   
+    <div id="fade"></div>
+    
+    <div class="maincontent">
+    <div class="page">
+    
+     <link rel="SHORTCUT ICON" href="@Url.Content("~/Content/images/favicon1.ico")"/>
+         @if (Request.IsAuthenticated)
+         {
+          <div id="header">
+            <div style="position: absolute; top: 125px; float: left; width: 650px;margin-left: 20px;background-color:white;" align="left"> 
+                   @{ WebView.Models.Account.UserModel user = (WebView.Models.Account.UserModel)HttpContext.Current.Session["UserInfo"];}
+                   @if (user == null) { Response.Redirect("~/Account/LogIn/"); }
+                   @{ string adminString = WebView.Models.Constants.RoleName.Administrator;}
+                   <b>USER:</b> @user.UserName &nbsp; &nbsp;| &nbsp; &nbsp;<b>GROUP:</b> @user.Group &nbsp; &nbsp;| &nbsp; &nbsp;<b>ROLE:</b> @user.Role&nbsp; &nbsp;| &nbsp; &nbsp;<b>FULLNAME:</b> @user.FullName
+                </div>
+            <div id="title">
+                <a href ="http://neps.intra.tm/" onclick =" window.open(this.href);return false;"><img src="@Url.Content("~/Content/images/neps_logo_small_tranparent.png")",  alt="" title ="NEPS" /></a> 
+            </div>
+            
+            <div style="padding-top:142px;-image:url(@Url.Content("~/Content/images/navigation.png"))">
+                <ul id="nav-one" class="dropmenu css-only"> 
+                    <div style="position:relative; float:right; text-align:center; width: 30px; top:5px; height: 10px; margin-right: 3px;" > 
+                        <a href="@Url.Action("LogIn", "Account")" title="Sign Out"><img src='@Url.Content("~/Content/images/LogOut.png")', alt="Log Off" /></a>
+                    </div>
+			        <li> 
+				        <a href="@Url.Content("~/Home/Index")">Home</a> 
+			        </li> 
+			        <li> 
+				        <a href="#">Job Management</a>
+                        <ul>
+                            <li><a href="#">CREATE</a> 
+                                <ul>
+                                    <li> @Html.ActionLink("JOB", "NewJob", "Job")</li>
+                                    <li> @Html.ActionLink("NON-FTTH PATH", "NewPath", "VIS_NRM")</li>
+                                    @*<li> @Html.ActionLink("FTTH PATH", "NewFTTHPath", "VIS_NRM")</li>*@                   
+                                </ul>
+                            </li>
+                            @if (user.Group == "RNO")
+                            {
+							    <li>@Html.ActionLink("CREATE REDMARK", "NewJobRNO", "Job")</li>
+                            }
+							<li> <a href="#">LIST</a>
+                                <ul>
+                                    <li> 
+								        @Html.ActionLink("OSP", "List", "Job")
+							        </li>
+							        <li> 
+								        @Html.ActionLink("ISP", "ISPList", "Job")
+							        </li>
+                                    <li> 
+								        @Html.ActionLink("LNMS Scheme", "LNMSList", "Job")
+							        </li>
+                                    <li> 
+								        @Html.ActionLink("REDMARK", "RNOList", "Job")
+							        </li>
+                                </ul>
+							</li>
+                            <li> 
+							    @Html.ActionLink("APPROVAL", "APPList", "Job")
+						    </li>
+                        </ul>
+			        </li> 
+                    @*<li> @Html.ActionLink("WSDL TEST", "testLoad", "Job")</li> *@
+                    @if (adminString.Equals(user.Role))
+                    {         
+                    <li> 
+				        <a href="#item3">Non-Network</a> 
+				        <ul style="display:none">
+                            <li> 
+				                <a href="#">Feature Master Maintenance</a> 
+				                <ul>
+									<li> 
+										@Html.ActionLink("JKH", "List", "FeatureMastMaintenance")
+									</li>
+									<li> 
+										@Html.ActionLink("Contract", "ListContract", "FeatureMastMaintenance") 
+									</li>
+									
+								</ul>
+							</li>
+                            <li> 
+				                <a href="#">Exchange and Regional Information</a> 
+				                <ul>
+                                    <li> 
+				                        @Html.ActionLink("Exchange Maintenance", "List", "ExchangeMaintenance") 
+			                        </li> 
+                                     @*<li> 
+				                        @Html.ActionLink("Unrecognize Exchange", "List", "UnrecognizedExc") 
+			                        </li> *@
+                                    <li>
+                                        @Html.ActionLink("AND Maintenance", "List", "AND") 
+                                    </li>
+                                     <li> 
+				                        @Html.ActionLink("PTT Maintenance", "List", "PTTMaintenance") 
+			                        </li> 
+					                <li>
+                                       @Html.ActionLink("City Maintenance", "List", "CityMaintenance")
+                                         
+                                    </li>
+                                    <li> 
+				                        @Html.ActionLink("Region Maintenance", "List", "RegionMaintenance")
+			                        </li>
+                                    <li> 
+				                        @Html.ActionLink("State Maintenance", "List", "StateMaintenance")
+			                        </li> 
+                                                                        					              
+				                </ul>
+			                </li>
+							<li> 
+						        <a href="#">Material Maintenance</a> 
+						        <ul>
+					                @*<li>
+                                        @Html.ActionLink("Mileage Rates", "List", "MileageRates")
+                                    </li>
+                                     <li> 
+				                        @Html.ActionLink("Install Maintenance", "List", "InstallMaintenance")
+			                        </li>*@
+                                     <li> 
+				                        @Html.ActionLink("Material Master Maintenance", "List", "MaterialMastMaintenance")
+			                        </li> 
+                                    <li> 
+				                        @Html.ActionLink("Material Class Maintenance", "List", "MaterialClassMaintenance")
+			                        </li>                                      					              
+				                </ul>
+							</li>
+							<li> 
+                                @Html.ActionLink("Plant Unit Management", "PlanUnit_List", "PlanUnit")
+				                @*<a href="#">Plant Unit Information</a> 
+				                <ul>
+									<li> 
+										@Html.ActionLink("Plant Unit Management", "PlanUnit_List", "PlanUnit")
+									</li>
+                                    <li> 
+										@Html.ActionLink("Contract Management", "CSM_List", "CSM") 
+									</li>
+									<li> 
+										@Html.ActionLink("Plant Unit Material Maintenance(Copper)", "PUMM_List", "PUMM") 
+									</li>
+									@*<li> 
+										@Html.ActionLink("Plant Unit Resource Maintenance(Copper)", "PURM_List", "PURM") 
+									</li>*@
+									@*<li> 
+										@Html.ActionLink("Plant Unit Feature Reference Maintenance(Copper)", "PUFRM_List", "PUFRM") 
+									</li>*@
+									@*
+                                    <li> 
+										@Html.ActionLink("Contract Summary Feature Reference Maintenance(Fibre)", "CSFRM_List", "CSFRM") 
+									</li>*@
+								@*</ul>*@
+							</li>
+                            <li> 
+                                @Html.ActionLink("Contract Management", "CSM_List", "CSM") 
+                            </li>
+                            <li> 
+						        @Html.ActionLink("User Management", "List", "Account")
+							</li>
+                            <li>
+				                @Html.ActionLink("Batch Management", "BatchList", "DllMaster") 
+							</li>
+                            <li>
+				                @Html.ActionLink("Equipment Template", "TemplateList", "NetworkElement") 
+							</li>
+                           @* <li>
+				               @Html.ActionLink("Feature Maintenance", "AddFeature", "FeatureMastMaintenance")
+							</li>*@
+                            <li>
+				               @Html.ActionLink("Manage Connectivity", "ManageConnectivity", "VIS_NRM")
+							</li>
+                            @if (user.Group == "ENZ" || user.Group == "AND" || user.Group == "ADMIN")
+                            {
+                                <li>
+				                   <a href="#">Network Facilities</a> @*@Html.ActionLink("Network Facilities", "ListCabInfo", "VIS_NRM")*@
+                                   <ul>
+                                        <li>@Html.ActionLink("OSP", "ListCabInfo", "VIS_NRM")</li>
+                                        <li>@Html.ActionLink("ISP", "ListCabInfo", "VIS_NRM")</li>
+                                   </ul>
+							    </li>
+                            }
+				        </ul> 
+			        </li>
+                    @*<li> 
+				        <a href="#item3">MIS</a> 
+                        <ul>
+                            <li>
+                                <a href="#">Web Service</a>
+                                <ul>
+                                    <li> @Html.ActionLink("Network Element", "AdminListNE", "NetworkElement") </li>
+                                    <li> @Html.ActionLink("Frame", "AdminListFU", "NetworkElement") </li>
+                                </ul>
+							</li>
+                            <li>@Html.ActionLink("Batch", "BatchList", "DllMaster") </li>
+                        </ul>
+                    </li>*@
+                    }
+					<li> 
+						<!--<a href="@Session["JASPER"]" target="_blank">Reports</a>-->
+                        <a>Reports</a> <!--region below Mubin CR60-20180801-->
+				       <ul>                                  		
+					        <li>@Html.ActionLink("Network Infra Report", "NetworkInfraReport", "Reporting")</li> 	              
+				       </ul>                  
+					</li>
+					<li> 
+				        <a href="#">BOQ</a> 
+				       <ul>
+					    
+					        <li>@Html.ActionLink("BOQ JKH", "BOQ_GEN", "BOQ_GEN")</li> 
+					        <li>@Html.ActionLink("BOQ CONTRACT", "BOQ_GEN_CONTRACT", "BOQ_GEN")</li> 
+				                                                                			              
+				       </ul>                       
+			        </li>
+					<li> 
+						<a href="#">OSP</a>
+						<ul>
+							<li> 
+						        <a href="gtech:username=NEPS|password=5rXIUMl9pPnrdQDYIcqd9Q==|Config=NEPS">Outside Plant (OSP) Viewing, Querying, Tracing and Redlining</a> 
+					        </li>
+							<li> 
+						        <a href="#">OSP Net Plotting</a>
+					        </li>
+                            <li><a href="#">Network Facilities</a><ul>
+                                <li>@Html.ActionLink("INVENTORY", "ListCabInfo", "VIS_NRM")</li>
+                                <li>@Html.ActionLink("REPORT", "ReportCabInfo", "VIS_NRM")</li>
+                                 </ul>
+                            </li>
+							@*<li> 
+						        <a href="#">Inside Plant (ISP) Planning and Commissioning</a>
+					        </li>
+							<li> 
+						        <a href="#">ISP 3D Navigation</a>
+					        </li>*@
+						</ul> 
+					</li>
+                    <li>
+                        <a href="http://@Session["ISP_INFO"]" target="_blank">ISP</a>
+                        <ul>
+							<li> 
+						        <a href="#">Data Audit</a>
+                                <ul>
+							        <li> @Html.ActionLink("NIS Network Element", "List", "NetworkElement") </li>
+                                    <li> @Html.ActionLink("NIS Frame Container", "ListNisFrame", "NetworkElement") </li>
+                                    @*<li> @Html.ActionLink("NIS Frame Container (>= 200 pairs)", "ListNisFrame", "NetworkElement") </li>
+                                    <li> @Html.ActionLink("NIS Frame Container (< 200 pairs)", "ListNisFrame2", "NetworkElement") </li>*@
+                                    <li>  @Html.ActionLink("Granite Network Element", "ListGraniteNetwork", "NetworkElement") </li>
+                                    <!-- li> <a href="#">LNMS Network Element</a> </li>
+                                    <li> <a href="#">LNMS Frame Container</a> </li -->
+                                </ul>
+					        </li>
+                        </ul>
+                    </li> 
+                    <li>@Html.ActionLink("CHANGE PASSWORD", "ChangePassword", "Account")</li>
+                    <li style="width:500px"></li>
+		        </ul>
+            </div>
+        </div>
+         }
+         else
+         {
+             Response.Redirect("~/Account/LogIn/");
+         }
+        <div id="main">
+            @RenderBody()
+        </div>
+        <footer>
+        </footer>
+    </div>
+    </div>
+</body>
+</html>
+<script type ="text/javascript" >
+
+    $('#logo')
+
+</script>
+

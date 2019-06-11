@@ -1,0 +1,202 @@
+﻿@*model IEnumerable<FileInfo>
+*@
+@{
+    WebView.Models.Account.UserModel user = (WebView.Models.Account.UserModel)HttpContext.Current.Session["UserInfo"];
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        document.getElementById("UPDATESTATUS").value = document.getElementById("statusSemasa").value;
+
+        if (document.getElementById("statusSemasa").value == "PENDING") {
+            document.getElementById("btnDelete").style.display = "inline";
+        }
+        $(function () {
+            $("#btnCloseTab").button();
+            $("#uploadFile").button();
+            $("#btnSave").button();
+            $("#files").button();
+            $("#btnDelete").button();
+        });
+
+        $("#btnCloseTab").click(function () {
+            window.location = "/Job/RNOList";
+        });
+
+        $("#btnSave").click(function () {
+            var status = document.getElementById("UPDATESTATUS").value;
+            var description = document.getElementById("txtDescription").value;
+            var remarks = document.getElementById("txtRemarks").value;
+            var t = document.getElementById("JOBID").value;
+            var cmsg = confirm("Are you sure you want to update " + t + "?");
+            if (cmsg != 0) {
+                $.ajax({
+                    url: '@Url.Action("UpdatedStatusRedmark", "Job")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": t,
+                        "status": status,
+                        "description": description,
+                        "remarks": remarks,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () {
+                    },
+                    success: function () {
+                        alert("Successfully Updated.");
+                        window.location.reload();
+                    }
+                });
+            }
+            else {
+                document.getElementById("UPDATESTATUS").value = document.getElementById("statusSemasa").value;
+            }
+        });
+
+        $("#btnDelete").click(function () {
+            var t = document.getElementById("JOBID").value;
+            var cmsg = confirm("Are you sure you want to permanently delete job " + t + "?");
+            if (cmsg != 0) {
+                $.ajax({
+                    url: '@Url.Action("DeleteDataRedmark", "Job")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": t,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () {
+                    },
+                    success: function () {
+                        alert("Successfully Deleted.");
+                        window.location.href = "/Job/RNOList";
+                    }
+                });
+            }
+            else {
+                document.getElementById("UPDATESTATUS").value = document.getElementById("statusSemasa").value;
+            }
+        });
+
+    });
+</script>
+@{
+    ViewBag.Title = "Attachment File " ;
+}
+<br />
+<h2 style="width:600px;">
+  Upload new files for Job @ViewBag.AttachLink
+</h2> 
+<input type="hidden" value="@ViewBag.AttachLink" id="targetJob" />
+<span style="float:right;">
+  <input type="button" value="Back" id="btnCloseTab" style="height:30px;width:100px; vertical-align:top;"/>
+</span>
+@using (Html.BeginForm("NewAttachmentRedmark", "Job", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<table style="width:500px;">
+  <tr>
+    <td style="vertical-align:top;" width="150px">Description</td>
+    @if (user.Group == "AND" || user.Group == "AND SUPERVISOR" || user.Group == "AND COORDINATOR")
+    {
+            <td>
+              <textarea name="txtDescription" id="txtDescription" cols="20" rows="" style="width:200px" disabled="disabled">@ViewBag.DESCRIPTION</textarea>
+            </td>
+    }
+    else
+    { 
+            <td>
+              <textarea name="txtDescription" id="txtDescription" cols="20" rows="" style="width:200px">@ViewBag.DESCRIPTION</textarea>
+            </td>
+    }
+  </tr>
+  <tr>
+    <td style="vertical-align:top;">Remarks</td>
+    @if (user.Group == "AND" || user.Group == "AND SUPERVISOR" || user.Group == "AND COORDINATOR")
+    {
+            <td>
+              <textarea name="txtRemarks" id="txtRemarks" cols="20" rows="" style="width:200px">@ViewBag.REMARKS</textarea>
+            </td>
+    }
+    else
+    {
+            <td>
+              <textarea name="txtRemarks" id="txtRemarks" cols="20" rows="" style="width:200px" disabled="disabled">@ViewBag.REMARKS</textarea>
+            </td>
+    }
+  </tr>
+  <tr>
+    <td>
+      Status <input type="hidden" id="statusSemasa" value="@ViewBag.STATUSSEMASA" />
+    </td>
+    <td>
+      <input type="hidden" name="JOBID" id="JOBID" value="@ViewBag.AttachLink" />
+      @if (ViewBag.STATUSSEMASA == "COMPLETED")
+      {
+                @Html.DropDownList("UPDATESTATUS", (IEnumerable<SelectListItem>)ViewBag.UPDATESTATUS, "", new { style = "width:200px;", @disabled = "disabled" })
+      }
+      else if (ViewBag.STATUSSEMASA != "REJECT" && (user.Group != "AND" && user.Group != "AND SUPERVISOR" && user.Group != "AND COORDINATOR"))
+      {
+                @Html.DropDownList("UPDATESTATUS", (IEnumerable<SelectListItem>)ViewBag.UPDATESTATUS, "", new { style = "width:200px;", @disabled = "disabled" })
+      }
+      else
+      {
+                @Html.DropDownList("UPDATESTATUS", (IEnumerable<SelectListItem>)ViewBag.UPDATESTATUS, "", new { style = "width:200px;" })
+      }
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align:right;">
+      <input type="button" value="Delete"  id="btnDelete" style="display:none;"/>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="button" value="Save"  id="btnSave" />
+    </td>
+  </tr>
+  @if (user.Group != "AND" && user.Group != "AND SUPERVISOR" && user.Group != "AND COORDINATOR")
+  {
+        <tr>
+          <td colspan="2" style="text-align:center;background-color:Silver;height:5px;color:Black">
+            <b>
+              UPLOAD FILE
+            </b>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Select File
+          </td>
+          <td>
+            <input type="file" name="files" id="file1" value="@ViewBag.AttachLink" />
+            <input type="submit" value="Upload" id="uploadFile" style="height:30px;width:80px;vertical-align:middle;"/>
+          </td>
+        </tr>
+  }
+</table>
+<p>
+  </p>
+}
+
+<h2>Files</h2>
+
+<table width="70%">
+  @if (Model != null)
+  {
+      foreach (var item in Model)
+      {
+                <tr>
+                  <td>
+                    <a href="@Url.Action("Download", "Job", new { id = @ViewBag.AttachLink, filename = @item })">@item</a>                          
+                  </td>
+                  @if (user.Group != "AND" && user.Group != "AND SUPERVISOR" && user.Group != "AND COORDINATOR")
+                  {
+                                        <td>
+                                          <a href="@Url.Action("DeleteFileRNO", "Job", new { id = @item })" onclick="if (!confirm('Do you really want to remove this file?'))
+                                              return false;">
+                                            <img alt="DELETE" src="@Url.Content("~/Content/images/delete.jpg")" />
+                                          </a>
+                                        </td>
+                  }
+                </tr>
+      }
+  }
+</table>
+

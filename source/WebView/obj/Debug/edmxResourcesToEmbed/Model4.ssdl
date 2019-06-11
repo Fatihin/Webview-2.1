@@ -1,0 +1,2023 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model3.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Model3StoreContainer">
+    <EntitySet Name="BI_ASSET_NO" EntityType="Model3.Store.BI_ASSET_NO" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_ASSET_NO">
+      <DefiningQuery>SELECT 
+      "BI_ASSET_NO"."ASSET_NO" AS "ASSET_NO", 
+      "BI_ASSET_NO"."CABLE_EQUIP_ID" AS "CABLE_EQUIP_ID", 
+      "BI_ASSET_NO"."PROJECT_NO" AS "PROJECT_NO", 
+      "BI_ASSET_NO"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_ASSET_NO"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER", 
+      "BI_ASSET_NO"."ASSET_SUB_NO" AS "ASSET_SUB_NO", 
+      "BI_ASSET_NO"."COMPANY_CODE" AS "COMPANY_CODE", 
+      "BI_ASSET_NO"."EXC_ABB" AS "EXC_ABB", 
+      "BI_ASSET_NO"."ASSET_TYPE" AS "ASSET_TYPE", 
+      "BI_ASSET_NO"."ID1" AS "ID1"
+      FROM "NEPSBI"."BI_ASSET_NO" "BI_ASSET_NO"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_ASSET_TAGGING" EntityType="Model3.Store.BI_ASSET_TAGGING" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_ASSET_TAGGING">
+      <DefiningQuery>SELECT 
+      "BI_ASSET_TAGGING"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_ASSET_TAGGING"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER", 
+      "BI_ASSET_TAGGING"."ASSET_NO" AS "ASSET_NO", 
+      "BI_ASSET_TAGGING"."ASSET_SUB_NO" AS "ASSET_SUB_NO", 
+      "BI_ASSET_TAGGING"."COMPANY_CODE" AS "COMPANY_CODE", 
+      "BI_ASSET_TAGGING"."EXC_ABB" AS "EXC_ABB", 
+      "BI_ASSET_TAGGING"."CABLE_EQUIP_ID" AS "CABLE_EQUIP_ID", 
+      "BI_ASSET_TAGGING"."TAGGING_DATE" AS "TAGGING_DATE", 
+      "BI_ASSET_TAGGING"."VERIFICATION_STATUS" AS "VERIFICATION_STATUS", 
+      "BI_ASSET_TAGGING"."VERIFICATION_BY" AS "VERIFICATION_BY", 
+      "BI_ASSET_TAGGING"."LAST_INVENTORY_ON" AS "LAST_INVENTORY_ON", 
+      "BI_ASSET_TAGGING"."TYPE_NAME" AS "TYPE_NAME"
+      FROM "NEPSBI"."BI_ASSET_TAGGING" "BI_ASSET_TAGGING"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_ASSET_TAGGING_NIS" EntityType="Model3.Store.BI_ASSET_TAGGING_NIS" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_ASSET_TAGGING_NIS">
+      <DefiningQuery>SELECT 
+      "BI_ASSET_TAGGING_NIS"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_ASSET_TAGGING_NIS"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER", 
+      "BI_ASSET_TAGGING_NIS"."NIS_ID" AS "NIS_ID", 
+      "BI_ASSET_TAGGING_NIS"."G3E_FID" AS "G3E_FID", 
+      "BI_ASSET_TAGGING_NIS"."ASSET_NO" AS "ASSET_NO", 
+      "BI_ASSET_TAGGING_NIS"."ASSET_SUBNUMBER" AS "ASSET_SUBNUMBER", 
+      "BI_ASSET_TAGGING_NIS"."COMPANY_CODE" AS "COMPANY_CODE", 
+      "BI_ASSET_TAGGING_NIS"."EXCHANGE_CODE" AS "EXCHANGE_CODE", 
+      "BI_ASSET_TAGGING_NIS"."CABLE_EQUIP_ID" AS "CABLE_EQUIP_ID", 
+      "BI_ASSET_TAGGING_NIS"."TAGGING_DATE" AS "TAGGING_DATE", 
+      "BI_ASSET_TAGGING_NIS"."VERIFICATION_STATUS" AS "VERIFICATION_STATUS", 
+      "BI_ASSET_TAGGING_NIS"."VERIFICATION_BY" AS "VERIFICATION_BY", 
+      "BI_ASSET_TAGGING_NIS"."LAST_INVENTORY_ON" AS "LAST_INVENTORY_ON", 
+      "BI_ASSET_TAGGING_NIS"."TYPE_NAME" AS "TYPE_NAME"
+      FROM "NEPSBI"."BI_ASSET_TAGGING_NIS" "BI_ASSET_TAGGING_NIS"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_BATCH" EntityType="Model3.Store.BI_BATCH" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_BATCH">
+      <DefiningQuery>SELECT 
+      "BI_BATCH"."BATCH_ID" AS "BATCH_ID", 
+      "BI_BATCH"."INSTANCE_ID" AS "INSTANCE_ID", 
+      "BI_BATCH"."CLASS_NAME" AS "CLASS_NAME", 
+      "BI_BATCH"."TIME_START" AS "TIME_START", 
+      "BI_BATCH"."TIME_END" AS "TIME_END", 
+      "BI_BATCH"."SERVICE_NAME" AS "SERVICE_NAME", 
+      "BI_BATCH"."TYPE" AS "TYPE", 
+      "BI_BATCH"."FILENAME" AS "FILENAME", 
+      "BI_BATCH"."FILE_HAS_ERROR" AS "FILE_HAS_ERROR", 
+      "BI_BATCH"."EXCEPTION" AS "EXCEPTION", 
+      "BI_BATCH"."EXCEPTION_MSG" AS "EXCEPTION_MSG", 
+      "BI_BATCH"."STACKTRACE" AS "STACKTRACE", 
+      "BI_BATCH"."OUTBOUND_FILE_NAME" AS "OUTBOUND_FILE_NAME", 
+      "BI_BATCH"."OUTBOUND_FILE_SIZE" AS "OUTBOUND_FILE_SIZE", 
+      "BI_BATCH"."OUTBOUND_FILE_LINE_COUNT" AS "OUTBOUND_FILE_LINE_COUNT", 
+      "BI_BATCH"."OUTBOUND_FILE_DATE" AS "OUTBOUND_FILE_DATE"
+      FROM "NEPSBI"."BI_BATCH" "BI_BATCH"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_CHKMSAN_REPLY_OSP" EntityType="Model3.Store.BI_CHKMSAN_REPLY_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CHKMSAN_REQUEST_OSP" EntityType="Model3.Store.BI_CHKMSAN_REQUEST_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CONTRACT" EntityType="Model3.Store.BI_CONTRACT" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_CONTRACT">
+      <DefiningQuery>SELECT 
+      "BI_CONTRACT"."CONTRACT_NO" AS "CONTRACT_NO", 
+      "BI_CONTRACT"."CONTRACT_DESCRIPTION" AS "CONTRACT_DESCRIPTION", 
+      "BI_CONTRACT"."ITEM_NO" AS "ITEM_NO", 
+      "BI_CONTRACT"."VENDOR_ID" AS "VENDOR_ID", 
+      "BI_CONTRACT"."VENDOR_NAME" AS "VENDOR_NAME", 
+      "BI_CONTRACT"."SHORT_TEXT" AS "SHORT_TEXT", 
+      "BI_CONTRACT"."ITEM_CATEGORY" AS "ITEM_CATEGORY", 
+      "BI_CONTRACT"."ORDER_UNIT" AS "ORDER_UNIT", 
+      "BI_CONTRACT"."NET_PRICE" AS "NET_PRICE", 
+      "BI_CONTRACT"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_CONTRACT"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER"
+      FROM "NEPSBI"."BI_CONTRACT" "BI_CONTRACT"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_CREATECARD_REPLY" EntityType="Model3.Store.BI_CREATECARD_REPLY" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATECARD_REPLY_OSP" EntityType="Model3.Store.BI_CREATECARD_REPLY_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATECARD_REQUEST" EntityType="Model3.Store.BI_CREATECARD_REQUEST" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATECARD_REQUEST_OSP" EntityType="Model3.Store.BI_CREATECARD_REQUEST_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATECS_REPLY_OSP" EntityType="Model3.Store.BI_CREATECS_REPLY_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATECS_REQUEST_OSP" EntityType="Model3.Store.BI_CREATECS_REQUEST_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATEFC_REPLY" EntityType="Model3.Store.BI_CREATEFC_REPLY" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATEFC_REPLY_OSP" EntityType="Model3.Store.BI_CREATEFC_REPLY_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATEFC_REQUEST" EntityType="Model3.Store.BI_CREATEFC_REQUEST" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATEFC_REQUEST_OSP" EntityType="Model3.Store.BI_CREATEFC_REQUEST_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATEFU_REPLY" EntityType="Model3.Store.BI_CREATEFU_REPLY" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATEFU_REPLY_OSP" EntityType="Model3.Store.BI_CREATEFU_REPLY_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATEFU_REQUEST" EntityType="Model3.Store.BI_CREATEFU_REQUEST" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATEFU_REQUEST_OSP" EntityType="Model3.Store.BI_CREATEFU_REQUEST_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATENE_REPLY" EntityType="Model3.Store.BI_CREATENE_REPLY" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATENE_REPLY_OSP" EntityType="Model3.Store.BI_CREATENE_REPLY_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATENE_REQUEST" EntityType="Model3.Store.BI_CREATENE_REQUEST" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATENE_REQUEST_OSP" EntityType="Model3.Store.BI_CREATENE_REQUEST_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATESB_REPLY_OSP" EntityType="Model3.Store.BI_CREATESB_REPLY_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_CREATESB_REQUEST_OSP" EntityType="Model3.Store.BI_CREATESB_REQUEST_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_DECOMM_TABLE" EntityType="Model3.Store.BI_DECOMM_TABLE" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_DECOMM_TABLE">
+      <DefiningQuery>SELECT 
+      "BI_DECOMM_TABLE"."DECOMM_DATE" AS "DECOMM_DATE", 
+      "BI_DECOMM_TABLE"."ASSET_NO" AS "ASSET_NO", 
+      "BI_DECOMM_TABLE"."DECOMM_REASON" AS "DECOMM_REASON", 
+      "BI_DECOMM_TABLE"."CABLE_ID" AS "CABLE_ID", 
+      "BI_DECOMM_TABLE"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_DECOMM_TABLE"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER"
+      FROM "NEPSBI"."BI_DECOMM_TABLE" "BI_DECOMM_TABLE"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_GEMS_BOQ_MAT" EntityType="Model3.Store.BI_GEMS_BOQ_MAT" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_GEMS_BOQ_MAT">
+      <DefiningQuery>SELECT 
+      "BI_GEMS_BOQ_MAT"."PROJ_NO" AS "PROJ_NO", 
+      "BI_GEMS_BOQ_MAT"."NETWORK_HEADER" AS "NETWORK_HEADER", 
+      "BI_GEMS_BOQ_MAT"."CONTRACT_NO" AS "CONTRACT_NO", 
+      "BI_GEMS_BOQ_MAT"."CONTRACT_ITEM_NO" AS "CONTRACT_ITEM_NO", 
+      "BI_GEMS_BOQ_MAT"."QUANTITY" AS "QUANTITY", 
+      "BI_GEMS_BOQ_MAT"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_GEMS_BOQ_MAT"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER", 
+      "BI_GEMS_BOQ_MAT"."WBS_NUM" AS "WBS_NUM"
+      FROM "NEPSBI"."BI_GEMS_BOQ_MAT" "BI_GEMS_BOQ_MAT"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_GRNDATAMATCH_REQ" EntityType="Model3.Store.BI_GRNDATAMATCH_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNDATAMATCH_RES" EntityType="Model3.Store.BI_GRNDATAMATCH_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNDLDPATHCONS_REQ" EntityType="Model3.Store.BI_GRNDLDPATHCONS_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNDLDPATHCONS_RES" EntityType="Model3.Store.BI_GRNDLDPATHCONS_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNDLDPATHNONCONS_REQ" EntityType="Model3.Store.BI_GRNDLDPATHNONCONS_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNDLDPATHNONCONS_RES" EntityType="Model3.Store.BI_GRNDLDPATHNONCONS_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNDLOADEQUIP_REQ" EntityType="Model3.Store.BI_GRNDLOADEQUIP_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNDLOADEQUIP_RES" EntityType="Model3.Store.BI_GRNDLOADEQUIP_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNDLOADPATH_REQ" EntityType="Model3.Store.BI_GRNDLOADPATH_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPADDCARD_REQ" EntityType="Model3.Store.BI_GRNOSPADDCARD_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPADDCARD_RES" EntityType="Model3.Store.BI_GRNOSPADDCARD_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDATAMATCH_REQ" EntityType="Model3.Store.BI_GRNOSPDATAMATCH_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDATAMATCH_RES" EntityType="Model3.Store.BI_GRNOSPDATAMATCH_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDELETEEQUIP_REQ" EntityType="Model3.Store.BI_GRNOSPDELETEEQUIP_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDELETEEQUIP_RES" EntityType="Model3.Store.BI_GRNOSPDELETEEQUIP_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDELETEPATH_REQ" EntityType="Model3.Store.BI_GRNOSPDELETEPATH_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDELETEPATH_RES" EntityType="Model3.Store.BI_GRNOSPDELETEPATH_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDELETESB_REQ" EntityType="Model3.Store.BI_GRNOSPDELETESB_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDELETESB_RES" EntityType="Model3.Store.BI_GRNOSPDELETESB_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDLDPATHCONS_REQ" EntityType="Model3.Store.BI_GRNOSPDLDPATHCONS_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDLDPATHCONS_RES" EntityType="Model3.Store.BI_GRNOSPDLDPATHCONS_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDLDPATHNONCONS_REQ" EntityType="Model3.Store.BI_GRNOSPDLDPATHNONCONS_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDLDPATHNONCONS_RES" EntityType="Model3.Store.BI_GRNOSPDLDPATHNONCONS_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDLOADEQUIP_REQ" EntityType="Model3.Store.BI_GRNOSPDLOADEQUIP_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDLOADEQUIP_RES" EntityType="Model3.Store.BI_GRNOSPDLOADEQUIP_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPDLOADPATH_REQ" EntityType="Model3.Store.BI_GRNOSPDLOADPATH_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPLOADSITE_REQ" EntityType="Model3.Store.BI_GRNOSPLOADSITE_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPLOADSITE_RES" EntityType="Model3.Store.BI_GRNOSPLOADSITE_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPLOADSRVBND_REQ" EntityType="Model3.Store.BI_GRNOSPLOADSRVBND_REQ" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_GRNOSPLOADSRVBND_RES" EntityType="Model3.Store.BI_GRNOSPLOADSRVBND_RES" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_NNW_EXT_SCH_GEM" EntityType="Model3.Store.BI_NNW_EXT_SCH_GEM" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_NNW_EXT_SCH_GEM">
+      <DefiningQuery>SELECT 
+      "BI_NNW_EXT_SCH_GEM"."PROJ_NUM" AS "PROJ_NUM", 
+      "BI_NNW_EXT_SCH_GEM"."NETWORK_HDR" AS "NETWORK_HDR", 
+      "BI_NNW_EXT_SCH_GEM"."WBS_NUM" AS "WBS_NUM", 
+      "BI_NNW_EXT_SCH_GEM"."RATE_INDICATOR" AS "RATE_INDICATOR", 
+      "BI_NNW_EXT_SCH_GEM"."PU_ID" AS "PU_ID", 
+      "BI_NNW_EXT_SCH_GEM"."PU_QTY" AS "PU_QTY", 
+      "BI_NNW_EXT_SCH_GEM"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_NNW_EXT_SCH_GEM"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER"
+      FROM "NEPSBI"."BI_NNW_EXT_SCH_GEM" "BI_NNW_EXT_SCH_GEM"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_NNW_GEM_PROJNO" EntityType="Model3.Store.BI_NNW_GEM_PROJNO" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_NNW_GEM_PROJNO">
+      <DefiningQuery>SELECT 
+      "BI_NNW_GEM_PROJNO"."PROJECT_NO" AS "PROJECT_NO", 
+      "BI_NNW_GEM_PROJNO"."PROJ_DESC" AS "PROJ_DESC", 
+      "BI_NNW_GEM_PROJNO"."START_DATE" AS "START_DATE", 
+      "BI_NNW_GEM_PROJNO"."END_DATE" AS "END_DATE", 
+      "BI_NNW_GEM_PROJNO"."EXC_ABB" AS "EXC_ABB", 
+      "BI_NNW_GEM_PROJNO"."AMOUNT" AS "AMOUNT", 
+      "BI_NNW_GEM_PROJNO"."NETWORK_HDR" AS "NETWORK_HDR", 
+      "BI_NNW_GEM_PROJNO"."WBS_NUM" AS "WBS_NUM", 
+      "BI_NNW_GEM_PROJNO"."WBS_DESC" AS "WBS_DESC", 
+      "BI_NNW_GEM_PROJNO"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_NNW_GEM_PROJNO"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER"
+      FROM "NEPSBI"."BI_NNW_GEM_PROJNO" "BI_NNW_GEM_PROJNO"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_NNW_MAT_MAST" EntityType="Model3.Store.BI_NNW_MAT_MAST" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_NNW_MAT_MAST">
+      <DefiningQuery>SELECT 
+      "BI_NNW_MAT_MAST"."RECORD_TYPE" AS "RECORD_TYPE", 
+      "BI_NNW_MAT_MAST"."TRANS_TYPE" AS "TRANS_TYPE", 
+      "BI_NNW_MAT_MAST"."MAT_ID" AS "MAT_ID", 
+      "BI_NNW_MAT_MAST"."MAT_NAME" AS "MAT_NAME", 
+      "BI_NNW_MAT_MAST"."MAT_UOM" AS "MAT_UOM", 
+      "BI_NNW_MAT_MAST"."MAT_CAT" AS "MAT_CAT", 
+      "BI_NNW_MAT_MAST"."MAT_PRICE" AS "MAT_PRICE", 
+      "BI_NNW_MAT_MAST"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_NNW_MAT_MAST"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER"
+      FROM "NEPSBI"."BI_NNW_MAT_MAST" "BI_NNW_MAT_MAST"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_NNW_PU_MAST" EntityType="Model3.Store.BI_NNW_PU_MAST" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_NNW_PU_MAST">
+      <DefiningQuery>SELECT 
+      "BI_NNW_PU_MAST"."RECORD_TYPE" AS "RECORD_TYPE", 
+      "BI_NNW_PU_MAST"."TRANS_TYPE" AS "TRANS_TYPE", 
+      "BI_NNW_PU_MAST"."PU_ID" AS "PU_ID", 
+      "BI_NNW_PU_MAST"."PU_DESC" AS "PU_DESC", 
+      "BI_NNW_PU_MAST"."PU_INST_PR" AS "PU_INST_PR", 
+      "BI_NNW_PU_MAST"."PU_MAT_PR" AS "PU_MAT_PR", 
+      "BI_NNW_PU_MAST"."PU_UOM" AS "PU_UOM", 
+      "BI_NNW_PU_MAST"."DURATION" AS "DURATION", 
+      "BI_NNW_PU_MAST"."NETWORK_FLAG" AS "NETWORK_FLAG", 
+      "BI_NNW_PU_MAST"."ACT_CODE" AS "ACT_CODE", 
+      "BI_NNW_PU_MAST"."SUP_DURATION" AS "SUP_DURATION", 
+      "BI_NNW_PU_MAST"."BILL_RATE" AS "BILL_RATE", 
+      "BI_NNW_PU_MAST"."DATE_TS" AS "DATE_TS", 
+      "BI_NNW_PU_MAST"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_NNW_PU_MAST"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER"
+      FROM "NEPSBI"."BI_NNW_PU_MAST" "BI_NNW_PU_MAST"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_NNW_PU_MAT_REF" EntityType="Model3.Store.BI_NNW_PU_MAT_REF" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_NNW_PU_MAT_REF">
+      <DefiningQuery>SELECT 
+      "BI_NNW_PU_MAT_REF"."RECORD_TYPE" AS "RECORD_TYPE", 
+      "BI_NNW_PU_MAT_REF"."TRANS_TYPE" AS "TRANS_TYPE", 
+      "BI_NNW_PU_MAT_REF"."PU_ID" AS "PU_ID", 
+      "BI_NNW_PU_MAT_REF"."MAT_ID" AS "MAT_ID", 
+      "BI_NNW_PU_MAT_REF"."PM_QTY" AS "PM_QTY", 
+      "BI_NNW_PU_MAT_REF"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_NNW_PU_MAT_REF"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER"
+      FROM "NEPSBI"."BI_NNW_PU_MAT_REF" "BI_NNW_PU_MAT_REF"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_PROC_GRN_ISP" EntityType="Model3.Store.BI_PROC_GRN_ISP" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_PROC_GRN_ISP">
+      <DefiningQuery>SELECT 
+      "BI_PROC_GRN_ISP"."PROC_ID" AS "PROC_ID", 
+      "BI_PROC_GRN_ISP"."STATUS" AS "STATUS", 
+      "BI_PROC_GRN_ISP"."TIME_CREATED" AS "TIME_CREATED", 
+      "BI_PROC_GRN_ISP"."TIME_STARTED" AS "TIME_STARTED", 
+      "BI_PROC_GRN_ISP"."TIME_FINISHED" AS "TIME_FINISHED", 
+      "BI_PROC_GRN_ISP"."HAS_ERROR" AS "HAS_ERROR", 
+      "BI_PROC_GRN_ISP"."STACK_TRACE" AS "STACK_TRACE", 
+      "BI_PROC_GRN_ISP"."NEPS_JOB_ID" AS "NEPS_JOB_ID", 
+      "BI_PROC_GRN_ISP"."CLASS_NAME" AS "CLASS_NAME", 
+      "BI_PROC_GRN_ISP"."USER_ID" AS "USER_ID"
+      FROM "NEPSBI"."BI_PROC_GRN_ISP" "BI_PROC_GRN_ISP"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_PROC_GRN_OSP" EntityType="Model3.Store.BI_PROC_GRN_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_PROCESS" EntityType="Model3.Store.BI_PROCESS" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_PROCESS_ISP" EntityType="Model3.Store.BI_PROCESS_ISP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_TOGEMS_SEQ1" EntityType="Model3.Store.BI_TOGEMS_SEQ1" store:Type="Tables" store:Schema="NEPSBI" store:Name="BI_TOGEMS_SEQ1">
+      <DefiningQuery>SELECT 
+      "BI_TOGEMS_SEQ1"."BI_BATCH_ID" AS "BI_BATCH_ID", 
+      "BI_TOGEMS_SEQ1"."BI_INSERT_ORDER" AS "BI_INSERT_ORDER", 
+      "BI_TOGEMS_SEQ1"."PROJECT_NO" AS "PROJECT_NO", 
+      "BI_TOGEMS_SEQ1"."WBS_NO" AS "WBS_NO", 
+      "BI_TOGEMS_SEQ1"."EQUIPMENT_CODE" AS "EQUIPMENT_CODE", 
+      "BI_TOGEMS_SEQ1"."EXC_ABB" AS "EXC_ABB", 
+      "BI_TOGEMS_SEQ1"."ASSET_ADDRESS1" AS "ASSET_ADDRESS1", 
+      "BI_TOGEMS_SEQ1"."ASSET_ADDRESS2" AS "ASSET_ADDRESS2", 
+      "BI_TOGEMS_SEQ1"."ASSET_ADDRESS3" AS "ASSET_ADDRESS3"
+      FROM "NEPSBI"."BI_TOGEMS_SEQ1" "BI_TOGEMS_SEQ1"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BI_UPDATEDPDIST_REPLY_OSP" EntityType="Model3.Store.BI_UPDATEDPDIST_REPLY_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="BI_UPDATEDPDIST_REQUEST_OSP" EntityType="Model3.Store.BI_UPDATEDPDIST_REQUEST_OSP" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="MIG_EXC_PTT" EntityType="Model3.Store.MIG_EXC_PTT" store:Type="Tables" store:Schema="NEPSBI" store:Name="MIG_EXC_PTT">
+      <DefiningQuery>SELECT 
+      "MIG_EXC_PTT"."EXC" AS "EXC", 
+      "MIG_EXC_PTT"."PTT" AS "PTT"
+      FROM "NEPSBI"."MIG_EXC_PTT" "MIG_EXC_PTT"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MIG_EXCHANGE" EntityType="Model3.Store.MIG_EXCHANGE" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="MIG_GRT_CHASSIS" EntityType="Model3.Store.MIG_GRT_CHASSIS" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="MIG_NIS_BAYLINE" EntityType="Model3.Store.MIG_NIS_BAYLINE" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="MIG_NIS_CHASSIS" EntityType="Model3.Store.MIG_NIS_CHASSIS" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="MIG_NIS_PPANEL" EntityType="Model3.Store.MIG_NIS_PPANEL" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="MIG_NIS_RACK" EntityType="Model3.Store.MIG_NIS_RACK" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="MIG_NIS_VPPANEL" EntityType="Model3.Store.MIG_NIS_VPPANEL" store:Type="Tables" Schema="NEPSBI" />
+    <EntitySet Name="MIG_NIS_VRACK" EntityType="Model3.Store.MIG_NIS_VRACK" store:Type="Tables" Schema="NEPSBI" />
+    <AssociationSet Name="MIG_GRT_CHASSIS_FK1" Association="Model3.Store.MIG_GRT_CHASSIS_FK1">
+      <End Role="MIG_EXCHANGE" EntitySet="MIG_EXCHANGE" />
+      <End Role="MIG_GRT_CHASSIS" EntitySet="MIG_GRT_CHASSIS" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_BAYLINE_FK1" Association="Model3.Store.MIG_NIS_BAYLINE_FK1">
+      <End Role="MIG_EXCHANGE" EntitySet="MIG_EXCHANGE" />
+      <End Role="MIG_NIS_BAYLINE" EntitySet="MIG_NIS_BAYLINE" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_CHASSIS_FK1" Association="Model3.Store.MIG_NIS_CHASSIS_FK1">
+      <End Role="MIG_EXCHANGE" EntitySet="MIG_EXCHANGE" />
+      <End Role="MIG_NIS_CHASSIS" EntitySet="MIG_NIS_CHASSIS" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_PPANEL_FK1" Association="Model3.Store.MIG_NIS_PPANEL_FK1">
+      <End Role="MIG_NIS_RACK" EntitySet="MIG_NIS_RACK" />
+      <End Role="MIG_NIS_PPANEL" EntitySet="MIG_NIS_PPANEL" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_PPANEL_FK2" Association="Model3.Store.MIG_NIS_PPANEL_FK2">
+      <End Role="MIG_NIS_VRACK" EntitySet="MIG_NIS_VRACK" />
+      <End Role="MIG_NIS_PPANEL" EntitySet="MIG_NIS_PPANEL" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_RACK_FK1" Association="Model3.Store.MIG_NIS_RACK_FK1">
+      <End Role="MIG_NIS_BAYLINE" EntitySet="MIG_NIS_BAYLINE" />
+      <End Role="MIG_NIS_RACK" EntitySet="MIG_NIS_RACK" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_VPPANEL_FK1" Association="Model3.Store.MIG_NIS_VPPANEL_FK1">
+      <End Role="MIG_NIS_PPANEL" EntitySet="MIG_NIS_PPANEL" />
+      <End Role="MIG_NIS_VPPANEL" EntitySet="MIG_NIS_VPPANEL" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_VPPANEL_FK2" Association="Model3.Store.MIG_NIS_VPPANEL_FK2">
+      <End Role="MIG_NIS_VRACK" EntitySet="MIG_NIS_VRACK" />
+      <End Role="MIG_NIS_VPPANEL" EntitySet="MIG_NIS_VPPANEL" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_VRACK_FK1" Association="Model3.Store.MIG_NIS_VRACK_FK1">
+      <End Role="MIG_NIS_RACK" EntitySet="MIG_NIS_RACK" />
+      <End Role="MIG_NIS_VRACK" EntitySet="MIG_NIS_VRACK" />
+    </AssociationSet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_ASSET_NO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_ASSET_NO">
+    <Key>
+      <PropertyRef Name="ID1" />
+    </Key>
+    <Property Name="ASSET_NO" Type="varchar2" MaxLength="12" />
+    <Property Name="CABLE_EQUIP_ID" Type="varchar2" MaxLength="20" />
+    <Property Name="PROJECT_NO" Type="varchar2" MaxLength="24" />
+    <Property Name="BI_BATCH_ID" Type="number" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+    <Property Name="ASSET_SUB_NO" Type="varchar2" MaxLength="4" />
+    <Property Name="COMPANY_CODE" Type="varchar2" MaxLength="4" />
+    <Property Name="EXC_ABB" Type="varchar2" MaxLength="10" />
+    <Property Name="ASSET_TYPE" Type="varchar2" MaxLength="4" />
+    <Property Name="ID1" Type="number" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_ASSET_TAGGING' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_ASSET_TAGGING">
+    <Key>
+      <PropertyRef Name="BI_BATCH_ID" />
+    </Key>
+    <Property Name="BI_BATCH_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+    <Property Name="ASSET_NO" Type="varchar2" MaxLength="12" />
+    <Property Name="ASSET_SUB_NO" Type="varchar2" MaxLength="4" />
+    <Property Name="COMPANY_CODE" Type="varchar2" MaxLength="4" />
+    <Property Name="EXC_ABB" Type="varchar2" MaxLength="10" />
+    <Property Name="CABLE_EQUIP_ID" Type="varchar2" MaxLength="20" />
+    <Property Name="TAGGING_DATE" Type="number" Precision="8" />
+    <Property Name="VERIFICATION_STATUS" Type="varchar2" MaxLength="10" />
+    <Property Name="VERIFICATION_BY" Type="varchar2" MaxLength="15" />
+    <Property Name="LAST_INVENTORY_ON" Type="number" Precision="8" />
+    <Property Name="TYPE_NAME" Type="varchar2" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_ASSET_TAGGING_NIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_ASSET_TAGGING_NIS">
+    <Key>
+      <PropertyRef Name="BI_BATCH_ID" />
+    </Key>
+    <Property Name="BI_BATCH_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+    <Property Name="NIS_ID" Type="varchar2" MaxLength="15" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="10" />
+    <Property Name="ASSET_NO" Type="varchar2" MaxLength="12" />
+    <Property Name="ASSET_SUBNUMBER" Type="varchar2" MaxLength="4" />
+    <Property Name="COMPANY_CODE" Type="varchar2" MaxLength="4" />
+    <Property Name="EXCHANGE_CODE" Type="varchar2" MaxLength="10" />
+    <Property Name="CABLE_EQUIP_ID" Type="varchar2" MaxLength="20" />
+    <Property Name="TAGGING_DATE" Type="number" Precision="8" />
+    <Property Name="VERIFICATION_STATUS" Type="varchar2" MaxLength="10" />
+    <Property Name="VERIFICATION_BY" Type="varchar2" MaxLength="15" />
+    <Property Name="LAST_INVENTORY_ON" Type="number" Precision="8" />
+    <Property Name="TYPE_NAME" Type="varchar2" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_BATCH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_BATCH">
+    <Key>
+      <PropertyRef Name="BATCH_ID" />
+    </Key>
+    <Property Name="BATCH_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="INSTANCE_ID" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="CLASS_NAME" Type="varchar2" Nullable="false" MaxLength="255" />
+    <Property Name="TIME_START" Type="timestamp" Nullable="false" />
+    <Property Name="TIME_END" Type="timestamp" />
+    <Property Name="SERVICE_NAME" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="TYPE" Type="varchar2" MaxLength="10" />
+    <Property Name="FILENAME" Type="varchar2" MaxLength="100" />
+    <Property Name="FILE_HAS_ERROR" Type="number" Nullable="false" />
+    <Property Name="EXCEPTION" Type="varchar2" MaxLength="100" />
+    <Property Name="EXCEPTION_MSG" Type="varchar2" MaxLength="255" />
+    <Property Name="STACKTRACE" Type="varchar2" />
+    <Property Name="OUTBOUND_FILE_NAME" Type="varchar2" MaxLength="128" />
+    <Property Name="OUTBOUND_FILE_SIZE" Type="number" Precision="10" />
+    <Property Name="OUTBOUND_FILE_LINE_COUNT" Type="number" Precision="15" />
+    <Property Name="OUTBOUND_FILE_DATE" Type="varchar2" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="BI_CHKMSAN_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CHKMSAN_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPLOCNTNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPEQUTABBR" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPINDEX" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_CONTRACT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_CONTRACT">
+    <Key>
+      <PropertyRef Name="CONTRACT_NO" />
+    </Key>
+    <Property Name="CONTRACT_NO" Type="varchar2" Nullable="false" MaxLength="10" />
+    <Property Name="CONTRACT_DESCRIPTION" Type="varchar2" MaxLength="40" />
+    <Property Name="ITEM_NO" Type="varchar2" MaxLength="5" />
+    <Property Name="VENDOR_ID" Type="varchar2" MaxLength="10" />
+    <Property Name="VENDOR_NAME" Type="varchar2" MaxLength="35" />
+    <Property Name="SHORT_TEXT" Type="varchar2" MaxLength="40" />
+    <Property Name="ITEM_CATEGORY" Type="varchar2" MaxLength="1" />
+    <Property Name="ORDER_UNIT" Type="varchar2" MaxLength="3" />
+    <Property Name="NET_PRICE" Type="number" Precision="12" Scale="2" />
+    <Property Name="BI_BATCH_ID" Type="number" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+  </EntityType>
+  <EntityType Name="BI_CREATECARD_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="CARDID" Type="varchar2" MaxLength="50" />
+    <Property Name="GE3FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATECARD_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="CARDID" Type="varchar2" MaxLength="50" />
+    <Property Name="GE3FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATECARD_REQUEST">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="EQUPID" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDSLOT" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDMODEL" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDSTATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDSERIAL" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDCOUNTPORT" Type="number" Precision="20" />
+    <Property Name="PORTSTARTNUM" Type="varchar2" MaxLength="50" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATECARD_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="EQUPID" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDSLOT" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDMODEL" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDSTATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDSERIAL" Type="varchar2" MaxLength="50" />
+    <Property Name="CARDCOUNTPORT" Type="number" Precision="20" />
+    <Property Name="PORTSTARTNUM" Type="varchar2" MaxLength="50" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATECS_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="CABS_ID" Type="number" Precision="11" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATECS_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="EQUPID" Type="varchar2" MaxLength="50" />
+    <Property Name="CABS_NAME" Type="varchar2" MaxLength="50" />
+    <Property Name="CABS_CAST_TYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="CABS_STATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="CSPT_PROD_NAME" Type="varchar2" MaxLength="50" />
+    <Property Name="MIN_NUMBER" Type="number" Precision="11" />
+    <Property Name="MAX_NUMBER" Type="number" Precision="11" />
+    <Property Name="PAIR_COUNT" Type="number" Precision="11" />
+    <Property Name="LOCATION_A" Type="varchar2" MaxLength="50" />
+    <Property Name="LOCATION_B" Type="varchar2" MaxLength="50" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="DISTANCE" Type="number" Precision="15" Scale="5" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFC_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="FRACID" Type="varchar2" MaxLength="50" />
+    <Property Name="G3EFID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFC_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="FRACID" Type="varchar2" MaxLength="50" />
+    <Property Name="G3EFID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFC_REQUEST">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="FRANNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="INDEXX" Type="varchar2" MaxLength="50" />
+    <Property Name="STATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="LOCATIONDETAIL" Type="varchar2" MaxLength="255" />
+    <Property Name="AREACODE" Type="varchar2" MaxLength="50" />
+    <Property Name="AREADESCRIPTION" Type="varchar2" MaxLength="50" />
+    <Property Name="AREAAREACODE" Type="varchar2" MaxLength="50" />
+    <Property Name="AREAARETCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFC_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="FRANNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="INDEXX" Type="varchar2" MaxLength="50" />
+    <Property Name="STATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="LOCATIONDETAIL" Type="varchar2" MaxLength="255" />
+    <Property Name="AREACODE" Type="varchar2" MaxLength="50" />
+    <Property Name="AREADESCRIPTION" Type="varchar2" MaxLength="50" />
+    <Property Name="AREAAREACODE" Type="varchar2" MaxLength="50" />
+    <Property Name="AREAARETCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFU_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="FRAUID" Type="number" Precision="20" />
+    <Property Name="G3EFID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFU_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="FRAUID" Type="number" Precision="20" />
+    <Property Name="G3EFID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFU_REQUEST">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="FRACID" Type="number" Precision="20" />
+    <Property Name="FRAUPOSITION" Type="varchar2" MaxLength="50" />
+    <Property Name="FRAUNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="FRAUDISTANCE" Type="number" Precision="11" />
+    <Property Name="FUPTMANRABBREAVIATION" Type="varchar2" MaxLength="50" />
+    <Property Name="TERMINATIONTYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="PRODUCTTYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="COUNTPAIR" Type="number" Precision="11" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFU_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="FRACID" Type="number" Precision="20" />
+    <Property Name="FRAUPOSITION" Type="varchar2" MaxLength="50" />
+    <Property Name="FRAUNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="FRAUDISTANCE" Type="number" Precision="11" />
+    <Property Name="FUPTMANRABBREAVIATION" Type="varchar2" MaxLength="50" />
+    <Property Name="TERMINATIONTYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="PRODUCTTYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="COUNTPAIR" Type="number" Precision="11" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATENE_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="EQUP_ID" Type="number" Precision="20" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATENE_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="EQUP_ID" Type="number" Precision="20" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATENE_REQUEST">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="EQUPLOCNTTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUPEQUTABBREAVIATION" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPINDEX" Type="varchar2" MaxLength="50" />
+    <Property Name="LOCNDETAIL" Type="varchar2" MaxLength="255" />
+    <Property Name="AREACODE" Type="varchar2" MaxLength="50" />
+    <Property Name="AREADESCRIPTION" Type="varchar2" MaxLength="50" />
+    <Property Name="AREAARETCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="AREAAREACODE" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPSTATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPMANRABBREAVIATION" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPEQUMMODEL" Type="varchar2" MaxLength="50" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATENE_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="EQUPLOCNTTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUPEQUTABBREAVIATION" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPINDEX" Type="varchar2" MaxLength="50" />
+    <Property Name="LOCNDETAIL" Type="varchar2" MaxLength="255" />
+    <Property Name="AREACODE" Type="varchar2" MaxLength="50" />
+    <Property Name="AREADESCRIPTION" Type="varchar2" MaxLength="50" />
+    <Property Name="AREAARETCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="AREAAREACODE" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPSTATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPMANRABBREAVIATION" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPEQUMMODEL" Type="varchar2" MaxLength="50" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATESB_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_CREATESB_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="FRAC_ID" Type="varchar2" MaxLength="50" />
+    <Property Name="FIELD1" Type="varchar2" MaxLength="50" />
+    <Property Name="FIELD2" Type="varchar2" MaxLength="50" />
+    <Property Name="STREET_NUMBER" Type="varchar2" MaxLength="50" />
+    <Property Name="STREET_TYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="STREET_NAME" Type="varchar2" MaxLength="50" />
+    <Property Name="SUBURB" Type="varchar2" MaxLength="50" />
+    <Property Name="CITY" Type="varchar2" MaxLength="50" />
+    <Property Name="STAT_ABBR" Type="varchar2" MaxLength="50" />
+    <Property Name="POSCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="COUNTRY" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="DISTANCE" Type="number" Precision="15" Scale="5" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_DECOMM_TABLE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_DECOMM_TABLE">
+    <Key>
+      <PropertyRef Name="BI_BATCH_ID" />
+    </Key>
+    <Property Name="DECOMM_DATE" Type="date" />
+    <Property Name="ASSET_NO" Type="number" Precision="11" />
+    <Property Name="DECOMM_REASON" Type="varchar2" MaxLength="40" />
+    <Property Name="CABLE_ID" Type="number" Precision="10" />
+    <Property Name="BI_BATCH_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_GEMS_BOQ_MAT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_GEMS_BOQ_MAT">
+    <Key>
+      <PropertyRef Name="PROJ_NO" />
+    </Key>
+    <Property Name="PROJ_NO" Type="varchar2" Nullable="false" MaxLength="24" />
+    <Property Name="NETWORK_HEADER" Type="varchar2" MaxLength="12" />
+    <Property Name="CONTRACT_NO" Type="varchar2" MaxLength="10" />
+    <Property Name="CONTRACT_ITEM_NO" Type="varchar2" MaxLength="5" />
+    <Property Name="QUANTITY" Type="number" Precision="11" />
+    <Property Name="BI_BATCH_ID" Type="number" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+    <Property Name="WBS_NUM" Type="varchar2" MaxLength="24" />
+  </EntityType>
+  <EntityType Name="BI_GRNDATAMATCH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EXCHDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_SITE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNDATAMATCH_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_MNGIP" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_TOTALPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPCAT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPVEND" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPMODEL" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPADD_REGION" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPADD_STATE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPADD_EXCHDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPADD_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSGCODE" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSG" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLDPATHCONS_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="255" />
+    <Property Name="ANAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ASITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ATYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD2" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT2" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD3" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT3" Type="varchar2" MaxLength="255" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="DPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="DPSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="DPPORT" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLDPATHCONS_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="PATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHBW" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="DSIDE" Type="varchar2" MaxLength="255" />
+    <Property Name="DCARD2" Type="varchar2" MaxLength="255" />
+    <Property Name="DPORT2" Type="varchar2" MaxLength="255" />
+    <Property Name="FDPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="FDPCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="FDPPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="FDCPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="FDCPATHTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="FDCPATHBW" Type="varchar2" MaxLength="255" />
+    <Property Name="FDCPATHSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="ESIDE" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD2" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT2" Type="varchar2" MaxLength="255" />
+    <Property Name="SPLITTER" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD3" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT3" Type="varchar2" MaxLength="255" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSGCODE" Type="number" Precision="15" />
+    <Property Name="CALLSTATUS_MSG" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLDPATHNONCONS_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHBW" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="ANAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ASITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ATYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ASLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT" Type="varchar2" MaxLength="255" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="NISBEARERID" Type="varchar2" MaxLength="255" />
+    <Property Name="NISMEDIAPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="PRIMARYSECONDARY" Type="varchar2" MaxLength="255" />
+    <Property Name="TMIPDSLAM_NODENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="TMIPDSLAM_UPLINKPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="TMIPDSLAM_DOWNLINKPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="TMSE_NODENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="TMSE_DOWNLINKPORT" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLDPATHNONCONS_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="PATHNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHBW" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="ANAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ASITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ATYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ASLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT" Type="varchar2" MaxLength="255" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="NISBEARERID" Type="varchar2" MaxLength="255" />
+    <Property Name="NISMEDIAPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="PRIMARYSECONDARY" Type="varchar2" MaxLength="255" />
+    <Property Name="IPDSLAMNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="DSLAMUPLINK" Type="varchar2" MaxLength="255" />
+    <Property Name="DSLAMDOWNLOADPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="MSENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="MSE_DOWNLINKPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSGCODE" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSG" Type="varchar2" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLOADEQUIP_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="100" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_MNGTIP" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPCAT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPVEND" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPMODEL" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_REGION" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_STATE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EXCHDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_TEMPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_TAGGING" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_OUTINDOORTAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_EXTFLAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_NETWORK" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_INSERVICE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLOADEQUIP_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="EQUIP_EQUIPINSTID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPCAT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPVEND" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPMODEL" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_MNGTIP" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_SITEDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_TEMPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_TAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_OUTINDOORTAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_DPEXTFLAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_NETWORKNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSGCODE" Type="number" Precision="15" />
+    <Property Name="CALLSTATUS_MSG" Type="varchar2" MaxLength="2000" />
+    <Property Name="EQUIP_INSERVICE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLOADPATH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="255" />
+    <Property Name="PATH_TYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATH_BANDWIDTH" Type="varchar2" MaxLength="255" />
+    <Property Name="PATH_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_NAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_TYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_SLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_CARD" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_PORT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_NAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_TYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_SLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_CARD" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_PORT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMBEARER_ID" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMBEARER_MEDIAPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMBEARER_PRIMESEC" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMIPDSLAM_NNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMIPDSLAM_ULPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMIPDSLAM_DLPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMSE_NODENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMSE_DLPORT" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPADDCARD_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="ADDCARD_ID" Type="number" />
+    <Property Name="CLASS_NAME" Type="char" MaxLength="100" />
+    <Property Name="G3E_FID" Type="number" Precision="10" />
+    <Property Name="SCHEME_NAME" Type="varchar2" MaxLength="100" />
+    <Property Name="USERID" Type="varchar2" MaxLength="30" />
+    <Property Name="EQUIPMENTID" Type="varchar2" MaxLength="115" />
+    <Property Name="EQUIPVEND" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUIPMODEL" Type="varchar2" MaxLength="100" />
+    <Property Name="TEMPLATENAME" Type="varchar2" MaxLength="100" />
+    <Property Name="SLOT_NO" Type="number" Precision="10" />
+    <Property Name="CARD_TYPE" Type="varchar2" MaxLength="30" />
+    <Property Name="TOTAL_PORT" Type="varchar2" MaxLength="100" />
+    <Property Name="PROJECT_NAME" Type="varchar2" MaxLength="100" />
+    <Property Name="PATCHCORD" Type="varchar2" MaxLength="100" />
+    <Property Name="DESIGN" Type="varchar2" MaxLength="100" />
+    <Property Name="ADDCARD" Type="varchar2" MaxLength="100" />
+    <Property Name="ADDSPLITTER" Type="varchar2" MaxLength="100" />
+    <Property Name="OWNER_FID" Type="varchar2" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPADDCARD_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="REQUESTEDSERVICE" Type="varchar2" MaxLength="100" />
+    <Property Name="TRANSACTIONID" Type="varchar2" MaxLength="100" />
+    <Property Name="REQUESTSYSTEM" Type="varchar2" MaxLength="100" />
+    <Property Name="STATUS" Type="varchar2" MaxLength="100" />
+    <Property Name="MESSAGECODE" Type="varchar2" MaxLength="100" />
+    <Property Name="MESSAGE" Type="varchar2" MaxLength="500" />
+    <Property Name="USERID" Type="varchar2" MaxLength="100" />
+    <Property Name="EQUIPINFO" Type="varchar2" MaxLength="100" />
+    <Property Name="SLOTNUMBER" Type="varchar2" MaxLength="100" />
+    <Property Name="TOTALPORT" Type="varchar2" MaxLength="100" />
+    <Property Name="PATHCORD" Type="varchar2" MaxLength="100" />
+    <Property Name="PROJECTNAME" Type="varchar2" MaxLength="100" />
+    <Property Name="DESIGN" Type="varchar2" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDATAMATCH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EXCHDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_SITE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDATAMATCH_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_MNGIP" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_TOTALPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPCAT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPVEND" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPMODEL" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPADD_REGION" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPADD_STATE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPADD_EXCHDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPADD_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSGCODE" Type="number" Precision="15" />
+    <Property Name="CALLSTATUS_MSG" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETEEQUIP_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="CLASS_NAME" Type="char" MaxLength="100" />
+    <Property Name="USERID" Type="varchar2" MaxLength="30" />
+    <Property Name="EQUIPMENTID" Type="varchar2" MaxLength="115" />
+    <Property Name="EQUIPMENTCATEGORY" Type="varchar2" MaxLength="50" />
+    <Property Name="SLOTNUMBER" Type="varchar2" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETEEQUIP_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="REQUESTEDSERVICE" Type="varchar2" MaxLength="100" />
+    <Property Name="TRANSACTIONID" Type="varchar2" MaxLength="100" />
+    <Property Name="REQUESTSYSTEM" Type="varchar2" MaxLength="100" />
+    <Property Name="STATUS" Type="varchar2" MaxLength="100" />
+    <Property Name="MESSAGECODE" Type="varchar2" MaxLength="100" />
+    <Property Name="MESSAGE" Type="varchar2" MaxLength="100" />
+    <Property Name="EQUIPMENTINSTID" Type="varchar2" MaxLength="100" />
+    <Property Name="EQUIPMENTID" Type="varchar2" MaxLength="100" />
+    <Property Name="EQUIPMENTCATEGORY" Type="varchar2" MaxLength="100" />
+    <Property Name="EQUIPMENTSTATUS" Type="varchar2" MaxLength="100" />
+    <Property Name="SLOTNUMBER" Type="varchar2" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETEPATH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="CLASS_NAME" Type="char" MaxLength="150" />
+    <Property Name="USERID" Type="varchar2" MaxLength="30" />
+    <Property Name="NAME" Type="varchar2" MaxLength="255" />
+    <Property Name="TYPE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETEPATH_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="REQUESTEDSERVICE" Type="varchar2" MaxLength="100" />
+    <Property Name="TRANSACTIONID" Type="varchar2" MaxLength="100" />
+    <Property Name="REQUESTSYSTEM" Type="varchar2" MaxLength="100" />
+    <Property Name="STATUS" Type="varchar2" MaxLength="100" />
+    <Property Name="MESSAGECODE" Type="varchar2" MaxLength="100" />
+    <Property Name="MESSAGE" Type="varchar2" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETESB_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="CLASS_NAME" Type="char" MaxLength="150" />
+    <Property Name="USERID" Type="varchar2" MaxLength="30" />
+    <Property Name="SERVICEBOUNDARYID" Type="varchar2" MaxLength="150" />
+    <Property Name="SITEDP" Type="varchar2" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETESB_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="REQUESTEDSERVICE" Type="varchar2" MaxLength="100" />
+    <Property Name="TRANSACTIONID" Type="varchar2" MaxLength="100" />
+    <Property Name="REQUESTSYSTEM" Type="varchar2" MaxLength="100" />
+    <Property Name="STATUS" Type="varchar2" MaxLength="100" />
+    <Property Name="MESSAGECODE" Type="varchar2" MaxLength="100" />
+    <Property Name="MESSAGE" Type="varchar2" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLDPATHCONS_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="255" />
+    <Property Name="ANAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ASITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ATYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD2" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT2" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD3" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT3" Type="varchar2" MaxLength="255" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="DPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="DPSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="DPPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT4" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD4" Type="varchar2" MaxLength="255" />
+    <Property Name="DP_TAMBAHAN" Type="varchar2" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLDPATHCONS_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="PATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHBW" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="DSIDE" Type="varchar2" MaxLength="255" />
+    <Property Name="DCARD2" Type="varchar2" MaxLength="255" />
+    <Property Name="DPORT2" Type="varchar2" MaxLength="255" />
+    <Property Name="FDPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="FDPCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="FDPPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="FDCPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="FDCPATHTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="FDCPATHBW" Type="varchar2" MaxLength="255" />
+    <Property Name="FDCPATHSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="ESIDE" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD2" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT2" Type="varchar2" MaxLength="255" />
+    <Property Name="SPLITTER" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD3" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT3" Type="varchar2" MaxLength="255" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSGCODE" Type="number" Precision="15" />
+    <Property Name="CALLSTATUS_MSG" Type="varchar2" MaxLength="2000" />
+    <Property Name="ODPPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="ODPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ODPCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ODPPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="ODPZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ODPZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ODPZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ODPZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ODPZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="DP_TAMBAHAN" Type="varchar2" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLDPATHNONCONS_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHBW" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="ANAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ASITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ATYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ASLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT" Type="varchar2" MaxLength="255" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="NISBEARERID" Type="varchar2" MaxLength="255" />
+    <Property Name="NISMEDIAPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="PRIMARYSECONDARY" Type="varchar2" MaxLength="255" />
+    <Property Name="TMIPDSLAM_NODENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="TMIPDSLAM_UPLINKPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="TMIPDSLAM_DOWNLINKPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="TMSE_NODENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="TMSE_DOWNLINKPORT" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLDPATHNONCONS_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="PATHNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHBW" Type="varchar2" MaxLength="255" />
+    <Property Name="PATHSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="ANAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ASITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ATYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ASLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT" Type="varchar2" MaxLength="255" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ZSLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="255" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="NISBEARERID" Type="varchar2" MaxLength="255" />
+    <Property Name="NISMEDIAPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="PRIMARYSECONDARY" Type="varchar2" MaxLength="255" />
+    <Property Name="IPDSLAMNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="DSLAMUPLINK" Type="varchar2" MaxLength="255" />
+    <Property Name="DSLAMDOWNLOADPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="MSENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="MSE_DOWNLINKPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSGCODE" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSG" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLOADEQUIP_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="100" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_MNGTIP" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPCAT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPVEND" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPMODEL" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_REGION" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_STATE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EXCHDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_TEMPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_TAGGING" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_OUTINDOORTAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_EXTFLAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_NETWORK" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_INSERVICE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATCHCORD" Type="varchar2" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLOADEQUIP_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="EQUIP_EQUIPINSTID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPCAT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPVEND" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPMODEL" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_MNGTIP" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_SITEDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_TEMPNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_TAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_OUTINDOORTAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_DPEXTFLAG" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPUDA_NETWORKNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS_MSGCODE" Type="number" Precision="15" />
+    <Property Name="CALLSTATUS_MSG" Type="varchar2" MaxLength="2000" />
+    <Property Name="EQUIP_INSERVICE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATCHCORD" Type="varchar2" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLOADPATH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="255" />
+    <Property Name="PATH_TYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="PATH_BANDWIDTH" Type="varchar2" MaxLength="255" />
+    <Property Name="PATH_STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_NAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_TYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_SLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_CARD" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPA_PORT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_NAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_SITE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_TYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_SLOT" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_CARD" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIPZ_PORT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMBEARER_ID" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMBEARER_MEDIAPATHID" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMBEARER_PRIMESEC" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMIPDSLAM_NNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMIPDSLAM_ULPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMIPDSLAM_DLPORT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMSE_NODENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATMSE_DLPORT" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPLOADSITE_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="255" />
+    <Property Name="SITEREGION" Type="varchar2" MaxLength="255" />
+    <Property Name="SITESTATE" Type="varchar2" MaxLength="255" />
+    <Property Name="SITEPTT" Type="varchar2" MaxLength="255" />
+    <Property Name="SITEEXCHG" Type="varchar2" MaxLength="255" />
+    <Property Name="SITENAME" Type="varchar2" MaxLength="255" />
+    <Property Name="SITEDESC" Type="varchar2" MaxLength="255" />
+    <Property Name="SITETYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRFLOOR" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITENO" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRBUILD" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTREET" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCITY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTATE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRPOSTCODE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTREETTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCOUNTY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCOUNTRY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCOMMENTS" Type="varchar2" MaxLength="255" />
+    <Property Name="UDAEQUIPLOC" Type="varchar2" MaxLength="255" />
+    <Property Name="UDACABLINGTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="UDACOPPEROWNBYTM" Type="varchar2" MaxLength="255" />
+    <Property Name="UDAFIBERTOPREMISEEXIST" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATOTALSRVBOUNDARY" Type="varchar2" MaxLength="50" />
+    <Property Name="UDAACCESSRESTRICT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDACONTACT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDACOMMENTS" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPLOADSITE_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="INSTID" Type="number" Precision="15" />
+    <Property Name="NAME" Type="varchar2" MaxLength="255" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+    <Property Name="SITETYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="STATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITEFLOOR" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITENO" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITEBUILD" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTREET" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCITY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTATE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRPOSTCODE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTREETTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCOUNTY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCOUNTRY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCOMMENTS" Type="varchar2" MaxLength="255" />
+    <Property Name="UDAEQUIPLOC" Type="varchar2" MaxLength="255" />
+    <Property Name="UDACABLINGTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="UDACOPPEROWNBYTM" Type="varchar2" MaxLength="255" />
+    <Property Name="UDAFIBRETOPREMISEEXIST" Type="varchar2" MaxLength="255" />
+    <Property Name="UDATOTALSRVBONDARY" Type="varchar2" MaxLength="255" />
+    <Property Name="UDAACCESSRESTRICT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDACONTACT" Type="varchar2" MaxLength="255" />
+    <Property Name="UDACOMMENTS" Type="varchar2" MaxLength="255" />
+    <Property Name="CSSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CSMSGCODE" Type="number" Precision="15" />
+    <Property Name="CSMSG" Type="varchar2" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPLOADSRVBND_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="EVENTNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="EQUIP_EQUIPID" Type="varchar2" MaxLength="255" />
+    <Property Name="USERID" Type="varchar2" MaxLength="255" />
+    <Property Name="SRVBNDID" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITENO" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITEFLOOR" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITEBUILD" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTREETTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTREETNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSECTION" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRPOSTCODE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCITY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTATE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCOUNTRY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRPREMISETYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSERVCAT" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITESDP" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITEDPEXC" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRDDP" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSMARTDEV" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRPROJECTID" Type="varchar2" MaxLength="255" />
+    <Property Name="COS" Type="varchar2" MaxLength="255" />
+    <Property Name="DROPCABLEDISTANCE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPLOADSRVBND_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="SRVBNDID" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRRSCINSTID" Type="number" Precision="15" />
+    <Property Name="ADDRSITENO" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITEFLOOR" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITEBUILD" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTREETTYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTREETNAME" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSECTION" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRPOSTCODE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCITY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSTATE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRCOUNTRY" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRPREMISETYPE" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSERVCAT" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRDDP" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSMARTDEV" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRPROJECTID" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITESDP" Type="varchar2" MaxLength="255" />
+    <Property Name="ADDRSITEDPEXC" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLSTATUS" Type="varchar2" MaxLength="255" />
+    <Property Name="CALLMSGCODE" Type="number" Precision="15" />
+    <Property Name="CALLMSG" Type="varchar2" MaxLength="2000" />
+    <Property Name="COS" Type="varchar2" MaxLength="255" />
+    <Property Name="DROPCABLEDISTANCE" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_NNW_EXT_SCH_GEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_NNW_EXT_SCH_GEM">
+    <Key>
+      <PropertyRef Name="PROJ_NUM" />
+    </Key>
+    <Property Name="PROJ_NUM" Type="varchar2" Nullable="false" MaxLength="24" />
+    <Property Name="NETWORK_HDR" Type="varchar2" MaxLength="12" />
+    <Property Name="WBS_NUM" Type="varchar2" MaxLength="24" />
+    <Property Name="RATE_INDICATOR" Type="varchar2" MaxLength="1" />
+    <Property Name="PU_ID" Type="varchar2" MaxLength="18" />
+    <Property Name="PU_QTY" Type="number" Precision="13" Scale="3" />
+    <Property Name="BI_BATCH_ID" Type="number" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_NNW_GEM_PROJNO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_NNW_GEM_PROJNO">
+    <Key>
+      <PropertyRef Name="PROJECT_NO" />
+    </Key>
+    <Property Name="PROJECT_NO" Type="varchar2" Nullable="false" MaxLength="24" />
+    <Property Name="PROJ_DESC" Type="varchar2" MaxLength="40" />
+    <Property Name="START_DATE" Type="date" />
+    <Property Name="END_DATE" Type="date" />
+    <Property Name="EXC_ABB" Type="varchar2" MaxLength="6" />
+    <Property Name="AMOUNT" Type="number" Precision="13" Scale="3" />
+    <Property Name="NETWORK_HDR" Type="varchar2" MaxLength="12" />
+    <Property Name="WBS_NUM" Type="varchar2" MaxLength="24" />
+    <Property Name="WBS_DESC" Type="varchar2" MaxLength="40" />
+    <Property Name="BI_BATCH_ID" Type="number" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_NNW_MAT_MAST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_NNW_MAT_MAST">
+    <Key>
+      <PropertyRef Name="MAT_ID" />
+    </Key>
+    <Property Name="RECORD_TYPE" Type="varchar2" MaxLength="1" />
+    <Property Name="TRANS_TYPE" Type="varchar2" MaxLength="1" />
+    <Property Name="MAT_ID" Type="varchar2" Nullable="false" MaxLength="12" />
+    <Property Name="MAT_NAME" Type="varchar2" MaxLength="60" />
+    <Property Name="MAT_UOM" Type="varchar2" MaxLength="6" />
+    <Property Name="MAT_CAT" Type="varchar2" MaxLength="2" />
+    <Property Name="MAT_PRICE" Type="number" Precision="13" Scale="2" />
+    <Property Name="BI_BATCH_ID" Type="number" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_NNW_PU_MAST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_NNW_PU_MAST">
+    <Key>
+      <PropertyRef Name="PU_ID" />
+    </Key>
+    <Property Name="RECORD_TYPE" Type="varchar2" MaxLength="1" />
+    <Property Name="TRANS_TYPE" Type="varchar2" MaxLength="2" />
+    <Property Name="PU_ID" Type="varchar2" Nullable="false" MaxLength="7" />
+    <Property Name="PU_DESC" Type="varchar2" MaxLength="60" />
+    <Property Name="PU_INST_PR" Type="number" Precision="13" Scale="2" />
+    <Property Name="PU_MAT_PR" Type="number" Precision="13" Scale="2" />
+    <Property Name="PU_UOM" Type="varchar2" MaxLength="6" />
+    <Property Name="DURATION" Type="number" Precision="7" Scale="3" />
+    <Property Name="NETWORK_FLAG" Type="varchar2" MaxLength="1" />
+    <Property Name="ACT_CODE" Type="varchar2" MaxLength="6" />
+    <Property Name="SUP_DURATION" Type="number" Precision="13" Scale="2" />
+    <Property Name="BILL_RATE" Type="varchar2" MaxLength="1" />
+    <Property Name="DATE_TS" Type="date" />
+    <Property Name="BI_BATCH_ID" Type="number" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_NNW_PU_MAT_REF' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_NNW_PU_MAT_REF">
+    <Key>
+      <PropertyRef Name="MAT_ID" />
+    </Key>
+    <Property Name="RECORD_TYPE" Type="varchar2" MaxLength="1" />
+    <Property Name="TRANS_TYPE" Type="varchar2" MaxLength="1" />
+    <Property Name="PU_ID" Type="varchar2" MaxLength="7" />
+    <Property Name="MAT_ID" Type="varchar2" Nullable="false" MaxLength="12" />
+    <Property Name="PM_QTY" Type="number" Precision="13" Scale="4" />
+    <Property Name="BI_BATCH_ID" Type="number" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_PROC_GRN_ISP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_PROC_GRN_ISP">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="STATUS" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="TIME_CREATED" Type="timestamp" Nullable="false" />
+    <Property Name="TIME_STARTED" Type="timestamp" />
+    <Property Name="TIME_FINISHED" Type="timestamp" />
+    <Property Name="HAS_ERROR" Type="number" Precision="1" />
+    <Property Name="STACK_TRACE" Type="varchar2" />
+    <Property Name="NEPS_JOB_ID" Type="varchar2" MaxLength="50" />
+    <Property Name="CLASS_NAME" Type="varchar2" Nullable="false" MaxLength="100" />
+    <Property Name="USER_ID" Type="varchar2" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="BI_PROC_GRN_OSP">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="STATUS" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="TIME_CREATED" Type="timestamp" Nullable="false" />
+    <Property Name="TIME_STARTED" Type="timestamp" />
+    <Property Name="TIME_FINISHED" Type="timestamp" />
+    <Property Name="HAS_ERROR" Type="number" Precision="1" />
+    <Property Name="STACK_TRACE" Type="varchar2" />
+    <Property Name="NEPS_JOB_ID" Type="varchar2" MaxLength="50" />
+    <Property Name="CLASS_NAME" Type="varchar2" Nullable="false" MaxLength="100" />
+    <Property Name="USER_ID" Type="varchar2" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="BI_PROCESS">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="STATUS" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="TIME_CREATED" Type="timestamp" Nullable="false" />
+    <Property Name="TIME_STARTED" Type="timestamp" />
+    <Property Name="TIME_FINISHED" Type="timestamp" />
+    <Property Name="HAS_ERROR" Type="number" Precision="1" />
+    <Property Name="STACK_TRACE" Type="varchar2" />
+    <Property Name="NEPS_JOB_ID" Type="varchar2" MaxLength="50" />
+    <Property Name="CLASS_NAME" Type="varchar2" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="BI_PROCESS_ISP">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="STATUS" Type="varchar2" Nullable="false" MaxLength="20" />
+    <Property Name="TIME_CREATED" Type="timestamp" Nullable="false" />
+    <Property Name="TIME_STARTED" Type="timestamp" />
+    <Property Name="TIME_FINISHED" Type="timestamp" />
+    <Property Name="HAS_ERROR" Type="number" Precision="1" />
+    <Property Name="STACK_TRACE" Type="varchar2" />
+    <Property Name="NEPS_JOB_ID" Type="varchar2" MaxLength="50" />
+    <Property Name="CLASS_NAME" Type="varchar2" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.BI_TOGEMS_SEQ1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BI_TOGEMS_SEQ1">
+    <Key>
+      <PropertyRef Name="BI_BATCH_ID" />
+    </Key>
+    <Property Name="BI_BATCH_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="BI_INSERT_ORDER" Type="number" Precision="11" />
+    <Property Name="PROJECT_NO" Type="varchar2" MaxLength="11" />
+    <Property Name="WBS_NO" Type="varchar2" MaxLength="24" />
+    <Property Name="EQUIPMENT_CODE" Type="varchar2" MaxLength="20" />
+    <Property Name="EXC_ABB" Type="varchar2" MaxLength="10" />
+    <Property Name="ASSET_ADDRESS1" Type="varchar2" MaxLength="30" />
+    <Property Name="ASSET_ADDRESS2" Type="varchar2" MaxLength="30" />
+    <Property Name="ASSET_ADDRESS3" Type="varchar2" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="BI_UPDATEDPDIST_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Name="REPLY_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="ERRORCODE" Type="varchar2" MaxLength="50" />
+    <Property Name="ERRORMSG" Type="varchar2" MaxLength="1024" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="BI_UPDATEDPDIST_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Name="REQUEST_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="PROC_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="G3E_FID" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPLOCNTNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPEQUTABBR" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUPINDEX" Type="varchar2" MaxLength="50" />
+    <Property Name="TIME_SENT" Type="timestamp" />
+    <Property Name="TIME_RETURNED" Type="timestamp" />
+    <Property Name="DISTANCE" Type="varchar2" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPSBI.MIG_EXC_PTT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="MIG_EXC_PTT">
+    <Key>
+      <PropertyRef Name="EXC" />
+    </Key>
+    <Property Name="EXC" Type="varchar2" Nullable="false" MaxLength="25" />
+    <Property Name="PTT" Type="varchar2" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="MIG_EXCHANGE">
+    <Key>
+      <PropertyRef Name="MIG_EXCHANGE_ID" />
+    </Key>
+    <Property Name="EXCHANGE" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="MIG_EXCHANGE_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="NRM_ID" Type="number" Precision="15" />
+    <Property Name="TIME_LOADED" Type="timestamp" />
+    <Property Name="ERROR_CODE" Type="varchar2" MaxLength="500" />
+    <Property Name="TIME_MODIFIED" Type="timestamp" Nullable="false" />
+    <Property Name="TIME_PREPROCESS" Type="timestamp" />
+  </EntityType>
+  <EntityType Name="MIG_GRT_CHASSIS">
+    <Key>
+      <PropertyRef Name="MIG_GRT_CHASSIS_ID" />
+    </Key>
+    <Property Name="MIG_GRT_CHASSIS_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="EQUP_EQUT_ABBREVIATION" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="EQUP_INDEX" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="EQUP_LOCN_TTNAME" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="EQUP_STATUS" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="EQUP_MANR_ABBREVIATION" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="EQUP_EQUM_MODEL" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUP_INSERVICE" Type="varchar2" MaxLength="50" />
+    <Property Name="NRM_ID" Type="number" Precision="15" />
+    <Property Name="TIME_MODIFIED" Type="timestamp" />
+    <Property Name="TIME_PREPROCESS" Type="timestamp" />
+    <Property Name="TIME_LOADED" Type="timestamp" />
+    <Property Name="ERROR_CODE" Type="varchar2" MaxLength="400" />
+    <Property Name="MIG_EXCHANGE_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="TEST" Type="varchar2" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_BAYLINE">
+    <Key>
+      <PropertyRef Name="MIG_NIS_BAYLINE_ID" />
+    </Key>
+    <Property Name="MIG_NIS_BAYLINE_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="FRAC_FRAN_NAME" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="FRAC_INDEX" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="MIG_EXCHANGE_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="NRM_ID" Type="number" Precision="15" />
+    <Property Name="TIME_MODIFIED" Type="timestamp" />
+    <Property Name="TIME_PREPROCESS" Type="timestamp" />
+    <Property Name="TIME_LOADED" Type="timestamp" />
+    <Property Name="ERROR_CODE" Type="varchar2" MaxLength="300" />
+    <Property Name="FRAC_ID" Type="varchar2" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_CHASSIS">
+    <Key>
+      <PropertyRef Name="MIG_NIS_CHASSIS_ID" />
+    </Key>
+    <Property Name="MIG_NIS_CHASSIS_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="EQUP_LOCN_TTNAME" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="EQUP_EQUT_ABBREVIATION" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="EQUP_INDEX" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="EQUP_STATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUP_MANR_ABBREVIATION" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUP_EQUM_MODEL" Type="varchar2" MaxLength="50" />
+    <Property Name="EQUP_INSERVICE" Type="varchar2" MaxLength="50" />
+    <Property Name="MIG_EXCHANGE_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="NRM_ID" Type="number" Precision="15" />
+    <Property Name="TIME_LOADED" Type="timestamp" />
+    <Property Name="ERROR_CODE" Type="varchar2" MaxLength="500" />
+    <Property Name="MODEL_VENDOR" Type="varchar2" MaxLength="100" />
+    <Property Name="TIME_MODIFIED" Type="timestamp" Nullable="false" />
+    <Property Name="TIME_PREPROCESS" Type="timestamp" />
+    <Property Name="EQUIP_ID" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="DOMAIN" Type="varchar2" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_PPANEL">
+    <Key>
+      <PropertyRef Name="MIG_NIS_PPANEL_ID" />
+    </Key>
+    <Property Name="MIG_NIS_PPANEL_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="FRAU_ID" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="FRAU_POSITION" Type="varchar2" MaxLength="50" />
+    <Property Name="FRAU_DISTANCE" Type="varchar2" MaxLength="50" />
+    <Property Name="FUPT_PRODUCTNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="FUPT_MANR_ABBREVIATION" Type="varchar2" MaxLength="50" />
+    <Property Name="FUPT_TERMINATIONTYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="PAIR_COUNT" Type="number" Precision="11" />
+    <Property Name="FRAC_STATUS" Type="varchar2" MaxLength="50" />
+    <Property Name="MIG_NIS_RACK_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="MIG_NIS_VRACK_ID" Type="number" Precision="11" />
+    <Property Name="NRM_ID" Type="number" Precision="15" />
+    <Property Name="TIME_MODIFIED" Type="timestamp" />
+    <Property Name="TIME_PREPROCESS" Type="timestamp" />
+    <Property Name="TIME_LOADED" Type="timestamp" />
+    <Property Name="ERROR_CODE" Type="varchar2" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_RACK">
+    <Key>
+      <PropertyRef Name="MIG_NIS_RACK_ID" />
+    </Key>
+    <Property Name="MIG_NIS_RACK_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="FRAU_NAME" Type="varchar2" Nullable="false" MaxLength="50" />
+    <Property Name="MIG_NIS_BAYLINE_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="NRM_ID" Type="number" Precision="15" />
+    <Property Name="TIME_MODIFIED" Type="timestamp" />
+    <Property Name="TIME_PREPROCESS" Type="timestamp" />
+    <Property Name="TIME_LOADED" Type="timestamp" />
+    <Property Name="ERROR_CODE" Type="varchar2" MaxLength="300" />
+    <Property Name="ACTUAL_FRAU_NAME" Type="varchar2" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_VPPANEL">
+    <Key>
+      <PropertyRef Name="MIG_NIS_VPPANEL_ID" />
+    </Key>
+    <Property Name="MIG_NIS_VPPANEL_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="MIG_NIS_PPANEL_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="NRM_ID" Type="number" Precision="15" />
+    <Property Name="TIME_MODIFIED" Type="timestamp" />
+    <Property Name="TIME_PREPROCESS" Type="timestamp" />
+    <Property Name="TIME_LOADED" Type="timestamp" />
+    <Property Name="ERROR_CODE" Type="varchar2" MaxLength="300" />
+    <Property Name="PAIR_COUNT" Type="number" Precision="11" />
+    <Property Name="MIG_NIS_VRACK_ID" Type="number" Precision="11" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_VRACK">
+    <Key>
+      <PropertyRef Name="MIG_NIS_VRACK_ID" />
+    </Key>
+    <Property Name="MIG_NIS_VRACK_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="MIG_NIS_RACK_ID" Type="number" Nullable="false" Precision="11" />
+    <Property Name="NRM_ID" Type="number" Precision="15" />
+    <Property Name="TIME_MODIFIED" Type="timestamp" />
+    <Property Name="TIME_PREPROCESS" Type="timestamp" />
+    <Property Name="TIME_LOADED" Type="timestamp" />
+    <Property Name="ERROR_CODE" Type="varchar2" MaxLength="300" />
+  </EntityType>
+  <Association Name="MIG_GRT_CHASSIS_FK1">
+    <End Role="MIG_EXCHANGE" Type="Model3.Store.MIG_EXCHANGE" Multiplicity="1" />
+    <End Role="MIG_GRT_CHASSIS" Type="Model3.Store.MIG_GRT_CHASSIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_EXCHANGE">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Principal>
+      <Dependent Role="MIG_GRT_CHASSIS">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_BAYLINE_FK1">
+    <End Role="MIG_EXCHANGE" Type="Model3.Store.MIG_EXCHANGE" Multiplicity="1" />
+    <End Role="MIG_NIS_BAYLINE" Type="Model3.Store.MIG_NIS_BAYLINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_EXCHANGE">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_BAYLINE">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_CHASSIS_FK1">
+    <End Role="MIG_EXCHANGE" Type="Model3.Store.MIG_EXCHANGE" Multiplicity="1" />
+    <End Role="MIG_NIS_CHASSIS" Type="Model3.Store.MIG_NIS_CHASSIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_EXCHANGE">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_CHASSIS">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_PPANEL_FK1">
+    <End Role="MIG_NIS_RACK" Type="Model3.Store.MIG_NIS_RACK" Multiplicity="1" />
+    <End Role="MIG_NIS_PPANEL" Type="Model3.Store.MIG_NIS_PPANEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_RACK">
+        <PropertyRef Name="MIG_NIS_RACK_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_PPANEL">
+        <PropertyRef Name="MIG_NIS_RACK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_PPANEL_FK2">
+    <End Role="MIG_NIS_VRACK" Type="Model3.Store.MIG_NIS_VRACK" Multiplicity="0..1" />
+    <End Role="MIG_NIS_PPANEL" Type="Model3.Store.MIG_NIS_PPANEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_VRACK">
+        <PropertyRef Name="MIG_NIS_VRACK_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_PPANEL">
+        <PropertyRef Name="MIG_NIS_VRACK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_RACK_FK1">
+    <End Role="MIG_NIS_BAYLINE" Type="Model3.Store.MIG_NIS_BAYLINE" Multiplicity="1" />
+    <End Role="MIG_NIS_RACK" Type="Model3.Store.MIG_NIS_RACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_BAYLINE">
+        <PropertyRef Name="MIG_NIS_BAYLINE_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_RACK">
+        <PropertyRef Name="MIG_NIS_BAYLINE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_VPPANEL_FK1">
+    <End Role="MIG_NIS_PPANEL" Type="Model3.Store.MIG_NIS_PPANEL" Multiplicity="1" />
+    <End Role="MIG_NIS_VPPANEL" Type="Model3.Store.MIG_NIS_VPPANEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_PPANEL">
+        <PropertyRef Name="MIG_NIS_PPANEL_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_VPPANEL">
+        <PropertyRef Name="MIG_NIS_PPANEL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_VPPANEL_FK2">
+    <End Role="MIG_NIS_VRACK" Type="Model3.Store.MIG_NIS_VRACK" Multiplicity="0..1" />
+    <End Role="MIG_NIS_VPPANEL" Type="Model3.Store.MIG_NIS_VPPANEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_VRACK">
+        <PropertyRef Name="MIG_NIS_VRACK_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_VPPANEL">
+        <PropertyRef Name="MIG_NIS_VRACK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_VRACK_FK1">
+    <End Role="MIG_NIS_RACK" Type="Model3.Store.MIG_NIS_RACK" Multiplicity="1" />
+    <End Role="MIG_NIS_VRACK" Type="Model3.Store.MIG_NIS_VRACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_RACK">
+        <PropertyRef Name="MIG_NIS_RACK_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_VRACK">
+        <PropertyRef Name="MIG_NIS_RACK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

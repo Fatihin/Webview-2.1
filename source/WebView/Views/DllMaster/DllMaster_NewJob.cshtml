@@ -1,0 +1,43 @@
+﻿@model WebView.Models.DllMaster_NewJobModel
+           
+@{
+    ViewBag.Title = "DllMaster_NewJob";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New DLL Master</h2>
+@using (Html.BeginForm("DllMaster_NewJob", "DllMaster", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="600px" cellpadding="0" cellspacing="0" border="0">      
+        <tr>
+            <td>File Name</td>
+            <td>
+             @Html.TextBoxFor(m => m.DLL_NAME, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.DLL_NAME)
+            </td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>
+             @Html.TextBoxFor(m => m.DLL_DESCRIPTION, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.DLL_DESCRIPTION)
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:12px;">Created Date </td>
+            <td>
+                @Html.EditorFor(m => m.CREATE_DATE)
+            </td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>    
+}

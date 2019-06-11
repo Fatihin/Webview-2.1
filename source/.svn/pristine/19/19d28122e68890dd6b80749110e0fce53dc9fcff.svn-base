@@ -1,0 +1,278 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.CSM>
+@{
+    ViewBag.Title = "CSM_List";
+}
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+        SetElement("txtCONT_ID", data.x_CONT_ID);
+        SetElement("txtCONT_ID1", data.x_CONT_ID);
+        SetElement("txtCONT_DESC", data.x_CONT_DESC);
+        SetElement("txtCONTRACT_ID", data.x_CONTRACT_ID);
+        SetElement("txtCONTRACT_NO", data.x_CONTRACT_NO);
+        SetElement("txtACT_CODE", data.x_ACT_CODE);  
+        SetElement("txtPU_UOM", data.x_PU_UOM);
+        SetElement("txtCONTRACT_PR", data.x_CONTRACT_PR);              
+        SetText("txtCONT_ID", data.x_CONT_ID);
+
+        document.getElementById("btnEdit").disabled = false;
+        document.getElementById("targetCSM").value = data.x_PU_ID;
+        document.getElementById("txtCONT_ID1").disabled = true;
+        document.getElementById("txtCONT_DESC").disabled = true;  
+    }
+
+    function SaveUpdateCallBack(data) {
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+        $(function () {
+
+            $("#rounded-corner tbody tr").bind("click", function () {
+                var t = $(this).find("#gid").text();
+                var s = $(this).find("#gitem").text();
+
+                $("#divDetails").dialog("open");
+
+                $.ajax({
+                    url: '@Url.Action("GetDetails_CSM", "CSM")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "id": t,
+                        "code": s,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+
+                        GetDetailsCallBack(res);
+                        //$.msgBox("Please la."); 
+                    }
+                });
+            });
+
+            $('#btnSearch').click(function () {
+                var itemNo = document.getElementById("itemNo").value;
+                window.location = "CSM_List?searchKey=" + document.getElementById("searchKey").value + "&itemNo=" + itemNo; //Where List is the function in the controller.
+            });
+
+            $('#searchKey').change(function () {
+                var itemNo = document.getElementById("itemNo").value;
+                window.location = "CSM_List?searchKey=" + document.getElementById("searchKey").value + "&itemNo=" + itemNo; //Where List is the function in the controller.
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "CSM_NewJob";
+            });
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm("Are you sure to delete " + document.getElementById("txtCONT_ID").value + "?");
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/CSM/DeleteData_CSM",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetID": document.getElementById("txtCONT_ID").value,
+                            "targetItem": document.getElementById("txtCONT_DESC").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+            var close = function () {
+                $(this).dialog("close");
+            }
+            $("#divDetails").dialog({
+                autoOpen: false,
+                height: 330,
+                width: 700,
+                modal: true,
+                buttons: {
+                },
+                close: function () {
+                    //allFields.val("").removeClass("ui-state-error");
+                }
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+
+
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+   
+</script>
+
+<br />
+<h2>Contract Management List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:250px;">ID : <input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td>Item No : @Html.DropDownList("itemNo", (IEnumerable<SelectListItem>)ViewBag.itemNo, new { style = "width:100px" })</td>
+                <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="width:200px;"></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+    @if (Model.Count() > 0)
+    {
+    <table id="rounded-corner" summary="Plan Unit List" width="850px">
+        <thead>
+            <tr>                
+                <th scope="col" style="width:100px">CONTRACT ID</th>
+                <th scope="col" style="width:100px">ITEM NO</th>
+                <th scope="col" style="width:100px">DESCRIPTION</th>
+                <th scope="col" style="width:100px">NET PRICE</th>
+                <th scope="col" style="width:100px">ORDER UNIT</th>
+                @*<th scope="col" style="width:100px">ITEM CATEGORY</th>*@
+                <th scope="col" style="width:100px">NETWORK FLAG</th>                
+                @*<th scope="col"></th>*@
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">               
+                <td id="gid">@res.CONT_ID</td>
+                <td id="gitem">@res.CONT_DESC</td>
+                <td>@res.CONTRACT_ID</td>
+                <td>@res.CONTRACT_NO</td>
+                <td>@res.ACT_CODE</td>
+                @*<td>@res.PU_UOM</td>*@
+                <td>@res.CONTRACT_PR</td>              
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            int prevpages = Model.PageNumber - 1;
+            <a href = "CSM_List?searchKey=@ViewBag.searchKey&itemNo=@ViewBag.itemNo2&page=1"> << </a>
+            @Html.Raw("&nbsp;");
+            <a href = "CSM_List?searchKey=@ViewBag.searchKey&itemNo=@ViewBag.itemNo2&page=@prevpages"> < Prev </a>
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            int pages = Model.PageNumber + 1;
+            int lastpages = Model.PageCount;
+            <a href = "CSM_List?searchKey=@ViewBag.searchKey&itemNo=@ViewBag.itemNo2&page=@pages">Next ></a>
+            @Html.Raw("&nbsp;");
+            <a href = "CSM_List?searchKey=@ViewBag.searchKey&itemNo=@ViewBag.itemNo2&page=@lastpages"> >> </a>
+        }
+        else
+        {
+
+        }<br /><b>Total @Model.TotalItemCount Record</b>
+    </div>     
+    }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }        
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">
+        <span id="txtCONT_ID" style="font-weight:bold; display:none;"></span>
+        <input type="hidden" id="targetCSM" value="" />
+        @using (Ajax.BeginForm("UpdateData_CSM", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details">
+            <table width="600px">
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Contract ID</td>
+                    <td><input type="text" id="txtCONT_ID1" name="txtCONT_ID" readonly /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">Contract Item</td>
+                    <td><input type="text" id="txtCONT_DESC" name="txtCONT_DESC" readonly /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Contractor Description</td>
+                    <td><input type="text" id="txtCONTRACT_ID" name="txtCONTRACT_ID" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">Net Price</td>
+                    <td><input type="text" id="txtCONTRACT_NO" name="txtCONTRACT_NO" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Network Flag</td>
+                    <td><input type="text" id="txtACT_CODE" name="txtACT_CODE" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4">Order Unit</td>
+                    <td><input type="text" id="txtPU_UOM" name="txtPU_UOM" /></td>
+                </tr>
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4">Item Category</td>
+                    <td><input type="text" id="txtCONTRACT_PR" name="txtCONTRACT_PR" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:100px;background-color:#e8eef4"></td>
+                    <td></td>
+                </tr>
+                </table>
+                <div style="height:30px; margin-top:20px; margin-left:10px;">
+                    <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+                </div>
+        </div>
+        }
+    </div>
+</div>
+    

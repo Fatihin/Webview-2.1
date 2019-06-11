@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model2StoreContainer" CdmEntityContainer="Entities_NRM">
+    <EntitySetMapping Name="PORTCLASSIFICATIONs">
+      <EntityTypeMapping TypeName="Model2.PORTCLASSIFICATION">
+        <MappingFragment StoreEntitySet="PORTCLASSIFICATION">
+          <ScalarProperty Name="CLASSIFICATION_ID" ColumnName="CLASSIFICATION_ID" />
+          <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PORTCONNECTORASGs">
+      <EntityTypeMapping TypeName="Model2.PORTCONNECTORASG">
+        <MappingFragment StoreEntitySet="PORTCONNECTORASG">
+          <ScalarProperty Name="PORTCONNECTOR_ID" ColumnName="PORTCONNECTOR_ID" />
+          <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+          <ScalarProperty Name="INDEX_" ColumnName="INDEX_" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PORTLIFECYCLESTATEs">
+      <EntityTypeMapping TypeName="Model2.PORTLIFECYCLESTATE">
+        <MappingFragment StoreEntitySet="PORTLIFECYCLESTATE">
+          <ScalarProperty Name="LIFECYCLESTATE_ID" ColumnName="LIFECYCLESTATE_ID" />
+          <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PORTOPERATIONALSTATUS">
+      <EntityTypeMapping TypeName="Model2.PORTOPERATIONALSTATU">
+        <MappingFragment StoreEntitySet="PORTOPERATIONALSTATUS">
+          <ScalarProperty Name="OUTOFSERVICE" ColumnName="OUTOFSERVICE" />
+          <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PORTTYPEs">
+      <EntityTypeMapping TypeName="Model2.PORTTYPE">
+        <MappingFragment StoreEntitySet="PORTTYPE">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SLOTDESCRIPTIONs">
+      <EntityTypeMapping TypeName="Model2.SLOTDESCRIPTION">
+        <MappingFragment StoreEntitySet="SLOTDESCRIPTION">
+          <ScalarProperty Name="SLOTTYPE_ID" ColumnName="SLOTTYPE_ID" />
+          <ScalarProperty Name="DEVICEMODEL_ID" ColumnName="DEVICEMODEL_ID" />
+          <ScalarProperty Name="FACE" ColumnName="FACE" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="BUSTYPE" ColumnName="BUSTYPE" />
+          <ScalarProperty Name="NUMBER_" ColumnName="NUMBER_" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SLOTTYPEs">
+      <EntityTypeMapping TypeName="Model2.SLOTTYPE">
+        <MappingFragment StoreEntitySet="SLOTTYPE">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROJECTs">
+      <EntityTypeMapping TypeName="Model2.PROJECT">
+        <MappingFragment StoreEntitySet="PROJECT">
+          <ScalarProperty Name="OWNEDBY" ColumnName="OWNEDBY" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ELEVATIONs">
+      <EntityTypeMapping TypeName="Model2.ELEVATION">
+        <MappingFragment StoreEntitySet="ELEVATION">
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Z" ColumnName="Z" />
+          <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JUNCTIONs">
+      <EntityTypeMapping TypeName="Model2.JUNCTION">
+        <MappingFragment StoreEntitySet="JUNCTION">
+          <ScalarProperty Name="JUNCTIONARRAYMODEL_ID" ColumnName="JUNCTIONARRAYMODEL_ID" />
+          <ScalarProperty Name="COLUMN_" ColumnName="COLUMN_" />
+          <ScalarProperty Name="ROW_" ColumnName="ROW_" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MATINGs">
+      <EntityTypeMapping TypeName="Model2.MATING">
+        <MappingFragment StoreEntitySet="MATING">
+          <ScalarProperty Name="ZCABLESTRAND" ColumnName="ZCABLESTRAND" />
+          <ScalarProperty Name="ACABLESTRAND" ColumnName="ACABLESTRAND" />
+          <ScalarProperty Name="CABLESTRAND" ColumnName="CABLESTRAND" />
+          <ScalarProperty Name="ZCABLEEND" ColumnName="ZCABLEEND" />
+          <ScalarProperty Name="ACABLEEND" ColumnName="ACABLEEND" />
+          <ScalarProperty Name="CABLEEND" ColumnName="CABLEEND" />
+          <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+          <ScalarProperty Name="PORTDESCRIPTION_ID" ColumnName="PORTDESCRIPTION_ID" />
+          <ScalarProperty Name="ZCONNECTOR_ID" ColumnName="ZCONNECTOR_ID" />
+          <ScalarProperty Name="ACONNECTOR_ID" ColumnName="ACONNECTOR_ID" />
+          <ScalarProperty Name="ZEQUIPMENT_ID" ColumnName="ZEQUIPMENT_ID" />
+          <ScalarProperty Name="AEQUIPMENT_ID" ColumnName="AEQUIPMENT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PORTDESCRIPTIONs">
+      <EntityTypeMapping TypeName="Model2.PORTDESCRIPTION">
+        <MappingFragment StoreEntitySet="PORTDESCRIPTION">
+          <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+          <ScalarProperty Name="OUTPUTPOWER" ColumnName="OUTPUTPOWER" />
+          <ScalarProperty Name="INPUTSENSITIVITY" ColumnName="INPUTSENSITIVITY" />
+          <ScalarProperty Name="LABEL" ColumnName="LABEL" />
+          <ScalarProperty Name="DEVICEMODEL_ID" ColumnName="DEVICEMODEL_ID" />
+          <ScalarProperty Name="NUMBER_" ColumnName="NUMBER_" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VFDITEMPLACEMENTs">
+      <EntityTypeMapping TypeName="Model2.VFDITEMPLACEMENT">
+        <MappingFragment StoreEntitySet="VFDITEMPLACEMENT">
+          <ScalarProperty Name="CALLOUTCONTENT" ColumnName="CALLOUTCONTENT" />
+          <ScalarProperty Name="CALLOUTY" ColumnName="CALLOUTY" />
+          <ScalarProperty Name="CALLOUTX" ColumnName="CALLOUTX" />
+          <ScalarProperty Name="SECONDSLOT_ID" ColumnName="SECONDSLOT_ID" />
+          <ScalarProperty Name="FIRSTSLOT_ID" ColumnName="FIRSTSLOT_ID" />
+          <ScalarProperty Name="M22" ColumnName="M22" />
+          <ScalarProperty Name="M21" ColumnName="M21" />
+          <ScalarProperty Name="M20" ColumnName="M20" />
+          <ScalarProperty Name="M12" ColumnName="M12" />
+          <ScalarProperty Name="M11" ColumnName="M11" />
+          <ScalarProperty Name="M10" ColumnName="M10" />
+          <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+          <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
+          <ScalarProperty Name="M02" ColumnName="M02" />
+          <ScalarProperty Name="M01" ColumnName="M01" />
+          <ScalarProperty Name="M00" ColumnName="M00" />
+          <ScalarProperty Name="Z" ColumnName="Z" />
+          <ScalarProperty Name="Y" ColumnName="Y" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VFDMODELs">
+      <EntityTypeMapping TypeName="Model2.VFDMODEL">
+        <MappingFragment StoreEntitySet="VFDMODEL">
+          <ScalarProperty Name="ISMEASUREDUPWARD" ColumnName="ISMEASUREDUPWARD" />
+          <ScalarProperty Name="MOUNTWIDTH" ColumnName="MOUNTWIDTH" />
+          <ScalarProperty Name="VERTICALDISPLACEMENT" ColumnName="VERTICALDISPLACEMENT" />
+          <ScalarProperty Name="VERTICALSPACING" ColumnName="VERTICALSPACING" />
+          <ScalarProperty Name="MOUNTPOSITIONSPERCOLUMN" ColumnName="MOUNTPOSITIONSPERCOLUMN" />
+          <ScalarProperty Name="COLUMNS_" ColumnName="COLUMNS_" />
+          <ScalarProperty Name="MATERIALID" ColumnName="MATERIALID" />
+          <ScalarProperty Name="CONTRACTID" ColumnName="CONTRACTID" />
+          <ScalarProperty Name="PARTNUMBER" ColumnName="PARTNUMBER" />
+          <ScalarProperty Name="STACKTYPE" ColumnName="STACKTYPE" />
+          <ScalarProperty Name="POWERCONSUMPTION" ColumnName="POWERCONSUMPTION" />
+          <ScalarProperty Name="HEATLOAD" ColumnName="HEATLOAD" />
+          <ScalarProperty Name="ELECTRICALDOWNTILT" ColumnName="ELECTRICALDOWNTILT" />
+          <ScalarProperty Name="BEAMHEIGHT" ColumnName="BEAMHEIGHT" />
+          <ScalarProperty Name="BEAMWIDTH" ColumnName="BEAMWIDTH" />
+          <ScalarProperty Name="GAIN" ColumnName="GAIN" />
+          <ScalarProperty Name="MAXFREQUENCY" ColumnName="MAXFREQUENCY" />
+          <ScalarProperty Name="MINFREQUENCY" ColumnName="MINFREQUENCY" />
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+          <ScalarProperty Name="LENGTH" ColumnName="LENGTH" />
+          <ScalarProperty Name="NUMBERSTRANDS" ColumnName="NUMBERSTRANDS" />
+          <ScalarProperty Name="QUALITYSTANDARD" ColumnName="QUALITYSTANDARD" />
+          <ScalarProperty Name="CLASSIFICATION" ColumnName="CLASSIFICATION" />
+          <ScalarProperty Name="MODE_" ColumnName="MODE_" />
+          <ScalarProperty Name="DBLOSS" ColumnName="DBLOSS" />
+          <ScalarProperty Name="WEIGHTCAPACITY" ColumnName="WEIGHTCAPACITY" />
+          <ScalarProperty Name="RADIUS" ColumnName="RADIUS" />
+          <ScalarProperty Name="NUMCOLUMNS" ColumnName="NUMCOLUMNS" />
+          <ScalarProperty Name="NUMROWS" ColumnName="NUMROWS" />
+          <ScalarProperty Name="DENSITY" ColumnName="DENSITY" />
+          <ScalarProperty Name="DIAMETER" ColumnName="DIAMETER" />
+          <ScalarProperty Name="TWOSLOTSREQUIRED" ColumnName="TWOSLOTSREQUIRED" />
+          <ScalarProperty Name="BUSTYPE" ColumnName="BUSTYPE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="LIBRARYREFERENCE" ColumnName="LIBRARYREFERENCE" />
+          <ScalarProperty Name="DEPTH_" ColumnName="DEPTH_" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VFDITEMs">
+      <EntityTypeMapping TypeName="Model2.VFDITEM">
+        <MappingFragment StoreEntitySet="VFDITEM">
+          <ScalarProperty Name="STACK_ID" ColumnName="STACK_ID" />
+          <ScalarProperty Name="STACKTYPE" ColumnName="STACKTYPE" />
+          <ScalarProperty Name="NAMEDWITHSEQUENCEVALUE" ColumnName="NAMEDWITHSEQUENCEVALUE" />
+          <ScalarProperty Name="NAMEDWITHSEQUENCE_ID" ColumnName="NAMEDWITHSEQUENCE_ID" />
+          <ScalarProperty Name="USERPARTIALNAME" ColumnName="USERPARTIALNAME" />
+          <ScalarProperty Name="TWIST" ColumnName="TWIST" />
+          <ScalarProperty Name="TILT" ColumnName="TILT" />
+          <ScalarProperty Name="DIRECTION" ColumnName="DIRECTION" />
+          <ScalarProperty Name="BEARING" ColumnName="BEARING" />
+          <ScalarProperty Name="ALTITUDE" ColumnName="ALTITUDE" />
+          <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+          <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+          <ScalarProperty Name="DEPTH" ColumnName="DEPTH" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="OUTOFSERVICE" ColumnName="OUTOFSERVICE" />
+          <ScalarProperty Name="LIFECYCLESTATE_ID" ColumnName="LIFECYCLESTATE_ID" />
+          <ScalarProperty Name="NCMELEMENTKEY" ColumnName="NCMELEMENTKEY" />
+          <ScalarProperty Name="NCMDEVICEKEY" ColumnName="NCMDEVICEKEY" />
+          <ScalarProperty Name="USERDISPLAYNAME" ColumnName="USERDISPLAYNAME" />
+          <ScalarProperty Name="AUTODISPLAYNAME" ColumnName="AUTODISPLAYNAME" />
+          <ScalarProperty Name="Z" ColumnName="Z" />
+          <ScalarProperty Name="Y" ColumnName="Y" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="BOTTOMCLEARANCE" ColumnName="BOTTOMCLEARANCE" />
+          <ScalarProperty Name="TOPCLEARANCE" ColumnName="TOPCLEARANCE" />
+          <ScalarProperty Name="RIGHTCLEARANCE" ColumnName="RIGHTCLEARANCE" />
+          <ScalarProperty Name="LEFTCLEARANCE" ColumnName="LEFTCLEARANCE" />
+          <ScalarProperty Name="METERSPERPAGE" ColumnName="METERSPERPAGE" />
+          <ScalarProperty Name="FRONTALIGNED" ColumnName="FRONTALIGNED" />
+          <ScalarProperty Name="POLYGON" ColumnName="POLYGON" />
+          <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+          <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+          <ScalarProperty Name="LENGTH" ColumnName="LENGTH" />
+          <ScalarProperty Name="SPACING" ColumnName="SPACING" />
+          <ScalarProperty Name="LEFTHAND" ColumnName="LEFTHAND" />
+          <ScalarProperty Name="CLIPH" ColumnName="CLIPH" />
+          <ScalarProperty Name="CLIPW" ColumnName="CLIPW" />
+          <ScalarProperty Name="CLIPY" ColumnName="CLIPY" />
+          <ScalarProperty Name="CLIPX" ColumnName="CLIPX" />
+          <ScalarProperty Name="AUTOPARTIALNAME" ColumnName="AUTOPARTIALNAME" />
+          <ScalarProperty Name="DTYPE" ColumnName="DTYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

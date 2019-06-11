@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebView.G3E_FEATURE>
+
+@{
+    ViewBag.Title = "ViewFeatures";
+}
+
+<h2>View Features</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Features
+        </th>
+        <th>
+            No of Features
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.G3E_USERNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.G3E_NAME)
+        </td>
+    </tr>
+}
+
+</table>

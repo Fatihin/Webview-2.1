@@ -1,0 +1,875 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $('#job').change(function () {
+                //document.getElementById("divLoading").style.visibility = "visible";
+                var tblC = document.getElementById('rounded-corner');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updatePath",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "job": document.getElementById("job").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        var itemsPu; // = "<option selected value='Select'></option>";
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "-" + valuePu[2] + "-" + valuePu[0] + "'>" + valuePu[0] + " (" + valuePu[1] + "-" + valuePu[2] + ") </option>";
+                            }
+                        }
+                        $("#pathType").html(itemsPu);
+
+                        var defVal = document.getElementById("job").value;
+                        zexc = defVal.split("-");
+                        var itemsExc = "<option selected value='" + zexc[0] + "'>" + zexc[0] + "</option>";
+                        $("#ZEXC").html(itemsExc);
+                        //------------------------------------------table record job
+
+                        dataJob = res.listJob.split("|");
+                        //alert(res.listJob);
+                        if (dataJob.length > 1) {
+                            document.getElementById('rounded-corner').style.display = "block";
+                            for (ii = 0; ii < dataJob.length - 1; ii++) {
+
+                                d = dataJob[ii].split(':');
+                                var tbl = document.getElementById('rounded-corner');
+                                var lastRow = tbl.rows.length;
+                                var iteration = lastRow;
+                                var row = tbl.insertRow(lastRow);
+
+                                row.insertCell(0);
+                                row.insertCell(1);
+                                row.insertCell(2);
+                                row.insertCell(3);
+                                row.insertCell(4);
+                                row.insertCell(5);
+                                row.insertCell(6);
+                                row.insertCell(7);
+                                row.insertCell(8);
+                                row.insertCell(9);
+                                row.insertCell(10);
+                                row.insertCell(11);
+
+                                if (d[0] != "") {
+                                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+
+                                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+
+                                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+
+                                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+
+                                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+
+                                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+
+                                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+
+                                    tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+
+                                    tbl.rows[ii + 1].cells[9].innerHTML = d[9];
+
+                                    tbl.rows[ii + 1].cells[10].innerHTML = d[10];
+
+                                    tbl.rows[ii + 1].cells[11].innerHTML = "<a href=\"#\"  id=\"btnDelete\" onclick=\"deleted('" + d[11] + "')\"  style=\"width:50px\" >Delete</a>";
+                                }
+                            }
+                        }
+
+                        $('#pathType').trigger("change");
+                        $('#equipZ').trigger("change");
+                        $('#equipA').trigger("change");
+                        document.getElementById('hidePort').style.display = "none";
+                        document.getElementById('viewPort').style.display = "block";
+                        document.getElementById('projectTable').style.display = "none";
+                        document.getElementById('projectTableZ').style.display = "none";
+                    }
+                });
+            });
+
+            $('#pathType').change(function () {
+                if (document.getElementById("ZEXC").value != "Select") {
+                    document.getElementById("divLoading").style.visibility = "visible";
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/updateEquipFTTHA",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "job": document.getElementById("job").value,
+                            "pathType": document.getElementById("pathType").value,
+                            "ZEXC": document.getElementById("ZEXC").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            //alert("TEST");
+                            document.getElementById("divLoading").style.visibility = "hidden";
+                            var res = jQuery.parseJSON(data);
+
+                            dataPu2 = res.listData2.split("|");
+                            var itemsPu2 = "<option selected value='Select'></option>";
+                            for (i = 0; i < dataPu2.length; i++) {
+                                if (dataPu2[i] != "") {
+                                    valuePu2 = dataPu2[i].split(":");
+                                    itemsPu2 += "<option value='" + valuePu2[1] + "'>" + valuePu2[1] + " -" + valuePu2[0] + "</option>";
+                                }
+                            }
+                            $("#equipZ").html(itemsPu2);
+                        }
+                    });
+                }
+            });
+
+            $('#ZEXC').change(function () {
+                if (document.getElementById("pathType").value != "Select") {
+                    document.getElementById("divLoading").style.visibility = "visible";
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/updateEquipFTTHA",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "job": document.getElementById("job").value,
+                            "pathType": document.getElementById("pathType").value,
+                            "ZEXC": document.getElementById("ZEXC").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            document.getElementById("divLoading").style.visibility = "hidden";
+                            var res = jQuery.parseJSON(data);
+                            //alert(res.listData2);
+                            dataPu2 = res.listData2.split("|");
+                            var itemsPu2 = "<option selected value='Select'></option>";
+                            for (i = 0; i < dataPu2.length; i++) {
+                                if (dataPu2[i] != "") {
+                                    valuePu2 = dataPu2[i].split(":");
+                                    itemsPu2 += "<option value='" + valuePu2[1] + "'>" + valuePu2[0] + "</option>";
+                                }
+                            }
+                            $("#equipZ").html(itemsPu2);
+                        }
+                    });
+                }
+            });
+
+            $('#equipA').change(function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                //alert(document.getElementById("equipA").value);
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updateCardFTTHA",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "equip": document.getElementById("equipA").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        //alert(dataPu);
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(",");
+                                itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[1] + " - " + valuePu[0] + "</option>";
+                            }
+                        }
+                        $("#cardA").html(itemsPu);
+                    }
+                });
+            });
+
+            $('#equipZ').change(function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                var s = $("#equipZ :selected").text();
+                //alert(s);
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updateCardFTTHZ",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "equip": document.getElementById("equipZ").value,
+                        "scode": s
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+
+                        //alert(res.last_code);
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "-" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+                        $("#cardZ").html(itemsPu);
+
+                        dataPu1 = res.listData1.split("|");
+                        //alert(dataPu1);
+                        var itemsPu1 = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu1.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu1 = dataPu1[i].split(":");
+                                itemsPu1 += "<option value='" + valuePu1[1] + "'>" + valuePu1[0] + "</option>";
+                            }
+                        }
+                        $("#equipA").html(itemsPu1);
+
+                        //alert(res.listDataOdf);
+
+                        dataPuR = res.listDataOdf.split("|");
+                        var itemsPuR = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPuR.length; i++) {
+                            if (dataPuR[i] != "") {
+                                valuePuR = dataPuR[i].split(":");
+                                itemsPuR += "<option value='" + valuePuR[1] + "'>" + valuePuR[0] + "</option>";
+                            }
+                        }
+                        $("#odfR").html(itemsPuR);
+                    }
+                });
+            });
+            //Patch Panel
+            $('#odfR').change(function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                //alert(document.getElementById("odfR").value);
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updatePatchPanelODF",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "equip": document.getElementById("odfR").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                        var res = jQuery.parseJSON(data);
+                        //alert(res.listDataPP);
+                        dataPu = res.listDataPP.split("|");
+
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+                        $("#odfP").html(itemsPu);
+                    }
+                });
+            });
+
+            //Patch Panel
+            $('#odfP').change(function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                //alert(document.getElementById("odfP").value);
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updatePatchPanelPort",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "equip": document.getElementById("odfP").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                        var res = jQuery.parseJSON(data);
+                        //alert(res.listDataPP);
+                        dataPu = res.listDataPP.split("|");
+
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                            }
+                        }
+                        $("#A2Port").html(itemsPu);
+                    }
+                });
+            });
+
+            $('#cardA').change(function () {
+                document.getElementById("divLoading").style.visibility = "visible";
+                var tblC = document.getElementById('projectTable');
+                //alert(document.getElementById("cardA").value);
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updatePortFTTHA",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "equip": document.getElementById("cardA").value,
+                        "job": document.getElementById("job").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        //alert(dataPu);
+
+                        document.getElementById('projectTable').style.display = "block";
+                        document.getElementById('projectTableZ').style.display = "block";
+                        document.getElementById('hidePort').style.display = "block";
+                        for (ii = 0; ii < dataPu.length; ii++) {
+
+                            d = dataPu[ii].split(',');
+                            var tbl = document.getElementById('projectTable');
+                            var lastRow = tbl.rows.length;
+                            var iteration = lastRow;
+                            var row = tbl.insertRow(lastRow);
+
+                            row.insertCell(0);
+                            row.insertCell(1);
+                            row.insertCell(2);
+                            row.insertCell(3);
+                            row.insertCell(4);
+                            if (d[0] != "") {
+                                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                                tbl.rows[ii + 1].cells[1].innerHTML = d[4]; //d[1] + "/" + d[4];
+
+                                tbl.rows[ii + 1].cells[2].innerHTML = d[3];
+
+                                //tbl.rows[ii + 1].cells[3].innerHTML = d[4];
+                                tbl.rows[ii + 1].cells[3].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"valueZ\" value=\"" + d[0] + "\" />";
+                            }
+                        }
+                    }
+                });
+            });
+
+            $('#cardZ').change(function () {
+                var tblC = document.getElementById('projectTableZ');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+                //alert(document.getElementById("cardZ").value);
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updatePortA",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "cardA": document.getElementById("cardZ").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        //document.getElementById('projectTable').style.display = "block";
+                        document.getElementById('projectTableZ').style.display = "block";
+                        document.getElementById('hidePort').style.display = "block";
+                        for (ii = 0; ii < dataPu.length; ii++) {
+
+                            d = dataPu[ii].split(':');
+                            var tbl = document.getElementById('projectTableZ');
+                            var lastRow = tbl.rows.length;
+                            var iteration = lastRow;
+                            var row = tbl.insertRow(lastRow);
+
+                            row.insertCell(0);
+                            row.insertCell(1);
+                            row.insertCell(2);
+                            row.insertCell(3);
+                            if (d[0] != "") {
+                                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                                tbl.rows[ii + 1].cells[1].innerHTML = d[3];
+
+                                tbl.rows[ii + 1].cells[2].innerHTML = d[4];
+
+                                tbl.rows[ii + 1].cells[3].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"valueZ\" value=\"" + d[3] + "\" />";
+                            }
+                        }
+                    }
+                });
+            });
+
+            $('#PTT_ID').change(function () {
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updataEXC",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "PTT_ID": document.getElementById("PTT_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (document.getElementById("PTT_ID").value != "Select") {
+                            document.getElementById("ZEXC").disabled = false;
+                            dataPu = res.PuList.split("|");
+
+                            var itemsPu = "<option selected value='Select'></option>";
+
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    //alert(valuePu[0]);
+                                    itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+
+                            $("#ZEXC").html(itemsPu);
+                        } else {
+                            document.getElementById("ZEXC").disabled = false;
+                        }
+                    }
+                });
+            });
+
+
+            $('#viewTable').click(function () {
+                alert("aa");
+                var table = document.getElementById('results');
+
+//                    $.ajax(
+//                    {
+//                        url: "/VIS_NRM/UpdateLoadPathFTTH",
+//                        type: "POST",
+//                        dataType: "html",
+//                        data:
+//                        {
+//                            "JOBID": document.getElementById("job").value,
+//                            "ANAME": aname,
+//                            "ATYPE": "FDC",
+//                            "FDC_FID": document.getElementById("equipA").value,
+//                            "ASTER": splitters,
+//                            "ZNAME": zname,
+//                            "ZSITE": document.getElementById("ZEXC").value,
+//                            "ZTYPE": "OLT",
+//                            "ZSLOT": zslot,
+//                            "ZPORT": valueCheckBox
+//                        },
+//                        beforeSend: function () { },
+//                        success: function (data) {
+//                            var res = jQuery.parseJSON(data);
+//                            document.getElementById('btnUpdate').style.display = "none";
+//                            document.getElementById('btnSave').style.display = "block";
+//                            alert("Path Successfully Updated");
+//                            setTimeout(window.location.reload(), 10000);
+//                        }
+//                    });
+            });
+
+            var showBoxes = function () {
+                var valA;
+                var valZ;
+                var result;
+
+                if (document.boxes.valueZ.length == undefined) {
+                    valA = document.boxes.valueZ.value;
+                } else {
+                    for (var i = 0; i < document.boxes.valueZ.length; i++) {
+                        if (document.boxes.valueZ[i].checked) {
+                            valA = valA + document.boxes.valueZ[i].value + "-";
+                        }
+                    }
+                }
+                return result = valA;
+            }
+
+
+            $('#btnSave').click(function () {
+                var valueCheckBox = showBoxes();
+                valueCheckBox = valueCheckBox.replace(/undefined/g, ""); // for z
+
+                var tblC = document.getElementById('rounded-corner');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+                var aname = $("#equipA :selected").text();
+                aname = document.getElementById("ZEXC").value + "_" + aname;
+                var zname = $("#equipZ :selected").text();
+
+                var splitters = $("#cardA :selected").text(); //get spliiter text
+                var slotz = $("#cardZ :selected").text(); //get card z text
+                var zslot = slotz.split("_").pop(-1);
+                //alert(valueCheckBox);
+                var cmsg = confirm('Are you sure you want to save path?');
+                if (cmsg != 0) {
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/InsertLoadFTTHPath",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "JOBID": document.getElementById("job").value,
+                            "ANAME": aname,
+                            "ATYPE": "FDC",
+                            "FDC_FID": document.getElementById("equipA").value,
+                            "ASTER": splitters,
+                            "ZNAME": zname,
+                            "ZSITE": document.getElementById("ZEXC").value,
+                            "ZTYPE": "OLT",
+                            "ZSLOT": zslot,
+                            "ZPORT": valueCheckBox,
+                            "A2Port": document.getElementById("A2Port").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            if (res.Success == true) {
+                                alert("Path Successfully Created");
+                            } else {
+                                alert("Failed To Create Path");
+                            }
+                            dataJob = res.listJob.split("|");
+                            //alert(res.listJob);
+                            if (dataJob.length > 1) {
+                                document.getElementById('rounded-corner').style.display = "block";
+                                for (ii = 0; ii < dataJob.length - 1; ii++) {
+
+                                    d = dataJob[ii].split(':');
+                                    var tbl = document.getElementById('rounded-corner');
+                                    var lastRow = tbl.rows.length;
+                                    var iteration = lastRow;
+                                    var row = tbl.insertRow(lastRow);
+
+                                    row.insertCell(0);
+                                    row.insertCell(1);
+                                    row.insertCell(2);
+                                    row.insertCell(3);
+                                    row.insertCell(4);
+                                    row.insertCell(5);
+                                    row.insertCell(6);
+                                    row.insertCell(7);
+                                    row.insertCell(8);
+                                    row.insertCell(9);
+                                    row.insertCell(10);
+                                    row.insertCell(11);
+
+                                    if (d[0] != "") {
+                                        tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                                        tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+
+                                        tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+
+                                        tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+
+                                        tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+
+                                        tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+
+                                        tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+
+                                        tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+
+                                        tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+
+                                        tbl.rows[ii + 1].cells[9].innerHTML = d[9];
+
+                                        tbl.rows[ii + 1].cells[10].innerHTML = d[10];
+
+                                        tbl.rows[ii + 1].cells[11].innerHTML = "<a href=\"#\"  id=\"btnDelete\" onclick=\"deleted('" + d[11] + "')\"  style=\"width:50px\" >Delete</a>";
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('#btnUpdate').click(function () {
+                var valueCheckBox = showBoxes();
+                valueCheckBox = valueCheckBox.replace(/undefined/g, "");
+                var tblC = document.getElementById('rounded-corner');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+                var cmsg = confirm('Are you sure you want to save path?');
+                if (cmsg != 0) {
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/UpdateLoadPathFTTH",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "JOBID": document.getElementById("job").value,
+                            "ANAME": aname,
+                            "ATYPE": "FDC",
+                            "FDC_FID": document.getElementById("equipA").value,
+                            "ASTER": splitters,
+                            "ZNAME": zname,
+                            "ZSITE": document.getElementById("ZEXC").value,
+                            "ZTYPE": "OLT",
+                            "ZSLOT": zslot,
+                            "ZPORT": valueCheckBox
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            document.getElementById('btnUpdate').style.display = "none";
+                            document.getElementById('btnSave').style.display = "block";
+                            alert("Path Successfully Updated");
+                            setTimeout(window.location.reload(), 10000);
+                        }
+                    });
+                }
+            });
+
+            $('#btnEmail').click(function () {
+                $.ajax(
+                {
+                    url: "/VIS_NRM/EmailTest",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "JOBID": document.getElementById("job").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        alert("Email Successfully Sent");
+                    }
+                });
+            });
+
+            $('#hidePort').click(function () {
+                document.getElementById('hidePort').style.display = "none";
+                document.getElementById('viewPort').style.display = "block";
+                document.getElementById('projectTable').style.display = "none";
+                document.getElementById('projectTableZ').style.display = "none";
+            });
+
+            $('#viewPort').click(function () {
+                document.getElementById('viewPort').style.display = "none";
+                document.getElementById('hidePort').style.display = "block";
+                document.getElementById('projectTable').style.display = "block";
+                document.getElementById('projectTableZ').style.display = "block";
+            });
+
+            $("#btnSave").button();
+            $("#btnEdit").button();
+            $("#btnDelete").button();
+            $("#btnUpdate").button();
+
+            $("#divDetails").dialog({
+                autoOpen: false,
+                height: 550,
+                width: 800,
+                modal: true,
+                buttons: {
+                },
+                close: function () {
+                }
+            });
+        });
+    });
+
+    function deleted(val) {
+        $ = globalJquery;
+        //alert(val);
+        var cmsg = confirm("Are you sure you want delete to  data?");
+        if (cmsg != 0){
+            $.ajax({
+                url: "/VIS_NRM/DeleteDetailsFTTH",
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": val
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    $('#job').trigger("change");
+                    $('#pathType').trigger("change");
+                    $('#equipZ').trigger("change");
+                    $('#equipA').trigger("change");
+                    alert("Data Deleted");
+                }
+            });
+        }
+    }
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+</script>
+
+<br />
+<h2>Create FTTH PATH</h2>
+<div style="height:850px">
+    <div>@*<input type="button"  value="Save" id="btnEmail" />*@
+        <table style="width:830px;">
+            <tr style="border-bottom:1;">
+                <td style="width:110px;">Select JOB :</td>
+                <td style="width:240px;">@Html.DropDownList("job", (IEnumerable<SelectListItem>)ViewBag.job, new { style = "width:250px" })</td>
+                <td style="width:110px;">Select PATH type :</td>
+                <td style="width:240px;">@Html.DropDownList("pathType", (IEnumerable<SelectListItem>)ViewBag.pathType, new { style = "width:250px;visibility:inherit;" })</td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Select OLT :</td>
+                <td style="width:240px;">@Html.DropDownList("equipZ", (IEnumerable<SelectListItem>)ViewBag.equipZ, new { style = "width:250px" })</td>
+                <td style="width:110px;">Select FDC :</td>
+                <td style="width:240px;">@Html.DropDownList("equipA", (IEnumerable<SelectListItem>)ViewBag.equipA, new { style = "width:250px" })</td>  
+            </tr>
+            <tr>
+                <td style="width:110px;">Select OLT Card :</td>
+                <td style="width:240px;">@Html.DropDownList("cardZ", (IEnumerable<SelectListItem>)ViewBag.cardZ, new { style = "width:250px" })</td>
+                <td style="width:110px;">Select Splitter :</td>
+                <td style="width:240px;">@Html.DropDownList("cardA", (IEnumerable<SelectListItem>)ViewBag.cardA, new { style = "width:250px" })</td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Select ODF :</td>
+                <td style="width:240px;">@Html.DropDownList("odfR", (IEnumerable<SelectListItem>)ViewBag.cardZ, new { style = "width:250px" })</td>
+                <td style="width:110px;"></td>
+                <td style="width:240px;"></td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Select Patch Panel :</td>
+                <td style="width:240px;">@Html.DropDownList("odfP", (IEnumerable<SelectListItem>)ViewBag.cardZ, new { style = "width:250px" })</td>
+                <td style="width:110px;"></td>
+                <td style="width:240px;"></td>
+            </tr>
+            <tr>
+                <td style="width:110px;">ODF Port :</td>
+                <td style="width:240px;"><select id="A2Port" style="width:70px;"></select> @*<a href="#" id="viewTable" >view port</a>*@</td>
+                <td style="width:110px;"></td>
+                <td style="width:240px;"></td>
+            </tr>
+            <tr style="visibility:hidden;">
+                <td style="width:110px;">OLT PTT : @Html.DropDownList("PTT_ID", (IEnumerable<SelectListItem>)ViewBag.PTT, new { style = "width:60px" })</td>
+                <td style="width:240px;">OLT EXC : @Html.DropDownList("ZEXC", (IEnumerable<SelectListItem>)ViewBag.exc, new { style = "width:195px" })</td>
+                <td style="width:110px;"></td>
+                <td style="width:240px;"><div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div></td>
+            </tr>
+        </table><hr />
+        <form action="?" name="boxes">
+            <div id="portA" style="float:right;padding-bottom:10px;">
+                    <table id="projectTable" style="overflow:auto; display:none;height:200px;" width="400px;">
+                        <tr>
+                            <th style="width:120px">FDP Code</th>
+                            <th style="width:100px">Splitter No</th>
+                            <th style="width:150px">Splitter</th>
+                            <th style="width:30px"></th>
+                         
+                        </tr>
+                        <tr>
+                            <td style="width:120px"></td>
+                            <td style="width:100px"></td>
+                            <td style="width:150px"></td>
+                            <td style="width:30px"></td>                         
+                        </tr>
+                    </table>        
+            </div>
+            <div id="portZ" style="float:left">
+                <table id="projectTableZ" style="overflow:auto; display:none;height:200px;" width="400px;">
+                    <tr>
+                        <th style="width:150px">Card Name</th>
+                        <th style="width:100px">Port Number</th>
+                        <th style="width:120px">Port Label</th>
+                        <th style="width:30px"></th>
+                         
+                    </tr>
+                    <tr>
+                        <td style="width:150px"></td>
+                        <td style="width:100px;"></td>
+                        <td style="width:120px"></td>
+                        <td style="width:30px"></td>                         
+                    </tr>
+                </table>          
+            </div>
+            <span style="text-align:center;" ><a href="#" id="hidePort" style="display:none;text-align:center;" > Hide</a><a href="#" id="viewPort" style="display:none;text-align:center;"> View</a></span>
+        </form>
+        <table width="800px;">
+            <tr>
+                <td style="text-align:right;"><input type="button"  value="Save" id="btnSave" /> <input type="button"  value="Save1" id="btnUpdate" style="display:none" /> <input type="hidden" id="LoadID" /></td>
+            </tr>
+        </table>
+    </div>
+    <br />
+      <table id="rounded-corner" style="overflow:auto;display:none;height:190px;width:870px;">
+        <thead>
+          <tr>
+            <th scope="col" >ANAME</th>
+            <th scope="col" >ATYPE</th>
+            <th scope="col" >ASITE</th>
+            <th scope="col" >ACARD</th>
+            <th scope="col" >APORT</th>
+            <th scope="col" >ZNAME</th>
+            <th scope="col" >ZTYPE</th>
+            <th scope="col" >ZSITE</th>
+            <th scope="col" >ZCARD</th>
+            <th scope="col" >ZPORT</th>
+            <th scope="col" >DP NAME</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>    
+        </tbody>
+      </table>
+      <div id="divDetails" title="Path Details" style="padding-left:40px; padding-top:30px;">
+            <table border="1" id="results">
+            </table>
+      </div>
+</div>

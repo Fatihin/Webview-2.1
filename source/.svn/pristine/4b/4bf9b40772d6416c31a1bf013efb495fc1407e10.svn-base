@@ -1,0 +1,360 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+
+<head>
+<link rel=File-List href="Sheet1_files/filelist.xml">
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+
+.style0
+	{mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	white-space:nowrap;
+	mso-rotate:0;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	border:none;
+	mso-protection:locked visible;
+	mso-style-name:Normal;
+	mso-style-id:0;}
+td
+	{mso-style-parent:style0;
+	padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}
+.xl65
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	white-space:normal;}
+.xl66
+	{mso-style-parent:style0;
+	color:windowtext;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:"Short Date";
+	text-align:left;
+	white-space:normal;}
+.xl67
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:right;
+	white-space:normal;}
+.xl68
+	{mso-style-parent:style0;
+	text-align:center;}
+.xl69
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-weight:700;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	white-space:normal;}
+.xl70
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl71
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:center;
+	white-space:normal;}
+.xl72
+	{mso-style-parent:style0;
+	color:#222222;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:left;
+	white-space:normal;}
+.xl73
+	{mso-style-parent:style0;
+	color:black;
+	white-space:normal;}
+.xl74
+	{mso-style-parent:style0;
+	color:black;}
+.xl75
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:Standard;
+	text-align:right;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl76
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-weight:700;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:center;}
+.xl77
+	{mso-style-parent:style0;
+	color:#222222;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:left;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl78
+	{mso-style-parent:style0;
+	color:black;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl79
+	{mso-style-parent:style0;
+	color:black;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;}
+.xl80
+	{mso-style-parent:style0;
+	color:black;
+	font-size:8.0pt;
+	font-family:Arial, sans-serif;
+	mso-font-charset:0;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+.xl81
+	{mso-style-parent:style0;
+	color:black;
+	text-align:center;
+	white-space:normal;}
+.xl82
+	{mso-style-parent:style0;
+	color:black;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;
+	white-space:normal;}
+-->
+</style>
+</head>
+@for (int i = 1; i <= @ViewBag.Page; i++)
+{
+<body link=blue vlink=purple>
+
+<table border=0 cellpadding=0 cellspacing=0 width=723 style='border-collapse:
+ collapse;table-layout:fixed;width:723pt'>
+ <col width=86 style='mso-width-source:userset;mso-width-alt:3669;width:86pt'>
+ <col width=263 style='mso-width-source:userset;mso-width-alt:11221;width:263pt'>
+ <col class=xl68 width=68 style='mso-width-source:userset;mso-width-alt:2901;
+ width:68pt'>
+ <col class=xl68 width=58 style='mso-width-source:userset;mso-width-alt:2474;
+ width:58pt'>
+ <col class=xl68 width=57 span=2 style='mso-width-source:userset;mso-width-alt:
+ 2432;width:57pt'>
+ <col width=66 style='mso-width-source:userset;mso-width-alt:2816;width:66pt'>
+ <col width=68 style='mso-width-source:userset;mso-width-alt:2901;width:68pt'>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'>DATE :</td>
+  <td class=xl66 width=263 style='width:263pt'>@ViewBag.date</td>
+  <td class=xl71 width=68 style='width:68pt'></td>
+  <td class=xl71 width=58 style='width:58pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl67 width=66 style='width:66pt'>PAGE :&nbsp;</td>
+  <td class=xl65 align=right width=68 style='width:68pt'>@i</td>
+ </tr>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'></td>
+  <td colspan=5 class=xl76>NETWORK ENGINEERING PLANNING SYSTEM</td>
+  <td class=xl69 width=66 style='width:66pt'></td>
+  <td class=xl65 width=68 style='width:68pt'></td>
+ </tr>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'></td>
+  <td colspan=5 class=xl76>BOQ GENERATION</td>
+  <td class=xl69 width=66 style='width:66pt'></td>
+  <td class=xl69 width=68 style='width:68pt'></td>
+ </tr>
+ <tr height=15 style='mso-height-source:userset;height:15.0pt'>
+  <td height=15 class=xl70 width=86 style='height:15.0pt;width:86pt'>&nbsp;</td>
+  <td class=xl70 width=263 style='width:263pt'>&nbsp;</td>
+  <td class=xl80 width=68 style='width:68pt'>&nbsp;</td>
+  <td class=xl80 width=58 style='width:58pt'>&nbsp;</td>
+  <td class=xl80 width=57 style='width:57pt'>&nbsp;</td>
+  <td class=xl80 width=57 style='width:57pt'>&nbsp;</td>
+  <td class=xl70 width=66 style='width:66pt'>&nbsp;</td>
+  <td class=xl70 width=68 style='width:68pt'>&nbsp;</td>
+ </tr>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'>CONTRACT
+  NO</td>
+  <td class=xl65 width=263 style='width:263pt'>DESCRIPTION</td>
+  <td class=xl71 width=68 style='width:68pt'>ITEM_NO</td>
+  <td class=xl71 width=58 style='width:58pt'>ISP / OSP</td>
+  <td class=xl71 width=57 style='width:57pt'>UOM</td>
+  <td class=xl71 width=57 style='width:57pt'>QTY</td>
+  <td class=xl65 width=66 style='width:66pt;text-align:right;'>CONTRACT</td>
+  <td class=xl65 width=68 style='width:68pt;text-align:right;'>TOTAL</td>
+ </tr>
+ <tr height=15 style='mso-height-source:userset;height:15.0pt'>
+  <td height=15 class=xl70 width=86 style='height:15.0pt;width:86pt'>&nbsp;</td>
+  <td class=xl70 width=263 style='width:263pt'>&nbsp;</td>
+  <td class=xl80 width=68 style='width:68pt'>&nbsp;</td>
+  <td class=xl80 width=58 style='width:58pt'>&nbsp;</td>
+  <td class=xl80 width=57 style='width:57pt'>&nbsp;</td>
+  <td class=xl80 width=57 style='width:57pt'>&nbsp;</td>
+  <td class=xl70 width=66 style='width:66pt;text-align:right;'>PRICE(RM)</td>
+  <td class=xl70 width=68 style='width:68pt;text-align:right;'>PRICE(RM)</td>
+ </tr>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'></td>
+  <td class=xl65 width=263 style='width:263pt'></td>
+  <td class=xl71 width=68 style='width:68pt'></td>
+  <td class=xl71 width=58 style='width:58pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl65 width=66 style='width:66pt'></td>
+  <td class=xl65 width=68 style='width:68pt'></td>
+ </tr>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'>PROJECT
+  NO:</td>
+  <td class=xl65 width=263 style='width:263pt'>@ViewBag.projNo</td>
+  <td class=xl71 width=68 style='width:68pt'></td>
+  <td class=xl71 width=58 style='width:58pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl65 width=66 style='width:66pt'></td>
+  <td class=xl65 width=68 style='width:68pt'></td>
+ </tr>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'>EXCHANGE:</td>
+  <td class=xl65 width=263 style='width:263pt'>@ViewBag.Exc</td>
+  <td class=xl71 width=68 style='width:68pt'></td>
+  <td class=xl71 width=58 style='width:58pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl65 width=66 style='width:66pt'></td>
+  <td class=xl65 width=68 style='width:68pt'></td>
+ </tr>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'>SCHEME:</td>
+  <td class=xl65 width=263 style='width:263pt;' align='left'>@ViewBag.schemeName</td>
+  <td class=xl71 width=68 style='width:68pt'></td>
+  <td class=xl71 width=58 style='width:58pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl65 width=66 style='width:66pt'></td>
+  <td class=xl65 width=68 style='width:68pt'></td>
+ </tr>
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl65 width=86 style='height:14.0pt;width:86pt'></td>
+  <td class=xl65 width=263 style='width:263pt'></td>
+  <td class=xl71 width=68 style='width:68pt'></td>
+  <td class=xl71 width=58 style='width:58pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl71 width=57 style='width:57pt'></td>
+  <td class=xl65 width=66 style='width:66pt'></td>
+  <td class=xl65 width=68 style='width:68pt'></td>
+ </tr>
+ @foreach (var res in (List<WebView.WebService._base.BOQ_MAIN_EXCEL>)ViewData["BOQReportData"+ @i])
+ {
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl72 width=86 style='height:14.0pt;width:86pt'>@res.x_CONTRACT_NO</td>
+  <td class=xl73 width=263 style='width:263pt'>@res.x_CONTRACT_DESC</td>
+  <td class=xl81 width=68 style='width:68pt'>@res.x_ITEM_NO</td>
+  <td class=xl81 width=58 style='width:58pt'>@res.x_ISP_OSP</td>
+  <td class=xl81 width=57 style='width:57pt'>@res.x_PU_UOM</td>
+  <td class=xl81 width=57 style='width:57pt'>@res.x_PU_QTY</td>
+  <td class=xl74 align=right>@res.x_NET_PRICE</td>
+  <td class=xl74 align=right>@res.x_CONT_VALUE</td>
+ </tr>
+ }
+
+
+ <tr height=14 style='mso-height-source:userset;height:14.0pt'>
+  <td height=14 class=xl77 width=86 style='height:14.0pt;width:86pt'>&nbsp;</td>
+  <td class=xl78 width=263 style='width:263pt'>&nbsp;</td>
+  <td class=xl82 width=68 style='width:68pt'>&nbsp;</td>
+  <td class=xl82 width=58 style='width:58pt'>&nbsp;</td>
+  <td class=xl82 width=57 style='width:57pt'>&nbsp;</td>
+  <td class=xl82 width=57 style='width:57pt'>&nbsp;</td>
+  <td class=xl79>&nbsp;</td>
+  <td class=xl79>&nbsp;</td>
+ </tr>
+  @if (i == ViewBag.Page)
+  {
+     <tr height=15 style='mso-height-source:userset;height:15.0pt'>
+      <td height=15 class=xl70 width=86 style='height:15.0pt;width:86pt'>&nbsp;</td>
+      <td class=xl70 width=263 style='width:263pt'>&nbsp;</td>
+      <td class=xl80 width=68 style='width:68pt'>TOTAL :</td>
+      <td colspan=4 class=xl70 width=238 style='width:238pt'>@ViewBag.ErrorMsgInTotal</td>
+      <td class=xl75 width=68 style='width:68pt'>@ViewBag.TotalValue</td>
+     </tr>
+  }
+</table>
+
+</body>
+}
+</html>

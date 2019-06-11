@@ -1,0 +1,1 @@
+http://10.14.61.189:9090/NRMSoap2/services/NRMServicePort?wsdl

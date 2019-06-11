@@ -1,0 +1,1803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model3" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="EntitiesNetworkElement" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MIG_EXC_PTT" EntityType="Model3.MIG_EXC_PTT" />
+    <EntitySet Name="MIG_NIS_BAYLINE" EntityType="Model3.MIG_NIS_BAYLINE" />
+    <EntitySet Name="MIG_NIS_CHASSIS" EntityType="Model3.MIG_NIS_CHASSIS" />
+    <EntitySet Name="MIG_NIS_PPANEL" EntityType="Model3.MIG_NIS_PPANEL" />
+    <EntitySet Name="MIG_NIS_RACK" EntityType="Model3.MIG_NIS_RACK" />
+    <EntitySet Name="MIG_NIS_VPPANEL" EntityType="Model3.MIG_NIS_VPPANEL" />
+    <EntitySet Name="MIG_NIS_VRACK" EntityType="Model3.MIG_NIS_VRACK" />
+    <EntitySet Name="BI_PROCESS_ISP" EntityType="Model3.BI_PROCESS_ISP" />
+    <EntitySet Name="BI_CREATECARD_REPLY" EntityType="Model3.BI_CREATECARD_REPLY" />
+    <EntitySet Name="BI_CREATECARD_REQUEST" EntityType="Model3.BI_CREATECARD_REQUEST" />
+    <EntitySet Name="BI_CREATEFC_REPLY" EntityType="Model3.BI_CREATEFC_REPLY" />
+    <EntitySet Name="BI_CREATEFC_REQUEST" EntityType="Model3.BI_CREATEFC_REQUEST" />
+    <EntitySet Name="BI_CREATEFU_REPLY" EntityType="Model3.BI_CREATEFU_REPLY" />
+    <EntitySet Name="BI_CREATEFU_REQUEST" EntityType="Model3.BI_CREATEFU_REQUEST" />
+    <EntitySet Name="BI_CREATENE_REPLY" EntityType="Model3.BI_CREATENE_REPLY" />
+    <EntitySet Name="BI_CREATENE_REQUEST" EntityType="Model3.BI_CREATENE_REQUEST" />
+    <EntitySet Name="BI_CREATECARD_REPLY_OSP" EntityType="Model3.BI_CREATECARD_REPLY_OSP" />
+    <EntitySet Name="BI_CREATECARD_REQUEST_OSP" EntityType="Model3.BI_CREATECARD_REQUEST_OSP" />
+    <EntitySet Name="BI_CREATECS_REPLY_OSP" EntityType="Model3.BI_CREATECS_REPLY_OSP" />
+    <EntitySet Name="BI_CREATECS_REQUEST_OSP" EntityType="Model3.BI_CREATECS_REQUEST_OSP" />
+    <EntitySet Name="BI_CREATEFC_REPLY_OSP" EntityType="Model3.BI_CREATEFC_REPLY_OSP" />
+    <EntitySet Name="BI_CREATEFC_REQUEST_OSP" EntityType="Model3.BI_CREATEFC_REQUEST_OSP" />
+    <EntitySet Name="BI_CREATEFU_REPLY_OSP" EntityType="Model3.BI_CREATEFU_REPLY_OSP" />
+    <EntitySet Name="BI_CREATEFU_REQUEST_OSP" EntityType="Model3.BI_CREATEFU_REQUEST_OSP" />
+    <EntitySet Name="BI_CREATENE_REPLY_OSP" EntityType="Model3.BI_CREATENE_REPLY_OSP" />
+    <EntitySet Name="BI_CREATENE_REQUEST_OSP" EntityType="Model3.BI_CREATENE_REQUEST_OSP" />
+    <EntitySet Name="BI_CREATESB_REPLY_OSP" EntityType="Model3.BI_CREATESB_REPLY_OSP" />
+    <EntitySet Name="BI_CREATESB_REQUEST_OSP" EntityType="Model3.BI_CREATESB_REQUEST_OSP" />
+    <EntitySet Name="BI_BATCH" EntityType="Model3.BI_BATCH" />
+    <EntitySet Name="BI_NNW_GEM_PROJNO" EntityType="Model3.BI_NNW_GEM_PROJNO" />
+    <EntitySet Name="BI_GRNDLOADEQUIP_REQ" EntityType="Model3.BI_GRNDLOADEQUIP_REQ" />
+    <EntitySet Name="BI_PROC_GRN_ISP" EntityType="Model3.BI_PROC_GRN_ISP" />
+    <EntitySet Name="BI_GRNDLOADEQUIP_RES" EntityType="Model3.BI_GRNDLOADEQUIP_RES" />
+    <EntitySet Name="BI_GRNDLDPATHNONCONS_REQ" EntityType="Model3.BI_GRNDLDPATHNONCONS_REQ" />
+    <EntitySet Name="BI_GRNDLDPATHNONCONS_RES" EntityType="Model3.BI_GRNDLDPATHNONCONS_RES" />
+    <EntitySet Name="BI_PROC_GRN_OSP" EntityType="Model3.BI_PROC_GRN_OSP" />
+    <EntitySet Name="MIG_GRT_CHASSIS" EntityType="Model3.MIG_GRT_CHASSIS" />
+    <EntitySet Name="BI_PROCESS" EntityType="Model3.BI_PROCESS" />
+    <EntitySet Name="MIG_EXCHANGE" EntityType="Model3.MIG_EXCHANGE" />
+    <AssociationSet Name="MIG_GRT_CHASSIS_FK1" Association="Model3.MIG_GRT_CHASSIS_FK1">
+      <End Role="MIG_EXCHANGE" EntitySet="MIG_EXCHANGE" />
+      <End Role="MIG_GRT_CHASSIS" EntitySet="MIG_GRT_CHASSIS" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_BAYLINE_FK1" Association="Model3.MIG_NIS_BAYLINE_FK1">
+      <End EntitySet="MIG_EXCHANGE" Role="MIG_EXCHANGE" />
+      <End EntitySet="MIG_NIS_BAYLINE" Role="MIG_NIS_BAYLINE" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_CHASSIS_FK1" Association="Model3.MIG_NIS_CHASSIS_FK1">
+      <End Role="MIG_EXCHANGE" EntitySet="MIG_EXCHANGE" />
+      <End Role="MIG_NIS_CHASSIS" EntitySet="MIG_NIS_CHASSIS" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_RACK_FK1" Association="Model3.MIG_NIS_RACK_FK1">
+      <End EntitySet="MIG_NIS_BAYLINE" Role="MIG_NIS_BAYLINE" />
+      <End EntitySet="MIG_NIS_RACK" Role="MIG_NIS_RACK" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_PPANEL_FK1" Association="Model3.MIG_NIS_PPANEL_FK1">
+      <End Role="MIG_NIS_RACK" EntitySet="MIG_NIS_RACK" />
+      <End Role="MIG_NIS_PPANEL" EntitySet="MIG_NIS_PPANEL" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_PPANEL_FK2" Association="Model3.MIG_NIS_PPANEL_FK2">
+      <End Role="MIG_NIS_VRACK" EntitySet="MIG_NIS_VRACK" />
+      <End Role="MIG_NIS_PPANEL" EntitySet="MIG_NIS_PPANEL" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_VPPANEL_FK1" Association="Model3.MIG_NIS_VPPANEL_FK1">
+      <End Role="MIG_NIS_PPANEL" EntitySet="MIG_NIS_PPANEL" />
+      <End Role="MIG_NIS_VPPANEL" EntitySet="MIG_NIS_VPPANEL" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_VRACK_FK1" Association="Model3.MIG_NIS_VRACK_FK1">
+      <End Role="MIG_NIS_RACK" EntitySet="MIG_NIS_RACK" />
+      <End Role="MIG_NIS_VRACK" EntitySet="MIG_NIS_VRACK" />
+    </AssociationSet>
+    <AssociationSet Name="MIG_NIS_VPPANEL_FK2" Association="Model3.MIG_NIS_VPPANEL_FK2">
+      <End Role="MIG_NIS_VRACK" EntitySet="MIG_NIS_VRACK" />
+      <End Role="MIG_NIS_VPPANEL" EntitySet="MIG_NIS_VPPANEL" />
+    </AssociationSet>
+    <EntitySet Name="BI_GRNOSPDATAMATCH_REQ" EntityType="Model3.BI_GRNOSPDATAMATCH_REQ" />
+    <EntitySet Name="BI_GRNOSPDATAMATCH_RES" EntityType="Model3.BI_GRNOSPDATAMATCH_RES" />
+    <EntitySet Name="BI_GRNOSPDLDPATHNONCONS_REQ" EntityType="Model3.BI_GRNOSPDLDPATHNONCONS_REQ" />
+    <EntitySet Name="BI_GRNOSPDLDPATHNONCONS_RES" EntityType="Model3.BI_GRNOSPDLDPATHNONCONS_RES" />
+    <EntitySet Name="BI_GRNOSPDLOADPATH_REQ" EntityType="Model3.BI_GRNOSPDLOADPATH_REQ" />
+    <EntitySet Name="BI_GRNOSPLOADSRVBND_REQ" EntityType="Model3.BI_GRNOSPLOADSRVBND_REQ" />
+    <EntitySet Name="BI_GRNOSPLOADSRVBND_RES" EntityType="Model3.BI_GRNOSPLOADSRVBND_RES" />
+    <EntitySet Name="BI_GRNDATAMATCH_REQ" EntityType="Model3.BI_GRNDATAMATCH_REQ" />
+    <EntitySet Name="BI_GRNDATAMATCH_RES" EntityType="Model3.BI_GRNDATAMATCH_RES" />
+    <EntitySet Name="BI_GRNDLDPATHCONS_REQ" EntityType="Model3.BI_GRNDLDPATHCONS_REQ" />
+    <EntitySet Name="BI_GRNDLDPATHCONS_RES" EntityType="Model3.BI_GRNDLDPATHCONS_RES" />
+    <EntitySet Name="BI_GRNDLOADPATH_REQ" EntityType="Model3.BI_GRNDLOADPATH_REQ" />
+    <EntitySet Name="BI_CHKMSAN_REPLY_OSP" EntityType="Model3.BI_CHKMSAN_REPLY_OSP" />
+    <EntitySet Name="BI_CHKMSAN_REQUEST_OSP" EntityType="Model3.BI_CHKMSAN_REQUEST_OSP" />
+    <EntitySet Name="BI_UPDATEDPDIST_REPLY_OSP" EntityType="Model3.BI_UPDATEDPDIST_REPLY_OSP" />
+    <EntitySet Name="BI_UPDATEDPDIST_REQUEST_OSP" EntityType="Model3.BI_UPDATEDPDIST_REQUEST_OSP" />
+    <EntitySet Name="BI_ASSET_NO" EntityType="Model3.BI_ASSET_NO" />
+    <EntitySet Name="BI_ASSET_TAGGING" EntityType="Model3.BI_ASSET_TAGGING" />
+    <EntitySet Name="BI_ASSET_TAGGING_NIS" EntityType="Model3.BI_ASSET_TAGGING_NIS" />
+    <EntitySet Name="BI_CONTRACT" EntityType="Model3.BI_CONTRACT" />
+    <EntitySet Name="BI_DECOMM_TABLE" EntityType="Model3.BI_DECOMM_TABLE" />
+    <EntitySet Name="BI_GEMS_BOQ_MAT" EntityType="Model3.BI_GEMS_BOQ_MAT" />
+    <EntitySet Name="BI_NNW_EXT_SCH_GEM" EntityType="Model3.BI_NNW_EXT_SCH_GEM" />
+    <EntitySet Name="BI_NNW_MAT_MAST" EntityType="Model3.BI_NNW_MAT_MAST" />
+    <EntitySet Name="BI_NNW_PU_MAST" EntityType="Model3.BI_NNW_PU_MAST" />
+    <EntitySet Name="BI_NNW_PU_MAT_REF" EntityType="Model3.BI_NNW_PU_MAT_REF" />
+    <EntitySet Name="BI_TOGEMS_SEQ1" EntityType="Model3.BI_TOGEMS_SEQ1" />
+    <EntitySet Name="BI_GRNOSPLOADSITE_RES" EntityType="Model3.BI_GRNOSPLOADSITE_RES" />
+    <EntitySet Name="BI_GRNOSPDLOADEQUIP_REQ" EntityType="Model3.BI_GRNOSPDLOADEQUIP_REQ" />
+    <EntitySet Name="BI_GRNOSPLOADSITE_REQ" EntityType="Model3.BI_GRNOSPLOADSITE_REQ" />
+    <EntitySet Name="BI_GRNOSPDLOADEQUIP_RES" EntityType="Model3.BI_GRNOSPDLOADEQUIP_RES" />
+    <EntitySet Name="BI_GRNOSPDLDPATHCONS_REQ" EntityType="Model3.BI_GRNOSPDLDPATHCONS_REQ" />
+    <EntitySet Name="BI_GRNOSPDLDPATHCONS_RES" EntityType="Model3.BI_GRNOSPDLDPATHCONS_RES" />
+    <EntitySet Name="BI_GRNOSPADDCARD_REQ" EntityType="Model3.BI_GRNOSPADDCARD_REQ" />
+    <EntitySet Name="BI_GRNOSPADDCARD_RES" EntityType="Model3.BI_GRNOSPADDCARD_RES" />
+    <EntitySet Name="BI_GRNOSPDELETEEQUIP_REQ" EntityType="Model3.BI_GRNOSPDELETEEQUIP_REQ" />
+    <EntitySet Name="BI_GRNOSPDELETEEQUIP_RES" EntityType="Model3.BI_GRNOSPDELETEEQUIP_RES" />
+    <EntitySet Name="BI_GRNOSPDELETEPATH_REQ" EntityType="Model3.BI_GRNOSPDELETEPATH_REQ" />
+    <EntitySet Name="BI_GRNOSPDELETEPATH_RES" EntityType="Model3.BI_GRNOSPDELETEPATH_RES" />
+    <EntitySet Name="BI_GRNOSPDELETESB_REQ" EntityType="Model3.BI_GRNOSPDELETESB_REQ" />
+    <EntitySet Name="BI_GRNOSPDELETESB_RES" EntityType="Model3.BI_GRNOSPDELETESB_RES" />
+  </EntityContainer>
+  <EntityType Name="MIG_EXC_PTT">
+    <Key>
+      <PropertyRef Name="EXC" />
+    </Key>
+    <Property Type="String" Name="EXC" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PTT" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_BAYLINE">
+    <Key>
+      <PropertyRef Name="MIG_NIS_BAYLINE_ID" />
+    </Key>
+    <Property Name="MIG_NIS_BAYLINE_ID" Nullable="false" Type="Int64" />
+    <Property Name="FRAC_FRAN_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="FRAC_INDEX" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="MIG_EXCHANGE_ID" Nullable="false" Type="Int64" />
+    <Property Name="NRM_ID" Type="Int64" />
+    <Property Name="TIME_MODIFIED" Precision="6" Type="DateTime" />
+    <Property Name="TIME_PREPROCESS" Precision="6" Type="DateTime" />
+    <Property Name="TIME_LOADED" Precision="6" Type="DateTime" />
+    <Property Name="ERROR_CODE" MaxLength="300" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="FRAC_ID" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+    <NavigationProperty Name="MIG_EXCHANGE" Relationship="Model3.MIG_NIS_BAYLINE_FK1" FromRole="MIG_NIS_BAYLINE" ToRole="MIG_EXCHANGE" />
+    <NavigationProperty Name="MIG_NIS_RACK" Relationship="Model3.MIG_NIS_RACK_FK1" FromRole="MIG_NIS_BAYLINE" ToRole="MIG_NIS_RACK" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_CHASSIS">
+    <Key>
+      <PropertyRef Name="MIG_NIS_CHASSIS_ID" />
+    </Key>
+    <Property Type="Int64" Name="MIG_NIS_CHASSIS_ID" Nullable="false" />
+    <Property Type="String" Name="EQUP_LOCN_TTNAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_EQUT_ABBREVIATION" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_INDEX" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_MANR_ABBREVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_EQUM_MODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_INSERVICE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="MIG_EXCHANGE_ID" Nullable="false" />
+    <Property Type="Int64" Name="NRM_ID" />
+    <Property Type="DateTime" Name="TIME_LOADED" Precision="6" />
+    <Property Type="String" Name="ERROR_CODE" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL_VENDOR" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_MODIFIED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_PREPROCESS" Precision="6" />
+    <Property Type="String" Name="EQUIP_ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DOMAIN" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MIG_EXCHANGE" Relationship="Model3.MIG_NIS_CHASSIS_FK1" FromRole="MIG_NIS_CHASSIS" ToRole="MIG_EXCHANGE" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_PPANEL">
+    <Key>
+      <PropertyRef Name="MIG_NIS_PPANEL_ID" />
+    </Key>
+    <Property Type="Int64" Name="MIG_NIS_PPANEL_ID" Nullable="false" />
+    <Property Type="String" Name="FRAU_ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAU_POSITION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAU_DISTANCE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FUPT_PRODUCTNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FUPT_MANR_ABBREVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FUPT_TERMINATIONTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="PAIR_COUNT" />
+    <Property Type="String" Name="FRAC_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="MIG_NIS_RACK_ID" Nullable="false" />
+    <Property Type="Int64" Name="MIG_NIS_VRACK_ID" />
+    <Property Type="Int64" Name="NRM_ID" />
+    <Property Type="DateTime" Name="TIME_MODIFIED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_PREPROCESS" Precision="6" />
+    <Property Type="DateTime" Name="TIME_LOADED" Precision="6" />
+    <Property Type="String" Name="ERROR_CODE" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MIG_NIS_RACK" Relationship="Model3.MIG_NIS_PPANEL_FK1" FromRole="MIG_NIS_PPANEL" ToRole="MIG_NIS_RACK" />
+    <NavigationProperty Name="MIG_NIS_VRACK" Relationship="Model3.MIG_NIS_PPANEL_FK2" FromRole="MIG_NIS_PPANEL" ToRole="MIG_NIS_VRACK" />
+    <NavigationProperty Name="MIG_NIS_VPPANEL" Relationship="Model3.MIG_NIS_VPPANEL_FK1" FromRole="MIG_NIS_PPANEL" ToRole="MIG_NIS_VPPANEL" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_RACK">
+    <Key>
+      <PropertyRef Name="MIG_NIS_RACK_ID" />
+    </Key>
+    <Property Type="Int64" Name="MIG_NIS_RACK_ID" Nullable="false" />
+    <Property Type="String" Name="FRAU_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="MIG_NIS_BAYLINE_ID" Nullable="false" />
+    <Property Type="Int64" Name="NRM_ID" />
+    <Property Type="DateTime" Name="TIME_MODIFIED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_PREPROCESS" Precision="6" />
+    <Property Type="DateTime" Name="TIME_LOADED" Precision="6" />
+    <Property Type="String" Name="ERROR_CODE" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACTUAL_FRAU_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MIG_NIS_BAYLINE" Relationship="Model3.MIG_NIS_RACK_FK1" FromRole="MIG_NIS_RACK" ToRole="MIG_NIS_BAYLINE" />
+    <NavigationProperty Name="MIG_NIS_PPANEL" Relationship="Model3.MIG_NIS_PPANEL_FK1" FromRole="MIG_NIS_RACK" ToRole="MIG_NIS_PPANEL" />
+    <NavigationProperty Name="MIG_NIS_VRACK" Relationship="Model3.MIG_NIS_VRACK_FK1" FromRole="MIG_NIS_RACK" ToRole="MIG_NIS_VRACK" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_VPPANEL">
+    <Key>
+      <PropertyRef Name="MIG_NIS_VPPANEL_ID" />
+    </Key>
+    <Property Type="Int64" Name="MIG_NIS_VPPANEL_ID" Nullable="false" />
+    <Property Type="Int64" Name="MIG_NIS_PPANEL_ID" Nullable="false" />
+    <Property Type="Int64" Name="NRM_ID" />
+    <Property Type="DateTime" Name="TIME_MODIFIED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_PREPROCESS" Precision="6" />
+    <Property Type="DateTime" Name="TIME_LOADED" Precision="6" />
+    <Property Type="String" Name="ERROR_CODE" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="PAIR_COUNT" />
+    <Property Type="Int64" Name="MIG_NIS_VRACK_ID" />
+    <NavigationProperty Name="MIG_NIS_PPANEL" Relationship="Model3.MIG_NIS_VPPANEL_FK1" FromRole="MIG_NIS_VPPANEL" ToRole="MIG_NIS_PPANEL" />
+    <NavigationProperty Name="MIG_NIS_VRACK" Relationship="Model3.MIG_NIS_VPPANEL_FK2" FromRole="MIG_NIS_VPPANEL" ToRole="MIG_NIS_VRACK" />
+  </EntityType>
+  <EntityType Name="MIG_NIS_VRACK">
+    <Key>
+      <PropertyRef Name="MIG_NIS_VRACK_ID" />
+    </Key>
+    <Property Type="Int64" Name="MIG_NIS_VRACK_ID" Nullable="false" />
+    <Property Type="Int64" Name="MIG_NIS_RACK_ID" Nullable="false" />
+    <Property Type="Int64" Name="NRM_ID" />
+    <Property Type="DateTime" Name="TIME_MODIFIED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_PREPROCESS" Precision="6" />
+    <Property Type="DateTime" Name="TIME_LOADED" Precision="6" />
+    <Property Type="String" Name="ERROR_CODE" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MIG_NIS_PPANEL" Relationship="Model3.MIG_NIS_PPANEL_FK2" FromRole="MIG_NIS_VRACK" ToRole="MIG_NIS_PPANEL" />
+    <NavigationProperty Name="MIG_NIS_RACK" Relationship="Model3.MIG_NIS_VRACK_FK1" FromRole="MIG_NIS_VRACK" ToRole="MIG_NIS_RACK" />
+    <NavigationProperty Name="MIG_NIS_VPPANEL" Relationship="Model3.MIG_NIS_VPPANEL_FK2" FromRole="MIG_NIS_VRACK" ToRole="MIG_NIS_VPPANEL" />
+  </EntityType>
+  <EntityType Name="BI_PROCESS_ISP">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_CREATED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_STARTED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_FINISHED" Precision="6" />
+    <Property Type="Int16" Name="HAS_ERROR" />
+    <Property Type="String" Name="STACK_TRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NEPS_JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_CREATECARD_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GE3FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATECARD_REQUEST">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="EQUPID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSLOT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSTATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSERIAL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="CARDCOUNTPORT" Precision="20" Scale="0" />
+    <Property Type="String" Name="PORTSTARTNUM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFC_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRACID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3EFID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFC_REQUEST">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INDEXX" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATIONDETAIL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREACODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREADESCRIPTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAAREACODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAARETCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFU_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="FRAUID" Precision="20" Scale="0" />
+    <Property Type="String" Name="G3EFID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFU_REQUEST">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Decimal" Name="FRACID" Precision="20" Scale="0" />
+    <Property Type="String" Name="FRAUPOSITION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAUNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="FRAUDISTANCE" />
+    <Property Type="String" Name="FUPTMANRABBREAVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TERMINATIONTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRODUCTTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="COUNTPAIR" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATENE_REPLY">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="EQUP_ID" Precision="20" Scale="0" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATENE_REQUEST">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="EQUPLOCNTTNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUTABBREAVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPINDEX" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCNDETAIL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREACODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREADESCRIPTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAARETCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAAREACODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPSTATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMANRABBREAVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUMMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATECARD_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="GE3FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATECARD_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="EQUPID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSLOT" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSTATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CARDSERIAL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="CARDCOUNTPORT" Precision="20" Scale="0" />
+    <Property Type="String" Name="PORTSTARTNUM" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATECS_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="CABS_ID" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATECS_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="EQUPID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABS_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABS_CAST_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABS_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CSPT_PROD_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="MIN_NUMBER" />
+    <Property Type="Int64" Name="MAX_NUMBER" />
+    <Property Type="Int64" Name="PAIR_COUNT" />
+    <Property Type="String" Name="LOCATION_A" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATION_B" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="Decimal" Name="DISTANCE" Precision="15" Scale="5" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFC_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRACID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3EFID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFC_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="LOCNTTNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRANNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="INDEXX" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCATIONDETAIL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREACODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREADESCRIPTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAAREACODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAARETCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFU_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="FRAUID" Precision="20" Scale="0" />
+    <Property Type="String" Name="G3EFID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATEFU_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Decimal" Name="FRACID" Precision="20" Scale="0" />
+    <Property Type="String" Name="FRAUPOSITION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAUNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="FRAUDISTANCE" />
+    <Property Type="String" Name="FUPTMANRABBREAVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TERMINATIONTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRODUCTTYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="COUNTPAIR" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATENE_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="EQUP_ID" Precision="20" Scale="0" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATENE_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="EQUPLOCNTTNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUTABBREAVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPINDEX" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LOCNDETAIL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREACODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREADESCRIPTION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAARETCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AREAAREACODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPSTATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPMANRABBREAVIATION" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUMMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATESB_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CREATESB_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FRAC_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIELD1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FIELD2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREET_NUMBER" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREET_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STREET_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SUBURB" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CITY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STAT_ABBR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="POSCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COUNTRY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="Decimal" Name="DISTANCE" Precision="15" Scale="5" />
+  </EntityType>
+  <EntityType Name="BI_BATCH">
+    <Key>
+      <PropertyRef Name="BATCH_ID" />
+    </Key>
+    <Property Type="Int64" Name="BATCH_ID" Nullable="false" />
+    <Property Type="String" Name="INSTANCE_ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_START" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_END" Precision="6" />
+    <Property Type="String" Name="SERVICE_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FILENAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="FILE_HAS_ERROR" Nullable="false" />
+    <Property Type="String" Name="EXCEPTION" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCEPTION_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STACKTRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OUTBOUND_FILE_NAME" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="OUTBOUND_FILE_SIZE" />
+    <Property Type="Int64" Name="OUTBOUND_FILE_LINE_COUNT" />
+    <Property Type="String" Name="OUTBOUND_FILE_DATE" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_NNW_GEM_PROJNO">
+    <Key>
+      <PropertyRef Name="PROJECT_NO" />
+    </Key>
+    <Property Type="String" Name="PROJECT_NO" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROJ_DESC" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="START_DATE" />
+    <Property Type="DateTime" Name="END_DATE" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="AMOUNT" Precision="13" Scale="3" />
+    <Property Type="String" Name="NETWORK_HDR" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="WBS_NUM" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="WBS_DESC" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="BI_BATCH_ID" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLOADEQUIP_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_MNGTIP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPCAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPVEND" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPMODEL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_REGION" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_STATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EXCHDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_TEMPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_TAGGING" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_OUTINDOORTAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_EXTFLAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_NETWORK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_INSERVICE" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_PROC_GRN_ISP">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_CREATED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_STARTED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_FINISHED" Precision="6" />
+    <Property Type="Int16" Name="HAS_ERROR" />
+    <Property Type="String" Name="STACK_TRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NEPS_JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USER_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLOADEQUIP_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="EQUIP_EQUIPINSTID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPCAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPVEND" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPMODEL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_MNGTIP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_SITEDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_TEMPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_TAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_OUTINDOORTAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_DPEXTFLAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_NETWORKNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="CALLSTATUS_MSGCODE" />
+    <Property Type="String" Name="CALLSTATUS_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_INSERVICE" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLDPATHNONCONS_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHBW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISBEARERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISMEDIAPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRIMARYSECONDARY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMIPDSLAM_NODENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMIPDSLAM_UPLINKPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMIPDSLAM_DOWNLINKPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMSE_NODENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMSE_DOWNLINKPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLDPATHNONCONS_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="PATHNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHBW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISBEARERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISMEDIAPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRIMARYSECONDARY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="IPDSLAMNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DSLAMUPLINK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DSLAMDOWNLOADPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MSENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MSE_DOWNLINKPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_MSGCODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_PROC_GRN_OSP">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_CREATED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_STARTED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_FINISHED" Precision="6" />
+    <Property Type="Int16" Name="HAS_ERROR" />
+    <Property Type="String" Name="STACK_TRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NEPS_JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USER_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MIG_GRT_CHASSIS">
+    <Key>
+      <PropertyRef Name="MIG_GRT_CHASSIS_ID" />
+    </Key>
+    <Property Type="Int64" Name="MIG_GRT_CHASSIS_ID" Nullable="false" />
+    <Property Type="String" Name="EQUP_EQUT_ABBREVIATION" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_INDEX" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_LOCN_TTNAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_STATUS" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_MANR_ABBREVIATION" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_EQUM_MODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUP_INSERVICE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="NRM_ID" />
+    <Property Type="DateTime" Name="TIME_MODIFIED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_PREPROCESS" Precision="6" />
+    <Property Type="DateTime" Name="TIME_LOADED" Precision="6" />
+    <Property Type="String" Name="ERROR_CODE" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="MIG_EXCHANGE_ID" Nullable="false" />
+    <NavigationProperty Name="MIG_EXCHANGE" Relationship="Model3.MIG_GRT_CHASSIS_FK1" FromRole="MIG_GRT_CHASSIS" ToRole="MIG_EXCHANGE" />
+    <Property Type="String" Name="TEST" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_PROCESS">
+    <Key>
+      <PropertyRef Name="PROC_ID" />
+    </Key>
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_CREATED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_STARTED" Precision="6" />
+    <Property Type="DateTime" Name="TIME_FINISHED" Precision="6" />
+    <Property Type="Int16" Name="HAS_ERROR" />
+    <Property Type="String" Name="STACK_TRACE" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NEPS_JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MIG_EXCHANGE">
+    <Key>
+      <PropertyRef Name="MIG_EXCHANGE_ID" />
+    </Key>
+    <Property Type="String" Name="EXCHANGE" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="MIG_EXCHANGE_ID" Nullable="false" />
+    <Property Type="Int64" Name="NRM_ID" />
+    <Property Type="DateTime" Name="TIME_LOADED" Precision="6" />
+    <Property Type="String" Name="ERROR_CODE" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_MODIFIED" Nullable="false" Precision="6" />
+    <Property Type="DateTime" Name="TIME_PREPROCESS" Precision="6" />
+    <NavigationProperty Name="MIG_GRT_CHASSIS" Relationship="Model3.MIG_GRT_CHASSIS_FK1" FromRole="MIG_EXCHANGE" ToRole="MIG_GRT_CHASSIS" />
+    <NavigationProperty Name="MIG_NIS_BAYLINE" Relationship="Model3.MIG_NIS_BAYLINE_FK1" FromRole="MIG_EXCHANGE" ToRole="MIG_NIS_BAYLINE" />
+    <NavigationProperty Name="MIG_NIS_CHASSIS" Relationship="Model3.MIG_NIS_CHASSIS_FK1" FromRole="MIG_EXCHANGE" ToRole="MIG_NIS_CHASSIS" />
+  </EntityType>
+  <Association Name="MIG_GRT_CHASSIS_FK1">
+    <End Type="Model3.MIG_EXCHANGE" Role="MIG_EXCHANGE" Multiplicity="1" />
+    <End Type="Model3.MIG_GRT_CHASSIS" Role="MIG_GRT_CHASSIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_EXCHANGE">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Principal>
+      <Dependent Role="MIG_GRT_CHASSIS">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_BAYLINE_FK1">
+    <End Type="Model3.MIG_EXCHANGE" Multiplicity="1" Role="MIG_EXCHANGE" />
+    <End Type="Model3.MIG_NIS_BAYLINE" Multiplicity="*" Role="MIG_NIS_BAYLINE" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_EXCHANGE">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_BAYLINE">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_CHASSIS_FK1">
+    <End Type="Model3.MIG_EXCHANGE" Role="MIG_EXCHANGE" Multiplicity="1" />
+    <End Type="Model3.MIG_NIS_CHASSIS" Role="MIG_NIS_CHASSIS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_EXCHANGE">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_CHASSIS">
+        <PropertyRef Name="MIG_EXCHANGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_RACK_FK1">
+    <End Type="Model3.MIG_NIS_BAYLINE" Multiplicity="1" Role="MIG_NIS_BAYLINE" />
+    <End Type="Model3.MIG_NIS_RACK" Multiplicity="*" Role="MIG_NIS_RACK" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_BAYLINE">
+        <PropertyRef Name="MIG_NIS_BAYLINE_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_RACK">
+        <PropertyRef Name="MIG_NIS_BAYLINE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_PPANEL_FK1">
+    <End Type="Model3.MIG_NIS_RACK" Role="MIG_NIS_RACK" Multiplicity="1" />
+    <End Type="Model3.MIG_NIS_PPANEL" Role="MIG_NIS_PPANEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_RACK">
+        <PropertyRef Name="MIG_NIS_RACK_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_PPANEL">
+        <PropertyRef Name="MIG_NIS_RACK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_PPANEL_FK2">
+    <End Type="Model3.MIG_NIS_VRACK" Role="MIG_NIS_VRACK" Multiplicity="0..1" />
+    <End Type="Model3.MIG_NIS_PPANEL" Role="MIG_NIS_PPANEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_VRACK">
+        <PropertyRef Name="MIG_NIS_VRACK_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_PPANEL">
+        <PropertyRef Name="MIG_NIS_VRACK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_VPPANEL_FK1">
+    <End Type="Model3.MIG_NIS_PPANEL" Role="MIG_NIS_PPANEL" Multiplicity="1" />
+    <End Type="Model3.MIG_NIS_VPPANEL" Role="MIG_NIS_VPPANEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_PPANEL">
+        <PropertyRef Name="MIG_NIS_PPANEL_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_VPPANEL">
+        <PropertyRef Name="MIG_NIS_PPANEL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_VRACK_FK1">
+    <End Type="Model3.MIG_NIS_RACK" Role="MIG_NIS_RACK" Multiplicity="1" />
+    <End Type="Model3.MIG_NIS_VRACK" Role="MIG_NIS_VRACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_RACK">
+        <PropertyRef Name="MIG_NIS_RACK_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_VRACK">
+        <PropertyRef Name="MIG_NIS_RACK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MIG_NIS_VPPANEL_FK2">
+    <End Type="Model3.MIG_NIS_VRACK" Role="MIG_NIS_VRACK" Multiplicity="0..1" />
+    <End Type="Model3.MIG_NIS_VPPANEL" Role="MIG_NIS_VPPANEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MIG_NIS_VRACK">
+        <PropertyRef Name="MIG_NIS_VRACK_ID" />
+      </Principal>
+      <Dependent Role="MIG_NIS_VPPANEL">
+        <PropertyRef Name="MIG_NIS_VRACK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BI_GRNOSPDATAMATCH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EXCHDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDATAMATCH_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_MNGIP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_TOTALPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPCAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPVEND" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPMODEL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPADD_REGION" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPADD_STATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPADD_EXCHDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPADD_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="CALLSTATUS_MSGCODE" />
+    <Property Type="String" Name="CALLSTATUS_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLDPATHNONCONS_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHBW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISBEARERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISMEDIAPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRIMARYSECONDARY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMIPDSLAM_NODENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMIPDSLAM_UPLINKPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMIPDSLAM_DOWNLINKPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMSE_NODENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TMSE_DOWNLINKPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLDPATHNONCONS_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="PATHNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHBW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISBEARERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NISMEDIAPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PRIMARYSECONDARY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="IPDSLAMNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DSLAMUPLINK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DSLAMDOWNLOADPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MSENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MSE_DOWNLINKPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_MSGCODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLOADPATH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_TYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_BANDWIDTH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_TYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_SLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_CARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_PORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_TYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_SLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_CARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_PORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMBEARER_ID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMBEARER_MEDIAPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMBEARER_PRIMESEC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMIPDSLAM_NNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMIPDSLAM_ULPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMIPDSLAM_DLPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMSE_NODENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMSE_DLPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPLOADSRVBND_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SRVBNDID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITENO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITEFLOOR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITEBUILD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTREETTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTREETNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSECTION" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRPOSTCODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCITY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCOUNTRY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRPREMISETYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSERVCAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITESDP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITEDPEXC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRDDP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSMARTDEV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRPROJECTID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DROPCABLEDISTANCE" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPLOADSRVBND_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="SRVBNDID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="ADDRRSCINSTID" />
+    <Property Type="String" Name="ADDRSITENO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITEFLOOR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITEBUILD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTREETTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTREETNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSECTION" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRPOSTCODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCITY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCOUNTRY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRPREMISETYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSERVCAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRDDP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSMARTDEV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRPROJECTID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITESDP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITEDPEXC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="CALLMSGCODE" />
+    <Property Type="String" Name="CALLMSG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DROPCABLEDISTANCE" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNDATAMATCH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EXCHDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNDATAMATCH_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_MNGIP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_TOTALPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPCAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPVEND" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPMODEL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPADD_REGION" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPADD_STATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPADD_EXCHDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPADD_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_MSGCODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLDPATHCONS_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLDPATHCONS_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="PATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHBW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DSIDE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DCARD2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPORT2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDPCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDPPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDCPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDCPATHTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDCPATHBW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDCPATHSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ESIDE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SPLITTER" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="CALLSTATUS_MSGCODE" />
+    <Property Type="String" Name="CALLSTATUS_MSG" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNDLOADPATH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_TYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_BANDWIDTH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATH_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_TYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_SLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_CARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPA_PORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_TYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_SLOT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_CARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPZ_PORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMBEARER_ID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMBEARER_MEDIAPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMBEARER_PRIMESEC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMIPDSLAM_NNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMIPDSLAM_ULPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMIPDSLAM_DLPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMSE_NODENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATMSE_DLPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_CHKMSAN_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_CHKMSAN_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPLOCNTNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUTABBR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPINDEX" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_UPDATEDPDIST_REPLY_OSP">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="ERRORCODE" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ERRORMSG" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+  </EntityType>
+  <EntityType Name="BI_UPDATEDPDIST_REQUEST_OSP">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPLOCNTNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPEQUTABBR" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUPINDEX" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="DISTANCE" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_ASSET_NO">
+    <Key>
+      <PropertyRef Name="ID1" />
+    </Key>
+    <Property Type="String" Name="ASSET_NO" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLE_EQUIP_ID" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROJECT_NO" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="BI_BATCH_ID" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+    <Property Type="String" Name="ASSET_SUB_NO" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMPANY_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASSET_TYPE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="ID1" Nullable="false" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="BI_ASSET_TAGGING">
+    <Key>
+      <PropertyRef Name="BI_BATCH_ID" />
+    </Key>
+    <Property Type="Int64" Name="BI_BATCH_ID" Nullable="false" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+    <Property Type="String" Name="ASSET_NO" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASSET_SUB_NO" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMPANY_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLE_EQUIP_ID" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="TAGGING_DATE" />
+    <Property Type="String" Name="VERIFICATION_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VERIFICATION_BY" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="LAST_INVENTORY_ON" />
+    <Property Type="String" Name="TYPE_NAME" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_ASSET_TAGGING_NIS">
+    <Key>
+      <PropertyRef Name="BI_BATCH_ID" />
+    </Key>
+    <Property Type="Int64" Name="BI_BATCH_ID" Nullable="false" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+    <Property Type="String" Name="NIS_ID" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G3E_FID" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASSET_NO" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASSET_SUBNUMBER" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="COMPANY_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXCHANGE_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CABLE_EQUIP_ID" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="TAGGING_DATE" />
+    <Property Type="String" Name="VERIFICATION_STATUS" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VERIFICATION_BY" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="LAST_INVENTORY_ON" />
+    <Property Type="String" Name="TYPE_NAME" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_CONTRACT">
+    <Key>
+      <PropertyRef Name="CONTRACT_NO" />
+    </Key>
+    <Property Type="String" Name="CONTRACT_NO" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTRACT_DESCRIPTION" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ITEM_NO" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VENDOR_ID" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="VENDOR_NAME" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SHORT_TEXT" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ITEM_CATEGORY" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ORDER_UNIT" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="NET_PRICE" Precision="12" Scale="2" />
+    <Property Type="Int64" Name="BI_BATCH_ID" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+  </EntityType>
+  <EntityType Name="BI_DECOMM_TABLE">
+    <Key>
+      <PropertyRef Name="BI_BATCH_ID" />
+    </Key>
+    <Property Type="DateTime" Name="DECOMM_DATE" />
+    <Property Type="Int64" Name="ASSET_NO" />
+    <Property Type="String" Name="DECOMM_REASON" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="CABLE_ID" />
+    <Property Type="Int64" Name="BI_BATCH_ID" Nullable="false" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+  </EntityType>
+  <EntityType Name="BI_GEMS_BOQ_MAT">
+    <Key>
+      <PropertyRef Name="PROJ_NO" />
+    </Key>
+    <Property Type="String" Name="PROJ_NO" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NETWORK_HEADER" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTRACT_NO" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTRACT_ITEM_NO" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="QUANTITY" />
+    <Property Type="Int64" Name="BI_BATCH_ID" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+    <Property Type="String" Name="WBS_NUM" MaxLength="24" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_NNW_EXT_SCH_GEM">
+    <Key>
+      <PropertyRef Name="PROJ_NUM" />
+    </Key>
+    <Property Type="String" Name="PROJ_NUM" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NETWORK_HDR" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="WBS_NUM" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RATE_INDICATOR" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PU_ID" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PU_QTY" Precision="13" Scale="3" />
+    <Property Type="Int64" Name="BI_BATCH_ID" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+  </EntityType>
+  <EntityType Name="BI_NNW_MAT_MAST">
+    <Key>
+      <PropertyRef Name="MAT_ID" />
+    </Key>
+    <Property Type="String" Name="RECORD_TYPE" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TRANS_TYPE" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_ID" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_NAME" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_UOM" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_CAT" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="MAT_PRICE" Precision="13" Scale="2" />
+    <Property Type="Int64" Name="BI_BATCH_ID" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+  </EntityType>
+  <EntityType Name="BI_NNW_PU_MAST">
+    <Key>
+      <PropertyRef Name="PU_ID" />
+    </Key>
+    <Property Type="String" Name="RECORD_TYPE" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TRANS_TYPE" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PU_ID" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PU_DESC" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PU_INST_PR" Precision="13" Scale="2" />
+    <Property Type="Decimal" Name="PU_MAT_PR" Precision="13" Scale="2" />
+    <Property Type="String" Name="PU_UOM" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="DURATION" Precision="7" Scale="3" />
+    <Property Type="String" Name="NETWORK_FLAG" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACT_CODE" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="SUP_DURATION" Precision="13" Scale="2" />
+    <Property Type="String" Name="BILL_RATE" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DATE_TS" />
+    <Property Type="Int64" Name="BI_BATCH_ID" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+  </EntityType>
+  <EntityType Name="BI_NNW_PU_MAT_REF">
+    <Key>
+      <PropertyRef Name="MAT_ID" />
+    </Key>
+    <Property Type="String" Name="RECORD_TYPE" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TRANS_TYPE" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PU_ID" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MAT_ID" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="PM_QTY" Precision="13" Scale="4" />
+    <Property Type="Int64" Name="BI_BATCH_ID" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+  </EntityType>
+  <EntityType Name="BI_TOGEMS_SEQ1">
+    <Key>
+      <PropertyRef Name="BI_BATCH_ID" />
+    </Key>
+    <Property Type="Int64" Name="BI_BATCH_ID" Nullable="false" />
+    <Property Type="Int64" Name="BI_INSERT_ORDER" />
+    <Property Type="String" Name="PROJECT_NO" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="WBS_NO" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENT_CODE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASSET_ADDRESS1" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASSET_ADDRESS2" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASSET_ADDRESS3" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPLOADSITE_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="Int64" Name="INSTID" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITEFLOOR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITENO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITEBUILD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTREET" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCITY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRPOSTCODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTREETTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCOUNTY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCOUNTRY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCOMMENTS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDAEQUIPLOC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDACABLINGTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDACOPPEROWNBYTM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDAFIBRETOPREMISEEXIST" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATOTALSRVBONDARY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDAACCESSRESTRICT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDACONTACT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDACOMMENTS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CSSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="CSMSGCODE" />
+    <Property Type="String" Name="CSMSG" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLOADEQUIP_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_MNGTIP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPCAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPVEND" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPMODEL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_REGION" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_STATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EXCHDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_TEMPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_TAGGING" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_OUTINDOORTAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_EXTFLAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_NETWORK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_INSERVICE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATCHCORD" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPLOADSITE_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEREGION" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITESTATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEPTT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEEXCHG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITENAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITETYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRFLOOR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSITENO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRBUILD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTREET" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCITY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTATE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRPOSTCODE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRSTREETTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCOUNTY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCOUNTRY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDRCOMMENTS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDAEQUIPLOC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDACABLINGTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDACOPPEROWNBYTM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDAFIBERTOPREMISEEXIST" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDATOTALSRVBOUNDARY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDAACCESSRESTRICT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDACONTACT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UDACOMMENTS" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLOADEQUIP_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="EQUIP_EQUIPINSTID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPCAT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPVEND" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_EQUIPMODEL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_MNGTIP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_SITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_SITEDESC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_TEMPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_TAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_OUTINDOORTAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_DPEXTFLAG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPUDA_NETWORKNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="CALLSTATUS_MSGCODE" />
+    <Property Type="String" Name="CALLSTATUS_MSG" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIP_INSERVICE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATCHCORD" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLDPATHCONS_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="EVENTNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ANAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ATYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DP_TAMBAHAN" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDLDPATHCONS_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="PATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHBW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DSIDE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DCARD2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DPORT2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDPCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDPPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDCPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDCPATHTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDCPATHBW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FDCPATHSTATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ESIDE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SPLITTER" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACARD3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="APORT3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CALLSTATUS_STATUS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="CALLSTATUS_MSGCODE" />
+    <Property Type="String" Name="CALLSTATUS_MSG" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPPATHID" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPZNAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPZSITE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPZTYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPZCARD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ODPZPORT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DP_TAMBAHAN" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPADDCARD_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="Decimal" Name="ADDCARD_ID" Precision="38" Scale="0" />
+    <Property Type="String" Name="CLASS_NAME" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="G3E_FID" />
+    <Property Type="String" Name="SCHEME_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTID" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPVEND" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMODEL" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TEMPLATENAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="SLOT_NO" />
+    <Property Type="String" Name="CARD_TYPE" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTAL_PORT" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROJECT_NAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATCHCORD" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESIGN" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDCARD" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ADDSPLITTER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OWNER_FID" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPADDCARD_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="REQUESTEDSERVICE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TRANSACTIONID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REQUESTSYSTEM" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MESSAGECODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MESSAGE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPINFO" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOTNUMBER" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TOTALPORT" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PATHCORD" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PROJECTNAME" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESIGN" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETEEQUIP_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="CLASS_NAME" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTID" MaxLength="115" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTCATEGORY" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOTNUMBER" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETEEQUIP_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="REQUESTEDSERVICE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TRANSACTIONID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REQUESTSYSTEM" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MESSAGECODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MESSAGE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTINSTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTCATEGORY" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EQUIPMENTSTATUS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SLOTNUMBER" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETEPATH_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="CLASS_NAME" MaxLength="150" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TYPE" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETEPATH_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="REQUESTEDSERVICE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TRANSACTIONID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REQUESTSYSTEM" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MESSAGECODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MESSAGE" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETESB_REQ">
+    <Key>
+      <PropertyRef Name="REQUEST_ID" />
+    </Key>
+    <Property Type="Int64" Name="REQUEST_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="DateTime" Name="TIME_SENT" Precision="6" />
+    <Property Type="String" Name="CLASS_NAME" MaxLength="150" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="USERID" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SERVICEBOUNDARYID" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="SITEDP" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BI_GRNOSPDELETESB_RES">
+    <Key>
+      <PropertyRef Name="REPLY_ID" />
+    </Key>
+    <Property Type="Int64" Name="REPLY_ID" Nullable="false" />
+    <Property Type="Int64" Name="PROC_ID" Nullable="false" />
+    <Property Type="Int64" Name="REQUEST_ID" />
+    <Property Type="DateTime" Name="TIME_RETURNED" Precision="6" />
+    <Property Type="String" Name="REQUESTEDSERVICE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TRANSACTIONID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REQUESTSYSTEM" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="STATUS" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MESSAGECODE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MESSAGE" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

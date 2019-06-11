@@ -1,0 +1,464 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.FeatureMaintenance>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+
+
+
+    jQuery(document).ready(function ($) {
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 600,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+            $('#btnClose').click(function () {
+                var items = "<option selected></option>";
+                $("#FeatureTypeListJKH").html(items);
+                $("#MinMaterialList").html(items);
+                $("#FeatureStateList").html(items);
+                $('#txtDay').val("");
+                $('#txtNight').val("");
+                $('#txtWeekend').val("");
+                $('#txtHoliday').val("");
+                $("#divDetails").dialog("close");
+            });
+
+
+
+            $('#searchKey').change(function () {
+                window.location = "List?searchKey=" + document.getElementById("searchKey").value; //Where List is the function in the controller.
+            });
+
+
+
+            $('#btnNewFeatMast').click(function () {
+
+                $("#divDetails").dialog({ title: "New Feature Master Maintenance" });
+                $("#divDetails").dialog({ closeOnEscape: false });
+                $("#divDetails").dialog("open");
+                document.getElementById("btnAdd").style.display = "block";
+                document.getElementById("btnUpdate").style.display = "none";
+                document.getElementById("btnDelete").style.display = "none";
+                $.ajax(
+                {
+                    url: "/FeatureMastMaintenance/FeatureTypeListJKH",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+                        //alert(res.FeatureTypeList);
+                        data = res.FeatureTypeList.split("|");
+                        var items = "<option selected></option>";
+                        for (i = 1; i < data.length; i++) {
+                            if (data[i] != "") {
+                                items += "<option value='" + data[i] + "'>" + data[i] + "</option>";
+                            }
+                        }
+                        $("#FeatureTypeListJKH").html(items);
+                        $('#txtDay').val("");
+                        $('#txtNight').val("");
+                        $('#txtWeekend').val("");
+                        $('#txtHoliday').val("");
+                        var itemsM = "<option selected></option>";
+                        $("#MinMaterialList").html(itemsM);
+                        $("#FeatureStateList").html(itemsM);
+                    }
+                });
+            });
+
+
+
+            $('#FeatureTypeListJKH').change(function () {
+                var FeatureType = $('#FeatureTypeListJKH').val();
+                // alert(FeatureType);
+                if (FeatureType != "") {
+                    $.ajax(
+                    {
+                        url: "/FeatureMastMaintenance/MinMaterialList",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "featureType": FeatureType
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+
+                            var res = jQuery.parseJSON(data);
+                            //alert(res.MinMaterialList);
+                            data = res.MinMaterialList.split("|");
+                            var items = "<option selected></option>";
+                            for (i = 0; i < data.length; i++) {
+                                if (data[i] != "") {
+                                    items += "<option value='" + data[i] + "'>" + data[i] + "</option>";
+                                }
+                            }
+                            $("#MinMaterialList").html(items);
+
+                            //alert(res.FeatureStateList);
+                            dataFeatState = res.FeatureStateList.split("|");
+                            //alert((dataFeatState[2] !=""));
+                            items = "<option selected></option>";
+                            for (i = 0; i < dataFeatState.length - 1; i++) {
+                                items += "<option value='" + dataFeatState[i] + "'>" + dataFeatState[i] + "</option>";
+                            }
+                            $("#FeatureStateList").html(items);
+
+                        }
+                    });
+                }
+                else {
+                    var items = "<option selected></option>";
+                    $("#MinMaterialList").html(items);
+                    $("#FeatureStateList").html(items);
+                }
+
+                $('#txtDay').val("");
+                $('#txtNight').val("");
+                $('#txtWeekend').val("");
+                $('#txtHoliday').val("");
+            });
+
+
+
+            $('#btnAdd').click(function () {
+
+                var FeatureType = $('#FeatureTypeListJKH').val();
+                var MinMaterial = $('#MinMaterialList').val();
+                var FeatureState = $('#FeatureStateList').val();
+                $.ajax(
+                {
+                    url: "/FeatureMastMaintenance/NewFeatureMaster",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "txtFeatureType": FeatureType,
+                        "txtMinMaterial": MinMaterial,
+                        "txtFeatureState": FeatureState,
+                        "txtDay": document.getElementById("txtDay").value,
+                        "txtNight": document.getElementById("txtNight").value,
+                        "txtWeekend": document.getElementById("txtWeekend").value,
+                        "txtHoliday": document.getElementById("txtHoliday").value
+
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("New Feature Master has been created.");
+                            window.location.reload();
+
+                        }
+                        else {
+                            alert(res.errorMessage);
+                        }
+                    }
+                });
+            });
+
+            $('#btnUpdate').click(function () {
+                //alert($(this).find("#day").text());
+                var FeatureState = $('#FeatureStateList').val();
+                var MinMaterial = $('#MinMaterialList').val();
+                $.ajax(
+                {
+                    url: "/FeatureMastMaintenance/UpdateFeatureMaster",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "txtMinMaterial": MinMaterial,
+                        "txtFeatureState": FeatureState,
+                        "txtFeatMastNo": document.getElementById("txtFeatMastNo").value,
+                        "txtDay": document.getElementById("txtDay").value,
+                        "txtNight": document.getElementById("txtNight").value,
+                        "txtWeekend": document.getElementById("txtWeekend").value,
+                        "txtHoliday": document.getElementById("txtHoliday").value
+
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Updated");
+                            window.location.reload();
+
+                        }
+                        else {
+                            alert(res.errorMessage);
+                        }
+                    }
+                });
+            });
+
+
+            $('#btnDelete').click(function () {
+                $.ajax(
+                {
+                    url: "/FeatureMastMaintenance/DeleteFeatureMaster",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "txtFeatMastNo": document.getElementById("txtFeatMastNo").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Deleted.");
+                            window.location.reload();
+
+                        }
+                        else {
+                            alert("Failed.");
+                        }
+                    }
+                });
+            });
+
+
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnAdd").button();
+            $("#btnUpdate").button();
+            $("#btnDelete").button();
+            $("#btnNewFeatMast").button();
+        });
+
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var txtFeatMastNo = $(this).find("#featMastNo").text();
+            var txtMinMat = $(this).find("#minMat").text();
+            var txtDay = $(this).find("#day").text();
+            var txtNight = $(this).find("#night").text();
+            var txtWeekend = $(this).find("#weekend").text();
+            var txtHoliday = $(this).find("#holiday").text();
+            var txtFeatureType = $(this).find("#featureType").text();
+            var txtFeatureState = $(this).find("#featureState").text();
+            $("#divDetails").dialog({ title: "Details" });
+            $("#divDetails").dialog({ closeOnEscape: false });
+            $("#divDetails").dialog("open");
+            document.getElementById("btnAdd").style.display = "none";
+            document.getElementById("btnUpdate").style.display = "block";
+            document.getElementById("btnDelete").style.display = "block";
+            $('#txtDay').val(txtDay);
+            $('#txtNight').val(txtNight);
+            $('#txtWeekend').val(txtWeekend);
+            $('#txtHoliday').val(txtHoliday);
+            $('#txtFeatMastNo').val(txtFeatMastNo);
+
+
+            var itemsMinMat = "<option selected value='" + txtMinMat + "'>" + txtMinMat + "</option>";
+            $("#MinMaterialList").html(itemsMinMat);
+
+            var itemsFeatureType = "<option selected value='" + txtFeatureType + "'>" + txtFeatureType + "</option>";
+            $("#FeatureTypeListJKH").html(itemsFeatureType);
+
+            $.ajax(
+                    {
+                        url: "/FeatureMastMaintenance/FeatureStateList",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+
+                            var res = jQuery.parseJSON(data);
+
+
+                            //alert(res.FeatureStateList);
+                            dataFeatState = res.FeatureStateList.split("|");
+                            //alert((dataFeatState[2] !=""));
+                            var itemsFeatureState = "<option selected value='" + txtFeatureState + "'>" + txtFeatureState + "</option>";
+                            for (i = 0; i < dataFeatState.length - 1; i++) {
+                                if (dataFeatState[i] != txtFeatureState) {
+                                    itemsFeatureState += "<option value='" + dataFeatState[i] + "'>" + dataFeatState[i] + "</option>";
+                                }
+                            }
+                            $("#FeatureStateList").html(itemsFeatureState);
+
+                        }
+                    });
+        });
+    });
+
+  
+
+</script>
+
+<br />
+<h2>Feature Master Maintenance List - JKH</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:200px;"><input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td><input type="button" value="Search" id="btnSearch" /></td>
+                 <td style="text-align:right"><input type="button" value="Add New" id="btnNewFeatMast" /></td>
+            </tr>
+        </table>
+    </div><br />
+ @if (Model.Count() > 0)
+    {
+    <table id="rounded-corner" summary="FeatureMastsMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">MIN MATERIAL</th>
+                <th scope="col">DAY</th>
+                <th scope="col">NIGHT</th>
+                <th scope="col">WEEKEND</th> 
+                <th scope="col">PUBLIC</th> 
+                <th scope="col">FEATURE TYPE</th> 
+                <th scope="col">FEATURE STATE</th>                 
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="minMat">@res.MIN_MATERIAL</td>
+                <td id="day">@res.DAY</td>
+                <td id="night">@res.NIGHT</td>
+                <td id="weekend">@res.WEEKEND</td>
+                <td id="holiday">@res.HOLIDAY</td>
+                <td id="featureType">@res.FEATURE_TYPE</td>
+                <td id="featureState">@res.FEATURE_STATE</td> 
+                <td style="display:none;" id="featMastNo">@res.FEAT_MAST_NO</td>                
+                @*<td>@Ajax.ActionLink("Details", "GetDetails", new { id = res.AND_ID }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId="divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>*@
+            </tr>    
+        }
+        </tbody>
+    </table>
+     <div> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { searchKey = @ViewBag.searchKey, page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { searchKey = @ViewBag.searchKey, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+            
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { searchKey = @ViewBag.searchKey, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { searchKey = @ViewBag.searchKey, page = Model.PageCount })
+        }
+        else
+        {
+            
+        }
+        </div>
+     }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+
+     <div id="divDetails" style="padding-left:40px; padding-top:30px;">       
+        
+        <div id="list-details">
+         <input type="text" id="txtFeatMastNo" name="txtFeatMastNo" style="width:150px; display:none" />
+            <table width="500px">
+            <tr>
+                    <td style="width:150px; background-color:#e8eef4">Feature Type</td>
+                     <td style="width:10px; background-color:#e8eef4">:</td>
+                   <td><select id="FeatureTypeListJKH" style="width:150px;"></select></td> 
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Min Material</td>
+                    <td style="width:10px; background-color:#e8eef4">:</td>
+                    <td><select id="MinMaterialList" style="width:150px;"></select></td> 
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+              <tr>
+                    <td style="width:150px; background-color:#e8eef4">Feature State</td>
+                    <td style="width:10px; background-color:#e8eef4">:</td>
+                    <td><select id="FeatureStateList" style="width:150px;"></select></td> 
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Day</td>
+                    <td style="width:10px; background-color:#e8eef4">:</td>
+                    <td><input type="text" id="txtDay" name="txtDay" style="width:150px;" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr> 
+                 <tr>
+                    <td style="width:150px; background-color:#e8eef4">Night</td>
+                    <td style="width:10px; background-color:#e8eef4">:</td>
+                    <td><input type="text" id="txtNight" name="txtNight" style="width:150px;" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr> 
+                 <tr>
+                    <td style="width:150px; background-color:#e8eef4">Weekend</td>
+                    <td style="width:10px; background-color:#e8eef4">:</td>
+                    <td><input type="text" id="txtWeekend" name="txtWeekend" style="width:150px;" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr> 
+                 <tr>
+                    <td style="width:150px; background-color:#e8eef4">Holiday</td>
+                     <td style="width:20px; background-color:#e8eef4">:</td>
+                    <td><input type="text" id="txtHoliday" name="txtHoliday" style="width:150px;" /></td>
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>                                      
+                </tr>           
+            </table>
+            <br />            
+            <div style="height:30px; margin-top:10px; margin-left:10px; text-align:right;">
+            <table style="width:500px"><tr><td style="text-align:left; width:80px"><input type="button" value="Delete" id="btnDelete" style="height:30px; width:80px; vertical-align:top; display:none" /></td><td style="width:160px"></td><td style="text-align:right; width:80px"></td><td style="text-align:right; width:80px"><input type="button" value="Update" id="btnUpdate" style="height:30px; width:80px; vertical-align:top; display:none" /><input type="button" value="Add" id="btnAdd" style="height:30px; width:80px; vertical-align:top; display:none" /></td><td style="text-align:right; width:80px"><input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" /></td></tr></table>
+              
+               
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+   
+</div>
+    

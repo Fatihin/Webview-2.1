@@ -1,0 +1,345 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.Job>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+  var status = 0;
+
+  function GetDetailsCallBack(data) {
+      $ = globalJquery;
+      state = data.jobstate;
+      status = data.jobstatus;
+      jobid = data.jobid;
+
+      if (status == "COMPLETED") {
+
+          button = $("#divDetails").parent().find("button:contains('Approve')");
+          button.unbind();
+          button.addClass('ui-state-disabled');
+
+          button = $("#divDetails").parent().find("button:contains('Reject')");
+          button.unbind();
+          button.addClass('ui-state-disabled');
+      }
+
+      SetElement("jobIdVal", jobid);
+      SetElement("txtName", jobid);
+      SetElement("txtDescription", data.description);
+      SetElement("txtStatus", data.jobstate);
+      SetElement("txtGlobalStatus", data.jobstatus);
+
+      SetText("txtJobNo", jobid);
+      SetText("txtDescription", data.description);
+      SetText("txtStatus", data.jobstate);
+      SetText("txtGlobalStatus", data.jobstatus);
+
+      document.getElementById("targetJob").value = data.jobid;
+
+      document.getElementById("btnClose").disabled = false;
+
+      document.getElementById("txtName").disabled = true;
+      document.getElementById("txtStatus").disabled = true;
+      document.getElementById("txtGlobalStatus").disabled = true;
+      document.getElementById("txtDescription").disabled = true;
+
+  }
+  
+  jQuery(document).ready(function ($) {
+  
+      var approve = function () {
+          var cmsg = confirm('Are you sure you want to Approved?');
+          if (cmsg != 0) {
+              var bValid = true;
+              if (bValid) {
+                  $(this).dialog("close");
+              }
+              $.ajax({
+  
+                  url: "/Job/UpdateDataApprove",
+                  type: "POST",
+                  dataType: "html",
+                  data: {
+  
+                      "jobIdVal": document.getElementById("jobIdVal").value,
+                      "txtDescription": document.getElementById("txtDescription").value
+                  },
+                  beforeSend: function () {
+                  },
+                  success: function (data) {
+                      var res = jQuery.parseJSON(data);
+
+                      if (res.Success == true) {
+                          alert("Successfully Updated.");
+                          window.location.reload();
+                      }
+                      else {
+                          alert("Update failed.");
+                      }
+                  }
+              });
+
+          }
+      }
+
+      var reject = function () {
+          var cmsg = confirm('Are you sure you want to Reject?');
+          if (cmsg != 0) {
+              var bValid = true;
+              if (bValid) {
+                  $(this).dialog("close");
+              }
+              $.ajax({
+
+                  url: "/Job/UpdateDataReject",
+                  type: "POST",
+                  dataType: "html",
+                  data: {
+
+                      "jobIdVal": document.getElementById("jobIdVal").value,
+                      "txtDescription": document.getElementById("txtDescription").value
+                  },
+                  beforeSend: function () {
+                  },
+                  success: function (data) {
+                      var res = jQuery.parseJSON(data);
+  
+                      if (res.Success == true) {
+                          alert("Successfully Updated.");
+                          window.location.reload();
+                      }
+                      else {
+                          alert("Update failed.");
+                      }
+                  }
+              });
+          } 
+      }
+  
+      var close = function () {
+          $(this).dialog("close");
+  
+          $('#divDetails').dialog('addbutton', 'Approve', approve);
+          $('#divDetails').dialog('addbutton', 'Reject', reject);
+      }
+  
+      $("#divDetails").dialog({
+          autoOpen: false,
+          height: 280,
+          width: 800,
+          modal: true,
+          buttons: {
+          },
+          close: function () {
+          }
+      });
+  
+      globalJquery('#divDetails').dialog('addbutton', 'Approve', approve);
+      globalJquery('#divDetails').dialog('addbutton', 'Reject', reject);
+      globalJquery('#divDetails').dialog('addbutton', 'Close', close);
+  
+      $("#rounded-corner tbody tr").bind("click", function () {
+          var t = $(this).find("#gid").text();
+          $("#divDetails").dialog("open");
+  
+          $.ajax({
+              url: '@Url.Action("GetDetailsAPP", "Job")',
+              type: "POST",
+              dataType: "html",
+              data: {
+                  "id": t,
+                  "random": Math.random()
+              },
+              beforeSend: function () {
+              },
+              success: function (data) {
+                  var res = jQuery.parseJSON(data);
+                  GetDetailsCallBack(res);
+  
+                  document.getElementById("projectNo").value = document.getElementById("jobIdVal").value;
+              }
+          });
+      });
+  
+      $(function () {
+          $('#btnClose').click(function () {
+              document.getElementById("fade").style.display = "none";
+  
+              document.getElementById("divDetails").style.display = "none";
+          });
+  
+          $('#btnSearch').click(function () {
+              window.location = "APPList?searchKey=" + document.getElementById("searchKey").value;
+          });
+  
+          $('#searchKey').change(function () {
+              window.location = "APPList?searchKey=" + document.getElementById("searchKey").value;
+          });
+  
+          $('#btnManageFile').click(function () {
+              var job = document.getElementById("jobIdVal").value;
+              window.open("FileList/" + job);
+          });
+  
+          $("#btnSearch").button();
+          $("#btnManageFile").button();
+      });
+  });
+  
+  function ShowIt() {
+  }
+  
+  function HideIt() {
+  }
+  </script>
+
+<br />
+<h3>
+Job Management > Approval List
+  </h3>
+<div id="dialog-confirm" title="Delete this job?" style="visibility:hidden; display:none;">
+<p>
+  <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?
+    </p>
+  </div>
+<div style="height:650px">
+<div>
+  <table style="width:850px;">
+    <tr>
+      <td style="width:200px;">
+        <input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/>
+          </td>
+        <td>
+        <input type="button" value="Search" id="btnSearch" />
+          </td>
+        @*<td style="text-align:right"><input type="button" value="Add New Job" id="btnNewJob" /></td>*@
+        </tr>
+      </table>
+    </div>
+  <br />
+  @if (Model.Count() > 0)
+  {
+  <table id="rounded-corner" summary="Job List" width="850px">
+  <thead>
+    <tr>
+      <th scope="col" style="width:80px">
+        JOB NO
+          </th>
+        <th scope="col" style="width:150px">DESCRIPTION</th>
+        <th scope="col" style="width:100px">
+        OWNER STATUS
+          </th>
+        <th scope="col" style="width:80px">
+        GLOBAL STATUS
+          </th>
+        </tr>
+      </thead>
+    <tbody>
+    @foreach (var res in Model)
+      {
+      <tr class="odd">
+                <td id="gid">@res.G3E_IDENTIFIER</td>
+                  <td >@res.G3E_DESCRIPTION</td>
+                  <td>@res.G3E_STATE</td>
+                  <td>@res.G3E_STATUS</td>               
+                  </tr>    
+                }
+      </tbody>
+    </table>
+  <div>
+  Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount
+    &nbsp;
+    @if (Model.HasPreviousPage)
+    {
+    @Html.ActionLink("<<", "APPList", new { searchKey = "", page = 1 })
+            @Html.Raw("&nbsp;")
+            @Html.ActionLink("< Prev", "APPList", new { searchKey = "", page = Model.PageNumber - 1 })
+            }
+    else
+    {
+    }
+    &nbsp;
+    @if (Model.HasNextPage)
+    {
+    @Html.ActionLink("Next >", "APPList", new { searchKey = "", page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;")
+            @Html.ActionLink(">>", "APPList", new { searchKey = "", page = Model.PageCount })
+            }
+    else
+    {
+    }
+    </div>
+  }
+  else
+  {
+  @:<br />
+      <span style="font-size:12px;">
+      No record found.
+        </span> 
+      }
+  <br />
+  <div id="divLoading" style="visibility:collapse">
+  <img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." />
+    </div>
+  <div id="divResultText"></div>
+  <br />
+  <div id="divDetails" title="Job details" style="padding-left:40px; padding-top:30px;">
+  @*<span style="font-size:12px">Job no #</span><span id="txtJobNo" style="font-weight:bold; color:Blue"></span>*@
+    <input type="hidden" id="targetJob" value="" />
+    @using (Ajax.BeginForm("UpdateData", new AjaxOptions()
+    {
+    OnBegin = "ShowIt",
+        OnComplete = "HideIt",
+        OnSuccess = "SaveUpdateCallBack"
+        })) 
+    {
+    <div id="list-details" >
+        <input type="hidden" id="jobIdVal" name="jobIdVal" />
+          <table  style="min-width:750px" >
+          <tr>
+            <td style=" border-top-color:White; border-bottom-color:White"></td>
+              <td style="width:100px;background-color:#e8eef4">
+              Job ID
+                </td>
+              <td>
+              <input type="text" readonly="readonly" id="txtName" name="txtName" />
+                </td>
+              <td rowspan="3" style="width:100px; background-color:#e8eef4">Description</td>
+              <td rowspan="3">
+              <textarea name="txtDescription" id="txtDescription" cols="20" rows="" style="width:200px"></textarea>
+                </td>
+              </tr>
+            <tr>
+            <td style=" border-top-color:White; border-bottom-color:White"></td>
+              <td style="width:100px;background-color:#e8eef4">Status</td>
+              <td>
+              <input type="text" readonly="readonly" id="txtStatus" name="txtStatus" />
+                </td>
+              </tr>
+            <tr>
+            <td style=" border-top-color:White; border-bottom-color:White"></td>
+              <td style="width:100px;background-color:#e8eef4">
+              Global Status
+                </td>
+              <td>
+              <input type="text" readonly="readonly" id="txtGlobalStatus" name="txtGlobalStatus" />
+                </td>
+              <td style=" border-top-color:White; border-bottom-color:White"></td>
+              </tr>
+            </table>
+            <br />
+          <span style="text-align:center">
+          <input type="button" value="Manage files" id="btnManageFile" style="height:30px;"/>
+            </span>
+          <div style="height:30px; margin-top:10px; margin-left:0%; display:none;">
+          <input type="button" value="Reject" id="btnReject" style="height:30px;width:80px; vertical-align:top;" />
+            <input type="submit" value="Approve" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+            <input type="button" value="Close" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+          </div>
+        }
+  
+    </div>
+  </div>
+    

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mysite.org/wsdl/NrmSoapServices" xmlns:ns2="http://mysite.org/types/NrmSoapServices" name="NrmSoapServices" targetNamespace="http://mysite.org/wsdl/NrmSoapServices" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://mysite.org/types/NrmSoapServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://mysite.org/types/NrmSoapServices">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="NrmProject">
+        <xsd:sequence>
+          <xsd:element name="description" type="xsd:string" />
+          <xsd:element name="id" type="xsd:long" />
+          <xsd:element name="jobId" type="xsd:string" />
+          <xsd:element name="jobState" type="xsd:string" />
+          <xsd:element name="schemeName" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfNrmProject">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soap11-enc:Array">
+            <xsd:attribute wsdl:arrayType="tns:NrmProject[]" ref="soap11-enc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+  <message name="NrmServiceInterface_BOQ">
+    <part name="String_1" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_BOQResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_CreateProject">
+    <part name="String_1" type="xsd:string" />
+    <part name="String_2" type="xsd:string" />
+    <part name="String_3" type="xsd:string" />
+    <part name="String_4" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_CreateProjectResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_DeleteProject">
+    <part name="String_1" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_DeleteProjectResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_FindProject">
+    <part name="String_1" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_FindProjectResponse">
+    <part name="result" type="ns2:NrmProject" />
+  </message>
+  <message name="NrmServiceInterface_GetIspEquipmentFromJobId">
+    <part name="String_1" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_GetIspEquipmentFromJobIdResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_ListProjects" />
+  <message name="NrmServiceInterface_ListProjectsResponse">
+    <part name="result" type="ns2:ArrayOfNrmProject" />
+  </message>
+  <message name="NrmServiceInterface_TestConnect" />
+  <message name="NrmServiceInterface_TestConnectResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_UpdateProject">
+    <part name="String_1" type="xsd:string" />
+    <part name="String_2" type="xsd:string" />
+    <part name="String_3" type="xsd:string" />
+  </message>
+  <message name="NrmServiceInterface_UpdateProjectResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+  <portType name="NrmServiceInterface">
+    <operation name="BOQ" parameterOrder="String_1">
+      <input message="tns:NrmServiceInterface_BOQ" />
+      <output message="tns:NrmServiceInterface_BOQResponse" />
+    </operation>
+    <operation name="CreateProject" parameterOrder="String_1 String_2 String_3 String_4">
+      <input message="tns:NrmServiceInterface_CreateProject" />
+      <output message="tns:NrmServiceInterface_CreateProjectResponse" />
+    </operation>
+    <operation name="DeleteProject" parameterOrder="String_1">
+      <input message="tns:NrmServiceInterface_DeleteProject" />
+      <output message="tns:NrmServiceInterface_DeleteProjectResponse" />
+    </operation>
+    <operation name="FindProject" parameterOrder="String_1">
+      <input message="tns:NrmServiceInterface_FindProject" />
+      <output message="tns:NrmServiceInterface_FindProjectResponse" />
+    </operation>
+    <operation name="GetIspEquipmentFromJobId" parameterOrder="String_1">
+      <input message="tns:NrmServiceInterface_GetIspEquipmentFromJobId" />
+      <output message="tns:NrmServiceInterface_GetIspEquipmentFromJobIdResponse" />
+    </operation>
+    <operation name="ListProjects">
+      <input message="tns:NrmServiceInterface_ListProjects" />
+      <output message="tns:NrmServiceInterface_ListProjectsResponse" />
+    </operation>
+    <operation name="TestConnect">
+      <input message="tns:NrmServiceInterface_TestConnect" />
+      <output message="tns:NrmServiceInterface_TestConnectResponse" />
+    </operation>
+    <operation name="UpdateProject" parameterOrder="String_1 String_2 String_3">
+      <input message="tns:NrmServiceInterface_UpdateProject" />
+      <output message="tns:NrmServiceInterface_UpdateProjectResponse" />
+    </operation>
+  </portType>
+  <binding name="NrmServiceInterfaceBinding" type="tns:NrmServiceInterface">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="BOQ">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="CreateProject">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="DeleteProject">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="FindProject">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="GetIspEquipmentFromJobId">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="ListProjects">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="TestConnect">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="UpdateProject">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://mysite.org/wsdl/NrmSoapServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="NrmSoapServices">
+    <port name="NrmServiceInterfacePort" binding="tns:NrmServiceInterfaceBinding">
+      <soap:address location="http://10.41.61.177:8081/NrmSoapServices/nrm" />
+    </port>
+  </service>
+</definitions>

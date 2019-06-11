@@ -1,0 +1,881 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        //alert(data.id);
+        $ = globalJquery;
+        SetElement("LoadID", data.id);
+        SetElement("job", data.job);
+        SetElement("ZEXC", data.zexc);
+        
+        $("#pathType option[value='"+data.pathType+"']").attr("selected","selected");
+        var pathType = $('#pathType').trigger("change");      
+        
+        alert("Click OK to continue");
+        $("#equipA option[value='"+data.equipA+"']").attr("selected","selected");
+        var equipA = $('#equipA').trigger("change");
+        $("#equipZ option[value='"+data.equipZ+"']").attr("selected","selected");
+        var equipZ = $('#equipZ').trigger("change");
+
+        alert("Click OK to continue");
+        $("#cardA option[value='"+data.acardname+"']").attr("selected","selected");
+        $("#cardZ option[value='"+data.zcardname+"']").attr("selected","selected");
+        $('#cardA').trigger("change");
+        $('#cardZ').trigger("change");
+
+        SetElement("bandwidth", data.bandwidth);
+        SetElement("primary", data.primary);
+        SetElement("status", data.status);
+        SetElement("txtINode", data.ipnode);
+        SetElement("txtIUplink", data.ipuplink);
+        SetElement("txtIDownlink", data.ipdownlink);
+        SetElement("txtBearer", data.bearerid);
+        SetElement("txtMedia", data.bearerpath);
+        SetElement("txtMNode", data.msenode);
+        SetElement("txtMDownlink", data.msedownlink);
+    }
+
+    function chekboxA(data){
+        $ = globalJquery;
+        if (document.boxes.valueA.length == undefined){
+                document.boxes.valueA.checked = true;
+        }else{
+            document.boxes.valueA[data - 1].checked = true;
+        }
+    }
+
+    function chekboxZ(data){
+        $ = globalJquery;
+        if (document.boxes.valueZ.length == undefined){
+                document.boxes.valueZ.checked = true;
+        }else{
+            document.boxes.valueZ[data - 1].checked = true;
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $('#job').change(function () {
+                var tblC = document.getElementById('rounded-corner');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updatePath",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "job": document.getElementById("job").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        
+                        var itemsPu = "<option selected value='Select'></option>";
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "-" + valuePu[2] + "-" + valuePu[0] + "'>" + valuePu[0] + " (" + valuePu[1] + "-" + valuePu[2] + ") </option>";
+                            }
+                        }
+                        $("#pathType").html(itemsPu);
+                        
+                        var defVal = document.getElementById("job").value;
+                        zexc = defVal.split("-");
+                        var itemsExc = "<option selected value='" + zexc[0] + "'>" + zexc[0] + "</option>";
+                        $("#ZEXC").html(itemsExc);
+                        //------------------------------------------table record job
+                        
+                        dataJob = res.listJob.split("|");
+                        //alert(dataJob.length);
+                        if(dataJob.length > 1){
+                            document.getElementById('rounded-corner').style.display = "block";
+                            for (ii = 0; ii < dataJob.length - 1; ii++) {
+                            
+                                d = dataJob[ii].split(':');
+                                var tbl = document.getElementById('rounded-corner');
+                                var lastRow = tbl.rows.length;
+                                var iteration = lastRow;
+                                var row = tbl.insertRow(lastRow);
+                            
+                                row.insertCell(0);
+                                row.insertCell(1);
+                                row.insertCell(2);
+                                row.insertCell(3);
+                                row.insertCell(4);
+                                row.insertCell(5);
+                                row.insertCell(6);
+                                row.insertCell(7);
+                                row.insertCell(8);
+                                row.insertCell(9);
+                                row.insertCell(10);
+                                row.insertCell(11);
+                                row.insertCell(12);
+                                row.insertCell(13);
+                                row.insertCell(14);
+                                if (d[0] != "") {
+                                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+
+                                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                                
+                                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+
+                                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+
+                                    tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+
+                                    tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                                
+                                    tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+
+                                    tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+
+                                    tbl.rows[ii + 1].cells[9].innerHTML = d[9];
+
+                                    tbl.rows[ii + 1].cells[10].innerHTML = d[10];
+                                
+                                    tbl.rows[ii + 1].cells[11].innerHTML = d[11];
+
+                                    tbl.rows[ii + 1].cells[12].innerHTML = d[12];
+                                
+                                    tbl.rows[ii + 1].cells[13].innerHTML = d[13];
+
+                                    tbl.rows[ii + 1].cells[14].innerHTML ="<a href=\"#\" id=\"btnEdit\" onclick=\"edit('" + d[14] + "')\"  style=\"width:50px\" >Edit</a> <br />" +
+                                                                         "<a href=\"#\"  id=\"btnDelete\" onclick=\"deleted('" + d[14] + "')\"  style=\"width:50px\" >Delete</a>";
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            $('#pathType').change(function () {
+                if(document.getElementById("ZEXC").value != "Select"){
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/updateEquipA",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "job": document.getElementById("job").value,
+                            "pathType": document.getElementById("pathType").value,
+                            "ZEXC": document.getElementById("ZEXC").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            dataPu = res.listData.split("|");
+                            var itemsPu = "<option selected value='Select'></option>";
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+                            $("#equipA").html(itemsPu);
+                        
+                            dataPu2 = res.listData2.split("|");
+                            var itemsPu2 = "<option selected value='Select'></option>";
+                            for (i = 0; i < dataPu2.length; i++) {
+                                if (dataPu2[i] != "") {
+                                    valuePu2 = dataPu2[i].split(":");
+                                    itemsPu2 += "<option value='" + valuePu2[1] + "'>" + valuePu2[0] + "</option>";
+                                }
+                            }
+                            $("#equipZ").html(itemsPu2);
+                        }
+                    });
+                }
+            });
+
+            $('#ZEXC').change(function () {
+                if(document.getElementById("pathType").value != "Select"){
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/updateEquipA",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "job": document.getElementById("job").value,
+                            "pathType": document.getElementById("pathType").value,
+                            "ZEXC": document.getElementById("ZEXC").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            
+                            dataPu2 = res.listData2.split("|");
+                            var itemsPu2 = "<option selected value='Select'></option>";
+                            for (i = 0; i < dataPu2.length; i++) {
+                                if (dataPu2[i] != "") {
+                                    valuePu2 = dataPu2[i].split(":");
+                                    itemsPu2 += "<option value='" + valuePu2[1] + "'>" + valuePu2[0] + "</option>";
+                                }
+                            }
+                            $("#equipZ").html(itemsPu2);
+                        }
+                    });
+                }
+            });
+
+            $('#equipA').change(function () {
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updateCardA",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "equip": document.getElementById("equipA").value,
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "-" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+
+                            }
+                        }
+                        $("#cardA").html(itemsPu);
+                    }
+                });
+            });
+
+            $('#equipZ').change(function () {
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updateCardA",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "equip": document.getElementById("equipZ").value,
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        var itemsPu = "<option selected value='Select'></option>";
+
+                        for (i = 0; i < dataPu.length; i++) {
+                            if (dataPu[i] != "") {
+                                valuePu = dataPu[i].split(":");
+                                itemsPu += "<option value='" + valuePu[1] + "-" + valuePu[0] +"'>" + valuePu[0] + "</option>";
+                            }
+                        }
+                        $("#cardZ").html(itemsPu);
+                    }
+                });
+            });
+
+            $('#cardA').change(function () {
+                var tblC = document.getElementById('projectTable');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updatePortA",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "cardA": document.getElementById("cardA").value,
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        document.getElementById('projectTable').style.display = "block";
+                        document.getElementById('projectTableZ').style.display = "block";
+                        document.getElementById('hidePort').style.display = "block";
+                        for (ii = 0; ii < dataPu.length; ii++) {
+                            
+                            d = dataPu[ii].split(':');
+                            var tbl = document.getElementById('projectTable');
+                            var lastRow = tbl.rows.length;
+                            var iteration = lastRow;
+                            var row = tbl.insertRow(lastRow);
+
+                            row.insertCell(0);
+                            row.insertCell(1);
+                            row.insertCell(2);
+                            row.insertCell(3);
+                            if (d[0] != "") {
+                                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                                tbl.rows[ii + 1].cells[1].innerHTML = d[3];
+
+                                tbl.rows[ii + 1].cells[2].innerHTML = d[4];
+
+                                tbl.rows[ii + 1].cells[3].innerHTML = "<input type=\"checkbox\" id=\"valueA\" name=\"valueA\" value=\"" + d[3] + "\" />";
+                            }
+                        }
+                    }
+                });
+            });
+
+            $('#cardZ').change(function () {
+                var tblC = document.getElementById('projectTableZ');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+                //alert(document.getElementById("cardZ").value);
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updatePortA",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "cardA": document.getElementById("cardZ").value,
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        dataPu = res.listData.split("|");
+                        document.getElementById('projectTable').style.display = "block";
+                        document.getElementById('projectTableZ').style.display = "block";
+                        document.getElementById('hidePort').style.display = "block";
+                        for (ii = 0; ii < dataPu.length; ii++) {
+                            
+                            d = dataPu[ii].split(':');
+                            var tbl = document.getElementById('projectTableZ');
+                            var lastRow = tbl.rows.length;
+                            var iteration = lastRow;
+                            var row = tbl.insertRow(lastRow);
+
+                            row.insertCell(0);
+                            row.insertCell(1);
+                            row.insertCell(2);
+                            row.insertCell(3);
+                            if (d[0] != "") {
+                                tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                                tbl.rows[ii + 1].cells[1].innerHTML = d[3];
+
+                                tbl.rows[ii + 1].cells[2].innerHTML = d[4];
+                                
+                                tbl.rows[ii + 1].cells[3].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"valueZ\" value=\"" + d[3] + "\" />";
+                            }
+                        }
+                    }
+                });
+            });
+
+            $('#PTT_ID').change(function () {
+                $.ajax(
+                {
+                    url: "/VIS_NRM/updataEXC",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "PTT_ID": document.getElementById("PTT_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (document.getElementById("PTT_ID").value != "Select") {
+                            document.getElementById("ZEXC").disabled = false;
+                            dataPu = res.PuList.split("|");
+
+                            var itemsPu = "<option selected value='Select'></option>";
+
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    //alert(valuePu[0]);
+                                    itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+
+                            $("#ZEXC").html(itemsPu);
+                        } else {
+                            document.getElementById("ZEXC").disabled = false;
+                        }
+                    }
+                });
+            });
+
+            var showBoxes = function () {
+                var valA;
+                var valZ;
+                var result;
+                if ( document.boxes.valueA.length == undefined){
+                    valA = document.boxes.valueA.value;
+                }else{
+                    for (var i = 0; i < document.boxes.valueA.length; i++){
+                        if (document.boxes.valueA[i].checked){
+                            valA = valA + document.boxes.valueA[i].value + ":";
+                        }
+                    }
+                }
+
+                if ( document.boxes.valueZ.length == undefined){
+                    valZ = document.boxes.valueZ.value;
+                }else{
+                    for (var i = 0; i < document.boxes.valueZ.length; i++){
+                        if (document.boxes.valueZ[i].checked){
+                            valZ = valZ + document.boxes.valueZ[i].value + "/";
+                        }
+                    }
+                }
+                return result = valA + "!" + valZ;     
+            }
+
+            $('#btnSave').click(function () {
+                var valueCheckBox = showBoxes();
+                valueCheckBox = valueCheckBox.replace(/undefined/g, "");
+                var tblC = document.getElementById('rounded-corner');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+                var cmsg = confirm('Are you sure you want to save path?');
+                if (cmsg != 0) {
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/InsertLoadPath",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "JOBID": document.getElementById("job").value,
+                            "PATHTYPE": document.getElementById("pathType").value,
+                            "PATHBANDWIDTH": document.getElementById("bandwidth").value,
+                            "ANAME": document.getElementById("equipA").value,
+                            "ZNAME": document.getElementById("equipZ").value,
+                            "PORT": valueCheckBox,
+                            "ASLOT": document.getElementById("cardA").value,
+                            "ZSLOT": document.getElementById("cardZ").value,
+                            "PRIMARY": document.getElementById("primary").value,
+                            "ZEXC": document.getElementById("ZEXC").value,
+                            "STATUS": document.getElementById("status").value,
+                            "NISBEARERID": document.getElementById("txtBearer").value,
+                            "NISMEDIAPATHID": document.getElementById("txtMedia").value,
+                            "IPDSLAMNODENAME": document.getElementById("txtINode").value,
+                            "UPLINKPORT": document.getElementById("txtIUplink").value,
+                            "IPDSLAMDOWNLINKPORT": document.getElementById("txtIDownlink").value,
+                            "MSENODENAME": document.getElementById("txtMNode").value,
+                            "MSEDOWNLINKPORT": document.getElementById("txtMDownlink").value,
+                            "ACARDNAME": document.getElementById("cardA").value,
+                            "ZCARDNAME": document.getElementById("cardZ").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            alert("Path Successfully Created");
+
+                            dataJob = res.listJob.split("|");
+                            if(dataJob.length > 1){
+                                document.getElementById('rounded-corner').style.display = "block";
+                                for (ii = 0; ii < dataJob.length - 1; ii++) {
+                            
+                                    d = dataJob[ii].split(':');
+                                    var tbl = document.getElementById('rounded-corner');
+                                    var lastRow = tbl.rows.length;
+                                    var iteration = lastRow;
+                                    var row = tbl.insertRow(lastRow);
+                            
+                                    row.insertCell(0);
+                                    row.insertCell(1);
+                                    row.insertCell(2);
+                                    row.insertCell(3);
+                                    row.insertCell(4);
+                                    row.insertCell(5);
+                                    row.insertCell(6);
+                                    row.insertCell(7);
+                                    row.insertCell(8);
+                                    row.insertCell(9);
+                                    row.insertCell(10);
+                                    row.insertCell(11);
+                                    row.insertCell(12);
+                                    row.insertCell(13);
+                                    row.insertCell(14);
+
+                                    if (d[0] != "") {
+                                        tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                                        tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+
+                                        tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                                
+                                        tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+
+                                        tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+
+                                        tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+
+                                        tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                                
+                                        tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+
+                                        tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+
+                                        tbl.rows[ii + 1].cells[9].innerHTML = d[9];
+
+                                        tbl.rows[ii + 1].cells[10].innerHTML = d[10];
+                                
+                                        tbl.rows[ii + 1].cells[11].innerHTML = d[11];
+
+                                        tbl.rows[ii + 1].cells[12].innerHTML = d[12];
+                                
+                                        tbl.rows[ii + 1].cells[13].innerHTML = d[13];
+
+                                        tbl.rows[ii + 1].cells[14].innerHTML ="<a href=\"#\" id=\"btnEdit\" onclick=\"edit('" + d[14] + "')\"  style=\"width:50px\" >Edit</a> <br />" +
+                                                                         "<a href=\"#\"  id=\"btnDelete\" onclick=\"deleted('" + d[14] + "')\"  style=\"width:50px\" >Delete</a>";
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('#btnUpdate').click(function () {
+                var valueCheckBox = showBoxes();
+                valueCheckBox = valueCheckBox.replace(/undefined/g, "");
+                var tblC = document.getElementById('rounded-corner');
+                for (var i = tblC.rows.length - 1; i > 0; i--) {
+                    tblC.deleteRow(i);
+                }
+                var cmsg = confirm('Are you sure you want to save path?');
+                if (cmsg != 0) {
+                    $.ajax(
+                    {
+                        url: "/VIS_NRM/UpdateLoadPath",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "LoadID": document.getElementById("LoadID").value,
+                            "JOBID": document.getElementById("job").value,
+                            "PATHTYPE": document.getElementById("pathType").value,
+                            "PATHBANDWIDTH": document.getElementById("bandwidth").value,
+                            "ANAME": document.getElementById("equipA").value,
+                            "ZNAME": document.getElementById("equipZ").value,
+                            "PORT": valueCheckBox,
+                            "ASLOT": document.getElementById("cardA").value,
+                            "ZSLOT": document.getElementById("cardZ").value,
+                            "PRIMARY": document.getElementById("primary").value,
+                            "ZEXC": document.getElementById("ZEXC").value,
+                            "STATUS": document.getElementById("status").value,
+                            "NISBEARERID": document.getElementById("txtBearer").value,
+                            "NISMEDIAPATHID": document.getElementById("txtMedia").value,
+                            "IPDSLAMNODENAME": document.getElementById("txtINode").value,
+                            "UPLINKPORT": document.getElementById("txtIUplink").value,
+                            "IPDSLAMDOWNLINKPORT": document.getElementById("txtIDownlink").value,
+                            "MSENODENAME": document.getElementById("txtMNode").value,
+                            "MSEDOWNLINKPORT": document.getElementById("txtMDownlink").value,
+                            "ACARDNAME": document.getElementById("cardA").value,
+                            "ZCARDNAME": document.getElementById("cardZ").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            //alert(document.getElementById("equipA").value);
+                            //alert(document.getElementById("equipZ").value);
+                            document.getElementById('btnUpdate').style.display = "none";
+                            document.getElementById('btnSave').style.display = "block";
+                            alert("Path Successfully Created");
+                            setTimeout(window.location.reload(), 10000);
+                        }
+                    });
+                }
+            });
+
+            $('#btnEmail').click(function () {
+                $.ajax(
+                {
+                    url: "/VIS_NRM/EmailTest",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "JOBID": document.getElementById("job").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        alert(res.result);
+                    }
+                });           
+            });
+
+            $('#hidePort').click(function () {
+                document.getElementById('hidePort').style.display = "none";
+                document.getElementById('viewPort').style.display = "block";
+                document.getElementById('projectTable').style.display = "none";
+                document.getElementById('projectTableZ').style.display = "none";
+            });
+
+            $('#viewPort').click(function () {
+                document.getElementById('viewPort').style.display = "none";
+                document.getElementById('hidePort').style.display = "block";
+                document.getElementById('projectTable').style.display = "block";
+                document.getElementById('projectTableZ').style.display = "block";
+            });
+
+            $("#btnSave").button();
+            $("#btnEdit").button();
+            $("#btnDelete").button();
+            $("#btnUpdate").button();
+
+            $("#divDetails").dialog({
+              autoOpen: false,
+              height: 550,
+              width: 800,
+              modal: true,
+              buttons: {
+              },
+              close: function () {
+              }
+            });
+        });
+    });
+
+    function edit(val) {
+        $ = globalJquery;
+        var cmsg = confirm("Are you sure you want to edit data?");
+        if (cmsg != 0){
+            $.ajax({
+                url: "/VIS_NRM/GetDetails",
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": val
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    GetDetailsCallBack(res);    
+                    alert("Completed");
+                    chekboxA(res.aport);
+                    chekboxZ(res.zport);
+                    document.getElementById('btnUpdate').style.display = "block";
+                    document.getElementById('btnSave').style.display = "none";
+                }
+            });
+        }
+    }
+
+    function deleted(val) {
+        $ = globalJquery;
+        var cmsg = confirm("Are you sure you want delete to  data?");
+        if (cmsg != 0){
+            $.ajax({
+                url: "/VIS_NRM/DeleteDetails",
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": val
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    alert("Data Deleted");
+                }
+            });
+        }
+    }
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+</script>
+
+<br />
+<h2>Create PATH</h2>
+<div style="height:850px">
+    <div>@*<input type="button"  value="TEST EMAIL" id="btnEmail" />*@
+        <table style="width:830px;">
+            <tr>
+                <td style="width:110px;">Select JOB :</td>
+                <td style="width:240px;">@Html.DropDownList("job", (IEnumerable<SelectListItem>)ViewBag.job, new { style = "width:250px" })</td>
+                <td style="width:110px;">Z PTT : <span style="float:right;">@Html.DropDownList("PTT_ID", (IEnumerable<SelectListItem>)ViewBag.PTT, new { style = "width:50px" })</span></td>
+                <td style="width:240px;"><span style="float:right;">Z EXC : @Html.DropDownList("ZEXC", (IEnumerable<SelectListItem>)ViewBag.exc, new { style = "width:100px" })</span></td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Select PATH type :</td>
+                <td style="width:240px;">@Html.DropDownList("pathType", (IEnumerable<SelectListItem>)ViewBag.pathType, new { style = "width:250px;visibility:inherit;" })</td>
+                <td style="width:110px;"></td>
+                <td style="width:240px;"></td>
+                
+            </tr>
+            <tr>
+                <td style="width:110px;">Select Equipment A :</td>
+                <td style="width:240px;">@Html.DropDownList("equipA", (IEnumerable<SelectListItem>)ViewBag.equipA, new { style = "width:250px" })</td>  
+                <td style="width:110px;">Select Equipment Z :</td>
+                <td style="width:240px;"><span style="float:right;">@Html.DropDownList("equipZ", (IEnumerable<SelectListItem>)ViewBag.equipZ, new { style = "width:250px" })</span></td>
+            </tr>
+            <tr>
+                <td style="width:110px;">Select Card A :</td>
+                <td style="width:240px;">@Html.DropDownList("cardA", (IEnumerable<SelectListItem>)ViewBag.cardA, new { style = "width:250px" })</td>
+                <td style="width:110px;">Select Card Z :</td>
+                <td style="width:240px;"><span style="float:right;">@Html.DropDownList("cardZ", (IEnumerable<SelectListItem>)ViewBag.cardZ, new { style = "width:250px" })</span></td>
+            </tr>
+        </table><hr />
+        <form name="boxes">
+            <div id="portA" style="float:left;padding-bottom:10px;">
+                    <table id="projectTable" style="overflow:auto; display:none;" height="200px;" width="400px;">
+                        <tr>
+                            <th style="width:270px">Card Name</th>
+                            <th style="width:50px">Port Number</th>
+                            <th style="width:50px">Port Label</th>
+                            <th style="width:30px"></th>
+                         
+                        </tr>
+                        <tr>
+                            <td style="width:270px"></td>
+                            <td style="width:50px"></td>
+                            <td style="width:50px"></td>
+                            <td style="width:30px"></td>                         
+                        </tr>
+                    </table>        
+            </div>
+            <div id="portZ" style="float:right">
+                <table id="projectTableZ" style="overflow:auto; display:none;" height="200px;" width="400px;">
+                    <tr>
+                        <th style="width:270px">Card Name</th>
+                        <th style="width:50px">Port Number</th>
+                        <th style="width:50px">Port Label</th>
+                        <th style="width:30px"></th>
+                         
+                    </tr>
+                    <tr>
+                        <td style="width:270px"></td>
+                        <td style="width:50px"></td>
+                        <td style="width:50px"></td>
+                        <td style="width:30px"></td>                         
+                    </tr>
+                </table>          
+            </div>
+            <span style="text-align:center;" ><a href="#" id="hidePort" style="display:none;text-align:center;" > Hide</a><a href="#" id="viewPort" style="display:none;text-align:center;"> View</a></span>
+        </form>  
+        <table style="width:830px;">
+            <tr>
+                <td style="width:110px;">Bandwidth :</td>
+                <td style="width:120px;">
+                    <select id="bandwidth">
+                        <option value="1G">1G</option>
+                        <option value="2.5G">2.5G</option>
+                        <option value="10G">10G</option>
+                    </select>
+                </td>
+                <td style="width:120px;text-align:right;">Primary/Secondary :</td>
+                <td style="width:120px;">
+                    <select id="primary">
+                        <option value="PRIMARY">PRIMARY</option>
+                        <option value="SECONDARY">SECONDARY</option>
+                    </select>
+                </td>
+                <td style="width:120px;text-align:right;">Status :</td>
+                <td style="width:120px;">
+                    <select id="status">
+                        <option value="In Service">IN SERVICE</option>
+                        <option value="Planned">PLANNED</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <table style="width:830px;">
+            <tr><td><b>TM IPDSLAM</b></td></tr> 
+            <tr>
+                <td style="width:100px;">IPDSLAM Node :</td>
+                <td style="width:110px;"><input type="text" id="txtINode" name="txtINode" style="width:100px;" /></td>
+                <td style="width:110px;">IPDSLAM Uplink :</td>
+                <td style="width:110px;"><input type="text" id="txtIUplink" name="txtIUplink" style="width:100px;"/></td>
+                <td style="width:110px;">IPDSLAM Downlink :</td>
+                <td style="width:110px;"><input type="text" id="txtIDownlink" name="txtIDownlink" style="width:100px;"/></td>
+            </tr>
+            <tr><td><b>TM BEARER</b></td></tr> 
+            <tr>
+                <td style="width:100px;">Bearer ID :</td>
+                <td style="width:110px;"><input type="text" id="txtBearer" name="txtBearer" style="width:100px;" /></td>
+                <td style="width:110px;">Media Path ID :</td>
+                <td style="width:110px;"><input type="text" id="txtMedia" name="txtMedia" style="width:100px;"/></td>
+                <td style="width:110px;"></td>
+                <td style="width:110px;"></td>
+            </tr>
+            <tr><td><b>TM MSE</b></td></tr> 
+            <tr>
+                <td style="width:100px;">MSE Node :</td>
+                <td style="width:110px;"><input type="text" id="txtMNode" name="txtMNode" style="width:100px;" /></td>
+                <td style="width:110px;">MSE Downlink :</td>
+                <td style="width:110px;"><input type="text" id="txtMDownlink" name="txtMDownlink" style="width:100px;"/></td>
+                <td colspan="2" style="text-align:center;"><input type="button"  value="Save" id="btnSave" /> <input type="button"  value="Save1" id="btnUpdate" style="display:none" /> <input type="hidden" id="LoadID" /></td>
+            </tr>
+        </table>
+        <hr />
+    </div>
+    <br />
+      <table id="rounded-corner" style="overflow:auto; display:none;" height="190px;" width="850px;">
+        <thead>
+          <tr>
+            <th scope="col" >ANAME</th>
+            <th scope="col" >ATYPE</th>
+            <th scope="col" >ASITE</th>
+            <th scope="col" >ASLOT</th>
+            <th scope="col" >ACARD</th>
+            <th scope="col" >APORT</th>
+            <th scope="col" >ZNAME</th>
+            <th scope="col" >ZTYPE</th>
+            <th scope="col" >ZSITE</th>
+            <th scope="col" >ZSLOT</th>
+            <th scope="col" >ZCARD</th>
+            <th scope="col" >ZPORT</th>
+            <th scope="col" >PRIMARY/<br />SECONDARY</th>
+            <th scope="col" >BANDWIDTH</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>    
+        </tbody>
+      </table>
+      <div id="divDetails" title="Path Details" style="padding-left:40px; padding-top:30px;">
+            
+      </div>
+</div>
+    
+
+

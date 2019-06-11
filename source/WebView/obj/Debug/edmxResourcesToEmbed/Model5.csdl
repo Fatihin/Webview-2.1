@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model4" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities_NEPS" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AG_MSAN_TEMPLATE" EntityType="Model4.AG_MSAN_TEMPLATE" />
+    <EntitySet Name="AG_MSAN_XLTEMPLATE" EntityType="Model4.AG_MSAN_XLTEMPLATE" />
+    <EntitySet Name="WEBVIEW_AUDIT_TRAIL" EntityType="Model4.WEBVIEW_AUDIT_TRAIL" />
+    <EntitySet Name="WV_REF_MODEL" EntityType="Model4.WV_REF_MODEL" />
+    <EntitySet Name="REF_DDN" EntityType="Model4.REF_DDN" />
+    <EntitySet Name="REF_EPE" EntityType="Model4.REF_EPE" />
+    <EntitySet Name="REF_IPMSAN" EntityType="Model4.REF_IPMSAN" />
+    <EntitySet Name="REF_NDH" EntityType="Model4.REF_NDH" />
+    <EntitySet Name="REF_RT" EntityType="Model4.REF_RT" />
+    <EntitySet Name="REF_UPE" EntityType="Model4.REF_UPE" />
+    <EntitySet Name="REF_VDSL2" EntityType="Model4.REF_VDSL2" />
+    <EntitySet Name="CONNECTIVITY" EntityType="Model4.CONNECTIVITY" />
+  </EntityContainer>
+  <EntityType Name="AG_MSAN_TEMPLATE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="MODEL_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="RACK_NO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="FRAME_NO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="SLOT_NO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="SLOT_NIS" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="CARD_TYPE" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="CARD_MODEL" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="PORT_LO" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="PORT_HI" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="MIN_MATERIAL" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="AG_MSAN_XLTEMPLATE">
+    <Key>
+      <PropertyRef Name="MODEL_ID" />
+    </Key>
+    <Property Name="MODEL_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="MANUFACTURER" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="MODEL" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="XL_FILE" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="MSAN_FNO" Type="Int16" />
+  </EntityType>
+  <EntityType Name="WEBVIEW_AUDIT_TRAIL">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+      <PropertyRef Name="TIMESTAMP" />
+    </Key>
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="TIMESTAMP" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WV_REF_MODEL">
+    <Key>
+      <PropertyRef Name="MANUFACTURER" />
+    </Key>
+    <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="REF_DDN">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+    <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int16" Name="TOTAL_POSITIONS" />
+    <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_EPE">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+    <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int16" Name="TOTAL_POSITIONS" />
+    <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_IPMSAN">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+    <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int16" Name="TOTAL_POSITIONS" />
+    <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_NDH">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+    <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int16" Name="TOTAL_POSITIONS" />
+    <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_RT">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+    <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int16" Name="TOTAL_POSITIONS" />
+    <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_UPE">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+    <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int16" Name="TOTAL_POSITIONS" />
+    <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="REF_VDSL2">
+    <Key>
+      <PropertyRef Name="MIN_MATERIAL" />
+    </Key>
+    <Property Type="String" Name="MIN_MATERIAL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DESCRIPTION" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MODEL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MANUFACTURER" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="SYSTEM_CAPACITY" />
+    <Property Type="Binary" Name="FRONT_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Binary" Name="BACK_IMAGE" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int16" Name="TOTAL_POSITIONS" />
+    <Property Type="Decimal" Name="DIMENSION_DEPTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_WIDTH" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="DIMENSION_HEIGHT" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="CONNECTIVITY">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="A_ID" />
+      <PropertyRef Name="Z_ID" />
+    </Key>
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="String" Name="EXC_ABB" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ELV_NAME" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="A_ID" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="A_TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="A_SUB_TYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="A_PORT" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z_ID" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z_TYPE" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z_SUB_TYPE" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z_PORT" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="REMARKS" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CREATED_AT" />
+    <Property Type="String" Name="CREATED_BY" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

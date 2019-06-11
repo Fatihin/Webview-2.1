@@ -1,0 +1,1569 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.BOQ_GEN>
+
+@{
+    ViewBag.Title = "BOQ_GEN";
+}
+<style type="text/css">
+      
+      #tabs {
+font-size: 90%;
+margin: 20px 0;
+
+}
+#tabs ul {
+float: left;
+background: #b9c9fe;
+width: 800px;
+padding-top: 0px;
+}
+#tabs li {
+margin-left: 8px;
+list-style: none;
+}
+* html #tabs li {
+display: inline; /* ie6 double float margin bug */
+}
+#tabs li,
+#tabs li a {
+float: left;
+}
+#tabs ul li a {
+text-decoration: none;
+background-color : #b9c9fe;
+padding: 8px;
+color: #039;
+font-weight: bold;
+}
+#tabs ul li.active {
+background: #CEE1EF url(img/right.png) no-repeat right top;
+}
+#tabs ul li.active a {
+background: url(img/left.png) no-repeat left top;
+color: #333333;
+}
+#tabs div {
+background: #e8edff;
+clear: both;
+padding: 20px;
+height: 450px;
+padding-left:100px;
+}
+#tabs div h3 {
+text-transform: uppercase;
+margin-bottom: 10px;
+letter-spacing: 1px;
+
+	font-size: 14px;
+}
+#tabs div p {
+line-height: 150%;
+}
+
+</style>
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        document.getElementById("divDetails").style.display = "block";
+
+        //get details from controller and set to the variable
+        //SetElement("txtJOBID", data.x_G3E_ID);
+        SetElement("txtSCHEMENO", data.x_SCH_NO);
+        SetElement("txtSCHEMENAME", data.x_SCHEME_NAME);
+        SetElement("txtSCHEMETYPE", data.x_SCH_TYPE);
+        SetElement("txtEXCABB", data.x_EXC_ABB);
+        SetElement("txtYEARINSTALL", data.x_YEAR_INSTALL);
+        SetElement("txtOWNER", data.x_G3E_OWNER);
+
+        document.getElementById("btnClose").disabled = false;
+
+    }
+
+    //    function SaveUpdateCallBack(data) 
+    //    {
+    //        //document.getElementById("txtJOBID").readOnly = true;
+    //        document.getElementById("txtSCHEMENO").readOnly = true;
+    //        document.getElementById("txtSCHEMENAME").readOnly = true;
+    //        document.getElementById("txtSCHEMETYPE").readOnly = true;
+    //        document.getElementById("txtEXCABB").readOnly = true;
+    //        document.getElementById("txtYEARINSTALL").readOnly = true;
+    //        document.getElementById("txtOWNER").readOnly = true;    
+    //        document.getElementById("btnSave").disabled = true;
+
+    //        if (data.Success == true) 
+    //        {
+    //            alert("BOQ Generated Successfully!");
+    //            document.getElementById("divDetails").style.display = "none";
+    //            window.location.reload();
+    //        }
+    //    }
+
+    function search() {
+        window.location = "BOQ_GEN_CONTRACT?Page=1 &searchNo=" + document.getElementById("CmbNo").value + "&searchIDNo=" + document.getElementById("CmbNo").name
+                + "&searchType=" + document.getElementById("CmbType").value + "&searchIDType=" + document.getElementById("CmbType").name
+                + "&searchExc=" + document.getElementById("CmbExc").value + "&searchIDExc=" + document.getElementById("CmbExc").name
+                + "&searchYear=" + document.getElementById("CmbYear").value + "&searchIDYear=" + document.getElementById("CmbYear").name
+                + "&searchName=" + document.getElementById("CmbName").value + "&searchIDName=" + document.getElementById("CmbName").name
+                + "&searchOwner=" + document.getElementById("CmbOwner").value + "&searchIDOwner=" + document.getElementById("CmbOwner").name;
+    }
+
+    function Contract_Details(ContractNo_ItemNo) {
+    //alert(ContractNo_ItemNo);
+    $ = globalJquery;
+             $.ajax(
+                {
+                    url: "/BOQ_GEN/MaintenanceDetailsContract",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "ContractNo_ItemNo": ContractNo_ItemNo,
+                        
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+                       // alert(res.txtEstMainConDesc);
+                        $('#txtEstMainConDesc').val(res.txtEstMainConDesc);
+                        $('#txtEstMainNetPrice').html(res.txtEstMainNetPrice);
+                    }
+                });
+    }
+
+
+    function Clear_Maintenance(){
+
+         Item_No();
+         var data = $('#Contract_No_List').val();
+         var itemsCon = "<option value='" + data + "'>" + data + "</option>";
+        //alert(res.txtEstMainPUDesc);
+        //alert(res.txtEstMainBillRate);
+        $('#txtEstMainConDesc').val("");
+        $('#txtEstMainNetPrice').html("");
+        $("#Contract_No_List").html(itemsCon);
+        $('#txtEstMainConQty').val("");
+        $('#txtEstMulItemNo').val("");
+        document.getElementById('txtEstMulItemNo').disabled = true;
+              
+        document.getElementById("btnUpdateMaintenance").style.display = "none";
+        document.getElementById("btnDeleteMaintenance").style.display = "none";
+        document.getElementById("btnCancelEdit").style.display = "none";
+     
+    }
+
+    function Item_No()
+    {
+    $ = globalJquery;
+     var contractNo = $('#Contract_No_List').val();
+               // alert(contractNo);
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/GetItemNo",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "contractNo": contractNo,
+                        "schemeName": document.getElementById("txtSchName").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+                        //alert(res.itemNo);
+						
+						if(res.itemNo != "")
+						{
+							data = res.itemNo.split("!");
+							var items = "<option selected></option>";
+							items += "<option value= 'Multiple'> Multiple Item No</option>";
+							for (i = 1; i < data.length; i++) {
+								if (data[i] != "") {
+								val = data[i].split("-");
+								//alert(val[0]);
+								//alert(data[i]);
+									items += "<option value='" + val[0] + "'>" + data[i] + "</option>";
+								//alert(items);
+								}
+								//$("#itemNo").html(items);
+							}
+						}
+						$("#itemNo").html(items);
+                        document.getElementById('btnAddMaintenance').disabled = true;
+                        $('#txtEstMainConDesc').val("");
+                        $('#txtEstMainNetPrice').html("");
+                        $('#txtEstMainConQty').val("");
+                        $('#txtEstMulItemNo').val("");
+
+                    }
+                });
+    }
+
+     function Con_Details_BOQ(ContractNo_ItemNo) {
+     alert(ContractNo_ItemNo);
+    $ = globalJquery;
+             $.ajax(
+                {
+                    url: "/BOQ_GEN/MaintenanceDetailsContractBOQ",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "ContractNo_ItemNo": ContractNo_ItemNo,
+                         "schemeName": document.getElementById("txtSchName").value
+                        
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+                        var itemsCon = "<option value='" + res.contractNo + "'>" + res.contractNo + "</option>";
+                        var itemsItemNo = "<option value='" + res.itemNo + "'>" + res.itemNo + "</option>";
+                        
+                        //alert(res.txtEstMainPUDesc);
+                        //alert(res.txtEstMainBillRate);
+                        $('#txtEstMainConDesc').val(res.txtEstMainConDesc);
+                        $('#txtEstMainNetPrice').html(res.txtEstMainNetPrice);
+                        $("#Contract_No_List").html(itemsCon);
+                        $("#itemNo").html(itemsItemNo);
+                        $('#txtEstMainConQty').val(res.qty);
+                    }
+                });
+    }
+
+    function BOQList(data1, check) {
+        $ = globalJquery;
+        document.getElementById("scheme").value = data1;
+        SetText("txtScheme", data1);
+		//alert(data1);
+        $.ajax({
+            url: "/BOQ_GEN/BOQList",
+            type: "POST",
+            dataType: "html",
+            data: {
+                "schemeName": data1
+            },
+            beforeSend: function () { },
+            success: function (data) {
+
+                var res = jQuery.parseJSON(data);
+                //alert(res.record);
+                // reset
+                document.getElementById('notFoundDiv').style.display = "none";
+                document.getElementById('projectTable').style.display = "none";
+                document.getElementById('projectTable2').style.display = "none";
+                document.getElementById('header-projectTable').style.display = "none";
+                document.getElementById('tabs').style.display = "none";
+                //for project cost breakdown
+                SetElement("txtSumLbrOT", res.txtSumLbrOT);
+                SetElement("txtSumLbrSalary", res.txtSumLbrSalary);
+                SetElement("txtSumTNT_Mileage", res.txtSumTNT_Mileage);
+                SetElement("txtSumMilling", res.txtSumMilling);
+                SetElement("txtSumMisc", res.txtSumMisc);
+                SetText("txtSumContract", res.txtSumContract);
+                //SetText("txtSumMaterial", res.txtSumMaterial);
+                SetElement("txtSchName", res.txtSchName);
+
+                //maintenance
+               // alert(res.ContractList);
+                dataCon = res.ContractList.split("|");
+                var items = "";
+                for (i = 0; i < dataCon.length; i++) {
+                    if (dataCon[i] != "") {
+                        items += "<option value='" +  dataCon[i]+ "'>" + dataCon[i] + "</option>";
+                    }
+                }
+                $("#Contract_No_List").html(items);
+                Item_No();
+
+
+                //                        //for Labour Working Hours
+                //                        SetElement("txtJBuruh", res.txtEstLabBuruh);
+                //                        SetElement("txtJBiasa", res.txtEstLabBiasa);
+                //                        SetElement("txtJKanan", res.txtEstLabKanan);
+                //                        SetElement("txtPTBiasa", res.txtEstLabPembantu);
+                //                        SetText("txtBPESTotal", res.txtEstLabTotal);
+                //                        SetElement("txtSchName", res.txtSchName);
+                //                        //for Incidental Cost
+                //                        SetElement("txtEstIncValue", res.txtEstIncValue);
+                //                        SetElement("txtEstIncOtValue", res.txtEstIncOtValue);
+                //                        SetElement("txtEstIncExecMileage", res.txtEstIncExecMileage);
+                //                        SetElement("txtEstIncNonExecMileage", res.txtEstIncNonExecMileage);
+                //                        SetElement("txtEstIncOtSupHours", res.txtEstIncOtSupHours);
+                //                        SetText("txtEstIncSupHours", res.txtEstIncSupHours);
+                //                        SetText("txtEstIncTotalHours", res.txtEstIncTotalHours);
+                //                        SetText("txtEstIncTotalValue", res.txtEstIncTotalValue);
+                //                        SetText("txtEstIncTotalMileage", res.txtEstIncTotalMileage);
+                //                        //for Bussiness Plan Estimate
+                //                        SetElement("txtEstBPJamBuruh", res.txtEstBPJamBuruh);
+                //                        SetElement("txtEstBPJamNilai", res.txtEstBPJamNilai);
+                //                        SetElement("txtEstBPOTBuruh", res.txtEstBPOTBuruh);
+                //                        SetElement("txtEstBPOTNilai", res.txtEstBPOTNilai);
+                //                        SetElement("txtEstBPTMPelbagai", res.txtEstBPTMPelbagai);
+                //                        SetText("txtEstBPJKHBahan", res.txtEstBPJKHBahan);
+                //                        SetText("txtEstBPJKHPelbagai", res.txtEstBPJKHPelbagai);
+                //                        SetText("txtEstBPTMBahan", res.txtEstBPTMBahan);
+
+                if (res.record == "no") {
+                    document.getElementById('notFoundDiv').style.display = "block";
+                    document.getElementById('btnGenerate').style.display = "block";
+                    document.getElementById('btnReport1').style.display = "none";
+                    document.getElementById('btnReport2').style.display = "none";
+                    document.getElementById('header-projectTable').style.display = "block";
+                    document.getElementById('tabs').style.display = "block";
+                    document.getElementById('projectTable2').style.display = "none";
+                    document.getElementById('projectTable3').style.display = "none";
+                    document.getElementById('projectTable4').style.display = "none";
+                    document.getElementById('projectTable').style.display = "none";
+                    document.getElementById('btnGEMS').style.display = "none";
+
+                    if (res.SystemPrice == "false") {
+
+                        document.getElementById('SystemPrice').style.display = "none";
+                        document.getElementById('txtSystemPrice').style.display = "none";
+                    }
+                    else {
+
+                        document.getElementById('SystemPrice').style.display = "block";
+                        document.getElementById('txtSystemPrice').style.display = "block";
+                    }
+					//alert(res.errorRecord);
+                    if (res.errorRecord == "no"){
+                        document.getElementById('btnErrorLog').style.display = "none";
+						}
+                    else{
+                        document.getElementById('btnErrorLog').style.display = "block";
+						//alert(res.errorRecord);
+						error = res.errorRecord.split('!');
+								//alert(error[0]);
+								//alert(error[1]);
+								
+					    dMM = error[0].split('+');
+					    dPU_CO = error[1].split('|');
+						//alert( dMM.length);
+
+                        for (i = 0; i < dMM.length; i++) {
+
+                            var tbl = document.getElementById('errorTable');
+                            var lastRow = tbl.rows.length;
+                            var iteration = lastRow;
+                            var row = tbl.insertRow(lastRow);
+
+                            row.insertCell(0);
+                            row.insertCell(1);
+							//alert(dMM[i]);
+							//alert(dPU_CO[i]);
+                            if (dMM[i] == "x " || dMM[i] == "!x")
+                                dMM[i] = "";
+                            tbl.rows[i + 1].cells[0].innerHTML = dMM[i];
+                            if (dPU_CO[i] == "x ")
+                                dPU_CO[i] = "";
+                            tbl.rows[i + 1].cells[1].innerHTML = dPU_CO[i];
+                        }
+						}
+                }
+                else {
+                    //alert(res.record);
+                    //alert(res.proj_no);
+                    //alert(res.checkGEMS);
+                    //if (res.checkGEMS == "true" && res.proj_no == "null" || res.proj_no == "") {
+                    if (res.proj_no == null && res.checkGEMS != "true") {
+                        document.getElementById('btnGenerate').style.display = "block";
+                        document.getElementById("btnGEMS").style.display = "none";
+                        //alert("a"+res.proj_no);
+                    }
+                    else if (res.proj_no != null && res.checkGEMS != "true")
+                    {
+                        document.getElementById('btnGenerate').style.display = "block";
+                        document.getElementById('btnGEMS').style.display = "block";
+                        //alert("b"+res.proj_no);
+                    }
+                    else if (res.checkGEMS == "true")
+                    {
+                        document.getElementById('btnGenerate').style.display = "none";
+                        document.getElementById("btnGEMS").style.display = "none";
+                        //alert("c"+res.proj_no);
+                    }
+                    
+                    if (res.SystemPrice == "false") {
+
+                        document.getElementById('SystemPrice').style.display = "none";
+                        document.getElementById('txtSystemPrice').style.display = "none";
+                    }
+                    else {
+
+                        document.getElementById('SystemPrice').style.display = "block";
+                        document.getElementById('txtSystemPrice').style.display = "block";
+                    }
+                    
+                    if (res.errorRecord == "no")
+					{
+                        document.getElementById('btnErrorLog').style.display = "none";
+					}
+                    else
+                    {
+                        document.getElementById('btnErrorLog').style.display = "block";
+						var tblErr = document.getElementById('errorTable');
+                        for (var i = tblErr.rows.length - 1; i > 0; i--) {
+                            tblErr.deleteRow(i);
+                        }
+
+//                        //alert(res.errorRecord);
+//						document.getElementById("errorTable").style.display = "block";
+                            big = res.errorRecord.split('!');
+                            for (ii = 0; ii < big.length - 1; ii++) {
+                                d = big[ii].split('-');
+                                var tbl = document.getElementById('errorTable');
+                                var lastRow = tbl.rows.length;
+                                var iteration = lastRow;
+                                var row = tbl.insertRow(lastRow);
+                                row.style.background = "#e8eef4";
+
+                                row.insertCell(0);
+                                row.insertCell(1);
+                                row.insertCell(2);
+                                row.insertCell(3);
+                                row.insertCell(4);
+                                //if (d[0] != "") {
+                                    tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                                    tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                                    tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                                    tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                                    tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                                //}
+                            }
+                    
+				    }
+                    document.getElementById('tabs').style.display = "block";
+                    document.getElementById('projectTable').style.display = "block";
+                    document.getElementById('projectTable2').style.display = "block";
+                    document.getElementById('projectTable3').style.display = "block";
+                    document.getElementById('projectTable4').style.display = "block";
+                    document.getElementById('btnReport1').style.display = "block";
+                    document.getElementById('btnReport2').style.display = "block";
+                    document.getElementById('header-projectTable').style.display = "block";
+                    big = res.record.split('!');
+                    
+                    var tbl1 = document.getElementById('projectTable');
+                    for (j = 1; j < tbl1.rows.length; j++) {
+                        tbl1.deleteRow(j);
+                    }
+
+                     countBtnEdit = 0;
+                    for (ii = 0; ii < big.length - 1; ii++) {
+                        //alert(big[ii]);
+                        d = big[ii].split('|');
+
+                        //document.getElementById("targetProject").value = d[0];
+                        var tbl = document.getElementById('projectTable');
+                        var lastRow = tbl.rows.length;
+                        var iteration = lastRow;
+                        var row = tbl.insertRow(lastRow);
+
+                        //var cellLeft = row.insertCell(0);
+                        //var textNode = document.createElement("span");
+                        //textNode.innerHTML = files[i];
+                        //cellLeft.appendChild(textNode);
+
+                        //var celRight = row.insertCell(1);
+                        //textNode = document.createElement("span");
+                        //textNode.innerHTML = "";
+                        //celRight.appendChild(textNode);
+
+                        row.insertCell(0);
+                        row.insertCell(1);
+                        row.insertCell(2);
+                        row.insertCell(3);
+                        row.insertCell(4);
+                        row.insertCell(5);
+                        row.insertCell(6);
+                        row.insertCell(7);
+
+                        tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+
+                        tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                        tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+
+                        tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+
+                        tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+
+                        tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+
+                        tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+
+                        tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                        //alert(d[7]);
+                         if(d[7] == "TRUE"){
+								//alert(countBtnEdit);
+                                    tbl.rows[ii + 1].cells[7].innerHTML = "<input type=\"button\" value=\"Edit\" id=\"btnEdit" + countBtnEdit +"\"  onclick=\"testProject('" + d[0] + "/" + d[1] + "')\"  style=\"width:50px; display:none\" />";
+									countBtnEdit ++;
+								}
+
+                        //alert(countBtnEdit);
+                    }
+                    //alert(countBtnEdit);
+                    SetElement("NoOfPUdata", countBtnEdit);
+
+					
+                    
+                    if(check == 1){
+							InsertEditButton();
+						}
+                }
+				
+            }
+        });
+
+    }
+
+    function InsertEditButton(){
+	        lengthData =  document.getElementById("NoOfPUdata").value;
+			//alert("in insertedit : " + lengthData);
+			for( i =0;i < lengthData; i++)
+			{
+			// alert(i);
+			var btnId = "btnEdit"+i;
+				document.getElementById(btnId).style.display = "block";
+			//alert(btnId);
+			}
+	}
+
+    jQuery(document).ready(function ($) {
+
+
+        $('#tabs div').hide(); // Hide all divs
+        $('#tabs div:first').show(); // Show the first div
+        $('#tabs ul li:first').addClass('active'); // Set the class of the first link to active
+        $('#tabs ul li a').click(function () { //When any link is clicked
+            $('#tabs ul li').removeClass('active'); // Remove active class from all links
+            $(this).parent().addClass('active'); //Set clicked link class to active
+            var currentTab = $(this).attr('href'); // Set variable currentTab to value of href attribute of clicked link
+            $('#tabs div').hide(); // Hide all divs
+            $(currentTab).show(); // Show div with id equal to variable currentTab
+            return false;
+        });
+
+
+        $(function () {
+            //function for search button
+            $('#btnSearch').click(function () {
+                search();
+            });
+
+
+
+            //function for clear button 
+            $('#btnClear').click(function () {
+                document.getElementById("CmbName").disabled = false;
+                document.getElementById("CmbOwner").disabled = false;
+                document.getElementById("CmbYear").disabled = false;
+                document.getElementById("CmbNo").disabled = false;
+                document.getElementById("CmbType").disabled = false;
+                document.getElementById("CmbExc").disabled = false;
+                document.getElementById("CmbName").selectedIndex = 0;
+                document.getElementById("CmbOwner").selectedIndex = 0;
+                document.getElementById("CmbYear").selectedIndex = 0;
+                document.getElementById("CmbNo").selectedIndex = 0;
+                document.getElementById("CmbType").selectedIndex = 0;
+                document.getElementById("CmbExc").selectedIndex = 0;
+                search();
+            });
+
+            $('#btnGenerate').click(function () {
+
+                $.ajax(
+                {
+
+                    url: "/BOQ_GEN/BOQ_Generate_Contract",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "schemeName": document.getElementById("scheme").value,
+                        "SystemPrice": $('input:checkbox[name=SystemPrice]:checked').val(),
+						"ConnDB":"10.41.63.176/NEPSPROD|NEPSWV|NEPSWV"
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        document.getElementById("divLoading").style.visibility = "hidden";
+                        if (res.result) {
+                          // alert(res.record);
+
+                            alert(" BOQ GENERATED ");
+                            var data1 = document.getElementById("txtSchName").value;
+                            check = 0;
+                            BOQList(data1, check);
+                        }
+                        else {
+                            alert("Process Failed");
+                        }
+                    }
+                });
+            });
+
+            $('#btnGEMS').click(function () {
+            var cmsg = confirm('You only have one opportunity to send this BOQ to GEMS. If you continue, any modifications to the BOQ can only be performed in GEMS. Are you sure you want to proceed?');
+                if (cmsg != 0) {
+                    $.ajax(
+                    {
+                        url: "/BOQ_GEN/BOQ_GEMS",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "schemeName": document.getElementById("scheme").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            document.getElementById("divLoading").style.visibility = "hidden";
+                            if (res.result) {
+                                //alert(res.record);
+                                alert("Your BOQ will be sent to GEMS via Batch Processing Interface which is scheduled 3 times a day. Please allow some time for your BOQ to be viewable in GEMS.");
+							    document.getElementById('btnGenerate').disabled = true;
+							    document.getElementById('btnGEMS').disabled = true;
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Process Failed");
+                            }
+                        }
+                    });
+                }
+            });
+
+             $('#btnUpdateMaintenance').click(function () {
+                var contractNo = $('#Contract_No_List').val();
+                var itemNo = $('#itemNo').val();
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/UpdateDataMaintenanceContract",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "schemeName": document.getElementById("txtSchName").value,
+                        "contractNo": contractNo,
+                        "itemNo": itemNo,
+                        "qty": document.getElementById("txtEstMainConQty").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Updated");
+                              $('#txtEstMainConDesc').val("");
+                                $('#txtEstMainNetPrice').html("");
+                                $('#txtEstMulItemNo').val("");
+                                $('#txtEstMainConQty').val("");
+                                var items = "<option selected></option>";
+								$("#itemNo").html(items);
+                                $('#Contract_No_List').val("");
+                                document.getElementById("btnUpdateMaintenance").style.display = "none";
+								document.getElementById("btnDeleteMaintenance").style.display = "none";
+								document.getElementById("btnCancelEdit").style.display = "none";
+                                document.getElementById("btnAddMaintenance").style.display = "none";
+                             var data1 = document.getElementById("txtSchName").value;
+								 var data2 =  "";
+								// alert(data1);
+								// alert(data2);
+								check = 1;
+								BOQList(data1,check);
+                        }
+                        else {
+                            alert("Update failed.");
+                        }
+                    }
+                });
+            });
+            $('#btnAddMaintenance').click(function () {
+               // alert("a");
+                var check = 1;
+
+                var ContractNo = $('#Contract_No_List').val();
+                var ItemNo = $('#itemNo').val();
+                var qty  = document.getElementById("txtEstMainConQty").value;
+                //alert(ItemNo);
+                if(ItemNo != "Multiple")
+                {
+                    if(qty  == "0" )
+                    {
+                         alert ("Quantity Empty");
+                         check = 0;
+                    }
+                    if(qty  == "" )
+                    {
+                        qty = "1";
+                         check = 1;
+                    }
+                }
+                if(check == 1)
+
+                {
+                    $.ajax(
+                    {
+                        url: "/BOQ_GEN/AddDataMaintenanceContract",
+                        type: "POST",
+                        dataType: "html",
+                        data:
+                        {
+                            "schemeName": document.getElementById("txtSchName").value,
+                            "ContractNo": ContractNo,
+                            "ItemNo": ItemNo,
+                            "txtQuantity": qty,
+                            "txtEstMulItemNo" :document.getElementById("txtEstMulItemNo").value
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.Success == true) {
+                                alert("Insertion Successful");
+                                //window.location.reload();
+                                $('#txtEstMainConDesc').val("");
+                                $('#txtEstMainNetPrice').html("");
+                                $('#txtEstMainConQty').val("");
+                                $('#txtEstMulItemNo').val("");
+                                var items = "<option selected></option>";
+                                $("#itemNo").html(items);
+                                $('#Contract_No_List').val("");
+                                    var data1 = document.getElementById("txtSchName").value;
+                                    check = 1;
+                                BOQList(data1, check);
+                                document.getElementById("btnAddMaintenance").style.display = "none";
+                                    document.getElementById('txtEstMulItemNo').disabled = true;
+                               
+                            }
+                            else {
+                                alert("Insertion Fail : Item No Already Exist");
+                            }
+                        }
+                    });               
+                }
+            });
+
+//           $('#btnAddMaintenance').click(function () {
+//                alert("a");
+//                var ContractNo = $('#Contract_No_List').val();
+//                var ItemNo = $('#itemNo').val();
+//                var qty  = document.getElementById("txtEstMainConQty").value;
+//                alert(ItemNo);
+//                if(ItemNo != "Multiple")
+//                {
+//                    if(qty  == "")
+//                    {
+//                         alert ("Contract Quantity Empty");
+//                    }
+//                }
+//                else{
+//                    alert("a");
+//                    $.ajax(
+//                    {
+//                        url: "/BOQ_GEN/AddDataMaintenanceContract",
+//                        type: "POST",
+//                        dataType: "html",
+//                        data:
+//                        {
+//                            "schemeName": document.getElementById("txtSchName").value,
+//                            "ContractNo": ContractNo,
+//                            "ItemNo": ItemNo,
+//                            "txtQuantity": qty,
+//                            "txtEstMulItemNo" :document.getElementById("txtEstMulItemNo").value 
+//                        },
+//                        beforeSend: function () { },
+//                        success: function (data) {
+
+//                            var res = jQuery.parseJSON(data);
+
+//                            if (res.Success == true) {
+//                                //alert("Insertion Successful");
+//                               // window.location.reload();
+//                                $('#txtEstMainConDesc').val("");
+//                                $('#txtEstMainNetPrice').html("");
+//                                $('#txtEstMainConQty').val("");
+//                                $('#txtEstMulItemNo').val("");
+//                                var items = "<option selected></option>";
+//								$("#itemNo").html(items);
+//                                $('#Contract_No_List').val("");
+//								 var data1 = document.getElementById("txtSchName").value;
+//								 check = 1;
+//								BOQList(data1, check);
+//								document.getElementById("btnAddMaintenance").style.display = "none";
+//								 document.getElementById('txtEstMulItemNo').disabled = true;
+//								
+//                            }
+//                            else {
+//                                alert("Insertion Fail");
+//                            }
+//                        }
+//                    });
+//					
+//                }
+//            });
+            //for row click, generate table for WV_BOQ_DATA table
+            $("#rounded-table tbody tr").bind("click", function () {
+
+                var data1 = $(this).find("#scheme").text();
+                check = 0;
+                BOQList(data1, check);
+                //alert(data1);
+                Clear_Maintenance();
+                document.getElementById("tab-0").style.display = "block";
+                document.getElementById("tab-5").style.display = "none";
+                document.getElementById("tabCBD").style.backgroundColor = "#CEE1EF";
+              document.getElementById("tabMain").style.backgroundColor = "#B9C9FE";
+
+            });
+
+             $('#btnDeleteMaintenance').click(function () {
+               var contractNo = $('#Contract_No_List').val();
+                var itemNo = $('#itemNo').val();
+                
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/BOQ_GEN/Delete_CONTRACT_BOQ",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "schemeName": document.getElementById("txtSchName").value,
+                            "contractNo" :contractNo,
+                            "itemNo" : itemNo
+                        },
+                        beforeSend: function () {
+                        },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+
+                            if (res.result == true) {
+                                alert("Deleted");
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+							lengthData =  document.getElementById("NoOfPUdata").value;
+			
+							 for( i =0;i < lengthData; i++)
+							 {
+								var btnId = "btnEdit"+i;
+								document.getElementById(btnId).style.display = "none";
+							 }
+                             var data1 = document.getElementById("txtSchName").value;
+                             
+                            // alert(data1);
+                            // alert(data2);
+							check = 1;
+                            BOQList(data1,check);
+								document.getElementById("tab-0").style.display = "none";
+								document.getElementById("tab-5").style.display = "block";
+								document.getElementById("tabCBD").style.backgroundColor = "#B9C9FE";
+								document.getElementById("tabMain").style.backgroundColor = "#CEE1EF";
+								
+								$('#txtEstMainConDesc').val("");
+								$('#txtEstMulItemNo').val("");
+								$('#txtEstMainNetPrice').html("");
+								$('#txtEstMainConQty').val("");
+								var items = "<option selected></option>";
+								$("#itemNo").html(items);
+								document.getElementById("btnUpdateMaintenance").style.display = "none";
+								document.getElementById("btnDeleteMaintenance").style.display = "none";
+								document.getElementById("btnCancelEdit").style.display = "none";
+								
+								
+							
+                        }
+                    });
+                }
+				
+            });
+            //to send data to the controller
+            $('#btnSave').click(function () {
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/UpdateData",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+
+                        "txtSCHEMENO": document.getElementById("txtSCHEMENO").value,
+                        "txtSCHEMENAME": document.getElementById("txtSCHEMENAME").value,
+                        "txtSCHEMENTYPE": document.getElementById("txtSCHEMETYPE").value,
+                        "txtEXCABB": document.getElementById("txtEXCABB").value,
+                        "txtYEARINSTALL": document.getElementById("txtYEARINSTALL").value,
+                        "txtOWNER": document.getElementById("txtOWNER").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("BOQ Generated Successfully!");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("BOQ Generation failed.");
+                        }
+                    }
+                });
+            });
+
+            //save labour working hours
+            $('#btnSaveLWH').click(function () {
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/UpdateDataLWH",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "schemeName": document.getElementById("txtSchName").value,
+                        "txtJBuruh": document.getElementById("txtJBuruh").value,
+                        "txtJBiasa": document.getElementById("txtJBiasa").value,
+                        "txtJKanan": document.getElementById("txtJKanan").value,
+                        "txtPTBiasa": document.getElementById("txtPTBiasa").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Updated");
+                            //document.getElementById('tabs').style.display = "block";
+
+                            $('#txtBPESTotal').html(res.txttotal);
+                            //window.location.reload();
+                        }
+                        else {
+                            alert("Update failed.");
+                        }
+                    }
+                });
+            });
+
+
+            //save project cost breakdown
+            $('#btnSaveProjectCost').click(function () {
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/UpdateDataSUM",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "schemeName": document.getElementById("txtSchName").value,
+                        "txtSumLbrOT": document.getElementById("txtSumLbrOT").value,
+                        "txtSumLbrSalary": document.getElementById("txtSumLbrSalary").value,
+                        "txtSumTNT_Mileage": document.getElementById("txtSumTNT_Mileage").value,
+                        "txtSumMilling": document.getElementById("txtSumMilling").value,
+                        "txtSumMisc": document.getElementById("txtSumMisc").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Updated");
+                        }
+                        else {
+                            alert("Update failed.");
+                        }
+                    }
+                });
+            });
+
+            $('#btnCancelEdit').click(function () {
+              Clear_Maintenance();
+             });
+
+            //save labour working hours
+            $('#btnSaveBPlanEstimate').click(function () {
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/UpdateDataBussinessPlanEstimate",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "schemeName": document.getElementById("txtSchName").value,
+                        "txtEstBPJamBuruh": document.getElementById("txtEstBPJamBuruh").value,
+                        "txtEstBPJamNilai": document.getElementById("txtEstBPJamNilai").value,
+                        "txtEstBPOTBuruh": document.getElementById("txtEstBPOTBuruh").value,
+                        "txtEstBPOTNilai": document.getElementById("txtEstBPOTNilai").value,
+                        "txtEstBPTMPelbagai": document.getElementById("txtEstBPTMPelbagai").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Updated");
+                        }
+                        else {
+                            alert("Update failed.");
+                        }
+                    }
+                });
+            });
+
+            $("#Contract_No_List").change(function () {
+                var contractNo = $(this).val();
+               // alert(contractNo);
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/GetItemNo",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "contractNo": contractNo,
+                        "schemeName": document.getElementById("txtSchName").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+                        //alert(res.itemNo);
+                        data = res.itemNo.split("!");
+                        var items = "<option selected></option>";
+                        for (i = 1; i < data.length; i++) {
+                            if (data[i] != "") {
+                                items += "<option value='" + data[i] + "'>" + data[i] + "</option>";
+                            }
+                        }
+                        document.getElementById('btnAddMaintenance').disabled = true;
+                        $("#itemNo").html(items);
+                        $('#txtEstMainConDesc').val("");
+                        $('#txtEstMainNetPrice').html("");
+                        $('#txtEstMainConQty').val("");
+                        $('#txtEstMulItemNo').val("");
+
+                    }
+                });
+            });
+
+            $("#btnClear").button();
+            $("#btnSearch").button();
+            $("#btnGenerate").button();
+            $("#btnReport1").button();
+            $("#btnReport2").button();
+            $("#btnErrorLog").button();
+            $("#btnGEMS").button();
+            $("#btnClose").button();
+            $("#btn22").button();
+            $("#btn33").button();
+            $("#btnSaveProjectCost").button();
+            $("#btnAddMaintenance").button();
+            $("#btnUpdateMaintenance").button();
+            $("#btnDeleteMaintenance").button();
+            $("#btnEdit").button();
+            $("#btnCancelEdit").button();
+            
+            
+
+            $("#itemNo").change(function () {
+                //                alert($(this).val());
+                //                alert($('#PU_ID_List').val());
+                var itemNo = $(this).val();
+                if(itemNo == "Multiple")
+                {
+                    document.getElementById('txtEstMulItemNo').disabled = false;
+                     $('#txtEstMainConDesc').val("");
+                        $('#txtEstMainNetPrice').html("");
+                }
+                else
+                {
+                    var ContractNo_ItemNo = $('#Contract_No_List').val() + "/" + $(this).val();
+                    document.getElementById('txtEstMulItemNo').disabled = true;
+                     $('#txtEstMulItemNo').val("");
+                    Contract_Details(ContractNo_ItemNo);
+                }
+                document.getElementById('btnAddMaintenance').disabled = false;
+                document.getElementById("btnAddMaintenance").style.display = "block";
+                 $('#txtEstMainConQty').val("1");
+                 $('#txtEstMulItemNo').val("");
+                //alert(document.getElementById("txtSchName").value);
+
+            });
+
+            $('#btnClose').click(function () {
+                document.getElementById("divDetails").style.display = "none";
+            });
+
+            $('#tabMain').click(function () {
+              document.getElementById("tabCBD").style.backgroundColor = "#B9C9FE";
+              document.getElementById("tabMain").style.backgroundColor = "#CEE1EF";
+             lengthData =  document.getElementById("NoOfPUdata").value;
+			 //alert(lengthData);
+             for( i =0;i < lengthData; i++)
+             {
+			   // alert(i);
+                var btnId = "btnEdit"+i;
+                document.getElementById(btnId).style.display = "block";
+				//alert(btnId);
+             }
+            });
+
+              $('#tabCBD').click(function () {
+             Clear_Maintenance();
+               document.getElementById("tabCBD").style.backgroundColor = "#CEE1EF";
+              document.getElementById("tabMain").style.backgroundColor = "#B9C9FE";
+             lengthData =  document.getElementById("NoOfPUdata").value;
+             for( i =0;i < lengthData; i++)
+             {
+                var btnId = "btnEdit"+i;
+                document.getElementById(btnId).style.display = "none";
+             }
+            });
+
+            $('#btnErrorLog').click(function () {
+                document.getElementById("divDetails").style.display = "block";
+            });
+            $('#btnSaveIncCost').click(function () {
+
+                $.ajax(
+                {
+                    url: "/BOQ_GEN/UpdateDataIncCost",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "schemeName": document.getElementById("txtSchName").value,
+                        "txtEstIncOtSupHours": document.getElementById("txtEstIncOtSupHours").value,
+                        "txtEstIncValue": document.getElementById("txtEstIncValue").value,
+                        "txtEstIncOtValue": document.getElementById("txtEstIncOtValue").value,
+                        "txtEstIncExecMileage": document.getElementById("txtEstIncExecMileage").value,
+                        "txtEstIncNonExecMileage": document.getElementById("txtEstIncNonExecMileage").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+
+                        var res = jQuery.parseJSON(data);
+
+                        if (res.Success == true) {
+                            alert("Updated");
+                            $('#txtEstIncTotalHours').html(res.txtEstIncTotalHours);
+                            $('#txtEstIncTotalValue').html(res.txtEstIncTotalValue);
+                            $('#txtEstIncTotalMileage').html(res.txtEstIncTotalMileage);
+                        }
+                        else {
+                            alert("Update failed.");
+                        }
+                    }
+                });
+            });
+        });
+
+    });
+
+
+    //to disable other field when CmbName or CmdID selected
+    function idselected(data) {
+
+        if (data == "1") {
+            document.getElementById("CmbName").disabled = true;
+            document.getElementById("CmbName").selectedIndex = 0;
+        }
+        if (data == "2") {
+
+        }
+        document.getElementById("CmbOwner").disabled = true;
+        document.getElementById("CmbYear").disabled = true;
+        document.getElementById("CmbNo").disabled = true;
+        document.getElementById("CmbType").disabled = true;
+        document.getElementById("CmbExc").disabled = true;
+
+    }
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+        // document.getElementById("divDetails").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+    function OpenWindowExcel() {
+        window.location.href = "ReportBOQ_Contract?id=" + document.getElementById("scheme").value + "|EXCEL";
+    }
+
+    function OpenWindowHtml() {
+        window.open().location.href = "ReportBOQ_Contract?id=" + document.getElementById("scheme").value + "|html";
+    }
+
+    function OpenWindowExcelLWH() {
+        window.location.href = "ReportLabourWorkingHours?id=" + document.getElementById("scheme").value + "|EXCEL";
+    }
+
+    function OpenWindowHtmlLWH() {
+        window.open().location.href = "ReportLabourWorkingHours?id=" + document.getElementById("scheme").value + "|html";
+    }
+
+    function OpenWindowExcelIncCost() {
+        window.location.href = "ReportIncidentialCost?id=" + document.getElementById("scheme").value + "|EXCEL";
+    }
+
+    function OpenWindowHtmlIncCost() {
+        window.open().location.href = "ReportIncidentialCost?id=" + document.getElementById("scheme").value + "|html";
+    }
+
+    function OpenWindowExcelBussinessPlan() {
+        window.location.href = "ReportBussinessPlanEstimate?id=" + document.getElementById("scheme").value + "|EXCEL";
+    }
+
+    function OpenWindowHtmlBussinessPlan() {
+        window.open().location.href = "ReportBussinessPlanEstimate?id=" + document.getElementById("scheme").value + "|html";
+    }
+
+    function OpenWindowExcelProjectCost() {
+        window.location.href = "ReportProjectCostBreakdown?id=" + document.getElementById("scheme").value + "|EXCEL|CONTRACT";
+    }
+
+    function OpenWindowHtmlProjectCost() {
+        window.open().location.href = "ReportProjectCostBreakdown?id=" + document.getElementById("scheme").value + "|html|CONTRACT";
+    }
+
+    function testProject(data) {
+       Con_Details_BOQ(data);
+         document.getElementById("btnAddMaintenance").style.display = "none";
+         document.getElementById("btnUpdateMaintenance").style.display = "block";
+         document.getElementById("btnDeleteMaintenance").style.display = "block";
+         document.getElementById("btnCancelEdit").style.display = "block";
+    }
+
+</script>
+
+<br /><br />
+<h2>BOQ Generation - Contract</h2>
+
+@*this is search dropdown*@
+<table>
+    <tr>
+        
+        <td >Scheme Name</td>          
+            <td>@Html.DropDownList("CmbName", (IEnumerable<SelectListItem>)ViewBag.x_SCHEME_NAME, new { style = "width:150px",  onchange = "idselected('2')" })</td>                        
+        <td></td>
+        <td >Owner</td>            
+            <td>@Html.DropDownList("CmbOwner", (IEnumerable<SelectListItem>)ViewBag.x_G3E_OWNER, new { style = "width:150px" })</td>             
+            <td></td>
+             <td >Year Install</td>            
+            <td>@Html.DropDownList("CmbYear", (IEnumerable<SelectListItem>)ViewBag.x_YEAR_INSTALL, new { style = "width:150px" })</td> 
+			<td></td>
+          <td colspan="2" align="right"><input type="button" value="Search" id="btnSearch" style="width:70px" /><td>
+    </tr>   
+    <tr>
+        <td >Scheme No</td>
+            
+            <td>@Html.DropDownList("CmbNo", (IEnumerable<SelectListItem>)ViewBag.x_SCH_NO, new { style = "width:150px" })</td>
+            <td></td>
+        <td >Scheme Type</td>
+            
+            <td>@Html.DropDownList("CmbType", (IEnumerable<SelectListItem>)ViewBag.x_SCH_TYPE, new { style = "width:150px" })</td>                     
+       <td></td>
+        <td>Exchange</td>
+            <td>@Html.DropDownList("CmbExc", (IEnumerable<SelectListItem>)ViewBag.x_EXC_ABB, new { style = "width:150px" })</td>                
+        <td></td>
+       <td colspan="2"  align="right"><input type="button" value="Clear" id="btnClear" style="width:70px" />
+       </td>   
+    </tr>                              
+    </table>  
+    @*///////////////////////////////////////////////////////////////////////////////////////*@
+    @*View the joblist*@
+     <br />  <br />
+    @if (Model.Count() > 0)
+    {                                                               
+    <table align="center" id="rounded-table" summary="BOQ Generation List" width="850px" >
+       <thead>
+            <tr >                  
+                <th scope="col" style="width:20%">Scheme</th>
+                <th scope="col" style="width:35%">Description</th>
+                <th scope="col" style="width:10%">Type</th> 
+                <th scope="col" style="width:10%">Project No.</th>
+                <th scope="col" style="width:10%">GEMS Status</th>             
+                <th scope="col" style="width:10%">Owner</th>
+               @* <th ></th>  *@                           
+            </tr>
+        </thead>
+        <tbody>     
+
+       @foreach (var res in Model)
+        {
+            <tr class="odd" >                       
+                <td id="scheme">@res.x_Scheme_Name</td>
+                <td >@res.x_G3E_DESCRIPTION</td>
+                <td>@res.x_Sch_Type</td> 
+                <td>@res.x_PROJ_NO</td>
+                <td>@res.x_GEMS_TABLE</td>
+                <td>@res.x_G3E_OWNER</td>                                                            
+                @*<td>@Ajax.ActionLink("Select", "GetDetails_BOQ_GEN", new { id = res.x_Scheme_Name }, new AjaxOptions
+               {
+                   HttpMethod = "POST",
+                   OnBegin = "ShowIt",
+                   OnComplete = "HideIt",
+                   UpdateTargetId="divResultText",
+                   OnSuccess = "GetDetailsCallBack"
+               })</td>      *@     
+            </tr>    
+        }    
+                       
+        </tbody>
+    </table>  
+      <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "BOQ_GEN_CONTRACT", new { searchKey = "", page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "BOQ_GEN_CONTRACT", new { searchKey = "", page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "BOQ_GEN_CONTRACT", new { searchKey = "", page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "BOQ_GEN_CONTRACT", new { searchKey = "", page = Model.PageCount })
+        }
+        else
+        {
+
+        }
+    </div>   
+    }
+    
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+     <br />
+
+    @*///////////////////////////////////////////////////////////////////////////////////////*@
+    @*View the boq*@
+    <br />
+    <div id="header-projectTable" style=" display:none;">
+    <table width="800px">
+    <tr  style="font-size:12px; font-weight:bold; color:Black "><td >SCHEME NAME : <span id="txtScheme" style="font-weight:bold; color:Blue"></span></td>
+    </tr>
+    </table> 
+    </div>
+   <div id="projectTable3" style="display:none">
+    <table id="projectTable2" style=" display:none; " width="830px">
+                <tr style="background-color:#b9c9fe; color:#039; font-family: 'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;">
+                    <td style="width:100px">Contract No</td>
+                    <td style="width:100px">Item No</td>
+                    <td style="width:270px">Description</td>
+                    <td style="width:80px">ISP/OSP</td>
+                    <td style="width:80px">QTY</td>
+                    <td style="width:120px">Net Price(RM)</td>
+                    <td style="width:120px">Total (RM)</td>
+                    <td style="width:80px"></td>
+                </tr>
+                </table></div>
+                  <div id="projectTable4" style="overflow: auto;height: 180px; width: 850px;">
+                <table id="projectTable" style=" display:none; " width="830px">
+                <tr>
+                    <td style="width:100px"></td>
+                    <td style="width:100px"></td>
+                    <td style="width:270px"></td>
+                    <td style="width:80px"></td>
+                    <td style="width:80px"></td>
+                    <td style="width:120px"></td>
+                    <td style="width:120px"></td>
+                    <td></td>
+                         
+                </tr>
+              
+            </table>
+            </div>
+           <div id="notFoundDiv" style="display:none">
+			<table width="850px"><tr><td style="width:850px; background-color:#e8eef4">BOQ Record Not Found.</td></tr>
+            </table>
+            </div>
+            <div>
+            <table><tr><td><input id="SystemPrice" name="SystemPrice" type="checkbox" title ="System Price" value="true" style="display:none" /></td><td><span id="txtSystemPrice" style=" font-size:small; display:none; color:Black">System Price</span></td></tr></table>
+            <table>
+            <tr><td><input type="button"  onclick="ShowIt()" value="Generate" id="btnGenerate" style="display:none" /></td>
+            <td><input type="button" onclick="OpenWindowExcel()" value="Report Excel" id="btnReport1" style="display:none"/>
+            </td>
+            <td><input type="button" onclick="OpenWindowHtml()" value="Report HTML" id="btnReport2" style="display:none"/></td>
+            <td><input type="button" value="Error Log" id="btnErrorLog" style="display:none"/></td>
+            <td><input type="button" value="Send to GEMS" id="btnGEMS" style="display:none"/></td></tr>
+            </table></div>
+			<div id="divLoading" style="visibility:collapse"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+
+       @*/////////////////////////////////////////////////////////////////////////////*@
+
+     <div id="divDetails" class="popup_block">
+     
+       
+      <div id="list-details">
+         
+            <table width="750px" id="errorTable">
+            <thead>
+                <tr>
+                    <td style="width:150px;background-color:#b9c9fe;">DESCRIPTION</td>
+                    <td style="width:150px;background-color:#b9c9fe;">G3E_FID</td>
+                    <td style="width:150px;background-color:#b9c9fe;">PLANT UNIT</td>
+                    <td style="width:150px;background-color:#b9c9fe;">PU ID</td>
+                    <td style="width:150px;background-color:#b9c9fe;">CONTRACT NO</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width:150px; border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:150px; border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:150px; border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:150px; border-top-color:White; border-bottom-color:White"></td>
+                    <td style="width:150px; border-top-color:White; border-bottom-color:White"></td>
+                </tr>
+            </tbody>
+         </table>
+			<table><tr><td></td></tr><tr><td></td></tr><tr><td align="right"><input type="button" value="Close" id="btnClose" style="height:30px;width:80px;" /></td></tr></table>
+           
+        </div>
+      </div>
+  
+       @*/////////////////////////////////////////////////////////////////////////////*@
+
+       <div id="tabs" style=" display:none;">
+       <input type="text" id="txtSchName" name="txtSchName" style="display:none;" />
+<ul>
+<li><a href="#tab-0" id="tabCBD">Project Cost Breakdown</a></li>
+@*<li><a href="#tab-1">Bussiness Plan Estimate Summary</a></li>
+<li><a href="#tab-2">Labour Working Hours</a></li>
+<li><a href="#tab-3">Incidental Cost</a></li>*@
+@*<li><a href="#tab-4">Material Supply</a></li>*@
+<li><a href="#tab-5" id="tabMain">Maintenance</a></li>
+
+</ul>
+<div id="tab-0">
+<h3>Project Cost Breakdown Summary</h3><br />
+<table>
+<tr style=" border-width:medium; border-color:Black">
+<td style="width:110px;  font-size:13px;  font-weight:bold">LABOUR</td>
+<td style="width:110px;"></td>
+<td style="width:110px; text-align:center; font-size:13px; font-weight:bold">Nilai (RM)</td>
+</tr>
+<tr>
+<td style="font-size:13px">OVERTIME</td>
+<td></td>
+<td><input type="text" id="txtSumLbrOT" name="txtSumLbrOT" style="width:110px; text-align:right;" /></td>
+</tr>
+<tr>
+<td style="font-size:13px">SALARY</td>
+<td></td>
+<td><input type="text" id="txtSumLbrSalary" name="txtSumLbrSalary" style="width:110px; text-align:right;" /></td>
+</tr>
+
+<tr><td colspan="3"></td>
+</tr>
+<tr style="border-bottom:2px;">
+<td style="width:110px;  font-size:13px; font-weight:bold">INCIDENTAL</td>
+<td></td>
+<td style="width:110px; text-align:center; font-size:13px; font-weight:bold">Nilai (RM)</td>
+</tr>
+<tr>
+<td style="font-size:13px">CONTRACT</td>
+<td></td>
+<td style="text-align:right;"><span id="txtSumContract" style="font-size:13px; color:Black; text-align:right;"></span></td>
+</tr>
+<tr>
+<td style="font-size:13px">TNT & MILEAGE</td>
+<td></td>
+<td><input type="text" id="txtSumTNT_Mileage" name="txtSumTNT_Mileage" style="width:110px; text-align:right;" /></td>
+</tr>
+<tr>
+<td style="font-size:13px">MILLING</td>
+<td></td>
+<td><input type="text" id="txtSumMilling" name="txtSumMilling" style="width:110px; text-align:right;" /></td>
+</tr>
+<tr>
+<td style="font-size:13px">MISCELLANEOUS</td>
+<td></td>
+<td><input type="text" id="txtSumMisc" name="txtSumMisc" style="width:110px; text-align:right;" /></td>
+</tr>
+<tr><td colspan="3"></td>
+</tr>
+<tr><td colspan="3" align="right"><input type="button"  value="Save" id="btnSaveProjectCost" />&nbsp&nbsp<input type="button" onclick= "OpenWindowHtmlProjectCost()" value="Report Html" id="btn22" />&nbsp&nbsp<input type="button" onclick="OpenWindowExcelProjectCost()" value="Report Excel" id="btn33" /></td></tr>
+</table>
+</div>
+@*<div id="tab-1">
+<h3>Bussiness Plan Estimate Summary</h3><br />
+<table>
+<tr><td style="width:110px;"></td><td style="width:110px;  text-align:center; font-size:13px">Buruh</td><td style="width:110px; text-align:center; font-size:13px">Nilai</td><td style="width:110px; text-align:center; font-size:13px">Bahan</td><td style="width:110px; text-align:center; font-size:13px">Pelbagai</td></tr>
+<tr><td style="font-size:13px">JKH</td><td></td><td></td><td style="text-align:right;"><span id="txtEstBPJKHBahan" style="font-weight:bold; font-size:13px; color:Black; text-align:right;"></span></td><td style="text-align:right;"><span id="txtEstBPJKHPelbagai" style="font-weight:bold; font-size:13px; color:Black; text-align:right;"></span></td></tr>
+<tr><td style="font-size:13px">TELEKOM</td><td></td><td></td><td style="text-align:right;"><span id="txtEstBPTMBahan" style="font-weight:bold; font-size:13px; color:Black; text-align:right;"></span></td><td><input type="text" id="txtEstBPTMPelbagai" name="txtEstBPTMPelbagai" style="width:110px; text-align:right;" /></td></tr>
+<tr><td style="font-size:13px">JAM KERJA</td><td><input type="text" id="txtEstBPJamBuruh" name="txtEstBPJamBuruh" style="width:110px; text-align:right;" /></td><td><input type="text" id="txtEstBPJamNilai" name="txtEstBPJamNilai" style="width:110px; text-align:right;" /></td><td></td><td></td></tr>
+<tr><td style="font-size:13px">OT</td><td><input type="text" id="txtEstBPOTBuruh" name="txtEstBPOTBuruh" style="width:110px; text-align:right;" /></td><td><input type="text" id="txtEstBPOTNilai" name="txtEstBPOTNilai" style="width:110px; text-align:right;" /></td><td></td><td></td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+<tr><td colspan="5" align="right"><input type="button"  value="Save" id="btnSaveBPlanEstimate" />&nbsp&nbsp<input type="button" onclick="OpenWindowHtmlBussinessPlan()" value="Report Html" id="btn2" />&nbsp&nbsp<input type="button" onclick="OpenWindowExcelBussinessPlan()" value="Report Excel" id="btn3" /></td></tr>
+</table>
+</div>
+<div id="tab-2">
+<h3>Labour Working Hours</h3>
+<table>
+<tr><td></td><td></td><td style="font-size:13px">Jam Kerja (Jam)</td></tr>
+<tr><td style="font-size:13px" >Buruh  :</td ><td style="width:100px"></td><td align="right"><input type="text" id="txtJBuruh" name="txtJBuruh" style="width:110px; text-align:right;" /></td></tr>
+<tr><td style="font-size:13px">Juruteknik Biasa  :</td><td  style="width:100px"></td><td align="right"><input type="text" id="txtJBiasa" name="txtJBiasa" style="width:110px; text-align:right;" /></td></tr>
+<tr><td style="font-size:13px">Juruteknik Kanan  :</td ><td style="width:100px" ></td><td align="right"><input type="text" id="txtJKanan" name="txtJKanan" style="width:110px; text-align:right;"/></td></tr>
+<tr><td style="font-size:13px">Pembantu Teknik Biasa  :</td><td style="width:100px"></td><td align="right"><input type="text" id="txtPTBiasa" name="txtPTBiasa" style="width:110px; text-align:right;" /></td></tr>
+<tr><td style="font-size:13px" >Jumlah  :</td><td style="width:100px" ></td><td align="right"><span id="txtBPESTotal" style="font-weight:bold; font-size:13px; color:Black; text-align:right;"></span></td></tr>
+<tr><td></td></tr>
+<tr><td colspan="3" align="right"><input type="button"  value="Save" id="btnSaveLWH" />&nbsp&nbsp<input type="button" onclick="OpenWindowHtmlLWH()" value="Report Html" id="btnReportHtmlLWH" />&nbsp&nbsp<input type="button" onclick="OpenWindowExcelLWH()" value="Report Excel" id="btnReportExcelLWH" /></td></tr>
+</table>
+</div>
+<div id="tab-3">
+<h3>Incidental Cost</h3>
+<table>
+<tr><td></td><td></td><td style="font-size:13px">Jam Kerja (Jam)</td><td style="font-size:13px">Nilai (RM)</td></tr>
+<tr><td style="font-size:13px" >JKH Work  :</td ><td style="width:100px"></td><td  align="right"><span id="txtEstIncSupHours" style="font-weight:bold; font-size:13px; color:Black; text-align:right;"></span></td><td align="right"><input type="text" id="txtEstIncValue" name="txtEstIncValue" style="width:110px; text-align:right;" /></td></tr>
+<tr><td style="font-size:13px">Overtime  :</td><td  style="width:100px"></td><td align="right"><input type="text" id="txtEstIncOtSupHours" name="txtEstIncOtSupHours" style="width:110px; text-align:right;" /></td><td align="right"><input type="text" id="txtEstIncOtValue" name="txtEstIncOtValue" style="width:110px; text-align:right;" /></td></tr>
+<tr><td style="font-size:13px; font-weight:bold;">Jumlah  :</td ><td style="width:100px" ></td><td  align="right"><span id="txtEstIncTotalHours" style="font-weight:bold; font-size:13px; color:Black; text-align:right;"></span></td><td  align="right"><span id="txtEstIncTotalValue" style="font-weight:bold; font-size:13px; color:Black; text-align:right;"></span></td></tr>
+<tr><td colspan="4"></td></tr>
+<tr><td style="font-size:13px">Mileage Executive :</td><td style="width:100px"></td><td></td><td align="right"><input type="text" id="txtEstIncExecMileage" name="txtEstIncExecMileage" style="width:110px; text-align:right;" /></td></tr>
+<tr><td style="font-size:13px" >Mileage Non Executive :</td><td style="width:100px" ></td><td></td><td align="right"><input type="text" id="txtEstIncNonExecMileage" name="txtEstIncNonExecMileage" style="width:110px; text-align:right;" /></td></tr>
+<tr><td style="font-size:13px; font-weight:bold;">Jumlah  :</td ><td style="width:100px" ></td><td  align="right"></td><td  align="right"><span id="txtEstIncTotalMileage" style="font-weight:bold; font-size:13px; color:Black; text-align:right;"></span></td></tr>
+<tr><td></td></tr>
+<tr><td colspan="4" align="right"><input type="button"  value="Save" id="btnSaveIncCost" />&nbsp&nbsp<input type="button" onclick="OpenWindowHtmlIncCost()" value="Report Html" id="btnReportHtmlIncCost" />&nbsp&nbsp<input type="button" onclick="OpenWindowExcelIncCost()" value="Report Excel" id="btnReportExcelIncCost" /></td></tr>
+</table>
+</div>*@
+@*<div id="tab-4">
+<h3>Tab 4</h3>
+<p>Material Supply</p>
+</div>*@
+<div id="tab-5" style="padding-left:20px; ">
+<h3>Maintenance</h3>
+<span id="NoOfPUdata" style="font-weight:bold; color:Blue; display:none"></span>
+<input type="hidden" id="CheckItem" value="" />
+<br />
+<table>
+<tr><td>CONTRACT NO :</td><td><select id="Contract_No_List" style="width:150px;"></select></td><td  style="width:20px;"></td><td>ITEM NO:</td><td><select name="itemNo" id="itemNo" style="width:150px"></select></td></tr>
+<tr><td>CONTRACT DESC :</td><td><textarea name="txtEstMainConDesc" id="txtEstMainConDesc" disabled="disabled" cols="20" rows="" style="width:150px;"  ></textarea></td><td  style="width:20px;"></td><td align="right">MULTIPLE ITEM NO :</td><td><textarea name="txtEstMulItemNo" id="txtEstMulItemNo" disabled="disabled" cols="20" rows="" style="width:150px;"  ></textarea></td></tr>
+<tr><td>NET PRICE :</td><td><span id="txtEstMainNetPrice" style=" font-size:13px; color:Black; text-align:right;"></span></td><td  style="width:20px;"></td><td>QUANTITY :</td><td><input type="text" id="txtEstMainConQty" name="txtEstMainConQty" style="width:150px;" /></td></tr>
+</table>
+<br />
+<table><tr><td><input type="button"  value="Add" id="btnAddMaintenance" style="display:none"/></td>
+<td><input type="button" value="Save" id="btnUpdateMaintenance" style="display:none" /></td>
+<td><input type="button" value="Delete" id="btnDeleteMaintenance" style="display:none" /></td>
+<td><input type="button" value="Cancel" id="btnCancelEdit" style="display:none" /></td>
+</tr></table>
+
+
+</div>
+</div>

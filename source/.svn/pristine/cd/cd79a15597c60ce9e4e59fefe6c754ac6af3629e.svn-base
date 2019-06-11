@@ -1,0 +1,124 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.Job>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+      $("#rounded-corner tbody tr").bind("click", function () {
+          var t = $(this).find("#gid").text();
+          window.location = "FileListRedmark/" + t;
+          //window.open("FileListRedmark/" + t);
+      });
+
+      $(function () {
+          $('#btnSearch').click(function () {
+              var boqCheck = $('input:checkbox[name=boq]:checked').val();
+
+              window.location = "RNOList?searchKey=" + document.getElementById("searchKey").value;
+          });
+
+          $('#searchKey').change(function () {
+              var boqCheck = $('input:checkbox[name=boq]:checked').val();
+
+              window.location = "RNOList?searchKey=" + document.getElementById("searchKey").value;
+          });
+          
+          $("#btnNewJob").button();
+          $("#btnSearch").button();
+          $("#btnFind").button();
+          $("#btnManageFile").button();
+          $("#btnLaunch").button();
+
+      });
+  }); 
+  </script>
+
+  <br />
+  <h3>
+Job Management > REDMARK List
+</h3>
+<div id="dialog-confirm" title="Delete this job?" style="visibility:hidden; display:none;">
+<p>
+  <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?
+</p>
+</div>
+  <div style="height:650px">
+    <div>
+  <table style="width:850px;">
+<tr>
+<td style="width:200px;">
+  <input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/>
+    </td>
+      <td>
+        <input type="button" value="Search" id="btnSearch" />
+          </td>
+        </tr>
+        </table>
+          </div>
+        <br />
+      @if (Model.Count() > 0)
+    {
+  <table id="rounded-corner" summary="Job List" width="850px">
+  <thead>
+  <tr>
+  <th scope="col" style="width:80px">
+  JOB NO
+    </th>
+      <th scope="col" style="width:150px">
+        SCHEME NAME
+          </th>
+        <th scope="col" style="width:80px">
+        JOB STATUS
+          </th>
+        <th scope="col" style="width:80px">OWNER</th>
+        </tr>
+          </thead>
+        <tbody>
+        @foreach (var res in Model)
+      {
+    <tr class="odd">
+    <td id="gid">@res.G3E_IDENTIFIER</td>
+      <td >@res.Scheme_Name</td>
+      <td>@res.G3E_STATUS</td>
+                <td>@res.G3E_OWNER</td>
+                  </tr>    
+                  }
+                  </tbody>
+                  </table>
+                <div>
+      Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount
+  &nbsp;
+  @if (Model.HasPreviousPage)
+    {
+    @Html.ActionLink("<<", "RNOList", new { searchKey = "", page = 1 })
+    @Html.Raw("&nbsp;")
+    @Html.ActionLink("< Prev", "RNOList", new { searchKey = "", page = Model.PageNumber - 1 })
+    }
+            else
+            {
+            }
+    &nbsp;
+    @if (Model.HasNextPage)
+    {
+    @Html.ActionLink("Next >", "RNOList", new { searchKey = "", page = Model.PageNumber + 1 })
+    @Html.Raw("&nbsp;")
+    @Html.ActionLink(">>", "RNOList", new { searchKey = "", page = Model.PageCount })
+    }
+            else
+            {
+            }
+    </div>
+    }
+    else
+    {
+  @:<br />
+  <span style="font-size:12px;">
+  No record found.
+  </span> 
+      }
+      <br />
+        </div>
+      
+  

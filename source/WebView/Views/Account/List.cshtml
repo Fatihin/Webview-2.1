@@ -1,0 +1,545 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.UserMaintenance>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+
+    function GetDetailsCallBack(data) {
+        //alert(data.EMAIL);
+        document.getElementById("divDetails").style.display = "block";
+
+        SetElement("txtUSERNAME", data.USERNAME);
+        SetElement("IDPass", data.USERNAME);
+        SetElement("txtFULL_NAME", data.FULL_NAME);
+        SetElement("txtPASSWORD", data.PASSWORD);
+        SetElement("txtEMAIL", data.EMAIL);
+        SetElement("txtNO_TEL", data.NO_TEL);
+        //SetElement("targetGroup", data.GRPOLD);
+        document.getElementById("targetExcAbb").value = data.USERNAME;
+        document.getElementById("targetGroup").value = data.GRPOLD;
+        //alert(data.GRPOLD);
+        
+        document.getElementById("btnClose").disabled = false;
+        document.getElementById("txtExcAbb").disabled = true;
+    }
+
+    function SaveUpdateCallBack(data) {
+        if (data.Success == true) {
+            alert("Successfully Updated.");
+            document.getElementById("divDetails").style.display = "none";
+            window.location.reload();
+        }
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+            var group = $(this).find("#groupId").text();
+           // alert(groupID);
+
+            $("#divDetails").dialog("open");
+            
+            $.ajax({
+                url: '@Url.Action("GetDetails", "Account")',
+                type: "POST",
+                dataType: "html",
+                data: {
+
+                    "id": t,
+                    "group": group,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+
+                    dataPtt = res.PuListPTT.split("|");
+                    var itemsPtt = "<option selected value='" + res.PTT_STATE + "'>" + res.PTT_STATE + "</option>";
+
+                    for (i = 0; i < dataPtt.length; i++) {
+                        if (dataPtt[i] != "") {
+                            valuePtt = dataPtt[i].split(":");
+                            //alert(valuePu[0]);
+                            itemsPtt += "<option value='" + valuePtt[0] + "'>" + valuePtt[0] + "</option>";
+                        }
+                    }
+
+                    $("#txtPTT_STATE").html(itemsPtt);
+
+                    dataGrp = res.PuListGrp.split("|");
+                    var itemsGrp = "<option selected value='" + res.GROUPID + "'>" + res.GRPNAME + "</option>";
+
+                    for (i = 0; i < dataGrp.length; i++) {
+                        if (dataGrp[i] != "") {
+                            valueGrp = dataGrp[i].split(":");
+                            //alert(valuePu[0]);
+                            itemsGrp += "<option value='" + valueGrp[0] + "'>" + valueGrp[1] + "</option>";
+                        }
+                    }
+
+                    $("#txtGROUPID").html(itemsGrp);
+
+                    //                    dataPu = res.PuList.split("|");
+                    //                    var itemsPu = "<option selected value='" + res.EXC + "'>" + res.EXC + "</option>";
+
+                    //                    for (i = 0; i < dataPu.length; i++) {
+                    //                        if (dataPu[i] != "") {
+                    //                            valuePu = dataPu[i].split(":");
+                    //                            //alert(valuePu[0]);
+                    //                            itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                    //                        }
+                    //                    }
+
+                    //                    $("#txtEXC").html(itemsPu);
+
+                    GetDetailsCallBack(res);
+                }
+            });
+        });
+
+        $("#ChangePass").click(function () {
+            document.getElementById("divDetails").style.display = "block";
+            $("#Change-details").dialog("open");
+        });
+
+        $('#btnCSave').click(function () {
+            var Old_P = document.getElementById("txtOld_P").value;
+            var New_P = document.getElementById("txtNew_P").value;
+            var Com_P = document.getElementById("txtComfirm_P").value;
+            var Compare_P = document.getElementById("txtPASSWORD").value;
+
+            if (Old_P == "" || New_P == "" || Com_P == "") {
+                alert("Please fill password");
+            }
+            else if (Compare_P != Old_P) {
+                alert("The current password is incorrect or the old password is invalid.");
+            }
+            else if (New_P != Com_P) {
+                alert("The current password is incorrect or the new password is invalid.");
+            }
+            else {
+                $.ajax({
+                    url: '@Url.Action("ChangePass", "Account")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "UserName": document.getElementById("txtUSERNAME").value,
+                        "Old_Pass": document.getElementById("txtOld_P").value,
+                        "New_Pass": document.getElementById("txtNew_P").value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (res.Success == true) {
+                            alert("Your password has been changed successfully.");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Password change was unsuccessful. Please correct the errors and try again.");
+                        }
+                    }
+                });
+            }
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        };
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            minHeight: 'auto',
+            width: 850,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+
+        $("#Change-details").dialog({
+            autoOpen: false,
+            minHeight: 'auto',
+            minWidth: 580,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        })
+
+        $(function () {
+
+
+            $('#txtOld_P').change(function () {
+                var oldP = document.getElementById("txtOld_P").value;
+
+                if (oldP.length < 6) {
+                    alert("Old password must be at least 6 chracters long.");
+                    //                    document.getElementById("lblOl_P").style.visibility = 'visible';
+                    //                    document.getElementById("lblOl_P").value = "New Password less then 6 character !!";
+                }
+            });
+
+            $('#txtNew_P').change(function () {
+                var newPass = document.getElementById("txtNew_P").value;
+
+                if (newPass.length < 6) {
+                    alert("New password must be at least 6 chracters long.");
+                }
+            });
+
+            $('#txtComfirm_P').change(function () {
+                var ComPass = document.getElementById("txtComfirm_P").value;
+
+                if (ComPass.length < 6) {
+                    alert("Comfirm password must be at least 6 chracters long.");
+                }
+                else {
+                    document.getElementById("btnCSave").disabled = false;
+                }
+            });
+
+            $('#btnClose').click(function () {
+                $("#divDetails").dialog("close");
+
+            });
+            $('#btnCClose').click(function () {
+                $("#Change-details").dialog("close");
+                document.getElementById("txtOld_P").value = "";
+                document.getElementById("txtNew_P").value = "";
+                document.getElementById("txtComfirm_P").value = "";
+            });
+
+            $('#btnSearch').click(function () {
+                var pttnull = document.getElementById("ptt").value;
+                if (pttnull != "Select")
+                    window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&ptt=" + document.getElementById("ptt").value; //Where List is the function in the controller.
+                else
+                    window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&ptt=";
+            });
+
+            $('#searchKey').change(function () {
+                var pttnull = document.getElementById("ptt").value;
+                if (pttnull != "Select")
+                    window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&ptt=" + document.getElementById("ptt").value; //Where List is the function in the controller.
+                else
+                    window.location = "List?searchKey=" + document.getElementById("searchKey").value + "&ptt=";
+            });
+
+            $('#btnNewJob').click(function () {
+                window.location = "Register";
+            });
+
+            $("#btnNewJob").button();
+            $("#btnSearch").button();
+            $("#btnClose").button();
+            $("#btnDelete").button();
+            $("#btnSave").button();
+            $("#ChangePass").button();
+            $("#btnCClose").button();
+            $("#btnCSave").button();
+
+            $('#btnDelete').click(function () {
+                var cmsg = confirm('Are you sure you want to Delete?');
+                if (cmsg != 0) {
+                    $.ajax({
+                        url: "/Account/DeleteData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "targetCanCode": document.getElementById("txtUSERNAME").value,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            if (res.Success == true) {
+                                alert("Deleted");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Delete failed.");
+                            }
+                        }
+                    });
+                }
+            });
+
+            $("#txtGROUPID").html($("#txtGROUPID option").sort(function (a, b) {
+                return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+            }))
+
+        });
+    });
+
+//    function SaveDataPassword() {
+//        var Old_P = document.getElementById("txtOld_P").value;
+//        var New_P = document.getElementById("txtNew_P").value;
+//        var Com_P = document.getElementById("txtComfirm_P").value;
+//        var Compare_P = document.getElementById("txtPASSWORD").value;
+
+//        if (Compare_P != Old_P) {
+//            alert("The current password is incorrect or the Old Password is invalid.");
+//        }
+//        else if(New_P != Com_P){
+//            alert("The current password is incorrect or the New Password is invalid.");
+//        }
+//        else {
+
+//            $.ajax({
+//                url: "/Account/ChangePass",
+//                 type: "POST",
+//                 dataType: "html",
+//                 data: {    
+//                        "UserName": document.getElementById("txtUSERNAME").value,
+//                        "Old_Pass": document.getElementById("txtOld_P").value,
+//                        "New_Pass": ddocument.getElementById("txtNew_P").value,
+//                        "random": Math.random()
+//                  },
+//                  beforeSend: function () { },
+//                  success: function (data) {
+//                  var res = jQuery.parseJSON(data);
+//                  if (res.Success == true) {
+//                        alert("Your password has been changed successfully.");
+//                        window.location.reload();
+//                  }
+//                  else {
+//                        alert("Password change was unsuccessful. Please correct the errors and try again.");
+//                  }
+//                
+//            });
+//        }
+//    }
+ 
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>User Maintenance List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td style="width:200px;"><input type="text" id="searchKey" name="searchKey"  value="@ViewBag.searchKey"/></td>
+                <td>@Html.DropDownList("ptt", (IEnumerable<SelectListItem>)ViewBag.ptt)</td>
+                <td><input type="button" value="Search" id="btnSearch" /></td>
+                <td style="text-align:right"><input type="button" value="Add New" id="btnNewJob" /></td>
+            </tr>
+        </table>
+    </div><br />
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="ExchangeMaintenance List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">PTT ID</th>
+                <th scope="col">Group ID</th>                      
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="odd">
+                <td id="gid">@res.USERNAME</td>
+                <td>@res.FULL_NAME</td>
+                <td>@res.PTT_STATE</td>
+                <td id = "groupId">@res.GROUPID</td>
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { @ViewBag.searchKey, ptt = ViewBag.ptt2, page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { @ViewBag.searchKey, ptt = ViewBag.ptt2, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { @ViewBag.searchKey, ptt = ViewBag.ptt2, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { @ViewBag.searchKey, ptt = ViewBag.ptt2, page = Model.PageCount })
+        }
+        else
+        {
+
+        }<br /><b>Total @Model.TotalItemCount Record</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">      
+        <input type="hidden" id="targetExcAbb" value="" />
+        
+        @using (Ajax.BeginForm("UpdateData", new AjaxOptions()
+        {
+            OnBegin = "ShowIt",
+            OnComplete = "HideIt",
+            OnSuccess = "SaveUpdateCallBack"
+        }))
+        {
+        <div id="list-details">
+           <input type="hidden" id="ExcAbbVal" name="ExcAbbVal" />
+           <input type="hidden" id="targetGroup" name = "targetGroup" value="" />
+            <table width="500px">
+            
+              <tr> 
+                   <td style="width:150px; background-color:#e8eef4">Username</td>
+                   <td><input type="text" id="txtUSERNAME" name="txtUSERNAME" /></td>
+                   <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:100px;background-color:#e8eef4"> Full Name </td>
+                    <td><input type="text" id="txtFULL_NAME" name="txtFULL_NAME" /></td>                                       
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4" >Password</td>
+                    <td><input type="password" id="txtPASSWORD" name="txtPASSWORD" readonly /></td>                    
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:100px;background-color:#e8eef4"> Group ID </td>
+                    <td>@*<input type="text" id="txtGROUPID" name="txtGROUPID" />*@<select id="txtGROUPID" name="txtGROUPID"></select> </td>  
+                </tr>
+                @*<tr>
+                    <td style="width:150px; background-color:#e8eef4">Area</td>
+                    <td><input type="text" id="txtAREA" name="txtAREA" /></td>                    
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:100px;background-color:#e8eef4"> RW Access</td>
+                    <td><input type="text" id="txtRW_ACCESS" name="txtRW_ACCESS" /></td>  
+                </tr>
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Autorization</td>
+                    <td><input type="text" id="txtAUTORIZATION" name="txtAUTORIZATION" /></td>                    
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:100px;background-color:#e8eef4"> Network </td>
+                    <td><input type="text" id="txtNETWORK" name="txtNETWORK" /></td>  
+                </tr>*@
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Ptt ID</td>
+                    <td><select name="txtPTT_STATE" id="txtPTT_STATE" style="width:150px"></select>@*<input type="text" id="txtPTT_STATE" name="txtPTT_STATE" />*@</td>                    
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:100px;background-color:#e8eef4"> Handover </td>
+                    <td>@*<input type="text" id="txtHANDOVER" name="txtHANDOVER" />*@
+                        <select id="txtHANDOVER" name="txtHANDOVER">
+                            <option value="AUTO">AUTO</option>
+                            <option value="MANUAL">MANUAL</option>
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </td>  
+                </tr>                           
+                @*<tr>
+                    <td style="width:150px; background-color:#e8eef4">Roles</td>
+                    <td><input type="text" id="txtUSER_ROLES" name="txtUSER_ROLES" /></td>                    
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:100px;background-color:#e8eef4"> Exchange </td>
+                    <td><select name="txtEXC" id="txtEXC" style="width:150px"></select>@*<input type="text" id="txtEXC" name="txtEXC" /> </td>  
+                </tr>*@
+                <tr>
+                    <td style="width:150px; background-color:#e8eef4">Email</td>
+                    <td><input type="text" id="txtEMAIL" name="txtEMAIL" /></td>                    
+                    <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    <td style="width:100px;background-color:#e8eef4"> No Tel </td>
+                    <td><input type="text" id="txtNO_TEL" name="txtNO_TEL" /></td>  
+                </tr>                
+            </table>
+            <br />            
+            <div style="height:30px; margin-top:10px; margin-left:10px;">
+                <input type="button" value="Delete" id="btnDelete" style="height:30px;width:80px; vertical-align:top;" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" value="Password" id="ChangePass" style="height:30px;width:80px;" />
+                <input type="submit" value="Save" id="btnSave" style="height:30px;width:80px; vertical-align:top;" />
+                <input type="button" value="Cancel" id="btnClose" style="height:30px;width:80px;" />
+            </div>
+        </div>
+        }
+        <br />
+        <br />
+    </div>
+    <div id="Change-details">
+      <fieldset>
+            <legend>Account Information</legend>
+            <br />
+             <input type="hidden" id="IDPass" name="IDPass" />
+            <table width="530px" id="InsertNew" style="display:block;">
+                <thead>
+                    <tr>
+                       <h7>New passwords are required to be a minimum of 6 characters in length. </h7>
+                    </tr>
+                    <br />
+                    <br />
+                    
+                    <tr>
+                        <td style= "width:170px;background-color:#e8eef4">Old Password </td>
+                        <td><input type="password" id="txtOld_P" name="txtOld_P" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;background-color:#e8eef4">New Password </td>
+                        <td> <input type="password" id="txtNew_P" name="txtNew_P" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+
+                    </tr>
+                    <tr>
+                        <td style="width:120px;background-color:#e8eef4">Comfirm Password</td>
+                        <td><input type="password" id="txtComfirm_P" name="txtComfirm_P" /></td>
+                        <td style=" border-top-color:White; border-bottom-color:White"></td>
+                    </tr> 
+                </thead>    
+            </table>
+            <br />
+            <br />
+                    <div style="height:30px; margin-top:10px; margin-left:10px;">
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   
+                   
+                    <input type="submit" value="Save" id="btnCSave"  style="height:30px;width:80px; vertical-align:top;" />
+                    <input type="button" value="Close" id="btnCClose" style="height:30px;width:80px;" />
+                    </div>
+        </fieldset>    
+        </div>
+</div>
+    
+
+

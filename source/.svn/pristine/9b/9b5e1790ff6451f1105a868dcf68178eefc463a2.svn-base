@@ -1,0 +1,71 @@
+﻿@*model IEnumerable<FileInfo>
+*@
+<script type="text/javascript">
+  jQuery(document).ready(function ($) {
+
+      $("#btnCloseTab").click(function () {
+          window.close();
+      });
+
+      $(function () {
+          $("#btnCloseTab").button();
+          $("#uploadFile").button();
+          $("#files").button();
+          $("#btnChangeStatus").button();
+      });
+  });
+</script>
+@{
+    ViewBag.Title = "Attachment File " ;
+}
+<br />
+<h2 style="width:50%;">
+  Upload new files for Job @ViewBag.AttachLink - (@ViewBag.SchemeName)
+</h2> 
+<input type="hidden" value="@ViewBag.AttachLink" id="targetJob" >
+<span style="float:right;">
+  <input type="button" value="Close Tab" id="btnCloseTab" style="height:30px;width:100px; vertical-align:top;"/>
+</span>
+
+@using (Html.BeginForm("NewAttachment", "Job", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+      <tr>
+        <td>
+          Select File
+        </td>
+        <td>
+          <input type="file" name="files" id="file1" value="@ViewBag.AttachLink" />
+        </td>
+        <td colspan="2" align="center">
+          <input type="submit" value="Upload" id="uploadFile" style="height:30px;width:80px; vertical-align:top;"/>
+        </td>
+      </tr>
+    </table>
+    <p>
+
+    </p>
+}
+
+<h2>Files</h2>
+
+<table width="70%">
+  @if (Model != null)
+  {
+      foreach (var item in Model)
+      {
+                <tr>
+                  <td>
+                    <a href="@Url.Action("Download", "Job", new { id = @ViewBag.AttachLink, filename = @item })">@item</a>                          
+                  </td>
+                  <td>
+                    <a href="@Url.Action("DeleteFile", "Job", new { id = @item })" onclick="if (!confirm('Do you really want to remove this file?'))
+                        return false;">
+                      <img alt="DELETE" src="@Url.Content("~/Content/images/delete.jpg")" />
+                    </a>
+                  </td>
+                
+                </tr>
+      }
+  }
+</table>

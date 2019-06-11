@@ -1,0 +1,84 @@
+﻿@{
+    Layout = null;    
+    Response.AddHeader("Content-Type", "application/vnd.ms-excel");    
+}
+}
+
+<!DOCTYPE html>
+<html >
+<HEAD>
+
+</HEAD>
+
+
+<body>
+<div style="height:400px">
+    <table id="Title" summary="List" width="800px" > 
+    <tr>
+    <td  align ="left" >Date : @DateTime.Now.Day - @DateTime.Now.Month - @DateTime.Now.Year   </td>    
+    </tr>
+        <tr>
+            <td colspan ="11" align ="center" >LOCAL NETWORK MANAGEMENT SYSTEM</td>            
+        </tr>
+        <tr>
+            <td colspan ="11" align ="center" >BOQ LISTING - ORIGINAL</td>            
+        </tr>              
+    </table> 
+    <br /><br />
+    <table  border="1" id="Grid" summary="List" width="800px">
+        <thead>
+            <tr>                
+                <th align ="left" scope="col" style="width:100px; border-bottom :2px ">NO</th>            
+                <th align ="left" scope="col" style="width:100px; border-bottom :2px ">PLANT UNIT</th>
+                <th align ="left" scope="col" style="width:100px; border-bottom :2px ">BILL RATE</th>
+                <th align ="left" scope="col" style="width:100px; border-bottom :2px ">UOM</th>
+                <th align ="right" scope="col" style="width:100px; border-bottom :2px ">QTY</th>
+                <th align ="right" scope="col" style="width:100px; border-bottom :2px ">INSTALL PRICE(RM)</th>
+                <th align ="right" scope="col" style="width:100px; border-bottom :2px ">MATERIAL PRICE(RM)</th>
+                <th align ="right" scope="col" style="width:100px; border-bottom :2px ">TOTAL PRICE(RM)</th>
+                <th align ="right" scope="col" style="width:100px; border-bottom :2px ">INSTALL VALUE(RM)</th>
+                <th align ="right" scope="col" style="width:100px; border-bottom :2px ">MATERIAL VALUE(RM)</th>
+                <th align ="right" scope="col" style="width:100px; border-bottom :2px ">TOTAL VALUE(RM)</th>                
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in (List<WebView.WebService._base.BOQ_MAIN_EXCEL>)ViewData["data2"])
+        {
+            <tr class="odd">                
+                <td align ="left">@res.x_PU_ID</td>                   
+                <td align ="left">@res.x_PU_DESC</td> 
+                <td align ="left">@res.x_RATE_INDICATOR</td>                 
+                <td align ="left">@res.x_PU_UOM</td>               
+                <td align ="right">@res.x_PU_QTY</td> 
+                <td align ="right">@res.x_BQ_INSTALL_PRICE</td>
+                <td align ="right">@res.x_BQ_MAT_PRICE</td> 
+                <td align ="right">@res.x_TOTAL_PRICE</td>
+                <td align ="right">@res.x_INSTALL_VALUE</td>
+                <td align ="right">@res.x_MATERIAL_VALUE</td>
+                <td align ="right">@res.x_TOTAL_VALUE</td>                                                                                                                     
+            </tr>    
+        }  
+        @{ int i =0;   
+        foreach (var res in (List<WebView.WebService._base.BOQ_MAIN_EXCEL>)ViewData["data2"])
+        {
+            i++; 
+              
+            if (@res.x_TOTAL_ROW == i.ToString())
+            {
+            <tr>
+                <td colspan ="8"  align ="right" style =" font-size :medium ;" >@Html.Label("Total")  </td>
+                <td align ="right" style =" font-size :medium ;" >@res.x_INSTALL_VALUE_TOTAL</td>
+                <td align ="right" style =" font-size :medium ;" >@res.x_MATERIAL_VALUE_TOTAL</td>
+                <td align ="right" style =" font-size :medium ;" >@res.x_TOTAL_VALUE_TOTAL</td>
+            </tr>            
+            }
+            
+        }
+        }
+        </tbody>
+
+    </table>
+   
+</div>
+</body>
+</html>

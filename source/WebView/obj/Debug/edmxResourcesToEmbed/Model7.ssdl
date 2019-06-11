@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model7.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Model7StoreContainer">
+    <EntitySet Name="WV_LOAD_PATH_CONSUMER" EntityType="Model7.Store.WV_LOAD_PATH_CONSUMER" store:Type="Tables" store:Schema="NEPS" store:Name="WV_LOAD_PATH_CONSUMER">
+      <DefiningQuery>SELECT 
+      "WV_LOAD_PATH_CONSUMER"."ID" AS "ID", 
+      "WV_LOAD_PATH_CONSUMER"."ANAME" AS "ANAME", 
+      "WV_LOAD_PATH_CONSUMER"."ATYPE" AS "ATYPE", 
+      "WV_LOAD_PATH_CONSUMER"."ASITE" AS "ASITE", 
+      "WV_LOAD_PATH_CONSUMER"."ACARD2" AS "ACARD2", 
+      "WV_LOAD_PATH_CONSUMER"."APORT2" AS "APORT2", 
+      "WV_LOAD_PATH_CONSUMER"."ACARD3" AS "ACARD3", 
+      "WV_LOAD_PATH_CONSUMER"."APORT3" AS "APORT3", 
+      "WV_LOAD_PATH_CONSUMER"."ZNAME" AS "ZNAME", 
+      "WV_LOAD_PATH_CONSUMER"."ZTYPE" AS "ZTYPE", 
+      "WV_LOAD_PATH_CONSUMER"."ZSITE" AS "ZSITE", 
+      "WV_LOAD_PATH_CONSUMER"."ZCARD" AS "ZCARD", 
+      "WV_LOAD_PATH_CONSUMER"."ZPORT" AS "ZPORT", 
+      "WV_LOAD_PATH_CONSUMER"."DPNAME" AS "DPNAME", 
+      "WV_LOAD_PATH_CONSUMER"."DPSITE" AS "DPSITE", 
+      "WV_LOAD_PATH_CONSUMER"."DPPORT" AS "DPPORT", 
+      "WV_LOAD_PATH_CONSUMER"."JOBID" AS "JOBID", 
+      "WV_LOAD_PATH_CONSUMER"."PROCESSID" AS "PROCESSID", 
+      "WV_LOAD_PATH_CONSUMER"."PROCESSTIME" AS "PROCESSTIME", 
+      "WV_LOAD_PATH_CONSUMER"."OUTPORTFDC" AS "OUTPORTFDC", 
+      "WV_LOAD_PATH_CONSUMER"."INPORTFDP" AS "INPORTFDP", 
+      "WV_LOAD_PATH_CONSUMER"."REMARKS" AS "REMARKS", 
+      "WV_LOAD_PATH_CONSUMER"."APORT4" AS "APORT4", 
+      "WV_LOAD_PATH_CONSUMER"."ACARD4" AS "ACARD4"
+      FROM "NEPS"."WV_LOAD_PATH_CONSUMER" "WV_LOAD_PATH_CONSUMER"</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="WV_LOAD_PATH_CONSUMER_ODP" EntityType="Model7.Store.WV_LOAD_PATH_CONSUMER_ODP" store:Type="Tables" Schema="NEPS" />
+    <EntitySet Name="VW_MANHOLEDUCT_JOB" EntityType="Model7.Store.VW_MANHOLEDUCT_JOB" store:Type="Views" store:Schema="NEPS" store:Name="VW_MANHOLEDUCT_JOB">
+      <DefiningQuery>SELECT 
+      "VW_MANHOLEDUCT_JOB"."ID" AS "ID", 
+      "VW_MANHOLEDUCT_JOB"."JOB_ID" AS "JOB_ID", 
+      "VW_MANHOLEDUCT_JOB"."ASSIGN_ID" AS "ASSIGN_ID", 
+      "VW_MANHOLEDUCT_JOB"."EXC_ABB" AS "EXC_ABB"
+      FROM "NEPS"."VW_MANHOLEDUCT_JOB" "VW_MANHOLEDUCT_JOB"</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.WV_LOAD_PATH_CONSUMER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="WV_LOAD_PATH_CONSUMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="10" />
+    <Property Name="ANAME" Type="varchar2" MaxLength="50" />
+    <Property Name="ATYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="ASITE" Type="varchar2" MaxLength="50" />
+    <Property Name="ACARD2" Type="varchar2" MaxLength="10" />
+    <Property Name="APORT2" Type="varchar2" MaxLength="10" />
+    <Property Name="ACARD3" Type="varchar2" MaxLength="10" />
+    <Property Name="APORT3" Type="varchar2" MaxLength="10" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="50" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="10" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="10" />
+    <Property Name="DPNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="DPSITE" Type="varchar2" MaxLength="50" />
+    <Property Name="DPPORT" Type="varchar2" MaxLength="50" />
+    <Property Name="JOBID" Type="varchar2" MaxLength="50" />
+    <Property Name="PROCESSID" Type="varchar2" MaxLength="50" />
+    <Property Name="PROCESSTIME" Type="varchar2" MaxLength="50" />
+    <Property Name="OUTPORTFDC" Type="varchar2" MaxLength="10" />
+    <Property Name="INPORTFDP" Type="varchar2" MaxLength="10" />
+    <Property Name="REMARKS" Type="varchar2" MaxLength="50" />
+    <Property Name="APORT4" Type="varchar2" MaxLength="255" />
+    <Property Name="ACARD4" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="WV_LOAD_PATH_CONSUMER_ODP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="10" />
+    <Property Name="ANAME" Type="varchar2" MaxLength="50" />
+    <Property Name="ATYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="ASITE" Type="varchar2" MaxLength="50" />
+    <Property Name="ACARD2" Type="varchar2" MaxLength="10" />
+    <Property Name="APORT2" Type="varchar2" MaxLength="10" />
+    <Property Name="ACARD3" Type="varchar2" MaxLength="10" />
+    <Property Name="APORT3" Type="varchar2" MaxLength="10" />
+    <Property Name="ZNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="ZTYPE" Type="varchar2" MaxLength="50" />
+    <Property Name="ZSITE" Type="varchar2" MaxLength="50" />
+    <Property Name="ZCARD" Type="varchar2" MaxLength="10" />
+    <Property Name="ZPORT" Type="varchar2" MaxLength="10" />
+    <Property Name="DPNAME" Type="varchar2" MaxLength="50" />
+    <Property Name="DPSITE" Type="varchar2" MaxLength="50" />
+    <Property Name="DPPORT" Type="varchar2" MaxLength="50" />
+    <Property Name="JOBID" Type="varchar2" MaxLength="50" />
+    <Property Name="PROCESSID" Type="varchar2" MaxLength="50" />
+    <Property Name="PROCESSTIME" Type="varchar2" MaxLength="50" />
+    <Property Name="REMARKS" Type="varchar2" MaxLength="50" />
+    <Property Name="ACARD4" Type="varchar2" MaxLength="255" />
+    <Property Name="APORT4" Type="varchar2" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_MANHOLEDUCT_JOB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="VW_MANHOLEDUCT_JOB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Nullable="false" Precision="10" />
+    <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+    <Property Name="ASSIGN_ID" Type="varchar2" MaxLength="30" />
+    <Property Name="EXC_ABB" Type="varchar2" MaxLength="10" />
+  </EntityType>
+  <Function Name="AG_UPD_CIVIL_PATH_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="NEPS">
+    <Parameter Name="ASSIGNMENT_ID" Type="varchar2" Mode="In" />
+    <Parameter Name="STATUS" Type="varchar2" Mode="In" />
+  </Function>
+</Schema>

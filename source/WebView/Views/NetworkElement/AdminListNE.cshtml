@@ -1,0 +1,335 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.NetworkElement>
+@{
+    ViewBag.Title = "List";
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        function GetDetailsCallBack(data) {
+
+            $ = globalJquery;
+            //alert(data.crtNE);
+            var tblC = document.getElementById('crtCardRequest');
+            for (var i = tblC.rows.length - 1; i > 0; i--) {
+                tblC.deleteRow(i);
+            }
+
+            var tblNE = document.getElementById('crtNERequest');
+            for (var i = tblNE.rows.length - 1; i > 0; i--) {
+                tblNE.deleteRow(i);
+            }
+
+            if (data.crtCardR) {
+                document.getElementById("McrtCardRequest").style.display = "block";
+                document.getElementById("crtCardRequest").style.display = "block";
+                big = data.crtCardR.split('!');
+                for (ii = 0; ii < big.length - 1; ii++) {
+                    d = big[ii].split('|');
+                    var tbl = document.getElementById('crtCardRequest');
+                    var lastRow = tbl.rows.length;
+                    var iteration = lastRow;
+                    var row = tbl.insertRow(lastRow);
+                    row.style.background = "#e8eef4";
+
+                    row.insertCell(0);
+                    row.insertCell(1);
+                    row.insertCell(2);
+                    row.insertCell(3);
+                    row.insertCell(4);
+                    row.insertCell(5);
+                    row.insertCell(6);
+                    row.insertCell(7);
+                    row.insertCell(8);
+                    if (d[0] != "") {
+                        tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                        tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                        tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                        tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                        tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                        tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                        tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                        tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                        tbl.rows[ii + 1].cells[8].innerHTML = d[8];
+                    }
+                }
+            } else {
+                document.getElementById("McrtCardRequest").style.display = "none";
+                document.getElementById("crtCardRequest").style.display = "none";
+            }
+
+            if (data.crtNE) {
+                document.getElementById("McrtNERequest").style.display = "block";
+                document.getElementById("crtNERequest").style.display = "block";
+                big = data.crtNE.split('!');
+                for (ii = 0; ii < big.length - 1; ii++) {
+                    d = big[ii].split('|');
+                    var tbl = document.getElementById('crtNERequest');
+                    var lastRow = tbl.rows.length;
+                    var iteration = lastRow;
+                    var row = tbl.insertRow(lastRow);
+                    row.style.background = "#e8eef4";
+
+                    row.insertCell(0);
+                    row.insertCell(1);
+                    row.insertCell(2);
+                    row.insertCell(3);
+                    row.insertCell(4);
+                    row.insertCell(5);
+                    row.insertCell(6);
+                    row.insertCell(7);
+
+                    if (d[0] != "") {
+                        tbl.rows[ii + 1].cells[0].innerHTML = d[0];
+                        tbl.rows[ii + 1].cells[1].innerHTML = d[1];
+                        tbl.rows[ii + 1].cells[2].innerHTML = d[2];
+                        tbl.rows[ii + 1].cells[3].innerHTML = d[3];
+                        tbl.rows[ii + 1].cells[4].innerHTML = d[4];
+                        tbl.rows[ii + 1].cells[5].innerHTML = d[5];
+                        tbl.rows[ii + 1].cells[6].innerHTML = d[6];
+                        tbl.rows[ii + 1].cells[7].innerHTML = d[7];
+                    }
+                }
+            }
+            else {
+                document.getElementById("McrtNERequest").style.display = "none";
+                document.getElementById("crtNERequest").style.display = "none";
+            }
+
+            if (document.getElementById("crtCardRequest").style.display == "none" && document.getElementById("crtFCRequest").style.display == "none"
+            && document.getElementById("crtFURequest").style.display == "none" && document.getElementById("crtNERequest").style.display == "none") {
+                alert("No Data Found");
+                $("#divDetails").dialog("close");
+            }
+        }
+
+        $(function () {
+            $('#btnSearch').click(function () {
+                    window.location = "AdminListNE?PTT_ID=" + document.getElementById("PTT_ID").value + "&EQUP_LOCN_TTNAME=" + document.getElementById("EQUP_LOCN_TTNAME").value + "&EQUP_EQUT_ABBREVIATION=" + document.getElementById("EQUP_EQUT_ABBREVIATION").value; //Where List is the function in the controller.
+            });
+
+            $('#PTT_ID').change(function () {
+                $.ajax(
+                {
+                    url: "/NetworkElement/updataListData",
+                    type: "POST",
+                    dataType: "html",
+                    data:
+                    {
+                        "PTT_ID": document.getElementById("PTT_ID").value
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        if (document.getElementById("PTT_ID").value != "Select") {
+                            document.getElementById("EQUP_LOCN_TTNAME").disabled = false;
+                            document.getElementById("EQUP_EQUT_ABBREVIATION").disabled = false;
+                            dataPu = res.PuList.split("|");
+
+                            var itemsPu = "<option selected value='Select'></option>";
+
+                            for (i = 0; i < dataPu.length; i++) {
+                                if (dataPu[i] != "") {
+                                    valuePu = dataPu[i].split(":");
+                                    //alert(valuePu[0]);
+                                    itemsPu += "<option value='" + valuePu[0] + "'>" + valuePu[0] + "</option>";
+                                }
+                            }
+
+                            $("#EQUP_LOCN_TTNAME").html(itemsPu);
+                        } else {
+                            document.getElementById("EQUP_LOCN_TTNAME").disabled = false;
+                            document.getElementById("EQUP_EQUT_ABBREVIATION").disabled = false;
+                        }
+                    }
+                });
+            });
+
+            $("#btnSearch").button();
+        });
+
+        $("#rounded-corner tbody tr").bind("click", function () {
+            var t = $(this).find("#gid").text();
+
+            $("#divDetails").dialog("open");
+
+            $.ajax({
+                url: '@Url.Action("GetListData", "Job")',
+                type: "POST",
+                dataType: "html",
+                data: {
+                    "id": t,
+                    "random": Math.random()
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    GetDetailsCallBack(res);
+                }
+            });
+        });
+
+        var close = function () {
+            $(this).dialog("close");
+        }
+
+        $("#divDetails").dialog({
+            autoOpen: false,
+            height: 730,
+            width: 1200,
+            modal: true,
+            buttons: {
+            },
+            close: function () {
+                //allFields.val("").removeClass("ui-state-error");
+            }
+        });
+    });
+
+    function ShowIt() {
+        document.getElementById("divLoading").style.visibility = "visible";
+    }
+
+    function HideIt() {
+        document.getElementById("divLoading").style.visibility = "hidden";
+    }
+
+</script>
+
+<br />
+<h2>ADMIN Network Element List</h2>
+<div style="height:650px">
+    <div>
+        <table style="width:850px;">
+            <tr>
+                <td>PTT :</td>
+                <td>@Html.DropDownList("PTT_ID", (IEnumerable<SelectListItem>)ViewBag.PTT, new { style = "width:150px"})</td>
+                <td>Exchange Name :</td>
+                <td>@Html.DropDownList("EQUP_LOCN_TTNAME", (IEnumerable<SelectListItem>)ViewBag.EQUP_LOCN_TTNAME, new { style = "width:150px"})</td>
+                <td>TYPE :</td>
+                <td>@Html.DropDownList("EQUP_EQUT_ABBREVIATION", (IEnumerable<SelectListItem>)ViewBag.EQUP_EQUT_ABBREVIATION, new { style = "width:150px"})</td>
+                <td><input type="button" value="Filter" id="btnSearch" /></td>
+            </tr>
+        </table>
+    </div><br />
+@if (Model.Count() > 0)
+{
+    <table id="rounded-corner" summary="Admin Network Element List" width="850px">
+        <thead>
+            <tr>
+                <th scope="col">PROC_ID</th>
+                <th scope="col">JOB</th>
+                <th scope="col">STATUS</th>            
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var res in Model.OrderByDescending(asset => Convert.ToInt32(asset.MIG_NIS_CHASSIS_ID)))
+        {
+            <tr class="odd">
+                <td id="gid">@res.MIG_NIS_CHASSIS_ID</td>
+                <td>@res.EQUP_LOCN_TTNAME</td>
+                <td>@res.EQUP_EQUT_ABBREVIATION</td>
+            </tr>    
+        }
+        </tbody>
+    </table>
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount 
+        &nbsp;
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "List", new { PTT_ID = ViewBag.PTT_1, EQUP_LOCN_TTNAME = ViewBag.EQUP_LOCN_TTNAME_1, EQUP_EQUT_ABBREVIATION = ViewBag.EQUP_EQUT_ABBREVIATION_1, page = 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink("< Prev", "List", new { PTT_ID = ViewBag.PTT_1, EQUP_LOCN_TTNAME = ViewBag.EQUP_LOCN_TTNAME_1, EQUP_EQUT_ABBREVIATION = ViewBag.EQUP_EQUT_ABBREVIATION_1, page = Model.PageNumber - 1 })
+        }
+        else
+        {
+
+        }
+        &nbsp;
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "List", new { PTT_ID = ViewBag.PTT_1, EQUP_LOCN_TTNAME = ViewBag.EQUP_LOCN_TTNAME_1, EQUP_EQUT_ABBREVIATION = ViewBag.EQUP_EQUT_ABBREVIATION_1, page = Model.PageNumber + 1 })
+            @Html.Raw("&nbsp;");
+            @Html.ActionLink(">>", "List", new { PTT_ID = ViewBag.PTT_1, EQUP_LOCN_TTNAME = ViewBag.EQUP_LOCN_TTNAME_1, EQUP_EQUT_ABBREVIATION = ViewBag.EQUP_EQUT_ABBREVIATION_1, page = Model.PageCount })
+        }
+        else
+        {
+
+        }
+        <br/><b> Total @Model.TotalItemCount records</b>
+    </div>
+}
+else
+{
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+}
+<div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+    <div id="divDetails" title="Details" style="padding-left:40px; padding-top:30px;">
+        <div id="list-details">
+            <table width="1030px" id="McrtNERequest" style="display:none;">
+                <thead>
+                <tr><td colspan=5><h3>CREATED NETWORK ELEMENT</h3></td></tr>
+                <tr>
+                    <th scope="col" style="width:100px; background-color:#b9c9fe">LOCNTTNAME</th>
+                    <th scope="col" style="width:100px;background-color:#b9c9fe">EQUPABB</th>
+                    <th scope="col" style="width:100px;background-color:#b9c9fe">INDEX</th>
+                    <th scope="col" style="width:100px;background-color:#b9c9fe">EQUPMODEL</th>
+                    <th scope="col" style="width:100px; background-color:#b9c9fe">MANRABB</th>
+                    <th scope="col" style="width:150px;background-color:#b9c9fe">STATUS</th>
+                    <th scope="col" style="width:180px;background-color:#b9c9fe">TIMESTAMP</th>
+                    <th scope="col" style="width:200px;background-color:#b9c9fe">REPLYMSG</th>
+                </tr>
+                </thead>    
+            </table>
+            <table width="1030px" id="crtNERequest" style="display:none;">
+                <tr>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td style="width:180px; background-color:#e8eef4"></td>
+                    <td style="width:200px; background-color:#e8eef4"></td>
+                </tr>
+            </table>
+            <br />
+            <table id="McrtCardRequest" width="1030px" style="display:none;">
+                <thead>
+                <tr><td colspan=8><h3>CREATED CARD</h3></td></tr>
+                <tr>
+                    <th style="width:80px; background-color:#b9c9fe">EQUPID</th>
+                    <th style="width:50px; background-color:#b9c9fe">SLOT</th>
+                    <th style="width:100px;background-color:#b9c9fe">CARDNAME</th>
+                    <th style="width:150px;background-color:#b9c9fe">CARDMODEL</th>
+                    <th style="width:100px;background-color:#b9c9fe">TOTAL COUNT</th>
+                    <th style="width:100px;background-color:#b9c9fe">PORT START NO</th>
+                    <th style="width:150px;background-color:#b9c9fe">STATUS</th>
+                    <th style="width:150px;background-color:#b9c9fe">TIMESTAMP</th>
+                    <th style="width:150px;background-color:#b9c9fe">REPLYMSG</th>
+                </tr>
+                </thead>    
+            </table>
+            <table id="crtCardRequest" width="1030px" style="display:none;">
+                <tr>
+                    <td style="width:80px; background-color:#e8eef4"></td>
+                    <td style="width:50px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                    <td style="width:100px; background-color:#e8eef4; text-align:center;"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td style="width:150px; background-color:#e8eef4"></td>
+                    <td style="width:150px;background-color:#e8eef4"></td>
+                </tr>
+            </table>
+            <br />
+        </div>
+    </div>
+</div>
+    
+
+

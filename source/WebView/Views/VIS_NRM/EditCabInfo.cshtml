@@ -1,0 +1,1608 @@
+﻿@model WebView.Models.CabInfoModel
+
+@{
+    ViewBag.Title = "Edit Cabinet Info";
+}
+
+@section Scripts { 
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&sensor=true"></script>
+}
+
+@section Styles {
+    html { height: 100% }
+    body { height: 100%; margin: 0px; padding: 0px }
+    #map_canvas { height: 80% }
+
+    SELECT, INPUT[type="text"] {
+    width: 160px;
+    box-sizing: border-box;
+    }
+    SECTION {
+        padding: 8px;
+        background-color: #f0f0f0;
+        overflow: auto;
+    }
+    SECTION > DIV {
+        float: left;
+        padding: 4px;
+    }
+    SECTION > DIV + DIV {
+        width: 40px;
+        text-align: center;
+    }
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        if (document.getElementById('BATT_WARRANTY_END').value == "01-January-0001")
+        { $("#batt_w").attr('checked', false); document.getElementById('lbl_batt_w').style.display = "block"; document.getElementById('BATT_WARRANTY_END').style.display = "none"; }
+        else { $("#batt_w").attr('checked', true); document.getElementById('lbl_batt_w').style.display = "none"; document.getElementById('BATT_WARRANTY_END').style.display = "block"; }
+
+        //alert(document.getElementById('BATT_DATE').value);
+        if (document.getElementById('BATT_DATE').value == "01-January-0001" || document.getElementById('BATT_DATE').value == "") {
+            $("#BATT_DATE").attr("disabled", true);
+            $("#batt_insdate").attr('checked', true);
+            document.getElementById("batt_w").style.display = "none";
+        }
+
+        //alert($("#PRO_AC_CONNECTION").val());
+        document.getElementById("divCheckJob").style.display = "block";
+        document.getElementById("divSave").style.display = "block";
+
+        $("#leftValues").attr('selected', 'selected');
+
+        document.getElementById('lbl_pwr_cab_id').innerHTML = 'PC_' + document.getElementById('EXC_ABB').value + '_';
+        var r = document.getElementById('INSTALL_YEAR').value;
+        s = r.split(' ');
+        t = s[0];
+        u = t.split('/');
+        dt99 = u[1] + '/' + u[0] + '/' + u[2];
+        document.getElementById('lbl_year_install').innerHTML = dt99;
+
+        document.getElementById('lbl_lat').innerHTML = document.getElementById("latlong").value;
+        document.getElementById('lbl_zone').innerHTML = document.getElementById("ZONE").value;
+        //alert($("#CAB_INS_DATE").val());
+        if ($("#CAB_INS_DATE").val() == '01-January-0001') {
+            $("#CAB_INS_DATE").val("");
+            //$("#CAB_INS_DATE").attr("disabled", true);
+            $("#comm_date").attr('checked', true);
+        }
+        if ($("#PRO_ELCB_DATE").val() == '01-January-0001')
+        { $("#PRO_ELCB_DATE").val(""); }
+        if ($("#PRO_MCB_DATE").val() == '01-January-0001')
+        { $("#PRO_MCB_DATE").val(""); }
+        if ($("#RC_DATE").val() == '01-January-0001')
+        { $("#RC_DATE").val(""); }
+        if ($("#RC_WARRANTY_END").val() == '01-January-0001')
+        { $("#RC_WARRANTY_END").val(""); }
+        if ($("#BATT_DATE").val() == '01-January-0001')
+        { $("#BATT_DATE").val(""); }
+        if ($("#BATT_WARRANTY_END").val() == '01-January-0001')
+        { $("#BATT_WARRANTY_END").val(""); }
+
+
+        if (document.getElementById('AIRCOND_IN_OUT').value == "OUTDOOR") {
+            $("#AIRCOND_HPOWER").attr("disabled", true);
+            $("#AIRCOND_WORK").attr("disabled", true);
+            $("#AIRCOND_DOOR").attr("disabled", true);
+            $("#AIRCOND_HPOWER").val("");
+            $("#AIRCOND_WORK").val("");
+            $("#AIRCOND_DOOR").val("");
+        } else {
+            $("#AIRCOND_HPOWER").attr("disabled", false);
+            $("#AIRCOND_WORK").attr("disabled", false);
+            $("#AIRCOND_DOOR").attr("disabled", false);
+        }
+
+        if (document.getElementById('BATT_EXIST').value == "NO") {
+            $("#BATT_DATE").attr("disabled", true);
+            $("#BATT_BRAND").attr("disabled", true);
+            $("#BATT_VOLT").attr("disabled", true);
+            $("#BATT_NO_CELL").attr("disabled", true);
+            $("#BATT_CAPASITY").attr("disabled", true);
+            $("#BATT_CONDITION").attr("disabled", true);
+
+            $("#BATT_WARRANTY_END").attr("disabled", true);
+            document.getElementById("batt_w").style.visibility = "hidden";
+            $("#BATT_DATE").val("");
+            $("#BATT_BRAND").val("");
+            $("#BATT_VOLT").val("");
+            $("#BATT_NO_CELL").val("");
+            $("#BATT_CAPASITY").val("");
+            $("#BATT_CONDITION").val("");
+            $("#BATT_WARRANTY_END").val("");
+        } else {
+            //alert("a");
+            //$("#BATT_DATE").attr("disabled", false);
+            $("#BATT_BRAND").attr("disabled", false);
+            $("#BATT_VOLT").attr("disabled", false);
+            $("#BATT_NO_CELL").attr("disabled", false);
+            $("#BATT_CAPASITY").attr("disabled", false);
+            $("#BATT_CONDITION").attr("disabled", false);
+
+            $("#BATT_WARRANTY_END").attr("disabled", false);
+            document.getElementById("batt_w").style.visibility = "visible";
+        }
+
+        //--------------------------------------------------------------------------START DISPLAY MANDATORY
+        PWR_CAB_ID = document.getElementById("PWR_CAB_ID").value;
+        PWR_CAB_CONDITION = document.getElementById("PWR_CAB_CONDITION").value;
+        EQUIP_CAB_CONDITION = document.getElementById("EQUIP_CAB_CONDITION").value;
+        ALM_STATUS = document.getElementById("ALM_STATUS").value;
+        CAB_INS_DATE = document.getElementById("CAB_INS_DATE").value;
+        TNB_METER = document.getElementById("TNB_METER").value;
+
+        if (PWR_CAB_ID == "") {
+            setTimeout(function () {
+                document.getElementById('PWR_CAB_ID').focus();
+                $('#PWR_CAB_ID').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PWR_CAB_ID').css('borderColor', '#CCCCCC'); }
+        if (PWR_CAB_CONDITION == "") {
+            setTimeout(function () {
+                document.getElementById('PWR_CAB_CONDITION').focus();
+                $('#PWR_CAB_CONDITION').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PWR_CAB_CONDITION').css('borderColor', '#CCCCCC'); }
+        if (EQUIP_CAB_CONDITION == "") {
+            setTimeout(function () {
+                document.getElementById('EQUIP_CAB_CONDITION').focus();
+                $('#EQUIP_CAB_CONDITION').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#EQUIP_CAB_CONDITION').css('borderColor', '#CCCCCC'); }
+        if (document.getElementById("GROUP_ID").value == "AND") {
+            if (CAB_INS_DATE == "") {
+                setTimeout(function () {
+                    $('#CAB_INS_DATE').css('borderColor', '#FF0004');
+                }, 0)
+            } else { $('#CAB_INS_DATE').css('borderColor', '#CCCCCC'); }
+        }
+        if (TNB_METER == "") {
+            setTimeout(function () {
+                $('#TNB_METER').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#TNB_METER').css('borderColor', '#CCCCCC'); }
+
+        PRO_ELCB_AUTO_BRAND = document.getElementById("PRO_ELCB_AUTO_BRAND").value;
+        PRO_ELCB_BRAND = document.getElementById("PRO_ELCB_BRAND").value;
+        PRO_ELCB_LOAC = document.getElementById("PRO_ELCB_LOAC").value;
+        PRO_ELCB_CAPASITY = document.getElementById("PRO_ELCB_CAPASITY").value;
+        PRO_MCB_BRAND = document.getElementById("PRO_MCB_BRAND").value;
+        PRO_MCB_CAPASITY = document.getElementById("PRO_MCB_CAPASITY").value;
+        PRO_SA_BRAND = document.getElementById("PRO_SA_BRAND").value;
+        PRO_SA_CAPASITY = document.getElementById("PRO_SA_CAPASITY").value;
+        PRO_SA_CONDITION = document.getElementById("PRO_SA_CONDITION").value;
+
+        if (PRO_ELCB_AUTO_BRAND == "") {
+            setTimeout(function () {
+                $('#PRO_ELCB_AUTO_BRAND').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_ELCB_AUTO_BRAND').css('borderColor', '#CCCCCC'); }
+        if (PRO_ELCB_BRAND == "") {
+            setTimeout(function () {
+                $('#PRO_ELCB_BRAND').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_ELCB_BRAND').css('borderColor', '#CCCCCC'); }
+        if (PRO_ELCB_LOAC == "") {
+            setTimeout(function () {
+                $('#PRO_ELCB_LOAC').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_ELCB_LOAC').css('borderColor', '#CCCCCC'); }
+        if (PRO_ELCB_CAPASITY == "") {
+            setTimeout(function () {
+                $('#PRO_ELCB_CAPASITY').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_ELCB_CAPASITY').css('borderColor', '#CCCCCC'); }
+        if (PRO_MCB_BRAND == "") {
+            setTimeout(function () {
+                $('#PRO_MCB_BRAND').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_MCB_BRAND').css('borderColor', '#CCCCCC'); }
+        if (PRO_MCB_CAPASITY == "") {
+            setTimeout(function () {
+                $('#PRO_MCB_CAPASITY').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_MCB_CAPASITY').css('borderColor', '#CCCCCC'); }
+        if (PRO_SA_BRAND == "") {
+            setTimeout(function () {
+                $('#PRO_SA_BRAND').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_SA_BRAND').css('borderColor', '#CCCCCC'); }
+        if (PRO_SA_CAPASITY == "") {
+            setTimeout(function () {
+                $('#PRO_SA_CAPASITY').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_SA_CAPASITY').css('borderColor', '#CCCCCC'); }
+        if (PRO_SA_CONDITION == "") {
+            setTimeout(function () {
+                $('#PRO_SA_CONDITION').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#PRO_SA_CONDITION').css('borderColor', '#CCCCCC'); }
+
+
+        RC_BRAND = document.getElementById("RC_BRAND").value;
+        RC_MODEL = document.getElementById("RC_MODEL").value;
+        RC_RATING = document.getElementById("RC_RATING").value;
+        RC_GMODULES = document.getElementById("RC_GMODULES").value;
+        RC_BMODULES = document.getElementById("RC_BMODULES").value;
+        RC_VDC = document.getElementById("RC_VDC").value;
+
+        if (RC_BRAND == "") {
+            setTimeout(function () {
+                $('#RC_BRAND').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#RC_BRAND').css('borderColor', '#CCCCCC'); }
+        if (RC_MODEL == "") {
+            setTimeout(function () {
+                $('#RC_MODEL').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#RC_MODEL').css('borderColor', '#CCCCCC'); }
+        if (RC_RATING == "") {
+            setTimeout(function () {
+                $('#RC_RATING').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#RC_RATING').css('borderColor', '#CCCCCC'); }
+        if (RC_GMODULES == "") {
+            setTimeout(function () {
+                $('#RC_GMODULES').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#RC_GMODULES').css('borderColor', '#CCCCCC'); }
+        if (RC_BMODULES == "") {
+            setTimeout(function () {
+                $('#RC_BMODULES').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#RC_BMODULES').css('borderColor', '#CCCCCC'); }
+        if (RC_VDC == "") {
+            setTimeout(function () {
+                $('#RC_VDC').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#RC_VDC').css('borderColor', '#CCCCCC'); }
+
+        BATT_EXIST = document.getElementById("BATT_EXIST").value;
+        BATT_BRAND = document.getElementById("BATT_BRAND").value;
+        BATT_NO_CELL = document.getElementById("BATT_NO_CELL").value;
+        BATT_CAPASITY = document.getElementById("BATT_CAPASITY").value;
+        BATT_DATE = document.getElementById("BATT_DATE").value;
+        BATT_CONDITION = document.getElementById("BATT_CONDITION").value;
+
+        if (BATT_EXIST == "") {
+            setTimeout(function () {
+                $('#BATT_EXIST').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#BATT_EXIST').css('borderColor', '#CCCCCC'); }
+
+        if (BATT_BRAND == "" && BATT_EXIST == "YES") {
+            setTimeout(function () {
+                $('#BATT_BRAND').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#BATT_BRAND').css('borderColor', '#CCCCCC'); }
+
+        if (BATT_NO_CELL == "" && BATT_EXIST == "YES") {
+            setTimeout(function () {
+                $('#BATT_NO_CELL').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#BATT_NO_CELL').css('borderColor', '#CCCCCC'); }
+
+        if (BATT_CAPASITY == "" && BATT_EXIST == "YES") {
+            setTimeout(function () {
+                $('#BATT_CAPASITY').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#BATT_CAPASITY').css('borderColor', '#CCCCCC'); }
+
+        if (BATT_DATE == "" && BATT_EXIST == "YES") {
+            setTimeout(function () {
+                $('#BATT_DATE').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#BATT_DATE').css('borderColor', '#CCCCCC'); }
+
+        if (BATT_CONDITION == "" && BATT_EXIST == "YES") {
+            setTimeout(function () {
+                $('#BATT_CONDITION').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#BATT_CONDITION').css('borderColor', '#CCCCCC'); }
+
+        AIRCOND_IN_OUT = document.getElementById("AIRCOND_IN_OUT").value;
+        AIRCOND_WORK = document.getElementById("AIRCOND_WORK").value;
+        if (AIRCOND_IN_OUT == "") {
+            setTimeout(function () {
+                document.getElementById('AIRCOND_IN_OUT').focus();
+                $('#AIRCOND_IN_OUT').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#AIRCOND_IN_OUT').css('borderColor', '#CCCCCC'); }
+
+        if (AIRCOND_WORK == "" && AIRCOND_IN_OUT == "INDOOR") {
+            setTimeout(function () {
+                document.getElementById('AIRCOND_WORK').focus();
+                $('#AIRCOND_WORK').css('borderColor', '#FF0004');
+            }, 0)
+        } else { $('#AIRCOND_WORK').css('borderColor', '#CCCCCC'); }
+
+        //--------------------------------------------------------------------------END DISPLAY MANDATORY
+        $(function () {
+
+            $('#PWR_CAB_ID').blur(function () {
+                displayBlock();
+            });
+
+            $('#PWR_CAB_CONDITION').change(function () {
+                displayBlock();
+            });
+
+            $('#EQUIP_CAB_CONDITION').change(function () {
+                displayBlock();
+            });
+
+            $('#TNB_METER').change(function () {
+                displayBlock();
+            });
+
+            $('#CAB_INS_DATE').change(function () {
+                displayBlock();
+            });
+
+            var displayBlock = function () {
+                PWR_CAB_ID = document.getElementById("PWR_CAB_ID").value;
+                PWR_CAB_CONDITION = document.getElementById("PWR_CAB_CONDITION").value;
+                EQUIP_CAB_CONDITION = document.getElementById("EQUIP_CAB_CONDITION").value;
+                ALM_STATUS = document.getElementById("ALM_STATUS").value;
+                CAB_INS_DATE = document.getElementById("CAB_INS_DATE").value;
+                TNB_METER = document.getElementById("TNB_METER").value;
+
+                if (PWR_CAB_ID == "") {
+                    setTimeout(function () {
+                        document.getElementById('PWR_CAB_ID').focus();
+                        $('#PWR_CAB_ID').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PWR_CAB_ID').css('borderColor', '#CCCCCC'); }
+                if (PWR_CAB_CONDITION == "") {
+                    setTimeout(function () {
+                        document.getElementById('PWR_CAB_CONDITION').focus();
+                        $('#PWR_CAB_CONDITION').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PWR_CAB_CONDITION').css('borderColor', '#CCCCCC'); }
+                if (EQUIP_CAB_CONDITION == "") {
+                    setTimeout(function () {
+                        document.getElementById('EQUIP_CAB_CONDITION').focus();
+                        $('#EQUIP_CAB_CONDITION').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#EQUIP_CAB_CONDITION').css('borderColor', '#CCCCCC'); }
+                if (document.getElementById("GROUP_ID").value == "AND") {
+                    if (CAB_INS_DATE == "") {
+                        setTimeout(function () {
+                            $('#CAB_INS_DATE').css('borderColor', '#FF0004');
+                        }, 0)
+                    } else { $('#CAB_INS_DATE').css('borderColor', '#CCCCCC'); }
+                }
+                if (TNB_METER == "") {
+                    setTimeout(function () {
+                        $('#TNB_METER').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#TNB_METER').css('borderColor', '#CCCCCC'); }
+
+                displayTab1();
+
+                //                if (PWR_CAB_ID != "" && PWR_CAB_CONDITION != "" && TNB_METER != "") {
+                //                    document.getElementById("divCheckJob").style.display = "block";
+                //                    //document.getElementById("divSave").style.display = "block";
+                //                    displayTab1();
+                //                }
+            }
+
+
+            // --------------------------------------------- VALIDATE TAB-1 ---------------------------------------------
+            $("#divPicklist").dialog({
+                autoOpen: false,
+                height: 200,
+                width: 400,
+                modal: true,
+                buttons: {
+                },
+                close: function () {
+                }
+            });
+
+            $("#divPicklist2").dialog({
+                autoOpen: false,
+                height: 200,
+                width: 400,
+                modal: true,
+                buttons: {
+                },
+                close: function () {
+                }
+            });
+
+
+            $('#PRO_ELCB_AUTO_BRAND').change(function () {
+                PRO_ELCB_AUTO_BRAND = document.getElementById("PRO_ELCB_AUTO_BRAND").value;
+                if (PRO_ELCB_AUTO_BRAND == "OTHERS") {
+                    $("#divPicklist").dialog("open");
+                    document.getElementById("targetTable").value = "WV_CAB_ELCB_BRAND";
+                    document.getElementById("targetPicklist").value = "PRO_ELCB_AUTO_BRAND";
+                } else {
+                    displayTab1();
+                }
+            });
+
+            $('#PRO_ELCB_BRAND').change(function () {
+                PRO_ELCB_AUTO_BRAND = document.getElementById("PRO_ELCB_BRAND").value;
+                if (PRO_ELCB_AUTO_BRAND == "OTHERS") {
+                    $("#divPicklist").dialog("open");
+                    document.getElementById("targetTable").value = "WV_CAB_ELCB_BRAND";
+                    document.getElementById("targetPicklist").value = "PRO_ELCB_BRAND";
+                } else {
+                    displayTab1();
+                }
+            });
+
+            $('#PRO_ELCB_LOAC').change(function () {
+                displayTab1();
+            });
+
+
+            $('#PRO_ELCB_CAPASITY').change(function () {
+                displayTab1();
+            });
+
+            $('#PRO_MCB_BRAND').change(function () {
+                PRO_ELCB_AUTO_BRAND = document.getElementById("PRO_MCB_BRAND").value;
+                if (PRO_ELCB_AUTO_BRAND == "OTHERS") {
+                    $("#divPicklist").dialog("open");
+                    document.getElementById("targetTable").value = "WV_CAB_MCB_BRAND";
+                    document.getElementById("targetPicklist").value = "PRO_MCB_BRAND";
+                } else {
+                    displayTab1();
+                }
+            });
+
+            $('#PRO_MCB_CAPASITY').change(function () {
+                displayTab1();
+            });
+
+            $('#PRO_SA_BRAND').change(function () {
+                PRO_ELCB_AUTO_BRAND = document.getElementById("PRO_SA_BRAND").value;
+                if (PRO_ELCB_AUTO_BRAND == "OTHERS") {
+                    $("#divPicklist").dialog("open");
+                    document.getElementById("targetTable").value = "WV_CAB_SA_BRAND";
+                    document.getElementById("targetPicklist").value = "PRO_SA_BRAND";
+                } else {
+                    displayTab1();
+                }
+            });
+
+            $('#PRO_SA_CAPASITY').change(function () {
+                displayTab1();
+            });
+
+            $('#PRO_SA_CONDITION').change(function () {
+                displayTab1();
+            });
+
+            $('#RC_SA_BRAND').change(function () {
+                PRO_ELCB_AUTO_BRAND = document.getElementById("RC_SA_BRAND").value;
+                if (PRO_ELCB_AUTO_BRAND == "OTHERS") {
+                    $("#divPicklist").dialog("open");
+                    document.getElementById("targetTable").value = "WV_CAB_SA_BRAND";
+                    document.getElementById("targetPicklist").value = "RC_SA_BRAND";
+                }
+            });
+
+
+            $('#BATT_BRAND').change(function () {
+                BATT_BRAND = document.getElementById("BATT_BRAND").value;
+                if (BATT_BRAND == "OTHERS") {
+                    $("#divPicklist").dialog("open");
+                    document.getElementById("targetTable").value = "WV_CAB_AR_BRAND";
+                    document.getElementById("targetPicklist").value = "BATT_BRAND";
+                }
+            });
+
+
+            var displayTab1 = function () {
+                PRO_ELCB_AUTO_BRAND = document.getElementById("PRO_ELCB_AUTO_BRAND").value;
+                PRO_ELCB_BRAND = document.getElementById("PRO_ELCB_BRAND").value;
+                PRO_ELCB_LOAC = document.getElementById("PRO_ELCB_LOAC").value;
+                PRO_ELCB_CAPASITY = document.getElementById("PRO_ELCB_CAPASITY").value;
+                PRO_MCB_BRAND = document.getElementById("PRO_MCB_BRAND").value;
+                PRO_MCB_CAPASITY = document.getElementById("PRO_MCB_CAPASITY").value;
+                PRO_SA_BRAND = document.getElementById("PRO_SA_BRAND").value;
+                PRO_SA_CAPASITY = document.getElementById("PRO_SA_CAPASITY").value;
+                PRO_SA_CONDITION = document.getElementById("PRO_SA_CONDITION").value;
+
+                if (PRO_ELCB_AUTO_BRAND == "") {
+                    setTimeout(function () {
+                        $('#PRO_ELCB_AUTO_BRAND').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_ELCB_AUTO_BRAND').css('borderColor', '#CCCCCC'); }
+                if (PRO_ELCB_BRAND == "") {
+                    setTimeout(function () {
+                        $('#PRO_ELCB_BRAND').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_ELCB_BRAND').css('borderColor', '#CCCCCC'); }
+                if (PRO_ELCB_LOAC == "") {
+                    setTimeout(function () {
+                        $('#PRO_ELCB_LOAC').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_ELCB_LOAC').css('borderColor', '#CCCCCC'); }
+                if (PRO_ELCB_CAPASITY == "") {
+                    setTimeout(function () {
+                        $('#PRO_ELCB_CAPASITY').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_ELCB_CAPASITY').css('borderColor', '#CCCCCC'); }
+                if (PRO_MCB_BRAND == "") {
+                    setTimeout(function () {
+                        $('#PRO_MCB_BRAND').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_MCB_BRAND').css('borderColor', '#CCCCCC'); }
+                if (PRO_MCB_CAPASITY == "") {
+                    setTimeout(function () {
+                        $('#PRO_MCB_CAPASITY').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_MCB_CAPASITY').css('borderColor', '#CCCCCC'); }
+                if (PRO_SA_BRAND == "") {
+                    setTimeout(function () {
+                        $('#PRO_SA_BRAND').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_SA_BRAND').css('borderColor', '#CCCCCC'); }
+                if (PRO_SA_CAPASITY == "") {
+                    setTimeout(function () {
+                        $('#PRO_SA_CAPASITY').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_SA_CAPASITY').css('borderColor', '#CCCCCC'); }
+                if (PRO_SA_CONDITION == "") {
+                    setTimeout(function () {
+                        $('#PRO_SA_CONDITION').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#PRO_SA_CONDITION').css('borderColor', '#CCCCCC'); }
+                displayTab2();
+                //                if (PRO_ELCB_AUTO_BRAND != "" && PRO_ELCB_BRAND != "" && PRO_ELCB_LOAC != "" && PRO_ELCB_CAPASITY != "" && PRO_MCB_BRAND != "" && PRO_MCB_CAPASITY != "" && PRO_SA_BRAND != "" && PRO_SA_CAPASITY != "" && PRO_SA_CONDITION != "") {
+                //                    document.getElementById("tabRECTIFIER").style.display = "block";
+                //                    displayTab2();
+                //                }
+            }
+
+            // --------------------------------------------- VALIDATE TAB-2 ---------------------------------------------
+
+            $('#RC_BRAND').change(function () {
+                displayTab2();
+            });
+
+            $('#RC_MODEL').change(function () {
+                displayTab2();
+            });
+            $('#RC_RATING').change(function () {
+                displayTab2();
+            });
+            $('#RC_GMODULES').change(function () {
+                displayTab2();
+            });
+            $('#RC_BMODULES').change(function () {
+                displayTab2();
+            });
+            $('#RC_VDC').change(function () {
+                displayTab2();
+            });
+            RC_VDC
+            var displayTab2 = function () {
+                RC_BRAND = document.getElementById("RC_BRAND").value;
+                RC_MODEL = document.getElementById("RC_MODEL").value;
+                RC_RATING = document.getElementById("RC_RATING").value;
+                RC_GMODULES = document.getElementById("RC_GMODULES").value;
+                RC_BMODULES = document.getElementById("RC_BMODULES").value;
+                RC_VDC = document.getElementById("RC_VDC").value;
+
+                if (RC_BRAND == "") {
+                    setTimeout(function () {
+                        $('#RC_BRAND').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#RC_BRAND').css('borderColor', '#CCCCCC'); }
+                if (RC_MODEL == "") {
+                    setTimeout(function () {
+                        $('#RC_MODEL').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#RC_MODEL').css('borderColor', '#CCCCCC'); }
+                if (RC_RATING == "") {
+                    setTimeout(function () {
+                        $('#RC_RATING').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#RC_RATING').css('borderColor', '#CCCCCC'); }
+                if (RC_GMODULES == "") {
+                    setTimeout(function () {
+                        $('#RC_GMODULES').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#RC_GMODULES').css('borderColor', '#CCCCCC'); }
+                if (RC_BMODULES == "") {
+                    setTimeout(function () {
+                        $('#RC_BMODULES').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#RC_BMODULES').css('borderColor', '#CCCCCC'); }
+                if (RC_VDC == "") {
+                    setTimeout(function () {
+                        $('#RC_VDC').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#RC_VDC').css('borderColor', '#CCCCCC'); }
+                displayTab3();
+                //                if (RC_BRAND != "" && RC_MODEL != "" && RC_RATING != "" && RC_GMODULES != "" && RC_BMODULES != "" && RC_VDC != "") {
+                //                    document.getElementById("tabBATTERY").style.display = "block";
+                //                    displayTab3();
+                //                    displayTab4();
+                //                }
+            }
+
+            // --------------------------------------------- VALIDATE TAB-3 ---------------------------------------------
+
+            $('#BATT_EXIST').change(function () {
+                displayTab3();
+            });
+
+            $('#BATT_BRAND').change(function () {
+                displayTab3();
+            });
+
+            $('#BATT_NO_CELL').change(function () {
+                displayTab3();
+            });
+
+            $('#BATT_CAPASITY').change(function () {
+                displayTab3();
+            });
+
+            $('#BATT_DATE').change(function () {
+                displayTab3();
+            });
+
+            $('#BATT_CONDITION').change(function () {
+                displayTab3();
+            });
+
+            var displayTab3 = function () {
+                BATT_EXIST = document.getElementById("BATT_EXIST").value;
+                BATT_BRAND = document.getElementById("BATT_BRAND").value;
+                BATT_NO_CELL = document.getElementById("BATT_NO_CELL").value;
+                BATT_CAPASITY = document.getElementById("BATT_CAPASITY").value;
+                BATT_DATE = document.getElementById("BATT_DATE").value;
+                BATT_CONDITION = document.getElementById("BATT_CONDITION").value;
+
+                if (BATT_EXIST == "") {
+                    setTimeout(function () {
+                        $('#BATT_EXIST').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#BATT_EXIST').css('borderColor', '#CCCCCC'); }
+
+                if (BATT_BRAND == "" && BATT_EXIST == "YES") {
+                    setTimeout(function () {
+                        $('#BATT_BRAND').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#BATT_BRAND').css('borderColor', '#CCCCCC'); }
+
+                if (BATT_NO_CELL == "" && BATT_EXIST == "YES") {
+                    setTimeout(function () {
+                        $('#BATT_NO_CELL').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#BATT_NO_CELL').css('borderColor', '#CCCCCC'); }
+
+                if (BATT_CAPASITY == "" && BATT_EXIST == "YES") {
+                    setTimeout(function () {
+                        $('#BATT_CAPASITY').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#BATT_CAPASITY').css('borderColor', '#CCCCCC'); }
+
+                if (BATT_DATE == "" && BATT_EXIST == "YES") {
+                    setTimeout(function () {
+                        $('#BATT_DATE').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#BATT_DATE').css('borderColor', '#CCCCCC'); }
+
+                if (BATT_CONDITION == "" && BATT_EXIST == "YES") {
+                    setTimeout(function () {
+                        $('#BATT_CONDITION').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#BATT_CONDITION').css('borderColor', '#CCCCCC'); }
+                displayTab4();
+                //                if (BATT_EXIST != "" && BATT_BRAND != "" && BATT_NO_CELL != "" && BATT_CAPASITY != "" && BATT_DATE != "" && BATT_CONDITION != "") {
+                //                    document.getElementById("tabTEMPERATURE").style.display = "block";
+                //                    displayTab4();
+                //                }
+            }
+
+            // --------------------------------------------- VALIDATE TAB-4 ---------------------------------------------
+
+            $('#AIRCOND_IN_OUT').change(function () {
+                displayTab4();
+            });
+
+            $('#AIRCOND_WORK').change(function () {
+                displayTab4();
+            });
+
+            var displayTab4 = function () {
+                AIRCOND_IN_OUT = document.getElementById("AIRCOND_IN_OUT").value;
+                AIRCOND_WORK = document.getElementById("AIRCOND_WORK").value;
+                if (AIRCOND_IN_OUT == "") {
+                    setTimeout(function () {
+                        document.getElementById('AIRCOND_IN_OUT').focus();
+                        $('#AIRCOND_IN_OUT').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#AIRCOND_IN_OUT').css('borderColor', '#CCCCCC'); }
+
+                if (AIRCOND_WORK == "" && AIRCOND_IN_OUT == "INDOOR") {
+                    setTimeout(function () {
+                        document.getElementById('AIRCOND_WORK').focus();
+                        $('#AIRCOND_WORK').css('borderColor', '#FF0004');
+                    }, 0)
+                } else { $('#AIRCOND_WORK').css('borderColor', '#CCCCCC'); }
+
+                if (AIRCOND_IN_OUT != "" && AIRCOND_WORK != "") {
+                    document.getElementById("divSave").style.display = "block";
+                }
+            }
+
+            // --------------------------------------------- NUMBER ONLY ---------------------------------------------
+
+            jQuery.fn.ForceNumericOnly = function () {
+                return this.each(function () {
+                    $(this).keydown(function (e) {
+                        var key = e.charCode || e.keyCode || 0;
+                        return (
+                            key == 8 || key == 9 || key == 46 || key == 110 || key == 190 || (key >= 35 && key <= 40) ||
+                            (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+                    });
+                });
+            };
+
+            $('#RC_VAC').ForceNumericOnly();
+            $('#RC_VDC').ForceNumericOnly();
+            $('#PRO_ELCB_CAPASITY').ForceNumericOnly();
+            $('#PRO_ELCB_VAC').ForceNumericOnly();
+            $('#PRO_MCB_CAPASITY').ForceNumericOnly();
+            $('#PRO_SA_CAPASITY').ForceNumericOnly();
+            $('#RC_RATING').ForceNumericOnly();
+            $('#RC_GMODULES').ForceNumericOnly();
+            $('#RC_BMODULES').ForceNumericOnly();
+            $('#RC_VDC').ForceNumericOnly();
+            $('#RC_PRESENT').ForceNumericOnly();
+            $('#RC_SA_CAPASITY').ForceNumericOnly();
+            $('#BATT_NO_CELL').ForceNumericOnly();
+            $('#BATT_CAPASITY').ForceNumericOnly();
+            $('#AIRCOND_HPOWER').ForceNumericOnly();
+            $('#AIRCOND_WORK').ForceNumericOnly();
+            $('#AIRCOND_READING').ForceNumericOnly();
+
+            $('#batt_w').click(function () {
+                if (!$(this).is(':checked')) {
+                    document.getElementById('lbl_batt_w').style.display = "block";
+                    document.getElementById('BATT_WARRANTY_END').style.display = "none";
+                    $('#BATT_WARRANTY_END').datepicker('setDate', "01-JANUARY-1970");
+                } else {
+                    document.getElementById('lbl_batt_w').style.display = "none";
+                    document.getElementById('BATT_WARRANTY_END').style.display = "block";
+
+                    var beginsDate = $('#BATT_DATE').datepicker('getDate');
+                    var monthMillisec = 12;
+                    var maxDate = new Date(beginsDate);
+                    maxDate.setMonth(beginsDate.getMonth() + monthMillisec);
+                    $('#BATT_WARRANTY_END').datepicker('setDate', maxDate);
+                }
+            });
+
+            $('#RC_DATE').click(function () {
+                var beginsDate = $('#RC_DATE').datepicker('getDate');
+                var monthMillisec = 12;
+                var maxDate = new Date(beginsDate);
+                maxDate.setMonth(beginsDate.getMonth() + monthMillisec);
+
+                $('#RC_WARRANTY_END').datepicker('setDate', maxDate);
+            });
+
+            $('#RC_BRAND').change(function () {
+                if (document.getElementById('RC_BRAND').value == "OTHERS") {
+                    $("#divPicklist2").dialog("open");
+                    document.getElementById("targetTable2").value = "WV_CAB_RC_BRAND";
+                    document.getElementById("targetPicklist").value = "RC_BRAND";
+                    document.getElementById("targetPicklist2").value = "RC_MODEL";
+                }
+                $.ajax({
+                    url: '@Url.Action("RCBrandChange", "VIS_NRM")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "RC_BRAND": document.getElementById('RC_BRAND').value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        BRAND = res.BRAND;
+
+                        valueBRAND = res.BRAND.split(":");
+
+                        var itemsallFC;
+                        for (var i = 0; i < valueBRAND.length; i++) {
+                            itemsallFC += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                        }
+                        $("#RC_MODEL").html(itemsallFC);
+                    }
+                });
+            });
+
+            $('#CAB_INS_DATE').change(function () {
+                dataCom = document.getElementById('CAB_INS_DATE').value;
+                $('#PRO_ELCB_DATE').datepicker('setDate', dataCom);
+                $('#PRO_MCB_DATE').datepicker('setDate', dataCom);
+                $('#RC_DATE').datepicker('setDate', dataCom);
+                $('#RC_DATE').trigger('change');
+                $('#BATT_DATE').datepicker('setDate', dataCom);
+            });
+
+            $('#RC_DATE').change(function () {
+                var beginsDate = $('#RC_DATE').datepicker('getDate');
+                var monthMillisec = 12;
+                var maxDate = new Date(beginsDate);
+                maxDate.setMonth(beginsDate.getMonth() + monthMillisec);
+
+                $('#RC_WARRANTY_END').datepicker('setDate', maxDate);
+            });
+
+            $('#comm_date').click(function () {
+                if ($(this).is(':checked')) {
+                    //alert(document.getElementById('comm_date').value);
+                    $('#CAB_INS_DATE').val('');
+                    $("#CAB_INS_DATE").attr("disabled", true);
+                } else { $("#CAB_INS_DATE").attr("disabled", false); }
+            });
+
+            $('#AIRCOND_IN_OUT').change(function () {
+                if (document.getElementById('AIRCOND_IN_OUT').value == "OUTDOOR") {
+                    $("#AIRCOND_HPOWER").attr("disabled", true);
+                    $("#AIRCOND_WORK").attr("disabled", true);
+                    $("#AIRCOND_DOOR").attr("disabled", true);
+                    $("#AIRCOND_HPOWER").val("");
+                    $("#AIRCOND_WORK").val("");
+                    $("#AIRCOND_DOOR").val("");
+                } else {
+                    $("#AIRCOND_HPOWER").attr("disabled", false);
+                    $("#AIRCOND_WORK").attr("disabled", false);
+                    $("#AIRCOND_DOOR").attr("disabled", false);
+                }
+            });
+
+            $('#BATT_EXIST').change(function () {
+                if (document.getElementById('BATT_EXIST').value == "NO") {
+                    $("#BATT_DATE").attr("disabled", true);
+                    $("#BATT_BRAND").attr("disabled", true);
+                    $("#BATT_VOLT").attr("disabled", true);
+                    $("#BATT_NO_CELL").attr("disabled", true);
+                    $("#BATT_CAPASITY").attr("disabled", true);
+                    $("#BATT_CONDITION").attr("disabled", true);
+
+                    $("#BATT_WARRANTY_END").attr("disabled", true);
+                    document.getElementById("batt_w").style.visibility = "hidden";
+                    $("#BATT_DATE").val("");
+                    $("#BATT_BRAND").val("");
+                    $("#BATT_VOLT").val("");
+                    $("#BATT_NO_CELL").val("");
+                    $("#BATT_CAPASITY").val("");
+                    $("#BATT_CONDITION").val("");
+                    $("#BATT_WARRANTY_END").val("");
+                } else {
+                    //$("#BATT_DATE").attr("disabled", false);
+                    $("#BATT_BRAND").attr("disabled", false);
+                    $("#BATT_VOLT").attr("disabled", false);
+                    $("#BATT_NO_CELL").attr("disabled", false);
+                    $("#BATT_CAPASITY").attr("disabled", false);
+                    $("#BATT_CONDITION").attr("disabled", false);
+
+                    $("#BATT_WARRANTY_END").attr("disabled", false);
+                    document.getElementById("batt_w").style.visibility = "visible";
+                }
+            });
+
+            $("#btnSave").button();
+            $('#btnInsert').button();
+            $('#btnInsert2').button();
+
+            $('#btnInsert').click(function () {
+                $.ajax({
+                    url: '@Url.Action("AddBrand", "VIS_NRM")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "ABrand": document.getElementById('txtABrand').value,
+                        "targetTable": document.getElementById('targetTable').value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        alert("Successfully insert");
+                        $("#divPicklist").dialog("close");
+                        var res = jQuery.parseJSON(data);
+                        BRAND = res.BRAND;
+                        valueBRAND = res.BRAND.split(":");
+
+                        if (document.getElementById('targetPicklist').value == "PRO_ELCB_AUTO_BRAND") {
+                            itemsallFC = "<option selected value='" + document.getElementById('txtABrand').value + "'>" + document.getElementById('txtABrand').value + "</option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+                            $("#PRO_ELCB_AUTO_BRAND").html(itemsallFC);
+                            itemsallFC2 = "<option selected value=''></option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC2 += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+
+                            $("#PRO_ELCB_BRAND").html(itemsallFC2);
+                            $('#PRO_ELCB_AUTO_BRAND').trigger("change");
+                        } else if (document.getElementById('targetPicklist').value == "PRO_ELCB_BRAND") {
+                            itemsallFC = "<option selected value='" + document.getElementById('txtABrand').value + "'>" + document.getElementById('txtABrand').value + "</option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+                            $("#PRO_ELCB_BRAND").html(itemsallFC);
+                            itemsallFC2 = "<option selected value=''></option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC2 += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+                            $("#PRO_ELCB_AUTO_BRAND").html(itemsallFC2);
+                            $('#PRO_ELCB_BRAND').trigger("change");
+                        } else if (document.getElementById('targetPicklist').value == "PRO_SA_BRAND") {
+                            itemsallFC = "<option selected value='" + document.getElementById('txtABrand').value + "'>" + document.getElementById('txtABrand').value + "</option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+                            $("#PRO_SA_BRAND").html(itemsallFC);
+                            itemsallFC2 = "<option selected value=''></option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC2 += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+
+                            $("#RC_SA_BRAND").html(itemsallFC2);
+                        } else if (document.getElementById('targetPicklist').value == "RC_SA_BRAND") {
+                            itemsallFC = "<option selected value='" + document.getElementById('txtABrand').value + "'>" + document.getElementById('txtABrand').value + "</option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+                            $("#RC_SA_BRAND").html(itemsallFC);
+                            itemsallFC2 = "<option selected value='" + document.getElementById('PRO_SA_BRAND').value + "'>" + document.getElementById('PRO_SA_BRAND').value + "</option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC2 += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+
+                            $("#PRO_SA_BRAND").html(itemsallFC2);
+                        } else if (document.getElementById('targetPicklist').value == "BATT_BRAND") {
+                            itemsallFC = "<option selected value='" + document.getElementById('txtABrand').value + "'>" + document.getElementById('txtABrand').value + "</option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+                            $("#BATT_BRAND").html(itemsallFC);
+                        }
+                        else {
+                            itemsallFC = "<option selected value='" + document.getElementById('txtABrand').value + "'>" + document.getElementById('txtABrand').value + "</option>";
+                            for (var i = 0; i < valueBRAND.length; i++) {
+                                itemsallFC += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                            }
+                            $("#" + document.getElementById('targetPicklist').value + "").html(itemsallFC);
+                        }
+                    }
+                });
+            });
+
+            $('#btnInsert2').click(function () {
+                $.ajax({
+                    url: '@Url.Action("AddModel", "VIS_NRM")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "ABrand": document.getElementById('txtABrand2').value,
+                        "AModel": document.getElementById('txtAModel2').value,
+                        "targetTable": document.getElementById('targetTable2').value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        alert("Successfully insert");
+                        $("#divPicklist").dialog("close");
+                        var res = jQuery.parseJSON(data);
+                        BRAND = res.BRAND;
+                        valueBRAND = res.BRAND.split(":");
+
+                        itemsallFC = "<option selected value='" + document.getElementById('txtABrand2').value + "'>" + document.getElementById('txtABrand2').value + "</option>";
+                        for (var i = 0; i < valueBRAND.length; i++) {
+                            itemsallFC += "<option value='" + valueBRAND[i] + "'>" + valueBRAND[i] + "</option>";
+                        }
+                        $("#" + document.getElementById('targetPicklist').value + "").html(itemsallFC);
+
+                        $('#RC_BRAND').trigger("change");
+                    }
+                });
+            });
+
+            $("#cabPlanDate").hover(function () { $("#helpbox").toggle(); });
+            $("#cabComDate").hover(function () { $("#helpbox1").toggle(); });
+            $("#pwrCabId").hover(function () { $("#helpbox2").toggle(); });
+            $("#proMcbB").hover(function () { $("#helpbox3").toggle(); });
+            $("#proMcbR").hover(function () { $("#helpbox4").toggle(); });
+            $("#proMcbD").hover(function () { $("#helpbox5").toggle(); });
+            $("#rcMax").hover(function () { $("#helpbox6").toggle(); });
+            $("#rcIns").hover(function () { $("#helpbox7").toggle(); });
+            $("#rcWar").hover(function () { $("#helpbox8").toggle(); });
+            $("#shareBox").hover(function () { $("#helpshareBox").toggle(); });
+
+            $('#PWR_CAB_ID').change(function () {
+                PWR_CAB_ID = document.getElementById('PWR_CAB_ID').options[document.getElementById('PWR_CAB_ID').selectedIndex].text;
+                newPCD = document.getElementById('lbl_pwr_cab_id').innerHTML + PWR_CAB_ID;
+                var selectedItem = $("#leftValues option:selected");
+                $("#rightValues").append(selectedItem);
+                $.ajax({
+                    url: '@Url.Action("PwrCabChange", "VIS_NRM")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "newPCD": newPCD,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        //alert(res.PWR_CAB_ID);
+                        if (res.PWR_CAB_ID != "") {
+                            var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                            var aa = new Date(parseInt(res.PRO_ELCB_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+                            var PRO_ELCB_DATE = aa.getDate() + "-" + month[(aa.getMonth())] + "-" + aa.getFullYear();
+
+                            var aa = new Date(parseInt(res.PRO_MCB_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+                            var PRO_MCB_DATE = aa.getDate() + "-" + month[(aa.getMonth())] + "-" + aa.getFullYear();
+                            document.getElementById('PWR_CAB_CONDITION').value = res.PWR_CAB_CONDITION;
+                            document.getElementById('PRO_AC_CONNECTION').value = res.PRO_AC_CONNECTION;
+                            document.getElementById('PRO_AC_OHM').value = res.PRO_AC_OHM;
+                            document.getElementById('PRO_ELCB_AUTO_BRAND').value = res.PRO_ELCB_AUTO_BRAND;
+                            document.getElementById('PRO_ELCB_BRAND').value = res.PRO_ELCB_BRAND;
+                            document.getElementById('PRO_ELCB_CAPASITY').value = res.PRO_ELCB_CAPASITY;
+                            document.getElementById('PRO_ELCB_DATE').value = PRO_ELCB_DATE;
+                            document.getElementById('PRO_ELCB_LOAC').value = res.PRO_ELCB_LOAC;
+                            document.getElementById('PRO_ELCB_VAC').value = res.PRO_ELCB_VAC;
+                            document.getElementById('PRO_MCB_BRAND').value = res.PRO_MCB_BRAND;
+                            document.getElementById('PRO_MCB_CAPASITY').value = res.PRO_MCB_CAPASITY;
+                            document.getElementById('PRO_MCB_DATE').value = PRO_MCB_DATE;
+                            document.getElementById('PRO_SA_BRAND').value = res.PRO_SA_BRAND;
+                            document.getElementById('PRO_SA_CAPASITY').value = res.PRO_SA_CAPASITY;
+                            document.getElementById('PRO_SA_CONDITION').value = res.PRO_SA_CONDITION;
+                            $("#PWR_CAB_CONDITION").attr("readonly", "readonly"); $("#PRO_AC_CONNECTION").attr("readonly", "readonly"); $("#PRO_AC_OHM").attr("readonly", "readonly"); $("#PRO_ELCB_AUTO_BRAND").attr("readonly", "readonly"); $("#PRO_ELCB_BRAND").attr("readonly", "readonly");
+                            $("#PRO_ELCB_CAPASITY").attr("readonly", "readonly"); $("#PRO_ELCB_DATE").attr("readonly", "readonly"); $("#PRO_ELCB_LOAC").attr("readonly", "readonly"); $("#PRO_ELCB_VAC").attr("readonly", "readonly"); $("#PRO_MCB_BRAND").attr("readonly", "readonly");
+                            $("#PRO_MCB_CAPASITY").attr("readonly", "readonly"); $("#PRO_MCB_DATE").attr("readonly", "readonly"); $("#PRO_SA_BRAND").attr("readonly", "readonly"); $("#PRO_SA_CAPASITY").attr("readonly", "readonly"); $("#PRO_SA_CONDITION").attr("readonly", "readonly");
+                        } else {
+                            document.getElementById('PWR_CAB_CONDITION').value = "";
+                            document.getElementById('PRO_AC_CONNECTION').value = "";
+                            document.getElementById('PRO_AC_OHM').value = "";
+                            document.getElementById('PRO_ELCB_AUTO_BRAND').value = "";
+                            document.getElementById('PRO_ELCB_BRAND').value = "";
+                            document.getElementById('PRO_ELCB_CAPASITY').value = "";
+                            document.getElementById('PRO_ELCB_DATE').value = "";
+                            document.getElementById('PRO_ELCB_LOAC').value = "";
+                            document.getElementById('PRO_ELCB_VAC').value = "";
+                            document.getElementById('PRO_MCB_BRAND').value = "";
+                            document.getElementById('PRO_MCB_CAPASITY').value = "";
+                            document.getElementById('PRO_MCB_DATE').value = "";
+                            document.getElementById('PRO_SA_BRAND').value = "";
+                            document.getElementById('PRO_SA_CAPASITY').value = "";
+                            document.getElementById('PRO_SA_CONDITION').value = "";
+                            $("#PWR_CAB_CONDITION").removeAttr("readonly"); $("#PRO_AC_CONNECTION").removeAttr("readonly"); $("#PRO_AC_OHM").removeAttr("readonly"); $("#PRO_ELCB_AUTO_BRAND").removeAttr("readonly"); $("#PRO_ELCB_BRAND").removeAttr("readonly");
+                            $("#PRO_ELCB_CAPASITY").removeAttr("readonly"); $("#PRO_ELCB_DATE").removeAttr("readonly"); $("#PRO_ELCB_LOAC").removeAttr("readonly"); $("#PRO_ELCB_VAC").removeAttr("readonly"); $("#PRO_MCB_BRAND").removeAttr("readonly");
+                            $("#PRO_MCB_CAPASITY").removeAttr("readonly"); $("#PRO_MCB_DATE").removeAttr("readonly"); $("#PRO_SA_BRAND").removeAttr("readonly"); $("#PRO_SA_CAPASITY").removeAttr("readonly"); $("#PRO_SA_CONDITION").removeAttr("readonly");
+                        }
+                    }
+                });
+            });
+
+            $("#btnLeft").click(function () {
+                var selectedItem = $("#rightValues option:selected");
+                $("#leftValues").append(selectedItem);
+                leftValuesData = $("#leftValues").val();
+                for (ii = 0; ii < leftValuesData.length; ii++) {
+                    $.ajax({
+                        url: '@Url.Action("checkPwr", "VIS_NRM")',
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "G3E_FID": leftValuesData[ii],
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            valuedata = res.pwr.split(":");
+                            realData = valuedata[1].split("_");
+
+                            //alert(realData[2]);
+                            //alert(document.getElementById("PWR_CAB_ID").value);
+                            if (res.pwr != "" && realData[2] != document.getElementById("PWR_CAB_ID").value) {
+                                alert("Please Change Power Cabinet ID");
+                                var selectedItem = $("#leftValues option:selected");
+                                $("#rightValues").append(selectedItem);
+                                //window.location.reload();
+                            }
+
+                            if (realData[2] == document.getElementById("PWR_CAB_ID").value) {
+                                var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                                var aa = new Date(parseInt(res.RC_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+                                var RC_DATE = aa.getDate() + "-" + month[(aa.getMonth())] + "-" + aa.getFullYear();
+
+                                var aa1 = new Date(parseInt(res.BATT_DATE.replace(/(^.*\()|([+-].*$)/g, '')));
+                                var BATT_DATE = aa1.getDate() + "-" + month[(aa1.getMonth())] + "-" + aa1.getFullYear();
+
+                                var aa2 = new Date(parseInt(res.RC_WARRANTY_END.replace(/(^.*\()|([+-].*$)/g, '')));
+                                var RC_WARRANTY_END = aa2.getDate() + "-" + month[(aa2.getMonth())] + "-" + aa2.getFullYear();
+
+                                var aa3 = new Date(parseInt(res.BATT_WARRANTY_END.replace(/(^.*\()|([+-].*$)/g, '')));
+                                var BATT_WARRANTY_END = aa3.getDate() + "-" + month[(aa3.getMonth())] + "-" + aa3.getFullYear();
+
+                                document.getElementById("RC_BRAND").value = res.RC_BRAND;
+                                var itemsEXC = "<option selected value=" + res.RC_MODEL + ">" + res.RC_MODEL + "</option>";
+                                $("#RC_MODEL").html(itemsEXC);
+                                document.getElementById("RC_RATING").value = res.RC_RATING;
+                                document.getElementById("RC_GMODULES").value = res.RC_GMODULES;
+                                document.getElementById("RC_BMODULES").value = res.RC_BMODULES;
+                                document.getElementById("RC_DATE").value = RC_DATE;
+                                document.getElementById("RC_VAC").value = res.RC_VAC;
+                                document.getElementById("RC_VDC").value = res.RC_VDC;
+                                document.getElementById("RC_PRESENT").value = res.RC_PRESENT;
+                                document.getElementById("RC_SA_BRAND").value = res.RC_SA_BRAND;
+                                document.getElementById("RC_SA_CAPASITY").value = res.RC_SA_CAPASITY;
+                                document.getElementById("RC_SA_CONDITION").value = res.RC_SA_CONDITION;
+                                document.getElementById("RC_SA_OHM").value = res.RC_SA_OHM;
+                                document.getElementById("RC_SA_CONNECTION").value = res.RC_SA_CONNECTION;
+                                document.getElementById("RC_LVD").value = res.RC_LVD;
+                                document.getElementById("BATT_BRAND").value = res.BATT_BRAND;
+                                document.getElementById("BATT_CAPASITY").value = res.BATT_CAPASITY;
+                                document.getElementById("BATT_VOLT").value = res.BATT_VOLT;
+                                document.getElementById("BATT_DATE").value = BATT_DATE;
+                                document.getElementById("BATT_CONDITION").value = res.BATT_CONDITION;
+                                document.getElementById("AIRCOND_READING").value = res.AIRCOND_READING;
+                                document.getElementById("AIRCOND_WORK").value = res.AIRCOND_WORK;
+                                document.getElementById("AIRCOND_BROKE").value = res.AIRCOND_BROKE;
+                                document.getElementById("AIRCOND_DOOR").value = res.AIRCOND_DOOR;
+                                document.getElementById("ALARM").value = res.ALARM;
+                                document.getElementById("CHECK_BY").value = res.CHECK_BY;
+
+                                document.getElementById("TNB_METER").value = res.TNB_METER;
+                                document.getElementById("CAB_INS_DATE").value = res.CAB_INS_DATE;
+                                document.getElementById("ALM_EXT").value = res.ALM_EXT;
+                                document.getElementById("ALM_EXT_TO").value = res.ALM_EXT_TO;
+                                document.getElementById("ALM_STATUS").value = res.ALM_STATUS;
+                                document.getElementById("RC_WARRANTY_END").value = RC_WARRANTY_END;
+                                document.getElementById("BATT_EXIST").value = res.BATT_EXIST;
+                                document.getElementById("BATT_WARRANTY_END").value = BATT_WARRANTY_END;
+                                document.getElementById("BATT_NO_CELL").value = res.BATT_NO_CELL;
+                                document.getElementById("AIRCOND_IN_OUT").value = res.AIRCOND_IN_OUT;
+                                document.getElementById("AIRCOND_HPOWER").value = res.AIRCOND_HPOWER;
+                                document.getElementById("REMARKS").value = res.REMARKS;
+
+                                document.getElementById("SHARE_NO").value = res.SHARE_NO;
+                            }
+                            $("#leftValues option").attr("selected", "selected");
+                        }
+                    });
+                }
+                //alert(document.getElementById('leftValues').value);
+            });
+
+            $("#btnRight").click(function () {
+                var selectedItem = $("#leftValues option:selected");
+                $("#rightValues").append(selectedItem);
+                $("#leftValues option").attr("selected", "selected");
+            });
+
+            $("#rightValues").change(function () {
+                var selectedItem = $("#rightValues option:selected");
+                $("#txtRight").val(selectedItem.text());
+            });
+
+            $("#ALM_EXT").change(function () {
+                if (document.getElementById("ALM_EXT").value == "NO") {
+                    $("#ALM_EXT_TO").attr("disabled", true);
+                } else {
+                    $("#ALM_EXT_TO").attr("disabled", false);
+                }
+            });
+
+            $("#CheckJob").click(function () {
+                $.ajax({
+                    url: '@Url.Action("CheckCab", "VIS_NRM")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        "G3E_FID": document.getElementById('G3E_FID').value,
+                        "random": Math.random()
+                    },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        var res = jQuery.parseJSON(data);
+                        var itemsallCab = "";
+                        //alert(res.CallCab);
+                        CallCab = res.CallCab;
+                        valueallCab = CallCab.split(":");
+                        for (var i = 0; i < valueallCab.length; i++) {
+                            if (valueallCab[i] != "") {
+                                dataCab = valueallCab[i].split("/");
+                                itemsallCab += "<option value='" + dataCab[1] + "'>" + dataCab[1] + " - (" + dataCab[2] + "," + dataCab[3] + ") - " + dataCab[4] + "</option>";
+                            }
+                        }
+                        $("#NearCabinet").html(itemsallCab);
+                    }
+                });
+                $("#divCheckCab").dialog("open");
+            });
+
+            $("#divCheckCab").dialog({
+                autoOpen: false,
+                height: 200,
+                width: 450,
+                modal: true,
+                buttons: {
+                },
+                close: function () {
+                }
+            });
+
+            $("#dialog").dialog({
+                autoOpen: false,
+                height: 150,
+                width: 250,
+                modal: true,
+                buttons: {
+                },
+                close: function () {
+                }
+            });
+
+            $("#btnSave").click(function () {
+                var fx = confirm("Are you sure you want to save?");
+                if (fx == true) {
+                    var a = $('#EditCabInfo').serialize();
+                    $.ajax({
+                        url: '@Url.Action("EditCabInfo", "VIS_NRM")',
+                        type: "POST",
+                        dataType: "html",
+                        data: a,
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            if (res.status == "PENDING") {
+                                document.getElementById('SaveStatus').innerHTML = res.status + ". Please fill up all mandatory fields (*) to complete the data entry.";
+                            } else {
+                                document.getElementById('SaveStatus').innerHTML = res.status;
+                            }
+                            $("#dialog").dialog("open");
+                            //alert("Successfully insert with status " + res.status);
+                        }
+                    });
+                }
+            });
+
+            $("#btnExit").click(function () {
+                //alert(window.location.hostname);
+                var fx = confirm("Please click save before exit.\n Click OK to exit?");
+                if (fx == true) {
+                    window.location.replace("http://" + window.location.hostname + "/VIS_NRM/ListCabInfo?searchKey=" + document.getElementById("CODE").value + "&pwrCab=" + document.getElementById("PWR_CAB_ID").value + "&StateId=&zoneID=&pttID=&excID=" + document.getElementById("EXC_ABB").value + "&rcID=&status=&Model=&Manufacturer=");
+                }
+            });
+
+            $('#btnExit').button();
+
+            $('#batt_insdate').click(function () {
+                if ($(this).is(':checked')) {
+                    //alert(document.getElementById('comm_date').value);
+                    $('#BATT_DATE').val('');
+                    $("#BATT_DATE").attr("disabled", true);
+                    document.getElementById("batt_w").style.display = "none";
+                } else { $("#BATT_DATE").attr("disabled", false); document.getElementById("batt_w").style.display = "block"; }
+            });
+        });
+    });
+</script>
+<br />
+<h2>Edit Network Facility</h2>
+@using (Html.BeginForm("EditCabInfo", "VIS_NRM", FormMethod.Post, new { enctype = "multipart/form-data", id = "EditCabInfo" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+        <div>
+            <section class="container">
+            <table width="830px" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>CABINET ID :</td>            
+                <td>@Html.HiddenFor(m => m.G3E_FID)@Html.TextBoxFor(m => m.CODE, new { style = "width:200px;", @readonly = true }) @Html.HiddenFor(m => m.DATA_NO)</td>
+                <td>ZONE:</td>          
+                <td>@Html.HiddenFor(m => m.ZONE, new { style = "width:200px;"}) <label id="lbl_zone" style="font-size:13px;font-weight:bold;"></label></td>
+            </tr>
+            <tr>
+                <td>LATITUDE/LONGITUDE :</td>            
+                <td>@Html.HiddenFor(m => m.latlong, new { style = "width:130px;" }) <label id="lbl_lat" style="font-size:13px;font-weight:bold;"></label>
+                <a href="#" id="CheckJob">Near Cabinet</a></td>
+                <td id="cabPlanDate">CABINET PLAN DATE :
+                    <div id="helpbox" style="display:none;color:Red;">Cabinet Created Date in NEPS</div>
+                </td>
+                <td>@Html.HiddenFor(m => m.INSTALL_YEAR, new { style = "width:200px;"})
+                    <label id="lbl_year_install" style="font-size:13px;font-weight:bold;"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>POWER CABINET ID <span style="color:Red;vertical-align:top;font-weight:bold">*</span> : </td>          
+                <td><label id="lbl_pwr_cab_id"></label>
+                    @Html.HiddenFor(m => m.EXC_ABB, new { style = "width:200px;" })
+                    @Html.DropDownListFor(m => m.PWR_CAB_ID, (IEnumerable<SelectListItem>)ViewBag.Pwr_Cab, new { style = "width:120px;" })</td>
+                <td>UNKNOWN COMMISSION DATE :</td>
+                <td>@{ WebView.Models.Account.UserModel userAcc = (WebView.Models.Account.UserModel)HttpContext.Current.Session["UserInfo"]; }
+                    @if (userAcc.Group != "AND")
+                    {<input type="checkbox" name="comm_date" id="comm_date" style="" />}</td>                
+            </tr>
+            <tr>
+                <td>POWER CABINET CONDITION <span style="color:Red;vertical-align:top;font-weight:bold">*</span>:</td>
+                <td>@Html.DropDownListFor(m => m.PWR_CAB_CONDITION, (IEnumerable<SelectListItem>)ViewBag.Condition, new { style = "width:200px;" })</td>            
+                <td id="cabComDate">CABINET COMMISION DATE <span style="color:Red;vertical-align:top;font-weight:bold">*</span> :
+                    <div id="helpbox1" style="display:none;color:Red;">Cabinet date ready for service</div>
+                </td>
+                <td>@Html.EditorFor(m => m.CAB_INS_DATE, new { style = "width:200px;" }) </td>
+            </tr>
+            <tr>
+                <td>EQUIP. CABINET CONDITION <span style="color:Red;vertical-align:top;font-weight:bold">*</span>:</td>
+                <td>@Html.DropDownListFor(m => m.EQUIP_CAB_CONDITION, (IEnumerable<SelectListItem>)ViewBag.Condition, new { style = "width:200px;" })</td>
+                <td>CABINET MANUFACTURER :</td>
+                <td>@Html.TextBoxFor(m => m.MANUFACTURER, new { style = "width:200px;background-color:#F0F8FF;", @readonly = true })</td>
+            </tr>  
+            <tr>
+                <td>POWER ALARM EXTENDED :</td>
+                <td>@Html.DropDownListFor(m => m.ALM_EXT, (IEnumerable<SelectListItem>)ViewBag.Condition1, new { style = "width:200px;" })</td>
+                <td>CABINET CONTRACTOR :</td>
+                <td>@Html.TextBoxFor(m => m.CONTRACTOR, new { style = "width:200px;background-color:#F0F8FF;", @readonly = true })</td>
+            </tr>
+            <tr>
+                <td style="display:none">ALARM STATUS :</td>
+                <td style="display:none">@Html.DropDownListFor(m => m.ALM_STATUS, (IEnumerable<SelectListItem>)ViewBag.Condition, new { style = "width:200px;" })</td>
+                <td>ALARM EXTENDED TO:</td>
+                <td>@Html.DropDownListFor(m => m.ALM_EXT_TO, (IEnumerable<SelectListItem>)ViewBag.ALMEXT, new { style = "width:200px;" })</td>
+                <td>TNB METER <span style="color:Red;vertical-align:top;font-weight:bold">*</span>:</td>
+                <td>@Html.DropDownListFor(m => m.TNB_METER, (IEnumerable<SelectListItem>)ViewBag.Condition1, new { style = "width:200px;" })</td>
+            </tr>
+            </table>  
+            <table>
+                <tr>
+                    <td style="width:170px">SHARED RECTIFIER WITH :@Html.HiddenFor(m => m.SHARE_NO, new { style = "width:200px;" })</td>
+                    <td>@Html.ListBoxFor(m => m.rightValues, (IEnumerable<SelectListItem>)ViewBag.RF_Cab, new { Multiple = "multiple", size = "5" })
+                        @*<select id="rightValues" style="width:200px" size="5" multiple></select>*@
+                    <td style="vertical-align:center;text-align:center;">
+                        <input type="button" id="btnLeft" value="&gt;&gt;" />
+                        <input type="button" id="btnRight" value="&lt;&lt;" />
+                    </td>
+                    <td style="width:200px"> @Html.ListBoxFor(m => m.leftValues, (IEnumerable<SelectListItem>)ViewBag.LF_Cab, new { Multiple = "multiple", size = "5" }) </td>
+                </tr>
+            </table>
+            <!--------------------------------------------------------------------------share rectifier ------------------------------------------------------------------>           
+            <div style="display:none;">
+                <input type="text" id="txtRight" />
+            </div>
+            </section>
+        </div>
+    <br />
+        <div id="divCheckJob" style="display:none; min-height:400px; min-width:500px;background-color:transparent;">
+            <ul id = "uiCheckJob"style="display:block; height:30px; background-color:transparent;" >
+                <li><a href="#tabs-1" id = "MtabPROTECTION" style="display:block;" >PROTECTION (POWER CABINET)</a></li>
+                <li><a href="#tabs-2" id = "MtabRECTIFIER" style="display:block;">RECTIFIER</a></li>
+                <li><a href="#tabs-3" id = "MtabBATTERY" style="display:block;">BATTERY</a></li>
+                <li><a href="#tabs-4" id = "MtabTEMPERATURE" style="display:block;">TEMPERATURE & VENTILATION</a></li>
+            </ul>
+            <div id="tabs-1">
+                <table align="center"  width="auto" id="tabPROTECTION"  style="display:block;">
+                    <tbody>
+                        <tr style="background-color:transparent;text-align:center;"><td colspan="4"> <h3>PROTECTION (POWER CABINET)</h3></td></tr>
+                        <tr>
+                            <td style = "width:190px;" >RCCB BRAND <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>        
+                            <td>:@Html.DropDownListFor(m => m.PRO_ELCB_BRAND, (IEnumerable<SelectListItem>)ViewBag.ELCBRAND, new { style = "width:190px;" })</td>
+                            <td style = "width:190px;" >AUTORESET BRAND <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>
+                            <td>:@Html.DropDownListFor(m => m.PRO_ELCB_AUTO_BRAND, (IEnumerable<SelectListItem>)ViewBag.ELCBRAND, new { style = "width:190px;" })</td>
+                        </tr>
+                        <tr>
+                            <td>RCCB LOAD (Amp) <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.TextBoxFor(m => m.PRO_ELCB_LOAC, new { style = "width:190px;" })@Html.TextBoxFor(m => m.PRO_ELCB_VAC, new { style = "width:190px;display:none;" })</td>
+                        </tr> 
+                        <tr>
+                            <td>RCCB RATING (mA) <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.TextBoxFor(m => m.PRO_ELCB_CAPASITY, new { style = "width:190px;" })</td>
+                            <td>RCCB INSTALL DATE</td>            
+                            <td>@Html.EditorFor(m => m.PRO_ELCB_DATE, new { style = "width:190px;" })</td>
+                        </tr> 
+                        <tr>
+                            <td id="proMcbB">MCB BRAND <span style="color:Red;vertical-align:top;font-weight:bold">*</span>
+                                <div id="helpbox3" style="display:none;color:Red;">MCB to equipment not the main mcb</div>    
+                            </td>            
+                            <td>:@Html.DropDownListFor(m => m.PRO_MCB_BRAND, (IEnumerable<SelectListItem>)ViewBag.MCBRAND, new { style = "width:190px;" })</td>
+                            <td id="proMcbR">MCB RATING (Amp) <span style="color:Red;vertical-align:top;font-weight:bold">*</span>
+                                <div id="helpbox4" style="display:none;color:Red;">MCB to equipment not the main mcb</div>  
+                            </td>            
+                            <td>:@Html.TextBoxFor(m => m.PRO_MCB_CAPASITY, new { style = "width:190px;" })</td>
+                        </tr>            
+                        <tr>
+                            <td id="proMcbD">MCB INSTALL DATE
+                                <div id="helpbox5" style="display:none;color:Red;">MCB to equipment not the main mcb</div>  
+                            </td>            
+                            <td>@Html.EditorFor(m => m.PRO_MCB_DATE, new { style = "width:190px;" })</td>
+                            <td>SURGE ARRESTOR BRAND <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.DropDownListFor(m => m.PRO_SA_BRAND, (IEnumerable<SelectListItem>)ViewBag.SABRAND, new { style = "width:190px;" })</td>
+                        </tr>  
+                        <tr>
+                            <td>SURGE ARRESTOR RATING (kA) <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.TextBoxFor(m => m.PRO_SA_CAPASITY, new { style = "width:190px;" })</td>
+                            <td>SURGE ARRESTOR CONDITION <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>
+                            <td>:@Html.DropDownListFor(m => m.PRO_SA_CONDITION, (IEnumerable<SelectListItem>)ViewBag.Condition, new { style = "width:190px;" })</td>  
+                        </tr> 
+                        <tr>                     
+                            <td>EARTHING RESISTANCE (Ohm)</td>            
+                            <td>:@Html.TextBoxFor(m => m.PRO_AC_OHM, new { style = "width:190px;" })</td>
+                            <td>POWER CABINET EARTHING CONNECTION</td>   
+                            <td>:@Html.DropDownListFor(m => m.PRO_AC_CONNECTION, (IEnumerable<SelectListItem>)ViewBag.ConditionPro, new { style = "width:190px;" })</td>                                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="tabs-2">
+                <table align="center"  width="auto" id="tabRECTIFIER"  style="display:block;">
+                    <tbody>
+                        <tr style="background-color:transparent;text-align:center;"><td colspan="4"> <h3>RECTIFIER</h3></td></tr> 
+                        <tr>
+                            <td style = "width:180px;" >RECTIFIER BRAND <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.DropDownListFor(m => m.RC_BRAND, (IEnumerable<SelectListItem>)ViewBag.RCBRAND, new { style = "width:180px;" }) </td>
+                            <td style = "width:180px;" >RECTIFIER  MODEL <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.DropDownListFor(m => m.RC_MODEL, (IEnumerable<SelectListItem>)ViewBag.RCMODEL, new { style = "width:180px;" })</td>
+                        </tr> 
+                        <tr>
+                            <td>RECTIFIER MODULE CAPACITY (A) <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.TextBoxFor(m => m.RC_RATING, new { style = "width:180px;" })</td>
+                            <td id="rcMax">RECTIFIER MAX MODULES <span style="color:Red;vertical-align:top;font-weight:bold">*</span>
+                                <div id="helpbox6" style="display:none;color:Red;">Maximum number of rectifier modules</div>  
+                            </td>            
+                            <td>:@Html.TextBoxFor(m => m.RC_GMODULES, new { style = "width:180px;" })</td>
+                        </tr> 
+                        <tr>
+                            <td id="rcIns">RECTIFIER MODULE INSTALLED <span style="color:Red;vertical-align:top;font-weight:bold">*</span>
+                                <div id="helpbox7" style="display:none;color:Red;">Number of retifier module installed</div>  
+                            </td>            
+                            <td>:@Html.TextBoxFor(m => m.RC_BMODULES, new { style = "width:180px;" })</td>
+                            <td>RECTIFIER INSTALL DATE</td>            
+                            <td>@Html.EditorFor(m => m.RC_DATE, new { style = "width:180px;" })</td>
+                        </tr>            
+                        <tr>
+                            @*<td>RECTIFIER VOLTAGE VAC </td>            
+                            <td>:</td>*@
+                            <td id="rcWar">RECTIFIER WARRANTY END DATE
+                                <div id="helpbox8" style="display:none;color:Red;">Auto set to Install date + 1 year. Correct this if its other date</div>  
+                            </td>            
+                            <td>@Html.EditorFor(m => m.RC_WARRANTY_END, new { style = "width:180px;" })@Html.TextBoxFor(m => m.RC_VAC, new { style = "width:180px;display:none;" })</td>
+                            <td>RECTIFIER VOLTAGE VDC <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.TextBoxFor(m => m.RC_VDC, new { style = "width:180px;" })</td>
+                        </tr>  
+                        <tr>
+                            <td>RECTIFIER PRESENT LOAD (A) </td>            
+                            <td>:@Html.TextBoxFor(m => m.RC_PRESENT, new { style = "width:180px;" })</td>
+                            <td>SURGE ARRESTOR CONDITION</td>            
+                            <td>:@Html.DropDownListFor(m => m.RC_SA_CONDITION, (IEnumerable<SelectListItem>)ViewBag.ConditionRC_SA, new { style = "width:180px;" })
+                            @*@Html.DropDownListFor(m => m.RC_MCB_BRAND, (IEnumerable<SelectListItem>)ViewBag.MCBRAND, new { style = "width:180px;display:none;" })
+                            @Html.TextBoxFor(m => m.RC_MCB_CAPASITY, new { style = "width:180px;display:none;" })
+                            @Html.DropDownListFor(m => m.RC_SA_BRAND, (IEnumerable<SelectListItem>)ViewBag.SABRAND, new { style = "width:180px;display:none;" })
+                            @Html.TextBoxFor(m => m.RC_SA_CAPASITY, new { style = "width:180px;display:none;" })
+                            @Html.TextBoxFor(m => m.RC_SA_OHM, new { style = "width:180px;display:none;" })
+                            @Html.DropDownListFor(m => m.RC_SA_CONNECTION, (IEnumerable<SelectListItem>)ViewBag.Condition, new { style = "width:180px;display:none;" })
+                            @Html.DropDownListFor(m => m.RC_LVD, (IEnumerable<SelectListItem>)ViewBag.Condition1, new { style = "width:180px;display:none;" })*@
+                            </td>
+                        </tr> 
+                    </tbody>       
+                 </table>     
+            </div>
+            <div id="tabs-3">
+                <table align="center"  width="850px" id="tabBATTERY"  style="display:block;">
+                    <tbody>
+                        <tr style="background-color:transparent;text-align:center;"><td colspan="4"> <h3>BATTERY</h3></td></tr>
+                        <tr>
+                            <td style = "width:200px;">BATTERY EXIST <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td style = "width:200px;">:@Html.DropDownListFor(m => m.BATT_EXIST, (IEnumerable<SelectListItem>)ViewBag.Condition1, new { style = "width:150px;" })</td>
+                            <td style = "width:200px;">UNKNOWN INSTALL DATE </td>            
+                            <td>:<input type="checkbox" name="batt_insdate" id="batt_insdate" style="" /></td>
+                        </tr>
+                        <tr>
+                            <td style = "width:150px;" >BRAND <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.DropDownListFor(m => m.BATT_BRAND, (IEnumerable<SelectListItem>)ViewBag.ARBRAND, new { style = "width:150px;" })
+                                @Html.TextBoxFor(m => m.BATT_VOLT, new { style = "width:150px;display:none;" })</td>
+                            <td style = "width:200px;">INSTALL DATE <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.EditorFor(m => m.BATT_DATE, new { style = "width:220px;" })</td>
+                        </tr>  
+                        <tr>
+                            <td style = "width:150px;" >NO OF BLOCK <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.TextBoxFor(m => m.BATT_NO_CELL, new { style = "width:150px;" })</td>
+                            <td style = "width:190px;" >UNDER WARRANTY <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td><input type="checkbox" name="batt_w" id="batt_w" style="" /></td>
+                        </tr> 
+                        <tr>
+                            <td>CONDITION <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.DropDownListFor(m => m.BATT_CONDITION, (IEnumerable<SelectListItem>)ViewBag.Condition2, new { style = "width:150px;" })</td>
+                            <td style = "width:150px;" >WARRANTY END DATE <span style="color:Red;vertical-align:top;font-weight:bold">*</span>:</td>            
+                            <td style = "width:320px;"><label id="lbl_batt_w"> N/A</label>&nbsp; @Html.EditorFor(m => m.BATT_WARRANTY_END, new { style = "width:50px;" }) &nbsp; </td>
+                        </tr>
+                        <tr>
+                            <td>EXTRA LOCKING </td>
+                            <td>:@Html.DropDownListFor(m => m.BATT_EXTRA_LOCKING, (IEnumerable<SelectListItem>)ViewBag.Condition1, new { style = "width:150px;" })</td>
+                            <td style = "width:150px;" >TOTAL CAPACITY (AH) <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>@Html.TextBoxFor(m => m.BATT_CAPASITY, new { style = "width:180px;" })</td>
+                        </tr>
+                    </tbody>    
+                 </table>
+            </div>
+            <div id="tabs-4">
+                <table align="center"  width="auto" id="tabTEMPERATURE"  style="display:block;">
+                    <tbody>
+                        <tr style="background-color:transparent;text-align:center;"><td colspan="4"> <h3>TEMPERATURE & VENTILATION</h3></td></tr>
+                        <tr>
+                            <td style = "width:180px;" >INDOOR/OUTDOOR <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.DropDownListFor(m => m.AIRCOND_IN_OUT, (IEnumerable<SelectListItem>)ViewBag.IN_OUT, new { style = "width:180px;" })</td>
+                            <td style = "width:180px;" >AIRCOND CAPACITY (HP)</td>            
+                            <td>:@Html.TextBoxFor(m => m.AIRCOND_HPOWER, new { style = "width:180px;" })</td>
+                        </tr>
+                        <tr>
+                            <td style = "width:180px;" >TEMPERATURE READING (°C)</td>            
+                            <td>:@Html.TextBoxFor(m => m.AIRCOND_READING, new { style = "width:180px;" })</td>
+                            <td style = "width:180px;" >TOTAL UNIT <span style="color:Red;vertical-align:top;font-weight:bold">*</span></td>            
+                            <td>:@Html.TextBoxFor(m => m.AIRCOND_WORK, new { style = "width:180px;" })</td>
+                        </tr>  
+                        @*<tr>
+                            <td>TOTAL FAULTY</td>            
+                            <td>:@Html.TextBoxFor(m => m.AIRCOND_BROKE, new { style = "width:180px;" })</td>             
+                        </tr>*@ 
+                        <tr>
+                            <td>DOOR CONDITION</td>
+                            <td>:@Html.DropDownListFor(m => m.AIRCOND_DOOR, (IEnumerable<SelectListItem>)ViewBag.Condition, new { style = "width:180px;" })</td>
+                            <td style="display:none">ALARM</td>            
+                            <td style="display:none">:@Html.DropDownListFor(m => m.ALARM, (IEnumerable<SelectListItem>)ViewBag.Condition, new { style = "width:180px;" })</td>               
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+        </div> 
+        <br />
+        <div id="divSave" style="display:block">    
+            <table>
+                <tr><td style="vertical-align:top;font-weight:bold">UPDATED BY :</td>            
+                    <td style="vertical-align:top;">@Html.TextBoxFor(m => m.CHECK_BY, new { style = "width:300px;" })
+                        @{ WebView.Models.Account.UserModel user = (WebView.Models.Account.UserModel)HttpContext.Current.Session["UserInfo"];}
+                        @Html.HiddenFor(m => m.GROUP_ID, new { @Value = @user.Group, @readonly = true })
+                    </td>
+                    <td style="vertical-align:top;font-weight:bold">REMARKS :</td>            
+                    <td>@Html.TextAreaFor(m => m.REMARKS, new { style = "width:350px;" })</td>
+                </tr>
+                <tr><td colspan="4" style="text-align:center;"><input type="button" value="Save" id="btnSave" /> <input type="button" value="Exit" id="btnExit" /></td></tr>
+            </table>
+        </div>
+        <div id="divPicklist" title="Add New Picklist" style="padding-left:40px; padding-top:30px;">
+            <input type="hidden" id="targetTable" value="" />
+            <input type="hidden" id="targetPicklist" value="" />
+            <table>
+                <tr><td>BRAND :</td><td><input type="text" id="txtABrand" name="txtABrand" /></td></tr>
+                <tr><td colspan=2><input type="button" value="INSERT" id="btnInsert" style="height:30px;" /></td></tr>
+            </table>
+        </div>
+        <div id="divPicklist2" title="Add New Picklist" style="padding-left:40px; padding-top:30px;">
+            <input type="hidden" id="targetTable2" value="" />
+            <input type="hidden" id="targetPicklist2" value="" />
+            <table>
+                <tr><td>BRAND :</td><td><input type="text" id="txtABrand2" name="txtABrand2" style="text-transform: uppercase"/></td></tr>
+                <tr><td>MODEL :</td><td><input type="text" id="txtAModel2" name="txtAModel2" style="text-transform: uppercase"/></td></tr>
+                <tr><td colspan=2><input type="button" value="INSERT" id="btnInsert2" style="height:30px;" /></td></tr>
+            </table>
+        </div>                                                                 
+        
+        <div id="divCheckCab" title="Nearest Cabinet" style="padding-left:40px; padding-top:10px;">
+            <table>
+                <tr><td>The Nearest Cabinet :</td></tr>
+                <tr><td>EG : CABINET - (LAT,LONG) - POWER CABINET ID</td></tr>
+                <tr><td style="width:600px;"><select id="NearCabinet" multiple="multiple" size="6" style="width:500px;" /> </td></tr>
+            </table>
+        </div>
+        <div id="dialog" title="Succesfully Save">
+            <p>Successfully insert with status <label id="SaveStatus"></label> </p>
+        </div>
+}

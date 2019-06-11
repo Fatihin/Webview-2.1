@@ -1,0 +1,142 @@
+﻿@model WebView.Models.PUFRM_NewJobModel
+           
+@{
+    ViewBag.Title = "PUFRM_NewJob";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Plant Unit Feature Reference</h2>
+@using (Html.BeginForm("PUFRM_NewJob", "PUFRM", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="600px" cellpadding="0" cellspacing="0" border="0">      
+        <tr>
+            <td>PU ID</td>
+            <td>@Html.DropDownListFor(m => m.x_PU_ID, (IEnumerable<SelectListItem>)ViewBag.PUId, new { style = "width:200px;" })
+             @*@Html.TextBoxFor(m => m.x_PU_ID, new { style = "width:200px;" })*@
+             @Html.ValidationMessageFor(m => m.x_PU_ID)
+            </td>
+        </tr>
+        <tr>
+            <td>PU Description</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_PU_DESC, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_PU_DESC)
+            </td>
+        </tr>
+        <tr>
+            <td>Feature Type</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_FEAT_TYPE, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_FEAT_TYPE)
+            </td>
+        </tr>
+         <tr>
+            <td>Qty Indicator</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_QTY_IND, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_QTY_IND, "*")
+            </td>
+        </tr>
+         <tr>
+            <td>Multiplier Factor</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_MUL_FAC, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_MUL_FAC)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT1</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_ATT1, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_ATT1)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT2</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_ATT2, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_ATT2)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT3</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_ATT3, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_ATT3)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT4</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT4, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT4)
+            </td>
+        </tr>
+        <tr>
+            <td>ATT5</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT5, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT5)
+            </td>
+        </tr>  
+         <tr>
+            <td>ATT6</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT6, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT6)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT7</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT7, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT7)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT8</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT8, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT8)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT9</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT9, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT9)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT10</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT10, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT10)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT11</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT11, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT11)
+            </td>
+        </tr>
+         <tr>
+            <td>ATT12</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_ATT12, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_ATT12)
+            </td>
+        </tr>           
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>    
+}

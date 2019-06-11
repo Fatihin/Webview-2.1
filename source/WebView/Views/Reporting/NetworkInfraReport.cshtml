@@ -1,0 +1,1008 @@
+﻿@model PagedList.IPagedList<WebView.WebService._base.NetInfraInfo>
+
+@{
+    ViewBag.Title = "NetworkInfraReport";
+}
+
+@section Styles {
+    SECTION {
+        padding: 8px;
+        background-color: #f0f0f0;
+        overflow: auto;
+    }
+}
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+
+        $(function () {
+            document.getElementById("btnGenReport").disabled = true;
+
+            if (document.getElementById("reportType").value == "CABINET LATLONG") {
+                if (document.getElementById("cabLatLongTable") != null)
+                    document.getElementById("cabLatLongTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "DP LATLONG") {
+                if (document.getElementById("cabLatLongTable") != null)
+                    document.getElementById("cabLatLongTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "CABINET DISTANCE FROM EXCHANGE") {
+                if (document.getElementById("cabDistTable") != null)
+                    document.getElementById("cabDistTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "DP DISTANCE FROM CABINET") {
+                if (document.getElementById("cabDistTable") != null)
+                    document.getElementById("cabDistTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "MANHOLE LATLONG") {
+                if (document.getElementById("manholeLatLongTable") != null)
+                    document.getElementById("manholeLatLongTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "POLE LATLONG") {
+                if (document.getElementById("poleLatLongTable") != null)
+                    document.getElementById("poleLatLongTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "FEATURE STATE") {
+                if (document.getElementById("featStateTable") != null)
+                    document.getElementById("featStateTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "PROJECT NUMBER REPORT") {
+                if (document.getElementById("projNoTable") != null)
+                    document.getElementById("projNoTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "PROJECT NUMBER MATCHING WITH JOB NUMBER") {
+                if (document.getElementById("projMatchJobTable") != null)
+                    document.getElementById("projMatchJobTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "OLT MAPPING") {
+                if (document.getElementById("oltMappingTable") != null)
+                    document.getElementById("oltMappingTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "CORE COUNT REPORT (ESIDE)") {
+                if (document.getElementById("coreCountEsideTable") != null)
+                    document.getElementById("coreCountEsideTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "CORE COUNT REPORT (DSIDE)") {
+                if (document.getElementById("coreCountDsideTable") != null)
+                    document.getElementById("coreCountDsideTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "FMU - COUNT OF REDMARK") {
+                //  alert("12");
+                // alert(document.getElementById("fmuRedMarkTable"));
+                if (document.getElementById("fmuRedMarkTable") != null)
+                    document.getElementById("fmuRedMarkTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "USER USAGE TRACKING LOGIN") {
+                if (document.getElementById("userUsageTable") != null)
+                    document.getElementById("userUsageTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "PROPERTY COUNT (CABINET)") {
+                if (document.getElementById("propertyCountCabTable") != null)
+                    document.getElementById("propertyCountCabTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "PROPERTY COUNT (FDC)") {
+                if (document.getElementById("propertyCountFDCTable") != null)
+                    document.getElementById("propertyCountFDCTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "PROPERTY COUNT (MSAN)") {
+                if (document.getElementById("propertyCountMSANTable") != null)
+                    document.getElementById("propertyCountMSANTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "PROPERTY COUNT (RT)") {
+                if (document.getElementById("propertyCountRTTable") != null)
+                    document.getElementById("propertyCountRTTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "FEATURE COUNT") {
+                if (document.getElementById("featureCountTable") != null)
+                    document.getElementById("featureCountTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "CIVIL REPORT") {
+                if (document.getElementById("civilTable") != null)
+                    document.getElementById("civilTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "FIBER REPORT (ESIDE)") {
+                if (document.getElementById("fiberEsideTable") != null)
+                    document.getElementById("fiberEsideTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "FIBER REPORT (DSIDE)") {
+                if (document.getElementById("fiberDsideTable") != null)
+                    document.getElementById("fiberDsideTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "COPPER REPORT (ESIDE)") {
+                if (document.getElementById("copEsideTable") != null)
+                    document.getElementById("copEsideTable").style.display = "block";
+            }
+            else if (document.getElementById("reportType").value == "COPPER REPORT (DSIDE)") {
+                if (document.getElementById("copDsideTable") != null)
+                    document.getElementById("copDsideTable").style.display = "block";
+            }
+
+
+            if (document.getElementById("modelCount").value > 0)
+                document.getElementById("btnGenReport").disabled = false;
+
+
+
+            $('#ptt').change(function () {
+
+                //alert(document.getElementById("excabb").value);
+                //if (document.getElementById("ptt").value == 'ALL') {
+                //    document.getElementById("excabb").disabled = true;
+                //}
+                //if (document.getElementById("excabb").value == 'SELECT' && document.getElementById("ptt").value != 'ALL') {
+                //    alert('Please select exchange');
+                //}
+
+                //else if (document.getElementById("ptt").value != 'ALL') {
+                    $.ajax(
+                  {
+                      url: "/Reporting/GetEXCABB",
+                      type: "POST",
+                      dataType: "html",
+                      data: {
+                          "PTT": document.getElementById("ptt").value
+                      },
+                      beforeSend: function () {
+
+                      },
+                      success: function (data) {
+
+                          var res = jQuery.parseJSON(data);
+                          if (document.getElementById("ptt").value != "SELECT") {
+                              dataPu = res.PuList.split("|");
+                              //alert(dataPu);
+                              var itemsPu = "<option>  </option>";
+                              
+                              for (i = 0; i < dataPu.length; i++) {
+                                  if (dataPu[i] != "") {
+                                      valuePu = dataPu[i].split(":");
+                                      //alert(valuePu[0]);
+                                      itemsPu += "<option value='" + valuePu[1] + "'>" + valuePu[0] + "</option>";
+                                  }
+                              }
+
+                              $("#excabb").html(itemsPu);
+                          }
+
+
+                      }
+                  });
+                //}
+
+            });
+
+
+
+            $('#btnSearch').click(function () {
+                if (document.getElementById("reportType").value == "")
+                    alert("Please Select Report");
+                else if (document.getElementById("ptt").value == "")
+                    alert("Please Select PTT");
+               // else if (document.getElementById("excabb").value == "SELECT" && document.getElementById("ptt").value != "ALL")
+                   // alert("Please Select exchange");
+
+                else
+                    window.location = "NetworkInfraReport?reportType=" + document.getElementById("reportType").value + "&ptt=" + document.getElementById("ptt").value
+                    + "&excabb=" + document.getElementById("excabb").value;
+            });
+
+
+
+            $('#btnGenReport').click(function () {
+                window.location = "GenerateReport?reportType=" + document.getElementById("reportType").value + "&ptt=" + document.getElementById("ptt").value
+                 + "&excabb=" + document.getElementById("excabb").value;
+            });
+
+            $("#btnGenReport").button();
+            $("#btnSearch").button();
+        });
+    });
+</script>
+
+<br />
+<h2>Network Infra Report</h2>
+<div style="height:850px"> 
+    <div><section class="container">
+        <table style="width:850px;">
+            <tr>
+                <td style="width:185px;"></td> 
+                <td style="width:120px; text-align:right;">REPORT :</td> 
+                <td > @Html.DropDownList("reportType", (IEnumerable<SelectListItem>)ViewBag.ReportType, new { style = "width:350px" })</td>
+                <td style="width:120px; text-align:right;">PTT :</td> 
+                <td> @Html.DropDownList("ptt", (IEnumerable<SelectListItem>)ViewBag.Ptt, new { style = "width:70px" })</td>
+                 <td style="width:120px; text-align:right;">EXC ABB :</td> 
+                <td> @Html.DropDownList("excabb", (IEnumerable<SelectListItem>)ViewBag.excabb, new { style = "width:190px", id = "excabb" })</td>
+               
+                <td style="width:185px;"></td> 
+             </tr>
+             <tr>
+                <td colspan=6 style="text-align:center;"><input type="button" value="Search" id="btnSearch" />
+                    <input type="button" value="Generate Report" id="btnGenReport" /></td>
+            </tr>
+        </table>
+        </section>
+    </div><br />
+
+    <input type="hidden" id="modelCount" value="@Model.Count()"/>
+    @if (Model.Count() > 0)
+    {
+        <div id="cabLatLongTable" style="display:none">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CAB_CODE</th>
+                        <th scope="col">LATITUDE</th>
+                        <th scope="col">LONGITUDE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CAB_CODE</td>
+                        <td>@res.LATITUDE</td>
+                        <td>@res.LONGITUDE</td>         
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="dpLatLongTable" style="display:none">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CAB_CODE</th>
+                        <th scope="col">DP_CODE</th>
+                        <th scope="col">LATITUDE</th>
+                        <th scope="col">LONGITUDE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CAB_CODE</td>
+                        <td>@res.DP_CODE</td>
+                        <td>@res.LATITUDE</td>
+                        <td>@res.LONGITUDE</td>        
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="cabDistTable" style="display:none">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CABINET TYPE</th>
+                        <th scope="col">CABINET CODE</th>
+                        <th scope="col">CABINET DISTANCE(m)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CAB_TYPE</td>
+                        <td>@res.CAB_CODE</td>
+                        <td>@res.CAB_DISTANCE</td>     
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="dpDistTable" style="display:none">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CAB_CODE</th>
+                        <th scope="col">DP_CODE</th>
+                        <th scope="col">DISTANCE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CAB_CODE</td>
+                        <td>@res.DP_CODE</td>
+                        <td>@res.DISTANCE</td>     
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="manholeLatLongTable" style="display:none">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">STATE</th>
+                        <th scope="col">REGION</th>
+                        <th scope="col">ZONE</th>
+                        <th scope="col">MANHOLE_FID</th>
+                        <th scope="col">MANHOLE_ID</th>
+                        <th scope="col">MANHOLE_TYPE</th>
+                        <th scope="col">LATITUDE</th>
+                        <th scope="col">LONGITUDE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.STATE</td>
+                        <td>@res.REGION</td>
+                        <td>@res.ZONE</td>
+                        <td>@res.MANHOLE_FID</td>   
+                        <td>@res.MANHOLE_ID</td>
+                        <td>@res.MANHOLE_TYPE</td>
+                        <td>@res.LATITUDE</td>
+                        <td>@res.LONGITUDE</td>        
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="poleLatLongTable" style="display:none">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">STATE</th>
+                        <th scope="col">REGION</th>
+                        <th scope="col">ZONE</th>
+                        <th scope="col">POLE_FID</th>
+                        <th scope="col">MANHOLE_TYPE</th>
+                        <th scope="col">LATITUDE</th>
+                        <th scope="col">LONGITUDE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.STATE</td>
+                        <td>@res.REGION</td>
+                        <td>@res.ZONE</td>
+                        <td>@res.POLE_FID</td>  
+                        <td>@res.MANHOLE_TYPE</td>
+                        <td>@res.LATITUDE</td>
+                        <td>@res.LONGITUDE</td>           
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="featStateTable" style="display:none">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">STATE</th>
+                        <th scope="col">REGION</th>
+                        <th scope="col">FEATURE_TYPE</th>
+                        <th scope="col">FEATURE_CODE</th>
+                        <th scope="col">FEATURE_FID</th>
+                        <th scope="col">FEATURE_STATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.STATE</td>
+                        <td>@res.REGION</td>
+                        <td>@res.FEATURE_TYPE</td>
+                        <td>@res.FEATURE_CODE</td>  
+                        <td>@res.FEATURE_FID</td>
+                        <td>@res.FEATURE_STATE</td>        
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="projNoTable" style="display:none;overflow:auto">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">PROJECT_NO</th>
+                        <th scope="col">WBS_NUM</th>
+                        <th scope="col">PROJ_DESC</th>
+                        <th scope="col">WBS_DESC</th>
+                        <th scope="col">SCHEME_NAME</th>
+                        <th scope="col">JOB_CREATED</th>
+                        <th scope="col">START_DATE</th>
+                        <th scope="col">END_DATE</th>
+                        <th scope="col">CREATED_DATE</th>
+                        <th scope="col">JOB_STATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.PROJECT_NO</td>
+                        <td>@res.WBS_NUM</td>
+                        <td>@res.PROJ_DESC</td>
+                        <td>@res.WBS_DESC</td>   
+                        <td>@res.SCHEME_NAME</td>
+                        <td>@res.JOB_CREATED</td>
+                        <td>@res.START_DATE</td>
+                        <td>@res.END_DATE</td>
+                        <td>@res.CREATED_DATE</td>
+                        <td>@res.JOB_STATE</td>        
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="projMatchJobTable" style="display:none">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">PROJECT_NO</th>
+                        <th scope="col">WBS_NUM</th>
+                        <th scope="col">PROJ_DESC</th>
+                        <th scope="col">WBS_DESC</th>
+                        <th scope="col">SCHEME_NAME</th>
+                        <th scope="col">CREATED_DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.PROJECT_NO</td>
+                        <td>@res.WBS_NUM</td>
+                        <td>@res.PROJ_DESC</td>
+                        <td>@res.WBS_DESC</td>   
+                        <td>@res.SCHEME_NAME</td>     
+                        <td>@res.CREATED_DATE</td>
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id="oltMappingTable" style="display:none; overflow:auto">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">OLT_ID</th>
+                        <th scope="col">OLT_SHELF</th>
+                        <th scope="col">OLT_SLOT</th>
+                        <th scope="col">OLT_PORT</th>
+                        <th scope="col">ODF_ID</th>
+                        <th scope="col">ODF_SHELF</th>
+                        <th scope="col">ODF_PORT</th>
+                        <th scope="col">ESIDE_CBL_CODE</th>
+                        <th scope="col">ESIDE_CBL_CORE</th>
+                        <th scope="col">ODF_ID_P</th>
+                        <th scope="col">ODF_SHELF_P</th>
+                        <th scope="col">ODF_PORT_P</th>
+                        <th scope="col">ESIDE_CBL_CODE_P</th>
+                        <th scope="col">ESIDE_CBL_CORE_P</th>
+                        <th scope="col">FDC_CODE</th>
+                        <th scope="col">FDC_SP_CODE</th>
+                        <th scope="col">FDC_SP_TYPE</th>
+                        <th scope="col">DSIDE_CBL_CODE</th>
+                        <th scope="col">DSIDE_CORE</th>
+                        <th scope="col">FDP_CODE</th>
+                    </tr>
+                </thead>
+                <tbody>
+             @foreach (var res in Model)
+                {
+  
+                    <tr class="odd">
+                    <td>@res.PTT</td>
+                    <td>@res.EXC_ABB</td>
+                    <td>@res.OLT_ID</td>
+                    <td>@res.OLT_SHELF</td>
+                    <td>@res.OLT_SLOT</td>
+                    <td>@res.OLT_PORT</td>
+                    <td>@res.ODF_ID</td>
+                    <td>@res.ODF_SHELF</td>
+                    <td>@res.ODF_PORT</td>
+                    <td>@res.ESIDE_CBL_CODE</td>
+                    <td>@res.ESIDE_CBL_CORE</td>
+                    <td>@res.ODF_ID_P</td>
+                    <td>@res.ODF_SHELF_P</td>
+                    <td>@res.ODF_PORT_P</td>
+                    <td>@res.ESIDE_CBL_CODE_P</td>
+                    <td>@res.ESIDE_CBL_CORE_P</td>
+                    <td>@res.FDC_CODE</td>
+                    <td>@res.FDC_SP_CODE</td>
+                    <td>@res.FDC_SP_TYPE</td>
+                    <td>@res.DSIDE_CBL_CODE</td>
+                    <td>@res.DSIDE_CORE</td>
+                    <td>@res.FDP_CODE</td>
+                    </tr>    
+                    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="coreCountEsideTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CABLE CODE</th>
+                        <th scope="col">CABLE SIZE</th>
+                        <th scope="col">TERM CODE</th>
+                        <th scope="col">CORE STATUS</th>
+                        <th scope="col">LOW CORE</th>
+                        <th scope="col">HIGH CORE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CABLE_CODE</td>
+                        <td>@res.CABLE_SIZE</td>
+                        <td>@res.TERM_CODE</td>
+                        <td>@res.CORE_STATUS</td>   
+                        <td>@res.LOW_CORE</td>
+                        <td>@res.HIGH_CORE</td>         
+                       
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="coreCountDsideTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">FDC CODE</th>
+                        <th scope="col">CABLE CODE</th>
+                        <th scope="col">CABLE SIZE</th>
+                        <th scope="col">FDP CODE</th>
+                        <th scope="col">CORE STATUS</th>
+                        <th scope="col">LOW CORE</th>
+                        <th scope="col">HIGH CORE</th>
+                    </tr>
+                </thead>
+                <tbody>
+ 
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.FDC_CODE</td>
+                        <td>@res.CABLE_CODE</td>
+                        <td>@res.CABLE_SIZE</td>
+                        <td>@res.FDP_CODE</td>
+                        <td>@res.CORE_STATUS</td>   
+                        <td>@res.LOW_CORE</td>
+                        <td>@res.HIGH_CORE</td>         
+                       
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="fmuRedMarkTable" style="display:none;overflow:auto">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">USERNAME</th>
+                        <th scope="col">FULL_NAME</th>
+                        <th scope="col">GROUP ID</th>
+                        <th scope="col">GROUP NAME</th>
+                        <th scope="col">PTT_STATE</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">G3E_DESCRIPTION</th>
+                        <th scope="col">G3E_CREATION</th>
+                        <th scope="col">JOB_STATE</th>
+                        <th scope="col">SCHEME_NAME</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.USERNAME</td>
+                        <td>@res.FULL_NAME</td>
+                        <td>@res.GRP_ID</td>
+                        <td>@res.GRPNAME</td>
+                        <td>@res.PTT_STATE</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.G3E_DESCRIPTION</td>   
+                        <td>@res.G3E_CREATION</td>
+                        <td>@res.JOB_STATE</td>
+                        <td>@res.SCHEME_NAME</td>         
+                       
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="userUsageTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">USERNAME</th>
+                        <th scope="col">FULL_NAME</th>
+                        <th scope="col">GROUP ID</th>
+                        <th scope="col">GROUP NAME</th>
+                        <th scope="col">PTT_STATE</th>
+                        <th scope="col">LOGOFF_TIME</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.USERNAME</td>
+                        <td>@res.FULL_NAME</td>
+                        <td>@res.GRP_ID</td>
+                        <td>@res.GRPNAME</td>
+                        <td>@res.PTT_STATE</td>
+                        <td>@res.LOGOFF_TIME</td>
+                        
+                       
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="propertyCountCabTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CABINET NUM</th>
+                        <th scope="col">PROPERTY TYPE</th>
+                        <th scope="col">STATE</th>
+                        <th scope="col">TOTAL_COUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+           
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CAB_NUM</td>
+                        <td>@res.PROPERTY_TYPE</td>
+                        <td>@res.STATE</td>
+                        <td>@res.TOTAL_COUNT</td>
+                        
+                       
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="propertyCountFDCTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">FDC NUM</th>
+                        <th scope="col">PROPERTY TYPE</th>
+                        <th scope="col">STATE</th>
+                        <th scope="col">TOTAL_COUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+           
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.FDC_NUM</td>
+                        <td>@res.PROPERTY_TYPE</td>
+                        <td>@res.STATE</td>
+                        <td>@res.TOTAL_COUNT</td>
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="propertyCountMSANTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">MSAN NUM</th>
+                        <th scope="col">PROPERTY TYPE</th>
+                        <th scope="col">STATE</th>
+                        <th scope="col">TOTAL_COUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+           
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.MSAN_NUM</td>
+                        <td>@res.PROPERTY_TYPE</td>
+                        <td>@res.STATE</td>
+                        <td>@res.TOTAL_COUNT</td>
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="propertyCountRTTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">RT NUM</th>
+                        <th scope="col">PROPERTY TYPE</th>
+                        <th scope="col">STATE</th>
+                        <th scope="col">TOTAL_COUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+           
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.RT_NUM</td>
+                        <td>@res.PROPERTY_TYPE</td>
+                        <td>@res.STATE</td>
+                        <td>@res.TOTAL_COUNT</td>
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="featureCountTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">FEATURE_NAME</th>
+                        <th scope="col">TOTAL_COUNT</th>
+                       
+                    </tr>
+                    
+                </thead>
+                <tbody>
+           
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.FEATURE_NAME</td>
+                        <td>@res.TOTAL_COUNT</td>
+                      
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="civilTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">FEATURE</th>
+                        <th scope="col">TOTAL_COUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+           
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.FEATURE</td>
+                        <td>@res.TOTAL_COUNT</td>
+                      
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="fiberDsideTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CABLE_CODE</th>
+                        <th scope="col">CABLE_TYPE</th>
+                        <th scope="col">CABLE_SIZE</th>
+                        <th scope="col">LENGTH KM</th>
+                    </tr>
+                </thead>
+                <tbody>
+       
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CABLE_CODE</td>
+                        <td>@res.CABLE_TYPE</td>
+                        <td>@res.CABLE_SIZE</td>
+                         <td>@res.LENGTH_KM</td>
+                      
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="fiberEsideTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CABLE_CODE</th>
+                        <th scope="col">CABLE_TYPE</th>
+                        <th scope="col">CABLE_SIZE</th>
+                        <th scope="col">LENGTH KM</th>
+                    </tr>
+                </thead>
+                <tbody>
+       
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CABLE_CODE</td>
+                        <td>@res.CABLE_TYPE</td>
+                        <td>@res.CABLE_SIZE</td>
+                         <td>@res.LENGTH_KM</td>
+                      
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="copEsideTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CABLE_CODE</th>
+                        <th scope="col">CABLE_TYPE</th>
+                        <th scope="col">CABLE_SIZE</th>
+                        <th scope="col">LENGTH KM</th>
+                    </tr>
+                </thead>
+                <tbody>
+       
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CABLE_CODE</td>
+                        <td>@res.CABLE_TYPE</td>
+                        <td>@res.CABLE_SIZE</td>
+                         <td>@res.LENGTH_KM</td>
+                      
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div id ="copDsideTable" style="display:none;">
+            <table id="rounded-corner" width="850px">
+                <thead>
+                    <tr>
+                        <th scope="col">PTT</th>
+                        <th scope="col">EXC_ABB</th>
+                        <th scope="col">CABLE_CODE</th>
+                        <th scope="col">CABLE_TYPE</th>
+                        <th scope="col">CABLE_SIZE</th>
+                        <th scope="col">LENGTH KM</th>
+                    </tr>
+                </thead>
+                <tbody>
+       
+                @foreach (var res in Model)
+                {
+                    <tr class="odd">
+                        <td>@res.PTT</td>
+                        <td>@res.EXC_ABB</td>
+                        <td>@res.CABLE_CODE</td>
+                        <td>@res.CABLE_TYPE</td>
+                        <td>@res.CABLE_SIZE</td>
+                         <td>@res.LENGTH_KM</td>
+                      
+                    </tr>    
+                }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+            &nbsp;
+            @if (Model.HasPreviousPage)
+            {
+                int mss = @Model.PageNumber - 1;
+                <a href="NetworkInfraReport?reportType=@ViewBag.ReportType1&ptt=@ViewBag.Ptt1&excabb=@ViewBag.excabb1&page=1"> << </a>
+                @Html.Raw("&nbsp;");
+                <a href="NetworkInfraReport?reportType=@ViewBag.ReportType1&ptt=@ViewBag.Ptt1&excabb=@ViewBag.excabb1&page=@mss"> < </a>
+            }
+            &nbsp;
+            @if (Model.HasNextPage)
+            {
+                int ms = @Model.PageNumber + 1;
+                <a href="NetworkInfraReport?reportType=@ViewBag.ReportType1&ptt=@ViewBag.Ptt1&excabb=@ViewBag.excabb1&page=@ms"> Next > </a>
+                @Html.Raw("&nbsp;");
+                <a href="NetworkInfraReport?reportType=@ViewBag.ReportType1&ptt=@ViewBag.Ptt1&excabb=@ViewBag.excabb1&page=@Model.PageCount"> >> </a>
+            }
+            <br/><b> Total @Model.TotalItemCount  records</b>
+        </div>
+    }
+    else
+    {
+        @:<br /><span style="font-size:12px;">No record found.</span> 
+    }
+    <br />
+    <div id="divLoading" style="visibility:hidden"><img src="@Url.Content("~/Content/images/rel_interstitial_loading.gif")" alt="loading..." /></div>
+    <div id="divResultText"></div>
+    <br />
+</div>

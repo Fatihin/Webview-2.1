@@ -1,0 +1,2272 @@
+﻿@{
+    ViewBag.Title = "AddFeature";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>AddFeature</h2>
+<br />
+
+
+<script type="text/javascript" >
+
+    jQuery(document).ready(function ($) {
+
+        var temp = "";
+        var MyArrayTab = new Array()
+        MyArrayTab[0] = "divInner_duck";
+        MyArrayTab[1] = "divManHole";
+        MyArrayTab[2] = "div_duct_path";
+        MyArrayTab[3] = "divDuck";
+        MyArrayTab[4] = "divPole";
+        MyArrayTab[5] = "div_pier_cross";
+        MyArrayTab[6] = "div_c_gauge";
+        MyArrayTab[7] = "div_c_alarm";
+        MyArrayTab[8] = "div_g_seal";
+        MyArrayTab[9] = "div_t_point";
+        MyArrayTab[10] = "div_transducer";
+        MyArrayTab[11] = "div_PU_IDF";
+        MyArrayTab[12] = "div_dslam";
+        MyArrayTab[13] = "div_FDC";
+        MyArrayTab[14] = "div_FDP";
+        MyArrayTab[15] = "div_TIE_FDP";
+        MyArrayTab[16] = "div_FTB";
+        MyArrayTab[17] = "div_IPMSAN";
+        MyArrayTab[18] = "div_DDN";
+        MyArrayTab[19] = "div_NDH";//NETWORK DISTRIBUTION HUB
+        MyArrayTab[20] = "div_RT";
+        MyArrayTab[21] = "div_FAN";
+        MyArrayTab[22] = "div_VDSL2";
+        MyArrayTab[23] = "div_DB";
+        MyArrayTab[24] = "div_PPanel";
+        MyArrayTab[25] = "div_FSPLITTER";
+        MyArrayTab[26] = "div_FSHELF";
+        MyArrayTab[27] = "div_FCARD";
+
+        //Inner Duck
+        var MyArrayAtt = new Array()
+        MyArrayAtt[0] = new Array()
+        MyArrayAtt[0][0] = "txtXMinMat";
+        MyArrayAtt[0][1] = "1;txtInnerDuct_Num";
+        MyArrayAtt[0][2] = "txtOuter_Diameter";
+
+        //Manhole
+        MyArrayAtt[1] = new Array()
+        MyArrayAtt[1][0] = "txtFeature_Type_Eng_ManHl";
+        MyArrayAtt[1][1] = "txtLength";
+        MyArrayAtt[1][2] = "txtLength_Desc_ManHl";
+        MyArrayAtt[1][3] = "txtWidth";
+        MyArrayAtt[1][4] = "txtWidth_Desc";
+        MyArrayAtt[1][5] = "txtHeight";
+        MyArrayAtt[1][6] = "txtHeigh_Desc";
+        MyArrayAtt[1][7] = "txtDescription_Eng";
+        MyArrayAtt[1][8] = "txtMin_Material_Manhl";
+        MyArrayAtt[1][9] = "txtMin_Material_Eng_Desc_Manhl";
+        MyArrayAtt[1][10] = "txtAsset_Category_Manhl";
+        MyArrayAtt[1][11] = "txtTechnology_Manhl";
+        MyArrayAtt[1][12] = "txtMaterial_type_Manhl";
+        MyArrayAtt[1][13] = "txtDel_Flag";
+        MyArrayAtt[1][14] = "txtEngrg_Eng_Desc_Manhl";
+        MyArrayAtt[1][15] = "txtEngrg_Part_No_Manhl";
+        MyArrayAtt[1][16] = "txtTrackable_Manhle";
+        MyArrayAtt[1][17] = "txtMajor_Manhle";
+
+        //duckpath
+        MyArrayAtt[2] = new Array()
+        MyArrayAtt[2][0] = "txtMIN_MATERIAL_duck_path";
+        MyArrayAtt[2][1] = "txtDT_S_TYPE_duck_path";
+        MyArrayAtt[2][2] = "txtDT_S_WAYS_d_path";
+        MyArrayAtt[2][3] = "txtDT_S_PLACMNT_d_path";
+        MyArrayAtt[2][4] = "txtDT_S_ENCASE_d_path";
+        MyArrayAtt[2][5] = "txtDT_S_BACKFILL_d_path";
+        MyArrayAtt[2][6] = "txtDT_S_DIAMETER_d_path";
+
+        //duck
+        MyArrayAtt[3] = new Array()
+        MyArrayAtt[3][0] = "txtFeature_Type_Eng";
+        MyArrayAtt[3][1] = "txtMaterial_Eng";
+        MyArrayAtt[3][2] = "txtDuct_Size";
+        MyArrayAtt[3][3] = "txtBend_Degree";
+        MyArrayAtt[3][4] = "txtBend_Radius";
+        MyArrayAtt[3][5] = "txtSolid_Eng";
+        MyArrayAtt[3][6] = "txtMin_Material";
+        MyArrayAtt[3][7] = "txtMin_Material_Eng";
+        MyArrayAtt[3][8] = "txtAsset_Category";
+        MyArrayAtt[3][9] = "txtTechnology";
+        MyArrayAtt[3][10] = "txtMaterial_Type";
+        MyArrayAtt[3][11] = "txtDelete_Flag";
+        MyArrayAtt[3][12] = "txtEngrg_Eng_desc";
+        MyArrayAtt[3][13] = "txtEngrg_Part_No";
+        MyArrayAtt[3][14] = "txtTrackable";
+        MyArrayAtt[3][15] = "txtFlag";
+
+        //pole
+        MyArrayAtt[4] = new Array()
+        MyArrayAtt[4][0] = "txtFEATURE_TYPE_ENG_Pole";
+        MyArrayAtt[4][1] = "txtMATERIAL_ENG_pole";
+        MyArrayAtt[4][2] = "txtCLASS_pole";
+        MyArrayAtt[4][3] = "txtHEIGHT_pole";
+        MyArrayAtt[4][4] = "txtTREATMENT_ENG_pole";
+        MyArrayAtt[4][5] = "txtMIN_MATERIAL_pole";
+        MyArrayAtt[4][6] = "txtMIN_MATERIAL_ENG_DESC_pole";
+        MyArrayAtt[4][7] = "txtASSET_CATEGORY_pole";
+        MyArrayAtt[4][8] = "txtTECHNOLOGY_pole";
+        MyArrayAtt[4][9] = "txtMATERIAL_TYPE_pole";
+        MyArrayAtt[4][10] = "txtDELETE_FLAG_pole";
+        MyArrayAtt[4][11] = "txtENGRG_ENG_DESC_pole";
+        MyArrayAtt[4][12] = "txtENGRG_PART_NO_pole";
+        MyArrayAtt[4][13] = "txtTRACKABLE_pole";
+        MyArrayAtt[4][14] = "txtMAJOR_pole";
+
+
+        //pier cross
+        MyArrayAtt[5] = new Array()
+        MyArrayAtt[5][0] = "txtMIN_MATERIAL_p_cross";
+        MyArrayAtt[5][1] = "txtPR_LENGTH";
+
+        //contactor guage
+        MyArrayAtt[6] = new Array()
+        MyArrayAtt[6][0] = "txtPL_NUM_CGuage";
+        MyArrayAtt[6][1] = "txtPL_VALUE_CGuage";
+
+        //contactor Alarm
+        MyArrayAtt[7] = new Array()
+        MyArrayAtt[7][0] = "txtPLANT_UNIT_C_Alarm";
+        MyArrayAtt[7][1] = "txtPU_ID_C_Alarm";
+        MyArrayAtt[7][2] = "txtPU_DESC_C_Alarm";
+        MyArrayAtt[7][3] = "txtG3E_FNO_C_Alarm";
+        MyArrayAtt[7][4] = "txtFEATURE_TYPE_C_Alarm";
+        MyArrayAtt[7][5] = "txtFEATURE_STATE_C_Alarm";
+        MyArrayAtt[7][6] = "txtQTY_IND_C_Alarm";
+        MyArrayAtt[7][7] = "txtMUL_FAC_C_Alarm";
+        MyArrayAtt[7][8] = "txtCA_TYPE_C_Alarm";
+        MyArrayAtt[7][9] = "txtBILL_RATE_C_Alarm";
+
+        //Gas Seal
+        MyArrayAtt[8] = new Array()
+        MyArrayAtt[8][0] = "txtPLANT_UNIT_gseal";
+        MyArrayAtt[8][1] = "txtPU_ID_gseal";
+        MyArrayAtt[8][2] = "txtPU_DESC_gseal";
+        MyArrayAtt[8][3] = "txtG3E_FNO_gseal";
+        MyArrayAtt[8][4] = "txtFEATURE_TYPE_gseal";
+        MyArrayAtt[8][5] = "txtFEATURE_STATE_gseal";
+        MyArrayAtt[8][6] = "txtQTY_IND_gseal";
+        MyArrayAtt[8][7] = "txtMUL_FAC_gseal";
+        MyArrayAtt[8][8] = "txtCTYPE_gseal";
+        MyArrayAtt[8][9] = "txtTOTAL_SIZE_gseal";
+        MyArrayAtt[8][10] = "txtGAUGE_gseal";
+        MyArrayAtt[8][11] = "txtPLACEMENT_gseal";
+        MyArrayAtt[8][12] = "txtBILL_RATE_gseal";
+
+        //Test Point
+        MyArrayAtt[9] = new Array()
+        MyArrayAtt[9][0] = "txtPLANT_UNIT_t_point";
+        MyArrayAtt[9][1] = "txtPU_ID_t_point";
+        MyArrayAtt[9][2] = "txtPU_DESC_t_point";
+        MyArrayAtt[9][3] = "txtG3E_FNO_t_point";
+        MyArrayAtt[9][4] = "txtFEATURE_TYPE_t_point";
+        MyArrayAtt[9][5] = "txtFEATURE_STATE_t_point";
+        MyArrayAtt[9][6] = "txtQTY_IND_t_point";
+        MyArrayAtt[9][7] = "txtMUL_FAC_t_point";
+        MyArrayAtt[9][8] = "txtCA_TYPE_t_point";
+        MyArrayAtt[9][9] = "txtBILL_RATE_t_point";
+
+        //Trunsducer
+        MyArrayAtt[10] = new Array()
+        MyArrayAtt[10][0] = "txtPLANT_UNIT_transducer";
+        MyArrayAtt[10][1] = "txtPU_ID_transducer";
+        MyArrayAtt[10][2] = "txtPU_DESC_transducer";
+        MyArrayAtt[10][3] = "txtG3E_FNO_transducer";
+        MyArrayAtt[10][4] = "txtFEATURE_TYPE_transducer";
+        MyArrayAtt[10][5] = "txtFEATURE_STATE_transducer";
+        MyArrayAtt[10][6] = "txtQTY_IND_transducer";
+        MyArrayAtt[10][7] = "txtMUL_FAC_transducer";
+        MyArrayAtt[10][8] = "txtBILL_RATE_transducer";
+
+        //IDF
+        MyArrayAtt[11] = new Array()
+        MyArrayAtt[11][0] = "txtPLANT_UNIT_IDF";
+        MyArrayAtt[11][1] = "txtPU_ID_IDF";
+        MyArrayAtt[11][2] = "txtPU_DESC_IDF";
+        MyArrayAtt[11][3] = "txtG3E_FNO_IDF";
+        MyArrayAtt[11][4] = "txtFEATURE_TYPE_IDF";
+        MyArrayAtt[11][5] = "txtFEATURE_STATE_IDF";
+        MyArrayAtt[11][6] = "txtQTY_IND_IDF";
+        MyArrayAtt[11][7] = "txtMUL_FAC_IDF";
+        MyArrayAtt[11][8] = "txtCON_TYPE_IDF";
+        MyArrayAtt[11][9] = "txtIDF_SIZE_IDF";
+        MyArrayAtt[11][10] = "txtIDF_CAPACITY_IDF";
+        MyArrayAtt[11][11] = "txtIDF_TYPE_IDF";
+        MyArrayAtt[11][12] = "txtINSTALL_LOC_IDF";
+        MyArrayAtt[11][13] = "txtEARTH_ROD_IDF";
+        MyArrayAtt[11][14] = "txtTERM_TYPE_IDF";
+        MyArrayAtt[11][15] = "txtBILL_RATE_IDF";
+
+        //dSlam
+        MyArrayAtt[12] = new Array()
+        MyArrayAtt[12][0] = "txtPLANT_UNIT_dslam";
+        MyArrayAtt[12][1] = "txtCONTRACTOR_dslam";
+        MyArrayAtt[12][2] = "txtG3E_FNO_dslam";
+        MyArrayAtt[12][3] = "txtFEATURE_TYPE_dslam";
+        MyArrayAtt[12][4] = "txtFEATURE_STATE_dslam";
+        MyArrayAtt[12][5] = "txtQTY_IND_dslam";
+        MyArrayAtt[12][6] = "txtMUL_FAC_dslam";
+        MyArrayAtt[12][7] = "txtCAPACITY_dslam";
+        MyArrayAtt[12][8] = "txtMANUFACTURER_dslam";
+        MyArrayAtt[12][9] = "txtBILL_RATE_dslam";
+
+        //FDC
+        MyArrayAtt[13] = new Array()
+        MyArrayAtt[13][0] = "txtMIN_MATERIAL_FDC";
+        MyArrayAtt[13][1] = "txtDESCRIPTION_FDC";
+        MyArrayAtt[13][2] = "txtMODEL_FDC";
+
+        //FDP
+        MyArrayAtt[14] = new Array()
+        MyArrayAtt[14][0] = "txtMIN_MATERIAL_FDP";
+        MyArrayAtt[14][1] = "txtDESCRIPTION_FDP";
+        MyArrayAtt[14][2] = "txtCAPACITY_FDP";
+        MyArrayAtt[14][3] = "txtFDP_TYPE_FDP";
+
+        //Tie FDP
+        MyArrayAtt[15] = new Array()
+        MyArrayAtt[15][0] = "txtMIN_MATERIAL_TIE_FDP";
+        MyArrayAtt[15][1] = "txtDESCRIPTION_TIE_FDP";
+        MyArrayAtt[15][2] = "txtCAPACITY_TIE_FDP";
+        MyArrayAtt[15][3] = "txtFDP_TYPE_TIE_FDP";
+
+        // FTB
+        MyArrayAtt[16] = new Array()
+        MyArrayAtt[16][0] = "txtMIN_MATERIAL_FTB";
+        MyArrayAtt[16][1] = "txtDESCRIPTION_FTB";
+        MyArrayAtt[16][2] = "txtCAPACITY_FTB";
+        MyArrayAtt[16][3] = "txtFDP_TYPE_FTB";
+
+        //Impsan
+        MyArrayAtt[17] = new Array()
+        MyArrayAtt[17][0] = "txtMIN_MATERIAL_IPMSAN";
+        MyArrayAtt[17][1] = "txtDESCRIPTION_IPMSAN";
+        MyArrayAtt[17][2] = "txtMODEL_IPMSAN";
+        MyArrayAtt[17][3] = "txtMANUFACTURER_IPMSAN";
+        MyArrayAtt[17][4] = "txtSYSTEM_CAPACITY_IPMSAN";
+        MyArrayAtt[17][5] = "txtFRONT_IMAGE_IPMSAN";
+        MyArrayAtt[17][6] = "txtBACK_IMAGE_IPMSAN";
+        MyArrayAtt[17][7] = "txtTOTAL_POSITIONS_IPMSAN";
+        MyArrayAtt[17][8] = "txtDIMENSION_DEPTH_IPMSAN";
+        MyArrayAtt[17][9] = "txtDIMENSION_WIDTH_IPMSAN";
+        MyArrayAtt[17][10] = "txtDIMENSION_HEIGHT_IPMSAN";
+
+        //Data Digital Network
+        MyArrayAtt[18] = new Array()
+        MyArrayAtt[18][0] = "txtMIN_MATERIAL_DDN";
+        MyArrayAtt[18][1] = "txtDESCRIPTION_DDN";
+        MyArrayAtt[18][2] = "txtMODEL_DDN";
+        MyArrayAtt[18][3] = "txtMANUFACTURER_DDN";
+        MyArrayAtt[18][4] = "txtSYSTEM_CAPACITY_DDN";
+        MyArrayAtt[18][5] = "txtFRONT_IMAGE_DDN";
+        MyArrayAtt[18][6] = "txtBACK_IMAGE_DDN";
+        MyArrayAtt[18][7] = "txtTOTAL_POSITIONS_DDN";
+        MyArrayAtt[18][8] = "txtDIMENSION_DEPTH_DDN";
+        MyArrayAtt[18][9] = "txtDIMENSION_WIDTH_DDN";
+        MyArrayAtt[18][10] = "txtDIMENSION_HEIGHT_DDN";
+
+        //Network Distribution Hub
+        MyArrayAtt[19] = new Array()
+        MyArrayAtt[19][0] = "txtMIN_MATERIAL_NDH";
+        MyArrayAtt[19][1] = "txtDESCRIPTION_NDH";
+        MyArrayAtt[19][2] = "txtMODEL_NDH";
+        MyArrayAtt[19][3] = "txtMANUFACTURER_NDH";
+        MyArrayAtt[19][4] = "txtSYSTEM_CAPACITY_NDH";
+        MyArrayAtt[19][5] = "txtFRONT_IMAGE_NDH";
+        MyArrayAtt[19][6] = "txtBACK_IMAGE_NDH";
+        MyArrayAtt[19][7] = "txtTOTAL_POSITIONS_NDH";
+        MyArrayAtt[19][8] = "txtDIMENSION_DEPTH_NDH";
+        MyArrayAtt[19][9] = "txtDIMENSION_WIDTH_NDH";
+        MyArrayAtt[19][10] = "txtDIMENSION_HEIGHT_NDH";
+
+        //Remote Terminal
+        MyArrayAtt[20] = new Array()
+        MyArrayAtt[20][0] = "txtMIN_MATERIAL_RT";
+        MyArrayAtt[20][1] = "txtDESCRIPTION_RT";
+        MyArrayAtt[20][2] = "txtMODEL_RT";
+        MyArrayAtt[20][3] = "txtMANUFACTURER_RT";
+        MyArrayAtt[20][4] = "txtSYSTEM_CAPACITY_RT";
+        MyArrayAtt[20][5] = "txtFRONT_IMAGE_RT";
+        MyArrayAtt[20][6] = "txtBACK_IMAGE_RT";
+        MyArrayAtt[20][7] = "txtTOTAL_POSITIONS_RT";
+        MyArrayAtt[20][8] = "txtDIMENSION_DEPTH_RT";
+        MyArrayAtt[20][9] = "txtDIMENSION_WIDTH_RT";
+        MyArrayAtt[20][10] = "txtDIMENSION_HEIGHT_RT";
+
+        //Fiber Access Node
+        MyArrayAtt[21] = new Array()
+        MyArrayAtt[21][0] = "txtMIN_MATERIAL_FAN";
+        MyArrayAtt[21][1] = "txtDESCRIPTION_FAN";
+        MyArrayAtt[21][2] = "txtMODEL_FAN";
+        MyArrayAtt[21][3] = "txtMANUFACTURER_FAN";
+        MyArrayAtt[21][4] = "txtSYSTEM_CAPACITY_FAN";
+        MyArrayAtt[21][5] = "txtFRONT_IMAGE_FAN";
+        MyArrayAtt[21][6] = "txtBACK_IMAGE_FAN";
+        MyArrayAtt[21][7] = "txtTOTAL_POSITIONS_FAN";
+        MyArrayAtt[21][8] = "txtDIMENSION_DEPTH_FAN";
+        MyArrayAtt[21][9] = "txtDIMENSION_WIDTH_FAN";
+        MyArrayAtt[21][10] = "txtDIMENSION_HEIGHT_FAN";
+
+        //VDSL2
+        MyArrayAtt[22] = new Array()
+        MyArrayAtt[22][0] = "txtMIN_MATERIAL_VDSL2";
+        MyArrayAtt[22][1] = "txtDESCRIPTION_VDSL2";
+        MyArrayAtt[22][2] = "txtMODEL_VDSL2";
+        MyArrayAtt[22][3] = "txtMANUFACTURER_VDSL2";
+        MyArrayAtt[22][4] = "txtSYSTEM_CAPACITY_VDSL2";
+        MyArrayAtt[22][5] = "txtFRONT_IMAGE_VDSL2";
+        MyArrayAtt[22][6] = "txtBACK_IMAGE_VDSL2";
+        MyArrayAtt[22][7] = "txtTOTAL_POSITIONS_VDSL2";
+        MyArrayAtt[22][8] = "txtDIMENSION_DEPTH_VDSL2";
+        MyArrayAtt[22][9] = "txtDIMENSION_WIDTH_VDSL2";
+        MyArrayAtt[22][10] = "txtDIMENSION_HEIGHT_VDSL2";
+
+        //DB
+        MyArrayAtt[23] = new Array()
+        MyArrayAtt[23][0] = "txtMIN_MATERIAL_DB";
+        MyArrayAtt[23][1] = "txtDESCRIPTION_DB";
+        MyArrayAtt[23][2] = "txtCAPACITY1_DB";
+        MyArrayAtt[23][3] = "txtCAPACITY2_DB";
+        MyArrayAtt[23][4] = "txtFDP_TYPE_DB";
+
+        //Patch Panel
+        MyArrayAtt[24] = new Array()
+        MyArrayAtt[24][0] = "txtMIN_MATERIAL_PPanel";
+        MyArrayAtt[24][1] = "txtMIN_MATERIAL_DESC_ENG_PPanel";
+        MyArrayAtt[24][2] = "txtMODEL_PPanel";
+        MyArrayAtt[24][3] = "txtMANUFACTURER_PPanel";
+        MyArrayAtt[24][4] = "txtPOSITIONS_PPanel";
+        MyArrayAtt[24][5] = "txtFRONT_IMAGE_PPanel";
+        MyArrayAtt[24][6] = "txtBACK_IMAGE_PPanel";
+        MyArrayAtt[24][7] = "txtWIDTH_PPanel";
+        MyArrayAtt[24][8] = "txtASSET_CATEGORY_PPanel";
+        MyArrayAtt[24][9] = "txtTECHNOLOGY_PPanel";
+        MyArrayAtt[24][10] = "txtMATERIAL_TYPE_PPanel";
+        MyArrayAtt[24][11] = "txtENGRG_DESC_ENG_PPanel";
+        MyArrayAtt[24][12] = "txtENGRG_PART_NO_PPanel";
+        MyArrayAtt[24][13] = "txtTRACKABLE_PPanel";
+        MyArrayAtt[24][14] = "txtMAJOR_PPanel";
+        MyArrayAtt[24][15] = "txtDELETE_FLAG_PPanel";
+
+        //Fiber Splitter
+        MyArrayAtt[25] = new Array()
+        MyArrayAtt[25][0] = "txtMIN_MATERIAL_FSPLITTER";
+        MyArrayAtt[25][1] = "txtFRONT_IMAGE_FSPLITTER";
+        MyArrayAtt[25][2] = "txtBACK_IMAGE_FSPLITTER";
+        MyArrayAtt[25][3] = "txtTRACKABLE_FSPLITTER";
+        MyArrayAtt[25][4] = "txtMAJOR_FSPLITTER";
+        MyArrayAtt[25][5] = "txtDELETE_FLAG_FSPLITTER";
+        MyArrayAtt[25][6] = "txtPU_ID_FSPLITTER";
+        MyArrayAtt[25][7] = "txtPU_DESC_FSPLITTER";
+        MyArrayAtt[25][8] = "txtBILLING_RATE_FSPLITTER";
+        MyArrayAtt[25][9] = "txtQTY_IND_FSPLITTER";
+        MyArrayAtt[25][10] = "txtMUL_FAC_FSPLITTER";
+        MyArrayAtt[25][11] = "txtSPLITTER_TYPE_FSPLITTER";
+        MyArrayAtt[25][12] = "txtSPLITTER_CLASS_FSPLITTER";
+
+        //Fiber Splitter
+        MyArrayAtt[25] = new Array()
+        MyArrayAtt[25][0] = "txtMIN_MATERIAL_FSPLITTER";
+        MyArrayAtt[25][1] = "txtFRONT_IMAGE_FSPLITTER";
+        MyArrayAtt[25][2] = "txtBACK_IMAGE_FSPLITTER";
+        MyArrayAtt[25][3] = "txtTRACKABLE_FSPLITTER";
+        MyArrayAtt[25][4] = "txtMAJOR_FSPLITTER";
+        MyArrayAtt[25][5] = "txtDELETE_FLAG_FSPLITTER";
+        MyArrayAtt[25][6] = "txtPU_ID_FSPLITTER";
+        MyArrayAtt[25][7] = "txtPU_DESC_FSPLITTER";
+        MyArrayAtt[25][8] = "txtBILLING_RATE_FSPLITTER";
+        MyArrayAtt[25][9] = "txtQTY_IND_FSPLITTER";
+        MyArrayAtt[25][10] = "txtMUL_FAC_FSPLITTER";
+        MyArrayAtt[25][11] = "txtSPLITTER_TYPE_FSPLITTER";
+
+        //Fiber Shelf
+        MyArrayAtt[26] = new Array()
+        MyArrayAtt[26][0] = "txtMIN_MATERIAL_FSPLITTER";
+        MyArrayAtt[26][1] = "txtFRONT_IMAGE_FSPLITTER";
+        MyArrayAtt[26][2] = "txtBACK_IMAGE_FSPLITTER";
+        MyArrayAtt[26][3] = "txtTRACKABLE_FSPLITTER";
+        MyArrayAtt[26][4] = "txtMAJOR_FSPLITTER";
+        MyArrayAtt[26][5] = "txtDELETE_FLAG_FSPLITTER";
+        MyArrayAtt[26][6] = "txtPU_ID_FSPLITTER";
+        MyArrayAtt[26][7] = "txtPU_DESC_FSPLITTER";
+        MyArrayAtt[26][8] = "txtBILLING_RATE_FSPLITTER";
+        MyArrayAtt[26][9] = "txtQTY_IND_FSPLITTER";
+        MyArrayAtt[26][10] = "txtMUL_FAC_FSPLITTER";
+        MyArrayAtt[26][11] = "txtSPLITTER_TYPE_FSPLITTER";
+        MyArrayAtt[26][12] = "txtSPLITTER_CLASS_FSPLITTER";
+
+
+        //Fiber Card
+        MyArrayAtt[27] = new Array()
+        MyArrayAtt[27][0] = "txtMIN_MATERIAL_FCARD";
+        MyArrayAtt[27][1] = "txtFRONT_IMAGE_FCARD";
+        MyArrayAtt[27][2] = "txtBACK_IMAGE_FCARD";
+        MyArrayAtt[27][3] = "txtTRACKABLE_FCARD";
+        MyArrayAtt[27][4] = "txtMAJOR_FCARD";
+        MyArrayAtt[27][5] = "txtDELETE_FLAG_FCARD";
+        MyArrayAtt[27][6] = "txtHEIGHT_FCARD";
+        MyArrayAtt[27][7] = "txtWIDTH_FCARD";
+        MyArrayAtt[27][8] = "txtDEPTH_FCARD";
+        MyArrayAtt[27][9] = "txtPOSITIONS_FCARD";
+        MyArrayAtt[27][10] = "txtMODEL_FCARD";
+        MyArrayAtt[27][11] = "txtMANUFACTURER_FCARD";
+        MyArrayAtt[27][12] = "txtCAPACITY_FCARD";
+        MyArrayAtt[27][13] = "txtCONTRACT_DESC_FCARD";
+
+
+        //***************************************************************************************************
+        //this for textbox with not allow insert the number
+
+        //inner Duck(number)
+        $("#txtInnerDuct_Num").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Manhole(Length)
+        $("#txtLength").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Manhole(Width)
+        $("#txtWidth").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Manhole(Height)
+        $("#txtHeight").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+
+        //Duct(Size)
+        $("#txtDuct_Size").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Duct(Degree)
+        $("#txtBend_Degree").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Duct(Radius)
+        $("#txtBend_Radius").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Pier Cross(Length)
+        $("#txtPR_LENGTH").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Contactor Gauge(Number)
+        $("#txtPL_NUM_CGuage").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Contactor Alarm(FNO)
+        $("#txtG3E_FNO_C_Alarm").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Contactor Alarm(Mul)
+        $("#txtMUL_FAC_C_Alarm").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Gas Seal
+        $("#txtG3E_FNO_gseal").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtMUL_FAC_gseal").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtTOTAL_SIZE_gseal").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtGAUGE_gseal").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //Test Point
+        $("#txtG3E_FNO_t_point").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtMUL_FAC_t_point").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+
+        //Transducer
+        $("#txtG3E_FNO_transducer").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtMUL_FAC_transducer").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //IDF
+        $("#txtG3E_FNO_IDF").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtMUL_FAC_IDF").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtIDF_SIZE_IDF").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtEARTH_ROD_IDF").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        //DSLAM
+        $("#txtG3E_FNO_dslam").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtMUL_FAC_dslam").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtCAPACITY_dslam").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+
+        //IPMSAN
+        $("#txtSYSTEM_CAPACITY_IPMSAN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtTOTAL_POSITIONS_IPMSAN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtDIMENSION_DEPTH_IPMSAN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtDIMENSION_WIDTH_IPMSAN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtDIMENSION_HEIGHT_IPMSAN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+
+        //DIGITAL DATA NETWORK
+        $("#txtSYSTEM_CAPACITY_DDN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtTOTAL_POSITIONS_DDN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtDIMENSION_DEPTH_DDN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtDIMENSION_HEIGHT_DDN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+        $("#txtDIMENSION_WIDTH_DDN").keypress(function (e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+                return false;
+            else {
+                return true;
+            }
+        });
+
+        //***************************************************************************************************
+        $('#btnSave').click(function () {
+            var strVal = "";
+            var strSent = "";
+            var cont = false;
+
+            var id = document.getElementById("txtTableChange").value;
+            do {
+                for (var i = 0; i < MyArrayTab.length; i++) {
+                    if (MyArrayTab[i] == id) {
+                        for (var a = 0; a < MyArrayAtt[i].length; a++) {
+                            strVal = strVal + document.getElementById(MyArrayAtt[i][a]).value + ";";
+                        }
+                        strSent = i + ";" + strVal;
+                        cont = true;
+                    }
+                }
+                if (cont == true) {
+                    $.ajax({
+                        url: "/FeatureMastMaintenance/AddFeatureData",
+                        type: "POST",
+                        dataType: "html",
+                        data: {
+                            "strSent": strSent,
+                            "random": Math.random()
+                        },
+                        beforeSend: function () { },
+                        success: function (data) {
+                            var res = jQuery.parseJSON(data);
+                            //alert(res.Success + "piz");
+                            if (res.Success == true) {
+                                alert("Sent");
+                            }
+                            else {
+                                alert("sent failed.");
+                            }
+                        }
+                    });
+                }
+            } while (cont != true)
+        });
+
+        function opentab(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+        function HideAfterChange(id) {
+            for (var i = 0; i < 29; i++) {
+                if (MyArrayTab[i] == id)
+                { document.getElementById(MyArrayTab[i]).style.display = "none"; }
+            }
+        }
+
+        $('#txtTableChange').change(function () {
+            var id;
+            id = document.getElementById("txtTableChange").value;
+
+            if (document.getElementById("txtTableChange").value == 1) {
+                document.getElementById("btnSave").style.visibility = "hidden";
+            } else { document.getElementById("btnSave").style.visibility = "visible"; }
+
+            if (temp == "") {
+                temp = id;
+                opentab(id);
+            }
+            else if (temp != id) {
+                HideAfterChange(temp);
+                temp = id;
+            }
+
+            if (temp == id) {
+                opentab(id);
+            }
+        });
+
+        if (document.getElementById("txtTableChange").value == 1) {
+            for (var i = 0; i < 30; i++) {
+                document.getElementById(MyArrayTab[i]).style.display = "none";
+            }
+            document.getElementById("btnSave").style.visibility = "hidden";
+        }
+    });
+
+</script>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>New Equipment</title>
+</head>
+<body >
+    <div>
+     <table width="800px" id="UpdateDs">
+        <tr>
+        <td>Select Equipment <span style="color:Red;">*</span></td>            
+        <td><select id="txtTableChange">
+                <option value ="1">select</option>
+                <option value="divInner_duck">Inner Duck</option>
+                <option value="divManHole">Manhole</option>
+                <option value="div_duct_path">Duct Path</option>
+                <option value="divDuck">Duck</option>
+                <option value="divPole">Pole</option>
+                <option value="div_pier_cross">Pier Cross</option>
+                <option value="div_c_gauge">Contactor Gauge</option>
+                <option value="div_c_alarm">Contactor Alarm</option>
+                <option value="div_g_seal">Gas Seal</option>
+                <option value="div_t_point">Test Point</option>
+                <option value="div_transducer">Transducer</option>
+                <option value="div_PU_IDF">IDF</option>
+                <option value="div_dslam">DSLAM</option>
+                <option value="div_FDC">FDC</option>
+                <option value="div_FDP">FDP</option>
+                <option value="div_TIE_FDP">Tie FDP</option>
+                <option value="div_FTB">FTB</option>
+                <option value="div_IPMSAN">IPMSAN</option>
+                <option value="div_DDN">Digital Data Network</option>
+                <option value="div_NDH">Network Distribution Hub</option>
+                <option value="div_RT">Remote Terminal</option>
+                <option value="div_FAN">Fiber Access Node</option>
+                <option value="div_VDSL2">VDSL2</option>
+                <option value="div_DB">DB</option>
+                <option value="div_PPanel">Patch Panel</option>
+                <option value="div_FSPLITTER">Fiber Splitter</option>
+                <option value="div_FSHELF">Fiber Shelf</option>
+                <option value="div_FCARD">Fiber Card</option>
+            </select> 
+        </td>
+        </tr>
+    </table> 
+
+    <div id="divInner_duck" title="Update Data" >
+        <h3>Inner Duck<input type="hidden" id="utxtIDs" name="utxtIDs" /></h3>
+        <br />
+        <table width="800px" id="UpdateDss">
+            <thead>
+                <tr>
+                   <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtXMinMat" name="txtXMinMat" /></td>
+                </tr>
+                <tr>
+                   <td>INNERDUCT NUM : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtInnerDuct_Num" name="txtInnerDuct_Num" /></td>
+                </tr>
+                <tr>
+                   <td>OUTER DIAMETER : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtOuter_Diameter"  name="txtOuter_Diameter" /></td>
+                </tr>
+            </thead>    
+        </table>
+        <br />
+    </div>
+
+    <div id="divDuck" title="Update Data">
+        <h3>Duck<input type="hidden" id="utxtIDdd" name="utxtIDdd" /></h3>
+        <br />
+        <table width="800px" id="UpdateD">
+            <thead>
+                <tr>
+                   <td>FEATURE TYPE_ENG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtFeature_Type_Eng" name="txtFeature_Type_Eng" /></td>
+                </tr>
+                <tr>
+                   <td>MATERIAL ENG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMaterial_Eng" name="txtMaterial_Eng" /></td>
+                </tr>
+                <tr>
+                   <td>DUCT SIZE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtDuct_Size" name="txtDuct_Size" /></td>
+                </tr>
+                <tr>
+                   <td>BEND DEGREE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtBend_Degree" name="txtBend_Degree" /></td>
+                </tr>
+                <tr>
+                   <td>BEND RADIUS : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtBend_Radius" name="txtBend_Radius" /></td>
+                </tr>
+                <tr>
+                   <td>SOLID ENG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtSolid_Eng" name="txtSolid_Eng" /></td>
+                </tr>
+                <tr>
+                   <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMin_Material" name="txtMin_Material" /></td>
+                </tr>
+                <tr>
+                   <td>MIN MATERIAL ENG  : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMin_Material_Eng" name="txtMin_Material_Eng" /></td>
+                </tr>
+                <tr>
+                   <td>ASSET CATEGORY : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtAsset_Category" name="txtAsset_Category" /></td>
+                </tr>
+                <tr>
+                   <td>TECHNOLOGY : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtTechnology" name="txtTechnology" /></td>
+                </tr>
+                <tr>
+                   <td>MATERIAL TYPE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMaterial_Type" name="txtMaterial_Type" /></td>
+                </tr>
+                <tr>
+                   <td>DELETE FLAG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtDelete_Flag" name="txtDelete_Flag" /></td>
+                </tr>
+                <tr>
+                   <td>ENGRG ENG DESC : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtEngrg_Eng_desc" name="txtEngrg_Eng_desc" /></td>
+                </tr>
+                <tr>
+                   <td>ENGRG PART NO : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtEngrg_Part_No" name="txtEngrg_Part_No" /></td>
+                </tr>
+                <tr>
+                   <td>TRACKABLE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtTrackable" name="txtTrackable" /></td>
+                </tr>
+                <tr>
+                   <td>FLAG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtFlag" name="txtFlag" /></td>
+                </tr>
+            </thead>    
+        </table>
+        <br />
+    </div>
+
+    <div id="divManHole" title="Update Data">
+        <h3>Manhole<input type="hidden" id="utxtIDl" name="utxtIDl" /></h3>
+        <br />
+        <table width="800px" >
+            <thead>
+                <tr>
+                   <td>FEATURE TYPE ENG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtFeature_Type_Eng_ManHl" name="txtFeature_Type_Eng_ManHl" /></td>
+                </tr>
+                <tr>
+                   <td>LENGTH : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtLength" name="txtLength" /></td>
+                </tr>
+                <tr>
+                   <td>LENGTH DESC : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtLength_Desc_ManHl" name="txtLength_Desc_ManHl" /></td>
+                </tr>
+                <tr>
+                   <td>WIDTH : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtWidth" name="txtWidth" /></td>
+                </tr>
+                <tr>
+                   <td>WIDTH DESC : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtWidth_Desc" name="txtWidth_Desc" /></td>
+                </tr>
+                <tr>
+                   <td>HEIGHT : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtHeight" name="txtHeight" /></td>
+                </tr>
+                 <tr>
+                   <td>HEIGH DESC : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtHeigh_Desc" name="txtHeigh_Desc" /></td>
+                </tr>
+                <tr>
+                   <td>DESCRIPTION ENG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtDescription_Eng" name="txtDescription_Eng" /></td>
+                </tr>
+                <tr>
+                   <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMin_Material_Manhl" name="txtMin_Material_Manhl" /></td>
+                </tr>
+                <tr>
+                   <td>MIN MATERIAL ENG DESC : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMin_Material_Eng_Desc_Manhl" name="txtMin_Material_Eng_Desc_Manhl" /></td>
+                </tr>
+                <tr>
+                   <td>ASSET CATEGORY : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtAsset_Category_Manhl" name="txtAsset_Category_Manhl" /></td>
+                </tr>
+                <tr>
+                   <td>TECHNOLOGY : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtTechnology_Manhl" name="txtTechnology_Manhl" /></td>
+                </tr>
+                   <tr>
+                   <td>MATERIAL TYPE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMaterial_type_Manhl" name="txtMaterial_type_Manhl" /></td>
+                </tr>
+                <tr>
+                   <td>DELETE FLAG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtDel_Flag" name="txtDel_Flag" /></td>
+                </tr>
+                <tr>
+                   <td>ENGRG ENG DESC : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtEngrg_Eng_Desc_Manhl" name="txtEngrg_Eng_Desc_Manhl" /></td>
+                </tr>
+                <tr>
+                   <td>ENGRG PART NO : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtEngrg_Part_No_Manhl" name="txtEngrg_Part_No_Manhl" /></td>
+                </tr>
+                <tr>
+                   <td>TRACKABLE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtTrackable_Manhle" name="txtTrackable_Manhle" /></td>
+                </tr>
+                <tr>
+                   <td>MAJOR : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMajor_Manhle" name="txtMajor_Manhle" /></td>
+                </tr>
+            </thead> 
+        </table>
+        <br />
+    </div>
+
+    <div id="divPole" title="Update Data">
+        <h3>Pole<input type="hidden" id="utxtIDlpole" name="utxtIDlpole" /></h3>
+        <br />
+        <table width="800px" >
+            <thead>
+                <tr>
+                   <td>FEATURE TYPE ENG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtFEATURE_TYPE_ENG_Pole" name="txtFEATURE_TYPE_ENG_Pole" /></td>
+                </tr>
+                <tr>
+                   <td>MATERIAL ENG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMATERIAL_ENG_pole" name="txtMATERIAL_ENG_pole" /></td>
+                </tr>
+                <tr>
+                   <td>CLASS : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtCLASS_pole" name="txtCLASS" /></td>
+                </tr>
+                <tr>
+                   <td>HEIGHT : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtHEIGHT_pole" name="txtHEIGHT_pole" /></td>
+                </tr>
+                <tr>
+                   <td>TREATMENT ENG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtTREATMENT_ENG_pole" name="txtTREATMENT_ENG_pole" /></td>
+                </tr>
+                <tr>
+                   <td>MIN_MATERIAL : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMIN_MATERIAL_pole" name="txtMIN_MATERIAL_pole" /></td>
+                </tr>
+                 <tr>
+                   <td>MIN MATERIAL ENG DESC : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMIN_MATERIAL_ENG_DESC_pole" name="txtMIN_MATERIAL_ENG_DESC_pole" /></td>
+                </tr>
+                <tr>
+                   <td>ASSET CATEGORY : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtASSET_CATEGORY_pole" name="txtASSET_CATEGORY_pole" /></td>
+                </tr>
+                <tr>
+                   <td>TECHNOLOGY : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtTECHNOLOGY_pole" name="txtTECHNOLOGY_pole" /></td>
+                </tr>
+                <tr>
+                   <td>MATERIAL TYPE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMATERIAL_TYPE_pole" name="txtMATERIAL_TYPE_pole" /></td>
+                </tr>
+                <tr>
+                   <td>DELETE FLAG : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtDELETE_FLAG_pole" name="txtDELETE_FLAG_pole" /></td>
+                </tr>
+                <tr>
+                   <td>ENGRG ENG DESC : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtENGRG_ENG_DESC_pole" name="txtENGRG_ENG_DESC_pole" /></td>
+                </tr>
+                   <tr>
+                   <td>ENGRG PART NO : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtENGRG_PART_NO_pole" name="txtENGRG_PART_NO_pole" /></td>
+                </tr>
+                <tr>
+                   <td>TRACKABLE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtTRACKABLE_pole" name="txtTRACKABLE_pole" /></td>
+                </tr>
+                <tr>
+                   <td>MAJOR : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMAJOR_pole" name="txtMAJOR_pole" /></td>
+                </tr>
+            </thead> 
+        </table>
+        <br />
+    </div>
+
+    <div id="div_duct_path" title="Update Data">
+       <h3>Duck Path<input type="hidden" id="utxtIDl_d_path" name="utxtIDl_d_path" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL: <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_duck_path" name="txtMIN_MATERIAL_d_path" /></td>
+               </tr>
+               <tr>
+                  <td>DT S TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDT_S_TYPE_duck_path" name="txtDT_S_TYPE_d_path" /></td>
+               </tr>
+               <tr>
+                  <td>DT S WAYS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDT_S_WAYS_d_path" name="txtDT_S_WAYS_d_path" /></td>
+               </tr>
+               <tr>
+                  <td>DT S PLACMNT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDT_S_PLACMNT_d_path" name="txtDT_S_PLACMNT_d_path" /></td>
+               </tr>
+               <tr>
+                  <td>DT S ENCASE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDT_S_ENCASE_d_path" name="txtDT_S_ENCASE_d_path" /></td>
+               </tr>
+                <tr>
+                  <td>DT S BACKFILL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDT_S_BACKFILL_d_path" name="txtDT_S_BACKFILL_d_path" /></td>
+               </tr>
+               <tr>
+                  <td>DT S DIAMETER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDT_S_DIAMETER_d_path" name="txtDT_S_DIAMETER_d_path" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_pier_cross" title="Update Data">
+        <h3>Pier Cross<input type="hidden" id="utxtIDl_p_cross" name="utxtIDl_p_cross" /></h3>
+        <br />
+        <table width="800px" >
+            <thead>
+                <tr>
+                   <td>MIN MATERIAL: <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtMIN_MATERIAL_p_cross" name="txtMIN_MATERIAL_p_cross" /></td>
+                </tr>
+                <tr>
+                   <td>PR LENGTH : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtPR_LENGTH" name="txtPR_LENGTH" /></td>
+                </tr>
+            </thead> 
+        </table>
+        <br />
+    </div>
+
+     <div id="div_c_gauge" title="Update Data">
+        <h3>Contactor Guage<input type="hidden" id="utxtIDl_c_gauge" name="utxtIDl_c_gauge" /></h3>
+        <br />
+        <table width="800px" >
+            <thead>
+                <tr>
+                   <td>PL NUM : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtPL_NUM_CGuage" name="txtPL_NUM_CGuage" /></td>
+                </tr>
+                <tr>
+                   <td>PL VALUE : <span style="color:Red;">*</span></td>            
+                   <td><input type="text" id="txtPL_VALUE_CGuage" name="txtPL_VALUE_CGuage" /></td>
+                </tr>
+            </thead> 
+        </table>
+        <br />
+    </div>
+
+     <div id="div_c_alarm" title="Update Data">
+       <h3>Contactor Alarm<input type="hidden" id="utxtIDl_c_alarm" name="utxtIDl_c_alarm" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>PLANT NIT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPLANT_UNIT_C_Alarm" name="txtPLANT_UNIT_C_Alarm" /></td>
+               </tr>
+               <tr>
+                  <td>PU ID : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_ID_C_Alarm" name="txtPU_ID_C_Alarm" /></td>
+               </tr>
+               <tr>
+                  <td>PU DESC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_DESC_C_Alarm" name="txtPU_DESC_C_Alarm" /></td>
+               </tr>
+               <tr>
+                  <td>G3E FNO : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtG3E_FNO_C_Alarm" name="txtG3E_FNO_C_Alarm" /></td>
+               </tr>
+               <tr>
+                  <td>FEATURE TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_TYPE_C_Alarm" name="txtFEATURE_TYPE_C_Alarm" /></td>
+               </tr>
+                <tr>
+                  <td>FEATURE STATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_STATE_C_Alarm" name="txtFEATURE_STATE_C_Alarm" /></td>
+               </tr>
+               <tr>
+                  <td>QTY IND : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtQTY_IND_C_Alarm" name="txtQTY_IND_C_Alarm" /></td>
+               </tr>
+                <tr>
+                  <td>MUL FAC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMUL_FAC_C_Alarm" name="txtMUL_FAC_C_Alarm" /></td>
+               </tr>
+                <tr>
+                  <td>CA TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCA_TYPE_C_Alarm" name="txtCA_TYPE_C_Alarm" /></td>
+               </tr>
+               <tr>
+                  <td>BILL RATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBILL_RATE_C_Alarm" name="txtBILL_RATE_C_Alarm" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_g_seal" title="Update Data">
+       <h3>Gas Seal<input type="hidden" id="utxtIDl_g_seal" name="utxtIDl_g_seal" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>PLANT UNIT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPLANT_UNIT_gseal" name="txtPLANT_UNIT_gseal" /></td>
+               </tr>
+               <tr>
+                  <td>PU ID : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_ID_gseal" name="txtPU_ID_gseal" /></td>
+               </tr>
+               <tr>
+                  <td>PU DESC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_DESC_gseal" name="txtPU_DESC_gseal" /></td>
+               </tr>
+               <tr>
+                  <td>G3E FNO : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtG3E_FNO_gseal" name="txtG3E_FNO_gseal" /></td>
+               </tr>
+               <tr>
+                  <td>FEATURE TYPE: <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_TYPE_gseal" name="txtFEATURE_TYPE_gseal" /></td>
+               </tr>
+                <tr>
+                  <td>FEATURE STATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_STATE_gseal" name="txtFEATURE_STATE_gseal" /></td>
+               </tr>
+               <tr>
+                  <td>QTY IND : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtQTY_IND_gseal" name="txtQTY_IND_gseal" /></td>
+               </tr>
+                <tr>
+                  <td>MUL FAC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMUL_FAC_gseal" name="txtMUL_FAC_gseal" /></td>
+               </tr>
+                <tr>
+                  <td>CTYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCTYPE_gseal" name="txtCTYPE_gseal" /></td>
+               </tr>
+               <tr>
+                  <td>TOTAL SIZE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTOTAL_SIZE_gseal" name="txtTOTAL_SIZE_gseal" /></td>
+               </tr>
+                 <tr>
+                  <td>GAUGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtGAUGE_gseal" name="txtGAUGE_gseal" /></td>
+               </tr>
+                <tr>
+                  <td>PLACEMENT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPLACEMENT_gseal" name="txtPLACEMENT_gseal" /></td>
+               </tr>
+               <tr>
+                  <td>BILL RATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBILL_RATE_gseal" name="txtBILL_RATE_gseal" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_t_point" title="Update Data">
+       <h3>Test Point<input type="hidden" id="utxtIDl_t_point" name="utxtIDl_t_point" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>PLANT UNIT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPLANT_UNIT_t_point" name="txtPLANT_UNIT_t_point" /></td>
+               </tr>
+               <tr>
+                  <td>PU ID : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_ID_t_point" name="txtPU_ID_t_point" /></td>
+               </tr>
+               <tr>
+                  <td>PU DESC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_DESC_t_point" name="txtPU_DESC_t_point" /></td>
+               </tr>
+               <tr>
+                  <td>G3E FNO : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtG3E_FNO_t_point" name="txtG3E_FNO_C_Alarm" /></td>
+               </tr>
+               <tr>
+                  <td>FEATURE TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_TYPE_t_point" name="txtFEATURE_TYPE_t_point" /></td>
+               </tr>
+                <tr>
+                  <td>FEATURE STATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_STATE_t_point" name="txtFEATURE_STATE_t_point" /></td>
+               </tr>
+               <tr>
+                  <td>QTY IND : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtQTY_IND_t_point" name="txtQTY_IND_t_point" /></td>
+               </tr>
+                <tr>
+                  <td>MUL FAC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMUL_FAC_t_point" name="txtMUL_FAC_t_point" /></td>
+               </tr>
+                <tr>
+                  <td>CTYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCA_TYPE_t_point" name="txtCA_TYPE_t_point" /></td>
+               </tr>
+               <tr>
+                  <td>BILL RATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBILL_RATE_t_point" name="txtBILL_RATE_t_point" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_transducer" title="Update Data">
+       <h3>Tansducer<input type="hidden" id="utxtIDl_transducer" name="utxtIDl_t_point" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>PLANT UNIT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPLANT_UNIT_transducer" name="txtPLANT_UNIT_transducer" /></td>
+               </tr>
+               <tr>
+                  <td>PU ID : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_ID_transducer" name="txtPU_ID_transducer" /></td>
+               </tr>
+               <tr>
+                  <td>PU DESC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_DESC_transducer" name="txtPU_DESC_transducer" /></td>
+               </tr>
+               <tr>
+                  <td>G3E FNO : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtG3E_FNO_transducer" name="txtG3E_FNO_transducer" /></td>
+               </tr>
+               <tr>
+                  <td>FEATURE TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_TYPE_transducer" name="txtFEATURE_TYPE_transducer" /></td>
+               </tr>
+                <tr>
+                  <td>FEATURE STATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_STATE_transducer" name="txtFEATURE_STATE_transducer" /></td>
+               </tr>
+               <tr>
+                  <td>QTY IND : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtQTY_IND_transducer" name="txtQTY_IND_transducer" /></td>
+               </tr>
+                <tr>
+                  <td>MUL FAC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMUL_FAC_transducer" name="txtMUL_FAC_transducer" /></td>
+               </tr>
+               <tr>
+                  <td>BILL RATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBILL_RATE_transducer" name="txtBILL_RATE_transducer" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_PU_IDF" title="Update Data">
+       <h3>IDF<input type="hidden" id="utxtIDl_IDF" name="utxtIDl_IDF" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>PLANT UNIT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPLANT_UNIT_IDF" name="txtPLANT_UNIT_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>PU ID : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_ID_IDF" name="txtPU_ID_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>PU DESC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_DESC_IDF" name="txtPU_DESC_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>G3E FNO : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtG3E_FNO_IDF" name="txtG3E_FNO_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>FEATURE TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_TYPE_IDF" name="txtFEATURE_TYPE_IDF" /></td>
+               </tr>
+                <tr>
+                  <td>FEATURE STATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_STATE_IDF" name="txtFEATURE_STATE_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>QTY IND : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtQTY_IND_IDF" name="txtQTY_IND_IDF" /></td>
+               </tr>
+                <tr>
+                  <td>MUL FAC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMUL_FAC_IDF" name="txtMUL_FAC_IDF" /></td>
+               </tr>
+                <tr>
+                  <td>CON TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCON_TYPE_IDF" name="txtCON_TYPE_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>IDF SIZE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtIDF_SIZE_IDF" name="txtIDF_SIZE_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>IDF CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtIDF_CAPACITY_IDF" name="txtIDF_CAPACITY_IDF" /></td>
+               </tr>
+                <tr>
+                  <td>IDF TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtIDF_TYPE_IDF" name="txtIDF_TYPE_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>INSTALL LOC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtINSTALL_LOC_IDF" name="txtINSTALL_LOC_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>EARTH ROD : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtEARTH_ROD_IDF" name="txtEARTH_ROD_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>TERM TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTERM_TYPE_IDF" name="txtTERM_TYPE_IDF" /></td>
+               </tr>
+               <tr>
+                  <td>BILL RATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBILL_RATE_IDF" name="txtBILL_RATE_IDF" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_dslam" title="Update Data">
+       <h3>DSLAM<input type="hidden" id="utxtIDl_dslam" name="utxtIDl_dslam" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>PLANT UNIT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPLANT_UNIT_dslam" name="txtPLANT_UNIT_dslam" /></td>
+               </tr>
+                <tr>
+                  <td>CONTRACTOR : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCONTRACTOR_dslam" name="txtCONTRACTOR_dslam" /></td>
+               </tr>
+               <tr>
+                  <td>G3E FNO : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtG3E_FNO_dslam" name="txtG3E_FNO_dslam" /></td>
+               </tr>
+               <tr>
+                  <td>FEATURE TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_TYPE_dslam" name="txtFEATURE_TYPE_dslam" /></td>
+               </tr>
+                <tr>
+                  <td>FEATURE STATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFEATURE_STATE_dslam" name="txtFEATURE_STATE_dslam" /></td>
+               </tr>
+               <tr>
+                  <td>QTY IND : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtQTY_IND_dslam" name="txtQTY_IND_dslam" /></td>
+               </tr>
+                <tr>
+                  <td>MUL FAC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMUL_FAC_dslam" name="txtMUL_FAC_dslam" /></td>
+               </tr>
+                <tr>
+                  <td>CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCAPACITY_dslam" name="txtCAPACITY_dslam" /></td>
+               </tr>
+                <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_dslam" name="txtMANUFACTURER_dslam" /></td>
+               </tr>
+               <tr>
+                  <td>BILL RATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBILL_RATE_dslam" name="txtBILL_RATE_dslam" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+     <div id="div_FDC" title="Update Data">
+       <h3>FDC<input type="hidden" id="utxtIDl_FDC" name="utxtIDl_FDC" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_FDC" name="txtMIN_MATERIAL_FDC" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_FDC" name="txtDESCRIPTION_FDC" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_FDC" name="txtMODEL_dslam" /></td>
+               </tr>
+             </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_FDP" title="Update Data">
+       <h3>FDP<input type="hidden" id="utxtIDl_FDP" name="utxtIDl_FDP" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_FDP" name="txtMIN_MATERIAL_FDP" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_FDP" name="txtDESCRIPTION_FDP" /></td>
+               </tr>
+               <tr>
+                  <td>CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCAPACITY_FDP" name="txtCAPACITY_FDP" /></td>
+               </tr>
+               <tr>
+                  <td>FDP TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFDP_TYPE_FDP" name="txtFDP_TYPE_FDP" /></td>
+               </tr>
+             </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_TIE_FDP" title="Update Data">
+       <h3>TIE FDP<input type="hidden" id="utxtIDl_TIE_FDP" name="utxtIDl_FDP" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_TIE_FDP" name="txtMIN_MATERIAL_FDP" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_TIE_FDP" name="txtDESCRIPTION_FDP" /></td>
+               </tr>
+               <tr>
+                  <td>CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCAPACITY_TIE_FDP" name="txtCAPACITY_FDP" /></td>
+               </tr>
+               <tr>
+                  <td>FDP TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFDP_TYPE_TIE_FDP" name="txtFDP_TYPE_FDP" /></td>
+               </tr>
+             </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_FTB" title="Update Data">
+       <h3>FTB<input type="hidden" id="utxtIDl_FTB" name="utxtIDl_FTB" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_FTB" name="utxtIDl_FTB" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_FTB" name="txtDESCRIPTION_FTB" /></td>
+               </tr>
+               <tr>
+                  <td>CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCAPACITY_FTB" name="txtCAPACITY_FTB" /></td>
+               </tr>
+               <tr>
+                  <td>FDP TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFDP_TYPE_FTB" name="txtFDP_TYPE_FTB" /></td>
+               </tr>
+             </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_IPMSAN" title="Update Data">
+       <h3>IPMSAN<input type="hidden" id="utxtIDl_IPMSAN" name="utxtIDl_IPMSAN" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_IPMSAN" name="txtMIN_MATERIAL_IPMSAN" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_IPMSAN" name="txtDESCRIPTION_IPMSAN" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_IPMSAN" name="txtMODEL_IPMSAN" /></td>
+               </tr>
+               <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_IPMSAN" name="txtMANUFACTURER_IPMSAN" /></td>
+               </tr>
+                <tr>
+                  <td>SYSTEM CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtSYSTEM_CAPACITY_IPMSAN" name="txtSYSTEM_CAPACITY_IPMSAN" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_IPMSAN" name="txtFRONT_IMAGE_IPMSAN" /></td>
+               </tr>
+                <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_IPMSAN" name="txtBACK_IMAGE_IPMSAN" /></td>
+               </tr>
+                <tr>
+                  <td>TOTAL POSITIONS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTOTAL_POSITIONS_IPMSAN" name="txtTOTAL_POSITIONS_IPMSAN" /></td>
+               </tr>
+                <tr>
+                  <td>DIMENSION DEPTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_DEPTH_IPMSAN" name="txtDIMENSION_DEPTH_IPMSAN" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_WIDTH_IPMSAN" name="txtDIMENSION_WIDTH_IPMSAN" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION HEIGHT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_HEIGHT_IPMSAN" name="txtDIMENSION_HEIGHT_IPMSAN" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_DDN" title="Update Data">
+       <h3>Digital Data Network<input type="hidden" id="utxtIDl_DDN" name="utxtIDl_IPMSAN" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_DDN" name="txtMIN_MATERIAL_DDN" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_DDN" name="txtDESCRIPTION_DDN" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_DDN" name="txtMODEL_IPMSAN" /></td>
+               </tr>
+               <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_DDN" name="txtMANUFACTURER_DDN" /></td>
+               </tr>
+                <tr>
+                  <td>SYSTEM CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtSYSTEM_CAPACITY_DDN" name="txtSYSTEM_CAPACITY_DDN" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_DDN" name="txtFRONT_IMAGE_DDN" /></td>
+               </tr>
+                <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_DDN" name="txtBACK_IMAGE_DDN" /></td>
+               </tr>
+                <tr>
+                  <td>TOTAL POSITIONS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTOTAL_POSITIONS_DDN" name="txtTOTAL_POSITIONS_DDN" /></td>
+               </tr>
+                <tr>
+                  <td>DIMENSION DEPTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_DEPTH_DDN" name="txtDIMENSION_DEPTH_DDN" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_WIDTH_DDN" name="txtDIMENSION_WIDTH_DDN" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION HEIGHT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_HEIGHT_DDN" name="txtDIMENSION_HEIGHT_DDN" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+     <div id="div_NDH" title="Update Data">
+       <h3>Network Distribution Hub<input type="hidden" id="utxtIDl_NDH" name="utxtIDl_NDH" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_NDH" name="txtMIN_MATERIAL_NDH" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_NDH" name="txtDESCRIPTION_NDH" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_NDH" name="txtMODEL_NDH" /></td>
+               </tr>
+               <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_NDH" name="txtMANUFACTURER_NDH" /></td>
+               </tr>
+                <tr>
+                  <td>SYSTEM CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtSYSTEM_CAPACITY_NDH" name="txtSYSTEM_CAPACITY_NDH" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_NDH" name="txtFRONT_IMAGE_NDH" /></td>
+               </tr>
+                <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_NDH" name="txtBACK_IMAGE_NDH" /></td>
+               </tr>
+                <tr>
+                  <td>TOTAL POSITIONS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTOTAL_POSITIONS_NDH" name="txtTOTAL_POSITIONS_NDH" /></td>
+               </tr>
+                <tr>
+                  <td>DIMENSION DEPTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_DEPTH_NDH" name="txtDIMENSION_DEPTH_NDH" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_WIDTH_NDH" name="txtDIMENSION_WIDTH_NDH" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION HEIGHT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_HEIGHT_NDH" name="txtDIMENSION_HEIGHT_NDH" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_RT" title="Update Data">
+       <h3>Remote Terminal<input type="hidden" id="utxtIDl_RT" name="utxtIDl_RT" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_RT" name="txtMIN_MATERIAL_RT" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_RT" name="txtDESCRIPTION_RT" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_RT" name="txtMODEL_RT" /></td>
+               </tr>
+               <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_RT" name="txtMANUFACTURER_RT" /></td>
+               </tr>
+                <tr>
+                  <td>SYSTEM CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtSYSTEM_CAPACITY_RT" name="txtSYSTEM_CAPACITY_RT" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_RT" name="txtFRONT_IMAGE_RT" /></td>
+               </tr>
+                <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_RT" name="txtBACK_IMAGE_RT" /></td>
+               </tr>
+                <tr>
+                  <td>TOTAL POSITIONS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTOTAL_POSITIONS_RT" name="txtTOTAL_POSITIONS_RT" /></td>
+               </tr>
+                <tr>
+                  <td>DIMENSION DEPTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_DEPTH_RT" name="txtDIMENSION_DEPTH_RT" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_WIDTH_RT" name="txtDIMENSION_WIDTH_RT" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION HEIGHT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_HEIGHT_RT" name="txtDIMENSION_HEIGHT_RT" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_FAN" title="Update Data">
+       <h3>Fiber Access Node<input type="hidden" id="utxtIDl_FAN" name="utxtIDl_FAN" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_FAN" name="txtMIN_MATERIAL_FAN" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_FAN" name="txtDESCRIPTION_FAN" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_FAN" name="txtMODEL_FAN" /></td>
+               </tr>
+               <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_FAN" name="txtMANUFACTURER_FAN" /></td>
+               </tr>
+                <tr>
+                  <td>SYSTEM CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtSYSTEM_CAPACITY_FAN" name="txtSYSTEM_CAPACITY_FAN" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_FAN" name="txtFRONT_IMAGE_FAN" /></td>
+               </tr>
+                <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_FAN" name="txtBACK_IMAGE_FAN" /></td>
+               </tr>
+                <tr>
+                  <td>TOTAL POSITIONS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTOTAL_POSITIONS_FAN" name="txtTOTAL_POSITIONS_FAN" /></td>
+               </tr>
+                <tr>
+                  <td>DIMENSION DEPTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_DEPTH_FAN" name="txtDIMENSION_DEPTH_FAN" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_WIDTH_FAN" name="txtDIMENSION_WIDTH_FAN" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION HEIGHT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_HEIGHT_FAN" name="txtDIMENSION_HEIGHT_FAN" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_VDSL2" title="Update Data">
+       <h3>VDSL2<input type="hidden" id="utxtIDl_VDSL2" name="utxtIDl_VDSL2" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_VDSL2" name="txtMIN_MATERIAL_VDSL2" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_VDSL2" name="txtDESCRIPTION_VDSL2" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_VDSL2" name="txtMODEL_VDSL2" /></td>
+               </tr>
+               <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_VDSL2" name="txtMANUFACTURER_VDSL2" /></td>
+               </tr>
+                <tr>
+                  <td>SYSTEM CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtSYSTEM_CAPACITY_VDSL2" name="txtSYSTEM_CAPACITY_VDSL2" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_VDSL2" name="txtFRONT_IMAGE_VDSL2" /></td>
+               </tr>
+                <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_VDSL2" name="txtBACK_IMAGE_VDSL2" /></td>
+               </tr>
+                <tr>
+                  <td>TOTAL POSITIONS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTOTAL_POSITIONS_VDSL2" name="txtTOTAL_POSITIONS_VDSL2" /></td>
+               </tr>
+                <tr>
+                  <td>DIMENSION DEPTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_DEPTH_VDSL2" name="txtDIMENSION_DEPTH_VDSL2" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_WIDTH_VDSL2" name="txtDIMENSION_WIDTH_VDSL2" /></td>
+               </tr>
+               <tr>
+                  <td>DIMENSION HEIGHT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDIMENSION_HEIGHT_VDSL2" name="txtDIMENSION_HEIGHT_VDSL2" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+     <div id="div_DB" title="Update Data">
+       <h3>DB<input type="hidden" id="utxtIDl_DB" name="utxtIDl_DB" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_DB" name="txtMIN_MATERIAL_DB" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_DB" name="txtDESCRIPTION_DB" /></td>
+               </tr>
+               <tr>
+                  <td>CAPACITY 1 : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCAPACITY1_DB" name="txtCAPACITY1_DB" /></td>
+               </tr>
+               <tr>
+                  <td>CAPACITY 2 : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCAPACITY2_DB" name="txtCAPACITY2_DB" /></td>
+               </tr>
+               <tr>
+                  <td>FDP TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFDP_TYPE_DB" name="txtFDP_TYPE_DB" /></td>
+               </tr>
+             </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_PPanel" title="Update Data">
+       <h3>PATCH PANEL<input type="hidden" id="utxtIDl_PPanel" name="utxtIDl_PPanel" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_PPanel" name="txtMIN_MATERIAL_PPanel" /></td>
+               </tr>
+                <tr>
+                  <td>MIN MATERIAL DESC ENG : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_DESC_ENG_PPanel" name="txtMIN_MATERIAL_DESC_ENG_PPanel" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_PPanel" name="txtMODEL_PPanel" /></td>
+               </tr>
+               <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_PPanel" name="txtMANUFACTURER_PPanel" /></td>
+               </tr>
+                <tr>
+                  <td>POSITIONS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPOSITIONS_PPanel" name="txtPOSITIONS_PPanel" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_PPanel" name="txtFRONT_IMAGE_PPanel" /></td>
+               </tr>
+                <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_PPanel" name="txtBACK_IMAGE_PPanel" /></td>
+               </tr>
+                <tr>
+                  <td>WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtWIDTH_PPanel" name="txtWIDTH_PPanel" /></td>
+               </tr>
+                <tr>
+                  <td>ASSET CATEGORY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtASSET_CATEGORY_PPanel" name="txtASSET_CATEGORY_PPanel" /></td>
+               </tr>
+               <tr>
+                  <td>TECHNOLOGY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTECHNOLOGY_PPanel" name="txtTECHNOLOGY_PPanel" /></td>
+               </tr>
+               <tr>
+                  <td>MATERIAL TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMATERIAL_TYPE_PPanel" name="txtMATERIAL_TYPE_PPanel" /></td>
+               </tr>
+                <tr>
+                  <td>ENGRG DESC ENG : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtENGRG_DESC_ENG_PPanel" name="txtENGRG_DESC_ENG_PPanel" /></td>
+               </tr>
+                <tr>
+                  <td>ENGRG_PART_NO : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtENGRG_PART_NO_PPanel" name="txtENGRG_PART_NO_PPanel" /></td>
+               </tr>
+               <tr>
+                  <td>TRACKABLE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTRACKABLE_PPanel" name="txtTRACKABLE_PPanel" /></td>
+               </tr>
+               <tr>
+                  <td>MAJOR : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMAJOR_PPanel" name="txtMAJOR_PPanel" /></td>
+               </tr>
+                <tr>
+                  <td>DELETE FLAG : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDELETE_FLAG_PPanel" name="txtDELETE_FLAG_PPanel" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_FSPLITTER" title="Update Data">
+       <h3>Fiber Splitter<input type="hidden" id="utxtIDl_FSPLITTER" name="utxtIDl_FSPLITTER" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_FSPLITTER" name="txtMIN_MATERIAL_FSPLITTER" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_FSPLITTER" name="txtFRONT_IMAGE_FSPLITTER" /></td>
+               </tr>
+               <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_FSPLITTER" name="txtBACK_IMAGE_FSPLITTER" /></td>
+               </tr>
+                <tr>
+                  <td>TRACKABLE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTRACKABLE_FSPLITTER" name="txtTRACKABLE_FSPLITTER" /></td>
+               </tr>
+               <tr>
+                  <td>MAJOR : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMAJOR_FSPLITTER" name="txtMAJOR_FSPLITTER" /></td>
+               </tr>
+               <tr>
+                  <td>DELETE FLAG : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDELETE_FLAG_FSPLITTER" name="txtDELETE_FLAG_FSPLITTER" /></td>
+               </tr>
+                <tr>
+                  <td>PU ID : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_ID_FSPLITTER" name="txtPU_ID_FSPLITTER" /></td>
+               </tr>
+                <tr>
+                  <td>PU DESC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPU_DESC_FSPLITTER" name="txtPU_DESC_FSPLITTER" /></td>
+               </tr>
+                <tr>
+                  <td>BILLING RATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBILLING_RATE_FSPLITTER" name="txtBILLING_RATE_FSPLITTER" /></td>
+               </tr>
+               <tr>
+                  <td>QTY IND : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtQTY_IND_FSPLITTER" name="txtQTY_IND_FSPLITTER" /></td>
+               </tr>
+               <tr>
+                  <td>MUL FAC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMUL_FAC_FSPLITTER" name="txtMUL_FAC_FSPLITTER" /></td>
+               </tr>
+                <tr>
+                  <td>SPLITTER TYPE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtSPLITTER_TYPE_FSPLITTER" name="txtSPLITTER_TYPE_FSPLITTER" /></td>
+               </tr>
+                <tr>
+                  <td>SPLITTER CLASS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtSPLITTER_CLASS_FSPLITTER" name="txtSPLITTER_CLASS_FSPLITTER" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_FSHELF" title="Update Data">
+       <h3>Fiber Shelf<input type="hidden" id="utxtIDl_FSHELF" name="utxtIDl_FSHELF" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_FSHELF" name="txtMIN_MATERIAL_FSHELF" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_FSHELF" name="txtBACK_IMAGE_FSHELF" /></td>
+               </tr>
+               <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_FSHELF" name="txtBACK_IMAGE_FSPLITTER" /></td>
+               </tr>
+                <tr>
+                  <td>TRACKABLE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTRACKABLE_FSHELF" name="txtTRACKABLE_FSHELF" /></td>
+               </tr>
+               <tr>
+                  <td>MAJOR : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMAJOR_FSHELF" name="txtMAJOR_FSHELF" /></td>
+               </tr>
+               <tr>
+                  <td>DELETE FLAG : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDELETE_FLAG_FSHELF" name="txtDELETE_FLAG_FSHELF" /></td>
+               </tr>
+                <tr>
+                  <td>DESCRIPTION : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDESCRIPTION_FSHELF" name="txtDESCRIPTION_FSHELF" /></td>
+               </tr>
+                <tr>
+                  <td>WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtWIDTH_FSHELF" name="txtWIDTH_FSHELF" /></td>
+               </tr>
+                <tr>
+                  <td>BILLING RATE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBILLING_RATE_FSHELF" name="txtBILLING_RATE_FSHELF" /></td>
+               </tr>
+               <tr>
+                  <td>TOTAL SLOTS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTOTAL_SLOTS_FSHELF" name="txtTOTAL_SLOTS_FSHELF" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_FSHELF" name="txtMODEL_FSHELF" /></td>
+               </tr>
+                <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_FSHELF" name="txtMANUFACTURER_FSHELF" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+
+    <div id="div_FCARD" title="Update Data">
+       <h3>Fiber Card<input type="hidden" id="utxtIDl_FCARD" name="utxtIDl_FCARD" /></h3>
+       <br />
+       <table width="800px" >
+           <thead>
+               <tr>
+                  <td>MIN MATERIAL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMIN_MATERIAL_FCARD" name="txtMIN_MATERIAL_FCARD" /></td>
+               </tr>
+               <tr>
+                  <td>FRONT IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtFRONT_IMAGE_FCARD" name="txtFRONT_IMAGE_FCARD" /></td>
+               </tr>
+               <tr>
+                  <td>BACK IMAGE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtBACK_IMAGE_FCARD" name="txtBACK_IMAGE_FCARD" /></td>
+               </tr>
+                <tr>
+                  <td>TRACKABLE : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtTRACKABLE_FCARD" name="txtTRACKABLE_FCARD" /></td>
+               </tr>
+               <tr>
+                  <td>MAJOR : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMAJOR_FCARD" name="txtMAJOR_FCARD" /></td>
+               </tr>
+               <tr>
+                  <td>DELETE FLAG : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDELETE_FLAG_FCARD" name="txtDELETE_FLAG_FCARD" /></td>
+               </tr>
+                <tr>
+                  <td>HEIGHT : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtHEIGHT_FCARD" name="txtHEIGHT_FCARD" /></td>
+               </tr>
+                <tr>
+                  <td>WIDTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtWIDTH_FCARD" name="txtWIDTH_FCARD" /></td>
+               </tr>
+                <tr>
+                  <td>DEPTH : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtDEPTH_FCARD" name="txtDEPTH_FCARD" /></td>
+               </tr>
+               <tr>
+                  <td>POSITIONS : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtPOSITIONS_FCARD" name="txtPOSITIONS_FCARD" /></td>
+               </tr>
+               <tr>
+                  <td>MODEL : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMODEL_FCARD" name="txtMODEL_FCARD" /></td>
+               </tr>
+                <tr>
+                  <td>MANUFACTURER : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtMANUFACTURER_FCARD" name="txtMANUFACTURER_FCARD" /></td>
+               </tr>
+                <tr>
+                  <td>CAPACITY : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCAPACITY_FCARD" name="txtCAPACITY_FCARD" /></td>
+               </tr>
+               <tr>
+                  <td>CONTRACT DESC : <span style="color:Red;">*</span></td>            
+                  <td><input type="text" id="txtCONTRACT_DESC_FCARD" name="txtCONTRACT_DESC_FCARD" /></td>
+               </tr>
+           </thead> 
+       </table>
+       <br />
+    </div>
+        <input type="button" id="btnSave" value="Save" style="visibility:hidden"/>
+    </div>
+</body>
+</html>

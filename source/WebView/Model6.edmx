@@ -1,0 +1,1642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model6.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Model6StoreContainer">
+          <EntitySet Name="REF_WEBSERVICES" EntityType="Model6.Store.REF_WEBSERVICES" store:Type="Tables" Schema="NEPS" />
+          <EntitySet Name="GC_DFDP" EntityType="Model6.Store.GC_DFDP" store:Type="Views" store:Schema="NEPS" store:Name="GC_DFDP">
+            <DefiningQuery>SELECT 
+      "GC_DFDP"."G3E_ID" AS "G3E_ID", 
+      "GC_DFDP"."G3E_FNO" AS "G3E_FNO", 
+      "GC_DFDP"."G3E_FID" AS "G3E_FID", 
+      "GC_DFDP"."G3E_CNO" AS "G3E_CNO", 
+      "GC_DFDP"."G3E_CID" AS "G3E_CID", 
+      "GC_DFDP"."BND_FID" AS "BND_FID", 
+      "GC_DFDP"."CONTRACTOR" AS "CONTRACTOR", 
+      "GC_DFDP"."CREATED_BY" AS "CREATED_BY", 
+      "GC_DFDP"."CREATED_DATE" AS "CREATED_DATE", 
+      "GC_DFDP"."CREATED_HOST" AS "CREATED_HOST", 
+      "GC_DFDP"."CREATED_IP_ADDRESS" AS "CREATED_IP_ADDRESS", 
+      "GC_DFDP"."CREATED_OS_USER" AS "CREATED_OS_USER", 
+      "GC_DFDP"."CUST_NETWORK" AS "CUST_NETWORK", 
+      "GC_DFDP"."DB_LOSS" AS "DB_LOSS", 
+      "GC_DFDP"."DIST_FROM_EXC" AS "DIST_FROM_EXC", 
+      "GC_DFDP"."EQP_STATUS" AS "EQP_STATUS", 
+      "GC_DFDP"."FDC_CODE" AS "FDC_CODE", 
+      "GC_DFDP"."FDC_FID" AS "FDC_FID", 
+      "GC_DFDP"."FDC_SPLTR_CODE" AS "FDC_SPLTR_CODE", 
+      "GC_DFDP"."FDP_CAPACITY" AS "FDP_CAPACITY", 
+      "GC_DFDP"."FDP_CLASS" AS "FDP_CLASS", 
+      "GC_DFDP"."FDP_CODE" AS "FDP_CODE", 
+      "GC_DFDP"."FDP_OWNER" AS "FDP_OWNER", 
+      "GC_DFDP"."FDP_SPARE" AS "FDP_SPARE", 
+      "GC_DFDP"."FDP_SPLTR_CODE" AS "FDP_SPLTR_CODE", 
+      "GC_DFDP"."FDP_TYPE" AS "FDP_TYPE", 
+      "GC_DFDP"."FDP_WORK" AS "FDP_WORK", 
+      "GC_DFDP"."FIB_CORE" AS "FIB_CORE", 
+      "GC_DFDP"."FIB_DCABLE" AS "FIB_DCABLE", 
+      "GC_DFDP"."INSTALL_LOC" AS "INSTALL_LOC", 
+      "GC_DFDP"."LOC_TYPE" AS "LOC_TYPE", 
+      "GC_DFDP"."MAINFDP_CODE" AS "MAINFDP_CODE", 
+      "GC_DFDP"."MAINFDP_FID" AS "MAINFDP_FID", 
+      "GC_DFDP"."MAINFDP_IPID" AS "MAINFDP_IPID", 
+      "GC_DFDP"."MANUFACTURER" AS "MANUFACTURER", 
+      "GC_DFDP"."MODIFIED_BY" AS "MODIFIED_BY", 
+      "GC_DFDP"."MODIFIED_DATE" AS "MODIFIED_DATE", 
+      "GC_DFDP"."MODIFIED_HOST" AS "MODIFIED_HOST", 
+      "GC_DFDP"."MODIFIED_IP_ADDRESS" AS "MODIFIED_IP_ADDRESS", 
+      "GC_DFDP"."MODIFIED_OS_USER" AS "MODIFIED_OS_USER", 
+      "GC_DFDP"."OLT_ID" AS "OLT_ID", 
+      "GC_DFDP"."PLINTH" AS "PLINTH", 
+      "GC_DFDP"."RAD_DIST" AS "RAD_DIST", 
+      "GC_DFDP"."STATUS" AS "STATUS", 
+      "GC_DFDP"."TOTAL_CAPACITY" AS "TOTAL_CAPACITY"
+      FROM "NEPS"."GC_DFDP" "GC_DFDP"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GC_NETELEM" EntityType="Model6.Store.GC_NETELEM" store:Type="Views" store:Schema="NEPS" store:Name="GC_NETELEM">
+            <DefiningQuery>SELECT 
+      "GC_NETELEM"."G3E_ID" AS "G3E_ID", 
+      "GC_NETELEM"."G3E_FNO" AS "G3E_FNO", 
+      "GC_NETELEM"."G3E_FID" AS "G3E_FID", 
+      "GC_NETELEM"."G3E_CNO" AS "G3E_CNO", 
+      "GC_NETELEM"."G3E_CID" AS "G3E_CID", 
+      "GC_NETELEM"."BILLING_RATE" AS "BILLING_RATE", 
+      "GC_NETELEM"."CREATED_BY" AS "CREATED_BY", 
+      "GC_NETELEM"."CREATED_DATE" AS "CREATED_DATE", 
+      "GC_NETELEM"."CREATED_HOST" AS "CREATED_HOST", 
+      "GC_NETELEM"."CREATED_IP_ADDRESS" AS "CREATED_IP_ADDRESS", 
+      "GC_NETELEM"."CREATED_OS_USER" AS "CREATED_OS_USER", 
+      "GC_NETELEM"."EXC_ABB" AS "EXC_ABB", 
+      "GC_NETELEM"."FEATURE_STATE" AS "FEATURE_STATE", 
+      "GC_NETELEM"."ID" AS "ID", 
+      "GC_NETELEM"."IMAP_FEATURE_ID" AS "IMAP_FEATURE_ID", 
+      "GC_NETELEM"."JOB_ID" AS "JOB_ID", 
+      "GC_NETELEM"."JOB_STATE" AS "JOB_STATE", 
+      "GC_NETELEM"."MIC" AS "MIC", 
+      "GC_NETELEM"."MIN_MATERIAL" AS "MIN_MATERIAL", 
+      "GC_NETELEM"."MODIFIED_BY" AS "MODIFIED_BY", 
+      "GC_NETELEM"."MODIFIED_DATE" AS "MODIFIED_DATE", 
+      "GC_NETELEM"."MODIFIED_HOST" AS "MODIFIED_HOST", 
+      "GC_NETELEM"."MODIFIED_IP_ADDRESS" AS "MODIFIED_IP_ADDRESS", 
+      "GC_NETELEM"."MODIFIED_OS_USER" AS "MODIFIED_OS_USER", 
+      "GC_NETELEM"."OWNERSHIP" AS "OWNERSHIP", 
+      "GC_NETELEM"."PLAN_ID" AS "PLAN_ID", 
+      "GC_NETELEM"."SAP_WRK_ID" AS "SAP_WRK_ID", 
+      "GC_NETELEM"."SCHEME_NAME" AS "SCHEME_NAME", 
+      "GC_NETELEM"."SEGMENT" AS "SEGMENT", 
+      "GC_NETELEM"."SERVICE_CODE" AS "SERVICE_CODE", 
+      "GC_NETELEM"."SWITCH_CENTRE_CLLI" AS "SWITCH_CENTRE_CLLI", 
+      "GC_NETELEM"."YEAR_PLACED" AS "YEAR_PLACED"
+      FROM "NEPS"."GC_NETELEM" "GC_NETELEM"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATECARD_GE_OSP" EntityType="Model6.Store.VW_CREATECARD_GE_OSP" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATECARD_GE_OSP">
+            <DefiningQuery>SELECT 
+      "VW_CREATECARD_GE_OSP"."JOBID" AS "JOBID", 
+      "VW_CREATECARD_GE_OSP"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATECARD_GE_OSP"."MSAN_FID" AS "MSAN_FID", 
+      "VW_CREATECARD_GE_OSP"."CARDSLOT" AS "CARDSLOT", 
+      "VW_CREATECARD_GE_OSP"."CARDNAME" AS "CARDNAME", 
+      "VW_CREATECARD_GE_OSP"."CARDMODEL" AS "CARDMODEL", 
+      "VW_CREATECARD_GE_OSP"."CARDCOUNTPORT" AS "CARDCOUNTPORT", 
+      "VW_CREATECARD_GE_OSP"."PORTSTARTNUM" AS "PORTSTARTNUM"
+      FROM "NEPS"."VW_CREATECARD_GE_OSP" "VW_CREATECARD_GE_OSP"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATECARD_OSP_9000" EntityType="Model6.Store.VW_CREATECARD_OSP_9000" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATECARD_OSP_9000">
+            <DefiningQuery>SELECT 
+      "VW_CREATECARD_OSP_9000"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATECARD_OSP_9000"."MSAN_FID" AS "MSAN_FID", 
+      "VW_CREATECARD_OSP_9000"."RT_CODE" AS "RT_CODE", 
+      "VW_CREATECARD_OSP_9000"."SCHEME_NAME" AS "SCHEME_NAME", 
+      "VW_CREATECARD_OSP_9000"."SLOT" AS "SLOT", 
+      "VW_CREATECARD_OSP_9000"."CARDNAME" AS "CARDNAME", 
+      "VW_CREATECARD_OSP_9000"."CARDMODEL" AS "CARDMODEL", 
+      "VW_CREATECARD_OSP_9000"."TOTALCOUNT" AS "TOTALCOUNT", 
+      "VW_CREATECARD_OSP_9000"."PORTSTARTNO" AS "PORTSTARTNO"
+      FROM "NEPS"."VW_CREATECARD_OSP_9000" "VW_CREATECARD_OSP_9000"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATECARD_OSP_9100" EntityType="Model6.Store.VW_CREATECARD_OSP_9100" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATECARD_OSP_9100">
+            <DefiningQuery>SELECT 
+      "VW_CREATECARD_OSP_9100"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATECARD_OSP_9100"."MSAN_FID" AS "MSAN_FID", 
+      "VW_CREATECARD_OSP_9100"."RT_CODE" AS "RT_CODE", 
+      "VW_CREATECARD_OSP_9100"."SCHEME_NAME" AS "SCHEME_NAME", 
+      "VW_CREATECARD_OSP_9100"."SLOT" AS "SLOT", 
+      "VW_CREATECARD_OSP_9100"."CARDNAME" AS "CARDNAME", 
+      "VW_CREATECARD_OSP_9100"."CARDMODEL" AS "CARDMODEL", 
+      "VW_CREATECARD_OSP_9100"."TOTALCOUNT" AS "TOTALCOUNT", 
+      "VW_CREATECARD_OSP_9100"."PORTSTARTNO" AS "PORTSTARTNO"
+      FROM "NEPS"."VW_CREATECARD_OSP_9100" "VW_CREATECARD_OSP_9100"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATECARD_OSP_9100_NGN" EntityType="Model6.Store.VW_CREATECARD_OSP_9100_NGN" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATECARD_OSP_9100_NGN">
+            <DefiningQuery>SELECT 
+      "VW_CREATECARD_OSP_9100_NGN"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATECARD_OSP_9100_NGN"."MSAN_FID" AS "MSAN_FID", 
+      "VW_CREATECARD_OSP_9100_NGN"."RT_CODE" AS "RT_CODE", 
+      "VW_CREATECARD_OSP_9100_NGN"."SCHEME_NAME" AS "SCHEME_NAME", 
+      "VW_CREATECARD_OSP_9100_NGN"."SLOT" AS "SLOT", 
+      "VW_CREATECARD_OSP_9100_NGN"."CARDNAME" AS "CARDNAME", 
+      "VW_CREATECARD_OSP_9100_NGN"."CARDMODEL" AS "CARDMODEL", 
+      "VW_CREATECARD_OSP_9100_NGN"."TOTALCOUNT" AS "TOTALCOUNT", 
+      "VW_CREATECARD_OSP_9100_NGN"."PORTSTARTNO" AS "PORTSTARTNO"
+      FROM "NEPS"."VW_CREATECARD_OSP_9100_NGN" "VW_CREATECARD_OSP_9100_NGN"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATECARD_OSP_9500" EntityType="Model6.Store.VW_CREATECARD_OSP_9500" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATECARD_OSP_9500">
+            <DefiningQuery>SELECT 
+      "VW_CREATECARD_OSP_9500"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATECARD_OSP_9500"."MSAN_FID" AS "MSAN_FID", 
+      "VW_CREATECARD_OSP_9500"."MUX_CODE" AS "MUX_CODE", 
+      "VW_CREATECARD_OSP_9500"."SCHEME_NAME" AS "SCHEME_NAME", 
+      "VW_CREATECARD_OSP_9500"."SLOT" AS "SLOT", 
+      "VW_CREATECARD_OSP_9500"."CARDNAME" AS "CARDNAME", 
+      "VW_CREATECARD_OSP_9500"."CARDMODEL" AS "CARDMODEL", 
+      "VW_CREATECARD_OSP_9500"."TOTALCOUNT" AS "TOTALCOUNT", 
+      "VW_CREATECARD_OSP_9500"."PORTSTARTNO" AS "PORTSTARTNO"
+      FROM "NEPS"."VW_CREATECARD_OSP_9500" "VW_CREATECARD_OSP_9500"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATECARD_OSP_9600" EntityType="Model6.Store.VW_CREATECARD_OSP_9600" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATECARD_OSP_9600">
+            <DefiningQuery>SELECT 
+      "VW_CREATECARD_OSP_9600"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATECARD_OSP_9600"."MSAN_FID" AS "MSAN_FID", 
+      "VW_CREATECARD_OSP_9600"."RT_CODE" AS "RT_CODE", 
+      "VW_CREATECARD_OSP_9600"."SCHEME_NAME" AS "SCHEME_NAME", 
+      "VW_CREATECARD_OSP_9600"."SLOT" AS "SLOT", 
+      "VW_CREATECARD_OSP_9600"."CARDNAME" AS "CARDNAME", 
+      "VW_CREATECARD_OSP_9600"."CARDMODEL" AS "CARDMODEL", 
+      "VW_CREATECARD_OSP_9600"."TOTALCOUNT" AS "TOTALCOUNT", 
+      "VW_CREATECARD_OSP_9600"."PORTSTARTNO" AS "PORTSTARTNO"
+      FROM "NEPS"."VW_CREATECARD_OSP_9600" "VW_CREATECARD_OSP_9600"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATEFC_13000_TRANS" EntityType="Model6.Store.VW_CREATEFC_13000_TRANS" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATEFC_13000_TRANS">
+            <DefiningQuery>SELECT 
+      "VW_CREATEFC_13000_TRANS"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATEFC_13000_TRANS"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATEFC_13000_TRANS"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATEFC_13000_TRANS"."FRANNAME" AS "FRANNAME", 
+      "VW_CREATEFC_13000_TRANS"."INDEX1" AS "INDEX1", 
+      "VW_CREATEFC_13000_TRANS"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATEFC_13000_TRANS"."LOCATION" AS "LOCATION", 
+      "VW_CREATEFC_13000_TRANS"."DISTANCE" AS "DISTANCE", 
+      "VW_CREATEFC_13000_TRANS"."CABINET" AS "CABINET"
+      FROM "NEPS"."VW_CREATEFC_13000_TRANS" "VW_CREATEFC_13000_TRANS"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATEFC_OSP_13000" EntityType="Model6.Store.VW_CREATEFC_OSP_13000" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATEFC_OSP_13000">
+            <DefiningQuery>SELECT 
+      "VW_CREATEFC_OSP_13000"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATEFC_OSP_13000"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATEFC_OSP_13000"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATEFC_OSP_13000"."FRANNAME" AS "FRANNAME", 
+      "VW_CREATEFC_OSP_13000"."INDEX1" AS "INDEX1", 
+      "VW_CREATEFC_OSP_13000"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATEFC_OSP_13000"."LOCATION" AS "LOCATION"
+      FROM "NEPS"."VW_CREATEFC_OSP_13000" "VW_CREATEFC_OSP_13000"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATEFC_OSP_9500_DDFAC" EntityType="Model6.Store.VW_CREATEFC_OSP_9500_DDFAC" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATEFC_OSP_9500_DDFAC">
+            <DefiningQuery>SELECT 
+      "VW_CREATEFC_OSP_9500_DDFAC"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATEFC_OSP_9500_DDFAC"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATEFC_OSP_9500_DDFAC"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATEFC_OSP_9500_DDFAC"."FRANNAME" AS "FRANNAME", 
+      "VW_CREATEFC_OSP_9500_DDFAC"."INDEX1" AS "INDEX1", 
+      "VW_CREATEFC_OSP_9500_DDFAC"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATEFC_OSP_9500_DDFAC"."LOCATION" AS "LOCATION"
+      FROM "NEPS"."VW_CREATEFC_OSP_9500_DDFAC" "VW_CREATEFC_OSP_9500_DDFAC"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATEFC_OSP_9500_FDPAC" EntityType="Model6.Store.VW_CREATEFC_OSP_9500_FDPAC" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATEFC_OSP_9500_FDPAC">
+            <DefiningQuery>SELECT 
+      "VW_CREATEFC_OSP_9500_FDPAC"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATEFC_OSP_9500_FDPAC"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATEFC_OSP_9500_FDPAC"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATEFC_OSP_9500_FDPAC"."FRANNAME" AS "FRANNAME", 
+      "VW_CREATEFC_OSP_9500_FDPAC"."INDEX1" AS "INDEX1", 
+      "VW_CREATEFC_OSP_9500_FDPAC"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATEFC_OSP_9500_FDPAC"."LOCATION" AS "LOCATION"
+      FROM "NEPS"."VW_CREATEFC_OSP_9500_FDPAC" "VW_CREATEFC_OSP_9500_FDPAC"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATEFC_OSP_9500_SDF" EntityType="Model6.Store.VW_CREATEFC_OSP_9500_SDF" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATEFC_OSP_9500_SDF">
+            <DefiningQuery>SELECT 
+      "VW_CREATEFC_OSP_9500_SDF"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATEFC_OSP_9500_SDF"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATEFC_OSP_9500_SDF"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATEFC_OSP_9500_SDF"."FRANNAME" AS "FRANNAME", 
+      "VW_CREATEFC_OSP_9500_SDF"."INDEX1" AS "INDEX1", 
+      "VW_CREATEFC_OSP_9500_SDF"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATEFC_OSP_9500_SDF"."LOCATION" AS "LOCATION"
+      FROM "NEPS"."VW_CREATEFC_OSP_9500_SDF" "VW_CREATEFC_OSP_9500_SDF"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_GE_OSP" EntityType="Model6.Store.VW_CREATENE_GE_OSP" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_GE_OSP">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_GE_OSP"."SCHEME_NAME" AS "SCHEME_NAME", 
+      "VW_CREATENE_GE_OSP"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_GE_OSP"."EQUIPLOCNAME" AS "EQUIPLOCNAME", 
+      "VW_CREATENE_GE_OSP"."EQUIPMENTABB" AS "EQUIPMENTABB", 
+      "VW_CREATENE_GE_OSP"."GE_INDEX" AS "GE_INDEX", 
+      "VW_CREATENE_GE_OSP"."LOCDETAIL" AS "LOCDETAIL", 
+      "VW_CREATENE_GE_OSP"."AREACODE" AS "AREACODE", 
+      "VW_CREATENE_GE_OSP"."AREA_DESC" AS "AREA_DESC", 
+      "VW_CREATENE_GE_OSP"."AREA" AS "AREA", 
+      "VW_CREATENE_GE_OSP"."AREAREACODE" AS "AREAREACODE", 
+      "VW_CREATENE_GE_OSP"."STATUS" AS "STATUS", 
+      "VW_CREATENE_GE_OSP"."MANUFACTURER" AS "MANUFACTURER", 
+      "VW_CREATENE_GE_OSP"."MODEL" AS "MODEL"
+      FROM "NEPS"."VW_CREATENE_GE_OSP" "VW_CREATENE_GE_OSP"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_OSP_9000" EntityType="Model6.Store.VW_CREATENE_OSP_9000" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_OSP_9000">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_OSP_9000"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATENE_OSP_9000"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_OSP_9000"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATENE_OSP_9000"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATENE_OSP_9000"."EQUPABB" AS "EQUPABB", 
+      "VW_CREATENE_OSP_9000"."INDEX1" AS "INDEX1", 
+      "VW_CREATENE_OSP_9000"."EQUPMODEL" AS "EQUPMODEL", 
+      "VW_CREATENE_OSP_9000"."MANRABB" AS "MANRABB"
+      FROM "NEPS"."VW_CREATENE_OSP_9000" "VW_CREATENE_OSP_9000"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_OSP_9100" EntityType="Model6.Store.VW_CREATENE_OSP_9100" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_OSP_9100">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_OSP_9100"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATENE_OSP_9100"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_OSP_9100"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATENE_OSP_9100"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATENE_OSP_9100"."EQUPABB" AS "EQUPABB", 
+      "VW_CREATENE_OSP_9100"."INDEX1" AS "INDEX1", 
+      "VW_CREATENE_OSP_9100"."EQUPMODEL" AS "EQUPMODEL", 
+      "VW_CREATENE_OSP_9100"."MANRABB" AS "MANRABB"
+      FROM "NEPS"."VW_CREATENE_OSP_9100" "VW_CREATENE_OSP_9100"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_OSP_9500" EntityType="Model6.Store.VW_CREATENE_OSP_9500" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_OSP_9500">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_OSP_9500"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATENE_OSP_9500"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_OSP_9500"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATENE_OSP_9500"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATENE_OSP_9500"."EQUPABB" AS "EQUPABB", 
+      "VW_CREATENE_OSP_9500"."INDEX1" AS "INDEX1", 
+      "VW_CREATENE_OSP_9500"."EQUPMODEL" AS "EQUPMODEL", 
+      "VW_CREATENE_OSP_9500"."MANRABB" AS "MANRABB"
+      FROM "NEPS"."VW_CREATENE_OSP_9500" "VW_CREATENE_OSP_9500"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_OSP_9600" EntityType="Model6.Store.VW_CREATENE_OSP_9600" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_OSP_9600">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_OSP_9600"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATENE_OSP_9600"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_OSP_9600"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATENE_OSP_9600"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATENE_OSP_9600"."EQUPABB" AS "EQUPABB", 
+      "VW_CREATENE_OSP_9600"."INDEX1" AS "INDEX1", 
+      "VW_CREATENE_OSP_9600"."EQUPMODEL" AS "EQUPMODEL", 
+      "VW_CREATENE_OSP_9600"."MANRABB" AS "MANRABB"
+      FROM "NEPS"."VW_CREATENE_OSP_9600" "VW_CREATENE_OSP_9600"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_OSP_TRANSFER90" EntityType="Model6.Store.VW_CREATENE_OSP_TRANSFER90" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_OSP_TRANSFER90">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_OSP_TRANSFER90"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATENE_OSP_TRANSFER90"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_OSP_TRANSFER90"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATENE_OSP_TRANSFER90"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATENE_OSP_TRANSFER90"."EQUPABB" AS "EQUPABB", 
+      "VW_CREATENE_OSP_TRANSFER90"."INDEX1" AS "INDEX1", 
+      "VW_CREATENE_OSP_TRANSFER90"."EQUPMODEL" AS "EQUPMODEL", 
+      "VW_CREATENE_OSP_TRANSFER90"."MANRABB" AS "MANRABB"
+      FROM "NEPS"."VW_CREATENE_OSP_TRANSFER90" "VW_CREATENE_OSP_TRANSFER90"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_OSP_TRANSFER91" EntityType="Model6.Store.VW_CREATENE_OSP_TRANSFER91" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_OSP_TRANSFER91">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_OSP_TRANSFER91"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATENE_OSP_TRANSFER91"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_OSP_TRANSFER91"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATENE_OSP_TRANSFER91"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATENE_OSP_TRANSFER91"."EQUPABB" AS "EQUPABB", 
+      "VW_CREATENE_OSP_TRANSFER91"."INDEX1" AS "INDEX1", 
+      "VW_CREATENE_OSP_TRANSFER91"."EQUPMODEL" AS "EQUPMODEL", 
+      "VW_CREATENE_OSP_TRANSFER91"."MANRABB" AS "MANRABB"
+      FROM "NEPS"."VW_CREATENE_OSP_TRANSFER91" "VW_CREATENE_OSP_TRANSFER91"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_OSP_TRANSFER95" EntityType="Model6.Store.VW_CREATENE_OSP_TRANSFER95" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_OSP_TRANSFER95">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_OSP_TRANSFER95"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATENE_OSP_TRANSFER95"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_OSP_TRANSFER95"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATENE_OSP_TRANSFER95"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATENE_OSP_TRANSFER95"."EQUPABB" AS "EQUPABB", 
+      "VW_CREATENE_OSP_TRANSFER95"."INDEX1" AS "INDEX1", 
+      "VW_CREATENE_OSP_TRANSFER95"."EQUPMODEL" AS "EQUPMODEL", 
+      "VW_CREATENE_OSP_TRANSFER95"."MANRABB" AS "MANRABB"
+      FROM "NEPS"."VW_CREATENE_OSP_TRANSFER95" "VW_CREATENE_OSP_TRANSFER95"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CREATENE_OSP_TRANSFER96" EntityType="Model6.Store.VW_CREATENE_OSP_TRANSFER96" store:Type="Views" store:Schema="NEPS" store:Name="VW_CREATENE_OSP_TRANSFER96">
+            <DefiningQuery>SELECT 
+      "VW_CREATENE_OSP_TRANSFER96"."JOB_ID" AS "JOB_ID", 
+      "VW_CREATENE_OSP_TRANSFER96"."G3E_FID" AS "G3E_FID", 
+      "VW_CREATENE_OSP_TRANSFER96"."G3E_FNO" AS "G3E_FNO", 
+      "VW_CREATENE_OSP_TRANSFER96"."LOCNTTNAME" AS "LOCNTTNAME", 
+      "VW_CREATENE_OSP_TRANSFER96"."EQUPABB" AS "EQUPABB", 
+      "VW_CREATENE_OSP_TRANSFER96"."INDEX1" AS "INDEX1", 
+      "VW_CREATENE_OSP_TRANSFER96"."EQUPMODEL" AS "EQUPMODEL", 
+      "VW_CREATENE_OSP_TRANSFER96"."MANRABB" AS "MANRABB"
+      FROM "NEPS"."VW_CREATENE_OSP_TRANSFER96" "VW_CREATENE_OSP_TRANSFER96"</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="REF_WEBSERVICES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="10" />
+          <Property Name="SERVICE" Type="varchar2" MaxLength="50" />
+          <Property Name="SERVICE_TYPE" Type="varchar2" MaxLength="50" />
+          <Property Name="SERVICE_URL" Type="varchar2" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.GC_DFDP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="GC_DFDP">
+          <Key>
+            <PropertyRef Name="G3E_ID" />
+            <PropertyRef Name="G3E_FNO" />
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_CNO" />
+            <PropertyRef Name="G3E_CID" />
+          </Key>
+          <Property Name="G3E_ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_CNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="G3E_CID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="BND_FID" Type="number" Precision="10" />
+          <Property Name="CONTRACTOR" Type="varchar2" MaxLength="50" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="30" />
+          <Property Name="CREATED_DATE" Type="date" />
+          <Property Name="CREATED_HOST" Type="varchar2" MaxLength="50" />
+          <Property Name="CREATED_IP_ADDRESS" Type="varchar2" MaxLength="30" />
+          <Property Name="CREATED_OS_USER" Type="varchar2" MaxLength="50" />
+          <Property Name="CUST_NETWORK" Type="varchar2" MaxLength="50" />
+          <Property Name="DB_LOSS" Type="number" />
+          <Property Name="DIST_FROM_EXC" Type="number" />
+          <Property Name="EQP_STATUS" Type="varchar2" MaxLength="50" />
+          <Property Name="FDC_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="FDC_FID" Type="number" Precision="10" />
+          <Property Name="FDC_SPLTR_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="FDP_CAPACITY" Type="varchar2" MaxLength="10" />
+          <Property Name="FDP_CLASS" Type="varchar2" MaxLength="50" />
+          <Property Name="FDP_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="FDP_OWNER" Type="varchar2" MaxLength="50" />
+          <Property Name="FDP_SPARE" Type="number" />
+          <Property Name="FDP_SPLTR_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="FDP_TYPE" Type="varchar2" MaxLength="50" />
+          <Property Name="FDP_WORK" Type="number" />
+          <Property Name="FIB_CORE" Type="number" Precision="5" />
+          <Property Name="FIB_DCABLE" Type="varchar2" MaxLength="50" />
+          <Property Name="INSTALL_LOC" Type="varchar2" MaxLength="50" />
+          <Property Name="LOC_TYPE" Type="varchar2" MaxLength="50" />
+          <Property Name="MAINFDP_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="MAINFDP_FID" Type="number" Precision="10" />
+          <Property Name="MAINFDP_IPID" Type="number" Precision="10" />
+          <Property Name="MANUFACTURER" Type="varchar2" MaxLength="50" />
+          <Property Name="MODIFIED_BY" Type="varchar2" MaxLength="30" />
+          <Property Name="MODIFIED_DATE" Type="date" />
+          <Property Name="MODIFIED_HOST" Type="varchar2" MaxLength="50" />
+          <Property Name="MODIFIED_IP_ADDRESS" Type="varchar2" MaxLength="30" />
+          <Property Name="MODIFIED_OS_USER" Type="varchar2" MaxLength="50" />
+          <Property Name="OLT_ID" Type="varchar2" MaxLength="20" />
+          <Property Name="PLINTH" Type="varchar2" MaxLength="50" />
+          <Property Name="RAD_DIST" Type="number" />
+          <Property Name="STATUS" Type="varchar2" MaxLength="50" />
+          <Property Name="TOTAL_CAPACITY" Type="number" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.GC_NETELEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="GC_NETELEM">
+          <Key>
+            <PropertyRef Name="G3E_ID" />
+            <PropertyRef Name="G3E_FNO" />
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_CNO" />
+            <PropertyRef Name="G3E_CID" />
+          </Key>
+          <Property Name="G3E_ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_CNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="G3E_CID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="BILLING_RATE" Type="varchar2" MaxLength="50" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="30" />
+          <Property Name="CREATED_DATE" Type="date" />
+          <Property Name="CREATED_HOST" Type="varchar2" MaxLength="50" />
+          <Property Name="CREATED_IP_ADDRESS" Type="varchar2" MaxLength="30" />
+          <Property Name="CREATED_OS_USER" Type="varchar2" MaxLength="50" />
+          <Property Name="EXC_ABB" Type="varchar2" MaxLength="10" />
+          <Property Name="FEATURE_STATE" Type="varchar2" MaxLength="10" />
+          <Property Name="ID" Type="varchar2" MaxLength="30" />
+          <Property Name="IMAP_FEATURE_ID" Type="varchar2" MaxLength="25" />
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="JOB_STATE" Type="varchar2" MaxLength="20" />
+          <Property Name="MIC" Type="varchar2" MaxLength="15" />
+          <Property Name="MIN_MATERIAL" Type="varchar2" MaxLength="50" />
+          <Property Name="MODIFIED_BY" Type="varchar2" MaxLength="30" />
+          <Property Name="MODIFIED_DATE" Type="date" />
+          <Property Name="MODIFIED_HOST" Type="varchar2" MaxLength="50" />
+          <Property Name="MODIFIED_IP_ADDRESS" Type="varchar2" MaxLength="30" />
+          <Property Name="MODIFIED_OS_USER" Type="varchar2" MaxLength="50" />
+          <Property Name="OWNERSHIP" Type="varchar2" MaxLength="30" />
+          <Property Name="PLAN_ID" Type="varchar2" MaxLength="25" />
+          <Property Name="SAP_WRK_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="SCHEME_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="SEGMENT" Type="varchar2" MaxLength="80" />
+          <Property Name="SERVICE_CODE" Type="varchar2" MaxLength="4" />
+          <Property Name="SWITCH_CENTRE_CLLI" Type="varchar2" MaxLength="25" />
+          <Property Name="YEAR_PLACED" Type="varchar2" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATECARD_GE_OSP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6006: The facet 'MaxLength' with a value '0' is outside the range 1-2000 specified by the facet description.  The column 'CARDSERIAL' in the table 'NEPS.VW_CREATECARD_GE_OSP' was excluded.
+      -->
+        <EntityType Name="VW_CREATECARD_GE_OSP">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="JOBID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="MSAN_FID" Type="number" />
+          <Property Name="CARDSLOT" Type="varchar2" MaxLength="10" />
+          <Property Name="CARDNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="CARDMODEL" Type="varchar2" MaxLength="50" />
+          <Property Name="CARDCOUNTPORT" Type="varchar2" MaxLength="4" />
+          <Property Name="PORTSTARTNUM" Type="varchar2" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATECARD_OSP_9000' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATECARD_OSP_9000">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="MSAN_FID" Type="number" />
+          <Property Name="RT_CODE" Type="varchar2" MaxLength="13" />
+          <Property Name="SCHEME_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="SLOT" Type="varchar2" MaxLength="10" />
+          <Property Name="CARDNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="CARDMODEL" Type="varchar2" MaxLength="50" />
+          <Property Name="TOTALCOUNT" Type="varchar2" MaxLength="4" />
+          <Property Name="PORTSTARTNO" Type="varchar2" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATECARD_OSP_9100' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATECARD_OSP_9100">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="MSAN_FID" Type="number" />
+          <Property Name="RT_CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="SCHEME_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="SLOT" Type="varchar2" MaxLength="10" />
+          <Property Name="CARDNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="CARDMODEL" Type="varchar2" MaxLength="50" />
+          <Property Name="TOTALCOUNT" Type="varchar2" MaxLength="4" />
+          <Property Name="PORTSTARTNO" Type="varchar2" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATECARD_OSP_9100_NGN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATECARD_OSP_9100_NGN">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="MSAN_FID" Type="number" />
+          <Property Name="RT_CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="SCHEME_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="SLOT" Type="varchar2" MaxLength="10" />
+          <Property Name="CARDNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="CARDMODEL" Type="varchar2" MaxLength="50" />
+          <Property Name="TOTALCOUNT" Type="varchar2" MaxLength="4" />
+          <Property Name="PORTSTARTNO" Type="varchar2" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATECARD_OSP_9500' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATECARD_OSP_9500">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="MSAN_FID" Type="number" />
+          <Property Name="MUX_CODE" Type="varchar2" MaxLength="50" />
+          <Property Name="SCHEME_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="SLOT" Type="varchar2" MaxLength="10" />
+          <Property Name="CARDNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="CARDMODEL" Type="varchar2" MaxLength="50" />
+          <Property Name="TOTALCOUNT" Type="varchar2" MaxLength="4" />
+          <Property Name="PORTSTARTNO" Type="varchar2" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATECARD_OSP_9600' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATECARD_OSP_9600">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="MSAN_FID" Type="number" />
+          <Property Name="RT_CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="SCHEME_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="SLOT" Type="varchar2" MaxLength="10" />
+          <Property Name="CARDNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="CARDMODEL" Type="varchar2" MaxLength="50" />
+          <Property Name="TOTALCOUNT" Type="varchar2" MaxLength="4" />
+          <Property Name="PORTSTARTNO" Type="varchar2" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATEFC_13000_TRANS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATEFC_13000_TRANS">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FRANNAME" Type="char" MaxLength="2" />
+          <Property Name="INDEX1" Type="char" MaxLength="3" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="30" />
+          <Property Name="LOCATION" Type="varchar2" MaxLength="388" />
+          <Property Name="DISTANCE" Type="number" />
+          <Property Name="CABINET" Type="varchar2" MaxLength="25" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATEFC_OSP_13000' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATEFC_OSP_13000">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FRANNAME" Type="char" MaxLength="2" />
+          <Property Name="INDEX1" Type="char" MaxLength="3" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="30" />
+          <Property Name="LOCATION" Type="varchar2" MaxLength="388" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATEFC_OSP_9500_DDFAC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATEFC_OSP_9500_DDFAC">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FRANNAME" Type="char" MaxLength="7" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="61" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="10" />
+          <Property Name="LOCATION" Type="varchar2" MaxLength="439" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATEFC_OSP_9500_FDPAC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATEFC_OSP_9500_FDPAC">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FRANNAME" Type="char" MaxLength="7" />
+          <Property Name="INDEX1" Type="char" MaxLength="3" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="61" />
+          <Property Name="LOCATION" Type="varchar2" MaxLength="439" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATEFC_OSP_9500_SDF' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATEFC_OSP_9500_SDF">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FRANNAME" Type="char" MaxLength="7" />
+          <Property Name="INDEX1" Type="char" MaxLength="3" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="61" />
+          <Property Name="LOCATION" Type="varchar2" MaxLength="439" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_GE_OSP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_GE_OSP">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="SCHEME_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="EQUIPLOCNAME" Type="varchar2" MaxLength="23" />
+          <Property Name="EQUIPMENTABB" Type="char" MaxLength="13" />
+          <Property Name="GE_INDEX" Type="varchar2" MaxLength="12" />
+          <Property Name="LOCDETAIL" Type="varchar2" MaxLength="388" />
+          <Property Name="AREACODE" Type="varchar2" MaxLength="10" />
+          <Property Name="AREA_DESC" Type="varchar2" MaxLength="30" />
+          <Property Name="AREA" Type="char" MaxLength="8" />
+          <Property Name="AREAREACODE" Type="varchar2" MaxLength="3" />
+          <Property Name="STATUS" Type="char" MaxLength="7" />
+          <Property Name="MANUFACTURER" Type="varchar2" MaxLength="50" />
+          <Property Name="MODEL" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_OSP_9000' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_OSP_9000">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="21" />
+          <Property Name="EQUPABB" Type="char" MaxLength="13" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="10" />
+          <Property Name="EQUPMODEL" Type="varchar2" MaxLength="20" />
+          <Property Name="MANRABB" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_OSP_9100' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_OSP_9100">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="21" />
+          <Property Name="EQUPABB" Type="varchar2" MaxLength="15" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="10" />
+          <Property Name="EQUPMODEL" Type="varchar2" MaxLength="20" />
+          <Property Name="MANRABB" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_OSP_9500' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_OSP_9500">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="61" />
+          <Property Name="EQUPABB" Type="char" MaxLength="10" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="50" />
+          <Property Name="EQUPMODEL" Type="varchar2" MaxLength="20" />
+          <Property Name="MANRABB" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_OSP_9600' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_OSP_9600">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="21" />
+          <Property Name="EQUPABB" Type="char" MaxLength="15" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="10" />
+          <Property Name="EQUPMODEL" Type="varchar2" MaxLength="20" />
+          <Property Name="MANRABB" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_OSP_TRANSFER90' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_OSP_TRANSFER90">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="21" />
+          <Property Name="EQUPABB" Type="char" MaxLength="13" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="10" />
+          <Property Name="EQUPMODEL" Type="varchar2" MaxLength="20" />
+          <Property Name="MANRABB" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_OSP_TRANSFER91' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_OSP_TRANSFER91">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="21" />
+          <Property Name="EQUPABB" Type="varchar2" MaxLength="15" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="10" />
+          <Property Name="EQUPMODEL" Type="varchar2" MaxLength="20" />
+          <Property Name="MANRABB" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_OSP_TRANSFER95' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_OSP_TRANSFER95">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="61" />
+          <Property Name="EQUPABB" Type="char" MaxLength="10" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="50" />
+          <Property Name="EQUPMODEL" Type="varchar2" MaxLength="20" />
+          <Property Name="MANRABB" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NEPS.VW_CREATENE_OSP_TRANSFER96' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VW_CREATENE_OSP_TRANSFER96">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Name="JOB_ID" Type="varchar2" MaxLength="50" />
+          <Property Name="G3E_FID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="G3E_FNO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="LOCNTTNAME" Type="varchar2" MaxLength="21" />
+          <Property Name="EQUPABB" Type="char" MaxLength="15" />
+          <Property Name="INDEX1" Type="varchar2" MaxLength="10" />
+          <Property Name="EQUPMODEL" Type="varchar2" MaxLength="20" />
+          <Property Name="MANRABB" Type="varchar2" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model6" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VW_CREATENE_GE_OSP" EntityType="Model6.VW_CREATENE_GE_OSP" />
+          <EntitySet Name="REF_WEBSERVICES" EntityType="Model6.REF_WEBSERVICES" />
+          <EntitySet Name="GC_DFDP" EntityType="Model6.GC_DFDP" />
+          <EntitySet Name="GC_NETELEM_M6" EntityType="Model6.GC_NETELEM_M6" />
+          <EntitySet Name="VW_CREATECARD_GE_OSP" EntityType="Model6.VW_CREATECARD_GE_OSP" />
+          <EntitySet Name="VW_CREATENE_OSP_9100" EntityType="Model6.VW_CREATENE_OSP_9100" />
+          <EntitySet Name="VW_CREATENE_OSP_9000" EntityType="Model6.VW_CREATENE_OSP_9000" />
+          <EntitySet Name="VW_CREATENE_OSP_9500" EntityType="Model6.VW_CREATENE_OSP_9500" />
+          <EntitySet Name="VW_CREATENE_OSP_9600" EntityType="Model6.VW_CREATENE_OSP_9600" />
+          <EntitySet Name="VW_CREATECARD_OSP_9100" EntityType="Model6.VW_CREATECARD_OSP_9100" />
+          <EntitySet Name="VW_CREATECARD_OSP_9100_NGN" EntityType="Model6.VW_CREATECARD_OSP_9100_NGN" />
+          <EntitySet Name="VW_CREATECARD_OSP_9500" EntityType="Model6.VW_CREATECARD_OSP_9500" />
+          <EntitySet Name="VW_CREATECARD_OSP_9600" EntityType="Model6.VW_CREATECARD_OSP_9600" />
+          <EntitySet Name="VW_CREATECARD_OSP_9000" EntityType="Model6.VW_CREATECARD_OSP_9000" />
+          <EntitySet Name="VW_CREATEFC_OSP_9500_SDF" EntityType="Model6.VW_CREATEFC_OSP_9500_SDF" />
+          <EntitySet Name="VW_CREATEFC_OSP_9500_DDFAC" EntityType="Model6.VW_CREATEFC_OSP_9500_DDFAC" />
+          <EntitySet Name="VW_CREATEFC_OSP_9500_FDPAC" EntityType="Model6.VW_CREATEFC_OSP_9500_FDPAC" />
+          <EntitySet Name="VW_CREATEFC_OSP_130001" EntityType="Model6.VW_CREATEFC_OSP_130001" />
+          <EntitySet Name="VW_CREATEFC_13000_TRANS" EntityType="Model6.VW_CREATEFC_13000_TRANS" />
+          <EntitySet Name="VW_CREATENE_OSP_TRANSFER90" EntityType="Model6.VW_CREATENE_OSP_TRANSFER90" />
+          <EntitySet Name="VW_CREATENE_OSP_TRANSFER91" EntityType="Model6.VW_CREATENE_OSP_TRANSFER91" />
+          <EntitySet Name="VW_CREATENE_OSP_TRANSFER95" EntityType="Model6.VW_CREATENE_OSP_TRANSFER95" />
+          <EntitySet Name="VW_CREATENE_OSP_TRANSFER96" EntityType="Model6.VW_CREATENE_OSP_TRANSFER96" />
+        </EntityContainer>
+        <EntityType Name="VW_CREATENE_GE_OSP">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Name="SCHEME_NAME" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="G3E_FID" Type="Int32" Nullable="false" />
+          <Property Name="EQUIPLOCNAME" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="EQUIPMENTABB" Type="String" MaxLength="13" Unicode="false" FixedLength="true" />
+          <Property Name="GE_INDEX" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="LOCDETAIL" Type="String" MaxLength="388" Unicode="false" FixedLength="false" />
+          <Property Name="AREACODE" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="AREA_DESC" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="AREA" Type="String" MaxLength="8" Unicode="false" FixedLength="true" />
+          <Property Name="AREAREACODE" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="STATUS" Type="String" MaxLength="7" Unicode="false" FixedLength="true" />
+          <Property Name="MANUFACTURER" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MODEL" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="REF_WEBSERVICES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SERVICE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SERVICE_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SERVICE_URL" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GC_DFDP">
+          <Key>
+            <PropertyRef Name="G3E_ID" />
+            <PropertyRef Name="G3E_FNO" />
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_CNO" />
+            <PropertyRef Name="G3E_CID" />
+          </Key>
+          <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+          <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+          <Property Type="Int32" Name="BND_FID" />
+          <Property Type="String" Name="CONTRACTOR" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CUST_NETWORK" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="DB_LOSS" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="DIST_FROM_EXC" Precision="38" Scale="0" />
+          <Property Type="String" Name="EQP_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FDC_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="FDC_FID" />
+          <Property Type="String" Name="FDC_SPLTR_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FDP_CAPACITY" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FDP_CLASS" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FDP_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FDP_OWNER" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="FDP_SPARE" Precision="38" Scale="0" />
+          <Property Type="String" Name="FDP_SPLTR_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FDP_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="FDP_WORK" Precision="38" Scale="0" />
+          <Property Type="Int16" Name="FIB_CORE" />
+          <Property Type="String" Name="FIB_DCABLE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INSTALL_LOC" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOC_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MAINFDP_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="MAINFDP_FID" />
+          <Property Type="Int32" Name="MAINFDP_IPID" />
+          <Property Type="String" Name="MANUFACTURER" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OLT_ID" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PLINTH" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="RAD_DIST" Precision="38" Scale="0" />
+          <Property Type="String" Name="STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="TOTAL_CAPACITY" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="GC_NETELEM_M6">
+          <Key>
+            <PropertyRef Name="G3E_ID" />
+            <PropertyRef Name="G3E_FNO" />
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_CNO" />
+            <PropertyRef Name="G3E_CID" />
+          </Key>
+          <Property Type="Int32" Name="G3E_ID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_CNO" Nullable="false" />
+          <Property Type="Int32" Name="G3E_CID" Nullable="false" />
+          <Property Type="String" Name="BILLING_RATE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATED_DATE" />
+          <Property Type="String" Name="CREATED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREATED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EXC_ABB" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FEATURE_STATE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IMAP_FEATURE_ID" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="JOB_STATE" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MIC" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MIN_MATERIAL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODIFIED_BY" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="MODIFIED_DATE" />
+          <Property Type="String" Name="MODIFIED_HOST" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODIFIED_IP_ADDRESS" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODIFIED_OS_USER" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OWNERSHIP" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PLAN_ID" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SAP_WRK_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SEGMENT" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SERVICE_CODE" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SWITCH_CENTRE_CLLI" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="YEAR_PLACED" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATECARD_GE_OSP">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Type="String" Name="JOBID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+          <Property Type="String" Name="CARDSLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDCOUNTPORT" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PORTSTARTNUM" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATENE_OSP_9100">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATENE_OSP_9000">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Decimal" Name="G3E_FNO" Precision="38" Scale="0" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPABB" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATENE_OSP_9500">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPABB" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATENE_OSP_9600">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATECARD_OSP_9100">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+          <Property Type="String" Name="RT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATECARD_OSP_9100_NGN">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+          <Property Type="String" Name="RT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATECARD_OSP_9500">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+          <Property Type="String" Name="MUX_CODE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATECARD_OSP_9600">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+          <Property Type="String" Name="RT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATECARD_OSP_9000">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Decimal" Name="MSAN_FID" Precision="38" Scale="0" />
+          <Property Type="String" Name="RT_CODE" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SCHEME_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SLOT" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDNAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CARDMODEL" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TOTALCOUNT" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PORTSTARTNO" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATEFC_OSP_9500_SDF">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="FRANNAME" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION" MaxLength="439" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATEFC_OSP_9500_DDFAC">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="FRANNAME" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION" MaxLength="439" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATEFC_OSP_9500_FDPAC">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="FRANNAME" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION" MaxLength="439" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATEFC_OSP_130001">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="FRANNAME" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION" MaxLength="388" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATEFC_13000_TRANS">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="FRANNAME" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LOCATION" MaxLength="388" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="DISTANCE" Precision="38" Scale="0" />
+          <Property Type="String" Name="CABINET" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATENE_OSP_TRANSFER90">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Decimal" Name="G3E_FNO" Precision="38" Scale="0" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPABB" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATENE_OSP_TRANSFER91">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATENE_OSP_TRANSFER95">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPABB" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_CREATENE_OSP_TRANSFER96">
+          <Key>
+            <PropertyRef Name="G3E_FID" />
+            <PropertyRef Name="G3E_FNO" />
+          </Key>
+          <Property Type="String" Name="JOB_ID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="G3E_FID" Nullable="false" />
+          <Property Type="Int16" Name="G3E_FNO" Nullable="false" />
+          <Property Type="String" Name="LOCNTTNAME" MaxLength="21" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPABB" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="INDEX1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EQUPMODEL" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MANRABB" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model6StoreContainer" CdmEntityContainer="Entities6">
+          <EntitySetMapping Name="VW_CREATENE_GE_OSP">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_GE_OSP">
+              <MappingFragment StoreEntitySet="VW_CREATENE_GE_OSP">
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="EQUIPLOCNAME" ColumnName="EQUIPLOCNAME" />
+                <ScalarProperty Name="EQUIPMENTABB" ColumnName="EQUIPMENTABB" />
+                <ScalarProperty Name="GE_INDEX" ColumnName="GE_INDEX" />
+                <ScalarProperty Name="LOCDETAIL" ColumnName="LOCDETAIL" />
+                <ScalarProperty Name="AREACODE" ColumnName="AREACODE" />
+                <ScalarProperty Name="AREA_DESC" ColumnName="AREA_DESC" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+                <ScalarProperty Name="AREAREACODE" ColumnName="AREAREACODE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REF_WEBSERVICES">
+            <EntityTypeMapping TypeName="Model6.REF_WEBSERVICES">
+              <MappingFragment StoreEntitySet="REF_WEBSERVICES">
+                <ScalarProperty Name="SERVICE_URL" ColumnName="SERVICE_URL" />
+                <ScalarProperty Name="SERVICE_TYPE" ColumnName="SERVICE_TYPE" />
+                <ScalarProperty Name="SERVICE" ColumnName="SERVICE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GC_DFDP">
+            <EntityTypeMapping TypeName="Model6.GC_DFDP">
+              <MappingFragment StoreEntitySet="GC_DFDP">
+                <ScalarProperty Name="TOTAL_CAPACITY" ColumnName="TOTAL_CAPACITY" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="RAD_DIST" ColumnName="RAD_DIST" />
+                <ScalarProperty Name="PLINTH" ColumnName="PLINTH" />
+                <ScalarProperty Name="OLT_ID" ColumnName="OLT_ID" />
+                <ScalarProperty Name="MODIFIED_OS_USER" ColumnName="MODIFIED_OS_USER" />
+                <ScalarProperty Name="MODIFIED_IP_ADDRESS" ColumnName="MODIFIED_IP_ADDRESS" />
+                <ScalarProperty Name="MODIFIED_HOST" ColumnName="MODIFIED_HOST" />
+                <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="MANUFACTURER" ColumnName="MANUFACTURER" />
+                <ScalarProperty Name="MAINFDP_IPID" ColumnName="MAINFDP_IPID" />
+                <ScalarProperty Name="MAINFDP_FID" ColumnName="MAINFDP_FID" />
+                <ScalarProperty Name="MAINFDP_CODE" ColumnName="MAINFDP_CODE" />
+                <ScalarProperty Name="LOC_TYPE" ColumnName="LOC_TYPE" />
+                <ScalarProperty Name="INSTALL_LOC" ColumnName="INSTALL_LOC" />
+                <ScalarProperty Name="FIB_DCABLE" ColumnName="FIB_DCABLE" />
+                <ScalarProperty Name="FIB_CORE" ColumnName="FIB_CORE" />
+                <ScalarProperty Name="FDP_WORK" ColumnName="FDP_WORK" />
+                <ScalarProperty Name="FDP_TYPE" ColumnName="FDP_TYPE" />
+                <ScalarProperty Name="FDP_SPLTR_CODE" ColumnName="FDP_SPLTR_CODE" />
+                <ScalarProperty Name="FDP_SPARE" ColumnName="FDP_SPARE" />
+                <ScalarProperty Name="FDP_OWNER" ColumnName="FDP_OWNER" />
+                <ScalarProperty Name="FDP_CODE" ColumnName="FDP_CODE" />
+                <ScalarProperty Name="FDP_CLASS" ColumnName="FDP_CLASS" />
+                <ScalarProperty Name="FDP_CAPACITY" ColumnName="FDP_CAPACITY" />
+                <ScalarProperty Name="FDC_SPLTR_CODE" ColumnName="FDC_SPLTR_CODE" />
+                <ScalarProperty Name="FDC_FID" ColumnName="FDC_FID" />
+                <ScalarProperty Name="FDC_CODE" ColumnName="FDC_CODE" />
+                <ScalarProperty Name="EQP_STATUS" ColumnName="EQP_STATUS" />
+                <ScalarProperty Name="DIST_FROM_EXC" ColumnName="DIST_FROM_EXC" />
+                <ScalarProperty Name="DB_LOSS" ColumnName="DB_LOSS" />
+                <ScalarProperty Name="CUST_NETWORK" ColumnName="CUST_NETWORK" />
+                <ScalarProperty Name="CREATED_OS_USER" ColumnName="CREATED_OS_USER" />
+                <ScalarProperty Name="CREATED_IP_ADDRESS" ColumnName="CREATED_IP_ADDRESS" />
+                <ScalarProperty Name="CREATED_HOST" ColumnName="CREATED_HOST" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CONTRACTOR" ColumnName="CONTRACTOR" />
+                <ScalarProperty Name="BND_FID" ColumnName="BND_FID" />
+                <ScalarProperty Name="G3E_CID" ColumnName="G3E_CID" />
+                <ScalarProperty Name="G3E_CNO" ColumnName="G3E_CNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_ID" ColumnName="G3E_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GC_NETELEM_M6">
+            <EntityTypeMapping TypeName="Model6.GC_NETELEM_M6">
+              <MappingFragment StoreEntitySet="GC_NETELEM">
+                <ScalarProperty Name="YEAR_PLACED" ColumnName="YEAR_PLACED" />
+                <ScalarProperty Name="SWITCH_CENTRE_CLLI" ColumnName="SWITCH_CENTRE_CLLI" />
+                <ScalarProperty Name="SERVICE_CODE" ColumnName="SERVICE_CODE" />
+                <ScalarProperty Name="SEGMENT" ColumnName="SEGMENT" />
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="SAP_WRK_ID" ColumnName="SAP_WRK_ID" />
+                <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+                <ScalarProperty Name="OWNERSHIP" ColumnName="OWNERSHIP" />
+                <ScalarProperty Name="MODIFIED_OS_USER" ColumnName="MODIFIED_OS_USER" />
+                <ScalarProperty Name="MODIFIED_IP_ADDRESS" ColumnName="MODIFIED_IP_ADDRESS" />
+                <ScalarProperty Name="MODIFIED_HOST" ColumnName="MODIFIED_HOST" />
+                <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="MIN_MATERIAL" ColumnName="MIN_MATERIAL" />
+                <ScalarProperty Name="MIC" ColumnName="MIC" />
+                <ScalarProperty Name="JOB_STATE" ColumnName="JOB_STATE" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="IMAP_FEATURE_ID" ColumnName="IMAP_FEATURE_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FEATURE_STATE" ColumnName="FEATURE_STATE" />
+                <ScalarProperty Name="EXC_ABB" ColumnName="EXC_ABB" />
+                <ScalarProperty Name="CREATED_OS_USER" ColumnName="CREATED_OS_USER" />
+                <ScalarProperty Name="CREATED_IP_ADDRESS" ColumnName="CREATED_IP_ADDRESS" />
+                <ScalarProperty Name="CREATED_HOST" ColumnName="CREATED_HOST" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="BILLING_RATE" ColumnName="BILLING_RATE" />
+                <ScalarProperty Name="G3E_CID" ColumnName="G3E_CID" />
+                <ScalarProperty Name="G3E_CNO" ColumnName="G3E_CNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_ID" ColumnName="G3E_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATECARD_GE_OSP">
+            <EntityTypeMapping TypeName="Model6.VW_CREATECARD_GE_OSP">
+              <MappingFragment StoreEntitySet="VW_CREATECARD_GE_OSP">
+                <ScalarProperty Name="PORTSTARTNUM" ColumnName="PORTSTARTNUM" />
+                <ScalarProperty Name="CARDCOUNTPORT" ColumnName="CARDCOUNTPORT" />
+                <ScalarProperty Name="CARDMODEL" ColumnName="CARDMODEL" />
+                <ScalarProperty Name="CARDNAME" ColumnName="CARDNAME" />
+                <ScalarProperty Name="CARDSLOT" ColumnName="CARDSLOT" />
+                <ScalarProperty Name="MSAN_FID" ColumnName="MSAN_FID" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATENE_OSP_9100">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_OSP_9100">
+              <MappingFragment StoreEntitySet="VW_CREATENE_OSP_9100">
+                <ScalarProperty Name="MANRABB" ColumnName="MANRABB" />
+                <ScalarProperty Name="EQUPMODEL" ColumnName="EQUPMODEL" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="EQUPABB" ColumnName="EQUPABB" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATENE_OSP_9000">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_OSP_9000">
+              <MappingFragment StoreEntitySet="VW_CREATENE_OSP_9000">
+                <ScalarProperty Name="MANRABB" ColumnName="MANRABB" />
+                <ScalarProperty Name="EQUPMODEL" ColumnName="EQUPMODEL" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="EQUPABB" ColumnName="EQUPABB" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATENE_OSP_9500">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_OSP_9500">
+              <MappingFragment StoreEntitySet="VW_CREATENE_OSP_9500">
+                <ScalarProperty Name="MANRABB" ColumnName="MANRABB" />
+                <ScalarProperty Name="EQUPMODEL" ColumnName="EQUPMODEL" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="EQUPABB" ColumnName="EQUPABB" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATENE_OSP_9600">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_OSP_9600">
+              <MappingFragment StoreEntitySet="VW_CREATENE_OSP_9600">
+                <ScalarProperty Name="MANRABB" ColumnName="MANRABB" />
+                <ScalarProperty Name="EQUPMODEL" ColumnName="EQUPMODEL" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="EQUPABB" ColumnName="EQUPABB" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATECARD_OSP_9100">
+            <EntityTypeMapping TypeName="Model6.VW_CREATECARD_OSP_9100">
+              <MappingFragment StoreEntitySet="VW_CREATECARD_OSP_9100">
+                <ScalarProperty Name="PORTSTARTNO" ColumnName="PORTSTARTNO" />
+                <ScalarProperty Name="TOTALCOUNT" ColumnName="TOTALCOUNT" />
+                <ScalarProperty Name="CARDMODEL" ColumnName="CARDMODEL" />
+                <ScalarProperty Name="CARDNAME" ColumnName="CARDNAME" />
+                <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="RT_CODE" ColumnName="RT_CODE" />
+                <ScalarProperty Name="MSAN_FID" ColumnName="MSAN_FID" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATECARD_OSP_9100_NGN">
+            <EntityTypeMapping TypeName="Model6.VW_CREATECARD_OSP_9100_NGN">
+              <MappingFragment StoreEntitySet="VW_CREATECARD_OSP_9100_NGN">
+                <ScalarProperty Name="PORTSTARTNO" ColumnName="PORTSTARTNO" />
+                <ScalarProperty Name="TOTALCOUNT" ColumnName="TOTALCOUNT" />
+                <ScalarProperty Name="CARDMODEL" ColumnName="CARDMODEL" />
+                <ScalarProperty Name="CARDNAME" ColumnName="CARDNAME" />
+                <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="RT_CODE" ColumnName="RT_CODE" />
+                <ScalarProperty Name="MSAN_FID" ColumnName="MSAN_FID" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATECARD_OSP_9500">
+            <EntityTypeMapping TypeName="Model6.VW_CREATECARD_OSP_9500">
+              <MappingFragment StoreEntitySet="VW_CREATECARD_OSP_9500">
+                <ScalarProperty Name="PORTSTARTNO" ColumnName="PORTSTARTNO" />
+                <ScalarProperty Name="TOTALCOUNT" ColumnName="TOTALCOUNT" />
+                <ScalarProperty Name="CARDMODEL" ColumnName="CARDMODEL" />
+                <ScalarProperty Name="CARDNAME" ColumnName="CARDNAME" />
+                <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="MUX_CODE" ColumnName="MUX_CODE" />
+                <ScalarProperty Name="MSAN_FID" ColumnName="MSAN_FID" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATECARD_OSP_9600">
+            <EntityTypeMapping TypeName="Model6.VW_CREATECARD_OSP_9600">
+              <MappingFragment StoreEntitySet="VW_CREATECARD_OSP_9600">
+                <ScalarProperty Name="PORTSTARTNO" ColumnName="PORTSTARTNO" />
+                <ScalarProperty Name="TOTALCOUNT" ColumnName="TOTALCOUNT" />
+                <ScalarProperty Name="CARDMODEL" ColumnName="CARDMODEL" />
+                <ScalarProperty Name="CARDNAME" ColumnName="CARDNAME" />
+                <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="RT_CODE" ColumnName="RT_CODE" />
+                <ScalarProperty Name="MSAN_FID" ColumnName="MSAN_FID" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATECARD_OSP_9000">
+            <EntityTypeMapping TypeName="Model6.VW_CREATECARD_OSP_9000">
+              <MappingFragment StoreEntitySet="VW_CREATECARD_OSP_9000">
+                <ScalarProperty Name="PORTSTARTNO" ColumnName="PORTSTARTNO" />
+                <ScalarProperty Name="TOTALCOUNT" ColumnName="TOTALCOUNT" />
+                <ScalarProperty Name="CARDMODEL" ColumnName="CARDMODEL" />
+                <ScalarProperty Name="CARDNAME" ColumnName="CARDNAME" />
+                <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="RT_CODE" ColumnName="RT_CODE" />
+                <ScalarProperty Name="MSAN_FID" ColumnName="MSAN_FID" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATEFC_OSP_9500_SDF">
+            <EntityTypeMapping TypeName="Model6.VW_CREATEFC_OSP_9500_SDF">
+              <MappingFragment StoreEntitySet="VW_CREATEFC_OSP_9500_SDF">
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="FRANNAME" ColumnName="FRANNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATEFC_OSP_9500_DDFAC">
+            <EntityTypeMapping TypeName="Model6.VW_CREATEFC_OSP_9500_DDFAC">
+              <MappingFragment StoreEntitySet="VW_CREATEFC_OSP_9500_DDFAC">
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="FRANNAME" ColumnName="FRANNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATEFC_OSP_9500_FDPAC">
+            <EntityTypeMapping TypeName="Model6.VW_CREATEFC_OSP_9500_FDPAC">
+              <MappingFragment StoreEntitySet="VW_CREATEFC_OSP_9500_FDPAC">
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="FRANNAME" ColumnName="FRANNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATEFC_OSP_130001">
+            <EntityTypeMapping TypeName="Model6.VW_CREATEFC_OSP_130001">
+              <MappingFragment StoreEntitySet="VW_CREATEFC_OSP_13000">
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="FRANNAME" ColumnName="FRANNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATEFC_13000_TRANS">
+            <EntityTypeMapping TypeName="Model6.VW_CREATEFC_13000_TRANS">
+              <MappingFragment StoreEntitySet="VW_CREATEFC_13000_TRANS">
+                <ScalarProperty Name="CABINET" ColumnName="CABINET" />
+                <ScalarProperty Name="DISTANCE" ColumnName="DISTANCE" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="FRANNAME" ColumnName="FRANNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATENE_OSP_TRANSFER90">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_OSP_TRANSFER90">
+              <MappingFragment StoreEntitySet="VW_CREATENE_OSP_TRANSFER90">
+                <ScalarProperty Name="MANRABB" ColumnName="MANRABB" />
+                <ScalarProperty Name="EQUPMODEL" ColumnName="EQUPMODEL" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="EQUPABB" ColumnName="EQUPABB" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATENE_OSP_TRANSFER91">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_OSP_TRANSFER91">
+              <MappingFragment StoreEntitySet="VW_CREATENE_OSP_TRANSFER91">
+                <ScalarProperty Name="MANRABB" ColumnName="MANRABB" />
+                <ScalarProperty Name="EQUPMODEL" ColumnName="EQUPMODEL" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="EQUPABB" ColumnName="EQUPABB" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATENE_OSP_TRANSFER95">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_OSP_TRANSFER95">
+              <MappingFragment StoreEntitySet="VW_CREATENE_OSP_TRANSFER95">
+                <ScalarProperty Name="MANRABB" ColumnName="MANRABB" />
+                <ScalarProperty Name="EQUPMODEL" ColumnName="EQUPMODEL" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="EQUPABB" ColumnName="EQUPABB" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CREATENE_OSP_TRANSFER96">
+            <EntityTypeMapping TypeName="Model6.VW_CREATENE_OSP_TRANSFER96">
+              <MappingFragment StoreEntitySet="VW_CREATENE_OSP_TRANSFER96">
+                <ScalarProperty Name="MANRABB" ColumnName="MANRABB" />
+                <ScalarProperty Name="EQUPMODEL" ColumnName="EQUPMODEL" />
+                <ScalarProperty Name="INDEX1" ColumnName="INDEX1" />
+                <ScalarProperty Name="EQUPABB" ColumnName="EQUPABB" />
+                <ScalarProperty Name="LOCNTTNAME" ColumnName="LOCNTTNAME" />
+                <ScalarProperty Name="G3E_FNO" ColumnName="G3E_FNO" />
+                <ScalarProperty Name="G3E_FID" ColumnName="G3E_FID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model6" ZoomLevel="55">
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_GE_OSP" Width="1.5" PointX="0.75" PointY="0.75" Height="3.5186979166666665" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model6.REF_WEBSERVICES" Width="1.5" PointX="5.375" PointY="0.75" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="Model6.GC_DFDP" Width="1.5" PointX="0.75" PointY="5.75" Height="9.67234375" />
+        <EntityTypeShape EntityType="Model6.GC_NETELEM_M6" Width="1.5" PointX="5.75" PointY="3.75" Height="7.1724251302083317" />
+        <EntityTypeShape EntityType="Model6.VW_CREATECARD_GE_OSP" Width="1.5" PointX="8.375" PointY="0.75" Height="2.5571907552083326" />
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_OSP_9100" Width="1.5" PointX="8.375" PointY="4.75" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_OSP_9000" Width="1.5" PointX="8.375" PointY="8.75" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_OSP_9500" Width="1.5" PointX="10.375" PointY="0.75" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_OSP_9600" Width="1.5" PointX="10.375" PointY="4.75" Height="2.5571907552083353" />
+        <EntityTypeShape EntityType="Model6.VW_CREATECARD_OSP_9100" Width="1.5" PointX="10.375" PointY="8.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Model6.VW_CREATECARD_OSP_9100_NGN" Width="1.5" PointX="3.375" PointY="11.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Model6.VW_CREATECARD_OSP_9500" Width="1.5" PointX="5.375" PointY="11.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Model6.VW_CREATECARD_OSP_9600" Width="1.5" PointX="12.375" PointY="0.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Model6.VW_CREATECARD_OSP_9000" Width="1.5" PointX="12.375" PointY="4.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Model6.VW_CREATEFC_OSP_9500_SDF" Width="1.5" PointX="7.375" PointY="12.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Model6.VW_CREATEFC_OSP_9500_DDFAC" Width="1.5" PointX="12.375" PointY="8.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Model6.VW_CREATEFC_OSP_9500_FDPAC" Width="1.5" PointX="9.375" PointY="12.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Model6.VW_CREATEFC_OSP_130001" Width="1.5" PointX="13.375" PointY="12.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Model6.VW_CREATEFC_13000_TRANS" Width="1.5" PointX="14.375" PointY="0.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_OSP_TRANSFER90" Width="1.5" PointX="14.375" PointY="4.75" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_OSP_TRANSFER91" Width="1.5" PointX="14.375" PointY="8.75" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_OSP_TRANSFER95" Width="1.5" PointX="3.375" PointY="15.75" Height="2.5571907552083264" />
+        <EntityTypeShape EntityType="Model6.VW_CREATENE_OSP_TRANSFER96" Width="1.5" PointX="15.375" PointY="12.75" Height="2.5571907552083246" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

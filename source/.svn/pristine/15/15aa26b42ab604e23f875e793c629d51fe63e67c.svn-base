@@ -1,0 +1,37 @@
+﻿@model WebView.Models.MaterialClassMaintenanceModel
+
+@{
+    ViewBag.Title = "MaterialClassMaintenance";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Material Class Maintenance</h2>
+@using (Html.BeginForm("NewMaterialClassMaintenance", "MaterialClassMaintenance", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="450px" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>Material Class</td>
+            <td>
+                @Html.TextBoxFor(m => m.MatClass, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.MatClass)
+            </td>
+        </tr>
+        <tr>
+            <td>Class Name</td>
+            <td>
+                @Html.TextAreaFor(m => m.ClassName, new { style = "width:200px;" })
+                @Html.ValidationMessageFor(m => m.ClassName)
+            </td>
+        </tr>        
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>                                                                                  
+}

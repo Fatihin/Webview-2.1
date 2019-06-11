@@ -1,0 +1,72 @@
+﻿@model WebView.Models.CSM_NewJobModel
+           
+@{
+    ViewBag.Title = "CSM_NewJob";
+}
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(function () {
+            $("#btnSave").button();
+        });
+    });
+</script>
+<br />
+<h2>New Contract Summary</h2>
+@using (Html.BeginForm("CSM_NewJob", "CSM", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Error. Please correct the errors and try again.");
+    <table width="600px" cellpadding="0" cellspacing="0" border="0" >      
+        <tr>
+            <td style="width:100px">Contract ID</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_CONT_ID, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_CONT_ID)
+            </td>
+        </tr>
+        <tr>
+            <td>Item No</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_CONT_DESC, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_CONT_DESC)
+            </td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_CONTRACT_ID, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_CONTRACT_ID)
+            </td>
+        </tr>
+         <tr>
+            <td>Price</td>
+            <td>
+             @Html.TextBoxFor(m => m.x_CONTRACT_NO, new { style = "width:200px;" })
+             @Html.ValidationMessageFor(m => m.x_CONTRACT_NO)
+            </td>
+        </tr>
+         <tr>
+            <td>Order Unit</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_ACT_CODE, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_ACT_CODE)
+            </td>
+        </tr>
+        <tr>
+            <td>Item Category</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_PU_UOM, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_PU_UOM)
+            </td>
+        </tr>
+         <tr>
+            <td>Network Flag</td>
+            <td>
+            @Html.TextBoxFor(m => m.x_CONTRACT_PR, new { style = "width:200px;" })
+            @Html.ValidationMessageFor(m => m.x_CONTRACT_PR)
+            </td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" value="Save" id="btnSave" />
+    </p>    
+}
