@@ -729,7 +729,6 @@ namespace WebView.Controllers
                 var queryEquipZ = from p in ctxData.VFDITEMs
                                   join fx in ctxData.VFDITEMPLACEMENTs on p.ID equals fx.ITEM_ID
                                   join e in ctxData.VFDITEMs on fx.CONTAINER_ID equals e.ID
-                                  join fxx in ctxData.VFDITEMPLACEMENTs on e.ID equals fxx.CONTAINER_ID
                                   where (e.DTYPE == "Rack") &&
                                         (p.USERDISPLAYNAME.Contains(condition3) || p.AUTODISPLAYNAME.Contains(condition3))
                                   select new { p.USERDISPLAYNAME, p.AUTODISPLAYNAME, p.ID };
@@ -896,9 +895,7 @@ namespace WebView.Controllers
                 //sub card
                 var queryPATH = from p in ctxData.VFDITEMs
                                 join fx in ctxData.VFDITEMPLACEMENTs on p.ID equals fx.ITEM_ID
-                                join e in ctxData.VFDITEMs on fx.CONTAINER_ID equals e.ID
-                                join fxx in ctxData.VFDITEMPLACEMENTs on e.ID equals fxx.ITEM_ID
-                                where fxx.CONTAINER_ID == equip
+                                where fx.CONTAINER_ID == equip
                                 select new { p.AUTODISPLAYNAME, p.ID };
 
                 foreach (var a in queryPATH.Distinct().OrderBy(it => it.AUTODISPLAYNAME))
