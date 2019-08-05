@@ -694,6 +694,8 @@ namespace WebView.Controllers
         [HttpPost]
         public ActionResult updateEquipFTTHA(string job, string pathType, string ZEXC) // Update card
         {
+            try
+            {
             string listJob = "";
             string[] jobSplit = job.Split('-');
             string exc = jobSplit[0];
@@ -701,91 +703,93 @@ namespace WebView.Controllers
             //string pathType1 = pathTypeSplit1[0];
             //string pathType2 = pathTypeSplit1[1];
             //System.Diagnostics.Debug.WriteLine("[" + pathType1 + "]");
-            
-            string listData1 = "";
-            string listData2 = "";
+           
 
-            string condition3 = ZEXC + "_G";
-            
-            System.Diagnostics.Debug.WriteLine("[" + ZEXC + "_" + condition3 + "]");
+                string listData1 = "";
+                string listData2 = "";
 
-            using (Entities ctxData = new Entities())
-            {
-                List<SelectListItem> list1 = new List<SelectListItem>();
-                var queryEquipA = from p in ctxData.GC_FDC
-                                  join fx in ctxData.GC_NETELEM on p.G3E_FID equals fx.G3E_FID
-                                  where fx.EXC_ABB == exc
-                                  select new { p.FDC_CODE, p.G3E_FID };
+                string condition3 = ZEXC + "_G";
 
-                foreach (var a in queryEquipA.Distinct().OrderBy(it => it.FDC_CODE))
+                System.Diagnostics.Debug.WriteLine("[" + ZEXC + "_" + condition3 + "]");
+
+                using (Entities ctxData = new Entities())
                 {
-                   
+                    List<SelectListItem> list1 = new List<SelectListItem>();
+                    var queryEquipA = from p in ctxData.GC_FDC
+                                      join fx in ctxData.GC_NETELEM on p.G3E_FID equals fx.G3E_FID
+                                      where fx.EXC_ABB == exc
+                                      select new { p.FDC_CODE, p.G3E_FID };
+
+                    foreach (var a in queryEquipA.Distinct().OrderBy(it => it.FDC_CODE))
+                    {
+
                         listData1 = listData1 + a.FDC_CODE + ":" + a.G3E_FID + "|";
+                    }
                 }
-            }
-            using (Entities_NRM ctxData = new Entities_NRM())
-            {
-                List<SelectListItem> list2 = new List<SelectListItem>();
-                var queryEquipZ = from p in ctxData.VFDITEMs
-                                  join fx in ctxData.VFDITEMPLACEMENTs on p.ID equals fx.ITEM_ID
-                                  join e in ctxData.VFDITEMs on fx.CONTAINER_ID equals e.ID
-                                  where (e.DTYPE == "Rack") &&
-                                        (p.USERDISPLAYNAME.Contains(condition3) || p.AUTODISPLAYNAME.Contains(condition3))
-                                  select new { p.USERDISPLAYNAME, p.AUTODISPLAYNAME, p.ID };
-
-                foreach (var a in queryEquipZ.Distinct().OrderBy(it => it.USERDISPLAYNAME))
+                using (Entities_NRM ctxData = new Entities_NRM())
                 {
-                    string data;
-                    if (a.USERDISPLAYNAME == null)
+                    List<SelectListItem> list2 = new List<SelectListItem>();
+                    var queryEquipZ = from p in ctxData.VFDITEMs
+                                      join fx in ctxData.VFDITEMPLACEMENTs on p.ID equals fx.ITEM_ID
+                                      join e in ctxData.VFDITEMs on fx.CONTAINER_ID equals e.ID
+                                      join fxx in ctxData.VFDITEMPLACEMENTs on e.ID equals fxx.CONTAINER_ID
+                                      where (e.DTYPE == "Rack") &&
+                                            (p.USERDISPLAYNAME.Contains(condition3) || p.AUTODISPLAYNAME.Contains(condition3))
+                                      select new { p.USERDISPLAYNAME, p.AUTODISPLAYNAME, p.ID };
+
+                    foreach (var a in queryEquipZ.Distinct().OrderBy(it => it.USERDISPLAYNAME))
                     {
-                        data = a.AUTODISPLAYNAME;
+                        string data;
+                        if (a.USERDISPLAYNAME == null)
+                        {
+                            data = a.AUTODISPLAYNAME;
+                        }
+                        else
+                        {
+                            data = a.USERDISPLAYNAME;
+                        }
+                        listData2 = listData2 + data + ":" + a.ID + "|";
                     }
-                    else
-                    {
-                        data = a.USERDISPLAYNAME;
-                    }
-                    listData2 = listData2 + data + ":" + a.ID + "|";
                 }
-            }
 
-            // region Mubin - CR14-20180330
-			using (Entities9 ctxData = new Entities9())
-            {
-                var queryJOB = from p in ctxData.WV_LOAD_PATHCONSUMER
-                               where p.JOBID == job
-                               select new { p.ANAME, p.ATYPE, p.ASITE, p.ACARD2, p.APORT2, p.ZNAME, p.ZTYPE, p.ZSITE, p.ZCARD, p.ZPORT, p.DPNAME, p.ID,p.REMARKS};
-
-                foreach (var a in queryJOB.OrderBy(it => it.DPNAME))
+                // region Mubin - CR14-20180330
+                using (Entities9 ctxData = new Entities9())
                 {
-                    string St_REMARKS = "";
-                    if (a.REMARKS != "" && a.REMARKS != null)
-                    {
-                        St_REMARKS = " (Remarks -  " + a.REMARKS + " ) ";
-                    }
-                    listJob = listJob + a.ANAME + ":" + a.ATYPE + ":" + a.ASITE + ":" + a.ACARD2 + ":" + a.APORT2 + ":" + a.ZNAME + ":" + a.ZTYPE + ":" + a.ZSITE + ":" + a.ZCARD + ":" + a.ZPORT + ":" + a.DPNAME + St_REMARKS + ":" + a.ID + ":" + "|";
-                }
-
-               
-            }
-            /*using (Entities7 ctxData = new Entities7())
-            {
-                var queryJOB_ODP = from p in ctxData.WV_LOAD_PATH_CONSUMER_ODP
+                    var queryJOB = from p in ctxData.WV_LOAD_PATHCONSUMER
                                    where p.JOBID == job
-                                   select new { p.ANAME, p.ATYPE, p.ASITE, p.ACARD2, p.APORT2, p.ZNAME, p.ZTYPE, p.ZSITE, p.ZCARD, p.ZPORT, p.DPNAME, p.ID,p.REMARKS };
+                                   select new { p.ANAME, p.ATYPE, p.ASITE, p.ACARD2, p.APORT2, p.ZNAME, p.ZTYPE, p.ZSITE, p.ZCARD, p.ZPORT, p.DPNAME, p.ID, p.REMARKS };
 
-                foreach (var a in queryJOB_ODP.OrderBy(it => it.DPNAME))
-                {
-                    string St_REMARKS = "";
-                    if (a.REMARKS != "" && a.REMARKS != null)
+                    foreach (var a in queryJOB.OrderBy(it => it.DPNAME))
                     {
-                        St_REMARKS = " (Remarks -  " + a.REMARKS + " ) ";
+                        string St_REMARKS = "";
+                        if (a.REMARKS != "" && a.REMARKS != null)
+                        {
+                            St_REMARKS = " (Remarks -  " + a.REMARKS + " ) ";
+                        }
+                        listJob = listJob + a.ANAME + ":" + a.ATYPE + ":" + a.ASITE + ":" + a.ACARD2 + ":" + a.APORT2 + ":" + a.ZNAME + ":" + a.ZTYPE + ":" + a.ZSITE + ":" + a.ZCARD + ":" + a.ZPORT + ":" + a.DPNAME + St_REMARKS + ":" + a.ID + ":" + "|";
                     }
 
-                    listJob = listJob + a.ANAME + ":" + a.ATYPE + ":" + a.ASITE + ":" + a.ACARD2 + ":" + a.APORT2 + ":" + a.ZNAME + ":" + a.ZTYPE + ":" + a.ZSITE + ":" + a.ZCARD + ":" + a.ZPORT + ":" + a.DPNAME +St_REMARKS + ":" + a.ID + ":" + "|";
-                }
-            }*/
-			// endRegion
 
+                }
+                /*using (Entities7 ctxData = new Entities7())
+                {
+                    var queryJOB_ODP = from p in ctxData.WV_LOAD_PATH_CONSUMER_ODP
+                                       where p.JOBID == job
+                                       select new { p.ANAME, p.ATYPE, p.ASITE, p.ACARD2, p.APORT2, p.ZNAME, p.ZTYPE, p.ZSITE, p.ZCARD, p.ZPORT, p.DPNAME, p.ID,p.REMARKS };
+
+                    foreach (var a in queryJOB_ODP.OrderBy(it => it.DPNAME))
+                    {
+                        string St_REMARKS = "";
+                        if (a.REMARKS != "" && a.REMARKS != null)
+                        {
+                            St_REMARKS = " (Remarks -  " + a.REMARKS + " ) ";
+                        }
+
+                        listJob = listJob + a.ANAME + ":" + a.ATYPE + ":" + a.ASITE + ":" + a.ACARD2 + ":" + a.APORT2 + ":" + a.ZNAME + ":" + a.ZTYPE + ":" + a.ZSITE + ":" + a.ZCARD + ":" + a.ZPORT + ":" + a.DPNAME +St_REMARKS + ":" + a.ID + ":" + "|";
+                    }
+                }*/
+                // endRegion
+           
             return Json(new
             {
                 Success = true,
@@ -793,8 +797,14 @@ namespace WebView.Controllers
                 listData2 = listData2,
                 listJob = listJob
             }, JsonRequestBehavior.AllowGet); //
-        }
+            }
+            catch (Exception ex)
+            {
+                return null; 
+            }
 
+        }
+        
         [HttpPost]
         public ActionResult updateCardFTTHA(int equip, string fdccode) // Update port
         {
@@ -895,7 +905,9 @@ namespace WebView.Controllers
                 //sub card
                 var queryPATH = from p in ctxData.VFDITEMs
                                 join fx in ctxData.VFDITEMPLACEMENTs on p.ID equals fx.ITEM_ID
-                                where fx.CONTAINER_ID == equip
+                                join e in ctxData.VFDITEMs on fx.CONTAINER_ID equals e.ID
+                                join fxx in ctxData.VFDITEMPLACEMENTs on e.ID equals fxx.ITEM_ID
+                                where fxx.CONTAINER_ID == equip
                                 select new { p.AUTODISPLAYNAME, p.ID };
 
                 foreach (var a in queryPATH.Distinct().OrderBy(it => it.AUTODISPLAYNAME))
