@@ -3,10 +3,8 @@
 }
 
 <script type="text/javascript">
-    function getDetailsCheckJob(data, typetable, checkboxname) {
-
-        //alert(data);
-
+    function getDetailsCheckJob(data, typetable, checkboxname,t) {
+        
         var tblC = document.getElementById(typetable);
         for (var i = tblC.rows.length - 1; i > 0; i--) {
             tblC.deleteRow(i);
@@ -34,14 +32,24 @@
             }
 
             //Marfu'ah ASBGated 280519            
-            if (typetable == "tabCEquip1") {
-                checkValidation(splitData[2], splitData[13], splitData[14], function (resp) {
+           if (typetable == "tabCEquip1") {
+               
+                checkValidation(splitData[2], splitData[13], splitData[14],t, function (resp) {
                     valid_asb = resp.isASBExist;
                 });
             }
 
+            else if (typetable == "tabCSite1") {
+
+                checkValidation(splitData[2], splitData[21], splitData[22], t, function (resp) {
+                    valid_asb = resp.isASBExist;
+                });
+            }
+
+           
+
             var splitDatalen = splitData.length;
-            if (typetable == "tabCEquip1") {
+            if (typetable == "tabCEquip1" || typetable == "tabCSite1") {
                 splitDatalen = splitDatalen - 3;
             }
             else {
@@ -52,8 +60,8 @@
                // alert(splitData.length);
                 row.insertCell(i);
                 styleData = splitData[i + 1];
-                if (typetable == "tabCEquip1") {
-                    if (splitData[3] != "ASB" || valid_asb == false) {
+                if (typetable == "tabCEquip1" || typetable == "tabCSite1") {
+                    if (splitData[3] != "ASB" && valid_asb == true) {
                         tab.rows[p + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"" + checkboxname + "\" value=\"" + splitData[1] + "\" disabled/>";
                         styleData = "<span style='color: red'>" + splitData[i + 1] + "</span>";
                     }
@@ -92,7 +100,7 @@
                         typetab = "tabCSite1";
                         var LoadSite = res.LoadOrCreate;
                         var checkboxname = "ls";
-                        getDetailsCheckJob(LoadSite, typetab, checkboxname);
+                        getDetailsCheckJob(LoadSite, typetab, checkboxname,t);
                     }
 
                     else if (t == "Load Equipment" && res.LoadOrCreate != "") {
@@ -103,7 +111,7 @@
                         typetab = "tabCEquip1";
                         var loadEquip = res.LoadOrCreate;
                         var checkboxname = "le";
-                        getDetailsCheckJob(loadEquip, typetab, checkboxname);
+                        getDetailsCheckJob(loadEquip, typetab, checkboxname, t);
                     }
 
                     else if (t == "Load Service Boundary Address" && res.LoadOrCreate != "") {
@@ -112,7 +120,7 @@
                         typetab = "tabCSBoundary1";
                         var loadSBoundry = res.LoadOrCreate;
                         var checkboxname = "lsb";
-                        getDetailsCheckJob(loadSBoundry, typetab, checkboxname);
+                        getDetailsCheckJob(loadSBoundry, typetab, checkboxname, t);
                     }
 
                     else if (t == "Add Card/Splitter" && res.LoadOrCreate != "") {
@@ -121,7 +129,7 @@
                         typetab = "tabAddCardSplit1";
                         var AddCardSplit = res.LoadOrCreate;
                         var checkboxname = "ac";
-                        getDetailsCheckJob(AddCardSplit, typetab, checkboxname);
+                        getDetailsCheckJob(AddCardSplit, typetab, checkboxname, t);
                     }
 
                     else if (t == "Delete Equipment" && res.LoadOrCreate != "") {
@@ -130,7 +138,7 @@
                         typetab = "tabDelEquip1";
                         var DelEquip = res.LoadOrCreate;
                         var checkboxname = "de";
-                        getDetailsCheckJob(DelEquip, typetab, checkboxname);
+                        getDetailsCheckJob(DelEquip, typetab, checkboxname, t);
                     }
 
                     else if (t == "Delete Path" && res.LoadOrCreate != "") {
@@ -139,7 +147,7 @@
                         typetab = "tabDelPath1";
                         var DelPath = res.LoadOrCreate;
                         var checkboxname = "dp";
-                        getDetailsCheckJob(DelPath, typetab, checkboxname);
+                        getDetailsCheckJob(DelPath, typetab, checkboxname, t);
                     }
 
                     else if (t == "Delete Service Boundary" && res.LoadOrCreate != "") {
@@ -148,7 +156,7 @@
                         typetab = "tabDelSB1";
                         var DelSB = res.LoadOrCreate;
                         var checkboxname = "dsb";
-                        getDetailsCheckJob(DelSB, typetab, checkboxname);
+                        getDetailsCheckJob(DelSB, typetab, checkboxname, t);
                     }
 
                     else if (t == "Load Path Consumer" && res.pConsumer != "") {
@@ -430,7 +438,8 @@
     });
 
     //Marfu'ah ASBGated 280519
-    function checkValidation(id, ptt, g3e_fno, resp) {
+    function checkValidation(id, ptt, g3e_fno, t, resp) {
+      
         jQuery(document).ready(function ($) {
             $.ajax({
                 url: "/Job/checkASBGated",
@@ -438,6 +447,7 @@
                 async: false,
                 dataType: "html",
                 data: {
+                    "typeOfInteg" : t,
                     "ptt": ptt,
                     "g3e_fno": g3e_fno,
                     "id": id
@@ -577,7 +587,7 @@
                    <tr>
                        <th style="background-color:#b9c9fe"></th>
                        <th style="background-color:#b9c9fe">G3E_ID</th>
-                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <!--<th style="background-color:#b9c9fe">FEATURESTATE</th>-->
                        <th style="background-color:#b9c9fe">SERVICEBOUNDARYID</th>
                        <th style="background-color:#b9c9fe">SITENO</th>
                        <th style="background-color:#b9c9fe">SITEFLOOR</th>
@@ -611,7 +621,7 @@
                    <tr>
                        <th style="background-color:#b9c9fe"></th>
                        <th style="background-color:#b9c9fe">FDC CODE<p><font color="red"><br /><br />ANAME</font></p></th>
-                       <th style="background-color:#b9c9fe">FEATURESTATE<p><font color="red"><br /><br /><br /></font></p></th>
+                       <!--<th style="background-color:#b9c9fe">FEATURESTATE<p><font color="red"><br /><br /><br /></font></p></th>-->
                        <th style="background-color:#b9c9fe"><p><br /><br /><br /><font color="red">ATYPE</font></p></th>
                        <th style="background-color:#b9c9fe">ODF CARD<p><font color="red"><br />ACARD2</font></p></th>
                        <th style="background-color:#b9c9fe">ODF PORT<p><font color="red"><br />APORT2</font></p></th>
@@ -631,7 +641,7 @@
                   <tr>
                        <td style="background-color:#e6ecff"></td>
                        <td style="background-color:#e6ecff">ANAME</td>
-                       <td style="background-color:#e6ecff">FEATURESTATE</td>
+                       <!--<td style="background-color:#e6ecff">FEATURESTATE</td>-->
                        <td style="background-color:#e6ecff">ATYPE</td>
                        <td style="background-color:#e6ecff">ACARD2</td>
                        <td style="background-color:#e6ecff">APORT2</td>
@@ -663,7 +673,7 @@
                    <tr>
                        <th style="background-color:#b9c9fe"></th>
                        <th style="background-color:#b9c9fe">EQUIPMENTID</th>
-                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <!--<th style="background-color:#b9c9fe">FEATURESTATE</th>-->
                        <th style="background-color:#b9c9fe">EQUIPVEND</th>
                        <th style="background-color:#b9c9fe">EQUIPMODEL</th>
                        <th style="background-color:#b9c9fe">TEMPLATENAME</th>
@@ -690,7 +700,7 @@
                    <tr >
                        <th style="background-color:#b9c9fe"></th>
                        <th style="background-color:#b9c9fe">G3E_FID</th>
-                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <!--<th style="background-color:#b9c9fe">FEATURESTATE</th>-->
                        <th style="background-color:#b9c9fe">G3E_FNO</th>
                        <th style="background-color:#b9c9fe">JOB_ID</th>
                        <th style="background-color:#b9c9fe">GRANITE_EQUIP_ID</th>
@@ -717,7 +727,7 @@
                    <tr >
                        <th style="background-color:#b9c9fe"></th>
                        <th style="background-color:#b9c9fe">G3E_FID</th>
-                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <!--<th style="background-color:#b9c9fe">FEATURESTATE</th>-->
                        <th style="background-color:#b9c9fe">G3E_FNO</th>
                        <th style="background-color:#b9c9fe">JOB_ID</th>
                        <th style="background-color:#b9c9fe">PATHNAME</th>
@@ -741,7 +751,7 @@
                    <tr>
                        <th style="background-color:#b9c9fe"></th>
                        <th style="background-color:#b9c9fe">G3E_FID</th>
-                       <th style="background-color:#b9c9fe">FEATURESTATE</th>
+                       <!--<th style="background-color:#b9c9fe">FEATURESTATE</th>-->
                        <th style="background-color:#b9c9fe">G3E_FNO</th>
                        <th style="background-color:#b9c9fe">JOB_ID</th>
                        <th style="background-color:#b9c9fe">SERVICEBOUNDARYID</th>

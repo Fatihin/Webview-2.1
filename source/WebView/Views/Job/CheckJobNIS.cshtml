@@ -2,9 +2,9 @@
     ViewBag.Title = "CheckJobNIS";
 }
 <script type="text/javascript">
-    function getDetailsCheckJob(data, typetable, checkboxname) {
+    function getDetailsCheckJob(data, typetable, checkboxname,t) {
 
-
+        //alert(typetable);
         var tblC = document.getElementById(typetable);
         for (var i = tblC.rows.length - 1; i > 0; i--) {
             tblC.deleteRow(i);
@@ -34,12 +34,37 @@
                 row.insertCell(0);
                 tab.rows[p + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"" + checkboxname + "\" value=\"" + splitData[1] + "\"/>";
             }
-            for (var i = 1; i < splitData.length - 1; i++) {
 
-               // alert(splitData[i]);
-                row.insertCell(i);
-                tab.rows[p + 1].cells[i].innerHTML = splitData[i + 1];
+            if (typetable == "tabCreateNe1") {
+
+                checkValidation(splitData[1], splitData[14], splitData[15], t, function (resp) {
+                    valid_asb = resp.isASBExist;
+                });
             }
+
+            var splitDatalen = splitData.length;
+            if (typetable == "tabCreateNe1") {
+                splitDatalen = splitDatalen - 3;
+            }
+            else {
+                splitDatalen = splitDatalen - 1;
+            }
+
+
+
+            for (var i = 1; i < splitDatalen; i++) {
+                row.insertCell(i);
+                styleData = splitData[i + 1];
+                if (typetable == "tabCreateNe1") {
+                    if (splitData[2] != "ASB" && valid_asb == true) {
+                        tab.rows[p + 1].cells[0].innerHTML = "<input type=\"checkbox\" id=\"valueZ\" name=\"" + checkboxname + "\" value=\"" + splitData[1] + "\" disabled/>";
+                        styleData = "<span style='color: red'>" + splitData[i + 1] + "</span>";
+                    }
+                }
+                tab.rows[p + 1].cells[i].innerHTML = styleData;
+            }
+
+           
 
             /* for (var i = 0; i <= splitData.length; i++) {
             row.insertCell(i);
@@ -77,7 +102,7 @@
                         typetab = "tabCreateNe1";
                         var CreateNE = res.LoadOrCreate;
                         var checkboxname = "ne";
-                        getDetailsCheckJob(CreateNE, typetab, checkboxname);
+                        getDetailsCheckJob(CreateNE, typetab, checkboxname,t);
                     }
 
                     else if (t.trim() == "Create Card" && res.LoadOrCreate != "") {
@@ -86,7 +111,7 @@
                         typetab = "tabCreateCard1";
                         var CreateCard = res.LoadOrCreate;
                         var checkboxname = "card";
-                        getDetailsCheckJob(CreateCard, typetab, checkboxname);
+                        getDetailsCheckJob(CreateCard, typetab, checkboxname,t);
                     }
 
                     else if (t.trim() == "Create Frame Container" && res.LoadOrCreate != "") {
@@ -96,7 +121,7 @@
                         typetab = "tabCreateFC1";
                         var CreateFC = res.LoadOrCreate;
                         var checkboxname = "fc";
-                        getDetailsCheckJob(CreateFC, typetab, checkboxname);
+                        getDetailsCheckJob(CreateFC, typetab, checkboxname,t);
                     }
 
                     else if (t.trim() == "Create Frame Unit" && res.LoadOrCreate != "") {
@@ -106,7 +131,7 @@
                         typetab = "tabCreateFU1";
                         var CreateFU = res.LoadOrCreate;
                         var checkboxname = "fu";
-                        getDetailsCheckJob(CreateFU, typetab, checkboxname);
+                        getDetailsCheckJob(CreateFU, typetab, checkboxname,t);
                     }
                     else if (t.trim() == "Create Service Boundary" && res.LoadOrCreate != "") {
                         document.getElementById("tabCreateSB").style.display = "block";
@@ -114,7 +139,7 @@
                         typetab = "tabCreateSB1";
                         var CreateSB = res.LoadOrCreate;
                         var checkboxname = "sb";
-                        getDetailsCheckJob(CreateSB, typetab, checkboxname);
+                        getDetailsCheckJob(CreateSB, typetab, checkboxname,t);
                     }
 
                     else if (t.trim() == "Create Cable Sheath" && res.LoadOrCreate != "") {
@@ -123,7 +148,7 @@
                         typetab = "tabCreateCS1";
                         var CreateCS = res.LoadOrCreate;
                         var checkboxname = "cs";
-                        getDetailsCheckJob(CreateCS, typetab, checkboxname);
+                        getDetailsCheckJob(CreateCS, typetab, checkboxname,t);
                     }
                     else if (res.LoadOrCreate.trim() == "") {
                         document.getElementById("Nodata").style.display = "block";
@@ -388,6 +413,28 @@
         });
         $("#deselectall").button();
     });
+
+    function checkValidation(id, ptt, g3e_fno, t, resp) {
+
+        jQuery(document).ready(function ($) {
+            $.ajax({
+                url: "/Job/checkASBGatedNIS",
+                type: "POST",
+                async: false,
+                dataType: "html",
+                data: {
+                    "typeOfInteg": t,
+                    "ptt": ptt,
+                    "g3e_fno": g3e_fno,
+                    "id": id
+                },
+                success: function (data) {
+                    var res = jQuery.parseJSON(data);
+                    resp(res);  //callback method
+                }
+            });
+        });
+    }
 </script>
 <br />
 <h3>
@@ -449,6 +496,9 @@
                 <thead>
                     <tr>
                         <th style="background-color: #b9c9fe">
+                        </th>
+                        <th style="background-color:#b9c9fe">
+                            FEATURESTATE
                         </th>
                         <th style="background-color: #b9c9fe">
                             LOCATIONDETAIL
@@ -548,6 +598,7 @@
             <table align="center" width="auto" id="tabCreateFC1" style="font-size: smaller">
                 <thead>
                     <tr>
+                        
                         <th style="background-color: #b9c9fe">
                         </th>
                         <th style="background-color: #b9c9fe">
