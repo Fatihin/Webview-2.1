@@ -2443,19 +2443,19 @@ namespace WebView.Controllers
             {
                 var queryNRM = (from p in ctxData.WV_ISP_JOB
                                 where p.G3E_IDENTIFIER == id
-                                select p).Single();
+                                select p).SingleOrDefault();
                 exc_abb = queryNRM.EXC_ABB;
                 scheme_name = queryNRM.SCHEME_NAME;
                 desc_job = queryNRM.G3E_DESCRIPTION;
 
-                var queryUser = (from p in ctxData.WV_USER
+               var queryUser = (from p in ctxData.WV_USER
                                  where p.USERNAME.ToUpper() == User.Identity.Name.ToUpper() || p.USERNAME.ToLower() == User.Identity.Name.ToLower()
-                                 select p).Single();
+                                select p).SingleOrDefault();
 
                 var queryUserRole = (from fx in ctxData.WV_GROUP
                                      join fxx in ctxData.WV_GRP_ROLE on fx.GRPNAME equals fxx.GRPNAME
                                      where fx.GRP_ID == queryUser.GROUPID
-                                     select fxx).Single();
+                                     select fxx).SingleOrDefault();
 
                 role = queryUserRole.ROLENAME;
 
@@ -2492,10 +2492,12 @@ namespace WebView.Controllers
                                   select p).Count();
                 if (queryCount > 0)
                 {
-                    var query = (from p in b.VFDITEMs
+                    System.Diagnostics.Debug.WriteLine("count " + queryCount);
+                   var query = (from p in b.VFDITEMs
                                  where p.USERPARTIALNAME.Trim() == exc_abb.Trim() && p.DTYPE == "Plan"
                                  select p).Single();
                     ProjectNRMID = query.ID.ToString();
+                    //ProjectNRMID = "109787";
                 }
                 else
                 {
@@ -8535,24 +8537,123 @@ namespace WebView.Controllers
         }
 
         #region Marfu'ah ASBGated 280519
-        public ActionResult checkASBGated(string id, string ptt, string g3e_fno) {
+        public ActionResult checkASBGated(string typeOfInteg, string id, string ptt, string g3e_fno)
+        {
             bool ASBExist = false;
-
             using (Entities9 ctxASB = new Entities9()) {
-                var queryValidASB = from a in ctxASB.REF_GATED_ASB_FEAT
-                                    join b in ctxASB.GRN_LOADEQUIP on a.PTT equals b.PTT
-                                    join c in ctxASB.REF_GATED_ASB_PTT on b.G3E_FNO equals c.G3E_FNO
-                                    where b.PTT == ptt && b.G3E_FNO == g3e_fno select new {
-                                    b.G3E_FNO,
-                                    b.PTT};
 
-                if (queryValidASB.Count() > 0) ASBExist = true;
-                else ASBExist = false;
+                int queryValidPTT = 0;
+                int queryValidFeat = 0;
+                int querycheckAllPTT = (from a in ctxASB.REF_GATED_ASB_PTT
+                                        where a.PTT == "ALL"
+                                        select a).Count();
+
+                int querycheckAllFNO = (from a in ctxASB.REF_GATED_ASB_FEAT
+                                        where a.G3E_FNO == "ALL"
+                                        select a).Count();
+
+
+                if (typeOfInteg.Trim() == "Load Site")
+                {
+                    queryValidPTT = (from a in ctxASB.REF_GATED_ASB_PTT
+                                         join b in ctxASB.GRN_LOADSITE on a.PTT equals b.PTT
+                                         where b.PTT.Trim() == ptt.Trim()
+                                         select b).Count();
+
+                    queryValidFeat = (from a in ctxASB.REF_GATED_ASB_FEAT
+                                          join b in ctxASB.GRN_LOADSITE on a.G3E_FNO equals b.G3E_FNO
+                                          where b.G3E_FNO.Trim() == g3e_fno.Trim()
+                                          select b).Count();
+                }
+
+                else if (typeOfInteg.Trim() == "Load Equipment")
+                {
+                    queryValidPTT = (from a in ctxASB.REF_GATED_ASB_PTT
+                                     join b in ctxASB.GRN_LOADEQUIP on a.PTT equals b.PTT
+                                     where b.PTT.Trim() == ptt.Trim()
+                                     select b).Count();
+
+                    queryValidFeat = (from a in ctxASB.REF_GATED_ASB_FEAT
+                                      join b in ctxASB.GRN_LOADEQUIP on a.G3E_FNO equals b.G3E_FNO
+                                      where b.G3E_FNO.Trim() == g3e_fno.Trim()
+                                      select b).Count();
+                }
+
+                if (querycheckAllPTT > 0 && querycheckAllFNO > 0)
+                {
+                    ASBExist = true;
+                }
+
+                if (queryValidPTT > 0 || queryValidFeat > 0 && querycheckAllFNO > 0)
+                {
+                   ASBExist = true;
+                }
+
+                else if (queryValidPTT > 0 || queryValidFeat > 0 && querycheckAllPTT > 0)
+                    ASBExist = true;
+
+                else
+                   ASBExist = false;
 
                 System.Diagnostics.Debug.WriteLine("ASBExist" + ASBExist);
             }
             return Json(new { id = id, isASBExist = ASBExist }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult checkASBGatedNIS(string typeOfInteg, string id, string ptt, string g3e_fno)
+        {
+            bool ASBExist = false;
+            using (Entities9 ctxASB = new Entities9())
+            {
+
+                int queryValidPTT = 0;
+                int queryValidFeat = 0;
+                int querycheckAllPTT = (from a in ctxASB.REF_GATED_ASB_PTT
+                                        where a.PTT == "ALL"
+                                        select a).Count();
+
+                int querycheckAllFNO = (from a in ctxASB.REF_GATED_ASB_FEAT
+                                        where a.G3E_FNO == "ALL"
+                                        select a).Count();
+
+
+                if (typeOfInteg.Trim() == "Create Network Element")
+                {
+                    queryValidPTT = (from a in ctxASB.REF_GATED_ASB_PTT
+                                     join b in ctxASB.NIS_CREATENE_OSP on a.PTT equals b.PTT
+                                     where b.PTT.Trim() == ptt.Trim()
+                                     select b).Count();
+
+                    queryValidFeat = (from a in ctxASB.REF_GATED_ASB_FEAT
+                                      join b in ctxASB.NIS_CREATENE_OSP on a.G3E_FNO equals b.G3E_FNO
+                                      where b.G3E_FNO.Trim() == g3e_fno.Trim()
+                                      select b).Count();
+                }
+
+                if (querycheckAllPTT > 0 && querycheckAllFNO > 0)
+                {
+                    ASBExist = true;
+                }
+
+                if (queryValidPTT > 0 || queryValidFeat > 0 && querycheckAllFNO > 0)
+                {
+                    ASBExist = true;
+                }
+
+                else if (queryValidPTT > 0 || queryValidFeat > 0 && querycheckAllPTT > 0)
+                    ASBExist = true;
+
+                else
+                    ASBExist = false;
+
+                System.Diagnostics.Debug.WriteLine("ASBExist" + ASBExist);
+            }
+            return Json(new { id = id, isASBExist = ASBExist }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
         #endregion
 
         #region Fatihin CR53 - 16 May 2018
@@ -8581,7 +8682,7 @@ namespace WebView.Controllers
                                                   a.SITENO + "|" + a.SITEBUILDING + "|" + a.ADDRESSSTREET + "|" + a.ADDRESSCITY + "|" +
                                                   a.ADDRESSSTATE + "|" + a.POSTCODE + "|" + a.STREETTYPE + "|" + a.COUNTY + "|" +
                                                   a.EQUIPMENTLOCATION + "|" + a.CABLINGTYPE + "|" + a.COPPEROWNBYTM + "|" +
-                                                  a.FIBERTOPREMISEEXIST + "|" + a.TOTALSERVICEBOUNDARY;
+                                                  a.FIBERTOPREMISEEXIST + "|" + a.TOTALSERVICEBOUNDARY + "|" + a.PTT + "|" + a.G3E_FNO;
                             }
                         }
                         #endregion
@@ -8619,7 +8720,7 @@ namespace WebView.Controllers
                             foreach (var a in querySERVICEBOUNDARY)
                             {
                                 b++;
-                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.LOADSERVBOUND_ID) + "|" + a.G3E_ID + "|" + a.FEAT_STATE + "|" + a.SERVICEBOUNDARYID + "_00" + b + "|" + a.SITENO + "|" +
+                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.LOADSERVBOUND_ID) + "|" + a.G3E_ID + "|" + a.SERVICEBOUNDARYID + "_00" + b + "|" + a.SITENO + "|" +
                                                             a.SITEFLOOR + "|" + a.SITEBUILDING + "|" + a.STREETYPE + "|" + a.STREETNAME + "|" +
                                                             a.SECTION + "|" + a.POSTCODE + "|" + a.CITY + "|" + a.STATE + "|" + a.PREMISETYPE + "|" +
                                                             a.SITESDP + " | " + a.DDP;
@@ -8640,7 +8741,7 @@ namespace WebView.Controllers
                         {
                             foreach (var a in queryADDCARD)
                             {
-                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.ADDCARD_ID) + "|" + a.EQUIPMENTID + "|" + a.FEAT_STATE + "|" + a.EQUIPVEND + "|" + a.EQUIPMODEL + "|" + a.TEMPLATENAME + "|" + a.SLOT_NO + "|" +
+                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.ADDCARD_ID) + "|" + a.EQUIPMENTID + "|" + a.EQUIPVEND + "|" + a.EQUIPMODEL + "|" + a.TEMPLATENAME + "|" + a.SLOT_NO + "|" +
                                                   a.CARD_TYPE + "|" + a.TOTAL_PORT + "|" + a.PORTIN;
                             }
                         }
@@ -8659,7 +8760,7 @@ namespace WebView.Controllers
                         {
                             foreach (var a in queryDELETEEQUIP)
                             {
-                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.DELETEEQUIP_ID) + "|" + a.G3E_FID + "|" + a.FEAT_STATE + "|" + a.G3E_FNO + "|" + a.JOB_ID + "|" + a.GRANITE_EQUIP_ID + "|" + a.EQUIPMENTID + "|" +
+                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.DELETEEQUIP_ID) + "|" + a.G3E_FID + "|" + a.G3E_FNO + "|" + a.JOB_ID + "|" + a.GRANITE_EQUIP_ID + "|" + a.EQUIPMENTID + "|" +
                                                   a.EQUIPCAT + "|" + a.SLOT + "|" + a.PORTIN;
                             }
                         }
@@ -8678,7 +8779,7 @@ namespace WebView.Controllers
                         {
                             foreach (var a in queryDELETEPATH)
                             {
-                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.DELETEPATH_ID) + "|" + a.G3E_FID + "|" + a.FEAT_STATE + "|" + a.G3E_FNO + "|" + a.JOB_ID + "|" + a.PATHNAME + "|" + a.PATHTYPE;
+                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.DELETEPATH_ID) + "|" + a.G3E_FID + "|" + a.G3E_FNO + "|" + a.JOB_ID + "|" + a.PATHNAME + "|" + a.PATHTYPE;
                             }
                         }
                         #endregion
@@ -8696,7 +8797,7 @@ namespace WebView.Controllers
                         {
                             foreach (var a in queryDELETESB)
                             {
-                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.DELETESB_ID) + "|" + a.G3E_FID + "|" + a.FEAT_STATE + "|" + a.G3E_FNO + "|" + a.JOB_ID + "|" + a.SERVICEBOUNDARYID + "|" + a.SITEDP;
+                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.DELETESB_ID) + "|" + a.G3E_FID + "|" + a.G3E_FNO + "|" + a.JOB_ID + "|" + a.SERVICEBOUNDARYID + "|" + a.SITEDP;
                             }
                         }
                         #endregion
@@ -8716,8 +8817,9 @@ namespace WebView.Controllers
                         {
                             foreach (var a in queryCreateNe)
                             {
-                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.NE_ID) + "|" + a.LOCATIONDETAIL + "|" + a.AREACODE + "|" + a.AREADESCRIPTION + "|" + a.AREAAREACODE + "|" +
-                                                  a.AREAARETCODE + "|" + a.EQUPLOCNTTNAME + "|" + a.EQUPEQUTABBREVIATION + "|" + a.EQUPINDEX + "|" + a.EQUPSTATUS + "|" + a.EQUPMANRABBREVIATION + "|" + a.EQUPEQUMMODEL;
+                                LOADORCREATE += "[" + a.FLAG + "|" + Convert.ToInt32(a.NE_ID) + "|" + a.FEATURE_STATE + "|" + a.LOCATIONDETAIL + "|" + a.AREACODE + "|" + a.AREADESCRIPTION + "|" + a.AREAAREACODE + "|" +
+                                                  a.AREAARETCODE + "|" + a.EQUPLOCNTTNAME + "|" + a.EQUPEQUTABBREVIATION + "|" + a.EQUPINDEX + "|" + a.EQUPSTATUS + "|" + a.EQUPMANRABBREVIATION + "|" + a.EQUPEQUMMODEL
+                                                   + "|" + a.PTT + "|" + a.G3E_FNO; 
                             }
                         }
 
@@ -8863,7 +8965,20 @@ namespace WebView.Controllers
                         var queryCreateFC = from a in ctxNeps.NIS_CREATEFC_OSP
                                             where id.Trim().ToUpper() == a.JOB_ID.Trim().ToUpper()
                                             orderby a.FC_ID
-                                            select a;
+                                            select new
+                                            {
+                                                a.FLAG,
+                                                a.FC_ID,
+                                                a.LOCNTTNAME,
+                                                a.FRANNAME,
+                                                a.INDEXX,
+                                                a.STATUS,
+                                                a.LOCATIONDETAIL,
+                                                a.AREACODE,
+                                                a.AREADESCRIPTION,
+                                                a.AREAAREACODE,
+                                                a.AREAARETCODE
+                                            };
 
                         if (queryCreateFC.Count() > 0)
                         {
@@ -8950,7 +9065,7 @@ namespace WebView.Controllers
                             }
                         }
 
-                        var queryCreateFUISP = from a in ctxNeps.NIS_ISP_CREATEFU
+                       var queryCreateFUISP = from a in ctxNeps.NIS_ISP_CREATEFU
                                                where id.Trim().ToUpper() == a.SCHEME_NAME.Trim().ToUpper()
                                                orderby a.CREATEFU_ID
                                                select a;
