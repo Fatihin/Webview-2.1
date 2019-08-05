@@ -484,7 +484,7 @@
                 var iteration = lastRow;
                 var row = tbl.insertRow(lastRow);
                 row.style.background = "#e8eef4";
-
+                //alert(big);
                 row.insertCell(0);
                 row.insertCell(1);
                 row.insertCell(2);
@@ -494,7 +494,8 @@
                 row.insertCell(6);
                 row.insertCell(7);
                 row.insertCell(8);
-                if (d[1] != "") {
+                if (d[8] != "") {
+                    
                     tbl.rows[ii + 1].cells[0].innerHTML = d[0];
                     tbl.rows[ii + 1].cells[1].innerHTML = d[1];
                     tbl.rows[ii + 1].cells[2].innerHTML = d[2];
